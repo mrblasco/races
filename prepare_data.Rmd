@@ -1,0 +1,275 @@
+
+Dataset preparation
+========================
+
+Upload datasets
+---------------------------
+
+```{r, echo=TRUE}
+library(magrittr)
+library(jsonlite)
+library(xtable)
+library(knitr)
+
+
+tc.profiles <- read.csv("details_profile.csv")
+submissions <- read.csv("submissions.csv")
+survey.ini  <- read.csv("qualtrics/SV_8elNruzKCgPB72B.csv"
+              , skip=1, na.strings=c("","NA")) 
+survey.end  <- read.csv("qualtrics/SV_0DSqL7Exk0A7Bdj.csv"
+              , skip=1, na.strings=c("","NA"))
+assignment <- rbind(read.csv("race.csv")
+                    , read.csv("tournament.csv")
+                    , read.csv("reserve.csv"))
+
+# Helper functions
+na.count <- function(x) sum(is.na(x))
+replace.pattern <- function(x, p1, p2) gsub(x, pattern=p1, replacement=p2)
+impute.zero <- function(x) ifelse(is.na(x), 0, x)
+capitalize <- function(x) {
+  substr(x, 1, 1) <- toupper(substr(x, 1, 1))
+  return(x)
+}
+```
+
+Initial Survey
+---------------------------
+
+```{r, echo=TRUE}
+
+# Order 
+miss <- apply(survey.ini, 1, na.count)
+survey.ini <- survey.ini[order(miss, decreasing=TRUE), ]
+
+# Handle in survey
+handle.raw <- survey.ini[, 12]
+handle.raw %>% 
+    as.character %>%
+    replace.pattern("@gmail.com", "") %>%
+    replace.pattern("avitella", "Avitella") %>%
+    replace.pattern("vidhyabhushan", "vidhyabhushanv") -> handle
+
+# Unique survey
+index <- tapply(1:length(handle), handle, tail, n=1)
+survey.ini.unique <- survey.ini[index, ]
+handle.unique <- handle[index]
+
+# Demographics
+male  <- survey.ini.unique[, 20]=='Male'
+age   <- survey.ini.unique[, 21]
+educ  <- survey.ini.unique[, 22]
+plang <- survey.ini.unique[, 23]
+
+work.raw <- survey.ini.unique[, 24]
+work.raw %>%
+  tolower %>%
+  replace.pattern("-"," ") %>%
+  replace.pattern(".*software.*","software") %>%
+  replace.pattern(".*master.*|.*univer.*|.*sopho.*|.*bachel.*|.*gradu.*","university") %>%
+  replace.pattern(".*self.*","self-employed") %>%
+  replace.pattern("^employed.*|.*tcs.*|.*employee.*|.*full.?time.*|.*work.*","employed") %>%
+  replace.pattern(".*part.*time.*","part time") %>%
+  replace.pattern(".*resear?ch.*|.*profe.*|.*lectur.*","research") %>%
+  replace.pattern(".*unemp.*|.*none.*|.*nothing.*","not employed") %>%
+  replace.pattern(".*free.?lanc.*|.*independent.*","freelance") %>%
+  replace.pattern(".*develop.*","developer") %>%
+  replace.pattern(".*ph.?d.*","phd student") -> work
+
+country.raw <- survey.ini.unique[, 25]
+country.raw %>%
+     gsub(pattern="^[A-Z]{2} - ", replace="") -> country.or
+
+tz.raw <- survey.ini.unique[, 26]
+tz.raw %>%
+  replace.pattern(",.GMT.*","") -> tz
+
+risk.raw <- survey.ini.unique[, 27] 
+risk <- factor(risk.raw, levels=c("1-unwilling", 2:9, "10-completely willing"))
+
+hweek1 <- survey.ini.unique[, 28] 
+hweek2 <- survey.ini.unique[, 29] 
+hweek3 <- survey.ini.unique[, 30] 
+hweek4 <- survey.ini.unique[, 31]
+lat <- survey.ini.unique[, 32]
+long <- survey.ini.unique[, 33]
+
+initial.survey <- data.frame(id=handle.unique, male, age, educ
+                  , plang, work, country.or, tz, risk
+                  , hweek1, hweek2, hweek3, hweek4, lat, long)
+```
+
+Final survey
+-----------------
+
+```{r, echo=TRUE}
+
+# Handle in survey
+handle.raw <- survey.end[, 12]
+handle.raw %>% 
+    as.character %>%
+    replace.pattern("@gmail.com", "") %>%
+    replace.pattern("avitella", "Avitella") %>%
+    replace.pattern("taquion", "Taquion") %>%
+    replace.pattern("drwhatsisname", "DrWhatsisname") %>%
+    replace.pattern("vidhyabhushan", "vidhyabhushanv") -> handle
+
+# Unique survey
+index <- tapply(1:length(handle), handle, tail, n=1)
+survey.end.unique <- survey.end[index, ]
+handle.unique <- handle[index]
+
+eweek1 <- survey.end.unique[, 20]
+eweek2 <- survey.end.unique[, 21]
+eweek3 <- survey.end.unique[, 22]
+eweek4 <- survey.end.unique[, 23]
+pdouble <- survey.end.unique[, 24]
+phalf   <- survey.end.unique[, 25]
+hard    <- survey.end.unique[, 27]
+risk2.raw   <- survey.end.unique[, 29]
+risk2 <- factor(risk2.raw, levels=c("1-unwilling", 2:9, "10-completely willing"))
+
+final.survey <- data.frame(id=handle.unique, eweek1, eweek2
+                , eweek3, eweek4, pdouble, phalf, hard, risk2)
+
+```
+
+Scores and submissions
+----------------------------
+
+```{r, echo=TRUE}
+handle <- as.character(submissions$handle)
+subid <- submissions$submissionID
+subts <- strptime(submissions$timestamp, "%Y-%m-%d %H:%M:%S")
+subsys <- submissions$system
+subprov <- submissions$provisional
+
+scores <- data.frame(id=handle, subid, subts, subsys, subprov)
+
+```
+
+Platform datasets
+---------------------------
+
+```{r, echo=TRUE}
+
+# Web profiles
+fnames <- list.files(c("profiles-handles","profiles"), full.names=TRUE)
+profiles <- NULL
+m <- data.frame(matrix(nrow=length(fnames), ncol=4))
+for (i in 1:length(fnames)) {
+  x <-  fromJSON(fnames[i])
+  info <- cbind(x$handle, x$country,  as.character(as.Date(x$memberSince)), NA)
+  if (!is.null(x$Achievements$date)) {
+      y <- x$Achievements
+      info[4] <- sum(as.Date(y$date) < "2015-03-13")
+  }
+  m[i, ] <- info
+}
+m <- unique(m[1:nrow(m), ])
+id <- m[, 1]
+id[grep("rtriv", id)] <- "rst9288"
+country <- factor(m[, 2])
+msince <- as.Date(m[, 3])
+badges <- as.numeric(m[, 4])
+
+profiles <- data.frame(id, country, msince, badges)
+
+# Platform Ratings
+handle.raw <- tc.profiles$Handle
+handle.raw %>% 
+    as.character %>%
+    replace.pattern("@gmail.com", "") %>%
+    replace.pattern("avitella", "Avitella") %>%
+    replace.pattern("vidhyabhushan", "vidhyabhushanv") %>%
+    replace.pattern("vidhyabhushanvv", "vidhyabhushanv") -> handle
+
+mm.count  <- impute.zero(tc.profiles$MM.Count)
+mm.wins   <- impute.zero(tc.profiles$Num.Wins)
+mm.top5   <- impute.zero(tc.profiles$Num.Top.5)
+mm.top10  <- impute.zero(tc.profiles$Num.Top.10)
+mm.best.rank  <- tc.profiles$Best.Rank
+mm.rating     <- tc.profiles$Rating
+
+ratings <- data.frame(id=handle, mm.count, mm.rating
+            , mm.wins, mm.top5, mm.top10, mm.best.rank)
+
+
+# Check before merging
+index <- which(!ratings$id %in% profiles$id)
+if (length(index)>0) {
+  warning(sprintf("%i Unmatched handles in ratings", length(index)))
+#  cat(ratings$id[index])
+}
+index <- which(!profiles$id %in% ratings$id)
+if (length(index)>0) {
+  warning(sprintf("%i Unmatched handles in profiles", length(index)))
+ # cat(profiles$id[index])
+}
+
+if (any(table(profiles$id) != 1)) stop("Error profile ids!")
+if (any(table(ratings$id) != 1)) stop("Error ratings ids!")
+
+platform <- merge(ratings, profiles, all=TRUE)
+
+```
+
+Assigned treatment
+---------------------------
+
+```{r, echo=TRUE}
+handle.raw <- assignment$handle
+handle.raw %>% 
+    as.character %>%
+    replace.pattern("@gmail.com", "") %>%
+    replace.pattern("avitella", "Avitella") %>%
+    replace.pattern("vidhyabhushan", "vidhyabhushanv") %>%
+    replace.pattern("vidhyabhushanvv", "vidhyabhushanv") -> handle
+
+room <- factor(paste("Group ", ifelse(assignment$treatment=="race", "1"
+    , ifelse(assignment$treatment=="tournament", "2", "3"))
+    , toupper(letters[assignment$room_id]), sep=""))
+treatment <- factor(assignment$treatment)
+size <- assignment$room_type_id
+levels(treatment) <- capitalize(levels(treatment))
+assigned.treatment <- data.frame(id=handle, room, treatment, size)
+```
+
+
+Merge datasets
+---------------------------
+
+```{r, echo=TRUE}
+# Functions
+merge.by.id <- function(x, y) {
+  id.x <- x$id
+  id.y <- y$id
+  index <- which(!id.x %in% id.y)
+  if (length(index)>0) {
+    warning(sprintf("%i Unmatched handles in x dataset", length(index)))
+    cat(as.character(id.x[index]), sep='\n')
+    index <- which(!id.y %in% id.x)
+    warning(sprintf("%i Unmatched handles in y dataset", length(index)))
+    cat(as.character(id.y[index]), sep='\n')
+  }
+  merge(x, y, by="id", all.x=TRUE)
+}
+agg <- function(label, ...) {
+  z <- aggregate(...)
+  colnames(z) <- c("id", label)
+  return(z)
+}
+
+assigned.treatment %>% 
+    merge.by.id(platform) %>% 
+    merge.by.id(initial.survey) %>%
+    merge.by.id(final.survey) %>% 
+    merge.by.id(agg('lastscore', f=subprov ~ id, d=scores, FUN=tail, n=1)) %>%
+    merge.by.id(agg('nsub', f=subprov ~ id, d=scores, FUN=length)) -> dat  
+  
+summary(dat)
+```
+
+```{r}
+save(list=c("dat", "scores"), file=".RData")
+```
+

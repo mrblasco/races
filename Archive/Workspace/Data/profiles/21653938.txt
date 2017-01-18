@@ -1,0 +1,41 @@
+{
+  "handle": "atmosphere",
+  "country": "Canada",
+  "memberSince": "2006-04-11T06:22:00.000-04:00",
+  "quote": "Give me a place to stand and I will move the earth",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 0,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1396,
+      "colorStyle": "color: #6666FF"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-03-09T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 285,
+    "currentTime": 1455822601892
+  },
+  "requesterInformation": {
+    "id": "ed59d05026fff58690b0e43531973293f56fe0dd-ARWXqhYN8OyzB1Kv",
+    "remoteIP": "65.112.11.37",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "atmosphere",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

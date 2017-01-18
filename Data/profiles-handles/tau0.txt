@@ -1,0 +1,56 @@
+{
+  "handle": "tau0",
+  "country": "Russia",
+  "memberSince": "2014-06-15T10:31:00.000-04:00",
+  "quote": "memento mori",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 1279,
+      "colorStyle": "color: #6666FF"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2016-04-16T00:00:00.000-04:00",
+      "description": "SRM Winner Div 2"
+    },
+    {
+      "date": "2015-10-01T00:00:00.000-04:00",
+      "description": "Participant Badge"
+    },
+    {
+      "date": "2015-10-01T00:00:00.000-04:00",
+      "description": "iOS Participant Badge"
+    },
+    {
+      "date": "2014-10-24T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2014-09-18T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2014-08-31T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 3,
+    "currentTime": 1468013447423
+  },
+  "requesterInformation": {
+    "id": "525b764b066cc9a6db61603f9663911d94dabac1-AbUblvyKSnQ2wfLk",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "tau0",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

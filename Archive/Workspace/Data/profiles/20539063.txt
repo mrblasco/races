@@ -1,0 +1,199 @@
+{
+  "handle": "bohuss",
+  "country": "Slovakia",
+  "memberSince": "2006-01-09T05:59:00.000-05:00",
+  "quote": "It is less important to win than to take part, isn't it ?",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "RIA Build",
+      "rating": 1498,
+      "colorStyle": "color: #6666FF"
+    },
+    {
+      "name": "UI Prototypes",
+      "rating": 967,
+      "colorStyle": "color: #00A900"
+    },
+    {
+      "name": "Algorithm",
+      "rating": 1503,
+      "colorStyle": "color: #DDCC00"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1303,
+      "colorStyle": "color: #6666FF"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-08-12T00:00:00.000-04:00",
+      "description": "Three Hundred Rated Algorithm Competitions"
+    },
+    {
+      "date": "2014-11-25T00:00:00.000-05:00",
+      "description": "2014 F2F Finalist"
+    },
+    {
+      "date": "2014-04-13T00:00:00.000-04:00",
+      "description": "Solved Hard Div1 Problem in SRM"
+    },
+    {
+      "date": "2013-11-02T00:00:00.000-04:00",
+      "description": "Two Hundred Solved Algorithm Problems"
+    },
+    {
+      "date": "2013-06-19T00:00:00.000-04:00",
+      "description": "One Hundred Successful Challenges"
+    },
+    {
+      "date": "2013-02-22T00:00:00.000-05:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2012-10-28T00:00:00.000-04:00",
+      "description": "First Passing Submission"
+    },
+    {
+      "date": "2012-10-25T00:00:00.000-04:00",
+      "description": "First Placement"
+    },
+    {
+      "date": "2012-10-25T00:00:00.000-04:00",
+      "description": "First Win"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Fifty Solved Algorithm Problems"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Top-5 Placement"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Successful Challenge"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five SRM Room Wins (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Successful Challenges"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "One Hundred Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Solved Hard Div2 Problem in SRM"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Ten Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Ten Solved Algorithm Problems"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty Five Successful Challenges"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty Marathon Competitions"
+    },
+    {
+      "date": "2011-12-02T00:00:00.000-05:00",
+      "description": "Studio First Passing Submission"
+    },
+    {
+      "date": "2011-11-14T00:00:00.000-05:00",
+      "description": "Studio First Forum Post"
+    },
+    {
+      "date": "2010-12-23T00:00:00.000-05:00",
+      "description": "Studio First Milestone Prize"
+    },
+    {
+      "date": "2009-10-29T00:00:00.000-04:00",
+      "description": "One Hundred Forum Posts"
+    },
+    {
+      "date": "2009-07-06T00:00:00.000-04:00",
+      "description": "Studio First Placement"
+    },
+    {
+      "date": "2009-07-06T00:00:00.000-04:00",
+      "description": "Studio First Win"
+    },
+    {
+      "date": "2008-12-15T00:00:00.000-05:00",
+      "description": "Studio Twenty Five Placements"
+    },
+    {
+      "date": "2008-09-30T00:00:00.000-04:00",
+      "description": "Studio Cup Top Five"
+    },
+    {
+      "date": "2008-09-30T00:00:00.000-04:00",
+      "description": "Studio Cup Winner"
+    },
+    {
+      "date": "2008-09-03T00:00:00.000-04:00",
+      "description": "Studio Fifty Passing Submissions"
+    },
+    {
+      "date": "2008-08-22T00:00:00.000-04:00",
+      "description": "Studio One Hundred Forum Posts"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 107,
+    "currentTime": 1455820400121
+  },
+  "requesterInformation": {
+    "id": "ed59d05026fff58690b0e43531973293f56fe0dd-kElThxuIcsFOMgaj",
+    "remoteIP": "65.112.11.37",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "bohuss",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

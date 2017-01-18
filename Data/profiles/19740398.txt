@@ -1,0 +1,176 @@
+{
+  "uid": 23194384,
+  "handle": "TrePe",
+  "country": "Slovakia",
+  "memberSince": "2005-10-18T04:07:00.000-04:00",
+  "quote": "In theory, theory and practice are the same. In practice, they are not.",
+  "photoLink": "/i/m/TrePe_big.jpg",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Assembly",
+      "rating": 1464,
+      "colorStyle": "color: #6666FF"
+    },
+    {
+      "name": "Development",
+      "rating": 1386,
+      "colorStyle": "color: #6666FF"
+    },
+    {
+      "name": "Algorithm",
+      "rating": 1336,
+      "colorStyle": "color: #6666FF"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1690,
+      "colorStyle": "color: #DDCC00"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2014-11-25T00:00:00.000-05:00",
+      "description": "2014 F2F Finalist"
+    },
+    {
+      "date": "2013-11-13T00:00:00.000-05:00",
+      "description": "2013 Topcoder Open Mod Dash Finalist"
+    },
+    {
+      "date": "2013-04-02T00:00:00.000-04:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2013-03-06T00:00:00.000-05:00",
+      "description": "First Passing Submission"
+    },
+    {
+      "date": "2013-02-28T00:00:00.000-05:00",
+      "description": "First Placement"
+    },
+    {
+      "date": "2013-02-13T00:00:00.000-05:00",
+      "description": "First Win"
+    },
+    {
+      "date": "2012-12-16T00:00:00.000-05:00",
+      "description": "One Hundred Forum Posts"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Fifty Solved Algorithm Problems"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Top-5 Placement"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Successful Challenge"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Successful Challenges"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "One Hundred Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Solved Hard Div1 Problem in SRM"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Solved Hard Div2 Problem in SRM"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Ten Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Ten Solved Algorithm Problems"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty Five Successful Challenges"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty Marathon Competitions"
+    },
+    {
+      "date": "2012-09-23T00:00:00.000-04:00",
+      "description": "Studio First Forum Post"
+    },
+    {
+      "date": "2012-09-23T00:00:00.000-04:00",
+      "description": "Studio First Passing Submission"
+    },
+    {
+      "date": "2012-09-22T00:00:00.000-04:00",
+      "description": "Studio First Placement"
+    },
+    {
+      "date": "2012-09-22T00:00:00.000-04:00",
+      "description": "Studio First Win"
+    },
+    {
+      "date": "2012-08-04T00:00:00.000-04:00",
+      "description": "Twenty Five Placements"
+    },
+    {
+      "date": "2007-09-22T00:00:00.000-04:00",
+      "description": "2007 TopCoder Collegiate Challenge Algorithm Quarter Finalist"
+    },
+    {
+      "date": "2007-07-17T00:00:00.000-04:00",
+      "description": "Five Hundred Forum Posts"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 3,
+    "currentTime": 1455817675183
+  },
+  "requesterInformation": {
+    "id": "ed59d05026fff58690b0e43531973293f56fe0dd-RfHeE3oGdSpuz3UC",
+    "remoteIP": "65.112.11.37",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "TrePe",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

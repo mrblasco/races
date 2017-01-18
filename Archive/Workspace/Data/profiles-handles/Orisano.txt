@@ -1,0 +1,48 @@
+{
+  "handle": "Orisano",
+  "country": "Japan",
+  "memberSince": "2012-12-12T05:59:00.000-05:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 1046,
+      "colorStyle": "color: #00A900"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-04-18T00:00:00.000-04:00",
+      "description": "Ten Solved Algorithm Problems"
+    },
+    {
+      "date": "2014-05-11T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2014-05-06T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2014-03-30T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 167,
+    "currentTime": 1468013444360
+  },
+  "requesterInformation": {
+    "id": "3b5bad2aea0bc00d5f69351ebfc9f549315c2112-3U5q4dPwpE7cbhSV",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "Orisano",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

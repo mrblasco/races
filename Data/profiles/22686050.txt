@@ -1,0 +1,69 @@
+{
+  "handle": "ksma",
+  "country": "Hong Kong",
+  "memberSince": "2007-06-03T17:43:00.000-04:00",
+  "quote": "Best",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 1304,
+      "colorStyle": "color: #6666FF"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1228,
+      "colorStyle": "color: #6666FF"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Ten Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2012-01-29T00:00:00.000-05:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2010-03-31T00:00:00.000-04:00",
+      "description": "One Hundred Forum Posts"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 57,
+    "currentTime": 1455831486720
+  },
+  "requesterInformation": {
+    "id": "ed59d05026fff58690b0e43531973293f56fe0dd-SqahokopjkvdOfvH",
+    "remoteIP": "65.112.11.37",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "ksma",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "handle": "SePulTribe",
+  "country": "Singapore",
+  "memberSince": "2003-03-04T04:48:00.000-05:00",
+  "quote": "",
+  "photoLink": "/i/m/SePulTribe.jpeg",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "RIA Build",
+      "rating": 1053,
+      "colorStyle": "color: #00A900"
+    },
+    {
+      "name": "Assembly",
+      "rating": 265,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Algorithm",
+      "rating": 829,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1192,
+      "colorStyle": "color: #00A900"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2013-03-20T00:00:00.000-04:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2013-03-07T00:00:00.000-05:00",
+      "description": "First Passing Submission"
+    },
+    {
+      "date": "2013-03-03T00:00:00.000-05:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2013-03-03T00:00:00.000-05:00",
+      "description": "Ten Solved Algorithm Problems"
+    },
+    {
+      "date": "2013-03-02T00:00:00.000-05:00",
+      "description": "First Placement"
+    },
+    {
+      "date": "2013-03-02T00:00:00.000-05:00",
+      "description": "First Win"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2010-08-28T00:00:00.000-04:00",
+      "description": "One Hundred Forum Posts"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 3,
+    "currentTime": 1455803577270
+  },
+  "requesterInformation": {
+    "id": "ed59d05026fff58690b0e43531973293f56fe0dd-ffaDT2BEZcdUeMaz",
+    "remoteIP": "65.112.11.37",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "SePulTribe",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

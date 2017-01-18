@@ -1,0 +1,259 @@
+{
+  "uid": 40365810,
+  "handle": "Psyho",
+  "country": "Poland",
+  "memberSince": "2004-10-16T14:08:00.000-04:00",
+  "quote": "http://psyho.gg | @fakepsyho",
+  "photoLink": "/i/m/Psyho_big.jpg",
+  "copilot": true,
+  "ratingSummary": [
+    {
+      "name": "Development",
+      "rating": 1091,
+      "colorStyle": "color: #00A900"
+    },
+    {
+      "name": "Algorithm",
+      "rating": 2564,
+      "colorStyle": "color: #EE0000"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 2987,
+      "colorStyle": "color: #EE0000"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-01-15T00:00:00.000-05:00",
+      "description": "Marathon Target"
+    },
+    {
+      "date": "2014-11-25T00:00:00.000-05:00",
+      "description": "2014 Algorithm Finalist"
+    },
+    {
+      "date": "2014-11-25T00:00:00.000-05:00",
+      "description": "2014 Marathon Champion"
+    },
+    {
+      "date": "2014-03-17T00:00:00.000-04:00",
+      "description": "First Placement"
+    },
+    {
+      "date": "2013-11-13T00:00:00.000-05:00",
+      "description": "2013 Topcoder Open Marathon Champion"
+    },
+    {
+      "date": "2013-03-17T00:00:00.000-04:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2013-03-08T00:00:00.000-05:00",
+      "description": "Studio First Forum Post"
+    },
+    {
+      "date": "2013-02-11T00:00:00.000-05:00",
+      "description": "First Passing Submission"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Algorithm Target"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Eight Marathon Top-5 Placements"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Fifty Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Fifty Solved Algorithm Problems"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Top-5 Placement"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Successful Challenge"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five SRM Room Wins (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Successful Challenges"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Four Marathon Top-5 Placements"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Marathon Match Winner"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "One Hundred Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "One Hundred Successful Challenges"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "SRM Winner Div 1"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Sixteen Marathon Top-5 Placements"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Solved Hard Div1 Problem in SRM"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Ten Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Ten Solved Algorithm Problems"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty Five Successful Challenges"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty SRM Room Wins (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Two Hundred Solved Algorithm Problems"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Two Marathon Top-5 Placements"
+    },
+    {
+      "date": "2012-09-20T00:00:00.000-04:00",
+      "description": "Studio First Placement"
+    },
+    {
+      "date": "2012-09-20T00:00:00.000-04:00",
+      "description": "Studio First Win"
+    },
+    {
+      "date": "2012-09-14T00:00:00.000-04:00",
+      "description": "Studio First Passing Submission"
+    },
+    {
+      "date": "2012-09-13T00:00:00.000-04:00",
+      "description": "Studio First Milestone Prize"
+    },
+    {
+      "date": "2012-04-10T00:00:00.000-04:00",
+      "description": "2012 TopCoder Open Marathon Finalist"
+    },
+    {
+      "date": "2012-04-02T00:00:00.000-04:00",
+      "description": "One Hundred Forum Posts"
+    },
+    {
+      "date": "2011-09-28T00:00:00.000-04:00",
+      "description": "2011 TopCoder Open Marathon Champion"
+    },
+    {
+      "date": "2010-10-14T00:00:00.000-04:00",
+      "description": "2010 TopCoder Open Marathon Finalist"
+    },
+    {
+      "date": "2009-11-23T00:00:00.000-05:00",
+      "description": "NVIDIA CUDA Superhero Challenge 2 Winner "
+    },
+    {
+      "date": "2009-06-01T00:00:00.000-04:00",
+      "description": "2009 TopCoder Open Marathon Finalist"
+    },
+    {
+      "date": "2009-03-25T00:00:00.000-04:00",
+      "description": "Linden Lab OpenJPEG Winner"
+    },
+    {
+      "date": "2009-01-07T00:00:00.000-05:00",
+      "description": "Five Hundred Forum Posts"
+    },
+    {
+      "date": "2008-05-13T00:00:00.000-04:00",
+      "description": "2008 TopCoder Open Algorithm Semi Finalist"
+    },
+    {
+      "date": "2008-05-12T00:00:00.000-04:00",
+      "description": "2008 TopCoder Open Marathon Match Champion"
+    },
+    {
+      "date": "2007-10-31T00:00:00.000-04:00",
+      "description": "2007 TopCoder Collegiate Challenge Algorithm Semi Finalist"
+    },
+    {
+      "date": "2006-11-16T00:00:00.000-05:00",
+      "description": "2006 TopCoder Collegiate Challenge Algorithm Semi Finalist"
+    },
+    {
+      "date": "2005-05-09T00:00:00.000-04:00",
+      "description": "One Thousand Forum Posts"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 4,
+    "currentTime": 1455811976239
+  },
+  "requesterInformation": {
+    "id": "ed59d05026fff58690b0e43531973293f56fe0dd-IVoRXGoO68CBCY19",
+    "remoteIP": "65.112.11.37",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "Psyho",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

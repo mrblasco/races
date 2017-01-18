@@ -1,0 +1,81 @@
+{
+  "handle": "eldidou",
+  "country": "France",
+  "memberSince": "2011-10-04T17:16:00.000-04:00",
+  "quote": "",
+  "photoLink": "/i/m/eldidou.jpeg",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 0,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 2678,
+      "colorStyle": "color: #EE0000"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-05-13T00:00:00.000-04:00",
+      "description": "Eight Marathon Top-5 Placements"
+    },
+    {
+      "date": "2014-11-25T00:00:00.000-05:00",
+      "description": "2014 Marathon Finalist"
+    },
+    {
+      "date": "2014-11-21T00:00:00.000-05:00",
+      "description": "Ten Marathon Competitions"
+    },
+    {
+      "date": "2014-06-10T00:00:00.000-04:00",
+      "description": "Marathon Match Winner"
+    },
+    {
+      "date": "2013-12-26T00:00:00.000-05:00",
+      "description": "Four Marathon Top-5 Placements"
+    },
+    {
+      "date": "2013-11-13T00:00:00.000-05:00",
+      "description": "2013 Topcoder Open Marathon Finalist"
+    },
+    {
+      "date": "2013-05-29T00:00:00.000-04:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2013-05-29T00:00:00.000-04:00",
+      "description": "Two Marathon Top-5 Placements"
+    },
+    {
+      "date": "2013-04-17T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2013-04-17T00:00:00.000-04:00",
+      "description": "First Marathon Top-5 Placement"
+    },
+    {
+      "date": "2013-04-11T00:00:00.000-04:00",
+      "description": "First Forum Post"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 4,
+    "currentTime": 1456158662596
+  },
+  "requesterInformation": {
+    "id": "568105507b744b2668ce1094104714a9377426e1-x6D8qNdKXJ35JwiP",
+    "remoteIP": "65.112.10.85",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "eldidou",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

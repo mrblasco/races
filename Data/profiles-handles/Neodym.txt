@@ -1,0 +1,36 @@
+{
+  "handle": "Neodym",
+  "country": "Belarus",
+  "memberSince": "2013-01-12T11:23:00.000-05:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 1330,
+      "colorStyle": "color: #6666FF"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2013-01-30T00:00:00.000-05:00",
+      "description": "First Rated Algorithm Competition"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 145,
+    "currentTime": 1468013443431
+  },
+  "requesterInformation": {
+    "id": "cb8221607f2a167f7047ac7b1de756383248d97b-i26iiBM1R1ZEIVxq",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "Neodym",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

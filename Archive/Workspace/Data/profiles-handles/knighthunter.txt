@@ -1,0 +1,52 @@
+{
+  "handle": "knighthunter",
+  "country": "India",
+  "memberSince": "2013-05-26T15:51:00.000-04:00",
+  "quote": "Ego = 1 / Knowledge",
+  "photoLink": "/i/m/knighthunter.jpeg",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 312,
+      "colorStyle": "color: #999999"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2014-09-14T00:00:00.000-04:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2014-09-14T00:00:00.000-04:00",
+      "description": "First Passing Submission"
+    },
+    {
+      "date": "2014-05-21T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2014-03-30T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2014-03-22T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 141,
+    "currentTime": 1468013440795
+  },
+  "requesterInformation": {
+    "id": "3b5bad2aea0bc00d5f69351ebfc9f549315c2112-TfaQnLcaub3G2v2y",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "knighthunter",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

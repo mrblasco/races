@@ -1,0 +1,300 @@
+"room_id","treatment_id","handle","create_date","country_name","address","algorating","algoevents","mmrating","mmevents","algoreg","mmreg","totalpayments","school","age","gender","rowID","rating_criterion","registration_criterion","survey_criterion"
+1,"tournament","klo86min","1/22/2013 5:09:06","France","jul.l5e@live.com",1284,23,1939,15,25,22,111233.16,"","25 - 34","Decline to Answer",200,1,1,1
+1,"tournament","LaguneXXX","3/3/2004 17:01:34","Spain","carlosalberto.henriquez@yahoo.com",940,19,NA,NA,17,2,1920,"","25 - 34","Male",38,1,1,1
+1,"tournament","FCoskun","9/8/2008 6:54:08","Turkey","fatihc84@gmail.com",994,1,NA,NA,1,3,620,"Istanbul Technical University","18 - 24","Male",20,1,1,1
+1,"tournament","baseballnut","2/10/2006 9:10:21","United States","leonbun348@yahoo.com",998,10,991,64,11,90,50,"","35 - 44","Male",118,1,1,1
+1,"tournament","adk90","11/27/2014 21:23:29","India","shubhajoydas@rocketmail.com",0,0,NA,NA,0,2,NA,"","","Male",94,0,1,1
+1,"tournament","bdepwgjqet","8/10/2011 9:59:53","China","bdepwgjqet@gmail.com",1347,29,NA,NA,30,1,NA,"Nankai University","18 - 24","Male",119,1,1,1
+1,"tournament","JRSSKumarD","9/26/2014 6:05:52","India","satyakumar914@gmail.com",1062,1,1489,5,1,10,NA,"","","",32,1,1,1
+1,"tournament","Rajpurohit","3/3/2014 23:52:27","India","ashok1113@hotmail.com",687,5,NA,NA,5,2,NA,"","","Male",61,1,1,0
+1,"tournament","yfalah","1/22/2013 4:08:47","France","falahyassine00@yahoo.fr",0,0,1328,3,0,10,NA,"","25 - 34","Male",327,1,1,1
+1,"tournament","logico14","10/12/2012 11:29:55","Croatia","marinkisic14@gmail.com",1043,8,1225,1,9,3,NA,"Prva gimnazija VaraÅ¾din","13 - 17","Male",217,1,1,1
+2,"reserve","ascii892","10/7/2010 15:34:37","United Kingdom","ns362007@ohio.edu",762,1,1660,3,1,5,NA,"Ohio University","25 - 34","Male",111,1,1,1
+2,"reserve","alazyrabbit","3/2/2010 23:31:57","China","i@liangsun.org",1344,23,856,4,30,11,NA,"Shandong University","18 - 24","Male",99,1,1,1
+2,"reserve","danbanica","3/6/2006 12:58:47","Romania","danbanica@yahoo.com",2090,62,1414,3,82,40,200,"Politehnica University of Bucharest","25 - 34","Male",146,1,1,1
+2,"reserve","dimonica","12/14/2013 11:02:34","Belarus","dimonica1966@mail.ru",1162,4,NA,NA,5,1,NA,"school 41","13 - 17","Male",157,1,1,1
+2,"reserve","jaikamal","9/18/2011 15:51:39","India","jaikamal1991@gmail.com",766,1,805,2,2,8,NA,"University of Delhi","18 - 24","Male",188,1,1,1
+2,"reserve","Nil_ct","3/17/2007 19:29:23","France","cparisel@gmail.com",1146,136,1365,29,152,42,34,"Ecole Nationale des Travaux Publics de l'Etat","35 - 44","Female",52,1,1,1
+2,"reserve","yedtoss","3/24/2011 17:58:58","Benin","yedtoss@gmail.com",787,36,1043,7,49,21,140091.57,"Ecole Polytechnique d'Abomey-Calavi","18 - 24","Male",326,1,1,1
+2,"reserve","mak512","1/4/2015 1:40:43","India","mak3995@gmail.com",0,0,1033,2,0,5,NA,"","","",221,1,1,0
+2,"reserve","antoshkaplus","3/23/2011 11:38:48","United States","antoshkaplus@gmail.com",962,13,1297,8,14,16,300,"school #31","18 - 24","Male",108,1,1,1
+2,"reserve","Chikov2","2/21/2002 3:31:51","United States","chikov2@gmail.com",760,85,669,6,98,50,14300,"","25 - 34","Male",11,1,1,1
+3,"race","omegayu","10/8/2010 11:06:46","Taiwan","hcyu@nckualumni.org.tw",0,0,781,1,0,3,NA,"","25 - 34","Male",254,1,1,1
+3,"race","onjanirina","2/19/2012 1:22:57","Madagascar","onja711@gmail.com",671,6,1006,11,6,30,NA,"","35 - 44","Male",256,1,1,1
+3,"race","limed","3/12/2014 16:50:30","Lithuania","linas.medziunas@gmail.com",1514,8,1937,6,11,7,NA,"","35 - 44","Male",211,1,1,1
+3,"race","Fdg","3/29/2008 12:53:25","Ukraine","sdslm@yandex.ru",2451,218,800,1,242,11,900,"Kyiv National Taras Shevchenko University","18 - 24","Male",21,1,1,1
+3,"race","marchyoung","10/23/2014 15:35:07","United States","marcus.h.young@gmail.com",0,0,1025,1,0,2,NA,"","","",223,1,1,1
+3,"race","abundrew","5/7/2010 18:58:02","United States","andrey@logunov.net",1019,16,1484,17,18,30,3000,"","45 and up","Male",93,1,1,1
+3,"race","kit1980","1/26/2009 15:13:31","Ukraine","kit1980@gmail.com",1109,91,1098,12,99,29,62911.14,"","25 - 34","Male",198,1,1,1
+3,"race","Orisano","12/12/2012 5:59:46","Japan","weekendsummer.endless@gmail.com",1041,5,NA,NA,5,1,NA,"Okinawa National College of Technology","18 - 24","Male",55,1,1,0
+3,"race","pooya_","5/3/2008 6:08:55","United Kingdom","pooya.vahidi0@gmail.com",2455,17,1607,3,24,9,NA,"shahid hashemi nejad","18 - 24","Male",266,1,1,0
+3,"race","PaxosMyth","4/24/2014 18:31:33","India","sathieswar.b@gmail.com",0,0,NA,NA,0,5,625,"","18 - 24","Male",56,0,1,1
+4,"tournament","Rubanenko","5/10/2012 11:31:17","Ukraine","Rom4ik.95@Gmail.com",1980,37,NA,NA,46,2,NA,"Uzhhorod National University","18 - 24","Male",64,1,1,1
+4,"tournament","feather","7/31/2008 12:19:03","Russia","abss.pakso@gmail.com",2100,65,992,3,78,13,NA,"Saratov State University","25 - 34","Male",165,1,1,1
+4,"tournament","sabbathist","1/14/2010 7:15:24","Belarus","sabbathist@gmail.com",830,13,NA,NA,14,6,8000,"Belarusian State University","18 - 24","Male",275,1,1,1
+4,"tournament","koyumeishi","5/6/2012 10:07:46","Japan","mist.orz.17+topcoder@gmail.com",1392,35,NA,NA,40,2,NA,"Waseda","18 - 24","Male",203,1,1,0
+4,"tournament","sas4eka","11/9/2010 14:34:49","Belarus","sas4eka@gmail.com",2151,122,1200,11,139,23,5075,"Belarusian State University","18 - 24","Male",278,1,1,1
+4,"tournament","mcw1142","6/30/2008 17:53:31","United States","martincarlweiss@gmail.com",884,2,971,25,2,33,NA,"","45 and up","Male",232,1,1,1
+4,"tournament","nims11","12/27/2011 1:17:26","India","nimeshghelani@gmail.com",1615,34,NA,NA,39,1,NA,"Birla Institute of Technology, Mesra","18 - 24","Male",249,1,1,1
+4,"tournament","Venug","2/14/2014 4:11:02","Poland","piotrekm7@gmail.com",975,7,NA,NA,7,1,NA,"Warsaw University","18 - 24","Male",81,1,1,1
+4,"tournament","sweetkang","7/2/2008 5:30:29","China","xuyangkang@gmail.com",1479,86,1318,2,98,11,NA,"Xinhua High School","18 - 24","Male",292,1,1,1
+4,"tournament","eldidou","10/4/2011 17:16:19","France","thedidou@gmail.com",0,0,2633,10,0,15,500,"","25 - 34","Male",160,1,1,1
+5,"reserve","LOY","11/29/2005 11:18:15","China","loyeer@gmail.com",2085,53,1662,10,59,31,305386.81,"Xiamen University","25 - 34","Male",37,1,1,1
+5,"reserve","azneye","10/30/2011 20:10:00","Canada","huang.yf.andy@live.ca",2264,114,799,18,126,36,200,"University of Waterloo","18 - 24","Male",116,1,1,1
+5,"reserve","caustique","1/17/2009 11:38:35","Russia","mr.demidov@gmail.com",1797,116,807,3,139,10,NA,"Saint-Petersburg State University","18 - 24","Male",130,1,1,1
+5,"reserve","tau0","6/15/2014 10:31:17","Russia","n.v.sukhanov@gmail.com",1269,7,NA,NA,8,1,NA,"","18 - 24","Male",295,1,1,1
+5,"reserve","nhzp339","11/20/2004 6:32:35","China","nhzp339@aliyun.com",1981,338,2718,48,365,90,1283276.02,"Beijing University of Technology","25 - 34","Male",247,1,1,1
+5,"reserve","neotheicebird","1/18/2015 3:56:40","India","neotheicebird@gmail.com",0,0,1194,1,0,2,NA,"","","",245,1,1,1
+5,"reserve","mrmillers","8/7/2014 10:01:04","China","yz1613@nyu.edu",1102,2,NA,NA,3,1,200,"New York University","18 - 24","Male",240,1,1,1
+5,"reserve","fine_plain","11/4/2014 9:35:13","Ukraine","uran198@gmail.com",1303,5,NA,NA,6,1,NA,"Kyiv National Taras Shevchenko University","18 - 24","Male",166,1,1,1
+5,"reserve","WTrei","8/26/2011 13:32:49","Germany","wilke.trei@googlemail.com",1237,3,1705,20,4,33,39050,"University Oldenburg","25 - 34","Male",84,1,1,1
+5,"reserve","unbing","3/29/2007 7:58:40","South Korea","unbing@gmail.com",2048,115,1121,2,126,13,466,"Yonsei University","18 - 24","Male",302,1,1,1
+6,"race","yangzhe1991","5/9/2010 22:58:51","China","ud1937@gmail.com",1457,32,897,6,33,16,80,"Northeastern University","18 - 24","Male",321,1,1,1
+6,"race","delabourdonnais","12/26/2012 15:29:04","Morocco","rahmatallahtarik@gmail.com",837,12,NA,NA,13,2,NA,"ENSIAS","18 - 24","Male",151,1,1,1
+6,"race","Bankevich","4/22/2006 13:00:34","Russia","Sergey.Bankevich@gmail.com",1905,159,853,7,181,10,4423,"","25 - 34","Male",7,1,1,1
+6,"race","yassine12","12/21/2013 8:55:12","Morocco","birigy@gmail.com",773,1,NA,NA,1,1,NA,"FacultÃ© des Sciences et Techniques de Settat","25 - 34","Male",324,1,1,1
+6,"race","jasonw","2/25/2002 23:14:53","United States","jawolfe@berkeley.edu",1926,71,NA,NA,73,2,6732,"","18 - 24","Male",189,1,1,1
+6,"race","hired777","4/30/2009 13:41:50","Belarus","hired777@gmail.com",1336,22,NA,NA,28,4,NA,"school 41","18 - 24","Male",180,1,1,1
+6,"race","pnomarev","5/30/2011 3:13:23","Russia","pnomarev@gmail.com",1513,44,1566,24,45,39,6950,"","25 - 34","Male",265,1,1,1
+6,"race","Jumping John","7/17/2002 11:38:16","United States","yeager@acm.org",1636,77,1841,10,87,20,25,"","45 and up","Decline to Answer",34,1,1,1
+6,"race","Zimuk","8/21/2014 3:34:18","Russia","Slava92@mail.ru",1428,10,1097,1,12,3,NA,"","35 - 44","Male",88,1,1,1
+6,"race","yrtchn","6/26/2011 2:24:58","Russia","yrtchn@gmail.com",1277,37,1621,13,42,26,5100,"","25 - 34","Male",330,1,1,1
+7,"tournament","Avitella","5/17/2012 14:10:25","Russia","urtashev@gmail.com",1339,4,NA,NA,4,1,NA,"MEPhI","18 - 24","Male",6,1,1,0
+7,"tournament","osev","5/10/2011 9:57:59","United States","orsevin@gmail.com",1054,31,NA,NA,33,1,NA,"North Carolina State University","18 - 24","Male",258,1,1,1
+7,"tournament","1101","10/29/2003 11:31:27","Ireland","conor.muldoon@gmail.com",1087,175,NA,NA,187,4,NA,"","25 - 34","Male",1,1,1,1
+7,"tournament","TrePe","10/18/2005 4:07:03","Slovakia","peter.trebaticky@gmail.com",1630,165,1690,30,196,57,152429.18,"Slovak University of Technology in Bratislava","25 - 34","Male",75,1,1,1
+7,"tournament","bluenet","11/28/2013 7:01:24","Japan","iksdust@gmail.com",1054,10,969,10,13,20,NA,"VipUniversity","25 - 34","Male",121,1,1,1
+7,"tournament","a9108tc","9/16/2008 7:08:46","China","a9108g@gmail.com",2774,40,1805,13,44,29,55192.88,"Shanghai Jiaotong University","18 - 24","Male",91,1,1,0
+7,"tournament","toshif","4/26/2014 20:19:56","Japan","t.fukuzawa@gmail.com",1321,15,NA,NA,20,1,NA,"","25 - 34","Male",298,1,1,1
+7,"tournament","smel","10/2/2007 9:23:29","Russia","svembox@gmail.com",1991,24,1333,4,30,6,4000,"Vologda multiple-discipline lyceum","18 - 24","Male",283,1,1,1
+7,"tournament","antslag","10/31/2012 3:51:59","Russia","jbteam@ymail.com",968,27,1143,3,32,9,NA,"","18 - 24","Male",109,1,1,1
+7,"tournament","kino","8/7/2005 14:58:34","United States","michael@codesand.org",1205,30,1150,8,39,25,1310,"","Decline to Answer","Decline to Answer",197,1,1,1
+8,"reserve","ashersyed","5/4/2006 1:16:39","Mexico","ashersyed@hotmail.com",440,5,742,8,5,53,450,"","25 - 34","Male",112,1,1,1
+8,"reserve","all_random","1/15/2015 7:20:05","Viet Nam","xv.lucisnoctis@gmail.com",0,0,1608,1,1,2,NA,"","","Male",104,1,1,1
+8,"reserve","OlexandrT","6/20/2011 15:41:02","Ukraine","topchilo@ukr.net",1079,6,1597,6,6,10,4500,"","45 and up","Male",54,1,1,1
+8,"reserve","sampathkumarv","3/9/2011 12:02:53","India","sampathkumarv@gmail.com",963,32,933,1,38,5,NA,"","35 - 44","Male",277,1,1,1
+8,"reserve","cheaps","1/17/2015 17:01:09","United States","chris.heaps@aggiemail.usu.edu",1105,2,1048,2,3,4,NA,"","","",133,1,1,1
+8,"reserve","d_jash","2/28/2005 4:36:22","India","debmalya.jash@gmail.com",547,46,918,15,73,81,11337.5,"","35 - 44","Male",144,1,1,1
+8,"reserve","goldfinch","3/3/2007 16:12:26","Russia","ss.goldfinch@gmail.com",1498,128,1826,24,141,57,134,"Ivanovo State University of Chemistry and Technology","18 - 24","Male",171,1,1,1
+8,"reserve","mystic_coder","8/1/2009 15:33:51","India","nitendra_bhosle@yahoo.co.in",771,1,NA,NA,3,12,NA,"","25 - 34","Male",242,1,1,1
+8,"reserve","marshmallow","12/25/2012 8:00:22","Australia","johnhornibrook@hotmail.com",1240,10,1750,9,10,9,NA,"University of Sydney","25 - 34","Male",226,1,1,1
+8,"reserve","al_gol","6/13/2011 14:22:10","Belarus","dev.algol@gmail.com",953,28,1173,5,30,8,3000,"Belarusian State University of Informatics and Radioelectronics","18 - 24","Male",98,1,1,1
+9,"race","sohel_uoa","7/14/2010 2:22:34","Bangladesh","mbhuiyan@ualberta.ca",0,0,1024,1,0,4,NA,"University of Alberta","25 - 34","Male",286,1,1,1
+9,"race","f1zz0_13","2/4/2013 15:20:40","India","anuragprateek@gmail.com",1080,36,NA,NA,41,1,NA,"IIT Guwahati","18 - 24","Male",162,1,1,1
+9,"race","MahmoudAGawad","2/3/2013 7:02:11","Egypt","mahmoudsaleh272@gmail.com",1105,36,NA,NA,40,1,NA,"Faculty of Engineering, Alexandria University","18 - 24","Male",43,1,1,1
+9,"race","JK24","11/29/2012 19:22:38","Belarus","zdanovichevgeny@gmail.com",1422,43,NA,NA,52,7,NA,"school 41","18 - 24","Male",31,1,1,1
+9,"race","ZLATKO","4/9/2005 21:16:22","Macedonia","matic@1matic.com",809,279,1114,54,325,140,1563.5,"","45 and up","Male",87,1,1,1
+9,"race","daviduarte","10/26/2009 6:42:47","Brazil","daviduartep@gmail.com",1456,58,1163,4,64,10,NA,"UFPE","18 - 24","Male",148,1,1,1
+9,"race","Nickolas","8/13/2005 5:22:47","Ukraine","michaylova@gmail.com",1800,73,1542,14,83,28,121649,"NTUU \"KPI\"","25 - 34","Female",51,1,1,1
+9,"race","xiaoruby","10/11/2009 11:43:47","China","lc_34@sohu.com",0,0,NA,NA,0,2,25931.61,"Fujian Normal University","18 - 24","Female",317,0,1,1
+9,"race","Seip_meginu","2/4/2015 10:37:20","Lithuania","andriusjskp@gmail.com",0,0,1229,1,0,2,NA,"","","",67,1,1,1
+9,"race","pedrosorio","7/10/2008 14:27:37","Portugal","mebm.pedrosorio@gmail.com",1464,65,1264,6,72,13,50,"Instituto Superior TÃ©cnico","25 - 34","Male",261,1,1,1
+10,"tournament","1957","11/13/2010 1:00:32","China","fangyuhao@gmail.com",949,7,NA,NA,9,1,300,"Sichuan University","18 - 24","Male",3,1,1,0
+10,"tournament","nroeth","12/30/2009 18:27:13","United States","neil@occamsrazor.net",852,5,1379,4,7,6,NA,"","45 and up","Male",253,1,1,1
+10,"tournament","ichattopadhyaya","4/23/2006 5:31:29","India","ichattopadhyaya@gmail.com",1273,73,1445,14,81,27,NA,"United College of Engineering and Research","25 - 34","Male",183,1,1,1
+10,"tournament","EgorLakomkin","11/18/2010 5:14:16","Russia","egor.lakomkin@gmail.com",0,0,NA,NA,0,8,NA,"Bauman Moscow State Technical University","18 - 24","Male",16,0,1,1
+10,"tournament","vidhyabhushanv","10/9/2014 9:39:55","India","vidhya.01bit@gmail.com",705,1,NA,NA,2,1,NA,"Senior Secondry School Sector-6 No-1","25 - 34","Male",306,1,1,0
+10,"tournament","vokie","11/4/2010 4:27:57","China","linchengdt@163.com",444,2,NA,NA,2,45,NA,"BIT","18 - 24","Male",308,1,1,0
+10,"tournament","defatigue","8/7/2014 18:07:44","Nigeria","defatigue@gmail.com",528,2,NA,NA,6,1,NA,"","25 - 34","Male",149,1,1,1
+10,"tournament","mra","5/11/2011 18:32:00","Turkey","riza2000@hotmail.com",1037,1,614,1,1,2,3000,"","25 - 34","Male",239,1,1,1
+10,"tournament","Ironhawks","9/14/2014 11:05:21","China","tieying.hsiang@gmail.com",0,0,NA,NA,0,4,NA,"","","",30,0,1,1
+10,"tournament","MonicaMuranyi","1/14/2010 9:55:51","Romania","monicadiana2001@yahoo.com",948,23,NA,NA,24,3,98059.12,"","25 - 34","Female",47,1,1,1
+11,"reserve","not_","5/27/2010 7:25:09","Japan","gobou522@gmail.com",1667,60,1835,11,74,16,NA,"University of Tokyo","18 - 24","Male",252,1,1,1
+11,"reserve","martinezgjuan","1/10/2013 6:39:51","Venezuela","martinezgjuan@gmail.com",1348,26,1565,1,27,2,NA,"Universidad Simon Bolivar","25 - 34","Male",228,1,1,1
+11,"reserve","elder1g","10/13/2011 4:43:35","Singapore","elder1g@hotmail.com",0,0,2308,11,1,31,170100,"","25 - 34","Male",159,1,1,1
+11,"reserve","windhunterSB","12/14/2013 5:21:31","China","kongzhao135@sina.com",1969,22,NA,NA,33,2,NA,"SEU","18 - 24","Male",311,1,1,1
+11,"reserve","Mril284","3/21/2014 22:24:36","United States","rileyma86@gmail.com",0,0,769,1,0,4,NA,"","","",48,1,1,1
+11,"reserve","Johan.de.Ruiter","1/20/2006 14:57:06","Netherlands","johan.de.ruiter@gmail.com",1703,108,1067,13,112,51,410.2,"","25 - 34","Male",33,1,1,1
+11,"reserve","vuchko","9/27/2007 5:29:16","Ukraine","boiko.roman@gmail.com",565,1,NA,NA,1,1,NA,"Kyiv - Mohyla Academy","18 - 24","Male",310,1,1,1
+11,"reserve","gondzo","9/7/2009 11:59:31","Bosnia & Herzegowina","samir.gondzetovic@gmail.com",977,30,658,7,48,22,124599.64,"ETF Sarajevo","18 - 24","Male",172,1,1,1
+11,"reserve","dilip.thapa","2/21/2013 12:35:15","Nepal","dilip.thapa@outlook.com",0,0,NA,NA,0,7,NA,"","25 - 34","Male",155,0,1,1
+11,"reserve","VArt","9/17/2007 13:42:47","Belarus","vovan92@tut.by",1250,53,NA,NA,64,2,NA,"Gomel Regional State Lyceum","13 - 17","Male",78,1,1,1
+12,"race","zizo0003","8/8/2009 10:43:15","Egypt","zizo_0003@yahoo.com",1269,71,774,15,75,38,NA,"Faculty of Engineering, Alexandria University","18 - 24","Male",336,1,1,1
+12,"race","tbell","3/20/2014 7:46:29","United States","txb241@gmail.com",0,0,1418,1,0,3,NA,"","35 - 44","Male",296,1,1,1
+12,"race","defh","1/9/2007 18:59:37","Dominican Republic","eprha.carvajal@gmail.com",395,95,904,8,112,37,538,"","25 - 34","Male",150,1,1,1
+12,"race","alinionut.popa","6/26/2014 4:15:45","Romania","alinionut.popa@gmail.com",793,5,NA,NA,7,2,NA,"","25 - 34","Male",103,1,1,1
+12,"race","maniek","12/14/2004 6:32:33","Poland","marcin.mank@gmail.com",1734,116,1893,26,135,72,223460,"","25 - 34","Male",222,1,1,1
+12,"race","ourtake","7/18/2012 2:27:12","Japan","bamboo.our@gmail.com",983,45,1092,3,50,16,NA,"Osaka University","25 - 34","Male",259,1,1,1
+12,"race","T_I_W_A_R_Y","4/8/2013 23:46:24","India","parthpankajtiwary@gmail.com",699,4,NA,NA,4,1,NA,"Shri Mata Vaishno Devi University","18 - 24","Male",72,1,1,1
+12,"race","pfr","9/6/2014 4:16:09","France","paul.froissart@gmail.com",0,0,2380,4,0,8,41500,"","","",264,1,1,1
+12,"race","trylar","4/14/2014 15:36:30","Russia","quelanor@gmail.com",0,0,NA,NA,1,1,NA,"Vyatka SU","Decline to Answer","Female",300,0,1,1
+12,"race","MIPT_Alex","1/25/2007 4:38:18","Russia","406080@mail.ru",1610,32,1758,6,35,12,1000,"Moscow Institute of Physics and Technology","18 - 24","Male",42,1,1,1
+13,"tournament","gutoo","1/30/2013 2:36:22","South Korea","gutomitai@gmail.com",0,0,1075,7,0,21,13600,"","35 - 44","Male",173,1,1,1
+13,"tournament","codeshubh","1/6/2013 13:29:35","India","gargshubham258@gmail.com",736,4,NA,NA,8,1,NA,"The LNM Institute of Information Technology","18 - 24","Male",137,1,1,1
+13,"tournament","alex90","12/6/2010 5:53:04","Spain","alejandrojh90@gmail.com",1552,33,1412,2,41,6,1000,"Universidad PolitÃ©cnica de Madrid","18 - 24","Male",101,1,1,1
+13,"tournament","chengweichi","6/30/2012 9:40:07","Taiwan","chrischris488@msn.com",405,4,NA,NA,7,1,NA,"National Taiwan Ocean University","25 - 34","Male",134,1,1,1
+13,"tournament","mln","7/15/2005 14:28:05","Bulgaria","mlnstanev@gmail.com",760,119,1083,3,150,13,39890.4,"","25 - 34","Male",236,1,1,1
+13,"tournament","Vetteru","1/12/2013 8:26:57","Japan","naoki.terunuma@gmail.com",1550,33,NA,NA,36,1,NA,"University of AIZU","18 - 24","Male",82,1,1,1
+13,"tournament","ISMAX","9/3/2014 16:25:09","France","d3vdu38@gmail.com",0,0,829,4,0,7,NA,"","","",27,1,1,0
+13,"tournament","codercat","5/6/2009 2:36:18","India","venkatas.siva@gmail.com",716,29,1410,1,33,10,44523.76,"","45 and up","Male",136,1,1,1
+13,"tournament","lionelc","1/15/2012 15:29:53","United States","lionelchange@gmail.com",1086,16,989,1,19,12,NA,"Louisiana State University","25 - 34","Male",212,1,1,0
+13,"tournament","martin.trojak","12/30/2014 15:13:13","Slovakia","martin.trojak@gmail.com",0,0,1469,1,0,2,NA,"","","Male",227,1,1,1
+13,"tournament","halyavin","5/23/2005 4:53:24","Russia","halyavin@gmail.com",2343,46,1961,24,53,51,9552,"Moscow State University","18 - 24","Male",176,1,1,1
+13,"tournament","Chmel_Tolstiy","4/12/2006 3:07:01","Belarus","naxart@yandex.ru",2281,177,1038,8,200,18,20861.5,"Belarusian State University","18 - 24","Male",12,1,1,1
+13,"tournament","k_k1","1/12/2015 8:33:12","Japan","kkvm1234@yahoo.co.jp",990,2,NA,NA,2,1,NA,"","","",194,1,1,0
+13,"tournament","pfilippi","7/17/2009 8:02:02","Germany","pascal.filippi@googlemail.com",1450,1,1238,2,1,9,49960.8,"UniversitÃ¤t TÃ¼bingen","25 - 34","Male",263,1,1,1
+13,"tournament","kubapb","9/17/2014 13:15:44","Poland","kubapb@gmail.com",832,2,1191,5,2,7,NA,"","","",206,1,1,1
+14,"reserve","haraduka","6/6/2014 19:35:35","Japan","kkinorinnn444@gmail.com",1143,4,NA,NA,5,1,NA,"University of Tokyo","","Male",177,1,1,1
+14,"reserve","lipsum","1/3/2014 11:49:29","Japan","AI.type00@gmail.com",1290,36,1168,8,38,21,NA,"","25 - 34","Male",213,1,1,1
+14,"reserve","xhae","10/19/2007 6:02:30","South Korea","ryu_j_k@hanmail.net",1798,193,1063,2,231,3,85,"Yonsei University","Decline to Answer","Decline to Answer",315,1,1,1
+14,"reserve","izhari","9/11/2005 9:34:32","Indonesia","izharishaksa@gmail.com",938,263,1227,29,306,66,166571.16,"Universitas Sumatera Utara","25 - 34","Male",187,1,1,1
+14,"reserve","madbn","1/17/2012 9:29:02","Romania","mad68bn@gmail.com",0,0,1442,1,0,5,NA,"Babes Bolyai University","25 - 34","Female",220,1,1,1
+14,"reserve","daga_sumit","3/10/2014 15:01:49","India","sumit.daga66@gmail.com",0,0,NA,NA,0,3,14992.72,"","25 - 34","Male",145,0,1,1
+14,"reserve","atmosphere","4/11/2006 6:22:53","Canada","neotimeless@gmail.com",0,0,NA,NA,0,2,NA,"Carleton","18 - 24","Male",115,0,1,1
+14,"reserve","haipt81","9/16/2004 6:10:37","Singapore","phamthanhhai@gmail.com",1646,50,1449,3,52,30,131995.06,"","25 - 34","Male",175,1,1,1
+14,"reserve","kyerise","6/19/2012 15:31:40","Zimbabwe","kyerise@gmail.com",555,9,593,6,11,19,NA,"nust","25 - 34","Male",209,1,1,1
+14,"reserve","Irioth","5/6/2006 2:56:45","Russia","irioth@gmail.com",1770,106,1621,30,117,57,2119,"None Specified","25 - 34","Male",29,1,1,1
+14,"reserve","dexy","11/4/2003 17:07:39","Serbia","sidejan@gmail.com",1866,141,1107,1,178,28,44833.77,"UniversitÃ  di Pisa","25 - 34","Male",152,1,1,1
+14,"reserve","kazunetakahashi","6/21/2014 23:07:44","Japan","kazunetakahashi@gmail.com",0,0,NA,NA,0,2,NA,"University of Tokyo","25 - 34","Male",196,0,1,1
+14,"reserve","marek.cygan","9/17/2003 15:30:02","Poland","cygan@mimuw.edu.pl",2958,242,2247,13,256,34,37864.29,"Warsaw University","25 - 34","Male",224,1,1,1
+14,"reserve","dimkadimon","4/10/2002 20:50:38","Australia","dkamenetsky@gmail.com",1203,178,1766,13,187,40,7066.5,"Australian National University","25 - 34","Male",156,1,1,0
+14,"reserve","RobinWang","11/28/2005 2:26:44","China","robin.lupeng.wang@gmail.com",1155,1,NA,NA,1,2,NA,"","18 - 24","Male",63,1,1,0
+15,"race","andresduque","6/29/2009 16:21:48","Colombia","manny934@yahoo.com",562,9,1753,23,10,51,102197.89,"","Decline to Answer","Decline to Answer",107,1,1,1
+15,"race","ichyo","6/18/2010 11:34:58","Japan","syo1990@gmail.com",2166,130,1197,7,151,12,NA,"Kyoto University","18 - 24","Male",184,1,1,1
+15,"race","fugusuki","11/11/2009 7:43:19","Japan","g440556d@gmail.com",1289,88,1626,5,95,10,NA,"University of Tokyo","25 - 34","Male",168,1,1,1
+15,"race","ksma","6/3/2007 17:43:59","Hong Kong","makeishun@gmail.com",1289,13,1228,12,14,36,NA,"University of California San Diego","25 - 34","Male",205,1,1,1
+15,"race","Ra16bit","6/4/2008 16:50:18","Belarus","yurasik_ol@mail.ru",2590,161,NA,NA,175,3,1349.36,"Belarusian State University","18 - 24","Male",60,1,1,1
+15,"race","GoogleHireMe","6/23/2009 20:43:22","Ukraine","mylyanyk.ivan@gmail.com",1581,104,955,2,114,7,NA,"Lviv Physic & Mathematics Lycium","18 - 24","Male",24,1,1,1
+15,"race","AndyFang","9/13/2007 1:26:19","China","fzp1990@gmail.com",2148,26,1927,2,32,10,1888,"ZHONGSHAN NO.1 Middle School","18 - 24","Male",5,1,1,1
+15,"race","dhbellol","10/1/2003 23:08:01","Colombia","dhbello@hotmail.com",763,22,921,2,23,20,305200.66,"","25 - 34","Male",153,1,1,1
+15,"race","wzyxp_123","10/19/2010 9:54:26","China","cloudssdut@gmail.com",1179,51,1293,7,56,12,6600,"Institute of Automation, Chinese Academy of Sciences","25 - 34","Male",314,1,1,1
+15,"race","zhengqiang","4/23/2005 21:02:52","China","lu_liu_lu@aliyun.com",625,14,1380,9,16,27,300,"","45 and up","Male",335,1,1,0
+15,"race","petroos","11/21/2008 19:44:23","Poland","pi.jucha@gmail.com",1387,18,1057,1,21,3,NA,"","35 - 44","Male",262,1,1,1
+15,"race","AnandVeeramani","1/30/2012 23:23:05","India","manand777@gmail.com",1044,23,1547,4,26,39,700,"","Decline to Answer","Decline to Answer",4,1,1,1
+15,"race","szd714","10/7/2003 8:07:00","Hungary","dszabo@flyordie.com",1809,51,1481,7,54,33,4902,"","35 - 44","Male",293,1,1,1
+15,"race","ivan_metelsky","9/15/2004 17:33:53","Belarus","ivan.metelsky@gmail.com",2661,64,1711,2,78,25,334843,"","18 - 24","Male",186,1,1,1
+15,"race","Liaksiejka","6/15/2009 14:58:42","Belarus","lensir.cunor.com@mail.ru",1665,48,NA,NA,57,6,150,"School 51","18 - 24","Male",40,1,1,1
+16,"tournament","marsavic","4/10/2006 21:20:31","Serbia","marsavic@gmail.com",1462,68,1708,25,78,41,452,"University of Novi Sad","25 - 34","Male",225,1,1,1
+16,"tournament","Sord","5/26/2001 1:18:49","United States","sord@battlespot.com",1322,96,1505,21,49,32,27407.16,"","35 - 44","Male",68,1,1,1
+16,"tournament","sasikanth9","8/16/2014 11:18:52","India","v00d00childblues1@gmail.com",0,0,NA,NA,0,3,3000,"","25 - 34","Male",279,0,1,1
+16,"tournament","mateuszlewko","4/11/2014 10:30:42","Poland","mateusz.lewko@gmail.com",913,3,1413,1,3,4,NA,"XIV LO WROCLAW","18 - 24","Male",229,1,1,1
+16,"tournament","nkshn","8/30/2010 8:40:19","Japan","nakashun1994@gmail.com",830,19,NA,NA,20,1,NA,"Osaka University","13 - 17","Male",250,1,1,1
+16,"tournament","stzgd","5/25/2012 9:23:55","China","zhenggedi@gmail.com",1950,18,1399,4,21,6,NA,"Shanghai Jiaotong University","18 - 24","Male",290,1,1,1
+16,"tournament","aropan","12/31/2007 10:31:51","Belarus","aropan@tut.by",2180,119,1360,5,135,14,1000,"KUP","18 - 24","Male",110,1,1,1
+16,"tournament","StarCuriosity","12/16/2014 20:38:20","Russia","starcuriosity@gmail.com",1703,7,NA,NA,9,2,NA,"","","Male",69,1,1,1
+16,"tournament","wsobolewski","7/20/2008 6:51:01","Poland","wsobolewski@hotmail.com",506,6,996,9,8,25,8305,"","25 - 34","Male",313,1,1,1
+16,"tournament","net_buster","9/7/2006 3:31:25","Poland","hwdp2006@gmail.com",931,43,1152,17,47,31,5950,"Nicolaus Copernicus University","25 - 34","Male",246,1,1,1
+16,"tournament","knighthunter","5/26/2013 15:51:31","India","emailforshekhar@gmail.com",312,7,NA,NA,7,3,NA,"","25 - 34","Male",201,1,1,1
+16,"tournament","cant_dance","10/9/2006 11:15:37","Poland","marcin.mucha@gmail.com",1748,5,1693,16,5,49,300,"","25 - 34","Male",129,1,1,1
+16,"tournament","ctrucza","9/27/2005 3:32:24","Romania","csaba.trucza@gmail.com",1204,33,1064,29,36,60,450,"","35 - 44","Decline to Answer",139,1,1,1
+16,"tournament","tri_code","11/21/2012 19:27:52","Indonesia","tri3code@gmail.com",0,0,967,1,0,16,NA,"","25 - 34","Male",299,1,1,1
+16,"tournament","vdave","5/3/2005 3:55:12","Hungary","david.vago@gmail.com",2137,16,1691,33,18,64,2116,"","25 - 34","Male",305,1,1,1
+17,"reserve","ecv","9/6/2006 3:55:15","Spain","esteban.crespidevalldaura@gmail.com",1621,56,1927,40,64,65,2850,"","45 and up","Male",158,1,1,1
+17,"reserve","DrWhatsisname","3/13/2013 17:21:00","United States","henrywconklin@gmail.com",958,1,NA,NA,1,2,NA,"University of Virginia","13 - 17","Male",14,1,1,1
+17,"reserve","EvbCFfp1XB","10/6/2012 8:15:31","Japan","fkjer6atmyvq7ihx@gmail.com",1278,39,1864,20,52,24,NA,"","25 - 34","Male",18,1,1,1
+17,"reserve","zaq1xsw2tktk","5/14/2009 10:25:21","China","zaq1xsw2tktk@qq.com",2328,120,1924,31,135,52,40718.99,"Peking University","18 - 24","Male",331,1,1,1
+17,"reserve","xsymphonyx","6/4/2014 5:46:22","Russia","adagio.artension@gmail.com",0,0,1083,3,0,4,NA,"","","",319,1,1,1
+17,"reserve","Taquion","11/4/2014 12:04:09","Bolivia","jacastillomorales@gmail.com",0,0,989,1,0,3,1800,"","35 - 44","Male",74,1,1,1
+17,"reserve","Breusov","1/1/2005 13:57:03","Ukraine","breusov@gmail.com",1218,46,1754,29,47,41,8393.64,"Kyiv National Taras Shevchenko University","18 - 24","Male",9,1,1,1
+17,"reserve","brajeshlkw","8/27/2005 11:16:57","India","brajeshvns@rediffmail.com",401,27,1314,91,34,161,3268.75,"","25 - 34","Male",124,1,1,1
+17,"reserve","m_dz","5/22/2008 16:57:55","Poland","dziadus.marcin@gmail.com",1621,137,1015,2,160,11,NA,"Jagiellonian University","18 - 24","Male",219,1,1,1
+17,"reserve","kossi_tg","1/23/2013 3:23:41","France","kossi.agbodo@gmail.com",784,31,1205,18,37,34,NA,"","25 - 34","Male",202,1,1,1
+17,"reserve","nic.lim55","1/8/2015 6:00:36","Australia","nic.lim55@gmail.com",0,0,973,2,0,4,NA,"","","",248,1,1,1
+17,"reserve","jun22","10/6/2013 21:21:29","United States","junlc@live.com",0,0,1354,1,0,3,NA,"","","",193,1,1,1
+17,"reserve","TMALBONPH","5/6/2010 4:53:00","Philippines","tmalbonph@yahoo.com",0,0,NA,NA,0,26,34677.54,"","45 and up","Male",71,0,1,1
+17,"reserve","gkeesh7","8/11/2013 13:06:09","India","gkgklabs6@gmail.com",906,21,NA,NA,24,3,NA,"Netaji Subhas Institute of Technology","18 - 24","Male",170,1,1,0
+17,"reserve","rado42","5/2/2006 18:52:08","United States","rgetov@gmail.com",0,0,891,29,0,79,5000,"","45 and up","Male",268,1,1,1
+18,"race","yaric_om","9/1/2011 16:00:37","Ukraine","yaric.mail@gmail.com",0,0,1313,3,0,5,100723.28,"","35 - 44","Male",323,1,1,1
+18,"race","blu3fox","3/27/2010 23:25:55","Venezuela","blu3foxtopcoder@gmail.com",0,0,NA,NA,0,10,NA,"Universidad Central de Venezuela","25 - 34","Male",120,0,1,1
+18,"race","eofsentinel","2/22/2015 23:52:31","India","eofsentinel@outlook.com",0,0,NA,NA,1,1,NA,"galgotias college of engineering and technology","","Male",161,0,1,1
+18,"race","jbgeddes3","12/23/2014 14:41:22","United States","jbgeddes3@jbg3.net",0,0,NA,NA,0,3,NA,"","","",190,0,1,1
+18,"race","rrr_guru","12/6/2008 11:31:28","Poland","rsobolewski@poczta.fm",396,14,1042,12,15,21,8764.85,"","25 - 34","Male",271,1,1,1
+18,"race","Infinity.","3/30/2008 16:08:17","Belarus","ixanezis@gmail.com",1728,84,1472,3,98,6,NA,"Belarusian State University","18 - 24","Male",28,1,1,1
+18,"race","brev","2/26/2006 16:49:40","Ukraine","unisoftbvn@gmail.com",944,24,1895,36,25,69,20800,"","45 and up","Male",125,1,1,1
+18,"race","Neodym","1/12/2013 11:23:25","Belarus","Leshaxim@mail.ru",1330,3,NA,NA,3,2,NA,"City Of Minsk School #41","13 - 17","Male",49,1,1,1
+18,"race","fizzicks","5/7/2006 14:32:12","United States","lazovich@gmail.com",1138,64,884,6,72,40,877,"Harvard University","18 - 24","Male",167,1,1,1
+18,"race","SePulTribe","3/4/2003 4:48:41","Singapore","sepultura_tribal@hotmail.com",829,12,1192,1,13,12,7927.08,"National University of Singapore","18 - 24","Male",65,1,1,1
+18,"race","Matt_sjtu","9/9/2010 8:22:50","China","c.sis@hotmail.com",1956,23,1028,8,28,12,NA,"sjtu","13 - 17","Male",44,1,1,1
+18,"race","Nfcj000","5/1/2010 4:19:37","China","nfcj000@qq.com",1076,20,NA,NA,27,4,NA,"whuhan univercity","13 - 17","Male",50,1,1,0
+18,"race","orlovan","9/5/2014 9:54:12","Russia","orlovan@gmail.com",1607,1,1596,1,1,2,NA,"","","",257,1,1,1
+18,"race","Mimino","5/30/2007 10:38:37","Slovakia","mimino.coder@gmail.com",2668,159,1958,34,182,50,5670,"Charles University in Prague","18 - 24","Male",45,1,1,1
+18,"race","ainu7","9/21/2006 1:16:01","South Korea","ainu7@naver.com",2808,281,2774,29,304,56,87266.5,"","25 - 34","Male",96,1,1,1
+19,"tournament","buraksrc","10/21/2010 18:30:35","Turkey","buraksrc@gmail.com",0,0,1158,1,0,3,NA,"","25 - 34","Male",126,1,1,1
+19,"tournament","smudge","8/27/2001 17:13:52","United States","sschmugge@hotmail.com",638,135,1308,21,104,38,1222,"","25 - 34","Male",284,1,1,1
+19,"tournament","mayoko","4/30/2014 3:22:09","Japan","mayokoex@gmail.com",1145,15,NA,NA,19,1,NA,"The University of Tokyo","18 - 24","Male",231,1,1,1
+19,"tournament","ananthhh","3/1/2014 12:46:30","India","ananthhh@outlook.com",0,0,836,1,1,5,94400.77,"","18 - 24","Male",106,1,1,1
+19,"tournament","vaa2804","12/9/2003 17:16:01","Russia","vaa2804@mail.ru",427,21,1203,2,19,10,NA,"","35 - 44","Male",303,1,1,1
+19,"tournament","_Kevin","2/19/2015 20:18:38","United States","kevinsthurman@gmail.com",0,0,NA,NA,0,2,NA,"","","",89,0,1,1
+19,"tournament","lizame2012","9/15/2005 6:39:20","United States","liza_meleshchuk@hotmail.com",596,15,NA,NA,16,11,122,"","25 - 34","Female",214,1,1,1
+19,"tournament","zhanyi658657","4/19/2008 23:22:04","China","zhanyi@mail.ustc.edu.cn",1443,2,1977,9,2,19,21300,"University of Science and Technology of China","25 - 34","Male",334,1,1,1
+19,"tournament","fujiyama","8/24/2009 23:47:35","Japan","fujichan.k@gmail.com",1184,109,1610,5,115,29,1400,"","35 - 44","Male",169,1,1,0
+19,"tournament","falanga","2/26/2012 12:11:31","Croatia","ivanzufic@gmail.com",1584,22,NA,NA,23,2,NA,"Prirodoslovno-matematicka gimnazija Pula","13 - 17","Male",163,1,1,1
+19,"tournament","WojciechMigda","1/5/2015 7:38:45","Poland","wojciech.migda@interia.pl",0,0,1307,3,0,5,NA,"","","",85,1,1,1
+19,"tournament","PuffRing","5/18/2004 10:33:56","United States","titistake@yahoo.com",1031,15,676,5,14,54,2600,"","35 - 44","Male",58,1,1,1
+19,"tournament","didi_baga","4/3/2011 10:56:33","Georgia","david.bagaturia@gmail.com",618,7,1038,13,7,63,NA,"","25 - 34","Male",154,1,1,1
+19,"tournament","Uchigle","5/28/2008 9:56:35","Japan","kyosuke.uchida@ae.auone-net.jp",1400,63,1327,14,71,25,NA,"","35 - 44","Male",77,1,1,1
+19,"tournament","air13","7/4/2012 23:36:00","China","5l1z1y8@sina.com",1301,4,815,9,11,13,NA,"sjtu","18 - 24","Male",97,1,1,1
+20,"reserve","fazam","10/21/2012 16:32:52","India","fazamhd@live.com",710,28,NA,NA,34,1,NA,"SHANMUGHA ARTS,SCIENCE,TECHNOLOGY & RESEARCH ACADEMY (SASTRA UNIVERSITY)","18 - 24","Male",164,1,1,1
+20,"reserve","Vardan(RAU)","10/23/2007 5:57:51","Armenia","vardan87@gmail.com",746,20,NA,NA,23,1,NA,"Russian-Armenian(Slavonic) State University","18 - 24","Male",80,1,1,1
+20,"reserve","neo.subrata","5/7/2012 14:11:46","India","subrata.neo@gmail.com",414,6,911,8,7,23,NA,"","25 - 34","Male",244,1,1,1
+20,"reserve","Cannon","2/10/2011 0:53:02","Australia","iainws@gmail.com",1064,2,843,9,6,31,NA,"","25 - 34","Male",10,1,1,1
+20,"reserve","Psyho","10/16/2004 14:08:42","Poland","closedeyez@gmail.com",2634,168,3071,64,186,129,619527.06,"Warsaw University","25 - 34","Male",57,1,1,1
+20,"reserve","ryuwonha","9/17/2007 12:51:12","South Korea","wonha.ryu@gmail.com",2348,49,1297,5,62,13,108.4,"Korea Advanced Institute of Science and Technology","18 - 24","Male",274,1,1,1
+20,"reserve","V[i]ctor","7/19/2008 10:36:18","Russia","sadkov993@gmail.com",1456,31,681,2,37,4,NA,"Phisico-Technical Liceum #1","13 - 17","Male",79,1,1,1
+20,"reserve","kamalkishor1991","5/2/2011 13:23:01","India","kamalkishorjoshi@yahoo.com",1034,20,1027,1,25,5,450,"m b inter college haldwani","18 - 24","Male",195,1,1,1
+20,"reserve","jthread","12/1/2004 10:43:00","Netherlands","jeroen@bransen.nl",2021,144,1454,27,161,55,14404,"Utrecht University","25 - 34","Male",192,1,1,1
+20,"reserve","ribeiro","2/21/2015 14:00:18","Poland","maxmlynek@gmail.com",0,0,769,1,1,2,NA,"Jagiellonian University","","Male",269,1,1,1
+20,"reserve","vitux","7/23/2013 12:43:20","Belarus","vitux1@mail.ru",1533,8,NA,NA,8,1,NA,"school 41","13 - 17","Male",307,1,1,1
+20,"reserve","shilov","11/10/2010 6:02:53","Russia","vadim.shilov@gmail.com",1598,78,1432,8,83,18,NA,"Perm State Technical University","25 - 34","Male",280,1,1,1
+20,"reserve","azukun","12/15/2008 20:41:00","Russia","azukun@gmail.com",1859,45,1544,7,54,15,187660.04,"Amur SU","18 - 24","Male",117,1,1,1
+20,"reserve","Euniceadu","6/20/2011 16:35:14","Ghana","euniceadu1@gmail.com",501,34,NA,NA,37,5,100,"Kwame Nkrumah University of Science and Technology","18 - 24","Female",17,1,1,1
+20,"reserve","Fed","9/21/2006 6:44:18","Russia","ermishinf@gmail.com",1498,32,1767,8,34,11,NA,"Moscow State University","18 - 24","Male",22,1,1,1
+21,"race","megaterik","6/20/2010 8:15:24","Belarus","megaterik@gmail.com",1886,25,1671,10,28,24,2450,"gymnasium 29","18 - 24","Male",233,1,1,1
+21,"race","aakinola","4/2/2013 9:36:01","South Africa","ayodejiakinola@me.com",0,0,NA,NA,0,11,NA,"","25 - 34","Male",92,0,1,1
+21,"race","RRx","3/18/2009 12:19:56","South Korea","ekzm0204@gmail.com",2512,87,1427,4,95,9,74,"Korea Advanced Institute of Science and Technology","18 - 24","Male",59,1,1,1
+21,"race","112atn323","12/29/2014 4:27:33","Japan","112atn323@gmail.com",0,0,1897,3,0,5,NA,"","","",2,1,1,1
+21,"race","ynasu","2/18/2011 0:06:11","Japan","ynasu87@gmail.com",1930,128,1797,2,144,5,7000,"Tokyo Institute of Technology","Decline to Answer","Decline to Answer",328,1,1,1
+21,"race","soybean","2/28/2015 0:09:40","United States","fabstko@163.com",0,0,NA,NA,0,2,NA,"","","Male",288,0,1,1
+21,"race","chicapi","11/13/2003 10:25:36","Argentina","topcoder@s106.org",1021,33,NA,NA,39,10,2650,"","25 - 34","Female",135,1,1,1
+21,"race","moshu","2/23/2009 16:19:35","Romania","dumitrica_gheorghe@yahoo.com",624,45,1366,46,50,78,NA,"","45 and up","Male",238,1,1,1
+21,"race","yoshibo-","10/22/2008 2:06:02","Japan","ima_yoshi5152@nifty.com",1235,47,1278,12,53,20,NA,"","18 - 24","Male",329,1,1,0
+21,"race","TwCoder","11/19/2010 8:53:10","Belarus","twrlx91@gmail.com",1001,19,NA,NA,22,4,4500,"Belarusian State University","18 - 24","Male",76,1,1,1
+21,"race","sukides","4/24/2008 11:39:29","China","windwing2006@gmail.com",940,14,1400,2,16,7,NA,"University of Chicago","18 - 24","Male",291,1,1,1
+21,"race","aswmtjdsj","5/2/2010 10:02:12","China","bupt.aswmtjdsj@gmail.com",1178,31,760,1,35,6,2230,"Stony Brook SUNY","18 - 24","Male",114,1,1,1
+21,"race","DuXSerbia","12/20/2008 11:57:59","Serbia","zdravkovicdusan@hotmail.com",1664,97,1212,2,111,8,10950,"Svetozar Markovic","18 - 24","Male",15,1,1,1
+21,"race","sakaark","8/12/2014 4:17:39","India","sakaark@gmail.com",1298,14,NA,NA,15,1,NA,"IIT Kanpur","18 - 24","Male",276,1,1,1
+21,"race","tanzaku","3/2/2007 1:01:11","Japan","ume.drink@gmail.com",2151,188,1132,27,212,55,257.7,"Kanagawa Institute of Technology","25 - 34","Male",294,1,1,1
+22,"tournament","Lozy","3/12/2012 3:22:05","China","dreammaker.lzy@gmail.com",1577,4,1447,12,9,36,19279.76,"Shanghai Jiaotong University","18 - 24","Male",41,1,1,1
+22,"tournament","xin135","6/25/2008 9:50:22","China","ninghainan@gmail.com",0,0,1330,1,0,9,698568.23,"Nanjing University","25 - 34","Male",318,1,1,1
+22,"tournament","chandan047","4/1/2013 16:03:36","India","chandanakiti@gmail.com",617,3,1105,3,5,19,NA,"Indian Institute Of Technology, Madras (IITM) Indi","18 - 24","Male",131,1,1,1
+22,"tournament","cyril.v","1/22/2013 4:41:15","France","cyril@vincler.fr",0,0,1918,12,0,22,2000,"","25 - 34","Male",143,1,1,1
+22,"tournament","harshaneelhg","12/15/2014 20:34:33","United States","harshaneelhg@gmail.com",0,0,NA,NA,0,2,NA,"","","",178,0,1,1
+22,"tournament","an_ant","8/13/2009 17:35:41","Croatia","zplesivcak@gmail.com",1205,20,755,2,20,32,2305,"University of Zagreb","25 - 34","Male",105,1,1,1
+22,"tournament","Lapro","5/31/2007 6:32:34","United States","nju.angli@gmail.com",1593,45,NA,NA,48,4,46,"University of Maryland College Park","18 - 24","Male",39,1,1,1
+22,"tournament","NobuMiu","7/18/2008 17:15:58","Japan","gzj00317@nifty.com",1476,144,1786,25,161,40,12500,"","35 - 44","Male",53,1,1,1
+22,"tournament","TahaMahmoud","6/19/2010 15:58:29","Egypt","tahamahmoud92@gmail.com",1755,66,NA,NA,79,4,600,"FCIS Ain Shams University","18 - 24","Male",73,1,1,1
+22,"tournament","kpoxa2l","1/16/2015 23:09:39","Russia","fomined@gmail.com",0,0,1033,1,0,3,NA,"","","",204,1,1,1
+22,"tournament","yannoj2","11/1/2014 11:30:19","Greece","yannoj2@gmail.com",0,0,NA,NA,0,2,NA,"Rensselaer Polytechnic Institute","","Male",322,0,1,1
+22,"tournament","ll931110","2/28/2009 4:58:44","Viet Nam","ll931110@gmail.com",2138,86,1141,1,95,20,557.7,"vnu","18 - 24","Male",216,1,1,1
+22,"tournament","YDesai","3/13/2014 5:24:01","United States","yogindesai02@gmail.com",787,1,996,3,2,12,NA,"Georgia Tech","18 - 24","Male",86,1,1,1
+22,"tournament","midrux","4/12/2005 22:21:11","Argentina","michel.mizrahi@gmail.com",1213,111,1000,1,128,6,159,"Universidad de Buenos Aires","25 - 34","Male",234,1,1,1
+23,"reserve","vss109","8/11/2013 3:59:51","India","supreetha109@yahoo.com",619,2,NA,NA,3,3,NA,"Bapatla Engineering College","18 - 24","Female",309,1,1,1
+23,"reserve","Visoks","1/28/2015 10:05:56","Lithuania","sidlibik@gmail.com",0,0,1097,1,0,3,NA,"Kaunas University of Technology","","Male",83,1,1,1
+23,"reserve","bohuss","1/9/2006 5:59:49","Slovakia","bohuss@gmail.com",1317,282,1322,36,313,64,172160.72,"","25 - 34","Male",122,1,1,1
+23,"reserve","shivamsihare","3/3/2013 23:57:43","India","sihare123@gmail.com",0,0,NA,NA,1,1,NA,"abv iiitm gwalior","18 - 24","Male",282,0,1,1
+23,"reserve","kumar.virakta","7/5/2011 6:06:05","India","kumar.viraktamath@gmail.com",0,0,NA,NA,0,6,NA,"","25 - 34","Male",207,0,1,1
+23,"reserve","rst9288","4/17/2008 6:04:19","India","rst9288@live.in",493,3,NA,NA,4,6,164809.08,"Institute Of Technology, Nirma University","25 - 34","Male",273,1,1,1
+23,"reserve","alexpeptan","2/4/2014 1:39:58","Romania","alexpeptan@yahoo.com",984,20,NA,NA,23,2,NA,"","25 - 34","Male",102,1,1,1
+23,"reserve","cup_of_tea","5/6/2010 10:10:05","France","alex6ssh@hotmail.fr",1624,98,667,10,110,19,NA,"Universite Paul Sabatier","18 - 24","Male",141,1,1,1
+23,"reserve","ahoenig","10/8/2002 8:11:36","United States","aaron@hoenig.us",1426,41,1314,3,42,13,724.85,"","35 - 44","Male",95,1,1,1
+23,"reserve","jonathanps","8/2/2014 16:06:35","United States","jonathanpsculley@gmail.com",1455,3,1519,4,4,8,80500,"Georgia Institute of Technology","18 - 24","Male",191,1,1,1
+23,"reserve","alecn2002","5/12/2006 9:12:53","Russia","alecn2002@yandex.ru",1005,66,872,39,72,78,5612,"","45 and up","Male",100,1,1,1
+23,"reserve","F.L.K","11/22/2011 10:39:57","China","heyuntao789789@163.com",1168,19,1164,2,25,5,NA,"Nankai University","18 - 24","Male",19,1,1,1
+23,"reserve","omu","12/14/2014 10:24:03","Japan","atukiomura@yahoo.co.jp",0,0,NA,NA,0,2,NA,"","","",255,0,1,1
+23,"reserve","Mojito1","10/17/2004 5:11:14","Poland","mojito1@tlen.pl",1884,99,2322,30,104,46,449175,"Warsaw University of Technology","25 - 34","Male",46,1,1,1
+23,"reserve","Ritesh_Singh","2/26/2015 5:41:54","India","riteshsinghrocks123@gmail.com",0,0,769,1,0,2,NA,"","","",62,1,1,1
+24,"race","haveri","5/18/2011 5:28:40","India","haveri@hotmail.com",1190,125,1365,8,132,12,300,"","Decline to Answer","Decline to Answer",179,1,1,1
+24,"race","cxz2004","4/10/2014 15:59:26","China","a9108g2@gmail.com",2459,3,NA,NA,3,1,NA,"Shanghai Jiao Tong University","18 - 24","Male",142,1,1,0
+24,"race","hiro_00","12/5/2009 4:11:51","Japan","fh0016@gmail.com",1533,25,1440,2,28,5,NA,"","25 - 34","Male",181,1,1,1
+24,"race","Bargash","2/7/2007 8:13:31","Belarus","ivan.podobed@gmail.com",738,17,1089,1,18,4,NA,"","25 - 34","Male",8,1,1,1
+24,"race","ty70","9/25/2010 20:31:32","Japan","tomoakiyokoo@gmail.com",896,80,1099,11,91,20,300,"","35 - 44","Male",301,1,1,1
+24,"race","kwrig","2/8/2014 5:00:30","Japan","shinzi.k.wriggle.nightbug@gmail.com",0,0,NA,NA,0,2,NA,"","","",208,0,1,1
+24,"race","SebM","1/23/2013 6:39:56","France","smarsolle@gmail.com",0,0,1271,11,0,16,NA,"","35 - 44","Male",66,1,1,1
+24,"race","miguel_clean","11/3/2013 16:21:04","Poland","m.i@gmx.at",1125,10,1366,4,11,6,NA,"","25 - 34","Male",235,1,1,1
+24,"race","Kenny_HORROR","9/11/2008 11:20:43","Belarus","kennyhorror@gmail.com",2434,143,1481,6,159,7,36,"Belarusian State University","18 - 24","Male",35,1,1,1
+24,"race","_Romka_","6/22/2008 8:33:11","Belarus","mailromka@gmail.com",2538,101,1805,6,115,9,4616,"School #3","18 - 24","Male",90,1,1,1
+24,"race","zhanghanyuan","7/15/2010 20:49:11","China","zhanghanyuan1993@gmail.com",1958,20,NA,NA,24,1,NA,"Yuyao High School","18 - 24","Male",332,1,1,1
+24,"race","moriara","8/17/2010 8:56:59","Turkey","zzkurultay@yahoo.com",0,0,NA,NA,1,1,NA,"Koc University","18 - 24","Female",237,0,1,1
+24,"race","xiakunxian923","3/23/2010 10:16:11","China","xiakunxian130@gmail.com",645,2,760,1,3,7,300,"Shandong University","18 - 24","Male",316,1,1,1
+24,"race","ltda","9/17/2014 10:14:49","Romania","elimarinoiu@gmail.com",712,2,NA,NA,3,1,NA,"","","",218,1,1,1
+24,"race","lejosne","10/15/2014 16:38:58","France","Yohan.Lejosne@gmail.com",0,0,1294,1,0,2,NA,"","","",210,1,1,1

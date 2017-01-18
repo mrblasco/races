@@ -1,0 +1,142 @@
+{
+  "handle": "dimkadimon",
+  "country": "Australia",
+  "memberSince": "2002-04-10T20:50:00.000-04:00",
+  "quote": "Beware of bugs in the above code; I have only proved it correct, not tried it. - Donald Knuth",
+  "photoLink": "/i/m/dimkadimon_big2.jpg",
+  "copilot": false,
+  "overallEarning": 4476.5,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 1203,
+      "colorStyle": "color: #6666FF"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1813,
+      "colorStyle": "color: #DDCC00"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2013-05-22T00:00:00.000-04:00",
+      "description": "Ten Marathon Competitions"
+    },
+    {
+      "date": "2013-04-01T00:00:00.000-04:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2012-10-17T00:00:00.000-04:00",
+      "description": "One Hundred Forum Posts"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Fifty Solved Algorithm Problems"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Successful Challenge"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five SRM Room Wins (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Successful Challenges"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "One Hundred Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Solved Hard Div1 Problem in SRM"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Solved Hard Div2 Problem in SRM"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Ten Solved Algorithm Problems"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty Five Successful Challenges"
+    },
+    {
+      "date": "2011-07-01T00:00:00.000-04:00",
+      "description": "Five Hundred Forum Posts"
+    },
+    {
+      "date": "2011-04-13T00:00:00.000-04:00",
+      "description": "First Passing Submission"
+    },
+    {
+      "date": "2010-08-26T00:00:00.000-04:00",
+      "description": "Studio First Placement"
+    },
+    {
+      "date": "2010-08-25T00:00:00.000-04:00",
+      "description": "Studio First Forum Post"
+    },
+    {
+      "date": "2010-08-18T00:00:00.000-04:00",
+      "description": "Studio First Passing Submission"
+    },
+    {
+      "date": "2010-08-17T00:00:00.000-04:00",
+      "description": "Studio First Milestone Prize"
+    },
+    {
+      "date": "2010-07-19T00:00:00.000-04:00",
+      "description": "One Thousand Forum Posts"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 4,
+    "currentTime": 1455746379795
+  },
+  "requesterInformation": {
+    "id": "ad3229f35551f524bf5337be99d82d6316af626e-6Uu7Aok2DTES7cur",
+    "remoteIP": "65.112.10.83",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "dimkadimon",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

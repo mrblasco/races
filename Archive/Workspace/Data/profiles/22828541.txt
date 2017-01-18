@@ -1,0 +1,125 @@
+{
+  "handle": "andresduque",
+  "country": "Colombia",
+  "memberSince": "2009-06-29T16:21:00.000-04:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "UI Prototypes",
+      "rating": 1479,
+      "colorStyle": "color: #6666FF"
+    },
+    {
+      "name": "Development",
+      "rating": 947,
+      "colorStyle": "color: #00A900"
+    },
+    {
+      "name": "RIA Build",
+      "rating": 1397,
+      "colorStyle": "color: #6666FF"
+    },
+    {
+      "name": "Assembly",
+      "rating": 979,
+      "colorStyle": "color: #00A900"
+    },
+    {
+      "name": "Algorithm",
+      "rating": 562,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1588,
+      "colorStyle": "color: #DDCC00"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-10-03T00:00:00.000-04:00",
+      "description": "First Milestone Prize"
+    },
+    {
+      "date": "2014-10-22T00:00:00.000-04:00",
+      "description": "Two Marathon Top-5 Placements"
+    },
+    {
+      "date": "2013-05-11T00:00:00.000-04:00",
+      "description": "Twenty Marathon Competitions"
+    },
+    {
+      "date": "2013-05-10T00:00:00.000-04:00",
+      "description": "First Marathon Top-5 Placement"
+    },
+    {
+      "date": "2012-11-09T00:00:00.000-05:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2012-10-29T00:00:00.000-04:00",
+      "description": "First Passing Submission"
+    },
+    {
+      "date": "2012-10-28T00:00:00.000-04:00",
+      "description": "First Placement"
+    },
+    {
+      "date": "2012-10-28T00:00:00.000-04:00",
+      "description": "First Win"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Ten Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2009-09-24T00:00:00.000-04:00",
+      "description": "Twenty Five Placements"
+    },
+    {
+      "date": "2009-08-05T00:00:00.000-04:00",
+      "description": "Fifty Passing Submissions"
+    },
+    {
+      "date": "2009-08-01T00:00:00.000-04:00",
+      "description": "One Hundred Forum Posts"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 76,
+    "currentTime": 1456083590635
+  },
+  "requesterInformation": {
+    "id": "d6671eaf716a79aee81056e457700d966c2e42a3-gMEYnDRG9Hq847tc",
+    "remoteIP": "73.238.117.2",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "andresduque",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

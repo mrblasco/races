@@ -1,0 +1,69 @@
+{
+  "handle": "f1zz0_13",
+  "country": "India",
+  "memberSince": "2013-02-04T15:20:00.000-05:00",
+  "quote": "Code does not play dice.",
+  "photoLink": "",
+  "copilot": false,
+  "overallEarning": 0,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 1028,
+      "colorStyle": "color: #00A900"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2014-12-28T00:00:00.000-05:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2014-12-28T00:00:00.000-05:00",
+      "description": "First Successful Challenge"
+    },
+    {
+      "date": "2014-12-28T00:00:00.000-05:00",
+      "description": "Five Successful Challenges"
+    },
+    {
+      "date": "2014-12-28T00:00:00.000-05:00",
+      "description": "Solved Hard Div2 Problem in SRM"
+    },
+    {
+      "date": "2014-12-28T00:00:00.000-05:00",
+      "description": "Ten Solved Algorithm Problems"
+    },
+    {
+      "date": "2014-05-06T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2014-04-27T00:00:00.000-04:00",
+      "description": "Twenty Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2013-03-10T00:00:00.000-05:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2013-02-14T00:00:00.000-05:00",
+      "description": "First Rated Algorithm Competition"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 139,
+    "currentTime": 1468013438318
+  },
+  "requesterInformation": {
+    "id": "6a3c9357a74e824a2c77b431c920b357ae2e607f-OgXueUv8hdd4GcRK",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "f1zz0_13",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

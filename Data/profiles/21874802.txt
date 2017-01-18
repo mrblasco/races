@@ -1,0 +1,66 @@
+{
+  "handle": "rado42",
+  "country": "United States",
+  "memberSince": "2006-05-02T18:52:00.000-04:00",
+  "quote": "\"In theory, there is no difference between theory and practice. But, in practice, there is.\"",
+  "photoLink": "/i/m/rado42_big.jpg",
+  "copilot": false,
+  "overallEarning": 1250,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 0,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1017,
+      "colorStyle": "color: #00A900"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2013-03-27T00:00:00.000-04:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Top-5 Placement"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Ten Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Two Marathon Top-5 Placements"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 64,
+    "currentTime": 1455822966444
+  },
+  "requesterInformation": {
+    "id": "ed59d05026fff58690b0e43531973293f56fe0dd-2HLvBTOuBsX3hH4m",
+    "remoteIP": "65.112.11.37",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "rado42",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

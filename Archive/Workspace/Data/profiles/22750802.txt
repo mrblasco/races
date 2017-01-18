@@ -1,0 +1,110 @@
+{
+  "handle": "Kenny_HORROR",
+  "country": "Belarus",
+  "memberSince": "2008-09-11T11:20:00.000-04:00",
+  "quote": "Code or die!!!",
+  "photoLink": "/i/m/Kenny_HORROR.jpeg",
+  "copilot": false,
+  "overallEarning": 0,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 2339,
+      "colorStyle": "color: #EE0000"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1481,
+      "colorStyle": "color: #6666FF"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2013-08-28T00:00:00.000-04:00",
+      "description": "One Hundred Successful Challenges"
+    },
+    {
+      "date": "2013-08-28T00:00:00.000-04:00",
+      "description": "Solved Hard Div1 Problem in SRM"
+    },
+    {
+      "date": "2013-04-21T00:00:00.000-04:00",
+      "description": "Twenty SRM Room Wins (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Fifty Solved Algorithm Problems"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Successful Challenge"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five SRM Room Wins (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Successful Challenges"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "One Hundred Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Solved Hard Div2 Problem in SRM"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Ten Solved Algorithm Problems"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty Five Successful Challenges"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 87,
+    "currentTime": 1456070469224
+  },
+  "requesterInformation": {
+    "id": "d6671eaf716a79aee81056e457700d966c2e42a3-sKjdg2asnW3Eomrh",
+    "remoteIP": "73.238.117.2",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "Kenny_HORROR",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

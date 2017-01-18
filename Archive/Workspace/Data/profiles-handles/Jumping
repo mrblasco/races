@@ -1,0 +1,25 @@
+{
+  "handle": "Jumping",
+  "country": "China",
+  "memberSince": "2007-05-23T10:42:00.000-04:00",
+  "quote": "Jumping",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [],
+  "Achievements": [],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 140,
+    "currentTime": 1468013440190
+  },
+  "requesterInformation": {
+    "id": "303d8e503af99be1eb38bb1a642f91feb10690b7-np5Sh2zsktWNYy6J",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "Jumping",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

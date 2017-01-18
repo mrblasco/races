@@ -1,0 +1,106 @@
+{
+  "handle": "codercat",
+  "country": "India",
+  "memberSince": "2009-05-06T02:36:00.000-04:00",
+  "quote": "there is a code for every design",
+  "photoLink": "/i/m/codercat_big.jpg",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Assembly",
+      "rating": 838,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Algorithm",
+      "rating": 716,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1410,
+      "colorStyle": "color: #6666FF"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2013-05-03T00:00:00.000-04:00",
+      "description": "Twenty Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2013-03-31T00:00:00.000-04:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2013-02-08T00:00:00.000-05:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Ten Solved Algorithm Problems"
+    },
+    {
+      "date": "2012-03-06T00:00:00.000-05:00",
+      "description": "One Hundred Forum Posts"
+    },
+    {
+      "date": "2012-01-11T00:00:00.000-05:00",
+      "description": "Studio First Placement"
+    },
+    {
+      "date": "2011-12-17T00:00:00.000-05:00",
+      "description": "Studio First Passing Submission"
+    },
+    {
+      "date": "2011-12-16T00:00:00.000-05:00",
+      "description": "Studio First Forum Post"
+    },
+    {
+      "date": "2011-08-31T00:00:00.000-04:00",
+      "description": "First Passing Submission"
+    },
+    {
+      "date": "2011-07-28T00:00:00.000-04:00",
+      "description": "First Placement"
+    },
+    {
+      "date": "2011-07-28T00:00:00.000-04:00",
+      "description": "First Win"
+    },
+    {
+      "date": "2011-05-02T00:00:00.000-04:00",
+      "description": "Fifty Passing Submissions"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 3,
+    "currentTime": 1456078691110
+  },
+  "requesterInformation": {
+    "id": "d6671eaf716a79aee81056e457700d966c2e42a3-69A957tpYie7jlTG",
+    "remoteIP": "73.238.117.2",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "codercat",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

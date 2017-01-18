@@ -1,0 +1,113 @@
+{
+  "handle": "unbing",
+  "country": "United States",
+  "memberSince": "2007-03-29T07:58:00.000-04:00",
+  "quote": ".",
+  "photoLink": "/i/m/unbing_big.jpg",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 2048,
+      "colorStyle": "color: #DDCC00"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1121,
+      "colorStyle": "color: #00A900"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2014-08-26T00:00:00.000-04:00",
+      "description": "First Passing Submission"
+    },
+    {
+      "date": "2014-05-18T00:00:00.000-04:00",
+      "description": "Fifty Solved Algorithm Problems"
+    },
+    {
+      "date": "2014-05-18T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2014-05-18T00:00:00.000-04:00",
+      "description": "First Successful Challenge"
+    },
+    {
+      "date": "2014-05-18T00:00:00.000-04:00",
+      "description": "Five Successful Challenges"
+    },
+    {
+      "date": "2014-05-18T00:00:00.000-04:00",
+      "description": "Solved Hard Div1 Problem in SRM"
+    },
+    {
+      "date": "2014-05-18T00:00:00.000-04:00",
+      "description": "Solved Hard Div2 Problem in SRM"
+    },
+    {
+      "date": "2014-05-18T00:00:00.000-04:00",
+      "description": "Ten Solved Algorithm Problems"
+    },
+    {
+      "date": "2014-05-18T00:00:00.000-04:00",
+      "description": "Twenty Five Successful Challenges"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five SRM Room Wins (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "One Hundred Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2011-09-28T00:00:00.000-04:00",
+      "description": "2011 TopCoder Open Algorithm Finalist"
+    },
+    {
+      "date": "2009-11-08T00:00:00.000-05:00",
+      "description": "First Forum Post"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 58,
+    "currentTime": 1455830036727
+  },
+  "requesterInformation": {
+    "id": "ed59d05026fff58690b0e43531973293f56fe0dd-5BulKDi2KICKxScE",
+    "remoteIP": "65.112.11.37",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "unbing",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

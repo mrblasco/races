@@ -1,0 +1,41 @@
+{
+  "handle": "kpoxa2l",
+  "country": "Russia",
+  "memberSince": "2015-01-16T23:09:00.000-05:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 0,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1107,
+      "colorStyle": "color: #00A900"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-01-21T00:00:00.000-05:00",
+      "description": "First Marathon Competition"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 84,
+    "currentTime": 1459343487828
+  },
+  "requesterInformation": {
+    "id": "b5e2681561f19dd23ee83158c2932fde2cd6b8e3-umWfaz8zj3rZ4C1d",
+    "remoteIP": "65.112.10.86",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "kpoxa2l",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

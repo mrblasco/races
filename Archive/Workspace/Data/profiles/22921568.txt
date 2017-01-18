@@ -1,0 +1,66 @@
+{
+  "handle": "Cannon",
+  "country": "Australia",
+  "memberSince": "2011-02-10T00:53:00.000-05:00",
+  "quote": "I want to know all Gods thoughts; all the rest are just details.",
+  "photoLink": "",
+  "copilot": false,
+  "overallEarning": 0,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 1064,
+      "colorStyle": "color: #00A900"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 712,
+      "colorStyle": "color: #999999"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-12-02T00:00:00.000-05:00",
+      "description": "Participant Badge"
+    },
+    {
+      "date": "2015-06-17T00:00:00.000-04:00",
+      "description": "Ten Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2011-04-16T00:00:00.000-04:00",
+      "description": "First Forum Post"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 76,
+    "currentTime": 1456152371113
+  },
+  "requesterInformation": {
+    "id": "568105507b744b2668ce1094104714a9377426e1-LUSsJVmYlACN95ex",
+    "remoteIP": "65.112.10.85",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "Cannon",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

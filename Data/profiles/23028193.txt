@@ -1,0 +1,98 @@
+{
+  "handle": "elder1g",
+  "country": "Singapore",
+  "memberSince": "2011-10-13T04:43:00.000-04:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": true,
+  "ratingSummary": [
+    {
+      "name": "Content Creation",
+      "rating": 1769,
+      "colorStyle": "color: #DDCC00"
+    },
+    {
+      "name": "Algorithm",
+      "rating": 0,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 2317,
+      "colorStyle": "color: #EE0000"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2014-09-12T00:00:00.000-04:00",
+      "description": "Twenty Marathon Competitions"
+    },
+    {
+      "date": "2013-09-03T00:00:00.000-04:00",
+      "description": "First Milestone Prize"
+    },
+    {
+      "date": "2013-05-13T00:00:00.000-04:00",
+      "description": "First Placement"
+    },
+    {
+      "date": "2013-05-13T00:00:00.000-04:00",
+      "description": "First Win"
+    },
+    {
+      "date": "2013-01-03T00:00:00.000-05:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2012-12-16T00:00:00.000-05:00",
+      "description": "First Passing Submission"
+    },
+    {
+      "date": "2012-12-12T00:00:00.000-05:00",
+      "description": "Eight Marathon Top-5 Placements"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Top-5 Placement"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Four Marathon Top-5 Placements"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Marathon Match Winner"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Ten Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Two Marathon Top-5 Placements"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 59,
+    "currentTime": 1456158878644
+  },
+  "requesterInformation": {
+    "id": "568105507b744b2668ce1094104714a9377426e1-Q3c8b1aAKFBBA4wh",
+    "remoteIP": "65.112.10.85",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "elder1g",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

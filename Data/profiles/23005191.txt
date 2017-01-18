@@ -1,0 +1,70 @@
+{
+  "handle": "al_gol",
+  "country": "Belarus",
+  "memberSince": "2011-06-13T14:22:00.000-04:00",
+  "quote": "If you’re not doing some things that are crazy, then you’re doing the wrong things - Larry Page",
+  "photoLink": "",
+  "copilot": false,
+  "overallEarning": 750,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 953,
+      "colorStyle": "color: #00A900"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1173,
+      "colorStyle": "color: #00A900"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2013-10-16T00:00:00.000-04:00",
+      "description": "Twenty Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2013-04-17T00:00:00.000-04:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2012-11-12T00:00:00.000-05:00",
+      "description": "Ten Solved Algorithm Problems"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-07-26T00:00:00.000-04:00",
+      "description": "First Forum Post"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 58,
+    "currentTime": 1456155870211
+  },
+  "requesterInformation": {
+    "id": "568105507b744b2668ce1094104714a9377426e1-5AweNjfd4wzelbHg",
+    "remoteIP": "65.112.10.85",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "al_gol",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

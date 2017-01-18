@@ -1,0 +1,49 @@
+{
+  "handle": "yfalah",
+  "country": "France",
+  "memberSince": "2013-01-22T04:08:00.000-05:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 0,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1477,
+      "colorStyle": "color: #6666FF"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-02-17T00:00:00.000-05:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2015-01-15T00:00:00.000-05:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2015-01-13T00:00:00.000-05:00",
+      "description": "First Forum Post"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 81,
+    "currentTime": 1459207022970
+  },
+  "requesterInformation": {
+    "id": "d6671eaf716a79aee81056e457700d966c2e42a3-YLltKCRU3a3Dgej4",
+    "remoteIP": "73.238.117.2",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "yfalah",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

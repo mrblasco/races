@@ -1,0 +1,65 @@
+{
+  "handle": "sampathkumarv",
+  "country": "India",
+  "memberSince": "2011-03-09T12:02:00.000-05:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 820,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 933,
+      "colorStyle": "color: #00A900"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2013-08-13T00:00:00.000-04:00",
+      "description": "Twenty Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-11-21T00:00:00.000-05:00",
+      "description": "Ten Solved Algorithm Problems"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Successful Challenge"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 62,
+    "currentTime": 1456153080346
+  },
+  "requesterInformation": {
+    "id": "568105507b744b2668ce1094104714a9377426e1-3K99Kd4UwYqqiks8",
+    "remoteIP": "65.112.10.85",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "sampathkumarv",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

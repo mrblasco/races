@@ -1,0 +1,113 @@
+{
+  "handle": "halyavin",
+  "country": "Russia",
+  "memberSince": "2005-05-23T04:53:00.000-04:00",
+  "quote": "",
+  "photoLink": "/i/m/halyavin_big.jpg",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 2343,
+      "colorStyle": "color: #EE0000"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1961,
+      "colorStyle": "color: #DDCC00"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2013-02-08T00:00:00.000-05:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Top-5 Placement"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five SRM Room Wins (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Four Marathon Top-5 Placements"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Marathon Match Winner"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Ten Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Two Marathon Top-5 Placements"
+    },
+    {
+      "date": "2008-10-20T00:00:00.000-04:00",
+      "description": "One Hundred Forum Posts"
+    },
+    {
+      "date": "2008-03-08T00:00:00.000-05:00",
+      "description": "2008 TopCoder Open Algorithm Quarter Finalist"
+    },
+    {
+      "date": "2007-04-28T00:00:00.000-04:00",
+      "description": "2007 TopCoder Open Algorithm Quarter Finalist"
+    },
+    {
+      "date": "2006-11-16T00:00:00.000-05:00",
+      "description": "2006 TopCoder Collegiate Challenge Algorithm Semi Finalist"
+    },
+    {
+      "date": "2006-05-04T00:00:00.000-04:00",
+      "description": "2006 TopCoder Open Algorithm Semi Finalist"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 78,
+    "currentTime": 1455814995215
+  },
+  "requesterInformation": {
+    "id": "ed59d05026fff58690b0e43531973293f56fe0dd-KE1QArjedL5NctDQ",
+    "remoteIP": "65.112.11.37",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "halyavin",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

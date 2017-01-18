@@ -1,0 +1,44 @@
+{
+  "handle": "PaxosMyth",
+  "country": "India",
+  "memberSince": "2014-04-24T18:31:00.000-04:00",
+  "quote": "Everything you need is out of your comfort zone... just make a move....",
+  "photoLink": "/i/m/PaxosMyth.jpeg",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 0,
+      "colorStyle": "color: #999999"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2014-10-07T00:00:00.000-04:00",
+      "description": "Studio First Milestone Prize"
+    },
+    {
+      "date": "2014-05-01T00:00:00.000-04:00",
+      "description": "Studio First Forum Post"
+    },
+    {
+      "date": "2014-05-01T00:00:00.000-04:00",
+      "description": "Studio First Passing Submission"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 243,
+    "currentTime": 1468013444888
+  },
+  "requesterInformation": {
+    "id": "fa3581d6b267685b9d680bec9ff8fceb6850ddd7-sbR9M3aZeM8ExcR6",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "PaxosMyth",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

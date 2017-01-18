@@ -1,0 +1,123 @@
+{
+  "handle": "alecn2002",
+  "country": "Russia",
+  "memberSince": "2006-05-12T09:12:00.000-04:00",
+  "quote": "Thanks God, You've made nesessary things simple, and complex ones - unnesessary",
+  "photoLink": "/i/m/alecn2002.jpeg",
+  "copilot": false,
+  "overallEarning": 1860,
+  "ratingSummary": [
+    {
+      "name": "Assembly",
+      "rating": 638,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Algorithm",
+      "rating": 1005,
+      "colorStyle": "color: #00A900"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 923,
+      "colorStyle": "color: #00A900"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2013-01-07T00:00:00.000-05:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2012-11-14T00:00:00.000-05:00",
+      "description": "First Passing Submission"
+    },
+    {
+      "date": "2012-11-11T00:00:00.000-05:00",
+      "description": "First Placement"
+    },
+    {
+      "date": "2012-11-11T00:00:00.000-05:00",
+      "description": "First Win"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Fifty Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Fifty Solved Algorithm Problems"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Top-5 Placement"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Solved Hard Div2 Problem in SRM"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Ten Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Ten Solved Algorithm Problems"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Two Marathon Top-5 Placements"
+    },
+    {
+      "date": "2009-11-27T00:00:00.000-05:00",
+      "description": "One Hundred Forum Posts"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 66,
+    "currentTime": 1455823243115
+  },
+  "requesterInformation": {
+    "id": "ed59d05026fff58690b0e43531973293f56fe0dd-TeR5FAi4g2MQV6cV",
+    "remoteIP": "65.112.11.37",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "alecn2002",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

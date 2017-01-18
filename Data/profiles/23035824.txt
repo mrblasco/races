@@ -1,0 +1,61 @@
+{
+  "handle": "F.L.K",
+  "country": "China",
+  "memberSince": "2011-11-22T10:39:00.000-05:00",
+  "quote": null,
+  "photoLink": "https://topcoder-prod-media.s3.amazonaws.com/member/profile/F.L.K-1448502460853.jpeg",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 1203,
+      "colorStyle": "color: #6666FF"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1164,
+      "colorStyle": "color: #00A900"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-01-21T00:00:00.000-05:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Ten Solved Algorithm Problems"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 62,
+    "currentTime": 1456159823355
+  },
+  "requesterInformation": {
+    "id": "568105507b744b2668ce1094104714a9377426e1-1vto4PWPwYRsi3QP",
+    "remoteIP": "65.112.10.85",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "F.L.K",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

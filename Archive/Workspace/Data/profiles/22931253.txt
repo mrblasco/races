@@ -1,0 +1,73 @@
+{
+  "handle": "didi_baga",
+  "country": "Georgia",
+  "memberSince": "2011-04-03T10:56:00.000-04:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 618,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 907,
+      "colorStyle": "color: #00A900"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2014-08-19T00:00:00.000-04:00",
+      "description": "Ten Marathon Competitions"
+    },
+    {
+      "date": "2013-09-28T00:00:00.000-04:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2013-06-18T00:00:00.000-04:00",
+      "description": "Studio First Passing Submission"
+    },
+    {
+      "date": "2013-04-17T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2013-01-13T00:00:00.000-05:00",
+      "description": "First Successful Challenge"
+    },
+    {
+      "date": "2012-12-21T00:00:00.000-05:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2011-12-12T00:00:00.000-05:00",
+      "description": "First Forum Post"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 3,
+    "currentTime": 1456153693054
+  },
+  "requesterInformation": {
+    "id": "568105507b744b2668ce1094104714a9377426e1-E4OXz68yp6XnUBtk",
+    "remoteIP": "65.112.10.85",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "didi_baga",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

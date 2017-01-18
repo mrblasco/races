@@ -1,0 +1,37 @@
+{
+  "handle": "adk90",
+  "country": "India",
+  "memberSince": "2014-11-27T21:23:00.000-05:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": false,
+  "overallEarning": 0,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 0,
+      "colorStyle": "color: #999999"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-02-14T00:00:00.000-05:00",
+      "description": "First Forum Post"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 145,
+    "currentTime": 1468013435133
+  },
+  "requesterInformation": {
+    "id": "525b764b066cc9a6db61603f9663911d94dabac1-VfOW5j0XToUDtUgf",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "adk90",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

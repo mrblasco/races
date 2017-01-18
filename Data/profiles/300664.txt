@@ -1,0 +1,90 @@
+{
+  "handle": "ahoenig",
+  "country": "United States",
+  "memberSince": "2002-10-08T08:11:00.000-04:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Design",
+      "rating": 821,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Algorithm",
+      "rating": 1426,
+      "colorStyle": "color: #6666FF"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1315,
+      "colorStyle": "color: #6666FF"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-03-06T00:00:00.000-05:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Successful Challenge"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Successful Challenges"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Solved Hard Div2 Problem in SRM"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Ten Solved Algorithm Problems"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2003-03-05T00:00:00.000-05:00",
+      "description": "First Forum Post"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 80,
+    "currentTime": 1455748708901
+  },
+  "requesterInformation": {
+    "id": "ad3229f35551f524bf5337be99d82d6316af626e-xorWl0PuGidzq0aT",
+    "remoteIP": "65.112.10.83",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "ahoenig",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

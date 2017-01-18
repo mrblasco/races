@@ -1,0 +1,56 @@
+{
+  "handle": "toshif",
+  "country": "Japan",
+  "memberSince": "2014-04-26T20:19:00.000-04:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 1285,
+      "colorStyle": "color: #6666FF"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-01-25T00:00:00.000-05:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2015-01-25T00:00:00.000-05:00",
+      "description": "Solved Hard Div2 Problem in SRM"
+    },
+    {
+      "date": "2015-01-25T00:00:00.000-05:00",
+      "description": "Ten Solved Algorithm Problems"
+    },
+    {
+      "date": "2014-08-31T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2014-07-11T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2014-05-21T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 3,
+    "currentTime": 1468013447582
+  },
+  "requesterInformation": {
+    "id": "3e5d5ce1502d4006b8c004c61267829b4e10bfdd-I7bYAr6XLKRsR9Wy",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "toshif",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

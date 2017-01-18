@@ -1,0 +1,40 @@
+{
+  "handle": "jbgeddes3",
+  "country": "United States",
+  "memberSince": "2014-12-23T14:41:00.000-05:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 0,
+      "colorStyle": "color: #999999"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-08-11T00:00:00.000-04:00",
+      "description": "First Passing Submission"
+    },
+    {
+      "date": "2015-06-07T00:00:00.000-04:00",
+      "description": "First Forum Post"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 154,
+    "currentTime": 1468013439924
+  },
+  "requesterInformation": {
+    "id": "cb8221607f2a167f7047ac7b1de756383248d97b-QLEyQshRrlylAYd6",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "jbgeddes3",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "handle": "mateuszlewko",
+  "country": "Poland",
+  "memberSince": "2014-04-11T10:30:00.000-04:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 913,
+      "colorStyle": "color: #00A900"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1413,
+      "colorStyle": "color: #6666FF"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-03-06T00:00:00.000-05:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2014-04-20T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2014-04-20T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2014-04-19T00:00:00.000-04:00",
+      "description": "First Forum Post"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 62,
+    "currentTime": 1459293211418
+  },
+  "requesterInformation": {
+    "id": "d6671eaf716a79aee81056e457700d966c2e42a3-L1nSP7tU4S4KbF6x",
+    "remoteIP": "73.238.117.2",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "mateuszlewko",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

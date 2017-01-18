@@ -1,0 +1,61 @@
+{
+  "handle": "cheaps",
+  "country": "United States",
+  "memberSince": "2015-01-17T17:01:00.000-05:00",
+  "quote": null,
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 1105,
+      "colorStyle": "color: #00A900"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1529,
+      "colorStyle": "color: #DDCC00"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2016-03-29T00:00:00.000-04:00",
+      "description": "First Marathon Top-5 Placement"
+    },
+    {
+      "date": "2015-03-09T00:00:00.000-04:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2015-02-23T00:00:00.000-05:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2015-02-17T00:00:00.000-05:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2015-01-25T00:00:00.000-05:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2015-01-25T00:00:00.000-05:00",
+      "description": "First Solved Algorithm Problem"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 3,
+    "currentTime": 1459343494738
+  },
+  "requesterInformation": {
+    "id": "b5e2681561f19dd23ee83158c2932fde2cd6b8e3-9NHYxtcn5hWezk1v",
+    "remoteIP": "65.112.10.86",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "cheaps",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

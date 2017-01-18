@@ -1,0 +1,94 @@
+
+Races and tournaments
+============================
+
+
+\newcommand{\note}[1]{\textcolor{red}{[#1]}} % Notes
+\newcommand\ability{a_i}
+\newcommand\marginaltype{\underline a}
+\newcommand\cscore{c_{y}}                   % Cost functions
+\newcommand\ctime{c_{t}}
+\newcommand\dord[2][X]{f_{#1_{#2:n}}}  % Distribution
+\newcommand\pord[2][X]{F_{#1_{#2:n}}}
+\newcommand\bidscore{y^*}                   % Equilibrium
+\newcommand\bidtime{t^*}
+\newcommand\invertb{b^{-1}}
+\newcommand\lowercost{\underline{c}}        % Parameters
+\newcommand\uppercost{\bar{c}}
+\newcommand\deadline{d}
+\newcommand\tweight{\tau}
+\newcommand\target{\bar y}
+\newcommand\entrylimit{\bar\theta}
+\newcommand{\Expect}{{\bf E}}      % Expectations
+\newcommand\realsp{\mathbb{R}^{+}}
+
+The basic theoretical model
+----------------------------
+
+Consider a contest with $k$ available prizes of value $V_1 > V_2 > ... > V_k$. Each agent ($i=1, ..., n+1$) moves simultaneously to maximize the chances of winning a prize. To be elegible for a prize, each agent has to complete a task within a deadline $d>0$. Outcomes are then evaluated and ranked along two dimensions: the output quality $y_i$ and the time to completion $t_i$ both being nonnegative real numbers.
+
+In a tournament, the agent having achieved the highest output quality within the deadline gets the first prize, the agent having achieved the second highest output quality gets the second prize, and so on. In a race, by contrast, the first agent to achieve an output quality of at least $\target$ within the deadline wins the first prize, the second to achieve the same target gets the second prize, and so on. 
+<!-- Formally, let $y_{r:n+1}$ denote the $r$'th order statistic of the $y_i$'s (the $r$'th smallest quality). Then, in a tournament, the $j$'th prize goes to the agent whose output quality equals the $(n+2-j)$'th order statistic. Similarly, let $t_{r:n+1}$ denote the $r$'th order statistic of the $t_i$'s, then, in a race, the $j$'th prize goes to the agent whose time to achieve the target equals the $j$'th order statistic. -->
+
+Since agents move simultaneously, they do not know the performance of others when deciding their efforts. On the other hand, it is assumed that they know the number of competitors as well as their cost functions to complete the task up to a factor $a_i$ being the agent's private ability in performing the task. Each agent knows his ability but does not know the ability of the others. However, it is common knowledge that abilities are drawn at random from a common distribution $F_A$ that is assumed everywhere differentiable on the support $V\subseteq [0, \infty)$. 
+
+It is further assumed that costs are multiplicative
+\begin{equation}
+  C(y_i, t_i, a_i) = \cscore (y) \cdot \ctime (t)  \cdot a_i^{-1}
+\end{equation}
+with $\cscore(0)\geq 0$, $\cscore^\prime>0$, $\ctime(d)\geq 0$, and $\ctime^\prime<0$.
+
+
+Each agent is risk neutral and faces the following decision problem
+\begin{equation}
+  \begin{array}{ll}
+    \mbox{maximize} & \sum_{j=1}^k \Pr(\text{ranked $j$'th}) V_j  - C(y_i, t_i, a_i).
+  \end{array}
+\end{equation}
+
+### Equilibrium in a tournament
+
+We provide here the symmetric equilibrium with one prize \note{todo: two prizes} and $n>2$ agents. In appendix XXX,  we provide a general formula for $k>2$ prizes. 
+
+Let $y_{1:n} < y_{2:n} < ... < y_{n:n}$ denote the order statistics of the $y_j$'s for every $j\neq i$ and let $\pord[Y]{r}(\cdot)$ and $\dord[Y]{r}(\cdot)$  denote the corresponding distribution and density for the $r$'th order statistic.
+
+In a tournament, the unique symmetric equilibrium of the model gives, for every $i=1, ..., n$, the optimal time to completion $t^*(a_i)$ equal to the deadline $d$ and the optimal output quality $y^*(a_i)$ as
+\begin{equation}
+  \label{eq: optimal bid tournament}
+  y^*(a_i) =  V_1 \int_{a_i}^\infty \dord[Y]{n} (z) dz
+\end{equation}
+if $\ability \geq \marginaltype$ [see @moldovanu2001optimal], and equal to zero otherwise. 
+
+An important property of \eqref{eq: optimal bid tournament} is that $y^*(a_i)$ has its upper bound in \note{value} and lower bound in \note{value}. Also, equilibrium output quality is monotonic increasing in the agent's ability [see @moldovanu2001optimal]. Thus, for every $i=1, ..., n+1$, the equilibrium expected reward depends only on the rank of his ability relative to the others. Using $\pord[A]{r}$ to denote the distribution of the $r$'th order statistic of abilities gives
+
+\begin{equation}
+  \label{eq: expected payoffs tournament}
+  \pord[A]{n}(a_i) V_1  - C(y_i^*, d, a_i).
+\end{equation}
+
+Hence, by setting \eqref{eq: expected payoffs tournament} to zero and solving for the ability, gives the marginal ability $\marginaltype$ as
+\begin{equation}
+  \marginaltype = h(n, V, F_A, C, d). 
+\end{equation}
+
+### Equilibrium behavior in a race
+
+... 
+
+### The expected revenues for the sponsor of the contest
+
+The sponsor of the contest chooses the rules of the competition including prize structure $\{V_j\}_{j=1}^k$, deadline $d$, target quality $q$, and competition format (race or tournament). The sponsor maximizes an objective function that is the sum of total quality $Y=\sum_{i=1}^{n+1} Y_i$, time spent $T=\sum_{i=1}^{n+1} T_i$ and prizes paid $V=\sum_{j=1}^k p_{j} V_j$ (with $p_j=1$ if the prize is awarded and $p_j=0$ otherwise). Hence, the problem faced  by the sponsor is
+\begin{equation}
+  \begin{array}{ll}
+    \mbox{maximize} & \int {Y}   -  \tweight \Expect{T} - \Expect{V}
+  \end{array}
+\end{equation}
+with the intensity of preferences towards time weighted by $c_t\geq 0$. 
+
+
+
+Structural econometric model
+-----------------------------
+
+
+

@@ -1,0 +1,40 @@
+{
+  "handle": "alinionut.popa",
+  "country": "Romania",
+  "memberSince": "2014-06-26T04:15:00.000-04:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 663,
+      "colorStyle": "color: #999999"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-01-25T00:00:00.000-05:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2014-10-05T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 143,
+    "currentTime": 1468013435336
+  },
+  "requesterInformation": {
+    "id": "fa3581d6b267685b9d680bec9ff8fceb6850ddd7-nPysFuMwiePA9gWn",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "alinionut.popa",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

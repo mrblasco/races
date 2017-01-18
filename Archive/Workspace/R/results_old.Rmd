@@ -1,0 +1,87 @@
+
+```{r}
+load("~/Documents/NTL/races/Workspace/tournrace_v01.RData")
+```
+
+```{r}
+diff.days <- function(time1, time2, ...) {
+  as.numeric(difftime(time1, time2, units='days', ...))
+}
+```
+
+Results
+====================
+
+Participation
+--------------
+
+A total of `r nrow(dat)` competitors signed up for the challenge. All were registered members of the platform (the competitor's median time as member of the platform was of `r round(diff.days("2016-03-02", median(dat$msince))/365)` years). Individual experience in competing was highly skewed, with competitors in the 90th percentile having taken part in `r round(diff(quantile(dat$mm.count, p=c(0.1, 0.9))))` more competitions and with a skill rating, if any, of `r round(diff(quantile(dat$mm.rating, p=c(0.1, 0.9), na.rm=TRUE)))` higher than those in the 10th percentile; see Figure \ref{eq: distribution experience}. 
+
+
+```{r experience, include=FALSE}
+tab <- table(dat$mm.count)
+plot(x=as.numeric(names(tab)), y=as.numeric(tab)
+  , xlab='Past competitions'
+  , ylab='Freq. (log scale)'
+  , log='y', pch=16)
+```
+
+```{r rating, include=FALSE}
+skill.rating <- ifelse(is.na(dat$mm.rating), 0, dat$mm.rating)
+hist(skill.rating, 20
+  , xlab='Skill rating'
+  , ylab='Density'
+  , col=gray(.75), main="")
+```
+
+```{r nsub, include=FALSE}
+tab <- table(dat$nsub)
+plot(x=as.numeric(names(tab)), y=as.numeric(tab)
+  , xlab='Submissions'
+  , ylab='Freq. (log scale)'
+  , log='y', pch=16)
+```
+
+
+\begin{figure}
+\includegraphics[width=0.5\textwidth]{Figures/experience-1.pdf}
+\includegraphics[width=0.5\textwidth]{Figures/rating-1.pdf}
+\caption{Distribution of the count of past contests (left panel) and the skill ratings (right panel) of the signed-up competitors.}
+\label{eq: distribution experience}
+\end{figure}
+
+After the two-week submission period, a total of `r sum(dat$nsub>0, na.rm=TRUE)` competitors made `r sum(dat$nsub, na.rm=TRUE)` submissions with the distribution being rather skewed, with participants in the 90th percentile having `r diff(quantile(dat$nsub, p=c(0.1, 0.9), na.rm=TRUE))` more submissions than those in the 10th percentile. 
+
+
+This result might be associated with experience, but the correlation between experience and the count of submissions is low (xxx).
+
+The timing of submissions was rather uniform during the submission period with a peak of submissions made in the last of the competition. (explain more) 
+
+```{fig.width=8, fig.height=5, fig.cap="Dispersion of the time of the first and last submission."}
+  scores$submax <- ave(scores$subid, scores$id, FUN=max)
+  par(mfrow=c(2, 1), mar=c(4,4,2,2))
+  plot(subid==1 ~ as.POSIXct(subts), data=scores, type='h', yaxt='n'
+      , xlab='', ylab='', main='Dispersion time first submission')
+  plot(subid==submax ~ as.POSIXct(subts), data=scores, type='h'
+      , yaxt='n', xlab='', ylab='', main='Dispersion time last submission')
+```
+
+Treatment differences
+------------------------
+
+Participation rates
+--------------------
+ 
+```{r, results='asis'}
+tab <- table(runif(500)<0.5)
+# tab <- table(dat$treatment, ifelse(dat$nsub>0, "Submission", "No submission"))
+# tab2 <- addmargins(tab, 2, FUN=list(Total=sum))
+# print(kable(tab2), type='html')
+```
+
+- Using a Chi-square test of independence, we find no significant differences in participation rates associated with the assigned treatments (p-value: `r format.pval(chisq.test(tab)$p.value, digits=3)`); see Table XX.
+
+
+- Further, we model participation rates as a logistic regression. We use a polynomial of third degree for the count of past competitions to account for non-linear effects of experience; and we use an indicator for whether the competitor had a win or not. Also, taking into account differences in ability, participation rates are not significantly different. 
+
+

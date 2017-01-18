@@ -1,0 +1,15 @@
+\select@language {english}
+\contentsline {section}{\numberline {1}Introduction}{1}
+\contentsline {section}{\numberline {2}Literature}{4}
+\contentsline {section}{\numberline {3}Races and tournaments}{4}
+\contentsline {subsection}{\numberline {3.1}The basic theoretical model}{4}
+\contentsline {subsubsection}{\numberline {3.1.1}Equilibrium in a tournament}{5}
+\contentsline {subsubsection}{\numberline {3.1.2}Equilibrium behavior in a race}{6}
+\contentsline {subsubsection}{\numberline {3.1.3}The expected revenues for the sponsor of the contest}{6}
+\contentsline {subsection}{\numberline {3.2}Structural econometric model}{7}
+\contentsline {section}{\numberline {4}A comparison of races and tournaments in the field}{7}
+\contentsline {subsection}{\numberline {4.1}The context}{7}
+\contentsline {subsection}{\numberline {4.2}Data}{9}
+\contentsline {section}{\numberline {5}Empirical analysis}{9}
+\contentsline {subsection}{\numberline {5.1}Estimation results}{9}
+\contentsline {subsection}{\numberline {5.2}Simulation results}{10}

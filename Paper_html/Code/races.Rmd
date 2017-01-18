@@ -1,0 +1,71 @@
+---
+title: "Races or Tournaments?"
+
+thanks: "Blasco: Harvard Institute for Quantitative Social Science, Harvard University, 1737 Cambridge Street, Cambridge, MA 02138 (email: ablasco@fas.harvard.edu)."
+
+date: "Last updated: `r format(Sys.time(), '%d %B, %Y')`"
+
+author: 
+    - Andrea Blasco
+    - Kevin J. Boudreau
+    - Karim R. Lakhani
+    - Michael Menietti
+
+abstract: "A wide range of economic and social situations are decided by either a race or a tournament. In either situations, agents choose whether and how much to exert some costly effort to increase the probability of being awarded a prize under the uncertainty about the actions of other agents. While a tournament yield outcomes greater than those of a race, the latter prevents unnecessary costs due to an excess of participation. We examine this trade-off empirically. We report the results of a field experiment conducted online where we compare the outcomes --- efforts, quality, and diversity of outputs --- of three alternative competitive situations motivated by theory: the race, the tournament, and the tournament with a quality requirement."
+
+JEL: 
+  - xxx
+  - xxx
+  - xxx
+
+keywords: 
+  - xxxx
+  - xxxx xxxx
+
+amsthm:
+  plain:
+  - theorem
+  - proposition
+  - corollary
+
+fontsize: 12pt
+
+...
+
+
+```{r, echo=FALSE, warnings=FALSE, message=FALSE}
+
+#########################
+load(".RData")
+set.seed(4881) # for bootstrap
+require(magrittr)
+require(xtable)
+require(stargazer)
+#########################
+
+knitr::opts_chunk$set(
+  cache=FALSE,
+  echo=FALSE,
+  message=FALSE,
+  warning=TRUE,
+  error=FALSE,
+  tidy=FALSE,
+  cache.path="Cache/",
+  fig.path="Figures/")
+```
+
+```{r child = '1_intro.Rmd'}
+```
+
+```{r child = '2_methods.Rmd'}
+```
+
+```{r child = '3_results.Rmd'}
+```
+
+```{r child = '4_discussion.Rmd'}
+```
+
+
+References
+=============

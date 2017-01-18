@@ -1,0 +1,9 @@
+\contentsline {section}{\numberline {1}The model}{1}{section.1}
+\contentsline {subsection}{\numberline {1.1}Tournament}{2}{subsection.1.1}
+\contentsline {section}{\numberline {2}In a tournament}{3}{section.2}
+\contentsline {section}{\numberline {3}The model}{5}{section.3}
+\contentsline {section}{\numberline {4}Equilibrium}{5}{section.4}
+\contentsline {subsection}{\numberline {4.1}The case of tournaments}{5}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Expected utility}{7}{subsection.4.2}
+\contentsline {section}{\numberline {5}Empirical analysis}{8}{section.5}
+\contentsline {section}{\numberline {A}Order statistics}{8}{appendix.A}

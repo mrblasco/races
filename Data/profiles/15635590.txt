@@ -1,0 +1,166 @@
+{
+  "handle": "Nickolas",
+  "country": "Ukraine",
+  "memberSince": "2005-08-13T05:22:00.000-04:00",
+  "quote": "The important thing is: to be able at any moment to sacrifice what we are for what we could become.",
+  "photoLink": "/i/m/Nickolas.jpeg",
+  "copilot": true,
+  "ratingSummary": [
+    {
+      "name": "Content Creation",
+      "rating": 1487,
+      "colorStyle": "color: #6666FF"
+    },
+    {
+      "name": "Algorithm",
+      "rating": 1756,
+      "colorStyle": "color: #DDCC00"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1542,
+      "colorStyle": "color: #DDCC00"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2013-02-16T00:00:00.000-05:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Fifty Solved Algorithm Problems"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Top-5 Placement"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Successful Challenge"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Successful Challenges"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Solved Hard Div1 Problem in SRM"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Ten Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Ten Solved Algorithm Problems"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty Five Successful Challenges"
+    },
+    {
+      "date": "2012-04-22T00:00:00.000-04:00",
+      "description": "Studio First Forum Post"
+    },
+    {
+      "date": "2012-03-30T00:00:00.000-04:00",
+      "description": "Studio First Placement"
+    },
+    {
+      "date": "2012-03-30T00:00:00.000-04:00",
+      "description": "Studio First Win"
+    },
+    {
+      "date": "2012-03-19T00:00:00.000-04:00",
+      "description": "Studio First Passing Submission"
+    },
+    {
+      "date": "2012-03-14T00:00:00.000-04:00",
+      "description": "Studio First Milestone Prize"
+    },
+    {
+      "date": "2011-12-10T00:00:00.000-05:00",
+      "description": "First Passing Submission"
+    },
+    {
+      "date": "2011-08-06T00:00:00.000-04:00",
+      "description": "Studio Twenty Five Placements"
+    },
+    {
+      "date": "2011-07-24T00:00:00.000-04:00",
+      "description": "Studio Fifty Passing Submissions"
+    },
+    {
+      "date": "2011-07-06T00:00:00.000-04:00",
+      "description": "One Hundred Forum Posts"
+    },
+    {
+      "date": "2011-06-10T00:00:00.000-04:00",
+      "description": "First Placement"
+    },
+    {
+      "date": "2010-06-19T00:00:00.000-04:00",
+      "description": "Five Hundred Forum Posts"
+    },
+    {
+      "date": "2007-08-24T00:00:00.000-04:00",
+      "description": "One Thousand Forum Posts"
+    },
+    {
+      "date": "2007-04-28T00:00:00.000-04:00",
+      "description": "2007 TopCoder Open Algorithm Quarter Finalist"
+    },
+    {
+      "date": "2007-04-11T00:00:00.000-04:00",
+      "description": "Studio One Hundred Forum Posts"
+    },
+    {
+      "date": "2006-11-16T00:00:00.000-05:00",
+      "description": "2006 TopCoder Collegiate Challenge Algorithm Quarter Finalist"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 75,
+    "currentTime": 1455816252657
+  },
+  "requesterInformation": {
+    "id": "ed59d05026fff58690b0e43531973293f56fe0dd-i9kzB1EhgoDGf584",
+    "remoteIP": "65.112.11.37",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "Nickolas",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

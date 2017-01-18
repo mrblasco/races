@@ -1,0 +1,109 @@
+{
+  "handle": "Bankevich",
+  "country": "Russia",
+  "memberSince": "2006-04-22T13:00:00.000-04:00",
+  "quote": "",
+  "photoLink": "/i/m/Bankevich_big.jpg",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 1953,
+      "colorStyle": "color: #DDCC00"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 881,
+      "colorStyle": "color: #999999"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-10-15T00:00:00.000-04:00",
+      "description": "Twenty SRM Room Wins (Any Division)"
+    },
+    {
+      "date": "2014-12-28T00:00:00.000-05:00",
+      "description": "Fifty Solved Algorithm Problems"
+    },
+    {
+      "date": "2014-12-28T00:00:00.000-05:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2014-12-28T00:00:00.000-05:00",
+      "description": "First Successful Challenge"
+    },
+    {
+      "date": "2014-12-28T00:00:00.000-05:00",
+      "description": "Five Successful Challenges"
+    },
+    {
+      "date": "2014-12-28T00:00:00.000-05:00",
+      "description": "Solved Hard Div1 Problem in SRM"
+    },
+    {
+      "date": "2014-12-28T00:00:00.000-05:00",
+      "description": "Ten Solved Algorithm Problems"
+    },
+    {
+      "date": "2014-12-28T00:00:00.000-05:00",
+      "description": "Twenty Five Successful Challenges"
+    },
+    {
+      "date": "2014-12-28T00:00:00.000-05:00",
+      "description": "Two Hundred Solved Algorithm Problems"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five SRM Room Wins (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "One Hundred Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2006-11-16T00:00:00.000-05:00",
+      "description": "2006 TopCoder Collegiate Challenge Algorithm Semi Finalist"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 76,
+    "currentTime": 1455822777300
+  },
+  "requesterInformation": {
+    "id": "ed59d05026fff58690b0e43531973293f56fe0dd-WZtxQxmJbz26iNml",
+    "remoteIP": "65.112.11.37",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "Bankevich",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

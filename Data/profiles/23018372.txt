@@ -1,0 +1,106 @@
+{
+  "handle": "WTrei",
+  "country": "Germany",
+  "memberSince": "2011-08-26T13:32:00.000-04:00",
+  "quote": "",
+  "photoLink": "/i/m/WTrei.png",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Content Creation",
+      "rating": 1719,
+      "colorStyle": "color: #DDCC00"
+    },
+    {
+      "name": "Algorithm",
+      "rating": 1237,
+      "colorStyle": "color: #6666FF"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1575,
+      "colorStyle": "color: #DDCC00"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-07-15T00:00:00.000-04:00",
+      "description": "Studio First Passing Submission"
+    },
+    {
+      "date": "2014-07-04T00:00:00.000-04:00",
+      "description": "Twenty Marathon Competitions"
+    },
+    {
+      "date": "2013-10-04T00:00:00.000-04:00",
+      "description": "First Win"
+    },
+    {
+      "date": "2013-09-03T00:00:00.000-04:00",
+      "description": "First Milestone Prize"
+    },
+    {
+      "date": "2013-07-06T00:00:00.000-04:00",
+      "description": "First Placement"
+    },
+    {
+      "date": "2013-02-08T00:00:00.000-05:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2013-02-08T00:00:00.000-05:00",
+      "description": "Ten Marathon Competitions"
+    },
+    {
+      "date": "2012-12-16T00:00:00.000-05:00",
+      "description": "First Passing Submission"
+    },
+    {
+      "date": "2012-12-12T00:00:00.000-05:00",
+      "description": "Two Marathon Top-5 Placements"
+    },
+    {
+      "date": "2012-10-20T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-10-20T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2012-10-20T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Top-5 Placement"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2011-08-29T00:00:00.000-04:00",
+      "description": "One Hundred Forum Posts"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 3,
+    "currentTime": 1456157626615
+  },
+  "requesterInformation": {
+    "id": "568105507b744b2668ce1094104714a9377426e1-u5VSa824Is7kcLux",
+    "remoteIP": "65.112.10.85",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "WTrei",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

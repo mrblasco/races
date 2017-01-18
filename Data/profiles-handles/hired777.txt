@@ -1,0 +1,44 @@
+{
+  "handle": "hired777",
+  "country": "Belarus",
+  "memberSince": "2009-04-30T13:41:00.000-04:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 1336,
+      "colorStyle": "color: #6666FF"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 164,
+    "currentTime": 1468013439209
+  },
+  "requesterInformation": {
+    "id": "fa3581d6b267685b9d680bec9ff8fceb6850ddd7-9PfKwtRohV5EMekd",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "hired777",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

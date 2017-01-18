@@ -1,0 +1,23 @@
+
+\newcommand\ability{a_i}
+\newcommand\marginaltype{\underline a}
+\newcommand\marginaltyperace{\underline a_{\text{race}}}
+\newcommand\cscore{c_{y}}                   % Cost functions
+\newcommand\ctime{c_{t}}
+\newcommand\dord[2][X]{f_{#1_{#2:n}}}  % Distribution
+\newcommand\pord[2][X]{F_{#1_{#2:n}}}
+\newcommand\bidscore{y^*}                   % Equilibrium
+\newcommand\bidtime{t^*}
+\newcommand\invertb{b^{-1}}
+\newcommand\lowercost{\underline{c}}        % Parameters
+\newcommand\uppercost{\bar{c}}
+\newcommand\deadline{d}
+\newcommand\tweight{\tau}
+\newcommand\ereward[1][a_i]{R(#1)}
+\newcommand\target{\underline y}
+\newcommand\entrylimit{\bar\theta}
+\newcommand{\Expect}{{\bf E}}      % Expectations
+\newcommand\realsp{\mathbb{R}^{+}}
+
+\newtheorem{proposition}{Proposition}
+\theoremstyle{remark}

@@ -1,0 +1,41 @@
+{
+  "handle": "Seip_meginu",
+  "country": "Lithuania",
+  "memberSince": "2015-02-04T10:37:00.000-05:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 0,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1229,
+      "colorStyle": "color: #6666FF"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-02-17T00:00:00.000-05:00",
+      "description": "First Marathon Competition"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 61,
+    "currentTime": 1459343629308
+  },
+  "requesterInformation": {
+    "id": "b5e2681561f19dd23ee83158c2932fde2cd6b8e3-APKoC6LpTtnWwB3D",
+    "remoteIP": "65.112.10.86",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "Seip_meginu",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

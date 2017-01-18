@@ -1,6 +1,6 @@
 #!/bin/bash
 now=`date +%b%d`
-main_file=patents.Rmd
+main_file=races.Rmd
 
 # Directories
 paper_dir=Paper
@@ -28,11 +28,13 @@ if [ "$1" == "--docx" ]; then
 elif [ "$1" == "--pdf" ]; then
   echo "Compiling pdf..."
   cp $config_dir/_output.yml $paper_dir
+  cp $config_dir/*.py $paper_dir
   compile $paper_dir
 
 elif [ "$1" == "--all" ]; then
   echo "Compiling all formats..."
   cp $config_dir/_output.yml $paper_dir
+  cp $config_dir/*.py $paper_dir
   cp $config_dir/_output_docx.yml $paper_docx_dir/_output.yml
   cp $config_dir/_output_html.yml $paper_html_dir/_output.yml
   compile $paper_dir && pwd && compile $paper_docx_dir && compile $paper_html_dir
@@ -40,6 +42,7 @@ elif [ "$1" == "--all" ]; then
 else 
   echo "Compiling html..."
   cp $config_dir/_output_html.yml $paper_html_dir/_output.yml
+  cp $config_dir/*.py $paper_html_dir
   compile $paper_html_dir
 fi
 

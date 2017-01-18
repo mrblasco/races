@@ -1,0 +1,69 @@
+{
+  "handle": "kyerise",
+  "country": "Zimbabwe",
+  "memberSince": "2012-06-19T15:31:00.000-04:00",
+  "quote": "no one goes unpunished",
+  "photoLink": "/i/m/kyerise.jpeg",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 537,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 485,
+      "colorStyle": "color: #999999"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-12-13T00:00:00.000-05:00",
+      "description": "Participant Badge"
+    },
+    {
+      "date": "2015-03-10T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2015-03-10T00:00:00.000-04:00",
+      "description": "First Successful Challenge"
+    },
+    {
+      "date": "2014-04-12T00:00:00.000-04:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2014-02-23T00:00:00.000-05:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2013-05-19T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2013-04-23T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2013-02-24T00:00:00.000-05:00",
+      "description": "First Rated Algorithm Competition"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 3,
+    "currentTime": 1459202169072
+  },
+  "requesterInformation": {
+    "id": "d6671eaf716a79aee81056e457700d966c2e42a3-0lS4Q1gv9l3Ax1cQ",
+    "remoteIP": "73.238.117.2",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "kyerise",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

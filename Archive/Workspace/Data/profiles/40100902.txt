@@ -1,0 +1,69 @@
+{
+  "handle": "StarCuriosity",
+  "country": "Russia",
+  "memberSince": "2014-12-16T20:38:00.000-05:00",
+  "quote": null,
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 1942,
+      "colorStyle": "color: #DDCC00"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1015,
+      "colorStyle": "color: #00A900"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-08-02T00:00:00.000-04:00",
+      "description": "First Successful Challenge"
+    },
+    {
+      "date": "2015-05-13T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2015-04-12T00:00:00.000-04:00",
+      "description": "Ten Solved Algorithm Problems"
+    },
+    {
+      "date": "2015-02-03T00:00:00.000-05:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2014-12-17T00:00:00.000-05:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2014-12-17T00:00:00.000-05:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2014-12-17T00:00:00.000-05:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2014-12-17T00:00:00.000-05:00",
+      "description": "Solved Hard Div2 Problem in SRM"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 59,
+    "currentTime": 1459343278006
+  },
+  "requesterInformation": {
+    "id": "b5e2681561f19dd23ee83158c2932fde2cd6b8e3-8Y1IbfdqFqGT77GC",
+    "remoteIP": "65.112.10.86",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "StarCuriosity",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

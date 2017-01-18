@@ -1,0 +1,53 @@
+{
+  "handle": "Rubanenko",
+  "country": "Ukraine",
+  "memberSince": "2012-05-10T11:31:00.000-04:00",
+  "quote": "The more you look, the less you see.",
+  "photoLink": "",
+  "copilot": false,
+  "overallEarning": 0,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 1852,
+      "colorStyle": "color: #DDCC00"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2014-10-05T00:00:00.000-04:00",
+      "description": "Five SRM Room Wins (Any Division)"
+    },
+    {
+      "date": "2014-06-20T00:00:00.000-04:00",
+      "description": "Twenty Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2013-07-20T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 155,
+    "currentTime": 1468013445863
+  },
+  "requesterInformation": {
+    "id": "303d8e503af99be1eb38bb1a642f91feb10690b7-B0RG9EQ0UOS6qpC4",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "Rubanenko",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

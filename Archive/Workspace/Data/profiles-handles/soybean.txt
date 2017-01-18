@@ -1,0 +1,42 @@
+{
+  "handle": "soybean",
+  "country": "United States",
+  "memberSince": "2015-02-28T00:09:00.000-05:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": false,
+  "overallEarning": 1000,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 0,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1378,
+      "colorStyle": "color: #6666FF"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-05-13T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 143,
+    "currentTime": 1468013446949
+  },
+  "requesterInformation": {
+    "id": "303d8e503af99be1eb38bb1a642f91feb10690b7-3S1mJCUediCjsPnn",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "soybean",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

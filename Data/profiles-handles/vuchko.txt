@@ -1,0 +1,40 @@
+{
+  "handle": "vuchko",
+  "country": "Ukraine",
+  "memberSince": "2007-09-27T05:29:00.000-04:00",
+  "quote": "",
+  "photoLink": "/i/m/vuchko.jpeg",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 565,
+      "colorStyle": "color: #999999"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-03-08T00:00:00.000-05:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 154,
+    "currentTime": 1468013449763
+  },
+  "requesterInformation": {
+    "id": "6a3c9357a74e824a2c77b431c920b357ae2e607f-D9BvgMrbYDofhdGz",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "vuchko",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

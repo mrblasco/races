@@ -1,0 +1,61 @@
+{
+  "handle": "JRSSKumarD",
+  "country": "India",
+  "memberSince": "2014-09-26T06:05:00.000-04:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 1062,
+      "colorStyle": "color: #00A900"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1621,
+      "colorStyle": "color: #DDCC00"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-05-15T00:00:00.000-04:00",
+      "description": "Ten Marathon Competitions"
+    },
+    {
+      "date": "2015-03-12T00:00:00.000-04:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2015-01-25T00:00:00.000-05:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2015-01-25T00:00:00.000-05:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2015-01-13T00:00:00.000-05:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2014-10-02T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 3,
+    "currentTime": 1459342607233
+  },
+  "requesterInformation": {
+    "id": "b5e2681561f19dd23ee83158c2932fde2cd6b8e3-z6pxY4YLxi6OriX4",
+    "remoteIP": "65.112.10.86",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "JRSSKumarD",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

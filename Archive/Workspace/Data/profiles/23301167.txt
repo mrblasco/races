@@ -1,0 +1,81 @@
+{
+  "handle": "alexpeptan",
+  "country": "Romania",
+  "memberSince": "2014-02-04T01:39:00.000-05:00",
+  "quote": "It is far better for a man to go wrong in freedom than to go right in chains. - Thomas Henry Huxley",
+  "photoLink": "/i/m/alexpeptan.jpeg",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 1178,
+      "colorStyle": "color: #00A900"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1138,
+      "colorStyle": "color: #00A900"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-07-14T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2015-07-08T00:00:00.000-04:00",
+      "description": "Participant Badge"
+    },
+    {
+      "date": "2015-05-11T00:00:00.000-04:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2015-04-18T00:00:00.000-04:00",
+      "description": "Five Successful Challenges"
+    },
+    {
+      "date": "2015-04-18T00:00:00.000-04:00",
+      "description": "Twenty Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2014-06-13T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2014-06-13T00:00:00.000-04:00",
+      "description": "First Successful Challenge"
+    },
+    {
+      "date": "2014-04-27T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2014-04-27T00:00:00.000-04:00",
+      "description": "Ten Solved Algorithm Problems"
+    },
+    {
+      "date": "2014-04-05T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2014-03-05T00:00:00.000-05:00",
+      "description": "First Rated Algorithm Competition"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 3,
+    "currentTime": 1459292251588
+  },
+  "requesterInformation": {
+    "id": "d6671eaf716a79aee81056e457700d966c2e42a3-Gb7GGk65LMXO9BPf",
+    "remoteIP": "73.238.117.2",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "alexpeptan",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

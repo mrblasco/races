@@ -1,0 +1,109 @@
+{
+  "handle": "pfilippi",
+  "country": "Germany",
+  "memberSince": "2009-07-17T08:02:00.000-04:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": false,
+  "overallEarning": 25645.5,
+  "ratingSummary": [
+    {
+      "name": "Development",
+      "rating": 846,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Design",
+      "rating": 839,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Assembly",
+      "rating": 1044,
+      "colorStyle": "color: #00A900"
+    },
+    {
+      "name": "Algorithm",
+      "rating": 1159,
+      "colorStyle": "color: #00A900"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1308,
+      "colorStyle": "color: #6666FF"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-05-10T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2015-03-09T00:00:00.000-04:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2015-01-25T00:00:00.000-05:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2015-01-25T00:00:00.000-05:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2015-01-21T00:00:00.000-05:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2014-05-24T00:00:00.000-04:00",
+      "description": "First Milestone Prize"
+    },
+    {
+      "date": "2013-04-02T00:00:00.000-04:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2013-03-19T00:00:00.000-04:00",
+      "description": "First Passing Submission"
+    },
+    {
+      "date": "2013-03-03T00:00:00.000-05:00",
+      "description": "First Placement"
+    },
+    {
+      "date": "2012-01-24T00:00:00.000-05:00",
+      "description": "One Hundred Forum Posts"
+    },
+    {
+      "date": "2012-01-02T00:00:00.000-05:00",
+      "description": "First Win"
+    },
+    {
+      "date": "2010-03-02T00:00:00.000-05:00",
+      "description": "Twenty Five Placements"
+    },
+    {
+      "date": "2010-01-04T00:00:00.000-05:00",
+      "description": "Five Hundred Forum Posts"
+    },
+    {
+      "date": "2009-12-15T00:00:00.000-05:00",
+      "description": "One Thousand Forum Posts"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 3,
+    "currentTime": 1456098853875
+  },
+  "requesterInformation": {
+    "id": "d6671eaf716a79aee81056e457700d966c2e42a3-gYBzgoMrBwo8QIIy",
+    "remoteIP": "73.238.117.2",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "pfilippi",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

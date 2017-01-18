@@ -1,0 +1,156 @@
+{
+  "handle": "MonicaMuranyi",
+  "country": "Romania",
+  "memberSince": "2010-01-14T09:55:00.000-05:00",
+  "quote": null,
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "UI Prototypes",
+      "rating": 1056,
+      "colorStyle": "color: #00A900"
+    },
+    {
+      "name": "RIA Build",
+      "rating": 820,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Test Scenarios",
+      "rating": 980,
+      "colorStyle": "color: #00A900"
+    },
+    {
+      "name": "Assembly",
+      "rating": 1373,
+      "colorStyle": "color: #6666FF"
+    },
+    {
+      "name": "Algorithm",
+      "rating": 846,
+      "colorStyle": "color: #999999"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-09-02T00:00:00.000-04:00",
+      "description": "Participant Badge"
+    },
+    {
+      "date": "2015-09-02T00:00:00.000-04:00",
+      "description": "iOS Participant Badge"
+    },
+    {
+      "date": "2015-05-10T00:00:00.000-04:00",
+      "description": "Twenty Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2014-11-25T00:00:00.000-05:00",
+      "description": "2014 F2F Finalist"
+    },
+    {
+      "date": "2014-10-05T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2014-07-23T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2014-06-13T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2013-11-13T00:00:00.000-05:00",
+      "description": "2013 Topcoder Open Mod Dash Finalist"
+    },
+    {
+      "date": "2013-01-25T00:00:00.000-05:00",
+      "description": "Studio First Forum Post"
+    },
+    {
+      "date": "2013-01-24T00:00:00.000-05:00",
+      "description": "Studio First Placement"
+    },
+    {
+      "date": "2013-01-21T00:00:00.000-05:00",
+      "description": "Studio First Passing Submission"
+    },
+    {
+      "date": "2013-01-19T00:00:00.000-05:00",
+      "description": "Studio First Milestone Prize"
+    },
+    {
+      "date": "2012-10-20T00:00:00.000-04:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2012-03-21T00:00:00.000-04:00",
+      "description": "Studio First Win"
+    },
+    {
+      "date": "2011-12-23T00:00:00.000-05:00",
+      "description": "First Passing Submission"
+    },
+    {
+      "date": "2011-12-20T00:00:00.000-05:00",
+      "description": "First Placement"
+    },
+    {
+      "date": "2011-07-19T00:00:00.000-04:00",
+      "description": "One Hundred Forum Posts"
+    },
+    {
+      "date": "2011-02-05T00:00:00.000-05:00",
+      "description": "Studio One Hundred Forum Posts"
+    },
+    {
+      "date": "2011-02-03T00:00:00.000-05:00",
+      "description": "First Win"
+    },
+    {
+      "date": "2011-01-31T00:00:00.000-05:00",
+      "description": "Five Hundred Forum Posts"
+    },
+    {
+      "date": "2010-12-06T00:00:00.000-05:00",
+      "description": "Fifty Passing Submissions"
+    },
+    {
+      "date": "2010-12-06T00:00:00.000-05:00",
+      "description": "One Hundred Passing Submissions"
+    },
+    {
+      "date": "2010-12-01T00:00:00.000-05:00",
+      "description": "Fifty Placements"
+    },
+    {
+      "date": "2010-12-01T00:00:00.000-05:00",
+      "description": "Twenty Five First Placement Win"
+    },
+    {
+      "date": "2010-12-01T00:00:00.000-05:00",
+      "description": "Twenty Five Placements"
+    },
+    {
+      "date": "2010-11-06T00:00:00.000-04:00",
+      "description": "One Thousand Forum Posts"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 3,
+    "currentTime": 1468013442590
+  },
+  "requesterInformation": {
+    "id": "525b764b066cc9a6db61603f9663911d94dabac1-fMfHuxLNH13hFgRl",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "MonicaMuranyi",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

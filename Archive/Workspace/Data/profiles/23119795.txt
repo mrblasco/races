@@ -1,0 +1,85 @@
+{
+  "handle": "marshmallow",
+  "country": "Australia",
+  "memberSince": "2012-12-25T08:00:00.000-05:00",
+  "quote": "",
+  "photoLink": "/i/m/marshmallow.jpeg",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 1529,
+      "colorStyle": "color: #DDCC00"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1784,
+      "colorStyle": "color: #DDCC00"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-06-17T00:00:00.000-04:00",
+      "description": "First Marathon Top-5 Placement"
+    },
+    {
+      "date": "2015-06-17T00:00:00.000-04:00",
+      "description": "Ten Marathon Competitions"
+    },
+    {
+      "date": "2015-02-18T00:00:00.000-05:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2014-05-06T00:00:00.000-04:00",
+      "description": "Solved Hard Div2 Problem in SRM"
+    },
+    {
+      "date": "2014-05-06T00:00:00.000-04:00",
+      "description": "Ten Solved Algorithm Problems"
+    },
+    {
+      "date": "2014-05-04T00:00:00.000-04:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2014-04-25T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2014-03-05T00:00:00.000-05:00",
+      "description": "First Successful Challenge"
+    },
+    {
+      "date": "2013-12-26T00:00:00.000-05:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2013-12-09T00:00:00.000-05:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2013-08-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2013-08-28T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 4,
+    "currentTime": 1459206190626
+  },
+  "requesterInformation": {
+    "id": "d6671eaf716a79aee81056e457700d966c2e42a3-x2uoMtQpigr4NCnM",
+    "remoteIP": "73.238.117.2",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "marshmallow",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

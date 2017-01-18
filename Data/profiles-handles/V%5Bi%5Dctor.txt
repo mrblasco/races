@@ -1,0 +1,73 @@
+{
+  "handle": "V[i]ctor",
+  "country": "Russia",
+  "memberSince": "2008-07-19T10:36:00.000-04:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 1456,
+      "colorStyle": "color: #6666FF"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 681,
+      "colorStyle": "color: #999999"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2013-03-10T00:00:00.000-05:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2013-03-10T00:00:00.000-05:00",
+      "description": "First Successful Challenge"
+    },
+    {
+      "date": "2013-03-10T00:00:00.000-05:00",
+      "description": "Five Successful Challenges"
+    },
+    {
+      "date": "2013-03-10T00:00:00.000-05:00",
+      "description": "Ten Solved Algorithm Problems"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty Five Rated Algorithm Competitions"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 144,
+    "currentTime": 1468185590038
+  },
+  "requesterInformation": {
+    "id": "3e5d5ce1502d4006b8c004c61267829b4e10bfdd-6Cjb76eYvCPexIDj",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "V[i]ctor",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

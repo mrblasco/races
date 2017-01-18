@@ -1,0 +1,61 @@
+{
+  "handle": "TwCoder",
+  "country": "Belarus",
+  "memberSince": "2010-11-19T08:53:00.000-05:00",
+  "quote": "ROCK YOUR LIFE",
+  "photoLink": "/i/m/TwCoder.jpeg",
+  "copilot": false,
+  "overallEarning": 750,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 1001,
+      "colorStyle": "color: #00A900"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Successful Challenge"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Successful Challenges"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Ten Solved Algorithm Problems"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 142,
+    "currentTime": 1468013448004
+  },
+  "requesterInformation": {
+    "id": "cb8221607f2a167f7047ac7b1de756383248d97b-M8MDogxRkGfhK6aO",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "TwCoder",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

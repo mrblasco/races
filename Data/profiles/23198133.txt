@@ -1,0 +1,41 @@
+{
+  "handle": "jun22",
+  "country": "United States",
+  "memberSince": "2013-10-06T21:21:00.000-04:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 0,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1354,
+      "colorStyle": "color: #6666FF"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2014-08-27T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 70,
+    "currentTime": 1459267721959
+  },
+  "requesterInformation": {
+    "id": "60a7a961b197f90a7990e8c2410a8e1d6bc428b0-3ckAzhw6E754ixOr",
+    "remoteIP": "65.112.11.34",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "jun22",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

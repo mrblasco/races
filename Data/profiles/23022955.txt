@@ -1,0 +1,53 @@
+{
+  "handle": "jaikamal",
+  "country": "India",
+  "memberSince": "2011-09-18T15:51:00.000-04:00",
+  "quote": "Life is to Live",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 766,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 805,
+      "colorStyle": "color: #999999"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2014-06-13T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2014-06-13T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2012-06-14T00:00:00.000-04:00",
+      "description": "First Forum Post"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 59,
+    "currentTime": 1456158267803
+  },
+  "requesterInformation": {
+    "id": "568105507b744b2668ce1094104714a9377426e1-GJYYfnW1N4hF8DsY",
+    "remoteIP": "65.112.10.85",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "jaikamal",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

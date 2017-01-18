@@ -1,0 +1,94 @@
+{
+  "handle": "aswmtjdsj",
+  "country": "China",
+  "memberSince": "2010-05-02T10:02:00.000-04:00",
+  "quote": "Code for people's future.",
+  "photoLink": "",
+  "copilot": false,
+  "overallEarning": 1140,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 1380,
+      "colorStyle": "color: #6666FF"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 760,
+      "colorStyle": "color: #999999"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-04-12T00:00:00.000-04:00",
+      "description": "Twenty Five Successful Challenges"
+    },
+    {
+      "date": "2014-09-12T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2014-09-06T00:00:00.000-04:00",
+      "description": "Twenty Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2014-08-20T00:00:00.000-04:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2014-07-30T00:00:00.000-04:00",
+      "description": "First Passing Submission"
+    },
+    {
+      "date": "2014-07-30T00:00:00.000-04:00",
+      "description": "First Placement"
+    },
+    {
+      "date": "2014-06-05T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2014-04-27T00:00:00.000-04:00",
+      "description": "Five Successful Challenges"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Successful Challenge"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Solved Hard Div2 Problem in SRM"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Ten Solved Algorithm Problems"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 59,
+    "currentTime": 1456106153767
+  },
+  "requesterInformation": {
+    "id": "d6671eaf716a79aee81056e457700d966c2e42a3-RXHujPWYdRAYKafk",
+    "remoteIP": "73.238.117.2",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "aswmtjdsj",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

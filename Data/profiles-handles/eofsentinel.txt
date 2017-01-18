@@ -1,0 +1,40 @@
+{
+  "handle": "eofsentinel",
+  "country": "India",
+  "memberSince": "2015-02-22T23:52:00.000-05:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 871,
+      "colorStyle": "color: #999999"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-03-10T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2015-03-10T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 142,
+    "currentTime": 1468013437898
+  },
+  "requesterInformation": {
+    "id": "fa3581d6b267685b9d680bec9ff8fceb6850ddd7-gko6VAB2RV7Jllnr",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "eofsentinel",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

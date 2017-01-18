@@ -1,0 +1,48 @@
+{
+  "handle": "cxz2004",
+  "country": "China",
+  "memberSince": "2014-04-10T15:59:00.000-04:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 2459,
+      "colorStyle": "color: #EE0000"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2014-04-13T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2014-04-13T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2014-04-13T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2014-04-13T00:00:00.000-04:00",
+      "description": "Solved Hard Div1 Problem in SRM"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 165,
+    "currentTime": 1468013436370
+  },
+  "requesterInformation": {
+    "id": "3b5bad2aea0bc00d5f69351ebfc9f549315c2112-m5TxxmA6kGP1vBGI",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "cxz2004",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

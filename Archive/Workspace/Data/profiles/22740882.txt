@@ -1,0 +1,100 @@
+{
+  "handle": "xin135",
+  "country": "China",
+  "memberSince": "2008-06-25T09:50:00.000-04:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": true,
+  "ratingSummary": [
+    {
+      "name": "Development",
+      "rating": 1345,
+      "colorStyle": "color: #6666FF"
+    },
+    {
+      "name": "Design",
+      "rating": 1595,
+      "colorStyle": "color: #DDCC00"
+    },
+    {
+      "name": "Assembly",
+      "rating": 1102,
+      "colorStyle": "color: #00A900"
+    },
+    {
+      "name": "Algorithm",
+      "rating": 0,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1330,
+      "colorStyle": "color: #6666FF"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2014-12-01T00:00:00.000-05:00",
+      "description": "Digital Run Top Five"
+    },
+    {
+      "date": "2014-11-22T00:00:00.000-05:00",
+      "description": "First Milestone Prize"
+    },
+    {
+      "date": "2014-10-28T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2012-06-30T00:00:00.000-04:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2012-05-29T00:00:00.000-04:00",
+      "description": "First Passing Submission"
+    },
+    {
+      "date": "2012-05-26T00:00:00.000-04:00",
+      "description": "First Placement"
+    },
+    {
+      "date": "2011-09-21T00:00:00.000-04:00",
+      "description": "One Hundred Forum Posts"
+    },
+    {
+      "date": "2011-01-28T00:00:00.000-05:00",
+      "description": "First Win"
+    },
+    {
+      "date": "2010-10-14T00:00:00.000-04:00",
+      "description": "2010 TopCoder Open Design Finalist"
+    },
+    {
+      "date": "2010-04-30T00:00:00.000-04:00",
+      "description": "Twenty Five Placements"
+    },
+    {
+      "date": "2008-10-12T00:00:00.000-04:00",
+      "description": "Fifty Passing Submissions"
+    },
+    {
+      "date": "2008-10-11T00:00:00.000-04:00",
+      "description": "Twenty Five First Placement Win"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 251,
+    "currentTime": 1456068339277
+  },
+  "requesterInformation": {
+    "id": "d6671eaf716a79aee81056e457700d966c2e42a3-2g24JpuQT5UhhaYe",
+    "remoteIP": "73.238.117.2",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "xin135",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

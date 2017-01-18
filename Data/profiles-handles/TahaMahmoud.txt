@@ -1,0 +1,73 @@
+{
+  "handle": "TahaMahmoud",
+  "country": "Egypt",
+  "memberSince": "2010-07-12T17:00:00.000-04:00",
+  "quote": "Professionals stick to the schedule, amateurs let life get in the way.",
+  "photoLink": "",
+  "copilot": false,
+  "overallEarning": 1100,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 1764,
+      "colorStyle": "color: #DDCC00"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-12-21T00:00:00.000-05:00",
+      "description": "First Placement"
+    },
+    {
+      "date": "2015-12-21T00:00:00.000-05:00",
+      "description": "First Win"
+    },
+    {
+      "date": "2014-09-15T00:00:00.000-04:00",
+      "description": "iOS Developer Challenger Badge"
+    },
+    {
+      "date": "2014-08-25T00:00:00.000-04:00",
+      "description": "First Passing Submission"
+    },
+    {
+      "date": "2013-09-28T00:00:00.000-04:00",
+      "description": "Five SRM Room Wins (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-08-03T00:00:00.000-04:00",
+      "description": "First Forum Post"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 142,
+    "currentTime": 1468013447360
+  },
+  "requesterInformation": {
+    "id": "3b5bad2aea0bc00d5f69351ebfc9f549315c2112-vrZGH1WGzIZ6o2Lv",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "TahaMahmoud",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

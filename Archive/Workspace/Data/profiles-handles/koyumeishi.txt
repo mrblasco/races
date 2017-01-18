@@ -1,0 +1,48 @@
+{
+  "handle": "koyumeishi",
+  "country": "Japan",
+  "memberSince": "2012-05-06T10:07:00.000-04:00",
+  "quote": null,
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 1521,
+      "colorStyle": "color: #DDCC00"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2014-09-18T00:00:00.000-04:00",
+      "description": "Twenty Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2014-06-25T00:00:00.000-04:00",
+      "description": "Studio First Passing Submission"
+    },
+    {
+      "date": "2013-07-11T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2013-04-27T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 3,
+    "currentTime": 1468013440862
+  },
+  "requesterInformation": {
+    "id": "525b764b066cc9a6db61603f9663911d94dabac1-Rm1l8caRoOBwbnEa",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "koyumeishi",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

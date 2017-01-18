@@ -1,0 +1,68 @@
+{
+  "handle": "nims11",
+  "country": "India",
+  "memberSince": "2011-12-27T01:17:00.000-05:00",
+  "quote": "wow",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 1716,
+      "colorStyle": "color: #DDCC00"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-12-27T00:00:00.000-05:00",
+      "description": "Five Successful Challenges"
+    },
+    {
+      "date": "2014-04-20T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2014-03-22T00:00:00.000-04:00",
+      "description": "First Successful Challenge"
+    },
+    {
+      "date": "2014-03-22T00:00:00.000-04:00",
+      "description": "Twenty Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2013-08-02T00:00:00.000-04:00",
+      "description": "Ten Solved Algorithm Problems"
+    },
+    {
+      "date": "2013-04-01T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2013-03-21T00:00:00.000-04:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2012-12-21T00:00:00.000-05:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-12-21T00:00:00.000-05:00",
+      "description": "First Solved Algorithm Problem"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 177,
+    "currentTime": 1468013443901
+  },
+  "requesterInformation": {
+    "id": "303d8e503af99be1eb38bb1a642f91feb10690b7-qyWk8wyaQuiI5b7Q",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "nims11",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

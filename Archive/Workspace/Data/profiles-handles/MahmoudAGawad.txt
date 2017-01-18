@@ -1,0 +1,49 @@
+{
+  "handle": "MahmoudAGawad",
+  "country": "Egypt",
+  "memberSince": "2013-02-03T07:02:00.000-05:00",
+  "quote": "",
+  "photoLink": "https://topcoder-prod-media.s3.amazonaws.com/member/profile/MahmoudAGawad-1447113523812.jpeg",
+  "copilot": false,
+  "overallEarning": 0,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 1307,
+      "colorStyle": "color: #6666FF"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2014-09-18T00:00:00.000-04:00",
+      "description": "Twenty Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2014-02-16T00:00:00.000-05:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2013-09-08T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2013-04-07T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 168,
+    "currentTime": 1468013442532
+  },
+  "requesterInformation": {
+    "id": "3b5bad2aea0bc00d5f69351ebfc9f549315c2112-3BNwc0qn6T8oss1H",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "MahmoudAGawad",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

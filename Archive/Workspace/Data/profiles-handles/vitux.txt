@@ -1,0 +1,56 @@
+{
+  "handle": "vitux",
+  "country": "Belarus",
+  "memberSince": "2013-07-23T12:43:00.000-04:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 1587,
+      "colorStyle": "color: #DDCC00"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-06-05T00:00:00.000-04:00",
+      "description": "Ten Solved Algorithm Problems"
+    },
+    {
+      "date": "2014-12-28T00:00:00.000-05:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2014-12-28T00:00:00.000-05:00",
+      "description": "Solved Hard Div2 Problem in SRM"
+    },
+    {
+      "date": "2014-12-12T00:00:00.000-05:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2014-07-11T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2013-09-08T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 141,
+    "currentTime": 1468013449092
+  },
+  "requesterInformation": {
+    "id": "525b764b066cc9a6db61603f9663911d94dabac1-nSMkplzjIsSphoge",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "vitux",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

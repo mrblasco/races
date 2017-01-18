@@ -1,0 +1,99 @@
+Structural estimation
+=======================
+
+
+```{r simulation, echo=TRUE}
+load("races.RData") # Data
+
+######################################
+# Simulation to gain confidence
+# Parameters: 
+#   alpha = 1
+#   c0    = 0.75
+#   n     = 10 
+######################################
+p <- plnorm 
+r <- rlnorm
+zeroprofit <- function(a, n, c0, ...) {
+  p(a, ...)^n - c0 * a^(-1)
+}
+marginal <- function(n, cost, ...) {
+  uniroot(f=zeroprofit, n=n, c0=cost, interval=c(0.0001, 10), ...)$root
+}
+ 
+# Plot 1
+old.par <- par(mfrow=c(3,3), mar=c(4,4,2,2))
+for (nn in c(3, 4, 5, 8, 10, 15, 20, 30, 50)) {
+  curve(zeroprofit(x, n=nn, c0=0.75), from=0.001, to=3
+      , main=sprintf("n=%i",nn), ylab="R(a)", xlab="a"
+      , ylim=c(-1, 1))
+  abline(h=0, lty=2, col=2)
+  for (ss in seq(0.5, 5, length=10))
+    curve(zeroprofit(x, n=nn, c0=0.75), add=TRUE, col=gray(ss/5))
+}
+par(old.par)
+
+# Function to simulate and estimate data
+estimate <- function(n, obs, n.seq) {
+  costs <- seq(0.05, 0.95, length=n.seq)
+  m <- matrix(ncol=4, nrow=length(costs))
+  colnames(m) <- c("a", "a.hat", "a.ci95hi", "a.ci95lo")
+  for (i in 1:length(costs)) {
+    # Sim
+    th <- marginal(n=n, cost=costs[i])
+    y <- ifelse(r(obs) > th, 1, 0)
+    # Fit
+    fit <- glm(y ~ 1, family=binomial('probit'))
+    # Save
+    a.hat <- exp(-coef(fit))
+    a.ci95hi <- exp(-coef(fit) + 2*coef(summary(fit))[2])
+    a.ci95lo <- exp(-coef(fit) - 2*coef(summary(fit))[2])
+    m[i, ] <- c(th, a.hat, a.ci95hi, a.ci95lo)
+  }
+  return(m)
+}
+
+# Plot 2
+old.par <- par(mfrow=c(3,3), mar=c(4,4,2,2))
+for (nn in c(3, 4, 5, 8, 10, 15, 20, 30, 50)) {
+  m <- estimate(nn, 300, 10)
+  plot(m, pch=16, ylim=range(m)
+      , main=sprintf("n=%i",nn)
+      , ylab="Estimated threshold", xlab="True threshold")
+  segments(x0=m[,1], y0=m[, 3],y1=m[, 4])
+  abline(a=0, b=1)
+}
+par(old.par)
+
+# Analysis
+entry <- ifelse(is.na(dat$nsub), 0, 1)
+treatment <- dat$treatment
+fit <- glm(entry ~ treatment, family=binomial('probit'))
+
+# Baseline (race)
+bhat <- coef(fit)
+race <- exp(-bhat[1])
+tour <- exp(-sum(bhat[-3]))
+targ <- exp(-sum(bhat[-2]))
+
+# Estimated thresholds in ability
+cbind(race, tour, targ)
+
+# Estimated costs
+zeroprofit.cost <- function(c0, n, a, ...) {
+  zeroprofit(a, n, c0, ...)
+}
+marginal.cost <- function(n, a, ...) {
+  uniroot(f=zeroprofit.cost, n=n, a=a, interval=c(0.0001, 0.999), ...)$root
+}
+
+curve(zeroprofit.cost(x, n=10, a=race)
+      , xlab="Cost"
+      , ylab="R(cost)")
+curve(zeroprofit.cost(x, n=10, a=tour), add=TRUE, lty=2)
+curve(zeroprofit.cost(x, n=10, a=targ), add=TRUE, lty=3)
+abline(h=0, lty=2, col=2)
+
+```
+
+

@@ -1,0 +1,45 @@
+{
+  "handle": "blu3fox",
+  "country": "Venezuela",
+  "memberSince": "2010-03-27T23:25:00.000-04:00",
+  "quote": "Full Time Available",
+  "photoLink": "/i/m/blu3fox.jpeg",
+  "copilot": false,
+  "overallEarning": 0,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 0,
+      "colorStyle": "color: #999999"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2014-09-30T00:00:00.000-04:00",
+      "description": "Studio First Passing Submission"
+    },
+    {
+      "date": "2014-05-19T00:00:00.000-04:00",
+      "description": "First Passing Submission"
+    },
+    {
+      "date": "2014-03-21T00:00:00.000-04:00",
+      "description": "First Forum Post"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 3,
+    "currentTime": 1468013436011
+  },
+  "requesterInformation": {
+    "id": "7b065fdbb844c39446030b3e4b1c417558a7d2b3-2gy5Ew29yabjYxUq",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "blu3fox",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

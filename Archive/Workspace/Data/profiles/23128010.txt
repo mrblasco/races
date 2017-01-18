@@ -1,0 +1,65 @@
+{
+  "handle": "cyril.v",
+  "country": "France",
+  "memberSince": "2013-01-22T04:41:00.000-05:00",
+  "quote": "",
+  "photoLink": "/i/m/cyril.v.jpeg",
+  "copilot": false,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 0,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1634,
+      "colorStyle": "color: #DDCC00"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2014-06-10T00:00:00.000-04:00",
+      "description": "Ten Marathon Competitions"
+    },
+    {
+      "date": "2013-09-28T00:00:00.000-04:00",
+      "description": "Two Marathon Top-5 Placements"
+    },
+    {
+      "date": "2013-09-26T00:00:00.000-04:00",
+      "description": "First Passing Submission"
+    },
+    {
+      "date": "2013-06-06T00:00:00.000-04:00",
+      "description": "First Marathon Top-5 Placement"
+    },
+    {
+      "date": "2013-05-02T00:00:00.000-04:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2013-02-09T00:00:00.000-05:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2013-02-08T00:00:00.000-05:00",
+      "description": "First Marathon Competition"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 64,
+    "currentTime": 1459207027487
+  },
+  "requesterInformation": {
+    "id": "d6671eaf716a79aee81056e457700d966c2e42a3-n7rR3aUDKVKYe8A8",
+    "remoteIP": "73.238.117.2",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "cyril.v",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

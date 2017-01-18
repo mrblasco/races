@@ -1,0 +1,51 @@
+---
+title: "xxxx"
+
+thanks: "Blasco: Harvard Institute for Quantitative Social Science, Harvard University, 1737 Cambridge Street, Cambridge, MA 02138 (email: ablasco@fas.harvard.edu)."
+
+date: "Last updated: `r format(Sys.time(), '%d %B, %Y')`"
+
+author: 
+    - Andrea Blasco
+    - Karim R. Lakhani
+
+abstract: "Here goes the abstract"
+
+JEL: 
+  - xxx
+  - xxx
+  - xxx
+
+keywords: 
+  - xxxx
+  - xxxx xxxx
+
+---
+
+```{r, echo=FALSE, warnings=FALSE, message=FALSE}
+knitr::opts_chunk$set(
+  cache=FALSE,
+  echo=FALSE,
+  message=FALSE,
+  warning=TRUE,
+  error=FALSE,
+  tidy=FALSE,
+  cache.path="Cache/",
+  fig.path="Figures/")
+```
+
+```{r child = '1_intro.Rmd'}
+```
+
+```{r child = '2_methods.Rmd'}
+```
+
+```{r child = '3_results.Rmd'}
+```
+
+```{r child = '4_discussion.Rmd'}
+```
+
+
+References
+=============

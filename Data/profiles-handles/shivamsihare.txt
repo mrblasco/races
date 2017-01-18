@@ -1,0 +1,49 @@
+{
+  "handle": "shivamsihare",
+  "country": "India",
+  "memberSince": "2013-03-03T23:57:00.000-05:00",
+  "quote": "",
+  "photoLink": "/i/m/shivamsihare.png",
+  "copilot": false,
+  "overallEarning": 0,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 794,
+      "colorStyle": "color: #999999"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-08-12T00:00:00.000-04:00",
+      "description": "Ten Solved Algorithm Problems"
+    },
+    {
+      "date": "2015-05-06T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2015-03-10T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2015-03-10T00:00:00.000-04:00",
+      "description": "First Solved Algorithm Problem"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 139,
+    "currentTime": 1468013446518
+  },
+  "requesterInformation": {
+    "id": "cb8221607f2a167f7047ac7b1de756383248d97b-ajQKXvLs6JwkguWk",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "shivamsihare",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

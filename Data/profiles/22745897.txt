@@ -1,0 +1,90 @@
+{
+  "handle": "feather",
+  "country": "Russia",
+  "memberSince": "2008-07-31T12:19:00.000-04:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": false,
+  "overallEarning": 0,
+  "ratingSummary": [
+    {
+      "name": "Algorithm",
+      "rating": 1713,
+      "colorStyle": "color: #DDCC00"
+    },
+    {
+      "name": "Marathon Match",
+      "rating": 1126,
+      "colorStyle": "color: #00A900"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2015-01-16T00:00:00.000-05:00",
+      "description": "Fifty Solved Algorithm Problems"
+    },
+    {
+      "date": "2015-01-16T00:00:00.000-05:00",
+      "description": "First Solved Algorithm Problem"
+    },
+    {
+      "date": "2015-01-16T00:00:00.000-05:00",
+      "description": "First Successful Challenge"
+    },
+    {
+      "date": "2015-01-16T00:00:00.000-05:00",
+      "description": "Five Successful Challenges"
+    },
+    {
+      "date": "2015-01-16T00:00:00.000-05:00",
+      "description": "Solved Hard Div1 Problem in SRM"
+    },
+    {
+      "date": "2015-01-16T00:00:00.000-05:00",
+      "description": "Solved Hard Div2 Problem in SRM"
+    },
+    {
+      "date": "2015-01-16T00:00:00.000-05:00",
+      "description": "Ten Solved Algorithm Problems"
+    },
+    {
+      "date": "2014-06-10T00:00:00.000-04:00",
+      "description": "Three Marathon Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Marathon Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First SRM Room Win (Any Division)"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Five Rated Algorithm Competitions"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "Twenty Five Rated Algorithm Competitions"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 57,
+    "currentTime": 1456069435903
+  },
+  "requesterInformation": {
+    "id": "d6671eaf716a79aee81056e457700d966c2e42a3-aYum5ENSdNgCCzel",
+    "remoteIP": "73.238.117.2",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "feather",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

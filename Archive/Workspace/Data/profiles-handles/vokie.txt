@@ -1,0 +1,67 @@
+{
+  "handle": "vokie",
+  "country": "China",
+  "memberSince": "2010-11-04T04:27:00.000-04:00",
+  "quote": "",
+  "photoLink": "",
+  "copilot": false,
+  "overallEarning": 0,
+  "ratingSummary": [
+    {
+      "name": "Development",
+      "rating": 647,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Design",
+      "rating": 300,
+      "colorStyle": "color: #999999"
+    },
+    {
+      "name": "Algorithm",
+      "rating": 444,
+      "colorStyle": "color: #999999"
+    }
+  ],
+  "Achievements": [
+    {
+      "date": "2016-01-18T00:00:00.000-05:00",
+      "description": "Participant Badge"
+    },
+    {
+      "date": "2016-01-18T00:00:00.000-05:00",
+      "description": "iOS Participant Badge"
+    },
+    {
+      "date": "2013-03-14T00:00:00.000-04:00",
+      "description": "First Passing Submission"
+    },
+    {
+      "date": "2013-03-05T00:00:00.000-05:00",
+      "description": "First Forum Post"
+    },
+    {
+      "date": "2012-09-28T00:00:00.000-04:00",
+      "description": "First Rated Algorithm Competition"
+    },
+    {
+      "date": "2011-02-16T00:00:00.000-05:00",
+      "description": "Studio First Passing Submission"
+    }
+  ],
+  "serverInformation": {
+    "serverName": "TopCoder API",
+    "apiVersion": "0.0.1",
+    "requestDuration": 164,
+    "currentTime": 1468013449317
+  },
+  "requesterInformation": {
+    "id": "fa3581d6b267685b9d680bec9ff8fceb6850ddd7-98yXVBupp957MsWk",
+    "remoteIP": "10.250.5.64",
+    "receivedParams": {
+      "apiVersion": "v2",
+      "handle": "vokie",
+      "action": "getBasicUserProfile"
+    }
+  }
+}

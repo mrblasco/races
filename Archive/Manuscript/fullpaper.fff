@@ -1,9 +1,0 @@
-\begin{figure}
-\centering
-\includegraphics[width=0.45\textwidth]{  /Users/andrea/Documents/NTL/races/Workspace/Assets/Figures/experience-1.pdf}
-\includegraphics[width=0.45\textwidth]{  /Users/andrea/Documents/NTL/races/Workspace/Assets/Figures/rating-1.pdf}
-\caption{Distribution of the count of past contests (left panel) and the skill ratings (right panel) of the signed-up competitors.}
-\label{eq: distribution experience}
-\end{figure}
-\efloatseparator
- 

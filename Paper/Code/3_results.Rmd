@@ -1,88 +1,162 @@
-A comparison of races and tournaments in the field
-==================================================
 
-In this section, we illustrate the preceding econometric methods by an
-empirical analysis of the outcomes of a field experiment that was
-conducted to compare races and tournaments in the field of online
-programming competitions.[^1]
+```{r}
+diff.days <- function(time1, time2, ...) {
+  as.numeric(difftime(time1, time2, units='days', ...))
+}
+Total <- function(x) sum(x)
+```
 
-The context
------------
+The field experiment
+=====================
 
-The study was conducted on the online platform Topcoder.com from March 8
-to March 16, 2016. Since its launch in 2010, Topcoder.com hosts on a
-weekly basis competitive programming contests for thousands of
-competitors from all over the world. All Topcoder members — about 1M
-registered users in 2016 — can compete and attain a “rating” that
-provides a metric of their ability as a competitor. Participation is
-free but limited to people over 18 years old. Typical assigned problems
-are data science problems that involve some background in machine
-learning and statistics to be solved (see XXX for a few examples). Other
-than attaining a rating, the competitors having made the top five
-submissions usually win a monetary prize. And awards can range
-considerably depending on the nature and complexity of the problem and
-generally between \$5,000 to \$20,000.
+The context and experimental design
+--------------------------------------------
 
-**The assigned problem:** In this study, we worked together with
-researchers from the National Health Institute (NIH) and the Scripps
-Research Institute to select a challenging problem for an experimental
-programming competition. The problem was based on an algorithm built by
-NIH that uses expert labeling to annotate abstracts from PubMed — a
-prominent life sciences and biomedical search engine — so disease
-characteristics can be more easily identified. This open-source,
-supervised learning system called BANNER achieves a good level of
-prediction power [\[]{}see xxx[\]]{}. The goal of the challenge was to
-improve upon the current NIH’s system.
+The field experiment was conducted in the context of an online programming competition hosted on the platform Topcoder.com between March 2 and 16, 2016. A programming competition generally involves contestants writing source code to solve given problems. Since its launch in 2001, Topcoder.com administers on a weekly basis several competitive programming contests for thousands of competitors from all over the world. Typical assigned problems are data science problems (e.g., classification, prediction, natural language processing) that demand some background in machine learning and statistics. All Topcoder members (about 1M registered users in 2016) can compete and attain a "rating" that provides a metric of their ability as contestants. Other than attaining a rating, the competitors having made the top five submissions can be also awarded a monetary prize, the extent of which range depends on the nature and complexity of the problem but is generally between $5,000 to $20,000.
 
-**Groups:** Signed up competitors were randomly assigned to separate
-groups under three different competitive settings: a race, a tournament,
-and a tournament with a minimum quality requirement. Each group had
-access to a personalized webpage showing a leaderboard showing periodic
-updates on the submissions of the other competitors of the group.
+In this study, we worked together with researchers from the United States National Health Institute (NIH) and the Scripps Research Institute (SCRIPPS) to select a challenging problem for the experimental programming competition. The selected problem was based on an algorithm, called BANNER, built by NIH that uses expert labeling to annotate abstracts from a prominent life sciences and biomedical search engine, PubMed, so disease characteristics can be more easily identified [see @leaman2008banner]. The goal of the programming competition was to improve upon the current NIH's system by using a combination of expert and non-expert labeling, as described by @good2014microtask.
 
-**Payoffs:** In each room, the first placed competitor was awarded a
-prize of \$1000 (an additional consolatory prize of \$100 was awarded to
-the second placed). Every competitor had to solve the same exact
-programming problem: it In a race, xxxx. In a tournament, xxxx .And in a
-tournament with minimum quality requirement, xxxx.
 
-**Surveys:** Additional information, such as demographics, all
-registered competitors had to fill out online an initial and final
-survey before and after the competition. In the initial survey, they
-were asked basic demographics, including a measure of risk aversion.
-They were also asked to forecast the number of hours they would be able
-to spend competing in the next few days. The exact question was:
-“looking ahead xxxx”. In the final survey, we asked them to look back
-and tell us their best estimate of the time spent working on the
-problem.
+The competition was announced on the platform and to all community members via email. A preliminary registration was mandatory. A limit of max 300 participants was established [Why?]. Only participants with a positive rating were allowed to compete. Following a three days registration period, signed up competitors were randomly assigned to separate groups also called "virtual rooms". In each of these rooms, contestants were given a list of competitors in the same room and a chat to communicate with the platform managers and ask clarifying questions about the problem. Everyone received the same computational problem, as described above, and had to develop a solution within a period of 2 weeks.
 
-We also gathered public data from their online web profile on the
-platform. This includes a number of statistics about a coder’s past
-performance on the platoform. We focused on three main measures: the
-date in which the member registered, the number of achievements (also
-called “badges”), whether they participated in any similar competition
-in the past. The date is simply to capture personal experience with the
-platform. Badges are given for a variety of reasons ranging from simple
-tasks, such as first post on the forum, to more complex achievements,
-such as winning 5 competitions or more. The majority of goals are for
-complex achievement, thus having a high number of achievements can be
-regarded as a good measure of high skills.
+These virtual rooms were then randomly assigned to one of three different competitive settings: a race, a tournament, and a tournament with a minimum quality requirement. Monetary payoffs were the same in all groups: the first placed competitor was awarded a prize of $1,000, and an additional, consolatory prize of $100 was awarded to the second one. However, in a race, the first to xxxx. In a tournament, xxxx .And in a tournament with minimum quality requirement, xxxx. Grand prizes of xxxx were awarded to the top xxx in every treatment. 
 
+  
 Data
-----
+---------
 
-A total of 299 competitors signed up for the challenge. All were
-registered members of the platform (the competitor’s median time as
-member of the platform was of 5 years). Individual experience in
-competing was highly skewed, with competitors in the 90th percentile
-having taken part in 28 more competitions and with a skill rating, if
-any, of 999 higher rating points than those in the 10th percentile; see
-Figure \[eq: distribution experience\].
+Individual data about each competitor were obtained from the online web profile on the platform. This profile typically includes when the member registered to the platform,  the current rating, the number of past competitions, and so on. Additional personal information,  was collected via a mandatory initial and a final survey.  In the initial survey, registered competitors were asked basic demographics, including a measure of risk aversion. They were also asked to forecast the number of hours they would be able to spend competing in the next few days (the exact question was: "looking ahead xxxx").  In the final survey, they were asked to look back and tell us their best estimate of the time spent working on the problem.
+
+
+```{r, echo=FALSE}
+# Weeks at the start of the competition
+start_date <- as.Date("2016-03-02")
+difftime(start_date, dat$msince)/7 -> week_diff
+
+# Past competitions (experience)
+quantile(dat$mm.count, p=c(0.1, 0.9)) -> rounds_qtl
+
+# Individual ratings (skills)
+quantile(dat$mm.rating, p=c(0.1, 0.9), na.rm=TRUE) -> rating_qtl
 
 ```
-# Distribution
+
+A total of xxxx registered but only `r nrow(dat)` competitors were selected for the challenge; we excluded those with no past experience on the platform and those with incomplete data on the survey. Signed up competitors were experienced members of the platform: the overall time as registered platform member at the start of the competition ranged between `r min(week_diff)` and `r max(week_diff)` weeks. Yet, the direct experience in competing was highly skewed with competitors in the highest 90th percentile having participated in `r diff(rounds_qtl)` more competitions than those in the 10th percentile. Likewise skills as measured by the individual ratings, if there was one, had a skewed distribution with `r round(diff(quantile(dat$mm.rating, p=c(0.1, 0.9), na.rm=TRUE)))` higher points than those in the 10th percentile; see Figure \ref{eq: distribution experience}. 
+
+After the two-week submission period, `r sum(dat$nsub>0, na.rm=TRUE)` competitors made `r sum(dat$nsub, na.rm=TRUE)` submissions overall. The distribution of submissions was rather skewed, with participants in the 90th percentile making `r diff(quantile(dat$nsub, p=c(0.1, 0.9), na.rm=TRUE))` more submissions than those in the 10th percentile. 
+
+Assuming the decision was independent, to explore the determinants of participation: 
+
+\begin{equation}
+  Pr(y=1) = G(\text{Rating}_{i} + \text{Experience}_{i} + \text{T}_{i})
+\end{equation}
+
+where $G()$ is logistic.
+
+```{r}
+ilogit <- function(x) exp(x) / (1+ exp(x))
+dat$nsub[is.na(dat$nsub)] <- 0
+dat$mm.rating2 <- with(dat, ifelse(is.na(mm.rating), 0, mm.rating))
+dat$mm.rating2 <- dat$mm.rating2 /100
+dat$msince2 <- as.numeric(dat$msince)
+dat$badges[is.na(dat$badges)] <- 0
+
+fit <- rep()
+fit$m1 <- glm(nsub>0 ~ poly(mm.count, deg=2), data=dat, family='binomial')
+fit$m2 <- glm(nsub>0 ~ poly(mm.count, deg=2)  + mm.rating2, data=dat, family='binomial')
+fit$m3 <- glm(nsub>0 ~ poly(mm.count, deg=2) + poly(mm.rating2, deg=2) + poly(msince2, deg=3) + poly(mm.top10, deg=2) + poly(badges, deg=2), data=dat, family='binomial')
+
+anova(fit$m3, test="Chisq") # 
+# e.g., Diff in prob is 7 pp increase for a guy with 10 more mm counts.
+
+plot(jitter(ifelse(dat$nsub>0, 1, 0)) ~ predict(fit$m3), pch=4, yaxt="n", col=ifelse(predict(fit$m3)>0, 2, 1))
+points(ilogit(predict(fit$m3)) ~  predict(fit$m3), pch=16)
+abline(h=c(0,1))
 ```
 
+This result does not seem to correlate well with the competitor's experience or skills, as the Pearsons's correlation coefficient between the count of past competitions or the rating and the count of submissions is positive but generally low; see Table XXX. Thus, differences in submissions appear idiosyncratic and perhaps related to the way to organize the work rather than systematically associated with underlying differences in experience or skills.
+
+```{r}
+cor(dat[, c("nsub", "mm.rating", "mm.count")], use='pairwise.complete.obs')
+```
+
+The timing of submissions was rather uniform during the submission period with a peak of submissions made in the last of the competition. (explain more) 
+
+```
+scores$submax <- ave(scores$subid, scores$id, FUN=max)
+par(mfrow=c(2, 1), mar=c(4,4,2,2))
+plot(subid==1 ~ as.POSIXct(subts), data=scores, type='h', yaxt='n'
+    , xlab='', ylab='', main='Dispersion time first submission')
+plot(subid==submax ~ as.POSIXct(subts), data=scores, type='h'
+    , yaxt='n', xlab='', ylab='', main='Dispersion time last submission')
+```
+
+
+Scores:  xxxx
+ 
+
+Empirical analysis
+===================
+
+Treatment differences
+------------------------
+
+Difference in participation by treatments are show in Table XX. 
+
+```{r, results='asis'}
+entry <- ifelse(!is.na(dat$nsub),"Submission", "No submission")
+tab <- table(dat$treatment, entry)
+# fisher.test(tab)
+# xtable(addmargins(tab, FUN=Total), digits=0)
+```
+
+We find no differences in the room size. 
+
+```{r, results='asis'}
+tab <- table(dat$size, !is.na(dat$nsub))
+#fisher.test(tab)
+#xtable(addmargins(tab, FUN=Total), digits=0)
+```
+
+Ex-post
+
+```{r}
+boxplot(dat$lastscore ~ dat$treatment, outline=FALSE, notch=TRUE)
+scores.by.room <- with(dat, tapply(lastscore, room, max, na.rm=TRUE))
+plot(sort(scores.by.room), pch='.')
+text(sort(scores.by.room), gsub("Group ", "",names(scores.by.room)))
+```
+
+Timing: early vs late
+ 
+```{r, results='asis'}
+# tab <- table(dat$treatment, ifelse(dat$nsub>0, "Submission", "No submission"))
+# tab2 <- addmargins(tab, 2, FUN=list(Total=sum))
+# print(kable(tab2), type='html')
+```
+
+Using a Chi-square test of independence, we find no significant differences in participation rates associated with the assigned treatments (p-value: `r format.pval(chisq.test(tab)$p.value, digits=3)`); see Table XX.
+
+Further, we model participation rates as a logistic regression. We use a polynomial of third degree for the count of past competitions to account for non-linear effects of experience; and we use an indicator for whether the competitor had a win or not. Also, taking into account differences in ability, participation rates are not significantly different.
+
+Estimation results
+---------------------
+
+Participation to the competition by treatment is shown in Figure \ref{fig:entry}. Participation here is measured by the proportion of registered participants per treatment who made any submission during the eight-day submission period. Recall that competitors may decide to enter into the competition and work on the problem without necessarily submitting. In a tournament, for example, competitors are awarded a prize based on their last submission and may decide to drop out without submitting anything. However, this scenario seems unlikely.  In fact, competitors often end up making multiple submissions because by doing so they obtain intermediate feedback via preliminary scoring (see Section XXX for details). In a race, competitors have even stronger incentives to make early submissions as any submission that hits the target first wins. 
+
+```
+Table xxx
+```
+
+We find that the propensity to make a submission is higher in the Tournament than in the Race and in the Tournament with reserve, but the difference is not statistically significant (a Fisher's exact test gives a p-value of ` round(fisher.test(nsub.tab)$p.val,3)`). As discussed in Section XXX, we may not have enough power to detect differences below 5 percentage points. However, we find the same not-significant result in a parametric regression analysis of treatment differences with controls for the demographics and past experience on the platform; see Table \ref{entry}. Adding individual covariates reduces variability of outcomes, potentially increasing the power of our test.  In particular, Table \ref{entry} reports the results from a logistic regression on the probability of making a submissions. Column 1 reports the results from a baseline model with only treatment dummies. Column 2 adds demographics controls, such as the age, education, and gender. Column 3 adds controls for the past experience on the platform. Across all these specifications, the impact of the treatment dummies (including room size) on entry is not statistically significant. 
+
+
+Simulation results
+-------------------------
+
+
+ 
+ 
 Empirical analysis
 ==================
 
@@ -125,7 +199,3 @@ size) on entry is not statistically significant.
 
 Simulation results
 ------------------
-
-[^1]: A competitive programming contest is a competition that involves
-    participants writing source code for an executable computer program
-    to solve a given problem.

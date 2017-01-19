@@ -1,16 +1,15 @@
-Races and tournaments
-=====================
+The model
+==============
 
-The basic theoretical model
----------------------------
+def: A contest is a N player game. Players move simultaneously and select a performance variable $y_i$  (the xxxx in performing a task) and a timing $t_i$ (to complete a task), both being nonnegative numbers. Players are ranked according to their choices and a player's rank is given by the function $r_i(y_1,...y_N, t_1, ..., t_N)$. The top $K$ ranked players (e.g., $r_i<K$) are awarded a prize of value $V_1 > V_2 > ... > V_K$.
 
-Consider a contest with $k$ available prizes of value
-$V_1 > V_2 > ... > V_k$. Each agent ($i=1, ..., n+1$) moves
-simultaneously to maximize the chances of winning a prize. To be
-elegible for a prize, each agent has to complete a task within a
-deadline $d>0$. Outcomes are then evaluated and ranked along two
-dimensions: the output quality $y_i$ and the time to completion $t_i$
-both being nonnegative real numbers.
+
+The goal for each player is to maximize the expected utility. If the timing is above a given deadline $d>0$ or the performance is below a certain level $q>0$, the player gets zero utility. Otherwise, the player is given a rank based on his performance and timing. 
+ A contest is xxxx. Ranked . 
+
+def: A tournament is a xxxx where players are ranked by their performance level provided that the timing is below a deadline $d$.
+
+def: A race is a xxxx where players are ranked by their timing provided that the performance is above a threshold level $q$.  
 
 In a tournament, the agent having achieved the highest output quality
 within the deadline gets the first prize, the agent having achieved the

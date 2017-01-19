@@ -1,8 +1,6 @@
 ---
 title: "Races or Tournaments?"
 
-fontsize: 12pt
-
 thanks: "Blasco: Harvard Institute for Quantitative Social Science, Harvard University, 1737 Cambridge Street, Cambridge, MA 02138 (email: ablasco@fas.harvard.edu)."
 
 date: "Last updated: `r format(Sys.time(), '%d %B, %Y')`"
@@ -29,10 +27,23 @@ amsthm:
   - theorem
   - proposition
   - corollary
+  - definition
+
+fontsize: 12pt
+
 ...
 
 
 ```{r, echo=FALSE, warnings=FALSE, message=FALSE}
+
+#########################
+load(".RData")
+set.seed(4881) # for bootstrap
+require(magrittr)
+require(xtable)
+require(stargazer)
+#########################
+
 knitr::opts_chunk$set(
   cache=FALSE,
   echo=FALSE,
@@ -49,7 +60,6 @@ knitr::opts_chunk$set(
 
 ```{r child = '2_methods.Rmd'}
 ```
-
 
 ```{r child = '3_results.Rmd'}
 ```

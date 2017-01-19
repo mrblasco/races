@@ -27,6 +27,7 @@ amsthm:
   - theorem
   - proposition
   - corollary
+  - definition
 
 fontsize: 12pt
 

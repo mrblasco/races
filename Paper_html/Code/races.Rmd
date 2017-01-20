@@ -27,6 +27,7 @@ amsthm:
   - theorem
   - proposition
   - corollary
+  - definition
 
 fontsize: 12pt
 
@@ -57,13 +58,16 @@ knitr::opts_chunk$set(
 ```{r child = '1_intro.Rmd'}
 ```
 
-```{r child = '2_methods.Rmd'}
+```{r child = '2_model.Rmd'}
 ```
 
-```{r child = '3_results.Rmd'}
+```{r child = '3_data.Rmd'}
 ```
 
-```{r child = '4_discussion.Rmd'}
+```{r child = '4_results.Rmd'}
+```
+
+```{r child = '5_discussion.Rmd'}
 ```
 
 

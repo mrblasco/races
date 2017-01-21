@@ -1,6 +1,13 @@
+% Dataset preparation
+% Andrea Blasco <ablasco@fas.harvard.edu>
+% "`r format(Sys.time(), '%d %B, %Y')`"
 
-Dataset preparation
+
+Upload, clean, and merge
 ========================
+
+Flow: import data > make technically correct > make consistent. 
+
 
 Upload datasets
 ---------------------------
@@ -11,16 +18,15 @@ library(jsonlite)
 library(xtable)
 library(knitr)
 
-
-tc.profiles <- read.csv("details_profile.csv")
-submissions <- read.csv("submissions.csv")
-survey.ini  <- read.csv("qualtrics/SV_8elNruzKCgPB72B.csv"
+regdata.raw <- read.csv("Data/registered_platform_topcoder.txt", sep='\t')
+subs.raw  <- read.csv("Data/submissions.csv")
+svy.ini.raw  <- read.csv("Data/Qualtrics/SV_8elNruzKCgPB72B.csv"
               , skip=1, na.strings=c("","NA")) 
-survey.end  <- read.csv("qualtrics/SV_0DSqL7Exk0A7Bdj.csv"
+svy.end.raw  <- read.csv("Data/Qualtrics/SV_0DSqL7Exk0A7Bdj.csv"
               , skip=1, na.strings=c("","NA"))
-assignment <- rbind(read.csv("race.csv")
-                    , read.csv("tournament.csv")
-                    , read.csv("reserve.csv"))
+assign.raw <- rbind(read.csv("Data/Assignment/race.csv")
+            , read.csv("Data/Assignment/tournament.csv")
+            , read.csv("Data/Assignment/reserve.csv"))
 
 # Helper functions
 na.count <- function(x) sum(is.na(x))
@@ -30,243 +36,216 @@ capitalize <- function(x) {
   substr(x, 1, 1) <- toupper(substr(x, 1, 1))
   return(x)
 }
+standardize.handle <- function(x) {
+  x %>% as.character %>% trimws %>% tolower %>%
+    replace.pattern("@gmail.com", "") %>%
+    replace.pattern("vidhyabhushan.*", "vidhyabhushanv") %>%
+    as.factor -> x
+  return(x)
+}
+```
+
+Registered participants
+-------------------------
+
+```{r}
+regdata.correct <- function(x) {
+  x$handle <- standardize.handle(x$handle)
+  x$create_date <- strptime(x$create_date, format='%m/%d/%Y', tz='')  
+  x$country_name <- factor(as.character(x$country_name))
+  x$address <- NULL
+  x$algorating <- as.numeric(x$algorating)
+  x$algoevents <- as.numeric(x$algoevents)
+  x$mmrating <- as.numeric(x$mmrating)
+  x$mmevents <- as.numeric(x$mmevents)
+  x$mmevents <- impute.zero(x$mmevents)
+  x$algoreg <- as.numeric(x$algoreg)
+  x$mmreg <- as.numeric(x$mmreg)
+  x$school <- NULL
+  x$age <- factor(as.character(x$age), exclude="")
+  x$gender <- factor(as.character(x$gender), exclude="")
+  breaks <- 100*round(quantile(x$totalpayments, na.rm=TRUE) / 100)
+  breaks.lab <- c("0", "1 - 599", "600 - 4500","4500 - 37000",">37000")
+  x$totalpayments %>% impute.zero %>% as.numeric %>%
+    cut(breaks=c(0, 1, breaks[-1]), include.lowest=TRUE, right=FALSE) %>%
+    factor(labels=breaks.lab) -> x$totalpayments
+  return(x)
+}
+regdata.consistent <- function(x) {
+  for (i in 1:ncol(x)) {
+    if (is.numeric(x[, i])) {
+      x[, i][x[, i]<0] <- 0
+    }
+  }
+  return(x)
+}
+regdata.ok <- regdata.correct(regdata.raw)
+regdata <- regdata.consistent(regdata.ok)
+summary(regdata)
 ```
 
 Initial Survey
 ---------------------------
 
-```{r, echo=TRUE}
+```{r}
+svy.ini.correct <- function(x) {
+  x <- x[, -c(1:6)] # Drop Qualtrics vars
+  x <- x[, !grepl("^X$|LocationAccu|Thank|Browser.", names(x))] 
+  # Rename
+  names(x) <- tolower(names(x))
+  names(x)[grep("handle", names(x))] <- "handle"
+  names(x)[grep("academic.degree", names(x))] <- "educ"
+  names(x)[grep("current", names(x))] <- "job"
+  names(x)[grep("country", names(x))] <- "country_origin"
+  names(x)[grep("timezone", names(x))] <- "timezone"
+  names(x)[grep("risk", names(x))] <- "risk"
+  names(x)[grep("programming", names(x))] <- "plang"
+  names(x)[grep("1st.and.2nd", names(x))] <- "ahead1"
+  names(x)[grep("3rd.and.4th", names(x))] <- "ahead2"
+  names(x)[grep("5th.and.6th", names(x))] <- "ahead3"
+  names(x)[grep("7th.and.8th", names(x))] <- "ahead4"
+  names(x)[grep("longitude", names(x))] <- "long"
+  names(x)[grep("latitude", names(x))] <- "lat"
 
-# Order 
-miss <- apply(survey.ini, 1, na.count)
-survey.ini <- survey.ini[order(miss, decreasing=TRUE), ]
+  x$startdate <- strptime(x$startdate,'%Y-%m-%d %H:%M:%S', tz='EST')
+  x$enddate <- strptime(x$enddate,'%Y-%m-%d %H:%M:%S', tz='EST')
+  x$finished <- as.logical(x$finished==1)
+  x$handle <- standardize.handle(x$handle)
+  x$age <- factor(as.character(x$age))
+    levels(x$age) <- c("<20", "20 - 25", "26 - 30", "31 - 40", "41 - 50", ">50")
+  x$country_origin <- gsub("^[A-Z]{2} - ", "", x$country_origin)
+  x$educ <-  factor(as.character(x$educ))
+    levels(x$educ) <- c("Ph.D.", "High School", "Master of Arts", "Bachelor")
+  x$gender <- factor(as.character(x$gender))
+  x$job <- tolower(as.character(x$job))
+  x$plang <- factor(as.character(x$plang))
+  x$risk <- as.numeric(gsub("[^0-9]","", as.character(x$risk)))
+  x$timezone <- as.numeric(gsub("^([^,]+),.*", "\\1",x$timezone))
+  return(x)
+}
+svy.ini.consistent <- function(x) {
+  tot.missing <- numeric(nrow(x))
+  for (i in 1:nrow(x)) {
+    tot.missing[i] <- na.count(x[i,])
+  }
+  x <- x[order(tot.missing, decreasing=TRUE), ]
+  index <- tapply(1:nrow(x), x$handle, tail, n=1)
+  x <- x[index, ]
+  return(x)
+}
 
-# Handle in survey
-handle.raw <- survey.ini[, 12]
-handle.raw %>% 
-    as.character %>%
-    replace.pattern("@gmail.com", "") %>%
-    replace.pattern("avitella", "Avitella") %>%
-    replace.pattern("vidhyabhushan", "vidhyabhushanv") -> handle
-
-# Unique survey
-index <- tapply(1:length(handle), handle, tail, n=1)
-survey.ini.unique <- survey.ini[index, ]
-handle.unique <- handle[index]
-
-# Demographics
-male  <- survey.ini.unique[, 20]=='Male'
-age   <- survey.ini.unique[, 21]
-educ  <- survey.ini.unique[, 22]
-plang <- survey.ini.unique[, 23]
-
-work.raw <- survey.ini.unique[, 24]
-work.raw %>%
-  tolower %>%
-  replace.pattern("-"," ") %>%
-  replace.pattern(".*software.*","software") %>%
-  replace.pattern(".*master.*|.*univer.*|.*sopho.*|.*bachel.*|.*gradu.*","university") %>%
-  replace.pattern(".*self.*","self-employed") %>%
-  replace.pattern("^employed.*|.*tcs.*|.*employee.*|.*full.?time.*|.*work.*","employed") %>%
-  replace.pattern(".*part.*time.*","part time") %>%
-  replace.pattern(".*resear?ch.*|.*profe.*|.*lectur.*","research") %>%
-  replace.pattern(".*unemp.*|.*none.*|.*nothing.*","not employed") %>%
-  replace.pattern(".*free.?lanc.*|.*independent.*","freelance") %>%
-  replace.pattern(".*develop.*","developer") %>%
-  replace.pattern(".*ph.?d.*","phd student") -> work
-
-country.raw <- survey.ini.unique[, 25]
-country.raw %>%
-     gsub(pattern="^[A-Z]{2} - ", replace="") -> country.or
-
-tz.raw <- survey.ini.unique[, 26]
-tz.raw %>%
-  replace.pattern(",.GMT.*","") -> tz
-
-risk.raw <- survey.ini.unique[, 27] 
-risk <- factor(risk.raw, levels=c("1-unwilling", 2:9, "10-completely willing"))
-
-hweek1 <- survey.ini.unique[, 28] 
-hweek2 <- survey.ini.unique[, 29] 
-hweek3 <- survey.ini.unique[, 30] 
-hweek4 <- survey.ini.unique[, 31]
-lat <- survey.ini.unique[, 32]
-long <- survey.ini.unique[, 33]
-
-initial.survey <- data.frame(id=handle.unique, male, age, educ
-                  , plang, work, country.or, tz, risk
-                  , hweek1, hweek2, hweek3, hweek4, lat, long)
+svy.ini.ok <- svy.ini.correct(svy.ini.raw)
+svy.ini <- svy.ini.consistent(svy.ini.ok)
+summary(svy.ini)
 ```
 
 Final survey
 -----------------
 
 ```{r, echo=TRUE}
+svy.end.correct <- function(x) {
+  x <- x[, -c(1:6)] # Drop Qualtrics vars
+  x <- x[, !grepl("^X$|Thank|Location|mailing|Browser.", names(x))] 
+  # Rename
+  names(x) <- tolower(names(x))
+  names(x)[grep("handle", names(x))] <- "handle"
+  names(x)[grep("1st.and.2nd", names(x))] <- "hours1"
+  names(x)[grep("3rd.and.4th", names(x))] <- "hours2"
+  names(x)[grep("5th.and.6th", names(x))] <- "hours3"
+  names(x)[grep("7th.and.8th", names(x))] <- "hours4"
+  names(x)[grep("doubled", names(x))] <- "hours_prize_double"
+  names(x)[grep("halved", names(x))] <- "hours_prize_half"
+  names(x)[grep("how.hard", names(x))] <- "hard_target"
+  names(x)[grep("machine.learning", names(x))] <- "approaches"
+  names(x)[grep("first.to.reach", names(x))] <- "racing"
+  names(x)[grep("risk", names(x))] <- "risk2"
+  names(x)[grep("t.shirt", names(x))] <- "tshirt"
 
-# Handle in survey
-handle.raw <- survey.end[, 12]
-handle.raw %>% 
-    as.character %>%
-    replace.pattern("@gmail.com", "") %>%
-    replace.pattern("avitella", "Avitella") %>%
-    replace.pattern("taquion", "Taquion") %>%
-    replace.pattern("drwhatsisname", "DrWhatsisname") %>%
-    replace.pattern("vidhyabhushan", "vidhyabhushanv") -> handle
+  x$startdate <- strptime(x$startdate,'%Y-%m-%d %H:%M:%S', tz='EST')
+  x$enddate <- strptime(x$enddate,'%Y-%m-%d %H:%M:%S', tz='EST')
+  x$finished <- as.logical(x$finished==1)
+  x$handle <- standardize.handle(x$handle)
+  x$risk2 <- as.numeric(gsub("[^0-9]","", as.character(x$risk2)))
+  x$approaches <- as.character(x$approaches)
+  x$racing <- as.character(x$racing)
+  return(x)
+}
+svy.end.consistent <- function(x) {
+  tot.missing <- numeric(nrow(x))
+  for (i in 1:nrow(x)) {
+    tot.missing[i] <- na.count(x[i,])
+  }
+  x <- x[order(tot.missing, decreasing=TRUE), ]
+  index <- tapply(1:nrow(x), x$handle, tail, n=1)
+  x <- x[index, ]
+  return(x)
+}
 
-# Unique survey
-index <- tapply(1:length(handle), handle, tail, n=1)
-survey.end.unique <- survey.end[index, ]
-handle.unique <- handle[index]
-
-eweek1 <- survey.end.unique[, 20]
-eweek2 <- survey.end.unique[, 21]
-eweek3 <- survey.end.unique[, 22]
-eweek4 <- survey.end.unique[, 23]
-pdouble <- survey.end.unique[, 24]
-phalf   <- survey.end.unique[, 25]
-hard    <- survey.end.unique[, 27]
-risk2.raw   <- survey.end.unique[, 29]
-risk2 <- factor(risk2.raw, levels=c("1-unwilling", 2:9, "10-completely willing"))
-
-final.survey <- data.frame(id=handle.unique, eweek1, eweek2
-                , eweek3, eweek4, pdouble, phalf, hard, risk2)
-
+svy.end.ok <- svy.end.correct(svy.end.raw)
+svy.end <- svy.end.consistent(svy.end.ok)
+summary(svy.end)
 ```
 
 Scores and submissions
 ----------------------------
 
 ```{r, echo=TRUE}
-handle <- as.character(submissions$handle)
-subid <- submissions$submissionID
-subts <- strptime(submissions$timestamp, "%Y-%m-%d %H:%M:%S")
-subsys <- submissions$system
-subprov <- submissions$provisional
+subs.correct <- function(x) {
+  names(x) <- tolower(names(x))
+  names(x)[grep("submissionid", names(x))] <- "sub_id"
+  names(x)[grep("roomid", names(x))] <- "room_id"
+  names(x)[grep("^timestamp$", names(x))] <- "sub_time"
+  names(x)[grep("^timestamp2$", names(x))] <- "sub_time2"
+  x$epochtime <- NULL
+  x$handle2 <- NULL
+  x$sub_time2 <- NULL
+  x$handle <- standardize.handle(x$handle)
+  x$sub_id <- as.numeric(x$sub_id)
+  x$sub_time <- strptime(x$sub_time, "%Y-%m-%d %H:%M:%S") 
+  x$system <- as.numeric(x$system)
+  x$provisional <- as.numeric(x$provisional)
+  return(x)
+}
+subs.consistent <- function(x) {
+  x$system <- impute.zero(x$system)
+  return(x)
+}
 
-scores <- data.frame(id=handle, subid, subts, subsys, subprov)
-
+subs <- subs.consistent(subs.correct(subs.raw))
+summary(subs)
 ```
 
-Platform datasets
----------------------------
+Assigned treatments
+-------------------
 
 ```{r, echo=TRUE}
-
-# Web profiles
-fnames <- list.files(c("profiles-handles","profiles"), full.names=TRUE)
-profiles <- NULL
-m <- data.frame(matrix(nrow=length(fnames), ncol=4))
-for (i in 1:length(fnames)) {
-  x <-  fromJSON(fnames[i])
-  info <- cbind(x$handle, x$country,  as.character(as.Date(x$memberSince)), NA)
-  if (!is.null(x$Achievements$date)) {
-      y <- x$Achievements
-      info[4] <- sum(as.Date(y$date) < "2015-03-13")
-  }
-  m[i, ] <- info
+assign.correct <- function(x) {
+  x$handle <- standardize.handle(x$handle)
+  return(x)
 }
-m <- unique(m[1:nrow(m), ])
-id <- m[, 1]
-id[grep("rtriv", id)] <- "rst9288"
-country <- factor(m[, 2])
-msince <- as.Date(m[, 3])
-badges <- as.numeric(m[, 4])
-
-profiles <- data.frame(id, country, msince, badges)
-
-# Platform Ratings
-handle.raw <- tc.profiles$Handle
-handle.raw %>% 
-    as.character %>%
-    replace.pattern("@gmail.com", "") %>%
-    replace.pattern("avitella", "Avitella") %>%
-    replace.pattern("vidhyabhushan", "vidhyabhushanv") %>%
-    replace.pattern("vidhyabhushanvv", "vidhyabhushanv") -> handle
-
-mm.count  <- impute.zero(tc.profiles$MM.Count)
-mm.wins   <- impute.zero(tc.profiles$Num.Wins)
-mm.top5   <- impute.zero(tc.profiles$Num.Top.5)
-mm.top10  <- impute.zero(tc.profiles$Num.Top.10)
-mm.best.rank  <- tc.profiles$Best.Rank
-mm.rating     <- tc.profiles$Rating
-
-ratings <- data.frame(id=handle, mm.count, mm.rating
-            , mm.wins, mm.top5, mm.top10, mm.best.rank)
-
-
-# Check before merging
-index <- which(!ratings$id %in% profiles$id)
-if (length(index)>0) {
-  warning(sprintf("%i Unmatched handles in ratings", length(index)))
-#  cat(ratings$id[index])
+assign.consistent <- function(x) {
+  x$room_id <- factor(paste("Group ", ifelse(x$treatment=="race", "1", ifelse(x$treatment=="tournament", "2", "3")), toupper(letters[x$room_id]), sep=""))
+  levels(x$treatment_id) <- capitalize(levels(x$treatment_id))
+  return(x)
 }
-index <- which(!profiles$id %in% ratings$id)
-if (length(index)>0) {
-  warning(sprintf("%i Unmatched handles in profiles", length(index)))
- # cat(profiles$id[index])
-}
-
-if (any(table(profiles$id) != 1)) stop("Error profile ids!")
-if (any(table(ratings$id) != 1)) stop("Error ratings ids!")
-
-platform <- merge(ratings, profiles, all=TRUE)
-
-```
-
-Assigned treatment
----------------------------
-
-```{r, echo=TRUE}
-handle.raw <- assignment$handle
-handle.raw %>% 
-    as.character %>%
-    replace.pattern("@gmail.com", "") %>%
-    replace.pattern("avitella", "Avitella") %>%
-    replace.pattern("vidhyabhushan", "vidhyabhushanv") %>%
-    replace.pattern("vidhyabhushanvv", "vidhyabhushanv") -> handle
-
-room <- factor(paste("Group ", ifelse(assignment$treatment=="race", "1"
-    , ifelse(assignment$treatment=="tournament", "2", "3"))
-    , toupper(letters[assignment$room_id]), sep=""))
-treatment <- factor(assignment$treatment)
-size <- assignment$room_type_id
-levels(treatment) <- capitalize(levels(treatment))
-assigned.treatment <- data.frame(id=handle, room, treatment, size)
+assignment <- assign.consistent(assign.correct(assign.raw))
+summary(assignment)
 ```
 
 
-Merge datasets
----------------------------
+Check handles
+---------------
 
-```{r, echo=TRUE}
-# Functions
-merge.by.id <- function(x, y) {
-  id.x <- x$id
-  id.y <- y$id
-  index <- which(!id.x %in% id.y)
-  if (length(index)>0) {
-    warning(sprintf("%i Unmatched handles in x dataset", length(index)))
-    cat(as.character(id.x[index]), sep='\n')
-    index <- which(!id.y %in% id.x)
-    warning(sprintf("%i Unmatched handles in y dataset", length(index)))
-    cat(as.character(id.y[index]), sep='\n')
-  }
-  merge(x, y, by="id", all.x=TRUE)
-}
-agg <- function(label, ...) {
-  z <- aggregate(...)
-  colnames(z) <- c("id", label)
-  return(z)
-}
+```{r}
+# Check any handles with submissions not assigned to a treatment
+any(!levels(subs$handle) %in% levels(assignment$handle))
 
-assigned.treatment %>% 
-    merge.by.id(platform) %>% 
-    merge.by.id(initial.survey) %>%
-    merge.by.id(final.survey) %>% 
-    merge.by.id(agg('lastscore', f=subprov ~ id, d=scores, FUN=tail, n=1)) %>%
-    merge.by.id(agg('nsub', f=subprov ~ id, d=scores, FUN=length)) -> dat  
-  
-summary(dat)
+# Check any handles assigned to a treatment but not in initial survey
+sum(!levels(assignment$handle) %in% levels(svy.ini$handle)) # 19!!!
+
+# Check any handles in final survey but not assigned to treatment
+i <- which(!levels(svy.end$handle) %in% levels(assignment$handle)) # 6!!!
+levels(svy.end$handle)[i]
 ```
 
 ```{r}

@@ -1,1 +1,13 @@
 New project: January 16, 2017
+
+|-- Data: symbolic link to data folder
+`-- prepare_data.Rmd: creates a .RData file then used for the analysis
+
+
+
+# How to prepare the dataset 
+crmd prepare_data.Rmd
+
+
+
+

@@ -1,11 +1,12 @@
 The model
 ==============
 
-We generalize the contest game described by @moldovanu2001optimal to a situation where $N$ players decide how much effort to provide along two dimensions: performance and time.  The contest game is an N player game with asymmetric information. Players move simultaneously to maximize the expected utility. Each player $i=1, 2, ..., N$ selects a performance variable $y_i$ and a timing $t_i$, both being nonnegative numbers. These variables can be thought of as the accuracy of a solution to a given problem and the time to write the code implementing such solution. Players incur a cost from effort given by the function
+We generalize the _contest game_ introduced by @moldovanu2001optimal to a situation where players allocate their effort along two dimensions: performance and time.  A  (generalized) contest game is an N player game with asymmetric information. Players move simultaneously to maximize the expected utility. Each player $i=1, 2, ..., N$ selects a performance variable $y_i$ and a timing $t_i$, both being nonnegative numbers. These variables can be thought of as the quality of the solution given to a problem and the time to write the code implementing such solution. Players incur a cost from effort given by the function
 \begin{equation}
   C_i(y_i, t_i) = \frac{1}{a_i} c(y_i, t_i)
 \end{equation}
-where the function $c(\cdot)$ is xxxx. The cost parameter $a_i$ denotes the player's ability, which is privately observed at the beginning of the game. It is common knowledge that abilities are drawn from a common distribution $F$ that is continuous on the semi-infinite interval $[0,\infty)$ (e.g., exponential).  
+with ${c_{y}}(0)\geq 0$, ${c_{y}}^\prime>0$, ${c_{t}}(d)\geq 0$, and
+${c_{t}}^\prime<0$. The parameter $a_i$ denotes the player $i$'s ability, which is privately observed at the beginning of the game. Abilities are drawn from a common distribution $F$ that is continuous on the semi-infinite interval $[0,\infty)$ (e.g., the exponential distribution).  
 
 Let $r_i$ denote the rank position of a player $i$ relative to the $N-1$ others. The top $K$ players (e.g., $r_i\leq K$) are awarded a prize of value $V_1 > V_2 > ... > V_K$. A player's probability of winning a prize is given by the function $p_i(y_1,...y_N, t_1, ..., t_N)$. 
 
@@ -13,9 +14,14 @@ Let $r_i$ denote the rank position of a player $i$ relative to the $N-1$ others.
 The goal for each player is If the timing is above a given deadline $d>0$ or the performance is below a certain level $q>0$, the player gets zero utility. Otherwise, the player is given a rank based on his performance and timing. 
  A contest is xxxx. Ranked . 
 
-def: A tournament is a xxxx where players are ranked by their performance level provided that the timing is below a deadline $d$.
 
-def: A race is a xxxx where players are ranked by their timing provided that the performance is above a threshold level $q$.  
+Let $d$ denote a given time unit and let $q$ denote a given quality level.
+
+Definition. A tournament is a contest game where players are ranked by their performance level $y_i$ when they complete the project within the time unit (i.e., $t_i \leq d$).
+
+Definition. A race is a contest game where players are ranked by their timing provided that the performance is above a minimum level $y_i\geq q$. 
+
+In both cases, if they xxxx they get no prizes (i.e., a rank $r > K$). 
 
 In a tournament, the agent having achieved the highest output quality
 within the deadline gets the first prize, the agent having achieved the
@@ -24,30 +30,15 @@ race, by contrast, the first agent to achieve an output quality of at
 least ${\bar y}$ within the deadline wins the first prize, the second to
 achieve the same target gets the second prize, and so on.
 
-Since agents move simultaneously, they do not know the performance of
-others when deciding their efforts. On the other hand, it is assumed
-that they know the number of competitors as well as their cost functions
-to complete the task up to a factor $a_i$ being the agent’s private
-ability in performing the task. Each agent knows his ability but does
-not know the ability of the others. However, it is common knowledge that
-abilities are drawn at random from a common distribution $F_A$ that is
-assumed everywhere differentiable on the support
-$V\subseteq [0, \infty)$.
-
-It is further assumed that costs are multiplicative
-
-$$C(y_i, t_i, a_i) = {c_{y}}(y) \cdot {c_{t}}(t)  \cdot a_i^{-1}$$
-
-with ${c_{y}}(0)\geq 0$, ${c_{y}}^\prime>0$, ${c_{t}}(d)\geq 0$, and
-${c_{t}}^\prime<0$.
 
 Each agent is risk neutral and faces the following decision problem
 
 $$\begin{array}{ll}
-    \mbox{maximize} & \sum_{j=1}^k \Pr(\text{ranked $j$'th}) V_j  - C(y_i, t_i, a_i).
+    \mbox{maximize} & \sum_{j=1}^k \Pr(\text{ranked $j$'th}) V_j  - \frac{1}{a_i} C(y_i, t_i).
   \end{array}$$
 
-### Equilibrium
+Equilibrium
+-------------
 
 We provide here the symmetric equilibrium with one prize and $n>2$
 agents. In appendix XXX, we provide a general formula for $k>2$ prizes.
@@ -71,8 +62,8 @@ zero otherwise.
 
 </div>
 
-An important property of is that $y^*(a_i)$ has its upper bound in and
-lower bound in . Also, equilibrium output quality is monotonic
+An important property of xxx is that $y^*(a_i)$ has its upper bound in xxx and
+lower bound in xxxx. Also, equilibrium output quality is monotonic
 increasing in the agent’s ability [see @moldovanu2001optimal]. Thus, for
 every $i=1, ..., n+1$, the equilibrium expected reward depends only on
 the rank of his ability relative to the others. Using ${F_{A_{r:n}}}$ to

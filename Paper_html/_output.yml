@@ -1,8 +1,8 @@
 html_document:
   theme: cosmo
-  toc: true
+  toc: false
   toc_float:
-      collapsed: false
+      collapsed: true
       smooth_scroll: false
   css: styles.css
   highlight: kate

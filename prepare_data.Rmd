@@ -1,23 +1,24 @@
 % Dataset preparation
 % Andrea Blasco <ablasco@fas.harvard.edu>
-% "`r format(Sys.time(), '%d %B, %Y')`"
+% `r format(Sys.time(), '%d %B, %Y')`
 
 
-Upload, clean, and merge
-========================
-
-Flow: import data > make technically correct > make consistent. 
-
-
-Upload datasets
----------------------------
-
-```{r, echo=TRUE}
+```{r, echo=FALSE, warnings=FALSE, message=FALSE}
 library(magrittr)
 library(jsonlite)
 library(xtable)
 library(knitr)
+```
 
+Upload, clean, and merge
+========================
+
+Data Flow: import data > make data technically correct > make the correct data consistent. 
+
+Upload datasets
+----------------
+
+```{r, echo=TRUE}
 regdata.raw <- read.csv("Data/registered_platform_topcoder.txt", sep='\t')
 subs.raw  <- read.csv("Data/submissions.csv")
 svy.ini.raw  <- read.csv("Data/Qualtrics/SV_8elNruzKCgPB72B.csv"
@@ -72,6 +73,10 @@ regdata.correct <- function(x) {
   return(x)
 }
 regdata.consistent <- function(x) {
+  # Make unique index
+  index <- tapply(1:nrow(x), x$handle, head, n=1)
+  x <- x[index, ]
+  # Numeric must be non-negative
   for (i in 1:ncol(x)) {
     if (is.numeric(x[, i])) {
       x[, i][x[, i]<0] <- 0
@@ -113,7 +118,7 @@ svy.ini.correct <- function(x) {
   x$handle <- standardize.handle(x$handle)
   x$age <- factor(as.character(x$age))
     levels(x$age) <- c("<20", "20 - 25", "26 - 30", "31 - 40", "41 - 50", ">50")
-  x$country_origin <- gsub("^[A-Z]{2} - ", "", x$country_origin)
+  x$country_origin <- factor(gsub("^[A-Z]{2} - ", "", x$country_origin))
   x$educ <-  factor(as.character(x$educ))
     levels(x$educ) <- c("Ph.D.", "High School", "Master of Arts", "Bachelor")
   x$gender <- factor(as.character(x$gender))
@@ -158,14 +163,14 @@ svy.end.correct <- function(x) {
   names(x)[grep("how.hard", names(x))] <- "hard_target"
   names(x)[grep("machine.learning", names(x))] <- "approaches"
   names(x)[grep("first.to.reach", names(x))] <- "racing"
-  names(x)[grep("risk", names(x))] <- "risk2"
+  names(x)[grep("risk", names(x))] <- "risk"
   names(x)[grep("t.shirt", names(x))] <- "tshirt"
 
   x$startdate <- strptime(x$startdate,'%Y-%m-%d %H:%M:%S', tz='EST')
   x$enddate <- strptime(x$enddate,'%Y-%m-%d %H:%M:%S', tz='EST')
   x$finished <- as.logical(x$finished==1)
   x$handle <- standardize.handle(x$handle)
-  x$risk2 <- as.numeric(gsub("[^0-9]","", as.character(x$risk2)))
+  x$risk <- as.numeric(gsub("[^0-9]","", as.character(x$risk)))
   x$approaches <- as.character(x$approaches)
   x$racing <- as.character(x$racing)
   return(x)
@@ -221,6 +226,7 @@ Assigned treatments
 ```{r, echo=TRUE}
 assign.correct <- function(x) {
   x$handle <- standardize.handle(x$handle)
+  x$mmrating <- NULL
   return(x)
 }
 assign.consistent <- function(x) {
@@ -233,22 +239,42 @@ summary(assignment)
 ```
 
 
-Check handles
+Merge datasets
 ---------------
 
 ```{r}
-# Check any handles with submissions not assigned to a treatment
-any(!levels(subs$handle) %in% levels(assignment$handle))
+stopifnot(length(setdiff(assignment$handle, regdata$handle))==0) 
+newdata <- merge(regdata, assignment, by='handle')
+if (length(setdiff(newdata$handle, svy.ini$handle))==0) {
+  newdata2 <- merge(newdata, svy.ini, by="handle", suff=c("",".svy.ini"))
+} else {
+  newdata2 <- merge(newdata, svy.ini, by="handle", suff=c("",".svy.ini"), all.x=TRUE)
+}
+newdata3 <- merge(newdata2, svy.end, by="handle", all.x=TRUE, suff=c(".svy.ini",".svy.end"))
 
-# Check any handles assigned to a treatment but not in initial survey
-sum(!levels(assignment$handle) %in% levels(svy.ini$handle)) # 19!!!
-
-# Check any handles in final survey but not assigned to treatment
-i <- which(!levels(svy.end$handle) %in% levels(assignment$handle)) # 6!!!
-levels(svy.end$handle)[i]
+final.consistent <- function(x) {
+  x$gender.svy.ini[is.na(x$gender.svy.ini)] <- x$gender[is.na(x$gender.svy.ini)]
+  x$gender <- x$gender.svy.ini
+  x$gender.svy.ini <- NULL
+  
+  levels(x$age) <- c("<20", "20 - 25","26 - 30", "31 - 40", "41 - 50", NA)
+  x$age.svy.ini[is.na(x$age.svy.ini)] <-  x$age[is.na(x$age.svy.ini)]
+  x$age <- x$age.svy.ini
+  x$age.svy.ini <- NULL
+  
+  x$risk.svy.ini[is.na(x$risk.svy.ini)] <-  x$risk.svy.end[is.na(x$risk.svy.ini)]
+  x$risk <- x$risk.svy.ini
+  x$risk.svy.ini <- NULL
+  x$risk.svy.end <- NULL
+  ####
+  return(x)
+}
+dat <- final.consistent(newdata3)
+summary(dat)
 ```
 
 ```{r}
-save(list=c("dat", "scores"), file=".RData")
+db <- c("dat", "subs")
+save(list=db, file=".RData")
 ```
 

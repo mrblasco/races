@@ -117,30 +117,24 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Dataset preparation</h1>
 <h4 class="author"><em>Andrea Blasco <a href="mailto:ablasco@fas.harvard.edu">ablasco@fas.harvard.edu</a></em></h4>
-<h4 class="date"><em>“20 January, 2017”</em></h4>
+<h4 class="date"><em>21 January, 2017</em></h4>
 
 </div>
 
 
+<pre><code>## Warning: package 'knitr' was built under R version 3.2.5</code></pre>
 <div id="upload-clean-and-merge" class="section level1">
 <h1>Upload, clean, and merge</h1>
-<p>Flow: import data &gt; make technically correct &gt; make consistent.</p>
+<p>Data Flow: import data &gt; make data technically correct &gt; make the correct data consistent.</p>
 <div id="upload-datasets" class="section level2">
 <h2>Upload datasets</h2>
-<pre class="r"><code>library(magrittr)
-library(jsonlite)</code></pre>
-<pre><code>## Loading required package: methods</code></pre>
-<pre class="r"><code>library(xtable)
-library(knitr)</code></pre>
-<pre><code>## Warning: package 'knitr' was built under R version 3.2.5</code></pre>
 <pre class="r"><code>regdata.raw &lt;- read.csv(&quot;Data/registered_platform_topcoder.txt&quot;, sep='\t')
-tc.profiles &lt;- read.csv(&quot;Data/details_profile.csv&quot;)
-submissions &lt;- read.csv(&quot;Data/submissions.csv&quot;)
-survey.ini  &lt;- read.csv(&quot;Data/Qualtrics/SV_8elNruzKCgPB72B.csv&quot;
+subs.raw  &lt;- read.csv(&quot;Data/submissions.csv&quot;)
+svy.ini.raw  &lt;- read.csv(&quot;Data/Qualtrics/SV_8elNruzKCgPB72B.csv&quot;
               , skip=1, na.strings=c(&quot;&quot;,&quot;NA&quot;)) 
-survey.end  &lt;- read.csv(&quot;Data/Qualtrics/SV_0DSqL7Exk0A7Bdj.csv&quot;
+svy.end.raw  &lt;- read.csv(&quot;Data/Qualtrics/SV_0DSqL7Exk0A7Bdj.csv&quot;
               , skip=1, na.strings=c(&quot;&quot;,&quot;NA&quot;))
-assignment &lt;- rbind(read.csv(&quot;Data/Assignment/race.csv&quot;)
+assign.raw &lt;- rbind(read.csv(&quot;Data/Assignment/race.csv&quot;)
             , read.csv(&quot;Data/Assignment/tournament.csv&quot;)
             , read.csv(&quot;Data/Assignment/reserve.csv&quot;))
 
@@ -151,12 +145,19 @@ impute.zero &lt;- function(x) ifelse(is.na(x), 0, x)
 capitalize &lt;- function(x) {
   substr(x, 1, 1) &lt;- toupper(substr(x, 1, 1))
   return(x)
+}
+standardize.handle &lt;- function(x) {
+  x %&gt;% as.character %&gt;% trimws %&gt;% tolower %&gt;%
+    replace.pattern(&quot;@gmail.com&quot;, &quot;&quot;) %&gt;%
+    replace.pattern(&quot;vidhyabhushan.*&quot;, &quot;vidhyabhushanv&quot;) %&gt;%
+    as.factor -&gt; x
+  return(x)
 }</code></pre>
 </div>
 <div id="registered-participants" class="section level2">
 <h2>Registered participants</h2>
 <pre class="r"><code>regdata.correct &lt;- function(x) {
-  x$handle &lt;- factor(as.character(x$handle))
+  x$handle &lt;- standardize.handle(x$handle)
   x$create_date &lt;- strptime(x$create_date, format='%m/%d/%Y', tz='')  
   x$country_name &lt;- factor(as.character(x$country_name))
   x$address &lt;- NULL
@@ -178,7 +179,10 @@ capitalize &lt;- function(x) {
   return(x)
 }
 regdata.consistent &lt;- function(x) {
-  # All ratings must be non-negative!
+  # Make unique index
+  index &lt;- tapply(1:nrow(x), x$handle, head, n=1)
+  x &lt;- x[index, ]
+  # Numeric must be non-negative
   for (i in 1:ncol(x)) {
     if (is.numeric(x[, i])) {
       x[, i][x[, i]&lt;0] &lt;- 0
@@ -190,33 +194,33 @@ regdata.ok &lt;- regdata.correct(regdata.raw)
 regdata &lt;- regdata.consistent(regdata.ok)
 summary(regdata)</code></pre>
 <pre><code>##        handle     create_date                         country_name
-##  vaa2804  :  2   Min.   :2001-05-26 00:00:00   India        : 44  
-##  _Kevin   :  1   1st Qu.:2008-04-12 12:00:00   United States: 38  
-##  _Romka_  :  1   Median :2011-03-29 00:00:00   China        : 36  
-##  1101     :  1   Mean   :2010-09-02 21:01:57   Japan        : 28  
-##  112atn323:  1   3rd Qu.:2013-12-27 06:00:00   Russia       : 28  
-##  1957     :  1   Max.   :2015-03-04 00:00:00   Belarus      : 21  
+##  _kevin   :  1   Min.   :2001-05-26 00:00:00   India        : 44  
+##  _romka_  :  1   1st Qu.:2008-04-18 00:00:00   United States: 38  
+##  1101     :  1   Median :2011-04-03 00:00:00   China        : 36  
+##  112atn323:  1   Mean   :2010-09-10 05:15:34   Japan        : 28  
+##  1957     :  1   3rd Qu.:2013-12-29 12:00:00   Russia       : 27  
+##  a9108tc  :  1   Max.   :2015-03-04 00:00:00   Belarus      : 21  
 ##  (Other)  :329                                 (Other)      :141  
 ##    algorating     algoevents     mmrating       mmevents       algoreg   
 ##  Min.   :   0   Min.   :  0   Min.   : 593   Min.   : 0.0   Min.   :  0  
 ##  1st Qu.:   0   1st Qu.:  0   1st Qu.:1028   1st Qu.: 0.0   1st Qu.:  0  
-##  Median : 984   Median : 13   Median :1286   Median : 1.5   Median : 14  
-##  Mean   : 946   Mean   : 37   Mean   :1332   Mean   : 6.7   Mean   : 42  
-##  3rd Qu.:1462   3rd Qu.: 46   3rd Qu.:1596   3rd Qu.: 8.0   3rd Qu.: 52  
+##  Median : 984   Median : 13   Median :1293   Median : 1.0   Median : 14  
+##  Mean   : 948   Mean   : 37   Mean   :1333   Mean   : 6.7   Mean   : 42  
+##  3rd Qu.:1463   3rd Qu.: 46   3rd Qu.:1596   3rd Qu.: 8.0   3rd Qu.: 52  
 ##  Max.   :2958   Max.   :364   Max.   :3071   Max.   :92.0   Max.   :395  
 ##                               NA's   :128                                
 ##      mmreg            totalpayments                age     
-##  Min.   :  1.0   0           :192   13 - 17          : 12  
+##  Min.   :  1.0   0           :191   13 - 17          : 12  
 ##  1st Qu.:  2.0   1 - 599     : 37   18 - 24          :118  
-##  Median :  6.5   600 - 4500  : 34   25 - 34          :103  
-##  Mean   : 16.3   4500 - 37000: 37   35 - 44          : 25  
+##  Median :  6.0   600 - 4500  : 34   25 - 34          :103  
+##  Mean   : 16.3   4500 - 37000: 37   35 - 44          : 24  
 ##  3rd Qu.: 22.0   &gt;37000      : 36   45 and up        : 14  
 ##  Max.   :161.0                      Decline to Answer:  7  
 ##                                     NA's             : 57  
 ##                gender   
 ##  Decline to Answer: 10  
 ##  Female           : 11  
-##  Male             :272  
+##  Male             :271  
 ##  NA's             : 43  
 ##                         
 ##                         
@@ -224,1051 +228,389 @@ summary(regdata)</code></pre>
 </div>
 <div id="initial-survey" class="section level2">
 <h2>Initial Survey</h2>
-<pre class="r"><code># Order 
-miss &lt;- apply(survey.ini, 1, na.count)
-survey.ini &lt;- survey.ini[order(miss, decreasing=TRUE), ]
+<pre class="r"><code>svy.ini.correct &lt;- function(x) {
+  x &lt;- x[, -c(1:6)] # Drop Qualtrics vars
+  x &lt;- x[, !grepl(&quot;^X$|LocationAccu|Thank|Browser.&quot;, names(x))] 
+  # Rename
+  names(x) &lt;- tolower(names(x))
+  names(x)[grep(&quot;handle&quot;, names(x))] &lt;- &quot;handle&quot;
+  names(x)[grep(&quot;academic.degree&quot;, names(x))] &lt;- &quot;educ&quot;
+  names(x)[grep(&quot;current&quot;, names(x))] &lt;- &quot;job&quot;
+  names(x)[grep(&quot;country&quot;, names(x))] &lt;- &quot;country_origin&quot;
+  names(x)[grep(&quot;timezone&quot;, names(x))] &lt;- &quot;timezone&quot;
+  names(x)[grep(&quot;risk&quot;, names(x))] &lt;- &quot;risk&quot;
+  names(x)[grep(&quot;programming&quot;, names(x))] &lt;- &quot;plang&quot;
+  names(x)[grep(&quot;1st.and.2nd&quot;, names(x))] &lt;- &quot;ahead1&quot;
+  names(x)[grep(&quot;3rd.and.4th&quot;, names(x))] &lt;- &quot;ahead2&quot;
+  names(x)[grep(&quot;5th.and.6th&quot;, names(x))] &lt;- &quot;ahead3&quot;
+  names(x)[grep(&quot;7th.and.8th&quot;, names(x))] &lt;- &quot;ahead4&quot;
+  names(x)[grep(&quot;longitude&quot;, names(x))] &lt;- &quot;long&quot;
+  names(x)[grep(&quot;latitude&quot;, names(x))] &lt;- &quot;lat&quot;
 
-# Handle in survey
-handle.raw &lt;- survey.ini[, 12]
-handle.raw %&gt;% 
-    as.character %&gt;%
-    replace.pattern(&quot;@gmail.com&quot;, &quot;&quot;) %&gt;%
-    replace.pattern(&quot;avitella&quot;, &quot;Avitella&quot;) %&gt;%
-    replace.pattern(&quot;vidhyabhushan&quot;, &quot;vidhyabhushanv&quot;) -&gt; handle
+  x$startdate &lt;- strptime(x$startdate,'%Y-%m-%d %H:%M:%S', tz='EST')
+  x$enddate &lt;- strptime(x$enddate,'%Y-%m-%d %H:%M:%S', tz='EST')
+  x$finished &lt;- as.logical(x$finished==1)
+  x$handle &lt;- standardize.handle(x$handle)
+  x$age &lt;- factor(as.character(x$age))
+    levels(x$age) &lt;- c(&quot;&lt;20&quot;, &quot;20 - 25&quot;, &quot;26 - 30&quot;, &quot;31 - 40&quot;, &quot;41 - 50&quot;, &quot;&gt;50&quot;)
+  x$country_origin &lt;- factor(gsub(&quot;^[A-Z]{2} - &quot;, &quot;&quot;, x$country_origin))
+  x$educ &lt;-  factor(as.character(x$educ))
+    levels(x$educ) &lt;- c(&quot;Ph.D.&quot;, &quot;High School&quot;, &quot;Master of Arts&quot;, &quot;Bachelor&quot;)
+  x$gender &lt;- factor(as.character(x$gender))
+  x$job &lt;- tolower(as.character(x$job))
+  x$plang &lt;- factor(as.character(x$plang))
+  x$risk &lt;- as.numeric(gsub(&quot;[^0-9]&quot;,&quot;&quot;, as.character(x$risk)))
+  x$timezone &lt;- as.numeric(gsub(&quot;^([^,]+),.*&quot;, &quot;\\1&quot;,x$timezone))
+  return(x)
+}
+svy.ini.consistent &lt;- function(x) {
+  tot.missing &lt;- numeric(nrow(x))
+  for (i in 1:nrow(x)) {
+    tot.missing[i] &lt;- na.count(x[i,])
+  }
+  x &lt;- x[order(tot.missing, decreasing=TRUE), ]
+  index &lt;- tapply(1:nrow(x), x$handle, tail, n=1)
+  x &lt;- x[index, ]
+  return(x)
+}
 
-# Unique survey
-index &lt;- tapply(1:length(handle), handle, tail, n=1)
-survey.ini.unique &lt;- survey.ini[index, ]
-handle.unique &lt;- handle[index]
-
-# Demographics
-male  &lt;- survey.ini.unique[, 20]=='Male'
-age   &lt;- survey.ini.unique[, 21]
-educ  &lt;- survey.ini.unique[, 22]
-plang &lt;- survey.ini.unique[, 23]
-
-work.raw &lt;- survey.ini.unique[, 24]
-work.raw %&gt;%
-  tolower %&gt;%
-  replace.pattern(&quot;-&quot;,&quot; &quot;) %&gt;%
-  replace.pattern(&quot;.*software.*&quot;,&quot;software&quot;) %&gt;%
-  replace.pattern(&quot;.*master.*|.*univer.*|.*sopho.*|.*bachel.*|.*gradu.*&quot;,&quot;university&quot;) %&gt;%
-  replace.pattern(&quot;.*self.*&quot;,&quot;self-employed&quot;) %&gt;%
-  replace.pattern(&quot;^employed.*|.*tcs.*|.*employee.*|.*full.?time.*|.*work.*&quot;,&quot;employed&quot;) %&gt;%
-  replace.pattern(&quot;.*part.*time.*&quot;,&quot;part time&quot;) %&gt;%
-  replace.pattern(&quot;.*resear?ch.*|.*profe.*|.*lectur.*&quot;,&quot;research&quot;) %&gt;%
-  replace.pattern(&quot;.*unemp.*|.*none.*|.*nothing.*&quot;,&quot;not employed&quot;) %&gt;%
-  replace.pattern(&quot;.*free.?lanc.*|.*independent.*&quot;,&quot;freelance&quot;) %&gt;%
-  replace.pattern(&quot;.*develop.*&quot;,&quot;developer&quot;) %&gt;%
-  replace.pattern(&quot;.*ph.?d.*&quot;,&quot;phd student&quot;) -&gt; work
-
-country.raw &lt;- survey.ini.unique[, 25]
-country.raw %&gt;%
-     gsub(pattern=&quot;^[A-Z]{2} - &quot;, replace=&quot;&quot;) -&gt; country.or
-
-tz.raw &lt;- survey.ini.unique[, 26]
-tz.raw %&gt;%
-  replace.pattern(&quot;,.GMT.*&quot;,&quot;&quot;) -&gt; tz
-
-risk.raw &lt;- survey.ini.unique[, 27] 
-risk &lt;- factor(risk.raw, levels=c(&quot;1-unwilling&quot;, 2:9, &quot;10-completely willing&quot;))
-
-hweek1 &lt;- survey.ini.unique[, 28] 
-hweek2 &lt;- survey.ini.unique[, 29] 
-hweek3 &lt;- survey.ini.unique[, 30] 
-hweek4 &lt;- survey.ini.unique[, 31]
-lat &lt;- survey.ini.unique[, 32]
-long &lt;- survey.ini.unique[, 33]
-
-initial.survey &lt;- data.frame(id=handle.unique, male, age, educ
-                  , plang, work, country.or, tz, risk
-                  , hweek1, hweek2, hweek3, hweek4, lat, long)</code></pre>
+svy.ini.ok &lt;- svy.ini.correct(svy.ini.raw)
+svy.ini &lt;- svy.ini.consistent(svy.ini.ok)
+summary(svy.ini)</code></pre>
+<pre><code>##      status       startdate                  
+##  Min.   :0.00   Min.   :2015-03-01 18:46:04  
+##  1st Qu.:0.00   1st Qu.:2015-03-03 03:34:14  
+##  Median :0.00   Median :2015-03-04 01:35:24  
+##  Mean   :0.17   Mean   :2015-03-04 01:16:34  
+##  3rd Qu.:0.00   3rd Qu.:2015-03-04 23:49:39  
+##  Max.   :8.00   Max.   :2015-03-05 19:53:03  
+##                                              
+##     enddate                     finished             handle   
+##  Min.   :2015-03-01 18:46:43   Mode :logical   _kevin   :  1  
+##  1st Qu.:2015-03-03 03:42:05   FALSE:20        _romka_  :  1  
+##  Median :2015-03-04 02:45:08   TRUE :357       1        :  1  
+##  Mean   :2015-03-04 01:30:31   NA's :0         1101     :  1  
+##  3rd Qu.:2015-03-04 23:52:10                   1123     :  1  
+##  Max.   :2015-03-05 19:54:53                   112atn323:  1  
+##                                                (Other)  :371  
+##     gender         age                  educ        plang    
+##  Female: 18   &lt;20    : 22   Ph.D.         : 31   C#    : 33  
+##  Male  :343   20 - 25:134   High School   : 47   C++   :166  
+##  NA's  : 16   26 - 30: 95   Master of Arts:123   Java  :108  
+##               31 - 40: 81   Bachelor      :164   Other : 19  
+##               41 - 50: 20   NA's          : 12   Python: 39  
+##               &gt;50    : 13                        VB    :  1  
+##               NA's   : 12                        NA's  : 11  
+##      job                  country_origin    timezone          risk      
+##  Length:377         India        : 50    Min.   :-8.00   Min.   : 1.00  
+##  Class :character   China        : 40    1st Qu.: 1.00   1st Qu.: 5.00  
+##  Mode  :character   Russia       : 31    Median : 2.00   Median : 7.00  
+##                     Japan        : 26    Mean   : 2.25   Mean   : 6.45  
+##                     United States: 25    3rd Qu.: 5.88   3rd Qu.: 8.00  
+##                     (Other)      :189    Max.   :12.00   Max.   :10.00  
+##                     NA's         : 16    NA's   :14      NA's   :20     
+##      ahead1         ahead2         ahead3         ahead4        lat       
+##  Min.   : 0.0   Min.   : 0.0   Min.   : 0.0   Min.   : 0   Min.   :-42.8  
+##  1st Qu.: 4.0   1st Qu.: 3.2   1st Qu.: 4.0   1st Qu.: 4   1st Qu.: 30.3  
+##  Median : 6.0   Median : 5.0   Median : 5.0   Median : 8   Median : 39.9  
+##  Mean   : 7.8   Mean   : 7.1   Mean   : 7.6   Mean   : 9   Mean   : 36.3  
+##  3rd Qu.:10.0   3rd Qu.:10.0   3rd Qu.:10.0   3rd Qu.:12   3rd Qu.: 49.2  
+##  Max.   :48.0   Max.   :48.0   Max.   :48.0   Max.   :48   Max.   : 59.9  
+##  NA's   :24     NA's   :23     NA's   :24     NA's   :24   NA's   :20     
+##       long       
+##  Min.   :-122.4  
+##  1st Qu.:  -0.2  
+##  Median :  27.6  
+##  Mean   :  27.5  
+##  3rd Qu.:  80.4  
+##  Max.   : 175.2  
+##  NA's   :20</code></pre>
 </div>
 <div id="final-survey" class="section level2">
 <h2>Final survey</h2>
-<pre class="r"><code># Handle in survey
-handle.raw &lt;- survey.end[, 12]
-handle.raw %&gt;% 
-    as.character %&gt;%
-    replace.pattern(&quot;@gmail.com&quot;, &quot;&quot;) %&gt;%
-    replace.pattern(&quot;avitella&quot;, &quot;Avitella&quot;) %&gt;%
-    replace.pattern(&quot;taquion&quot;, &quot;Taquion&quot;) %&gt;%
-    replace.pattern(&quot;drwhatsisname&quot;, &quot;DrWhatsisname&quot;) %&gt;%
-    replace.pattern(&quot;vidhyabhushan&quot;, &quot;vidhyabhushanv&quot;) -&gt; handle
+<pre class="r"><code>svy.end.correct &lt;- function(x) {
+  x &lt;- x[, -c(1:6)] # Drop Qualtrics vars
+  x &lt;- x[, !grepl(&quot;^X$|Thank|Location|mailing|Browser.&quot;, names(x))] 
+  # Rename
+  names(x) &lt;- tolower(names(x))
+  names(x)[grep(&quot;handle&quot;, names(x))] &lt;- &quot;handle&quot;
+  names(x)[grep(&quot;1st.and.2nd&quot;, names(x))] &lt;- &quot;hours1&quot;
+  names(x)[grep(&quot;3rd.and.4th&quot;, names(x))] &lt;- &quot;hours2&quot;
+  names(x)[grep(&quot;5th.and.6th&quot;, names(x))] &lt;- &quot;hours3&quot;
+  names(x)[grep(&quot;7th.and.8th&quot;, names(x))] &lt;- &quot;hours4&quot;
+  names(x)[grep(&quot;doubled&quot;, names(x))] &lt;- &quot;hours_prize_double&quot;
+  names(x)[grep(&quot;halved&quot;, names(x))] &lt;- &quot;hours_prize_half&quot;
+  names(x)[grep(&quot;how.hard&quot;, names(x))] &lt;- &quot;hard_target&quot;
+  names(x)[grep(&quot;machine.learning&quot;, names(x))] &lt;- &quot;approaches&quot;
+  names(x)[grep(&quot;first.to.reach&quot;, names(x))] &lt;- &quot;racing&quot;
+  names(x)[grep(&quot;risk&quot;, names(x))] &lt;- &quot;risk&quot;
+  names(x)[grep(&quot;t.shirt&quot;, names(x))] &lt;- &quot;tshirt&quot;
 
-# Unique survey
-index &lt;- tapply(1:length(handle), handle, tail, n=1)
-survey.end.unique &lt;- survey.end[index, ]
-handle.unique &lt;- handle[index]
+  x$startdate &lt;- strptime(x$startdate,'%Y-%m-%d %H:%M:%S', tz='EST')
+  x$enddate &lt;- strptime(x$enddate,'%Y-%m-%d %H:%M:%S', tz='EST')
+  x$finished &lt;- as.logical(x$finished==1)
+  x$handle &lt;- standardize.handle(x$handle)
+  x$risk &lt;- as.numeric(gsub(&quot;[^0-9]&quot;,&quot;&quot;, as.character(x$risk)))
+  x$approaches &lt;- as.character(x$approaches)
+  x$racing &lt;- as.character(x$racing)
+  return(x)
+}
+svy.end.consistent &lt;- function(x) {
+  tot.missing &lt;- numeric(nrow(x))
+  for (i in 1:nrow(x)) {
+    tot.missing[i] &lt;- na.count(x[i,])
+  }
+  x &lt;- x[order(tot.missing, decreasing=TRUE), ]
+  index &lt;- tapply(1:nrow(x), x$handle, tail, n=1)
+  x &lt;- x[index, ]
+  return(x)
+}
 
-eweek1 &lt;- survey.end.unique[, 20]
-eweek2 &lt;- survey.end.unique[, 21]
-eweek3 &lt;- survey.end.unique[, 22]
-eweek4 &lt;- survey.end.unique[, 23]
-pdouble &lt;- survey.end.unique[, 24]
-phalf   &lt;- survey.end.unique[, 25]
-hard    &lt;- survey.end.unique[, 27]
-risk2.raw   &lt;- survey.end.unique[, 29]
-risk2 &lt;- factor(risk2.raw, levels=c(&quot;1-unwilling&quot;, 2:9, &quot;10-completely willing&quot;))
-
-final.survey &lt;- data.frame(id=handle.unique, eweek1, eweek2
-                , eweek3, eweek4, pdouble, phalf, hard, risk2)</code></pre>
+svy.end.ok &lt;- svy.end.correct(svy.end.raw)
+svy.end &lt;- svy.end.consistent(svy.end.ok)
+summary(svy.end)</code></pre>
+<pre><code>##      status        startdate                  
+##  Min.   :0.000   Min.   :2015-03-17 16:39:48  
+##  1st Qu.:0.000   1st Qu.:2015-03-17 17:57:01  
+##  Median :0.000   Median :2015-03-18 03:13:29  
+##  Mean   :0.008   Mean   :2015-03-19 17:02:29  
+##  3rd Qu.:0.000   3rd Qu.:2015-03-22 18:49:55  
+##  Max.   :1.000   Max.   :2015-03-27 05:23:28  
+##                                               
+##     enddate                     finished             handle   
+##  Min.   :2015-03-17 16:40:50   Mode :logical   _kevin   :  1  
+##  1st Qu.:2015-03-17 18:04:02   FALSE:20        _romka_  :  1  
+##  Median :2015-03-18 03:32:49   TRUE :105       112atn323:  1  
+##  Mean   :2015-03-19 17:22:54   NA's :0         a9108tc  :  1  
+##  3rd Qu.:2015-03-22 18:57:11                   aaa      :  1  
+##  Max.   :2015-03-27 05:23:38                   ahoenig  :  1  
+##                                                (Other)  :119  
+##      hours1          hours2         hours3          hours4     
+##  Min.   : 0.00   Min.   : 0.0   Min.   : 0.00   Min.   : 0.00  
+##  1st Qu.: 1.00   1st Qu.: 0.0   1st Qu.: 0.00   1st Qu.: 0.00  
+##  Median : 2.00   Median : 2.0   Median : 2.00   Median : 2.50  
+##  Mean   : 4.04   Mean   : 3.8   Mean   : 3.91   Mean   : 5.08  
+##  3rd Qu.: 6.00   3rd Qu.: 5.0   3rd Qu.: 6.00   3rd Qu.: 8.25  
+##  Max.   :22.00   Max.   :32.0   Max.   :28.00   Max.   :28.00  
+##  NA's   :13      NA's   :13     NA's   :13      NA's   :13     
+##   hours_prize_double   hours_prize_half  approaches       
+##  The same  :51       The same  :60      Length:125        
+##  20% more  :17       30% less  :12      Class :character  
+##  &gt; 50% more:13       &gt; 50% less:11      Mode  :character  
+##  10% more  : 9       50% less  :10                        
+##  30% more  : 9       20% less  : 8                        
+##  (Other)   :12       (Other)   :10                        
+##  NA's      :14       NA's      :14                        
+##              hard_target    racing               risk       tshirt  
+##  Difficult         :30   Length:125         Min.   : 1.0   2XL : 4  
+##  Very Difficult    :25   Class :character   1st Qu.: 4.0   L   :28  
+##  Neutral           :23   Mode  :character   Median : 6.0   M   :35  
+##  Somewhat Difficult:16                      Mean   : 6.2   S   : 6  
+##  Somewhat Easy     : 5                      3rd Qu.: 8.0   XL  :23  
+##  (Other)           : 1                      Max.   :10.0   NA's:29  
+##  NA's              :25                      NA's   :36</code></pre>
 </div>
 <div id="scores-and-submissions" class="section level2">
 <h2>Scores and submissions</h2>
-<pre class="r"><code>handle &lt;- as.character(submissions$handle)
-subid &lt;- submissions$submissionID
-subts &lt;- strptime(submissions$timestamp, &quot;%Y-%m-%d %H:%M:%S&quot;)
-subsys &lt;- submissions$system
-subprov &lt;- submissions$provisional
-
-scores &lt;- data.frame(id=handle, subid, subts, subsys, subprov)</code></pre>
-</div>
-<div id="platform-datasets" class="section level2">
-<h2>Platform datasets</h2>
-<pre class="r"><code># Web profiles
-fnames &lt;- list.files(c(&quot;Data/Profiles/handles&quot;,&quot;Data/Profiles&quot;), pattern=&quot;*.txt&quot;, full.names=TRUE)
-profiles &lt;- NULL
-m &lt;- data.frame(matrix(nrow=length(fnames), ncol=4))
-for (i in 1:length(fnames)) {
-  x &lt;-  fromJSON(fnames[i])
-  info &lt;- cbind(x$handle, x$country,  as.character(as.Date(x$memberSince)), NA)
-  if (!is.null(x$Achievements$date)) {
-      y &lt;- x$Achievements
-      info[4] &lt;- sum(as.Date(y$date) &lt; &quot;2015-03-13&quot;)
-  }
-  m[i, ] &lt;- info
+<pre class="r"><code>subs.correct &lt;- function(x) {
+  names(x) &lt;- tolower(names(x))
+  names(x)[grep(&quot;submissionid&quot;, names(x))] &lt;- &quot;sub_id&quot;
+  names(x)[grep(&quot;roomid&quot;, names(x))] &lt;- &quot;room_id&quot;
+  names(x)[grep(&quot;^timestamp$&quot;, names(x))] &lt;- &quot;sub_time&quot;
+  names(x)[grep(&quot;^timestamp2$&quot;, names(x))] &lt;- &quot;sub_time2&quot;
+  x$epochtime &lt;- NULL
+  x$handle2 &lt;- NULL
+  x$sub_time2 &lt;- NULL
+  x$handle &lt;- standardize.handle(x$handle)
+  x$sub_id &lt;- as.numeric(x$sub_id)
+  x$sub_time &lt;- strptime(x$sub_time, &quot;%Y-%m-%d %H:%M:%S&quot;) 
+  x$system &lt;- as.numeric(x$system)
+  x$provisional &lt;- as.numeric(x$provisional)
+  return(x)
 }
-m &lt;- unique(m[1:nrow(m), ])
-id &lt;- m[, 1]
-id[grep(&quot;rtriv&quot;, id)] &lt;- &quot;rst9288&quot;
-country &lt;- factor(m[, 2])
-msince &lt;- as.Date(m[, 3])
-badges &lt;- as.numeric(m[, 4])
-
-profiles &lt;- data.frame(id, country, msince, badges)
-
-# Platform Ratings
-handle.raw &lt;- tc.profiles$Handle
-handle.raw %&gt;% 
-    as.character %&gt;%
-    replace.pattern(&quot;@gmail.com&quot;, &quot;&quot;) %&gt;%
-    replace.pattern(&quot;avitella&quot;, &quot;Avitella&quot;) %&gt;%
-    replace.pattern(&quot;vidhyabhushan&quot;, &quot;vidhyabhushanv&quot;) %&gt;%
-    replace.pattern(&quot;vidhyabhushanvv&quot;, &quot;vidhyabhushanv&quot;) -&gt; handle
-
-mm.count  &lt;- impute.zero(tc.profiles$MM.Count)
-mm.wins   &lt;- impute.zero(tc.profiles$Num.Wins)
-mm.top5   &lt;- impute.zero(tc.profiles$Num.Top.5)
-mm.top10  &lt;- impute.zero(tc.profiles$Num.Top.10)
-mm.best.rank  &lt;- tc.profiles$Best.Rank
-mm.rating     &lt;- tc.profiles$Rating
-
-ratings &lt;- data.frame(id=handle, mm.count, mm.rating
-            , mm.wins, mm.top5, mm.top10, mm.best.rank)
-
-
-# Check before merging
-index &lt;- which(!ratings$id %in% profiles$id)
-if (length(index)&gt;0) {
-  warning(sprintf(&quot;%i Unmatched handles in ratings&quot;, length(index)))
-#  cat(ratings$id[index])
+subs.consistent &lt;- function(x) {
+  x$system &lt;- impute.zero(x$system)
+  return(x)
 }
-index &lt;- which(!profiles$id %in% ratings$id)
-if (length(index)&gt;0) {
-  warning(sprintf(&quot;%i Unmatched handles in profiles&quot;, length(index)))
- # cat(profiles$id[index])
-}</code></pre>
-<pre><code>## Warning: 1 Unmatched handles in profiles</code></pre>
-<pre class="r"><code>if (any(table(profiles$id) != 1)) stop(&quot;Error profile ids!&quot;)
-if (any(table(ratings$id) != 1)) stop(&quot;Error ratings ids!&quot;)
 
-platform &lt;- merge(ratings, profiles, all=TRUE)</code></pre>
+subs &lt;- subs.consistent(subs.correct(subs.raw))
+summary(subs)</code></pre>
+<pre><code>##         handle         sub_id       provisional    
+##  jrsskumard: 126   Min.   :  1.0   Min.   :     0  
+##  all_random: 118   1st Qu.:  8.0   1st Qu.:791572  
+##  sas4eka   :  87   Median : 19.0   Median :806000  
+##  rado42    :  80   Mean   : 26.6   Mean   :777875  
+##  kubapb    :  79   3rd Qu.: 37.0   3rd Qu.:814107  
+##  psyho     :  58   Max.   :126.0   Max.   :846359  
+##  (Other)   :1211                                   
+##     sub_time                       room_id        system      
+##  Min.   :2015-03-08 12:54:25   Group 2E:242   Min.   :     0  
+##  1st Qu.:2015-03-12 06:38:14   Group 1E:176   1st Qu.:780240  
+##  Median :2015-03-14 10:05:17   Group 1H:144   Median :796091  
+##  Mean   :2015-03-13 19:12:06   Group 3F:138   Mean   :756281  
+##  3rd Qu.:2015-03-15 16:42:54   Group 2D:110   3rd Qu.:805177  
+##  Max.   :2015-03-16 11:59:45   Group 1C: 95   Max.   :843962  
+##                                (Other) :854</code></pre>
 </div>
-<div id="assigned-treatment" class="section level2">
-<h2>Assigned treatment</h2>
-<pre class="r"><code>handle.raw &lt;- assignment$handle
-handle.raw %&gt;% 
-    as.character %&gt;%
-    replace.pattern(&quot;@gmail.com&quot;, &quot;&quot;) %&gt;%
-    replace.pattern(&quot;avitella&quot;, &quot;Avitella&quot;) %&gt;%
-    replace.pattern(&quot;vidhyabhushan&quot;, &quot;vidhyabhushanv&quot;) %&gt;%
-    replace.pattern(&quot;vidhyabhushanvv&quot;, &quot;vidhyabhushanv&quot;) -&gt; handle
-
-room &lt;- factor(paste(&quot;Group &quot;, ifelse(assignment$treatment==&quot;race&quot;, &quot;1&quot;
-    , ifelse(assignment$treatment==&quot;tournament&quot;, &quot;2&quot;, &quot;3&quot;))
-    , toupper(letters[assignment$room_id]), sep=&quot;&quot;))
-treatment &lt;- factor(assignment$treatment)
-size &lt;- assignment$room_type_id
-levels(treatment) &lt;- capitalize(levels(treatment))
-assigned.treatment &lt;- data.frame(id=handle, room, treatment, size)</code></pre>
+<div id="assigned-treatments" class="section level2">
+<h2>Assigned treatments</h2>
+<pre class="r"><code>assign.correct &lt;- function(x) {
+  x$handle &lt;- standardize.handle(x$handle)
+  x$mmrating &lt;- NULL
+  return(x)
+}
+assign.consistent &lt;- function(x) {
+  x$room_id &lt;- factor(paste(&quot;Group &quot;, ifelse(x$treatment==&quot;race&quot;, &quot;1&quot;, ifelse(x$treatment==&quot;tournament&quot;, &quot;2&quot;, &quot;3&quot;)), toupper(letters[x$room_id]), sep=&quot;&quot;))
+  levels(x$treatment_id) &lt;- capitalize(levels(x$treatment_id))
+  return(x)
+}
+assignment &lt;- assign.consistent(assign.correct(assign.raw))
+summary(assignment)</code></pre>
+<pre><code>##        handle        treatment_id     room_id    room_type_id
+##  _kevin   :  1   Race      : 99   Group 1E: 15   Large:180   
+##  _romka_  :  1   Tournament:100   Group 1F: 15   Small:119   
+##  1101     :  1   Reserve   :100   Group 1G: 15               
+##  112atn323:  1                    Group 1H: 15               
+##  1957     :  1                    Group 2E: 15               
+##  a9108tc  :  1                    Group 2F: 15               
+##  (Other)  :293                    (Other) :209</code></pre>
 </div>
 <div id="merge-datasets" class="section level2">
 <h2>Merge datasets</h2>
-<pre class="r"><code># Functions
-merge.by.id &lt;- function(x, y) {
-  id.x &lt;- x$id
-  id.y &lt;- y$id
-  index &lt;- which(!id.x %in% id.y)
-  if (length(index)&gt;0) {
-    warning(sprintf(&quot;%i Unmatched handles in x dataset&quot;, length(index)))
-    cat(as.character(id.x[index]), sep='\n')
-    index &lt;- which(!id.y %in% id.x)
-    warning(sprintf(&quot;%i Unmatched handles in y dataset&quot;, length(index)))
-    cat(as.character(id.y[index]), sep='\n')
-  }
-  merge(x, y, by=&quot;id&quot;, all.x=TRUE)
+<pre class="r"><code>stopifnot(length(setdiff(assignment$handle, regdata$handle))==0) 
+newdata &lt;- merge(regdata, assignment, by='handle')
+if (length(setdiff(newdata$handle, svy.ini$handle))==0) {
+  newdata2 &lt;- merge(newdata, svy.ini, by=&quot;handle&quot;, suff=c(&quot;&quot;,&quot;.svy.ini&quot;))
+} else {
+  newdata2 &lt;- merge(newdata, svy.ini, by=&quot;handle&quot;, suff=c(&quot;&quot;,&quot;.svy.ini&quot;), all.x=TRUE)
 }
-agg &lt;- function(label, ...) {
-  z &lt;- aggregate(...)
-  colnames(z) &lt;- c(&quot;id&quot;, label)
-  return(z)
-}
+newdata3 &lt;- merge(newdata2, svy.end, by=&quot;handle&quot;, all.x=TRUE, suff=c(&quot;.svy.ini&quot;,&quot;.svy.end&quot;))
 
-assigned.treatment %&gt;% 
-    merge.by.id(platform) %&gt;% 
-    merge.by.id(initial.survey) %&gt;%
-    merge.by.id(final.survey) %&gt;% 
-    merge.by.id(agg('lastscore', f=subprov ~ id, d=scores, FUN=tail, n=1)) %&gt;%
-    merge.by.id(agg('nsub', f=subprov ~ id, d=scores, FUN=length)) -&gt; dat  </code></pre>
-<pre><code>## Warning in merge.by.id(., initial.survey): 19 Unmatched handles in x
-## dataset</code></pre>
-<pre><code>## 1957
-## a9108tc
-## cxz2004
-## dimkadimon
-## fujiyama
-## gkeesh7
-## ISMAX
-## k_k1
-## koyumeishi
-## lionelc
-## mak512
-## Nfcj000
-## Orisano
-## pooya_
-## Rajpurohit
-## RobinWang
-## vokie
-## yoshibo-
-## zhengqiang</code></pre>
-<pre><code>## Warning in merge.by.id(., initial.survey): 103 Unmatched handles in y
-## dataset</code></pre>
-<pre><code>## 1
-## 1123
-## ablasco
-## algoexpert
-## ansary
-## asmisha
-## atetubou
-## athought
-## boo
-## c_arty
-## c7d5a6 
-## carlop
-## CatalinT
-## Chola
-## christianworlda
-## cocodrips
-## ComputerGenie
-## crazygo
-## Cristy94
-## Dawit
-## Defh
-## desertstorm
-## dmpetrov
-## doudouille
-## eatingpeaches
-## Ecv
-## fivestarwy
-## gogsa
-## goocoder
-## GrantRVD
-## GreatOZ
-## gugu77
-## h0rm1
-## hadisotudeh1992
-## https://www.topcoder.com/
-## hulululu
-## i.am.charlie
-## imwilly37
-## insik92
-## ironhawks
-## Javajay
-## jeniroxy
-## Jk24
-## jnnoij
-## keyvankhademi
-## Kinematic
-## kliner
-## Lawliet
-## legend12s
-## m2cl3k
-## maxareo
-## metdos
-## misaxi
-## Moninf
-## Morojenoe
-## MYChien
-## myossy
-## Neo.subrata
-## nika
-## nofto
-## oKing
-## OUDON
-## oulric1
-## pawan91
-## pixroom
-## poundinc_tc
-## powerbirD
-## pradeep599
-## Proud2BACoug
-## puffring
-## purneshtripathi
-## rahulyadav.18
-## rb_next
-## ritesh_tiwary
-## Rizvanov_de_xXx
-## rnkavil
-## robinbg
-## rolandino
-## shin_taku
-## snixtho
-## Sobeonkey
-## spiderbatman
-## srivastu
-## starea
-## Steven_Huang
-## sutowo
-## t5.keeper
-## test
-## tokiru
-## torys
-## Venugra
-## vikasverma
-## vishfrnds
-## Wilxzzz
-## wleite
-## Wook.Song
-## wukejia
-## yamakic
-## yamkic
-## Yu-Cheng
-## zakharchuk
-## zhangyilun
-## znirzejskwarka</code></pre>
-<pre><code>## Warning in merge.by.id(., final.survey): 180 Unmatched handles in x dataset</code></pre>
-<pre><code>## 1101
-## 1957
-## aakinola
-## abundrew
-## adk90
-## air13
-## alazyrabbit
-## alex90
-## alexpeptan
-## alinionut.popa
-## an_ant
-## ananthhh
-## andresduque
-## AndyFang
-## antoshkaplus
-## antslag
-## aropan
-## ascii892
-## Avitella
-## azukun
-## Bankevich
-## Bargash
-## blu3fox
-## bluenet
-## bohuss
-## buraksrc
-## Cannon
-## caustique
-## chengweichi
-## chicapi
-## Chikov2
-## codercat
-## ctrucza
-## cup_of_tea
-## daga_sumit
-## defatigue
-## defh
-## delabourdonnais
-## dexy
-## dhbellol
-## dilip.thapa
-## dimonica
-## ecv
-## elder1g
-## eldidou
-## eofsentinel
-## F.L.K
-## f1zz0_13
-## Fdg
-## feather
-## fine_plain
-## fizzicks
-## gkeesh7
-## GoogleHireMe
-## gutoo
-## halyavin
-## haraduka
-## harshaneelhg
-## haveri
-## hired777
-## ichattopadhyaya
-## ichyo
-## Irioth
-## Ironhawks
-## ISMAX
-## ivan_metelsky
-## jaikamal
-## jasonw
-## JK24
-## Jumping John
-## jun22
-## k_k1
-## kamalkishor1991
-## kino
-## kit1980
-## klo86min
-## knighthunter
-## koyumeishi
-## kpoxa2l
-## ksma
-## kumar.virakta
-## kwrig
-## kyerise
-## LaguneXXX
-## lejosne
-## Liaksiejka
-## lizame2012
-## LOY
-## Lozy
-## ltda
-## m_dz
-## madbn
-## MahmoudAGawad
-## mak512
-## marchyoung
-## marek.cygan
-## marsavic
-## marshmallow
-## mateuszlewko
-## Matt_sjtu
-## mayoko
-## mcw1142
-## midrux
-## MIPT_Alex
-## MonicaMuranyi
-## mra
-## Mril284
-## mrmillers
-## mystic_coder
-## Neodym
-## neotheicebird
-## net_buster
-## Nfcj000
-## nhzp339
-## nic.lim55
-## nims11
-## OlexandrT
-## omu
-## onjanirina
-## Orisano
-## osev
-## ourtake
-## PaxosMyth
-## pedrosorio
-## pfr
-## pnomarev
-## pooya_
-## Ra16bit
-## Rajpurohit
-## ribeiro
-## Ritesh_Singh
-## RobinWang
-## RRx
-## rst9288
-## ryuwonha
-## sakaark
-## sampathkumarv
-## sasikanth9
-## Seip_meginu
-## SePulTribe
-## smel
-## sohel_uoa
-## StarCuriosity
-## stzgd
-## sukides
-## sweetkang
-## szd714
-## tbell
-## toshif
-## TrePe
-## ty70
-## unbing
-## V[i]ctor
-## vaa2804
-## Vardan(RAU)
-## VArt
-## Venug
-## vidhyabhushanv
-## Visoks
-## vitux
-## vokie
-## vss109
-## windhunterSB
-## xiaoruby
-## xin135
-## xsymphonyx
-## yangzhe1991
-## yannoj2
-## yaric_om
-## yassine12
-## YDesai
-## yedtoss
-## yfalah
-## ynasu
-## yoshibo-
-## yrtchn
-## zaq1xsw2tktk
-## zhanghanyuan
-## zhanyi658657
-## zhengqiang</code></pre>
-<pre><code>## Warning in merge.by.id(., final.survey): 6 Unmatched handles in y dataset</code></pre>
-<pre><code>## aaa
-## ka
-## mmenietti
-## op
-## yfalah 
-## zzzzzzz</code></pre>
-<pre><code>## Warning in merge.by.id(., agg(&quot;lastscore&quot;, f = subprov ~ id, d = scores, :
-## 213 Unmatched handles in x dataset</code></pre>
-<pre><code>## _Kevin
-## 1101
-## 1957
-## aakinola
-## abundrew
-## adk90
-## ahoenig
-## air13
-## alazyrabbit
-## alecn2002
-## alex90
-## alexpeptan
-## alinionut.popa
-## an_ant
-## AnandVeeramani
-## ananthhh
-## andresduque
-## AndyFang
-## antoshkaplus
-## antslag
-## aropan
-## ascii892
-## Avitella
-## azukun
-## Bankevich
-## Bargash
-## baseballnut
-## bdepwgjqet
-## blu3fox
-## bluenet
-## buraksrc
-## Cannon
-## cant_dance
-## caustique
-## cheaps
-## chicapi
-## Chikov2
-## Chmel_Tolstiy
-## codercat
-## codeshubh
-## ctrucza
-## cup_of_tea
-## d_jash
-## daga_sumit
-## danbanica
-## daviduarte
-## defatigue
-## defh
-## delabourdonnais
-## dexy
-## dhbellol
-## didi_baga
-## dilip.thapa
-## dimonica
-## DrWhatsisname
-## DuXSerbia
-## ecv
-## elder1g
-## eldidou
-## eofsentinel
-## Euniceadu
-## F.L.K
-## f1zz0_13
-## falanga
-## fazam
-## Fdg
-## feather
-## fine_plain
-## fizzicks
-## gkeesh7
-## gutoo
-## halyavin
-## haraduka
-## harshaneelhg
-## hired777
-## ichattopadhyaya
-## ichyo
-## Ironhawks
-## ISMAX
-## ivan_metelsky
-## izhari
-## jaikamal
-## jasonw
-## jbgeddes3
-## JK24
-## jonathanps
-## Jumping John
-## jun22
-## k_k1
-## kamalkishor1991
-## kazunetakahashi
-## Kenny_HORROR
-## kino
-## kit1980
-## knighthunter
-## kossi_tg
-## koyumeishi
-## kpoxa2l
-## ksma
-## kumar.virakta
-## kwrig
-## kyerise
-## LaguneXXX
-## lejosne
-## Liaksiejka
-## lizame2012
-## ll931110
-## ltda
-## m_dz
-## madbn
-## MahmoudAGawad
-## mak512
-## marchyoung
-## marsavic
-## marshmallow
-## martinezgjuan
-## mateuszlewko
-## Matt_sjtu
-## mayoko
-## mcw1142
-## midrux
-## MIPT_Alex
-## Mojito1
-## MonicaMuranyi
-## moriara
-## mra
-## Mril284
-## mrmillers
-## mystic_coder
-## Neodym
-## neotheicebird
-## net_buster
-## Nfcj000
-## nhzp339
-## nic.lim55
-## Nickolas
-## Nil_ct
-## nims11
-## NobuMiu
-## not_
-## OlexandrT
-## omu
-## onjanirina
-## Orisano
-## osev
-## ourtake
-## PaxosMyth
-## pedrosorio
-## pfilippi
-## pnomarev
-## pooya_
-## Ra16bit
-## Rajpurohit
-## ribeiro
-## Ritesh_Singh
-## RobinWang
-## RRx
-## rst9288
-## Rubanenko
-## sakaark
-## sampathkumarv
-## sasikanth9
-## Seip_meginu
-## SePulTribe
-## shilov
-## shivamsihare
-## smel
-## sohel_uoa
-## Sord
-## StarCuriosity
-## stzgd
-## sukides
-## sweetkang
-## szd714
-## T_I_W_A_R_Y
-## TahaMahmoud
-## Taquion
-## tau0
-## tbell
-## toshif
-## TrePe
-## trylar
-## TwCoder
-## ty70
-## Uchigle
-## unbing
-## V[i]ctor
-## vaa2804
-## Vardan(RAU)
-## VArt
-## vdave
-## Venug
-## vidhyabhushanv
-## Visoks
-## vitux
-## vokie
-## vss109
-## vuchko
-## windhunterSB
-## xiakunxian923
-## xin135
-## xsymphonyx
-## yangzhe1991
-## yannoj2
-## yassine12
-## YDesai
-## yedtoss
-## ynasu
-## zhanghanyuan
-## zhanyi658657
-## zhengqiang
-## Zimuk
-## zizo0003</code></pre>
-<pre><code>## Warning in merge.by.id(., agg(&quot;lastscore&quot;, f = subprov ~ id, d = scores, :
-## 0 Unmatched handles in y dataset</code></pre>
-<pre><code>## Warning in merge.by.id(., agg(&quot;nsub&quot;, f = subprov ~ id, d = scores, FUN =
-## length)): 213 Unmatched handles in x dataset</code></pre>
-<pre><code>## _Kevin
-## 1101
-## 1957
-## aakinola
-## abundrew
-## adk90
-## ahoenig
-## air13
-## alazyrabbit
-## alecn2002
-## alex90
-## alexpeptan
-## alinionut.popa
-## an_ant
-## AnandVeeramani
-## ananthhh
-## andresduque
-## AndyFang
-## antoshkaplus
-## antslag
-## aropan
-## ascii892
-## Avitella
-## azukun
-## Bankevich
-## Bargash
-## baseballnut
-## bdepwgjqet
-## blu3fox
-## bluenet
-## buraksrc
-## Cannon
-## cant_dance
-## caustique
-## cheaps
-## chicapi
-## Chikov2
-## Chmel_Tolstiy
-## codercat
-## codeshubh
-## ctrucza
-## cup_of_tea
-## d_jash
-## daga_sumit
-## danbanica
-## daviduarte
-## defatigue
-## defh
-## delabourdonnais
-## dexy
-## dhbellol
-## didi_baga
-## dilip.thapa
-## dimonica
-## DrWhatsisname
-## DuXSerbia
-## ecv
-## elder1g
-## eldidou
-## eofsentinel
-## Euniceadu
-## F.L.K
-## f1zz0_13
-## falanga
-## fazam
-## Fdg
-## feather
-## fine_plain
-## fizzicks
-## gkeesh7
-## gutoo
-## halyavin
-## haraduka
-## harshaneelhg
-## hired777
-## ichattopadhyaya
-## ichyo
-## Ironhawks
-## ISMAX
-## ivan_metelsky
-## izhari
-## jaikamal
-## jasonw
-## jbgeddes3
-## JK24
-## jonathanps
-## Jumping John
-## jun22
-## k_k1
-## kamalkishor1991
-## kazunetakahashi
-## Kenny_HORROR
-## kino
-## kit1980
-## knighthunter
-## kossi_tg
-## koyumeishi
-## kpoxa2l
-## ksma
-## kumar.virakta
-## kwrig
-## kyerise
-## LaguneXXX
-## lejosne
-## Liaksiejka
-## lizame2012
-## ll931110
-## ltda
-## m_dz
-## madbn
-## MahmoudAGawad
-## mak512
-## marchyoung
-## marsavic
-## marshmallow
-## martinezgjuan
-## mateuszlewko
-## Matt_sjtu
-## mayoko
-## mcw1142
-## midrux
-## MIPT_Alex
-## Mojito1
-## MonicaMuranyi
-## moriara
-## mra
-## Mril284
-## mrmillers
-## mystic_coder
-## Neodym
-## neotheicebird
-## net_buster
-## Nfcj000
-## nhzp339
-## nic.lim55
-## Nickolas
-## Nil_ct
-## nims11
-## NobuMiu
-## not_
-## OlexandrT
-## omu
-## onjanirina
-## Orisano
-## osev
-## ourtake
-## PaxosMyth
-## pedrosorio
-## pfilippi
-## pnomarev
-## pooya_
-## Ra16bit
-## Rajpurohit
-## ribeiro
-## Ritesh_Singh
-## RobinWang
-## RRx
-## rst9288
-## Rubanenko
-## sakaark
-## sampathkumarv
-## sasikanth9
-## Seip_meginu
-## SePulTribe
-## shilov
-## shivamsihare
-## smel
-## sohel_uoa
-## Sord
-## StarCuriosity
-## stzgd
-## sukides
-## sweetkang
-## szd714
-## T_I_W_A_R_Y
-## TahaMahmoud
-## Taquion
-## tau0
-## tbell
-## toshif
-## TrePe
-## trylar
-## TwCoder
-## ty70
-## Uchigle
-## unbing
-## V[i]ctor
-## vaa2804
-## Vardan(RAU)
-## VArt
-## vdave
-## Venug
-## vidhyabhushanv
-## Visoks
-## vitux
-## vokie
-## vss109
-## vuchko
-## windhunterSB
-## xiakunxian923
-## xin135
-## xsymphonyx
-## yangzhe1991
-## yannoj2
-## yassine12
-## YDesai
-## yedtoss
-## ynasu
-## zhanghanyuan
-## zhanyi658657
-## zhengqiang
-## Zimuk
-## zizo0003</code></pre>
-<pre><code>## Warning in merge.by.id(., agg(&quot;nsub&quot;, f = subprov ~ id, d = scores, FUN =
-## length)): 0 Unmatched handles in y dataset</code></pre>
-<pre class="r"><code>summary(dat)</code></pre>
-<pre><code>##          id            room          treatment      size    
-##  _Kevin   :  1   Group 1E: 15   Race      : 99   Large:180  
-##  _Romka_  :  1   Group 1F: 15   Tournament:100   Small:119  
-##  1101     :  1   Group 1G: 15   Reserve   :100              
-##  112atn323:  1   Group 1H: 15                               
-##  1957     :  1   Group 2E: 15                               
-##  a9108tc  :  1   Group 2F: 15                               
-##  (Other)  :293   (Other) :209                               
-##     mm.count       mm.rating       mm.wins         mm.top5    
-##  Min.   :  0.0   Min.   : 593   Min.   : 0.00   Min.   : 0.0  
-##  1st Qu.:  0.0   1st Qu.:1017   1st Qu.: 0.00   1st Qu.: 0.0  
-##  Median :  3.0   Median :1294   Median : 0.00   Median : 0.0  
-##  Mean   :  9.3   Mean   :1322   Mean   : 0.28   Mean   : 0.9  
-##  3rd Qu.: 11.0   3rd Qu.:1549   3rd Qu.: 0.00   3rd Qu.: 0.0  
-##  Max.   :128.0   Max.   :3030   Max.   :27.00   Max.   :56.0  
-##                  NA's   :89                                   
-##     mm.top10     mm.best.rank          country        msince          
-##  Min.   : 0.0   Min.   :  1   United States: 36   Min.   :2001-05-26  
-##  1st Qu.: 0.0   1st Qu.:  3   India        : 34   1st Qu.:2007-09-29  
-##  Median : 0.0   Median : 15   China        : 30   Median :2010-10-08  
-##  Mean   : 1.6   Mean   : 29   Japan        : 27   Mean   :2010-05-11  
-##  3rd Qu.: 1.0   3rd Qu.: 36   Russia       : 26   3rd Qu.:2013-04-01  
-##  Max.   :64.0   Max.   :413   Belarus      : 20   Max.   :2015-02-28  
-##                 NA's   :89    (Other)      :126                       
-##      badges        male                         age    
-##  Min.   : 0.0   Mode :logical   &lt;20 years old     :12  
-##  1st Qu.: 4.0   FALSE:13        20-25 years old   :94  
-##  Median : 8.0   TRUE :264       26-30 years       :78  
-##  Mean   :10.3   NA's :22        31-40 years       :65  
-##  3rd Qu.:15.0                   41-50 years       :19  
-##  Max.   :54.0                   51 years and above:11  
-##  NA's   :1                      NA's              :20  
-##                               educ        plang               work   
-##  Doctorate/PhD                  : 27   C#    : 27   employed    :64  
-##  High School                    : 34   C++   :133   university  :37  
-##  Postgraduate/Master of arts    :106   Java  : 83   student     :27  
-##  Undergraduate/Bachelor's degree:113   Other : 11   software    :26  
-##  NA's                           : 19   Python: 25   not employed:19  
-##                                        VB    :  1   (Other)     :92  
-##                                        NA's  : 19   NA's        :34  
-##          country.or        tz                         risk   
-##  India        : 33   1      : 49   7                    :59  
-##  Russia       : 29   2      : 38   8                    :44  
-##  China        : 27   8      : 31   5                    :42  
-##  Japan        : 22   5.5    : 28   6                    :34  
-##  United States: 19   9      : 28   10-completely willing:30  
-##  (Other)      :148   (Other):105   (Other)              :70  
-##  NA's         : 21   NA's   : 20   NA's                 :20  
-##      hweek1         hweek2         hweek3         hweek4    
-##  Min.   : 0.0   Min.   : 0.0   Min.   : 0.0   Min.   : 0.0  
-##  1st Qu.: 4.0   1st Qu.: 3.0   1st Qu.: 4.0   1st Qu.: 4.0  
-##  Median : 6.0   Median : 5.0   Median : 5.0   Median : 8.0  
-##  Mean   : 7.6   Mean   : 7.0   Mean   : 7.5   Mean   : 9.1  
-##  3rd Qu.:10.0   3rd Qu.: 9.8   3rd Qu.:10.0   3rd Qu.:11.5  
-##  Max.   :48.0   Max.   :48.0   Max.   :48.0   Max.   :48.0  
-##  NA's   :21     NA's   :21     NA's   :20     NA's   :21    
-##       lat             long            eweek1         eweek2    
-##  Min.   :-42.8   Min.   :-122.4   Min.   : 0.0   Min.   : 0.0  
-##  1st Qu.: 31.6   1st Qu.:  -0.9   1st Qu.: 1.0   1st Qu.: 0.0  
-##  Median : 40.4   Median :  27.6   Median : 2.0   Median : 2.0  
-##  Mean   : 36.7   Mean   :  25.2   Mean   : 3.9   Mean   : 3.5  
-##  3rd Qu.: 50.0   3rd Qu.:  79.7   3rd Qu.: 6.0   3rd Qu.: 4.0  
-##  Max.   : 59.9   Max.   : 149.1   Max.   :22.0   Max.   :32.0  
-##  NA's   :20      NA's   :20       NA's   :195    NA's   :195   
-##      eweek3         eweek4           pdouble           phalf    
-##  Min.   : 0.0   Min.   : 0.0   The same  : 50   The same  : 58  
-##  1st Qu.: 0.0   1st Qu.: 0.0   20% more  : 17   30% less  : 12  
-##  Median : 2.0   Median : 2.5   &gt; 50% more: 11   &gt; 50% less: 10  
-##  Mean   : 3.7   Mean   : 4.8   30% more  :  8   20% less  :  8  
-##  3rd Qu.: 6.0   3rd Qu.: 8.0   10% more  :  7   50% less  :  7  
-##  Max.   :28.0   Max.   :28.0   (Other)   : 10   (Other)   :  8  
-##  NA's   :195    NA's   :195    NA's      :196   NA's      :196  
-##                  hard                       risk2       lastscore     
-##  Difficult         : 28   7                    : 15   Min.   :     0  
-##  Very Difficult    : 22   10-completely willing: 14   1st Qu.:794085  
-##  Neutral           : 20   8                    : 10   Median :806417  
-##  Somewhat Difficult: 16   3                    :  9   Mean   :782797  
-##  Somewhat Easy     :  5   5                    :  9   3rd Qu.:814631  
-##  (Other)           :  1   (Other)              : 24   Max.   :846359  
-##  NA's              :207   NA's                 :218   NA's   :213     
-##       nsub      
-##  Min.   :  1.0  
-##  1st Qu.:  2.0  
-##  Median : 11.0  
-##  Mean   : 20.5  
-##  3rd Qu.: 27.8  
-##  Max.   :126.0  
-##  NA's   :213</code></pre>
-<pre class="r"><code>save(list=c(&quot;dat&quot;, &quot;scores&quot;), file=&quot;.RData&quot;)</code></pre>
+final.consistent &lt;- function(x) {
+  x$gender.svy.ini[is.na(x$gender.svy.ini)] &lt;- x$gender[is.na(x$gender.svy.ini)]
+  x$gender &lt;- x$gender.svy.ini
+  x$gender.svy.ini &lt;- NULL
+  
+  levels(x$age) &lt;- c(&quot;&lt;20&quot;, &quot;20 - 25&quot;,&quot;26 - 30&quot;, &quot;31 - 40&quot;, &quot;41 - 50&quot;, NA)
+  x$age.svy.ini[is.na(x$age.svy.ini)] &lt;-  x$age[is.na(x$age.svy.ini)]
+  x$age &lt;- x$age.svy.ini
+  x$age.svy.ini &lt;- NULL
+  
+  x$risk.svy.ini[is.na(x$risk.svy.ini)] &lt;-  x$risk.svy.end[is.na(x$risk.svy.ini)]
+  x$risk &lt;- x$risk.svy.ini
+  x$risk.svy.ini &lt;- NULL
+  x$risk.svy.end &lt;- NULL
+  ####
+  return(x)
+}
+dat &lt;- final.consistent(newdata3)
+summary(dat)</code></pre>
+<pre><code>##        handle     create_date                         country_name
+##  _kevin   :  1   Min.   :2001-05-26 00:00:00   India        : 36  
+##  _romka_  :  1   1st Qu.:2007-09-29 12:00:00   China        : 31  
+##  1101     :  1   Median :2010-10-08 00:00:00   United States: 31  
+##  112atn323:  1   Mean   :2010-05-10 22:31:06   Japan        : 27  
+##  1957     :  1   3rd Qu.:2013-04-01 12:00:00   Russia       : 26  
+##  a9108tc  :  1   Max.   :2015-02-28 00:00:00   Belarus      : 20  
+##  (Other)  :293                                 (Other)      :128  
+##    algorating     algoevents     mmrating       mmevents       algoreg   
+##  Min.   :   0   Min.   :  0   Min.   : 593   Min.   : 0.0   Min.   :  0  
+##  1st Qu.: 551   1st Qu.:  2   1st Qu.:1027   1st Qu.: 0.0   1st Qu.:  2  
+##  Median :1062   Median : 19   Median :1278   Median : 2.0   Median : 20  
+##  Mean   :1051   Mean   : 41   Mean   :1322   Mean   : 7.2   Mean   : 46  
+##  3rd Qu.:1533   3rd Qu.: 52   3rd Qu.:1566   3rd Qu.: 9.0   3rd Qu.: 60  
+##  Max.   :2958   Max.   :338   Max.   :3071   Max.   :91.0   Max.   :365  
+##                               NA's   :94                                 
+##      mmreg            totalpayments      age         gender   
+##  Min.   :  1.0   0           :160   &lt;20    : 13   Female: 13  
+##  1st Qu.:  3.0   1 - 599     : 35   20 - 25:104   Male  :283  
+##  Median :  9.0   600 - 4500  : 34   26 - 30: 81   NA's  :  3  
+##  Mean   : 17.6   4500 - 37000: 35   31 - 40: 66               
+##  3rd Qu.: 25.0   &gt;37000      : 35   41 - 50: 20               
+##  Max.   :161.0                      &gt;50    : 11               
+##                                     NA's   :  4               
+##      treatment_id     room_id    room_type_id status.svy.ini
+##  Race      : 99   Group 1E: 15   Large:180    Min.   :0.00  
+##  Tournament:100   Group 1F: 15   Small:119    1st Qu.:0.00  
+##  Reserve   :100   Group 1G: 15                Median :0.00  
+##                   Group 1H: 15                Mean   :0.23  
+##                   Group 2E: 15                3rd Qu.:0.00  
+##                   Group 2F: 15                Max.   :8.00  
+##                   (Other) :209                NA's   :19    
+##  startdate.svy.ini             enddate.svy.ini              
+##  Min.   :2015-03-02 12:30:46   Min.   :2015-03-02 12:31:38  
+##  1st Qu.:2015-03-03 02:34:52   1st Qu.:2015-03-03 02:48:37  
+##  Median :2015-03-03 13:01:35   Median :2015-03-03 13:35:18  
+##  Mean   :2015-03-03 22:25:27   Mean   :2015-03-03 22:41:28  
+##  3rd Qu.:2015-03-04 21:41:37   3rd Qu.:2015-03-04 21:45:31  
+##  Max.   :2015-03-05 18:01:02   Max.   :2015-03-05 18:03:12  
+##  NA's   :19                    NA's   :19                   
+##  finished.svy.ini             educ        plang         job           
+##  Mode :logical    Ph.D.         : 27   C#    : 27   Length:299        
+##  FALSE:1          High School   : 34   C++   :133   Class :character  
+##  TRUE :279        Master of Arts:106   Java  : 83   Mode  :character  
+##  NA's :19         Bachelor      :113   Other : 11                     
+##                   NA's          : 19   Python: 25                     
+##                                        VB    :  1                     
+##                                        NA's  : 19                     
+##        country_origin    timezone         ahead1         ahead2  
+##  India        : 33    Min.   :-8.00   Min.   : 0.0   Min.   : 0  
+##  Russia       : 29    1st Qu.: 1.00   1st Qu.: 4.0   1st Qu.: 3  
+##  China        : 27    Median : 2.00   Median : 6.0   Median : 5  
+##  Japan        : 22    Mean   : 2.13   Mean   : 7.6   Mean   : 7  
+##  United States: 19    3rd Qu.: 5.50   3rd Qu.:10.0   3rd Qu.:10  
+##  (Other)      :148    Max.   :10.00   Max.   :48.0   Max.   :48  
+##  NA's         : 21    NA's   :20      NA's   :20     NA's   :20  
+##      ahead3         ahead4          lat             long       
+##  Min.   : 0.0   Min.   : 0.0   Min.   :-42.8   Min.   :-122.4  
+##  1st Qu.: 4.0   1st Qu.: 4.0   1st Qu.: 31.6   1st Qu.:  -0.9  
+##  Median : 5.0   Median : 8.0   Median : 40.4   Median :  27.6  
+##  Mean   : 7.5   Mean   : 9.1   Mean   : 36.7   Mean   :  25.2  
+##  3rd Qu.:10.0   3rd Qu.:12.0   3rd Qu.: 50.0   3rd Qu.:  79.7  
+##  Max.   :48.0   Max.   :48.0   Max.   : 59.9   Max.   : 149.1  
+##  NA's   :20     NA's   :20     NA's   :20      NA's   :20      
+##  status.svy.end startdate.svy.end            
+##  Min.   :0      Min.   :2015-03-17 16:42:44  
+##  1st Qu.:0      1st Qu.:2015-03-17 18:01:09  
+##  Median :0      Median :2015-03-18 03:36:34  
+##  Mean   :0      Mean   :2015-03-19 18:52:40  
+##  3rd Qu.:0      3rd Qu.:2015-03-23 18:01:04  
+##  Max.   :0      Max.   :2015-03-27 05:23:28  
+##  NA's   :179    NA's   :179                  
+##  enddate.svy.end               finished.svy.end     hours1   
+##  Min.   :2015-03-17 16:46:08   Mode :logical    Min.   : 0   
+##  1st Qu.:2015-03-17 18:05:57   FALSE:17         1st Qu.: 1   
+##  Median :2015-03-18 03:39:00   TRUE :103        Median : 2   
+##  Mean   :2015-03-19 19:13:54   NA's :179        Mean   : 4   
+##  3rd Qu.:2015-03-23 18:05:16                    3rd Qu.: 6   
+##  Max.   :2015-03-27 05:23:38                    Max.   :22   
+##  NA's   :179                                    NA's   :190  
+##      hours2         hours3         hours4     hours_prize_double
+##  Min.   : 0.0   Min.   : 0.0   Min.   : 0    The same  : 51     
+##  1st Qu.: 0.0   1st Qu.: 0.0   1st Qu.: 0    20% more  : 17     
+##  Median : 2.0   Median : 2.0   Median : 2    &gt; 50% more: 12     
+##  Mean   : 3.7   Mean   : 3.8   Mean   : 5    30% more  :  9     
+##  3rd Qu.: 5.0   3rd Qu.: 6.0   3rd Qu.: 8    10% more  :  8     
+##  Max.   :32.0   Max.   :28.0   Max.   :28    (Other)   : 11     
+##  NA's   :190    NA's   :190    NA's   :190   NA's      :191     
+##    hours_prize_half  approaches                    hard_target 
+##  The same  : 59     Length:299         Difficult         : 30  
+##  30% less  : 12     Class :character   Very Difficult    : 24  
+##  &gt; 50% less: 11     Mode  :character   Neutral           : 22  
+##  20% less  :  8                        Somewhat Difficult: 16  
+##  50% less  :  8                        Somewhat Easy     :  5  
+##  (Other)   : 10                        (Other)           :  1  
+##  NA's      :191                        NA's              :201  
+##     racing           tshirt         risk      
+##  Length:299         2XL :  3   Min.   : 1.00  
+##  Class :character   L   : 28   1st Qu.: 5.00  
+##  Mode  :character   M   : 34   Median : 7.00  
+##                     S   :  6   Mean   : 6.39  
+##                     XL  : 23   3rd Qu.: 8.00  
+##                     NA's:205   Max.   :10.00  
+##                                NA's   :15</code></pre>
+<pre class="r"><code>db &lt;- c(&quot;dat&quot;, &quot;subs&quot;)
+save(list=db, file=&quot;.RData&quot;)</code></pre>
 </div>
 </div>
 

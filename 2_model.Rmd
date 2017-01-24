@@ -1,10 +1,16 @@
 The model
 ==============
 
-def: A contest is a N player game. Players move simultaneously and select a performance variable $y_i$  (the xxxx in performing a task) and a timing $t_i$ (to complete a task), both being nonnegative numbers. Players are ranked according to their choices and a player's rank is given by the function $r_i(y_1,...y_N, t_1, ..., t_N)$. The top $K$ ranked players (e.g., $r_i<K$) are awarded a prize of value $V_1 > V_2 > ... > V_K$.
+We generalize the contest game described by @moldovanu2001optimal to a situation where $N$ players decide how much effort to provide along two dimensions: performance and time.  The contest game is an N player game with asymmetric information. Players move simultaneously to maximize the expected utility. Each player $i=1, 2, ..., N$ selects a performance variable $y_i$ and a timing $t_i$, both being nonnegative numbers. These variables can be thought of as the accuracy of a solution to a given problem and the time to write the code implementing such solution. Players incur a cost from effort given by the function
+\begin{equation}
+  C_i(y_i, t_i) = \frac{1}{a_i} c(y_i, t_i)
+\end{equation}
+where the function $c(\cdot)$ is xxxx. The cost parameter $a_i$ denotes the player's ability, which is privately observed at the beginning of the game. It is common knowledge that abilities are drawn from a common distribution $F$ that is continuous on the semi-infinite interval $[0,\infty)$ (e.g., exponential).  
+
+Let $r_i$ denote the rank position of a player $i$ relative to the $N-1$ others. The top $K$ players (e.g., $r_i\leq K$) are awarded a prize of value $V_1 > V_2 > ... > V_K$. A player's probability of winning a prize is given by the function $p_i(y_1,...y_N, t_1, ..., t_N)$. 
 
 
-The goal for each player is to maximize the expected utility. If the timing is above a given deadline $d>0$ or the performance is below a certain level $q>0$, the player gets zero utility. Otherwise, the player is given a rank based on his performance and timing. 
+The goal for each player is If the timing is above a given deadline $d>0$ or the performance is below a certain level $q>0$, the player gets zero utility. Otherwise, the player is given a rank based on his performance and timing. 
  A contest is xxxx. Ranked . 
 
 def: A tournament is a xxxx where players are ranked by their performance level provided that the timing is below a deadline $d$.
@@ -41,7 +47,7 @@ $$\begin{array}{ll}
     \mbox{maximize} & \sum_{j=1}^k \Pr(\text{ranked $j$'th}) V_j  - C(y_i, t_i, a_i).
   \end{array}$$
 
-### Equilibrium in a tournament
+### Equilibrium
 
 We provide here the symmetric equilibrium with one prize and $n>2$
 agents. In appendix XXX, we provide a general formula for $k>2$ prizes.
@@ -86,7 +92,7 @@ Equilibrium behavior in a race
 
 </div>
 
-### The expected revenues for the sponsor of the contest
+### Contest designer's problem
 
 The sponsor of the contest chooses the rules of the competition
 including prize structure $\{V_j\}_{j=1}^k$, deadline $d$, target

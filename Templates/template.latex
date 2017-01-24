@@ -28,6 +28,7 @@ $endif$
 
 
 % Tables
+\usepackage{dcolumn}
 \usepackage{array,booktabs,longtable,rotating}
 \newenvironment{tablenotes}[1][]{
   \begin{minipage}{\textwidth}\emph{Notes:}{\footnotesize #1}

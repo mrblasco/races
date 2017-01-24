@@ -6,8 +6,80 @@ diff.days <- function(time1, time2, ...) {
 Total <- function(x) sum(x)
 ```
 
-Empirical analysis
-===================
+Results
+=======
+
+
+```{r, echo=FALSE}
+# Weeks at the start of the competition
+start_date <- as.Date("2016-03-02")
+as.numeric(difftime(start_date, dat$create_date))/7 -> week_diff
+
+# Past competitions (experience)
+quantile(dat$mmevents, p=c(0.1, 0.9)) -> rounds_qtl
+
+# Individual ratings (skills)
+quantile(dat$mmrating, p=c(0.1, 0.9), na.rm=TRUE) -> rating_qtl
+```
+
+A total of xxxx registered but only `r nrow(dat)` competitors were selected for the challenge; we excluded those with no past experience on the platform and those with incomplete data on the survey. Signed up competitors were experienced members of the platform: the overall time as registered platform member at the start of the competition ranged between `r min(week_diff)` and `r max(week_diff)` weeks. Yet, the direct experience in competing was highly skewed with competitors in the highest 90th percentile having participated in `r diff(rounds_qtl)` more competitions than those in the 10th percentile. Likewise skills as measured by the individual ratings, if there was one, had a skewed distribution with `r round(diff(rating_qtl))` higher points than those in the 10th percentile; see Figure \ref{eq: distribution experience}. 
+
+```{r}
+dat$submit <- dat$handle %in% subs$handle
+
+nsub <- tapply(subs$sub_id,subs$handle, max)
+```
+
+After the two-week submission period, `r sum(dat$submit, na.rm=TRUE)` competitors made `r nrow(subs)` submissions overall. The distribution of submissions was rather skewed, with participants in the 90th percentile making `r diff(quantile(nsub, p=c(0.1, 0.9)))` more submissions than those in the 10th percentile. 
+
+Assuming the decision was independent, to explore the determinants of participation: 
+
+\begin{equation}
+  Pr(y=1) = G(\text{Rating}_{i} + \text{Experience}_{i} + \text{T}_{i})
+\end{equation}
+
+where $G()$ is logistic.
+
+```{r}
+ilogit <- function(x) exp(x) / (1+ exp(x))
+dat$mmrating[is.na(dat$mmrating)]<-0
+
+fit <- rep()
+fit$m1 <- glm(submit ~ poly(mmevents, deg=3), data=dat, family='binomial')
+fit$m2 <- glm(submit ~ poly(mmevents, deg=2) + poly(mmrating, deg=2), data=dat, family='binomial')
+fit$m3 <- glm(submit ~ poly(mmevents, deg=2) + poly(mmrating, deg=2) + lat + long, data=dat, family='binomial')
+stargazer(fit, type='text')
+
+anova(fit$m3, test="Chisq") 
+
+#best.model <- fit$m3
+#plot(jitter(ifelse(dat$submit, 1, 0)) ~ predict(best.model), pch=4, yaxt="n", #col=ifelse(predict(best.model)>0, 2, 1))
+#points(ilogit(predict(fit$m2)) ~  predict(fit$m2), pch=16)
+#abline(h=c(0,1))
+```
+
+This result does not seem to correlate well with the competitor's experience or skills, as the Pearsons's correlation coefficient between the count of past competitions or the rating and the count of submissions is positive but generally low; see Table XXX. Thus, differences in submissions appear idiosyncratic and perhaps related to the way to organize the work rather than systematically associated with underlying differences in experience or skills.
+
+```{r}
+#cor(dat[, c("nsub", "mm.rating", "mm.count")], use='pairwise.complete.obs')
+```
+
+The timing of submissions was rather uniform during the submission period with a peak of submissions made in the last of the competition. (explain more) 
+
+```
+#scores$submax <- ave(subs$sub_id, subs$handle, FUN=max)
+#par(mfrow=c(2, 1), mar=c(4,4,2,2))
+#plot(subid==1 ~ as.POSIXct(subts), data=scores, type='h', yaxt='n'
+#    , xlab='', ylab='', main='Dispersion time first submission')
+#plot(subid==submax ~ as.POSIXct(subts), data=scores, type='h'
+#    , yaxt='n', xlab='', ylab='', main='Dispersion time last submission')
+```
+
+
+Scores:  xxxx
+ 
+
+
 
 Treatment differences
 ------------------------
@@ -15,27 +87,27 @@ Treatment differences
 Difference in participation by treatments are show in Table XX. 
 
 ```{r, results='asis'}
-entry <- ifelse(!is.na(dat$nsub),"Submission", "No submission")
-tab <- table(dat$treatment, entry)
-# fisher.test(tab)
+dat$submit <- dat$handle %in% subs$handle
+tab <- table(dat$treatment_id, dat$submit)
+fisher.test(tab)
 # xtable(addmargins(tab, FUN=Total), digits=0)
 ```
 
 We find no differences in the room size. 
 
 ```{r, results='asis'}
-tab <- table(dat$size, !is.na(dat$nsub))
-#fisher.test(tab)
+tab <- table(dat$room_type, dat$submit)
+fisher.test(tab)
 #xtable(addmargins(tab, FUN=Total), digits=0)
 ```
 
 Ex-post
 
 ```{r}
-boxplot(dat$lastscore ~ dat$treatment, outline=FALSE, notch=TRUE)
-scores.by.room <- with(dat, tapply(lastscore, room, max, na.rm=TRUE))
-plot(sort(scores.by.room), pch='.')
-text(sort(scores.by.room), gsub("Group ", "",names(scores.by.room)))
+#boxplot(dat$lastscore ~ dat$treatment, outline=FALSE, notch=TRUE)
+#scores.by.room <- with(dat, tapply(lastscore, room, max, na.rm=TRUE))
+#plot(sort(scores.by.room), pch='.')
+#text(sort(scores.by.room), gsub("Group ", "",names(scores.by.room)))
 ```
 
 Timing: early vs late
@@ -59,7 +131,7 @@ Participation to the competition by treatment is shown in Figure \ref{fig:entry}
 Table xxx
 ```
 
-We find that the propensity to make a submission is higher in the Tournament than in the Race and in the Tournament with reserve, but the difference is not statistically significant (a Fisher's exact test gives a p-value of ` round(fisher.test(nsub.tab)$p.val,3)`). As discussed in Section XXX, we may not have enough power to detect differences below 5 percentage points. However, we find the same not-significant result in a parametric regression analysis of treatment differences with controls for the demographics and past experience on the platform; see Table \ref{entry}. Adding individual covariates reduces variability of outcomes, potentially increasing the power of our test.  In particular, Table \ref{entry} reports the results from a logistic regression on the probability of making a submissions. Column 1 reports the results from a baseline model with only treatment dummies. Column 2 adds demographics controls, such as the age, education, and gender. Column 3 adds controls for the past experience on the platform. Across all these specifications, the impact of the treatment dummies (including room size) on entry is not statistically significant. 
+We find that the propensity to make a submission is higher in the Tournament than in the Race and in the Tournament with reserve, but the difference is not statistically significant (a Fisher's exact test gives a p-value of xxxxx). As discussed in Section XXX, we may not have enough power to detect differences below 5 percentage points. However, we find the same not-significant result in a parametric regression analysis of treatment differences with controls for the demographics and past experience on the platform; see Table \ref{entry}. Adding individual covariates reduces variability of outcomes, potentially increasing the power of our test.  In particular, Table \ref{entry} reports the results from a logistic regression on the probability of making a submissions. Column 1 reports the results from a baseline model with only treatment dummies. Column 2 adds demographics controls, such as the age, education, and gender. Column 3 adds controls for the past experience on the platform. Across all these specifications, the impact of the treatment dummies (including room size) on entry is not statistically significant. 
 
 
 Simulation results
@@ -93,7 +165,7 @@ wins.
 We find that the propensity to make a submission is higher in the
 Tournament than in the Race and in the Tournament with reserve, but the
 difference is not statistically significant (a Fisher’s exact test gives
-a p-value of `r round(fisher.test(nsub.tab)$p.val,3)`). As discussed in
+a p-value of xxxx). As discussed in
 Section XXX, we may not have enough power to detect differences below 5
 percentage points. However, we find the same not-significant result in a
 parametric regression analysis of treatment differences with controls

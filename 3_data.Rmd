@@ -1,100 +1,59 @@
-The field experiment
+The experimental design
 =====================
 
-The context and experimental design
---------------------------------------------
+The field experiment was conducted between March 2 and 16, 2016. The context of the experiment was an online programming contest where participants compete writing a programming code that solves a designated problem. Similar programming contests are quite common and either as a tournament or a race competition.
 
-The field experiment was conducted in the context of an online programming competition run between March 2 and 16, 2016. A programming competition involves contestants writing source code to solve designated problems in a given period of time. These programming competitions are quite common (xxxx) and there are examples where the competition was a tournament (xxxx) --- so the timing is not important --- but also examples where it was a race such as the popular Netflix Prize where the first competitor team to do xxxx was awarded a $1M prize. 
-
-The competition was hosted on the platform Topcoder.com. Since its launch in 2001, Topcoder.com administers on a weekly basis several competitive programming contests for thousands of competitors from all over the world. Typical assigned problems are data science problems (e.g., classification, prediction, natural language processing) that demand some background in machine learning and statistics. All Topcoder members (about 1M registered users in 2016) can compete and attain a "rating" that provides a metric of their ability as contestants. Other than attaining a rating, the competitors having made the top five submissions in a competition are typically awarded a monetary prize the extent of which depends on the nature and complexity of the problem but is generally between $5,000 and $20,000.
+The contest was hosted on the online platform Topcoder.com. Since its launch in 2001, Topcoder.com administers on a weekly basis several competitive programming contests for thousands of competitors from all over the world. Typical assigned problems are data science problems (e.g., classification, prediction, natural language processing) that demand some background in machine learning and statistics. All Topcoder members (about 1M registered users in 2016) can compete and attain a "rating" that provides a metric of their ability as contestants. Other than attaining a rating, the competitors having made the top five submissions in a competition are typically awarded a monetary prize the extent of which depends on the nature and complexity of the problem but is generally between $5,000 and $20,000.
 
 In this study, we worked together with researchers from the United States National Health Institute (NIH) and the Scripps Research Institute (SCRIPPS) to select a challenging problem for the experimental programming competition. The selected problem was based on an algorithm called BANNER built by NIH [@leaman2008banner] that uses expert labeling to annotate abstracts from a prominent life sciences and biomedical search engine, PubMed, so disease characteristics can be more easily identified. The goal of the programming competition was to improve upon the current NIH's system by using a combination of expert and non-expert labeling, as described by @good2014microtask.
 
-The competition was announced on the platform and to all community members via email. A preliminary online registration was required to enroll in the competition, which resulted in xxxx pre-registered participants. Among the xxx pre-registered members, we selected the 299 with previous experience xxxx. This choice was to ensure xxxx.  
+The competition was announced on the platform and to all community members via email. A preliminary online registration was required to enroll in the competition, which resulted in 340 pre-registered participants. Among the pre-registered members, we selected the 299 who had registered to a programming contest at least once before the present contest. This choice was to ensure that participants were xxxx.
 
-The competitors were then randomly assigned to separate groups of 10 or 15 people and placed into different "virtual rooms." In each of these rooms, contestants were given access to a private web page listing all other competitors in the same room, a leaderboard updated regularly during the competition, and a common chat that they can use to ask clarifying questions about the contest setup or the problem. The problem was as described above. It was the same for everyone in every virtual room. Competitors had a deadline of 8 days to submit their computer programs. Each submission was automatically scored and feedback in the form of preliminary scores was published regularly on the website via the leaderboard.
+Participants were then randomly assigned to separate groups of 10 or 15 people. In each of these groups, contestants were given access to a "virtual room" that is a private web page listing handles of the other participants of the group, a leaderboard updated regularly during the competition, and a common chat that they can use to ask clarifying questions (visible to everyone in the group) with respect to the problem at hand. 
 
-These virtual rooms were then randomly assigned to one of three different competitive settings: a race, a tournament, and a tournament with a "reserve score," which is the lowest acceptable by the platform for a submission to be awarded a prize. The experimental design is summarized by the Table XXXX.
+A problem statement containing a full description of the algorithmic challenge, the rules of the game, and payoffs was published at the beginning of the submission phase. The submission phase was of 8 days in which participants could submit their computer programs. Each submission was automatically scored and feedback in the form of preliminary scores was published regularly on the website via the leaderboard.
+
+Groups were randomly assigned to one of three different competitive settings: a race, a tournament, and a tournament with a _reserve target_, which is the lowest acceptable score by the platform for a submission to be awarded a prize. 
+
+The experimental design is summarized by the Table XXXX.
 
 ```{r experimental-design, results='asis'}
-dat$room_size <- ave(1:nrow(dat), dat$room, FUN=length)
-tab <- table(dat$treatment, ifelse(dat$room_size==15, "Large", "Small"))
+tab <- table(dat$treatment, dat$room_type)
 render.table(tab, "Experimental design", "tab: experimental design")
 ```
 
-Monetary payoffs were the same in all groups: the first placed competitor was awarded a prize of $1,000, and an additional, consolatory prize of $100 was awarded to the second one. In a race, the first to achieve a score equal to xxxx was placed first. In a tournament, xxxx. And in a tournament with minimum quality requirement, xxxx. Grand prizes of xxxx were awarded to the top xxx in every treatment. 
+In all groups, the first placed competitor was awarded a prize of $1,000, and an additional, consolatory prize of $100 was awarded to the second one. 
 
-  
+In a race competition, however, the first to achieve a score equal to xxxx was placed first. The level was chosen xxxx. 
+
+In a tournament, xxxx. 
+
+Finally, in a tournament with reserve,  xxxx. 
+
+Additional grand prizes of xxxx were awarded to the top xxx in every treatment.
+
 Data
 ---------
 
-Individual data about each competitor were obtained from the online web profile on the platform. This profile typically includes when the member registered to the platform,  the current rating, the number of past competitions, and so on. Additional personal information,  was collected via a mandatory initial and a final survey.  In the initial survey, registered competitors were asked basic demographics, including a measure of risk aversion. They were also asked to forecast the number of hours they would be able to spend competing in the next few days (the exact question was: "looking ahead xxxx").  In the final survey, they were asked to look back and tell us their best estimate of the time spent working on the problem.
+The bulk of our data comes from the online Topcoder's profile of each participant. This profile typically includes information of when the member registered to the platform,  the current rating in a variety of different competitions, the number of past competitions, and so on. Additional demographic information,  was collected via a  pre-registration survey where competitors were asked to state their gender, age, geographic origin, etc. Participants were als also asked a self-reported measure of risk aversion [xxx] and to forecast how many hours they expected to compete in the next few days of the challenge(the exact question was: "looking ahead xxxx").  
 
+Finally, we also asked participants to respond to a survey at the end of the submission phase. In this final survey, they were asked to look back and tell us their best estimate of the time spent working on the problem. Also, we gathered comments on the xxx. And questions such as xxxx. 
 
-```{r, echo=FALSE}
-# Weeks at the start of the competition
-start_date <- as.Date("2016-03-02")
-difftime(start_date, dat$msince)/7 -> week_diff
+Table XXX summarizes the data. 
 
-# Past competitions (experience)
-quantile(dat$mm.count, p=c(0.1, 0.9)) -> rounds_qtl
-
-# Individual ratings (skills)
-quantile(dat$mm.rating, p=c(0.1, 0.9), na.rm=TRUE) -> rating_qtl
-
+```{r, results='asis'}
+select <- c("Algo rating"="algorating"
+          , "Algo competitions"="algoevents"
+          , "Algo registrations"="algoreg"
+          , "MM rating"="mmrating"
+          , "MM competitions"="mmevents"
+          , "MM registrations"="mmreg"
+          , "Time zone"="timezone"
+          , "Latitude"="lat"
+          , "Longitude"="long"
+          , "Risk aversion"="risk"
+)
+stargazer(dat[, select], header=FALSE, title='Descriptive statistics', align=TRUE, covariate.labels=names(select))
+# HERE TABLE Summary statistics!
 ```
-
-A total of xxxx registered but only `r nrow(dat)` competitors were selected for the challenge; we excluded those with no past experience on the platform and those with incomplete data on the survey. Signed up competitors were experienced members of the platform: the overall time as registered platform member at the start of the competition ranged between `r min(week_diff)` and `r max(week_diff)` weeks. Yet, the direct experience in competing was highly skewed with competitors in the highest 90th percentile having participated in `r diff(rounds_qtl)` more competitions than those in the 10th percentile. Likewise skills as measured by the individual ratings, if there was one, had a skewed distribution with `r round(diff(quantile(dat$mm.rating, p=c(0.1, 0.9), na.rm=TRUE)))` higher points than those in the 10th percentile; see Figure \ref{eq: distribution experience}. 
-
-After the two-week submission period, `r sum(dat$nsub>0, na.rm=TRUE)` competitors made `r sum(dat$nsub, na.rm=TRUE)` submissions overall. The distribution of submissions was rather skewed, with participants in the 90th percentile making `r diff(quantile(dat$nsub, p=c(0.1, 0.9), na.rm=TRUE))` more submissions than those in the 10th percentile. 
-
-Assuming the decision was independent, to explore the determinants of participation: 
-
-\begin{equation}
-  Pr(y=1) = G(\text{Rating}_{i} + \text{Experience}_{i} + \text{T}_{i})
-\end{equation}
-
-where $G()$ is logistic.
-
-```{r}
-ilogit <- function(x) exp(x) / (1+ exp(x))
-dat$nsub[is.na(dat$nsub)] <- 0
-dat$mm.rating2 <- with(dat, ifelse(is.na(mm.rating), 0, mm.rating))
-dat$mm.rating2 <- dat$mm.rating2 /100
-dat$msince2 <- as.numeric(dat$msince)
-dat$badges[is.na(dat$badges)] <- 0
-
-fit <- rep()
-fit$m1 <- glm(nsub>0 ~ poly(mm.count, deg=2), data=dat, family='binomial')
-fit$m2 <- glm(nsub>0 ~ poly(mm.count, deg=2)  + mm.rating2, data=dat, family='binomial')
-fit$m3 <- glm(nsub>0 ~ poly(mm.count, deg=2) + poly(mm.rating2, deg=2) + poly(msince2, deg=3) + poly(mm.top10, deg=2) + poly(badges, deg=2), data=dat, family='binomial')
-
-anova(fit$m3, test="Chisq") # 
-# e.g., Diff in prob is 7 pp increase for a guy with 10 more mm counts.
-
-plot(jitter(ifelse(dat$nsub>0, 1, 0)) ~ predict(fit$m3), pch=4, yaxt="n", col=ifelse(predict(fit$m3)>0, 2, 1))
-points(ilogit(predict(fit$m3)) ~  predict(fit$m3), pch=16)
-abline(h=c(0,1))
-```
-
-This result does not seem to correlate well with the competitor's experience or skills, as the Pearsons's correlation coefficient between the count of past competitions or the rating and the count of submissions is positive but generally low; see Table XXX. Thus, differences in submissions appear idiosyncratic and perhaps related to the way to organize the work rather than systematically associated with underlying differences in experience or skills.
-
-```{r}
-cor(dat[, c("nsub", "mm.rating", "mm.count")], use='pairwise.complete.obs')
-```
-
-The timing of submissions was rather uniform during the submission period with a peak of submissions made in the last of the competition. (explain more) 
-
-```
-scores$submax <- ave(scores$subid, scores$id, FUN=max)
-par(mfrow=c(2, 1), mar=c(4,4,2,2))
-plot(subid==1 ~ as.POSIXct(subts), data=scores, type='h', yaxt='n'
-    , xlab='', ylab='', main='Dispersion time first submission')
-plot(subid==submax ~ as.POSIXct(subts), data=scores, type='h'
-    , yaxt='n', xlab='', ylab='', main='Dispersion time last submission')
-```
-
-
-Scores:  xxxx
- 
 

@@ -53,7 +53,7 @@ select <- c("Algo rating"="algorating"
           , "Longitude"="long"
           , "Risk aversion"="risk"
 )
-stargazer(dat[, select], header=FALSE, title='Descriptive statistics', align=TRUE, covariate.labels=names(select))
+stargazer(dat[, select], header=FALSE, title='Descriptive statistics', align=TRUE, covariate.labels=names(select), digits=1)
 # HERE TABLE Summary statistics!
 ```
 

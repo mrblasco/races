@@ -21,6 +21,12 @@
   rent-seeking, innovation, and patent-race games,'' {\it Games and Economic
   Behavior}, 2003, {\it 44} (2), 217--226.
 
+\harvarditem[Bimpikis et al.]{Bimpikis, Ehsani and
+  Mostagir}{2014}{bimpikis2014designing}
+{\bf Bimpikis, Kostas, Shayan Ehsani, and Mohamed Mostagir}, ``Designing
+  dynamic contests,'' Technical Report, Working paper, Stanford University
+  2014.
+
 \harvarditem[Che and Gale]{Che and Gale}{2003}{che2003optimal}
 {\bf Che, Yeon-Koo and Ian Gale}, ``Optimal design of research contests,'' {\it
   The American Economic Review}, 2003, {\it 93} (3), 646--671.
@@ -52,6 +58,15 @@
 {\bf Green, Jerry~R and Nancy~L Stokey}, ``A Comparison of Tournaments and
   Contracts,'' {\it The Journal of Political Economy}, 1983, {\it 91} (3),
   349--364.
+
+\harvarditem[Grossman and Shapiro]{Grossman and
+  Shapiro}{1987}{grossman1987dynamic}
+{\bf Grossman, Gene~M and Carl Shapiro}, ``Dynamic R\&D Competition,'' {\it
+  Economic Journal}, 1987, {\it 97} (386), 372--87.
+
+\harvarditem[Harris and Vickers]{Harris and Vickers}{1987}{harris1987racing}
+{\bf Harris, Christopher and John Vickers}, ``Racing with uncertainty,'' {\it
+  The Review of Economic Studies}, 1987, {\it 54} (1), 1--21.
 
 \harvarditem[Laffont et al.]{Laffont, Ossard and
   Vuong}{1995}{laffont1995econometrics}
@@ -110,5 +125,10 @@
 {\bf Taylor, Curtis~R}, ``Digging for Golden Carrots: An Analysis of Research
   Tournaments,'' {\it The American Economic Review}, 1995, {\it 85} (4),
   872--90.
+
+\harvarditem[Zizzo]{Zizzo}{2002}{zizzo2002racing}
+{\bf Zizzo, Daniel~John}, ``Racing with uncertainty: a patent race
+  experiment,'' {\it International Journal of Industrial Organization}, 2002,
+  {\it 20} (6), 877--902.
 
 \end{thebibliography}

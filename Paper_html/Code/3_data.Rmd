@@ -1,7 +1,7 @@
 The experimental design
 =====================
 
-The field experiment was conducted between March 2 and 16, 2016. The context of the experiment was an online programming contest where participants compete writing a programming code that solves a designated problem. Similar programming contests are quite common and either as a tournament or a race competition.
+The field experiment was conducted between March 2 and 16, 2016. The context of the experiment was an online programming contest. In an online programming contest,  participants compete to write source code that solves a designated problem. These contests are quite common and xxxx either as a tournament or a race competition. 
 
 The contest was hosted on the online platform Topcoder.com. Since its launch in 2001, Topcoder.com administers on a weekly basis several competitive programming contests for thousands of competitors from all over the world. Typical assigned problems are data science problems (e.g., classification, prediction, natural language processing) that demand some background in machine learning and statistics. All Topcoder members (about 1M registered users in 2016) can compete and attain a "rating" that provides a metric of their ability as contestants. Other than attaining a rating, the competitors having made the top five submissions in a competition are typically awarded a monetary prize the extent of which depends on the nature and complexity of the problem but is generally between $5,000 and $20,000.
 
@@ -53,7 +53,7 @@ select <- c("Algo rating"="algorating"
           , "Longitude"="long"
           , "Risk aversion"="risk"
 )
-stargazer(dat[, select], header=FALSE, title='Descriptive statistics', align=TRUE, covariate.labels=names(select))
+stargazer(dat[, select], header=FALSE, title='Descriptive statistics', align=TRUE, covariate.labels=names(select), digits=1)
 # HERE TABLE Summary statistics!
 ```
 

@@ -1,67 +1,53 @@
 Introduction
 ============
 
-Organizations and governments routinely employ contests to incentivize innovation. This practice usually involves a call for an innovation project that participants compete to finish, and the winners, if any, are awarded a prize. Typically, the competition happens inside a firm and among workers. However, innovation contests are also becoming increasingly applied to source ideas from outside the boundaries of the organization, engaging highly-skilled members of online communities --- such as Innocentive, Topcoder, and XPRIZE, among others --- to solve tough technological problems.
+Organizations use often prizes as incentive schemes for innovation. In the United States, the government routinely sponsors open calls for innovation tackling important issues of public policy (public health, education, environment protection).  Internal contests are also widely used inside firms as incentives for expanding the innovative capacity of the firm. They are also sponsored by various institutions in order to source innovative ideas from people outside the boundaries of the organization. A trend encouraged by the emergence of a few commercial platforms such as Innocentive, Topcoder, and XPRIZE, that provide services to connect these institutions with the members of large online communities of highly-skilled practitioners.
 
-The objective of the contest designer is to maximize the quality and probability of a succesfull innovation while minimizing the time it takes to complete the project. A growing literature investigates how to effectively design a contest to achieve these goals. Although there are many facets to the design, one key aspect is the way participants compete --- the competition format. There are two extreme forms of competitions. One is the race where the participants who first finish the innovation project win. The second is the tournament where the participants to finish the project  within a deadline are then ranked by quality and the top-ranked ones win, regardless of their timing.
+In an innovation contest, participants compete to finish a project, and the winners, if any, are awarded a prize. Typically, the objective of the contest design is to maximize the quality and probability of a succesfull innovation while minimizing the time it takes to complete the project. Striking a balance between these two desirable but incompatible features is often difficult. Although researchers have examined many aspects of contest design to address this problem, the issue remains wide open. One key factor that we consider in this paper is the way participants compete. In general, there are two extreme forms of competition. One is the _race_ where the first to finish the innovation project wins. The second is the _tournament_ where the best to finish the project within a given unit of time wins.
 
-Under a contest design perspective, the choice of which format to use is complicated. A first difficulty is  with regard to how the competition format affects participants' motivation and behaviors. If the competition is a race, the goal is given and only those who expect to complete the project in a reasonable time will participate in the competition. In a tournament, by contrast, the quality of the project is determined during the contest. In principle anyone could win. However, one must confront not only with the issue of how participants will respond but also with respect to what would be optimal for the contest designer. While both issues has received much attention, the comparison of races and tournaments from a contest designer perspective remains largely unexplored.
-
-<!-- 1.3 Differences with existing literature -->
-
-To be sure, many models of races and tournaments have been developed and applied to a wide range of economic situations, Patent races, arms races, sports, promotions inside firms, sales tournaments. However, as pointed out by @baye2003strategic, many of these models of  tournament and  race competitions are specific cases of a more general "contest games." And sometimes it is possible to design one or the other in a way to exploit a "duality." In other words, in theory, a competition can be designed as a tournament to do xxx or as a race to do xxx. While theoretically very useful, how to exploit this duality in practice  remains largely unknown. Lack of data. As before, xxxx. The main challenge is self-selection.   The answer to this optimal design question relates to the cost function of agents with respect to "time" and to "effort." It is hard to say which solution is better. However, it is easier to tell whether you should have one prize or multiple prizes. 
-
-
+To fix ideas, imagine a government that wants to find a solution to a threat to the public health, such as xxxx. To minimize the risks that the threat will materialize before a solution is actually found, one option is to design a tournament with a tight deadline. If competitors succeed within the time given, the government will pick the most effective solution awarding a prize to the winners. One problem with this approach is that, for a given prize, the expected quality of the innovation may be proportional to the duration of the contest, which may result in a low quality innovation.  An alternative is to design the contest as a race competition. The prize is now awarded to the first participant that delivers a solution of a given quality. Understanding which xxxx remains largely unexplored issue? Which approach is better? what is the optimal behavior of firms? xxx?
 
 <!-- An extensive literature in economics has investigated several aspects of contest design, including the optimal prize structure [XXX], number of competitors [XXX], and imposing restrictions to competition such as minimum effort requirements [XXX].  -->
-
-
-<!-- Yet, to an economist, the race versus tournament design question may be unusual. In many instances, the competitive setting can be viewed as a fixed feature and not the result of a deliberate choice of contest design. For example, in a patent race, the type of competition is determined by the legal environment.  -->
-
-<!--  2.1 To fix ideas -->
-
-To fix ideas let consider an example. Suppose the government wants to find a solution an increasing threat for public health such as the antibiotic resistance problem: the overuse of antibiotics leads to a loss in the power of antibiotics to treat certain infections.  To do so, the government wants to engage a large and diverse crowd of potential problem-solvers from around the world. The government wants the solution to be as xxx as possible but it also wants to minimize the time to have any solution. The choice is between a tournament with a fixed deadline and a race with a fixed solution quality award a prize to the first to meet this requirement. For example, the UK government adoptes a race setting. Whereas the EU adopted a tournament setup.  
-
+ 
 
 <!-- 2. What we do -->
  
-In this study, we design and execute a field experiment to compare behavior in a race and a tournament setting.  To address these questions we proceed in two ways. First, we generalize the well known incomplete information contest model of @moldovanu2001optimal. This is enables a direct comparison of equilibrium behaviors under both the race and the tournament within a single theoretical framework. Then, we collect data from a field experiment that we desiged and run to test some of the implications of the theory, and provide policy recommendations. 
+In this study, we design and execute a field experiment to compare behavior in a race and a tournament setting. We proceed in two ways. First, we generalize an incomplete information contest model [@moldovanu2001optimal] to enable a direct comparison of equilibrium behaviors under both the race and the tournament within a single theoretical framework. Then, we collect data from a field experiment to test some of the implications of the theory, and provide policy recommendations. 
 
 
+The field experiment was conducted xxxx. We worked together with researchers from the United States National Health Institute (NIH) and the Scripps Research Institute (SCRIPPS) to select a challenging problem for the contest. The selected problem was based on an algorithm called BANNER built by NIH [@leaman2008banner] that uses expert labeling to annotate abstracts from a prominent life sciences and biomedical search engine, PubMed, so disease characteristics can be more easily identified. The goal of the programming competition was to improve upon the current NIH's system by using a combination of expert and non-expert labeling, as described by @good2014microtask. The competition was hosted online on the platform Topcoder.com (about 1M registered users in 2016). Submissions were made online. The top submissions were awarded a monetary prize ranging between $5000 to $100 for a total prize pool of $40,000.
 
-3.1 Problems of inefficiency (discriminating)
+
+Competitors were randomly assigned to virtual rooms of 10 or 15 people. These virtual rooms were then randomly assigned to one of three different competitive settings: a race, a tournament, and a tournament with a "reserve score," which is the lowest acceptable by the platform for a submission to be awarded a prize.
+
+We find that xxxxx  participation in the tournament is xxx compared to the race the reserve. 
+ 
+We also find that xxxx submission are quicker in a race, whereas are equally distributed at the end of the competition in the the tournament and in the tournament with quality requirement. 
+
+Another interesting finding is that xxxxx No evidence trade-off between a race and a tournament in terms of higher scores vs faster submissions. We do find that scores are higher in the tournament but we do not find a strong trade-off in the sense that race had comparable good quality solutions than the tournament.
+
 
 3.1.1 Excess of effort
 3.1.2 Excess of participation
 
+Economists have developed many models of races and tournaments that have been applied to a wide range of economic situations including patent races, arms races, sports, the mechanism of promotions inside firms, sales tournaments, xxx.  A typical finding is that contests may lead to over-expenditure of effort with participants exerting more effort than the value of the prize. This problem happens when the contest designer does not capture the entire aggregate efforts which exceeds the value of the prize. In an innovation contest,  xxxx we do not care. Another problem is that of a misallocation of the prize. This happens when participants have different evaluation for winning the prize and the contest is not xxxx (perfect discrimination). These issues have been discussed in the past. Here we take the perspective of the principal. Leaving aside misallocation, over-expenditure can be an issue also for the contest designer. For example, a manager care about the effort wasted xxxx working on a problem. Part is also with respect to the time spent, assuming workers can process one task at a time. 
+
+The dynamics. @harris1987racing, @grossman1987dynamic are classical models of dynamic patent races where the interest is how firms compete for a patent. @bimpikis2014designing looks at the problem of how to design an information structure that is optimal when the contest is a race and innovation is uncertain (encouragement and competition effect). In the laboratory, @zizzo2002racing finds poor support to predictions of dynamic xxxx. In general we do not know much about the dynamic aspect of contests. 
+
+
 3.2 Duality
 
-3.3 Maximizing revenues (what about timing)
-
-4. Our experiment
-
-<!-- 4.1 The context of the experiment and why it is relevant -->
-
-The field experiment was conducted xxxx. We worked together with researchers from the United States National Health Institute (NIH) and the Scripps Research Institute (SCRIPPS) to select a challenging problem for the contest. The selected problem was based on an algorithm called BANNER built by NIH [@leaman2008banner] that uses expert labeling to annotate abstracts from a prominent life sciences and biomedical search engine, PubMed, so disease characteristics can be more easily identified. The goal of the programming competition was to improve upon the current NIH's system by using a combination of expert and non-expert labeling, as described by @good2014microtask. The competition was hosted online on the platform Topcoder.com (about 1M registered users in 2016). Submissions were made online. The top submissions were awarded a monetary prize ranging between $5000 to $100 for a total prize pool of $40,000.
-
-[This context is relevant in itself.] Programming competitions are a very important source of incentives in the economy. In the United States, the government routinely sponsors open programming competitions to solving a variety of issues of public health, education, energy, environment protection, and so on. A large part of which are conducted online (through the web portal Challenge.gov), in the spirt of open innovation initiatives as in xxxx, xxxx, xxxx. Contests are also used extensively by non-profits (xxxx) and in the private sector by sourcing ideas from outside the boundaries of the organization.
-
-4.2 Treatments
-
-Competitors were randomly assigned to virtual rooms of 10 or 15 people. These virtual rooms were then randomly assigned to one of three different competitive settings: a race, a tournament, and a tournament with a "reserve score," which is the lowest acceptable by the platform for a submission to be awarded a prize.
+The duality. As pointed out by @baye2003strategic, many of these models of  tournament and  race competitions are specific cases of a more general "contest games." And sometimes it is possible to design one or the other in a way to exploit a "duality." In other words, in theory, a competition can be designed as a tournament to do xxx or as a race to do xxx. While theoretically very useful, how to exploit this duality in practice  remains largely unknown. Lack of data. As before, xxxx. The main challenge is self-selection.   The answer to this optimal design question relates to the cost function of agents with respect to "time" and to "effort." It is hard to say which solution is better. However, it is easier to tell whether you should have one prize or multiple prizes. 
 
 
-5. Results
-
+<!-- 
 By this perspective, we are able to show that races cannot be justified simply by the goal of maximizing average effort. And the reason is intuitive. A race awards a prize to first to hit a particular target. Those who will judge the target to hard to achieve will not join the competition and will drop out. On the contrary,  those who are able to achieve the target at low costs will not try to exceed the target. As a result, the race is comparable to a competition with fixed "entry costs" or a fixed entry requirement, where agents will decide to either enter and pay a fixed prize, or stay out of the competition. Then, the possible gains in terms of expected revenues from a race are limited to those who would enter the competition and would exert less effort that that required to hit the target. These potential benefits can be obtained under a tournament as well by imposing a a fixed requirement to be eligible for prizes. So, races are not chosen to maximize expected effort of competitors, at least, in the traditional "auction-theoretical" sense. 
-
-What are races for? We examine a few hypothesis and we provide some examples. First hypothesis is that the sponsor of the race is not primarily interested in total output but also in the time to complete a particular task. In a tournament, this type of preferences can be satisfied by fixing a deadline. Say time within which competitors are asked to provide their efforts. However, assuming competitors have costs from making less time in performing a task and there complementarities in costs, increasing the deadline in a tournament is similar to raising the marginal cost for everyone, which might not be an optimal solution. In a race, by contrast, increasing the deadline will affect entry but, conditional on entry, the time to complete the task will always be less than the deadline. Which means that those with low costs will be mostly affected by the deadline, whereas xxxx.  Which may be a superior choice than the tournament.  
-
+ -->
 
 
+In a tournament, this type of preferences can be satisfied by fixing a deadline. Say time within which competitors are asked to provide their efforts. However, assuming competitors have costs from making less time in performing a task and there complementarities in costs, increasing the deadline in a tournament is similar to raising the marginal cost for everyone, which might not be an optimal solution. In a race, by contrast, increasing the deadline will affect entry but, conditional on entry, the time to complete the task will always be less than the deadline. Which means that those with low costs will be mostly affected by the deadline, whereas xxxx.  Which may be a superior choice than the tournament.  
 
 
-We find that, as our theory suggest, participation is higher in the tournament and lower in the race and in the tournament with entry costs.  We further find that submission are quicker in a race, whereas are equally distributed at the end of the competition in the the tournament and in the tournament with quality requirement. With respect to final scores, theory predicts as trade-off between a race and a tournament in terms of higher scores vs faster submissions. We do find that scores are higher in the tournament but we do not find a strong trade-off in the sense that race had comparable good quality solutions than the tournament.
 
 
 Literature

@@ -4,13 +4,7 @@ diff.days <- function(time1, time2, ...) {
   as.numeric(difftime(time1, time2, units='days', ...))
 }
 Total <- function(x) sum(x)
-```
 
-Results
-=======
-
-
-```{r, echo=FALSE}
 # Weeks at the start of the competition
 start_date <- as.Date("2016-03-02")
 as.numeric(difftime(start_date, dat$create_date))/7 -> week_diff
@@ -22,15 +16,69 @@ quantile(dat$mmevents, p=c(0.1, 0.9)) -> rounds_qtl
 quantile(dat$mmrating, p=c(0.1, 0.9), na.rm=TRUE) -> rating_qtl
 ```
 
-A total of xxxx registered but only `r nrow(dat)` competitors were selected for the challenge; we excluded those with no past experience on the platform and those with incomplete data on the survey. Signed up competitors were experienced members of the platform: the overall time as registered platform member at the start of the competition ranged between `r min(week_diff)` and `r max(week_diff)` weeks. Yet, the direct experience in competing was highly skewed with competitors in the highest 90th percentile having participated in `r diff(rounds_qtl)` more competitions than those in the 10th percentile. Likewise skills as measured by the individual ratings, if there was one, had a skewed distribution with `r round(diff(rating_qtl))` higher points than those in the 10th percentile; see Figure \ref{eq: distribution experience}. 
+[This goes into the data section:] A total of `r nrow(dat)` competitors signed-up to take part in the challenge.  They were all xxxx members of the platform with between `r min(week_diff)` and `r max(week_diff)` weeks as registered members. In terms of skill ratings, the distribution was highly skewed with competitors in the highest 90th percentile having participated in `r diff(rounds_qtl)` more competitions than those in the 10th percentile. Likewise skills as measured by the individual ratings, if there was one, had a skewed distribution with `r round(diff(rating_qtl))` higher points than those in the 10th percentile; see Figure \ref{eq: distribution experience}. 
+
+
+Results
+=======
+
+
+
+
+
+
 
 ```{r}
 dat$submit <- dat$handle %in% subs$handle
+submissions <- tapply(subs$sub_id, subs$handle, max)
+``` 
 
-nsub <- tapply(subs$sub_id,subs$handle, max)
+In the eight-day submission period, we collected a total of `r nrow(subs)` submissions  made by  `r sum(dat$submit)` participants. The frequency distribution of submissions was rather skewed with participants in the 90th percentile making `r diff(quantile(submissions, p=c(0.1, 0.9)))` more submissions than those in the 10th percentile.
+
+```{r}
+pp <- 100*tapply(dat$submit, dat$treatment, mean)
+(tab <- table(dat$submit, dat$treatment))
+ft <- fisher.test(tab)
 ```
 
-After the two-week submission period, `r sum(dat$submit, na.rm=TRUE)` competitors made `r nrow(subs)` submissions overall. The distribution of submissions was rather skewed, with participants in the 90th percentile making `r diff(quantile(nsub, p=c(0.1, 0.9)))` more submissions than those in the 10th percentile. 
+Participation across treatments was higher in the Tournament treatment (`r pp["Tournament"]` percent), followed by the Tournament w/reseve (`r pp["Reserve"]` percent), and the Race treatment (`r pp["Race"]` percent). However,  these differences are not statistically significant (using a `r ft$method` gives a p-value of `r ft$p.value`)
+
+
+```{r}
+dat$submit2 <- dat$handle %in% unique(subset(subs,  system>=800000)$handle)
+pp <- 100*tapply(dat$submit2, dat$treatment, mean)
+(tab <- table(dat$submit2, dat$treatment))
+ft <- fisher.test(tab)
+```
+
+Similar results are found when we consider only those who made submissions above a score of xxxx. Participation across treatments was higher in the Tournament treatment (`r pp["Tournament"]` percent), followed by the Tournament w/reseve (`r pp["Reserve"]` percent), and the Race treatment (`r pp["Race"]` percent). However,  these differences are not statistically significant (using a `r ft$method` gives a p-value of `r ft$p.value`)
+
+```{r}
+dat$nsub <- NA
+index <- match(dat$handle, names(submissions))
+dat$nsub <- as.numeric(submissions[index])
+ns <- tapply(dat$nsub, dat$treatment_id, FUN=median, na.rm=T)
+kt <- kruskal.test(split(dat$nsub, dat$treatment))
+```
+
+Regarding to the frequency of submissions per participant, the median count is larger in the race and in the tournament w/reserve (`r ns["Race"]` and `r ns["Reserve"]` respectively) compared to the Tournament (a median of `r ns["Tournament"]` submissions). However, a `r kt$method` fails to reject the null hypothesis (p=`r kt$p.value`) that at least one treatment was different in the location of the frequency distribution of the submissions. 
+
+
+```{r}
+score.final <- tapply(subs$provision, subs$handle, tail, n=1)
+dat$score.final <- NA
+index <- match(dat$handle, names(score.final))
+dat$score.final <- as.numeric(score.final[index])
+
+ms <- tapply(dat$score.final, dat$treatment_id, FUN=median, na.rm=T)/1e6
+kt <- kruskal.test(split(dat$score.final, dat$treatment))
+```
+
+Concerning the distribution of the scores on the last submission, the median final scores was higher in the Tournament w/reserve treatment (`r ms["Reserve"]`), followed by the Tournament  (`r ms["Tournament"]`), and the Race treatment (`r ms["Race"]`). As before, however, these differences are not statistically significant (a `r kt$method` gives a p-value of `r kt$p.val`).
+
+
+Although we do not find  significant differences through an univariate analysis, it is possible that differences will be xxx in a multivariate analysis. Adding controls can indeed reduce noise and improve precisions of our estimates. 
+
 
 Assuming the decision was independent, to explore the determinants of participation: 
 

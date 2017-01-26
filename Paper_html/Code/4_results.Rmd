@@ -79,7 +79,6 @@ Concerning the distribution of the scores on the last submission, the median fin
 
 Although we do not find  significant differences through an univariate analysis, it is possible that differences will be xxx in a multivariate analysis. Adding controls can indeed reduce noise and improve precisions of our estimates. 
 
-
 Assuming the decision was independent, to explore the determinants of participation: 
 
 \begin{equation}
@@ -123,6 +122,21 @@ The timing of submissions was rather uniform during the submission period with a
 #    , yaxt='n', xlab='', ylab='', main='Dispersion time last submission')
 ```
 
+
+Consider panel data!
+
+```{r}
+day <- as.numeric(format(subs$sub_time, '%d'))
+subs$day <- cut(day, c(8,10,12,14, 16), include.lowest=T, right=FALSE)
+subs.long0 <- expand.grid(handle=levels(subs$handle), day=levels(subs$day))
+subs.long1 <- aggregate(sub_id ~ day + handle, data=subs, FUN=length)
+subs.long <- merge(subs.long0, subs.long1, by=c("handle", "day"), all.x=TRUE)
+subs.long$sub_id[is.na(subs.long$sub_id)] <- 0
+plot(subs.long[, -1])
+summary(glm(sub_id ~ day, data=subs.long))
+summary(glm(sub_id ~ day, data=subs.long, family=quasipoisson))
+summary(glm(sub_id>0 ~ day, data=subs.long))
+```
 
 Scores:  xxxx
  

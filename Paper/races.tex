@@ -62,22 +62,27 @@
 University, 1737 Cambridge Street, Cambridge, MA 02138 (email:
 \href{mailto:ablasco@fas.harvard.edu}{\nolinkurl{ablasco@fas.harvard.edu}}).}}
 \author{Andrea Blasco \and Kevin J. Boudreau \and Karim R. Lakhani \and Michael Menietti}
-\date{Last updated: 25 January, 2017}
+\date{Last updated: 26 January, 2017}
 
 \begin{document}
 \maketitle
 \begin{abstract}
-A wide range of economic and social situations are decided by either a
-race or a tournament. In either situations, agents choose whether and
-how much to exert some costly effort to increase the probability of
-being awarded a prize under the uncertainty about the actions of other
-agents. While a tournament yield outcomes greater than those of a race,
-the latter prevents unnecessary costs due to an excess of participation.
-We examine this trade-off empirically. We report the results of a field
-experiment conducted online where we compare the outcomes --- efforts,
-quality, and diversity of outputs --- of three alternative competitive
-situations motivated by theory: the race, the tournament, and the
-tournament with a quality requirement.
+Contests are often used as incentive schemes to foster innovation. The
+typical goal of contest designers is to maximize quality while
+minimizing the time it takes to achieve the innovation. This situation
+leads to a difficult choice of design made under considerable
+uncertainty. In this study, we investigate one key aspect of this
+decision that is the way participants compete. Two extreme forms of
+competition are considered: the race, where the first to achieve the
+innovation wins, and the tournament, where the timing is not important.
+We develop a model to characterize under what conditions contest
+designers should go for one or the other approach. Then, we report the
+results of a field experiment conducted to compare the outcomes of three
+alternative competitive situations motivated by theory: the race, the
+tournament, and the tournament with a quality requirement. We find that
+outcomes in a race are of comparable quality, but are supplied faster.
+Based on our model, we also show what would be optimal to do under
+several simulated counterfactual situations.
 
 \smallskip\noindent 
 JEL Classification: xxx; xxx; xxx.
@@ -98,62 +103,63 @@ Keywords: xxxx; xxxx xxxx.
 
 \section{Introduction}\label{introduction}
 
-Organizations use often prizes as incentive schemes for innovation.
-Inside firms, contests are useful tools for exploiting and expanding the
-internal innovative capacity of the company. Contests are also sponsored
-by various institutions as a means to source innovative ideas from
-outside the boundaries of the organization, including the members of
-large online communities of practitioners.\footnote{In the United
-  States, for instance, the government routinely sponsors open calls for
-  innovation tackling important issues of public policy (public health,
-  education, environment protection).} And a growing number of platforms
-like Challenge.gov, Innocentive, Topcoder, and XPRIZE, have become
-available to help organize and connect these institutions with potential
-participants.
+Organizations often use contests as incentive schemes to foster
+innovation. In an innovation contest, participants compete for prizes by
+investing time and energy in an innovation project. The typical aim of
+the contest designer is to maximize quality while minimizing the time to
+complete the innovation. Balancing between these two desirable but
+incompatible features it is often difficult. The lack of knowledge about
+individual costs and technical feasibility of the innovation may force
+contest designers to make their choices under considerable uncertainty.
+A growing literature on contest design offers insights on how to make
+better resolutions. However, while researchers have examined various
+aspects of managing this trade-off, the optimal design is still largely
+unknown.
 
-Typically, the objective of the contest designer is to maximize the
-quality and probability of a successful innovation while minimizing the
-time it takes to complete the project. Striking a balance between these
-two desirable but incompatible features it is often difficult. The lack
-of knowledge about the individual costs and technical feasibility of the
-innovation may force contest designers to make tough choices under
-considerable uncertainty. A growing literature on contest design offers
-insights on how to make better choices. However, while researchers have
-examined various aspects of the management of this trade-off, the
-optimal design remains a wide open issue.
-
-Our contribution here is to focus on one key factor of design that is
-the choice of the way participants compete. In general, there are two
-extreme forms of competition. One is the \emph{race} where the first to
-finish the innovation project wins. The second is the \emph{tournament}
-where the best to finish the project within a given unit of time wins.
-To fix ideas, imagine a government designing an innovation contest to
-find a solution to a threat to the public health, such as the UK
-government with respect to the problem of antibiotic
+Here, we investigate one key aspect of contest design concerning the way
+participants compete. There are two extreme forms of competition that we
+consider. One is the \emph{race} where the first to finish an innovation
+project wins. The second is the \emph{tournament} where the best
+finished project wins. To fix ideas, imagine a government designing an
+innovation contest to find a solution to a threat to the public health,
+such as the UK government on the problem of antibiotic
 resistance.\footnote{This example is taken\ldots{}} To minimize the
-risks that the threat will materialize before a solution is actually
-found, one option is to design a contest with a tight deadline after
-which the government will rank order the received solutions and pick the
-most effective one, awarding a prize to the winners. Alternatively, the
-government can design a contest with a minimum desired effectiveness
-threshold and award a prize to the first solution that achieves or goes
-beyond the threshold. For a given prize amount, both approaches have
-specific advantages and limitations. If the prize to time ratio is too
-low, incentives in the tournament competition may not deliver high
-quality solutions. At the same time, in a race, participants have no
-incentives to exceed the threshold. Understing the conditions to choose
-one competition or the other is the main objective of this paper.
+risks that the threat will materialize before a solution is found, one
+choice is a tournament competition with a tight deadline for
+participants to provide their solutions. Alternatively, the government
+can use a race competition awarding a prize to the first participant
+that achieves, or goes beyond, a minimum effectiveness threshold. Fixed
+the prize, both approaches have specific advantages and limitations. If
+the duration of the competition is too low, a tournament may give
+insufficient incentives resulting in inadequate solutions. In a race
+competition, instead, timing is not an issue but participants have no
+incentives to exceed the minimum threshold.
 
-In this study, we design and execute a field experiment to compare
-behavior in a race and a tournament setting. We proceed in two ways.
-First, we generalize an incomplete information contest model
-\citep{moldovanu2001optimal} to enable a direct comparison of
-equilibrium behaviors under both the race and the tournament within a
-single theoretical framework. Then, we collect data from a field
-experiment to test some of the implications of the theory, and provide
-policy recommendations.
+In the present study, we shed light on the conditions under which
+contest designers should choose between a race and a tournament
+competition. We proceed in two ways. First, we develop a contest model
+that encompasses both the race and the tournament in a single framework.
+Exploring the duality of the model, we compare equilibrium behaviors
+under both regimes and characterize the optimal choice (i.e., the setup
+that maximizes the utility of the contest designer). Then, we design and
+execute an experiment to test the implications of the theory in the
+field, providing policy recommendations.
 
-The field experiment was conducted xxxx. We worked together with
+Regarding to the modeling, we adapt the contest model introduced by
+\citet{moldovanu2001optimal}. Contests have an all-pay structure by
+which participants pay an immediate cost for an uncertain future reward.
+We generalize by allowing participants to choose the timing and quality
+of the innovation at once. This decision is made under the uncertainty
+of the costs of the rivals, which are privately observed by the agents.
+The contest designer is modeled as an extra agent with preferences for
+both time and quality. Following the analysis of the model model, we
+show that the optimal design depends on the number of participants and
+the concavity of their cost function.
+
+The field experiment was conducted at the end of 2016. The context of
+the experiment was an online programming competition. In a programming
+competition, participants compete writing source code that solves a
+given problem for winning a monetary prize. We worked together with
 researchers from the United States National Health Institute (NIH) and
 the Scripps Research Institute (SCRIPPS) to select a challenging problem
 for the contest. The selected problem was based on an algorithm called
@@ -164,92 +170,28 @@ identified. The goal of the programming competition was to improve upon
 the current NIH's system by using a combination of expert and non-expert
 labeling, as described by \citet{good2014microtask}. The competition was
 hosted online on the platform Topcoder.com (about 1M registered users in
-2016). Submissions were made online. The top submissions were awarded a
-monetary prize ranging between \$5000 to \$100 for a total prize pool of
-\$40,000.
+2016). Top submissions were awarded monetary prizes ranging between
+\$100 to \$5000 for a total prize pool of more than \$40,000.
 
-Competitors were randomly assigned to virtual rooms of 10 or 15 people.
-These virtual rooms were then randomly assigned to one of three
-different competitive settings: a race, a tournament, and a tournament
-with a ``reserve score,'' which is the lowest acceptable by the platform
-for a submission to be awarded a prize.
+Our intervention consisted in sorting at random participants into
+independent virtual rooms of 10 or 15 people. These virtual rooms were
+then randomly assigned to one of three different competitive settings: a
+race, a tournament, and a tournament with a reserve score, which is the
+lowest acceptable score by the platform for a submission to be awarded a
+prize.
 
-We find that xxxxx participation in the tournament is xxx compared to
-the race the reserve.
+We find that xxxxx {[}participation in the tournament is xxx compared to
+the race the reserve.{]}
 
-We also find that xxxx submission are quicker in a race, whereas are
+We also find that xxxx {[}submission are quicker in a race, whereas are
 equally distributed at the end of the competition in the the tournament
-and in the tournament with quality requirement.
+and in the tournament with quality requirement.{]}
 
-Another interesting finding is that xxxxx No evidence trade-off between
-a race and a tournament in terms of higher scores vs faster submissions.
-We do find that scores are higher in the tournament but we do not find a
-strong trade-off in the sense that race had comparable good quality
-solutions than the tournament.
-
-An extensive literature has indicated the main theoretical reasons why
-contests are to be preferred to other forms of incentives. Typically,
-contests reduce monitoring costs {[}xxx{]}, incentivize production with
-common risks {[}xxx{]}, and deal with indivisible rewards {[}xxxx{]},
-among others. Much work has been done investigating several aspects of
-contest design, including the optimal prize structure {[}XXX, xxxx,
-xxxx{]}, number of competitors {[}XXX, XXX{]}, and imposing restrictions
-to competition such as minimum effort requirements {[}XXX, XXX{]}.
-
-Also, a great deal of theoretical models of races and tournaments have
-been developed and applied to a wide range of economic situations
-including patent races, arms races, sports, the mechanism of promotions
-inside firms, sales tournaments, xxx, and xxxx. A typical finding is
-that contests may lead to over-expenditure of effort with participants
-exerting more effort than the value of the prize. This problem happens
-when the contest designer does not capture the entire aggregate efforts
-which exceeds the value of the prize. In an innovation contest, xxxx we
-do not care. Another problem is that of a misallocation of the prize.
-This happens when participants have different evaluation for winning the
-prize and the contest is not xxxx (perfect discrimination). These issues
-have been discussed in the past. Here we take the perspective of the
-principal. Leaving aside misallocation, over-expenditure can be an issue
-also for the contest designer. For example, a manager care about the
-effort wasted xxxx working on a problem. Part is also with respect to
-the time spent, assuming workers can process one task at a time.
-
-3.1.1 Excess of effort 3.1.2 Excess of participation
-
-The dynamics. \citet{harris1987racing}, \citet{grossman1987dynamic} are
-classical models of dynamic patent races where the interest is how firms
-compete for a patent. \citet{bimpikis2014designing} looks at the problem
-of how to design an information structure that is optimal when the
-contest is a race and innovation is uncertain (encouragement and
-competition effect). In the laboratory, \citet{zizzo2002racing} finds
-poor support to predictions of dynamic xxxx. In general we do not know
-much about the dynamic aspect of contests.
-
-3.2 Duality
-
-The duality. As pointed out by \citet{baye2003strategic}, many of these
-models of tournament and race competitions are specific cases of a more
-general ``contest games.'' And sometimes it is possible to design one or
-the other in a way to exploit a ``duality.'' In other words, in theory,
-a competition can be designed as a tournament to do xxx or as a race to
-do xxx. While theoretically very useful, how to exploit this duality in
-practice remains largely unknown. Lack of data. As before, xxxx. The
-main challenge is self-selection. The answer to this optimal design
-question relates to the cost function of agents with respect to ``time''
-and to ``effort.'' It is hard to say which solution is better. However,
-it is easier to tell whether you should have one prize or multiple
-prizes.
-
-In a tournament, this type of preferences can be satisfied by fixing a
-deadline. Say time within which competitors are asked to provide their
-efforts. However, assuming competitors have costs from making less time
-in performing a task and there complementarities in costs, increasing
-the deadline in a tournament is similar to raising the marginal cost for
-everyone, which might not be an optimal solution. In a race, by
-contrast, increasing the deadline will affect entry but, conditional on
-entry, the time to complete the task will always be less than the
-deadline. Which means that those with low costs will be mostly affected
-by the deadline, whereas xxxx. Which may be a superior choice than the
-tournament.
+Another interesting finding is that xxxxx {[}No evidence trade-off
+between a race and a tournament in terms of higher scores vs faster
+submissions. We do find that scores are higher in the tournament but we
+do not find a strong trade-off in the sense that race had comparable
+good quality solutions than the tournament.{]}
 
 \section{Literature}\label{literature}
 
@@ -273,6 +215,45 @@ This paper is also related to the econometrics of auctions
 \citet{donald1996identification} and more recently
 \citet{athey2011comparing}, \citet{athey2002identification}, and
 \citet{athey2007nonparametric}.
+
+An extensive literature has discussed the reasons why contests are
+sometimes preferred to other forms of incentives (e.g., individual
+contracts). Typically, contests reduce monitoring costs {[}xxx{]},
+incentivize production with common risks {[}xxx{]}, and deal with
+indivisible rewards {[}xxxx{]}, among others. While there is not much
+debate on why contests should be used, the issue of how to effectively
+design and deploy a contest still attracts much research.
+
+Several aspects of contest design have been investigated, including the
+optimal prize structure {[}XXX, xxxx, xxxx{]}, number of competitors
+{[}XXX, XXX{]}, and imposing restrictions to competition such as minimum
+effort requirements {[}XXX, XXX{]}. Also, a great deal of theoretical
+models of races and tournaments have been developed and applied to a
+wide range of economic situations including patent races {[}xxx{]}, arms
+races {[}xxx{]}, sports {[}xxx{]}, the mechanism of promotions inside
+firms {[}xxxx{]}, sales tournaments {[}xxxx{]}, etc.
+
+\citet{harris1987racing}, \citet{grossman1987dynamic} investigate the
+dynamics issues patent races where the interest is how firms compete for
+a patent. \citet{bimpikis2014designing} looks at the problem of how to
+design an information structure that is optimal when the contest is a
+race and innovation is uncertain (encouragement and competition effect).
+In the laboratory, \citet{zizzo2002racing} finds poor support to
+predictions of dynamic xxxx. In general we do not know much about the
+dynamic aspect of contests.
+
+The duality. As pointed out by \citet{baye2003strategic}, many of these
+models of tournament and race competitions are specific cases of a more
+general ``contest games.'' And sometimes it is possible to design one or
+the other in a way to exploit a ``duality.'' In other words, in theory,
+a competition can be designed as a tournament to do xxx or as a race to
+do xxx. While theoretically very useful, how to exploit this duality in
+practice remains largely unknown. Lack of data. As before, xxxx. The
+main challenge is self-selection. The answer to this optimal design
+question relates to the cost function of agents with respect to ``time''
+and to ``effort.'' It is hard to say which solution is better. However,
+it is easier to tell whether you should have one prize or multiple
+prizes.
 
 \section{The model}\label{the-model}
 
@@ -692,6 +673,85 @@ period with a peak of submissions made in the last of the competition.
 #    , xlab='', ylab='', main='Dispersion time first submission')
 #plot(subid==submax ~ as.POSIXct(subts), data=scores, type='h'
 #    , yaxt='n', xlab='', ylab='', main='Dispersion time last submission')
+\end{verbatim}
+
+Consider panel data!
+
+\includegraphics{Figures/unnamed-chunk-16-1.pdf}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = sub_id ~ day, data = subs.long)
+## 
+## Deviance Residuals: 
+##    Min      1Q  Median      3Q     Max  
+## -11.69   -4.00   -1.59    0.08   81.31  
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)
+## (Intercept)     1.59       1.08    1.47     0.14
+## day[10,12)      1.58       1.53    1.03     0.30
+## day[12,14)      2.41       1.53    1.57     0.12
+## day[14,16]     10.09       1.53    6.60  1.6e-10
+## 
+## (Dispersion parameter for gaussian family taken to be 101)
+## 
+##     Null deviance: 39401  on 343  degrees of freedom
+## Residual deviance: 34190  on 340  degrees of freedom
+## AIC: 2568
+## 
+## Number of Fisher Scoring iterations: 2
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = sub_id ~ day, family = quasipoisson, data = subs.long)
+## 
+## Deviance Residuals: 
+##    Min      1Q  Median      3Q     Max  
+## -4.834  -2.828  -1.785   0.023  14.939  
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)
+## (Intercept)    0.466      0.342    1.36    0.174
+## day[10,12)     0.689      0.419    1.65    0.101
+## day[12,14)     0.921      0.404    2.28    0.023
+## day[14,16]     1.993      0.365    5.47  8.9e-08
+## 
+## (Dispersion parameter for quasipoisson family taken to be 16)
+## 
+##     Null deviance: 4500.3  on 343  degrees of freedom
+## Residual deviance: 3587.7  on 340  degrees of freedom
+## AIC: NA
+## 
+## Number of Fisher Scoring iterations: 6
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = sub_id > 0 ~ day, data = subs.long)
+## 
+## Deviance Residuals: 
+##    Min      1Q  Median      3Q     Max  
+## -0.733  -0.500   0.267   0.465   0.651  
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)
+## (Intercept)   0.3488     0.0521    6.70  8.7e-11
+## day[10,12)    0.1860     0.0736    2.53    0.012
+## day[12,14)    0.1512     0.0736    2.05    0.041
+## day[14,16]    0.3837     0.0736    5.21  3.3e-07
+## 
+## (Dispersion parameter for gaussian family taken to be 0.233)
+## 
+##     Null deviance: 85.709  on 343  degrees of freedom
+## Residual deviance: 79.279  on 340  degrees of freedom
+## AIC: 481.4
+## 
+## Number of Fisher Scoring iterations: 2
 \end{verbatim}
 
 Scores: xxxx

@@ -18,7 +18,7 @@ Groups were randomly assigned to one of three different competitive settings: a 
 The experimental design is summarized by the Table XXXX.
 
 ```{r experimental-design, results='asis'}
-tab <- table(dat$treatment, dat$room_type)
+tab <- with(races, table(treatment, room_type))
 render.table(tab, "Experimental design", "tab: experimental design")
 ```
 
@@ -42,6 +42,37 @@ Finally, we also asked participants to respond to a survey at the end of the sub
 Table XXX summarizes the data. 
 
 ```{r, results='asis'}
+index <- c("Country"="country_name"
+          , "Age"="age"
+          , "Gender"="gender"
+          , "Highest degree"="educ"
+          , "Pref. programming lang."="plang"
+)
+foo <- sapply(races[, index], function(x) summary(x, maxsum=5)) ## get summary of each var
+foo.test <- sapply(races[, index], function(x) chisq.test(table(x, races$treatment) + 1, simulate.p.value=TRUE)$p.val)
+bar <- matrix(nrow=length(unlist(foo)), ncol=4) # Initialize
+
+bar[, 1] <- gsub("\\..*","", names(unlist(foo))) ## 1st col has var name
+duplicated.rows <- duplicated(bar[, 1])
+bar[, 1][duplicated.rows] <- "" ## don't repeat variable names
+bar[, 2] <- gsub(".*?\\.","", names(unlist(foo))) ## second column has factor levels
+bar[, 3] <- as.numeric(unlist(foo))
+bar[, 3][is.na(bar[, 3])] <- 0 ## in case anything has been coerced
+bar[!duplicated.rows, 4] <- format(foo.test, nsmall=3)
+
+colnames(bar) <- c("Variable","Response Category","Frequency", "P-value")
+rownames(bar) <- rep("", nrow(bar))
+bar <- xtable(bar)
+align(bar) <- c("l","l","p{4cm}","r","r") ## make sure factor levels don't take up more than 4cm
+
+print(bar, tabular.environment = "longtable", include.rownames=FALSE, size="footnotesize",     
+  floating=FALSE, # 
+  hline.after=NULL, #
+  add.to.row=list(pos=list(-1,0, nrow(bar)), #
+  command=c('\\toprule ', # use nice booktabs formatting
+  '\\midrule \\endhead ', # with running headers from longtable
+  '\\bottomrule ')))
+
 select <- c("Algo rating"="algorating"
           , "Algo competitions"="algoevents"
           , "Algo registrations"="algoreg"
@@ -49,11 +80,9 @@ select <- c("Algo rating"="algorating"
           , "MM competitions"="mmevents"
           , "MM registrations"="mmreg"
           , "Time zone"="timezone"
-          , "Latitude"="lat"
-          , "Longitude"="long"
           , "Risk aversion"="risk"
 )
-stargazer(dat[, select], header=FALSE, title='Descriptive statistics', align=TRUE, covariate.labels=names(select), digits=1)
+stargazer(races[, select], header=FALSE, title='Descriptive statistics', align=TRUE, covariate.labels=names(select), digits=1)
 # HERE TABLE Summary statistics!
 ```
 

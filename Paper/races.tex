@@ -62,7 +62,7 @@
 University, 1737 Cambridge Street, Cambridge, MA 02138 (email:
 \href{mailto:ablasco@fas.harvard.edu}{\nolinkurl{ablasco@fas.harvard.edu}}).}}
 \author{Andrea Blasco \and Kevin J. Boudreau \and Karim R. Lakhani \and Michael Menietti}
-\date{Last updated: 26 January, 2017}
+\date{Last updated: 27 January, 2017}
 
 \begin{document}
 \maketitle
@@ -497,6 +497,37 @@ xxxx.
 
 Table XXX summarizes the data.
 
+\% latex table generated in R 3.2.3 by xtable 1.8-2 package \% Fri Jan
+27 13:38:15 2017 \begingroup\footnotesize
+
+\begin{longtable}{lp{4cm}rr}
+  \toprule Variable & Response Category & Frequency & P-value \\ 
+  \midrule \endhead country\_name & India & 36 & 1.000 \\ 
+   & China & 31 &  \\ 
+   & United States & 31 &  \\ 
+   & Japan & 27 &  \\ 
+   & (Other) & 174 &  \\ 
+  age & 20-25 years old & 99 & 0.893 \\ 
+   & 26-30 years & 82 &  \\ 
+   & 31-40 years & 67 &  \\ 
+   & 41-50 years & 21 &  \\ 
+   & (Other) & 30 &  \\ 
+  gender & Female & 20 & 0.672 \\ 
+   & Male & 279 &  \\ 
+  educ & PhD & 31 & 0.454 \\ 
+   & High School & 37 &  \\ 
+   & Master of Arts & 111 &  \\ 
+   & Bachelor & 120 &  \\ 
+  plang & C++ & 134 & 0.640 \\ 
+   & Java & 87 &  \\ 
+   & C\# & 33 &  \\ 
+   & Python & 28 &  \\ 
+   & (Other) & 17 &  \\ 
+   \bottomrule \hline
+\end{longtable}
+
+\endgroup
+
 \begin{table}[!htbp] \centering 
   \caption{Descriptive statistics} 
   \label{} 
@@ -511,10 +542,8 @@ Algo registrations & 299 & 45.7 & 64.3 & 0 & 365 \\
 MM rating & 205 & 1,322.0 & 425.0 & 593 & 3,071 \\ 
 MM competitions & 299 & 7.2 & 11.8 & 0 & 91 \\ 
 MM registrations & 299 & 17.6 & 23.0 & 1 & 161 \\ 
-Time zone & 279 & 2.1 & 5.1 & -8.0 & 10.0 \\ 
-Latitude & 279 & 36.7 & 19.0 & -42.8 & 59.9 \\ 
-Longitude & 279 & 25.2 & 77.7 & -122.0 & 149.0 \\ 
-Risk aversion & 284 & 6.4 & 2.2 & 1 & 10 \\ 
+Time zone & 299 & 2.3 & 5.1 & -8.0 & 10.0 \\ 
+Risk aversion & 279 & 6.4 & 2.2 & 1 & 10 \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
@@ -607,13 +636,13 @@ where \(G()\) is logistic.
 ## poly(mmevents, deg = 3)3  8.110*                      
 ##                           (4.740)                     
 ##                                                       
-## poly(mmevents, deg = 2)1            4.690*    4.980*  
+## poly(mmevents, deg = 2)1            4.690*    4.990*  
 ##                                     (2.540)   (2.590) 
 ##                                                       
-## poly(mmevents, deg = 2)2            -0.212    -0.077  
+## poly(mmevents, deg = 2)2            -0.212    -0.087  
 ##                                     (2.470)   (2.530) 
 ##                                                       
-## poly(mmrating, deg = 2)1           10.100*** 8.530*** 
+## poly(mmrating, deg = 2)1           10.100*** 8.520*** 
 ##                                     (3.120)   (3.260) 
 ##                                                       
 ## poly(mmrating, deg = 2)2            -0.942    -1.500  
@@ -626,7 +655,7 @@ where \(G()\) is logistic.
 ##                                               (0.002) 
 ##                                                       
 ## Constant                 -0.961*** -1.020*** -1.900***
-##                           (0.138)   (0.143)   (0.405) 
+##                           (0.138)   (0.143)   (0.404) 
 ##                                                       
 ## ------------------------------------------------------
 ## Observations                299       299       279   
@@ -650,8 +679,8 @@ where \(G()\) is logistic.
 ## NULL                                      278        334         
 ## poly(mmevents, deg = 2)  2    17.87       276        316  0.00013
 ## poly(mmrating, deg = 2)  2     8.89       274        308  0.01172
-## lat                      1     4.96       273        303  0.02589
-## long                     1     1.85       272        301  0.17347
+## lat                      1     4.97       273        303  0.02581
+## long                     1     1.83       272        301  0.17578
 \end{verbatim}
 
 This result does not seem to correlate well with the competitor's
@@ -667,7 +696,7 @@ period with a peak of submissions made in the last of the competition.
 (explain more)
 
 \begin{verbatim}
-#scores$submax <- ave(subs$sub_id, subs$handle, FUN=max)
+#scores$submax <- ave(races.sub$id, races.sub$handle, FUN=max)
 #par(mfrow=c(2, 1), mar=c(4,4,2,2))
 #plot(subid==1 ~ as.POSIXct(subts), data=scores, type='h', yaxt='n'
 #    , xlab='', ylab='', main='Dispersion time first submission')
@@ -682,7 +711,7 @@ Consider panel data!
 \begin{verbatim}
 ## 
 ## Call:
-## glm(formula = sub_id ~ day, data = subs.long)
+## glm(formula = id ~ day, data = subs.long)
 ## 
 ## Deviance Residuals: 
 ##    Min      1Q  Median      3Q     Max  
@@ -707,7 +736,7 @@ Consider panel data!
 \begin{verbatim}
 ## 
 ## Call:
-## glm(formula = sub_id ~ day, family = quasipoisson, data = subs.long)
+## glm(formula = id ~ day, family = quasipoisson, data = subs.long)
 ## 
 ## Deviance Residuals: 
 ##    Min      1Q  Median      3Q     Max  
@@ -732,7 +761,7 @@ Consider panel data!
 \begin{verbatim}
 ## 
 ## Call:
-## glm(formula = sub_id > 0 ~ day, data = subs.long)
+## glm(formula = id > 0 ~ day, data = subs.long)
 ## 
 ## Deviance Residuals: 
 ##    Min      1Q  Median      3Q     Max  

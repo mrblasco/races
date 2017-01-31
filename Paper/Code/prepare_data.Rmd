@@ -302,6 +302,7 @@ summary(races)
 
 ```{r}
 races.sub <- subs
+races$submit <- races$handle %in% races.sub$handle
 db <- c("races", "races.sub")
 save(list=db, file=".RData")
 ```

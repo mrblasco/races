@@ -302,6 +302,25 @@ summary(races)
 
 ```{r}
 races.sub <- subs
+races$submit <- races$handle %in% races.sub$handle
+
+# De-identify the data
+de.identify <- function(x) {
+  x <- droplevels(x)
+  old.levels <- levels(x)
+  new.levels <- 1:length(old.levels)
+  x.new <- factor(x, labels=new.levels)
+  return(list(x=x.new, identity=old.levels))
+}
+z <- de.identify(races$handle)
+
+# Store identity file
+write.table(z$identity, quote=F, sep=",", col.names=FALSE, file=".handles")
+
+# Replace handles
+races.sub$handle <- match(races.sub$handle, z$identity)
+races$handle <- z$x
+
 db <- c("races", "races.sub")
 save(list=db, file=".RData")
 ```

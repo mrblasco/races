@@ -497,41 +497,49 @@ xxxx.
 
 Table XXX summarizes the data.
 
-\% latex table generated in R 3.2.3 by xtable 1.8-2 package \% Fri Jan
-27 13:38:15 2017 \begingroup\footnotesize
-
-\begin{longtable}{lp{4cm}rr}
-  \toprule Variable & Response Category & Frequency & P-value \\ 
-  \midrule \endhead country\_name & India & 36 & 1.000 \\ 
+\begin{table}
+\centering
+\caption{Descriptive statistics}
+\label{tab: desc}
+\begin{tabular}{lp{4cm}rr}
+  \\[-1.8ex]\hline \hline \\[-1.8ex]
+Variable & Response Category & Frequency & P-value \\ 
+  \hline \\[-1.86ex]
+country\_name & India & 36 & 1.000 \\ 
    & China & 31 &  \\ 
    & United States & 31 &  \\ 
    & Japan & 27 &  \\ 
-   & (Other) & 174 &  \\ 
-  age & 20-25 years old & 99 & 0.893 \\ 
+   & Russia & 26 &  \\ 
+   & (Other) & 148 &  \\ 
+  age & $<$20 years old & 18 & 0.893 \\ 
+   & 20-25 years old & 99 &  \\ 
    & 26-30 years & 82 &  \\ 
    & 31-40 years & 67 &  \\ 
    & 41-50 years & 21 &  \\ 
-   & (Other) & 30 &  \\ 
+   & 51 years and above & 12 &  \\ 
   gender & Female & 20 & 0.672 \\ 
    & Male & 279 &  \\ 
   educ & PhD & 31 & 0.454 \\ 
    & High School & 37 &  \\ 
    & Master of Arts & 111 &  \\ 
    & Bachelor & 120 &  \\ 
-  plang & C++ & 134 & 0.640 \\ 
+  plang & C\# & 33 & 0.640 \\ 
+   & C++ & 134 &  \\ 
    & Java & 87 &  \\ 
-   & C\# & 33 &  \\ 
+   & Other & 14 &  \\ 
    & Python & 28 &  \\ 
-   & (Other) & 17 &  \\ 
-   \bottomrule \hline
-\end{longtable}
-
-\endgroup
+   & VB & 3 &  \\ 
+   \hline \\[-1.8ex]
+\end{tabular}
+\begin{tablenotes}\footnotesize
+This table shows the frequency for each response category of five categorical variables for country of residence, age, gender, highest degree achieved, and preferred programming language. For each variable, a Pearson's Chi-squared test shows no evidence of dependence  between the variable and the treatments. P-values are reported in the last column.
+\end{tablenotes}
+\end{table}
 
 \begin{table}[!htbp] \centering 
   \caption{Descriptive statistics} 
   \label{} 
-\begin{tabular}{@{\extracolsep{5pt}}lD{.}{.}{-1} D{.}{.}{-1} D{.}{.}{-1} D{.}{.}{-1} D{.}{.}{-1} } 
+\begin{tabular}{@{\extracolsep{5pt}}lccccc} 
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
 Statistic & \multicolumn{1}{c}{N} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{St. Dev.} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max} \\ 
@@ -542,21 +550,22 @@ Algo registrations & 299 & 45.7 & 64.3 & 0 & 365 \\
 MM rating & 205 & 1,322.0 & 425.0 & 593 & 3,071 \\ 
 MM competitions & 299 & 7.2 & 11.8 & 0 & 91 \\ 
 MM registrations & 299 & 17.6 & 23.0 & 1 & 161 \\ 
-Time zone & 299 & 2.3 & 5.1 & -8.0 & 10.0 \\ 
+Time zone & 299 & 2.3 & 5.1 & $-$8.0 & 10.0 \\ 
 Risk aversion & 279 & 6.4 & 2.2 & 1 & 10 \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
 
-{[}This goes into the data section:{]} A total of 299 competitors
-signed-up to take part in the challenge. They were all xxxx members of
-the platform with between 52.542 and 770.548 weeks as registered
-members. In terms of skill ratings, the distribution was highly skewed
-with competitors in the highest 90th percentile having participated in
-24 more competitions than those in the 10th percentile. Likewise skills
-as measured by the individual ratings, if there was one, had a skewed
-distribution with 1034 higher points than those in the 10th percentile;
-see Figure \ref{eq: distribution experience}.
+A total of 299 competitors signed-up to take part in the challenge. They
+were all xxxx members of the platform with between 52.542 and 770.548
+weeks as registered members. In terms of skill ratings, the distribution
+was highly skewed with competitors in the highest 90th percentile having
+participated in 24 more competitions than those in the 10th percentile.
+Likewise skills as measured by the individual ratings, if there was one,
+had a skewed distribution with 1034 higher points than those in the 10th
+percentile; see Figure \ref{eq: distribution experience}.
+
+\clearpage
 
 \section{Results}\label{results}
 
@@ -610,14 +619,151 @@ analysis, it is possible that differences will be xxx in a multivariate
 analysis. Adding controls can indeed reduce noise and improve precisions
 of our estimates.
 
-Assuming the decision was independent, to explore the determinants of
-participation:
+Let's consider first a simple logistic model
 
-\begin{equation}
-  Pr(y=1) = G(\text{Rating}_{i} + \text{Experience}_{i} + \text{T}_{i})
-\end{equation}
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = submit ~ treatment, family = quasibinomial, data = races)
+## 
+## Deviance Residuals: 
+##    Min      1Q  Median      3Q     Max  
+## -0.895  -0.793  -0.781   1.489   1.635  
+## 
+## Coefficients:
+##                     Estimate Std. Error t value Pr(>|t|)
+## (Intercept)          -1.0324     0.2295   -4.50  9.9e-06
+## treatmentTournament   0.3242     0.3136    1.03     0.30
+## treatmentReserve      0.0377     0.3224    0.12     0.91
+## 
+## (Dispersion parameter for quasibinomial family taken to be 1.01)
+## 
+##     Null deviance: 358.81  on 298  degrees of freedom
+## Residual deviance: 357.49  on 296  degrees of freedom
+## AIC: NA
+## 
+## Number of Fisher Scoring iterations: 4
+\end{verbatim}
 
-where \(G()\) is logistic.
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = submit ~ treatment + gender + educ + age + timezone + 
+##     plang, family = quasibinomial, data = races)
+## 
+## Deviance Residuals: 
+##    Min      1Q  Median      3Q     Max  
+## -1.533  -0.840  -0.648   1.168   2.079  
+## 
+## Coefficients:
+##                       Estimate Std. Error t value Pr(>|t|)
+## (Intercept)            -1.8533     0.9969   -1.86    0.064
+## treatmentTournament     0.2977     0.3381    0.88    0.379
+## treatmentReserve        0.0454     0.3491    0.13    0.897
+## genderMale              0.3312     0.6178    0.54    0.592
+## educHigh School         0.8063     0.6322    1.28    0.203
+## educMaster of Arts      0.2427     0.4906    0.49    0.621
+## educBachelor            0.5050     0.5141    0.98    0.327
+## age20-25 years old     -0.3094     0.6757   -0.46    0.647
+## age26-30 years          0.5366     0.7060    0.76    0.448
+## age31-40 years          0.9886     0.7021    1.41    0.160
+## age41-50 years          0.4718     0.8314    0.57    0.571
+## age51 years and above   1.1899     0.9109    1.31    0.193
+## timezone                0.0109     0.0279    0.39    0.695
+## plangC++               -0.1932     0.4441   -0.44    0.664
+## plangJava              -0.8340     0.4754   -1.75    0.080
+## plangOther             -0.4482     0.7454   -0.60    0.548
+## plangPython             0.2196     0.5838    0.38    0.707
+## plangVB                 1.1734     1.3532    0.87    0.387
+## 
+## (Dispersion parameter for quasibinomial family taken to be 1.06)
+## 
+##     Null deviance: 358.81  on 298  degrees of freedom
+## Residual deviance: 337.25  on 281  degrees of freedom
+## AIC: NA
+## 
+## Number of Fisher Scoring iterations: 4
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = submit ~ treatment + algorating + mmevents + algoevents + 
+##     totalpayments, family = quasibinomial, data = races)
+## 
+## Deviance Residuals: 
+##    Min      1Q  Median      3Q     Max  
+## -1.713  -0.771  -0.644   1.040   1.908  
+## 
+## Coefficients:
+##                            Estimate Std. Error t value Pr(>|t|)
+## (Intercept)               -1.503410   0.327239   -4.59  6.5e-06
+## treatmentTournament        0.372238   0.331949    1.12   0.2631
+## treatmentReserve          -0.000123   0.343707    0.00   0.9997
+## algorating                -0.000059   0.000228   -0.26   0.7957
+## mmevents                   0.035712   0.013466    2.65   0.0084
+## algoevents                 0.001907   0.003090    0.62   0.5377
+## totalpayments1 - 599      -0.182154   0.477411   -0.38   0.7031
+## totalpayments600 - 4500    0.226796   0.456516    0.50   0.6197
+## totalpayments4500 - 37000  0.723311   0.426958    1.69   0.0913
+## totalpayments>37000        0.466569   0.452361    1.03   0.3032
+## 
+## (Dispersion parameter for quasibinomial family taken to be 1.03)
+## 
+##     Null deviance: 358.81  on 298  degrees of freedom
+## Residual deviance: 334.04  on 289  degrees of freedom
+## AIC: NA
+## 
+## Number of Fisher Scoring iterations: 4
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = submit ~ treatment + algorating + mmevents + algoevents + 
+##     totalpayments + gender + educ + age + timezone + plang, family = quasibinomial, 
+##     data = races)
+## 
+## Deviance Residuals: 
+##    Min      1Q  Median      3Q     Max  
+## -1.966  -0.759  -0.597   0.992   2.211  
+## 
+## Coefficients:
+##                            Estimate Std. Error t value Pr(>|t|)
+## (Intercept)               -2.13e+00   1.07e+00   -1.99    0.047
+## treatmentTournament        3.50e-01   3.56e-01    0.98    0.327
+## treatmentReserve          -5.13e-03   3.70e-01   -0.01    0.989
+## algorating                -3.52e-05   2.62e-04   -0.13    0.893
+## mmevents                   3.50e-02   1.61e-02    2.17    0.031
+## algoevents                 1.65e-03   3.34e-03    0.50    0.621
+## totalpayments1 - 599      -2.12e-02   5.18e-01   -0.04    0.967
+## totalpayments600 - 4500    2.56e-01   5.07e-01    0.50    0.614
+## totalpayments4500 - 37000  7.25e-01   4.68e-01    1.55    0.123
+## totalpayments>37000        3.60e-01   5.11e-01    0.70    0.482
+## genderMale                 2.56e-01   6.51e-01    0.39    0.694
+## educHigh School            8.29e-01   6.66e-01    1.24    0.215
+## educMaster of Arts         1.39e-01   5.17e-01    0.27    0.788
+## educBachelor               4.14e-01   5.43e-01    0.76    0.446
+## age20-25 years old        -2.84e-01   7.17e-01   -0.40    0.692
+## age26-30 years             3.45e-01   7.61e-01    0.45    0.651
+## age31-40 years             6.57e-01   7.65e-01    0.86    0.391
+## age41-50 years            -2.77e-01   9.49e-01   -0.29    0.770
+## age51 years and above      5.57e-01   1.02e+00    0.55    0.584
+## timezone                   1.17e-02   3.03e-02    0.39    0.700
+## plangC++                  -4.17e-02   4.72e-01   -0.09    0.930
+## plangJava                 -6.66e-01   4.99e-01   -1.34    0.183
+## plangOther                -2.35e-03   7.83e-01    0.00    0.998
+## plangPython                3.38e-01   6.13e-01    0.55    0.582
+## plangVB                    7.60e-01   1.51e+00    0.50    0.615
+## 
+## (Dispersion parameter for quasibinomial family taken to be 1.09)
+## 
+##     Null deviance: 358.81  on 298  degrees of freedom
+## Residual deviance: 320.83  on 274  degrees of freedom
+## AIC: NA
+## 
+## Number of Fisher Scoring iterations: 4
+\end{verbatim}
 
 \begin{verbatim}
 ## 

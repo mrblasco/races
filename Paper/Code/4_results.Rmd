@@ -1,22 +1,4 @@
 
-```{r}
-diff.days <- function(time1, time2, ...) {
-  as.numeric(difftime(time1, time2, units='days', ...))
-}
-Total <- function(x) sum(x)
-
-# Weeks at the start of the competition
-start_date <- as.Date("2016-03-02")
-as.numeric(difftime(start_date, races$create_date))/7 -> week_diff
-
-# Past competitions (experience)
-quantile(races$mmevents, p=c(0.1, 0.9)) -> rounds_qtl
-
-# Individual ratings (skills)
-quantile(races$mmrating, p=c(0.1, 0.9), na.rm=TRUE) -> rating_qtl
-```
-
-[This goes into the data section:] A total of `r nrow(races)` competitors signed-up to take part in the challenge.  They were all xxxx members of the platform with between `r min(week_diff)` and `r max(week_diff)` weeks as registered members. In terms of skill ratings, the distribution was highly skewed with competitors in the highest 90th percentile having participated in `r diff(rounds_qtl)` more competitions than those in the 10th percentile. Likewise skills as measured by the individual ratings, if there was one, had a skewed distribution with `r round(diff(rating_qtl))` higher points than those in the 10th percentile; see Figure \ref{eq: distribution experience}. 
 
 
 Results
@@ -24,7 +6,6 @@ Results
 
 
 ```{r}
-races$submit <- races$handle %in% races.sub$handle
 submissions <- tapply(races.sub$id, races.sub$handle, max)
 ``` 
 
@@ -37,7 +18,6 @@ ft <- fisher.test(tab)
 ```
 
 Participation across treatments was higher in the Tournament treatment (`r pp["Tournament"]` percent), followed by the Tournament w/reseve (`r pp["Reserve"]` percent), and the Race treatment (`r pp["Race"]` percent). However,  these differences are not statistically significant (using a `r ft$method` gives a p-value of `r ft$p.value`)
-
 
 ```{r}
 races$submit2 <- races$handle %in% unique(subset(races.sub,  system>=800000)$handle)
@@ -74,16 +54,31 @@ Concerning the distribution of the scores on the last submission, the median fin
 
 Although we do not find  significant differences through an univariate analysis, it is possible that differences will be xxx in a multivariate analysis. Adding controls can indeed reduce noise and improve precisions of our estimates. 
 
-Assuming the decision was independent, to explore the determinants of participation: 
-
-\begin{equation}
-  Pr(y=1) = G(\text{Rating}_{i} + \text{Experience}_{i} + \text{T}_{i})
-\end{equation}
-
-where $G()$ is logistic.
+Let's consider first a simple logistic model
 
 ```{r}
-ilogit <- function(x) exp(x) / (1+ exp(x))
+fit <- rep()
+
+# Baseline mode
+fit$base <- glm(submit ~ treatment, data=races, quasibinomial)
+summary(fit$base) ## Approx 
+
+# Add demographic controls
+fit$m1 <- update(fit$base, "submit ~ treatment + gender + educ + age + timezone + plang")
+summary(fit$m1) ## Approx 
+
+# Add platform controls
+fit$m2 <- update(fit$base, "submit ~ treatment + algorating  + mmevents + algoevents + totalpayments")
+summary(fit$m2) ## Approx 
+
+# Everything
+fit$m3 <- update(fit$base, "submit ~ treatment + algorating  + mmevents + algoevents + totalpayments + gender + educ + age + timezone + plang")
+summary(fit$m3)
+
+
+```
+
+```{r}
 races$mmrating[is.na(races$mmrating)]<-0
 
 fit <- rep()

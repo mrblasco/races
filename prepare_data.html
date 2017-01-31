@@ -117,7 +117,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Dataset preparation Races vs Tournament</h1>
 <h4 class="author"><em>Andrea Blasco <a href="mailto:ablasco@fas.harvard.edu">ablasco@fas.harvard.edu</a></em></h4>
-<h4 class="date"><em>27 January, 2017</em></h4>
+<h4 class="date"><em>31 January, 2017</em></h4>
 
 </div>
 
@@ -612,6 +612,25 @@ races &lt;- final.consistent(newdata3)</code></pre>
 ##  (Other)           :  1                      Max.   :10.0   NA's:205  
 ##  NA's              :201                      NA's   :211</code></pre>
 <pre class="r"><code>races.sub &lt;- subs
+races$submit &lt;- races$handle %in% races.sub$handle
+
+# De-identify the data
+de.identify &lt;- function(x) {
+  x &lt;- droplevels(x)
+  old.levels &lt;- levels(x)
+  new.levels &lt;- 1:length(old.levels)
+  x.new &lt;- factor(x, labels=new.levels)
+  return(list(x=x.new, identity=old.levels))
+}
+z &lt;- de.identify(races$handle)
+
+# Store identity file
+write.table(z$identity, quote=F, sep=&quot;,&quot;, col.names=FALSE, file=&quot;.handles&quot;)
+
+# Replace handles
+races.sub$handle &lt;- match(races.sub$handle, z$identity)
+races$handle &lt;- z$x
+
 db &lt;- c(&quot;races&quot;, &quot;races.sub&quot;)
 save(list=db, file=&quot;.RData&quot;)</code></pre>
 </div>

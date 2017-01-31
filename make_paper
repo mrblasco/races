@@ -14,7 +14,7 @@ share_dir=.share
 function compile {
   output_dir="$1"
   cp Templates/* $output_dir/Templates
-  cp .RData *.Rmd $output_dir
+  cp .RData functions.R *.Rmd $output_dir
   cd $output_dir && crmd $main_file && mv *.Rmd Code/
   cd ..
 }

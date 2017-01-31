@@ -41,19 +41,43 @@ Finally, we also asked participants to respond to a survey at the end of the sub
 
 Table XXX summarizes the data. 
 
-```{r descriptive, results='asis'}
+```{r, results='asis'}
+index <- c("Country"="country_name"
+          , "Age"="age"
+          , "Gender"="gender"
+          , "Highest degree"="educ"
+          , "Pref. programming lang."="plang"
+)
+foo <- sapply(races[, index], function(x) summary(x, maxsum=5)) ## get summary of each var
+foo.test <- sapply(races[, index], function(x) chisq.test(table(x, races$treatment) + 1, simulate.p.value=TRUE)$p.val)
 
-# Factors
-vars <- c("country_name", "age", "gender", "educ", "plang")
-foo <- sapply(races[, vars], function(x) summary(x, maxsum=6)) ## get summary of each var
-foo.test <- sapply(races[, vars], function(x) chisq.test(table(x, races$treatment) + 1, simulate.p.value=TRUE)$p.val)
+xtable.factors <- function(foo, foo.test, ...) {
 
-bar <- xtable.factors(foo, foo.test)
-align(bar) <- c("{}l","l","p{4cm}","r","r")
-render.xtable(bar, "Descriptive statistics", "tab: desc", include.rownames=FALSE, notes="This table shows the frequency for each response category of five categorical variables for country of residence, age, gender, highest degree achieved, and preferred programming language. For each variable, a Pearson's Chi-squared test shows no evidence of dependence  between the variable and the treatments. P-values are reported in the last column.")
+  bar <- matrix(nrow=length(unlist(foo)), ncol=4) # Initialize
+  bar[, 1] <- gsub("\\..*","", names(unlist(foo))) ## 1st col has var name
+  duplicated(bar[, 1]) -> duplicate.row 
+  bar[, 1][duplicate.row] <- ""   ## don't repeat variable names
+  bar[, 2] <- gsub(".*?\\.","", names(unlist(foo))) ## 2nd column has factor levels
+  bar[, 3] <- as.numeric(unlist(foo))
+  bar[, 3][is.na(bar[, 3])] <- 0 ## in case anything has been coerced
+  bar[!duplicate.row, 4] <- format(foo.test, nsmall=3)
+  colnames(bar) <- c("Variable","Response Category","Frequency", "P-value")
+  rownames(bar) <- rep("", nrow(bar))
+  return(xtable(bar))
+}
 
-# Table with numeric variables
-vars <- c("Algo rating"="algorating"
+bar <- xtable(bar)
+align(bar) <- c("l","l","p{4cm}","r","r") ## make sure factor levels don't take up more than 4cm
+
+print(bar, tabular.environment = "longtable", include.rownames=FALSE, size="footnotesize",     
+  floating=FALSE, # 
+  hline.after=NULL, #
+  add.to.row=list(pos=list(-1,0, nrow(bar)), #
+  command=c('\\toprule ', # use nice booktabs formatting
+  '\\midrule \\endhead ', # with running headers from longtable
+  '\\bottomrule ')))
+
+select <- c("Algo rating"="algorating"
           , "Algo competitions"="algoevents"
           , "Algo registrations"="algoreg"
           , "MM rating"="mmrating"
@@ -62,34 +86,7 @@ vars <- c("Algo rating"="algorating"
           , "Time zone"="timezone"
           , "Risk aversion"="risk"
 )
-# foo <- sapply(races[, vars], function(x) summary(x)) ## get summary of each var
-# foo.test <- sapply(races[, vars], function(x) kruskal.test(split(x, races$treatment))$p.val)
-# xtable.factors(foo, foo.test)
-
-stargazer(races[, vars], header=FALSE, title='Descriptive statistics', covariate.labels=names(vars), digits=1)
+stargazer(races[, select], header=FALSE, title='Descriptive statistics', align=TRUE, covariate.labels=names(select), digits=1)
+# HERE TABLE Summary statistics!
 ```
 
-```{r}
-diff.days <- function(time1, time2, ...) {
-  as.numeric(difftime(time1, time2, units='days', ...))
-}
-Total <- function(x) sum(x)
-
-# Weeks at the start of the competition
-start_date <- as.Date("2016-03-02")
-as.numeric(difftime(start_date, races$create_date))/7 -> week_diff
-
-# Past competitions (experience)
-quantile(races$mmevents, p=c(0.1, 0.9)) -> rounds_qtl
-
-# Individual ratings (skills)
-quantile(races$mmrating, p=c(0.1, 0.9), na.rm=TRUE) -> rating_qtl
-```
-
-A total of `r nrow(races)` competitors signed-up to take part in the challenge.  They were all xxxx members of the platform with between `r min(week_diff)` and `r max(week_diff)` weeks as registered members. In terms of skill ratings, the distribution was highly skewed with competitors in the highest 90th percentile having participated in `r diff(rounds_qtl)` more competitions than those in the 10th percentile. Likewise skills as measured by the individual ratings, if there was one, had a skewed distribution with `r round(diff(rating_qtl))` higher points than those in the 10th percentile; see Figure \ref{eq: distribution experience}. 
-
-
-```{r}
-library(car)
-spm(~ mmrating+mmevents+algorating+algoevents, data=races, pch=16)
-```

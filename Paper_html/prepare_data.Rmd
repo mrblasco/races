@@ -1,0 +1,308 @@
+% Dataset preparation Races vs Tournament
+% Andrea Blasco <ablasco@fas.harvard.edu>
+% `r format(Sys.time(), '%d %B, %Y')`
+
+
+```{r, echo=FALSE, warnings=FALSE, message=FALSE}
+library(magrittr)
+library(jsonlite)
+library(xtable)
+library(knitr)
+set.seed(4881)
+```
+
+Upload, clean, and merge
+========================
+
+Data Flow: import data > make data technically correct > make the correct data consistent. 
+
+Upload datasets
+----------------
+
+```{r, echo=TRUE}
+regdata.raw   <- read.csv("Data/registered_platform_topcoder.txt", sep='\t')
+subs.raw      <- read.csv("Data/submissions.csv")
+svy.ini.raw   <- read.csv("Data/Qualtrics/SV_8elNruzKCgPB72B.csv"
+              , skip=1, na.strings=c("","NA")) 
+svy.end.raw  <- read.csv("Data/Qualtrics/SV_0DSqL7Exk0A7Bdj.csv"
+              , skip=1, na.strings=c("","NA"))
+assign.raw <- rbind(read.csv("Data/Assignment/race.csv")
+            , read.csv("Data/Assignment/tournament.csv")
+            , read.csv("Data/Assignment/reserve.csv"))
+
+# Helper functions:
+#     imputing missing values
+#     handling strings
+#     standardize handles
+#     unique datasets by id
+na.count <- function(x) sum(is.na(x))
+replace.pattern <- function(x, p1, p2) gsub(x, pattern=p1, replacement=p2)
+capitalize <- function(x) {
+  substr(x, 1, 1) <- toupper(substr(x, 1, 1))
+  return(x)
+}
+standardize.handle <- function(x) {
+  x %>% as.character %>% trimws %>% tolower %>%
+    replace.pattern("@gmail.com", "") %>%
+    replace.pattern("vidhyabhushan.*", "vidhyabhushanv") %>%
+    as.factor -> x
+  return(x)
+}
+unique.by.id <- function(x, id) {
+  index <- tapply(1:nrow(x), id, head, n=1)
+  return(x[index, ])
+}
+impute.zero <- function(x) ifelse(is.na(x), 0, x)
+impute.at.random <- function(x, ...) {
+  x.missing <- is.na(x)
+  x[x.missing] <- sample(levels(x), replace=TRUE, size=sum(x.missing), ...)
+  return(list(imputed=x, missing.yes=x.missing))
+}
+```
+
+Registered participants
+-------------------------
+
+```{r}
+regdata.correct <- function(x) {
+  x$handle <- standardize.handle(x$handle)
+  x$create_date <- strptime(x$create_date, format='%m/%d/%Y', tz='')  
+  x$country_name <- factor(as.character(x$country_name))
+  x$address <- NULL
+  x$algorating <- as.numeric(x$algorating)
+  x$algoevents <- as.numeric(x$algoevents)
+  x$mmrating <- as.numeric(x$mmrating)
+  x$mmevents <- as.numeric(x$mmevents)
+  x$mmevents <- impute.zero(x$mmevents)
+  x$algoreg <- as.numeric(x$algoreg)
+  x$mmreg <- as.numeric(x$mmreg)
+  x$school <- NULL
+  x$age <- NULL # This is age at registration
+  x$gender <- NULL
+  breaks <- 100*round(quantile(x$totalpayments, na.rm=TRUE) / 100)
+  breaks.lab <- c("0", "1 - 599", "600 - 4500","4500 - 37000",">37000")
+  x$totalpayments %>% impute.zero %>% as.numeric %>%
+    cut(breaks=c(0, 1, breaks[-1]), include.lowest=TRUE, right=FALSE) %>%
+    factor(labels=breaks.lab) -> x$totalpayments
+  return(x)
+}
+regdata.consistent <- function(x) {
+  x <- unique.by.id(x, x$handle)
+  # Numeric must be non-negative numbers
+  for (i in 1:ncol(x)) {
+    if (is.numeric(x[, i])) {
+      x[, i][x[, i]<0] <- 0
+    }
+  }
+  # Impute missing factors
+  return(x)
+}
+regdata <- regdata.consistent(regdata.correct(regdata.raw))
+summary(regdata)
+```
+
+
+Assigned treatments
+-------------------
+
+```{r, echo=TRUE}
+assign.correct <- function(x) {
+  names(x) <- gsub("_id", "", names(x))
+  x$handle <- standardize.handle(x$handle)
+  x$mmrating <- NULL
+  return(x)
+}
+assign.consistent <- function(x) {
+  x$room <- factor(paste("Group ", ifelse(x$treatment=="race", "1", ifelse(x$treatment=="tournament", "2", "3")), toupper(letters[x$room]), sep=""))
+  levels(x$treatment) <- capitalize(levels(x$treatment))
+  return(x)
+}
+assignment <- assign.consistent(assign.correct(assign.raw))
+summary(assignment)
+```
+
+
+Initial Survey
+---------------------------
+
+```{r}
+svy.ini.correct <- function(x) {
+  x <- x[, -c(1:6)] # Drop Qualtrics vars
+  x <- x[, !grepl("^X$|LocationAccu|Thank|Browser.", names(x))] 
+  # Rename
+  names(x) <- tolower(names(x))
+  names(x)[grep("handle", names(x))] <- "handle"
+  names(x)[grep("academic.degree", names(x))] <- "educ"
+  names(x)[grep("current", names(x))] <- "job"
+  names(x)[grep("country", names(x))] <- "country_origin"
+  names(x)[grep("timezone", names(x))] <- "timezone"
+  names(x)[grep("risk", names(x))] <- "risk"
+  names(x)[grep("programming", names(x))] <- "plang"
+  names(x)[grep("1st.and.2nd", names(x))] <- "hours1"
+  names(x)[grep("3rd.and.4th", names(x))] <- "hours2"
+  names(x)[grep("5th.and.6th", names(x))] <- "hours3"
+  names(x)[grep("7th.and.8th", names(x))] <- "hours4"
+  names(x)[grep("longitude", names(x))] <- "long"
+  names(x)[grep("latitude", names(x))] <- "lat"
+
+  x$startdate <- strptime(x$startdate,'%Y-%m-%d %H:%M:%S', tz='EST')
+  x$enddate <- strptime(x$enddate,'%Y-%m-%d %H:%M:%S', tz='EST')
+  x$finished <- as.logical(x$finished==1)
+  x$status <- NULL
+  
+  x$handle <- standardize.handle(x$handle)
+  x$age <- factor(as.character(x$age))
+  x$country_origin <- factor(gsub("^[A-Z]{2} - ", "", x$country_origin))
+  x$educ <-  factor(as.character(x$educ))
+    levels(x$educ) <- c("PhD", "High School", "Master of Arts", "Bachelor")
+  x$gender <- factor(as.character(x$gender))
+  x$job <- tolower(as.character(x$job))
+  x$plang <- factor(as.character(x$plang))
+  x$risk <- as.numeric(gsub("[^0-9]","", as.character(x$risk)))
+  x$timezone <- as.numeric(gsub("^([^,]+),.*", "\\1",x$timezone))
+  return(x)
+}
+svy.ini.consistent <- function(x) {
+  # Order by missing values
+  tot.missing <- numeric(nrow(x))
+  for (i in 1:nrow(x)) {
+    tot.missing[i] <- na.count(x[i,])
+  }
+  x <- x[order(tot.missing, decreasing=FALSE), ]
+  x <- unique.by.id(x, x$handle)
+  # Timezone is associated with the country --> impute later
+  return(x)
+}
+svy.ini <- svy.ini.consistent(svy.ini.correct(svy.ini.raw))
+summary(svy.ini)
+```
+
+Final survey
+-----------------
+
+```{r, echo=TRUE}
+svy.end.correct <- function(x) {
+  x <- x[, -c(1:6)] # Drop Qualtrics vars
+  x <- x[, !grepl("^X$|Thank|Location|mailing|Browser.", names(x))] 
+  # Rename
+  names(x) <- tolower(names(x))
+  names(x)[grep("handle", names(x))] <- "handle"
+  names(x)[grep("1st.and.2nd", names(x))] <- "hours1"
+  names(x)[grep("3rd.and.4th", names(x))] <- "hours2"
+  names(x)[grep("5th.and.6th", names(x))] <- "hours3"
+  names(x)[grep("7th.and.8th", names(x))] <- "hours4"
+  names(x)[grep("doubled", names(x))] <- "hours_prize_double"
+  names(x)[grep("halved", names(x))] <- "hours_prize_half"
+  names(x)[grep("how.hard", names(x))] <- "hard_target"
+  names(x)[grep("machine.learning", names(x))] <- "approaches"
+  names(x)[grep("first.to.reach", names(x))] <- "racing"
+  names(x)[grep("risk", names(x))] <- "risk"
+  names(x)[grep("t.shirt", names(x))] <- "tshirt"
+
+  x$startdate <- strptime(x$startdate,'%Y-%m-%d %H:%M:%S', tz='EST')
+  x$enddate <- strptime(x$enddate,'%Y-%m-%d %H:%M:%S', tz='EST')
+  x$finished <- as.logical(x$finished==1)
+  
+  x$handle <- standardize.handle(x$handle)
+  x$risk <- as.numeric(gsub("[^0-9]","", as.character(x$risk)))
+  x$approaches <- as.character(x$approaches)
+  x$racing <- as.character(x$racing)
+  return(x)
+}
+svy.end.consistent <- function(x) {
+  tot.missing <- numeric(nrow(x))
+  for (i in 1:nrow(x)) {
+    tot.missing[i] <- na.count(x[i,])
+  }
+  x <- x[order(tot.missing, decreasing=FALSE), ]
+  x <- unique.by.id(x, x$handle)
+  return(x)
+}
+svy.end <- svy.end.consistent(svy.end.correct(svy.end.raw))
+summary(svy.end)
+```
+
+Scores and submissions
+----------------------------
+
+```{r, echo=TRUE}
+subs.correct <- function(x) {
+  names(x) <- tolower(names(x))
+  names(x)[grep("submissionid", names(x))] <- "id"
+  names(x)[grep("roomid", names(x))] <- "room"
+  names(x)[grep("^timestamp$", names(x))] <- "timestamp"
+  names(x)[grep("^timestamp2$", names(x))] <- "timestamp2"
+  x$epochtime <- NULL
+  x$handle2 <- NULL
+  x$timestamp2 <- NULL
+  x$handle <- standardize.handle(x$handle)
+  x$id <- as.numeric(x$id)
+  x$timestamp <- strptime(x$timestamp, "%Y-%m-%d %H:%M:%S") 
+  x$system <- as.numeric(x$system)
+  x$provisional <- as.numeric(x$provisional)
+  return(x)
+}
+subs.consistent <- function(x) {
+  x$system <- impute.zero(x$system)
+  return(x)
+}
+subs <- subs.consistent(subs.correct(subs.raw))
+summary(subs)
+```
+
+Merge datasets
+---------------
+
+Checks before merging
+
+```{r}
+# Handles assigned but not in registration data
+length(setdiff(assignment$handle, regdata$handle))
+
+# Handles assigned but not in initial survey
+length(setdiff(assignment$handle, svy.ini$handle))
+
+```
+
+Merge and impute.
+
+```{r}
+newdata   <- merge(regdata, assignment, by='handle')
+newdata2  <- merge(newdata, svy.ini, by="handle", suff=c("",".ini"), all.x=TRUE)
+newdata3 <- merge(newdata2, svy.end, by="handle", all.x=TRUE, suff=c("",".end"))
+
+final.consistent <- function(x) {
+  x$age <- impute.at.random(x$age)$imputed
+  x$gender <- impute.at.random(x$gender)$imputed
+  x$plang <- impute.at.random(x$plang)$imputed
+  
+  # Education associated with age --> imputing at random | age
+  tab <- table(x$age, x$educ)
+  print(chisq.test(tab)) ## Show association before imputing
+  prob <- prop.table(tab+1, 1)
+  educ.miss <- is.na(x$educ)
+  age.miss <- x$age[educ.miss]
+  x$educ[educ.miss] <- sapply(age.miss, 
+      function(z) sample(levels(x$educ), size=1, replace=TRUE, prob=prob[z, ]))
+  #(match(levels(x$educ), colnames(prob)))
+  # Timezone fixed association with country --> imputing at random | country
+  prob <- prop.table(table(droplevels(x$country_name), x$timezone), 1)
+  prob["South Africa", ] <- rep(0, ncol(prob))
+  prob["South Africa", "2"] <- 1 
+  tz.miss <- is.na(x$timezone)
+  country.miss <- x$country_name[tz.miss]
+  x$timezone[tz.miss] <- sapply(country.miss, 
+      function(z) sample(as.numeric(colnames(prob))
+      , size=1, replace=TRUE, prob=prob[z, ]))
+  return(x)
+}
+races <- final.consistent(newdata3)
+summary(races)
+```
+
+```{r}
+races.sub <- subs
+db <- c("races", "races.sub")
+save(list=db, file=".RData")
+```
+

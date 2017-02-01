@@ -125,7 +125,7 @@ Consider panel data!
 ```{r}
 day <- as.numeric(format(races.sub$timestamp, '%d'))
 races.sub$day <- cut(day, c(8,10,12,14, 16), include.lowest=T, right=FALSE)
-subs.long0 <- expand.grid(handle=levels(races.sub$handle), day=levels(races.sub$day))
+subs.long0 <- expand.grid(handle=unique(races.sub$handle), day=levels(races.sub$day))
 subs.long1 <- aggregate(id ~ day + handle, data=races.sub, FUN=length)
 subs.long <- merge(subs.long0, subs.long1, by=c("handle", "day"), all.x=TRUE)
 subs.long$id[is.na(subs.long$id)] <- 0

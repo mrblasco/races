@@ -1,9 +1,6 @@
 
-
-
 Results
 =======
-
 
 ```{r}
 submissions <- tapply(races.sub$id, races.sub$handle, max)
@@ -51,6 +48,18 @@ kt <- kruskal.test(split(races$score.final, races$treatment))
 
 Concerning the distribution of the scores on the last submission, the median final scores was higher in the Tournament w/reserve treatment (`r ms["Reserve"]`), followed by the Tournament  (`r ms["Tournament"]`), and the Race treatment (`r ms["Race"]`). As before, however, these differences are not statistically significant (a `r kt$method` gives a p-value of `r kt$p.val`).
 
+```{r}
+first_submission <- min(races.sub$timestamp)
+last_submission <- max(races.sub$timestamp)
+mins_from_1st <- as.numeric(difftime(races.sub$timestamp, first_submission, units='mins'))
+mins_from_last <- as.numeric(difftime(races.sub$timestamp, last_submission, units='mins'))
+
+tapply(mins_from_1st/60, races.sub$handle, FUN=min)
+tapply(mins_from_last/60, races.sub$handle, FUN=min)
+```
+
+Finally, let us focus on the timing of the first and last submission. xxxx
+
 
 Although we do not find  significant differences through an univariate analysis, it is possible that differences will be xxx in a multivariate analysis. Adding controls can indeed reduce noise and improve precisions of our estimates. 
 
@@ -74,8 +83,6 @@ summary(fit$m2) ## Approx
 # Everything
 fit$m3 <- update(fit$base, "submit ~ treatment + algorating  + mmevents + algoevents + totalpayments + gender + educ + age + timezone + plang")
 summary(fit$m3)
-
-
 ```
 
 ```{r}
@@ -118,7 +125,7 @@ Consider panel data!
 ```{r}
 day <- as.numeric(format(races.sub$timestamp, '%d'))
 races.sub$day <- cut(day, c(8,10,12,14, 16), include.lowest=T, right=FALSE)
-subs.long0 <- expand.grid(handle=levels(races.sub$handle), day=levels(races.sub$day))
+subs.long0 <- expand.grid(handle=unique(races.sub$handle), day=levels(races.sub$day))
 subs.long1 <- aggregate(id ~ day + handle, data=races.sub, FUN=length)
 subs.long <- merge(subs.long0, subs.long1, by=c("handle", "day"), all.x=TRUE)
 subs.long$id[is.na(subs.long$id)] <- 0

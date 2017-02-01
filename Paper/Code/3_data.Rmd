@@ -88,3 +88,8 @@ quantile(races$mmrating, p=c(0.1, 0.9), na.rm=TRUE) -> rating_qtl
 
 A total of `r nrow(races)` competitors signed-up to take part in the challenge.  They were all xxxx members of the platform with between `r min(week_diff)` and `r max(week_diff)` weeks as registered members. In terms of skill ratings, the distribution was highly skewed with competitors in the highest 90th percentile having participated in `r diff(rounds_qtl)` more competitions than those in the 10th percentile. Likewise skills as measured by the individual ratings, if there was one, had a skewed distribution with `r round(diff(rating_qtl))` higher points than those in the 10th percentile; see Figure \ref{eq: distribution experience}. 
 
+
+```{r}
+library(car)
+spm(~ mmrating+mmevents+algorating+algoevents, data=races, pch=16)
+```

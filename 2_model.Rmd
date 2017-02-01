@@ -1,12 +1,16 @@
-The model
-==============
 
-We generalize the _contest game_ introduced by @moldovanu2001optimal to a situation where players allocate their effort along two dimensions: performance and time.  A  (generalized) contest game is an N player game with asymmetric information. Players move simultaneously to maximize the expected utility. Each player $i=1, 2, ..., N$ selects a performance variable $y_i$ and a timing $t_i$, both being nonnegative numbers. These variables can be thought of as the quality of the solution given to a problem and the time to write the code implementing such solution. Players incur a cost from effort given by the function
+The model
+=========
+
+We generalize the _contest game_ introduced by @moldovanu2001optimal to a situation where players allocate their effort along two dimensions: performance and time. A contest game is an N player game with asymmetric information. Players move simultaneously to maximize the expected utility. Each player $i=1, 2, ..., N$ chooses a performance variable $y_i$ and a timing $t_i$, both being nonnegative numbers. These can be thought of as the quality of the solution given to a given data problem and the time to write the code implementing such solution. 
+
+Players incur a cost from effort given by the function
 \begin{equation}
-  C_i(y_i, t_i) = \frac{1}{a_i} c(y_i, t_i)
+  C_i(y_i, t_i) = \gamma(a_i)c(y_i, t_i)
 \end{equation}
+
 with ${c_{y}}(0)\geq 0$, ${c_{y}}^\prime>0$, ${c_{t}}(d)\geq 0$, and
-${c_{t}}^\prime<0$. The parameter $a_i$ denotes the player $i$'s ability, which is privately observed at the beginning of the game. Abilities are drawn from a common distribution $F$ that is continuous on the semi-infinite interval $[0,\infty)$ (e.g., the exponential distribution).  
+${c_{t}}^\prime<0$. The function $\gamma(\cdot)$ is a cost-shift that depends on the player $i$'s ability $a_i$, which is privately observed at the beginning of the game. Although private, it is common knowledge that abilities are drawn from a common distribution $F$ that is continuous on the semi-infinite interval $[0,\infty)$.
 
 Let $r_i$ denote the rank position of a player $i$ relative to the $N-1$ others. The top $K$ players (e.g., $r_i\leq K$) are awarded a prize of value $V_1 > V_2 > ... > V_K$. A player's probability of winning a prize is given by the function $p_i(y_1,...y_N, t_1, ..., t_N)$. 
 

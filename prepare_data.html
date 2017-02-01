@@ -117,7 +117,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Dataset preparation Races vs Tournament</h1>
 <h4 class="author"><em>Andrea Blasco <a href="mailto:ablasco@fas.harvard.edu">ablasco@fas.harvard.edu</a></em></h4>
-<h4 class="date"><em>31 January, 2017</em></h4>
+<h4 class="date"><em>01 February, 2017</em></h4>
 
 </div>
 
@@ -128,15 +128,13 @@ $(document).ready(function () {
 <p>Data Flow: import data &gt; make data technically correct &gt; make the correct data consistent.</p>
 <div id="upload-datasets" class="section level2">
 <h2>Upload datasets</h2>
-<pre class="r"><code>regdata.raw   &lt;- read.csv(&quot;Data/registered_platform_topcoder.txt&quot;, sep='\t')
-subs.raw      &lt;- read.csv(&quot;Data/submissions.csv&quot;)
-svy.ini.raw   &lt;- read.csv(&quot;Data/Qualtrics/SV_8elNruzKCgPB72B.csv&quot;
-              , skip=1, na.strings=c(&quot;&quot;,&quot;NA&quot;)) 
-svy.end.raw  &lt;- read.csv(&quot;Data/Qualtrics/SV_0DSqL7Exk0A7Bdj.csv&quot;
-              , skip=1, na.strings=c(&quot;&quot;,&quot;NA&quot;))
-assign.raw &lt;- rbind(read.csv(&quot;Data/Assignment/race.csv&quot;)
-            , read.csv(&quot;Data/Assignment/tournament.csv&quot;)
-            , read.csv(&quot;Data/Assignment/reserve.csv&quot;))
+<pre class="r"><code>regdata.raw &lt;- read.csv(&quot;Data/registered_platform_topcoder.txt&quot;, sep='\t')
+subs.raw    &lt;- read.csv(&quot;Data/submissions.csv&quot;)
+svy.ini.raw &lt;- read.csv(&quot;Data/initial_survey.csv&quot;, na.strings=c(&quot;&quot;,&quot;NA&quot;)) 
+svy.end.raw &lt;- read.csv(&quot;Data/final_survey.csv&quot;, na.strings=c(&quot;&quot;,&quot;NA&quot;))
+assign.raw  &lt;- rbind(read.csv(&quot;Data/Assignment/race.csv&quot;)
+              , read.csv(&quot;Data/Assignment/tournament.csv&quot;)
+              , read.csv(&quot;Data/Assignment/reserve.csv&quot;))
 
 # Helper functions:
 #     imputing missing values
@@ -256,39 +254,20 @@ summary(assignment)</code></pre>
 <div id="initial-survey" class="section level2">
 <h2>Initial Survey</h2>
 <pre class="r"><code>svy.ini.correct &lt;- function(x) {
-  x &lt;- x[, -c(1:6)] # Drop Qualtrics vars
-  x &lt;- x[, !grepl(&quot;^X$|LocationAccu|Thank|Browser.&quot;, names(x))] 
-  # Rename
-  names(x) &lt;- tolower(names(x))
-  names(x)[grep(&quot;handle&quot;, names(x))] &lt;- &quot;handle&quot;
-  names(x)[grep(&quot;academic.degree&quot;, names(x))] &lt;- &quot;educ&quot;
-  names(x)[grep(&quot;current&quot;, names(x))] &lt;- &quot;job&quot;
-  names(x)[grep(&quot;country&quot;, names(x))] &lt;- &quot;country_origin&quot;
-  names(x)[grep(&quot;timezone&quot;, names(x))] &lt;- &quot;timezone&quot;
-  names(x)[grep(&quot;risk&quot;, names(x))] &lt;- &quot;risk&quot;
-  names(x)[grep(&quot;programming&quot;, names(x))] &lt;- &quot;plang&quot;
-  names(x)[grep(&quot;1st.and.2nd&quot;, names(x))] &lt;- &quot;hours1&quot;
-  names(x)[grep(&quot;3rd.and.4th&quot;, names(x))] &lt;- &quot;hours2&quot;
-  names(x)[grep(&quot;5th.and.6th&quot;, names(x))] &lt;- &quot;hours3&quot;
-  names(x)[grep(&quot;7th.and.8th&quot;, names(x))] &lt;- &quot;hours4&quot;
-  names(x)[grep(&quot;longitude&quot;, names(x))] &lt;- &quot;long&quot;
-  names(x)[grep(&quot;latitude&quot;, names(x))] &lt;- &quot;lat&quot;
-
+  x &lt;- x[, -c(1:7, grep(&quot;info_|thank&quot;, names(x)), ncol(x))] # Drop Qualtrics vars
+  x$handle    &lt;- standardize.handle(x$handle)  
   x$startdate &lt;- strptime(x$startdate,'%Y-%m-%d %H:%M:%S', tz='EST')
-  x$enddate &lt;- strptime(x$enddate,'%Y-%m-%d %H:%M:%S', tz='EST')
-  x$finished &lt;- as.logical(x$finished==1)
-  x$status &lt;- NULL
-  
-  x$handle &lt;- standardize.handle(x$handle)
-  x$age &lt;- factor(as.character(x$age))
+  x$enddate   &lt;- strptime(x$enddate,'%Y-%m-%d %H:%M:%S', tz='EST')
+  x$finished  &lt;- as.logical(x$finished==1)
+  x$age       &lt;- factor(as.character(x$age))
   x$country_origin &lt;- factor(gsub(&quot;^[A-Z]{2} - &quot;, &quot;&quot;, x$country_origin))
-  x$educ &lt;-  factor(as.character(x$educ))
-    levels(x$educ) &lt;- c(&quot;PhD&quot;, &quot;High School&quot;, &quot;Master of Arts&quot;, &quot;Bachelor&quot;)
-  x$gender &lt;- factor(as.character(x$gender))
-  x$job &lt;- tolower(as.character(x$job))
-  x$plang &lt;- factor(as.character(x$plang))
-  x$risk &lt;- as.numeric(gsub(&quot;[^0-9]&quot;,&quot;&quot;, as.character(x$risk)))
-  x$timezone &lt;- as.numeric(gsub(&quot;^([^,]+),.*&quot;, &quot;\\1&quot;,x$timezone))
+  x$educ      &lt;- factor(as.character(x$educ))
+  levels(x$educ) &lt;- c(&quot;PhD&quot;, &quot;High School&quot;, &quot;Master of Arts&quot;, &quot;Bachelor&quot;)
+  x$gender    &lt;- factor(as.character(x$gender))
+  x$employ    &lt;- tolower(as.character(x$employ))
+  x$plang     &lt;- factor(as.character(x$plang))
+  x$risk      &lt;- as.numeric(gsub(&quot;[^0-9]&quot;,&quot;&quot;, as.character(x$risk)))
+  x$timezone  &lt;- as.numeric(gsub(&quot;^([^,]+),.*&quot;, &quot;\\1&quot;,x$timezone))
   return(x)
 }
 svy.ini.consistent &lt;- function(x) {
@@ -299,7 +278,6 @@ svy.ini.consistent &lt;- function(x) {
   }
   x &lt;- x[order(tot.missing, decreasing=FALSE), ]
   x &lt;- unique.by.id(x, x$handle)
-  # Timezone is associated with the country --&gt; impute later
   return(x)
 }
 svy.ini &lt;- svy.ini.consistent(svy.ini.correct(svy.ini.raw))
@@ -320,7 +298,7 @@ summary(svy.ini)</code></pre>
 ##                  1123     :  1                41-50 years       : 20  
 ##                  112atn323:  1                51 years and above: 13  
 ##                  (Other)  :371                NA's              : 12  
-##              educ        plang         job                  country_origin
+##              educ        plang        employ                country_origin
 ##  PhD           : 31   C#    : 34   Length:377         India        : 50   
 ##  High School   : 47   C++   :165   Class :character   China        : 40   
 ##  Master of Arts:122   Java  :108   Mode  :character   Russia       : 31   
@@ -336,43 +314,34 @@ summary(svy.ini)</code></pre>
 ##  3rd Qu.: 5.88   3rd Qu.: 8.00   3rd Qu.:10.0   3rd Qu.:10.0  
 ##  Max.   :12.00   Max.   :10.00   Max.   :48.0   Max.   :48.0  
 ##  NA's   :14      NA's   :20      NA's   :24     NA's   :23    
-##      hours3         hours4          lat             long       
-##  Min.   : 0.0   Min.   : 0.0   Min.   :-42.8   Min.   :-122.4  
-##  1st Qu.: 4.0   1st Qu.: 4.0   1st Qu.: 30.3   1st Qu.:  -0.2  
-##  Median : 5.0   Median : 8.0   Median : 39.9   Median :  27.6  
-##  Mean   : 7.6   Mean   : 9.1   Mean   : 36.3   Mean   :  27.2  
-##  3rd Qu.:10.0   3rd Qu.:10.0   3rd Qu.: 49.4   3rd Qu.:  80.3  
-##  Max.   :48.0   Max.   :48.0   Max.   : 59.9   Max.   : 175.2  
-##  NA's   :24     NA's   :24     NA's   :20      NA's   :20</code></pre>
+##      hours3         hours4     locationlatitude locationlongitude
+##  Min.   : 0.0   Min.   : 0.0   Min.   :-42.8    Min.   :-122.4   
+##  1st Qu.: 4.0   1st Qu.: 4.0   1st Qu.: 30.3    1st Qu.:  -0.2   
+##  Median : 5.0   Median : 8.0   Median : 39.9    Median :  27.6   
+##  Mean   : 7.6   Mean   : 9.1   Mean   : 36.3    Mean   :  27.2   
+##  3rd Qu.:10.0   3rd Qu.:10.0   3rd Qu.: 49.4    3rd Qu.:  80.3   
+##  Max.   :48.0   Max.   :48.0   Max.   : 59.9    Max.   : 175.2   
+##  NA's   :24     NA's   :24     NA's   :20       NA's   :20       
+##  locationaccuracy
+##  Min.   :-1      
+##  1st Qu.:-1      
+##  Median :-1      
+##  Mean   :-1      
+##  3rd Qu.:-1      
+##  Max.   :-1      
+## </code></pre>
 </div>
 <div id="final-survey" class="section level2">
 <h2>Final survey</h2>
 <pre class="r"><code>svy.end.correct &lt;- function(x) {
-  x &lt;- x[, -c(1:6)] # Drop Qualtrics vars
-  x &lt;- x[, !grepl(&quot;^X$|Thank|Location|mailing|Browser.&quot;, names(x))] 
-  # Rename
-  names(x) &lt;- tolower(names(x))
-  names(x)[grep(&quot;handle&quot;, names(x))] &lt;- &quot;handle&quot;
-  names(x)[grep(&quot;1st.and.2nd&quot;, names(x))] &lt;- &quot;hours1&quot;
-  names(x)[grep(&quot;3rd.and.4th&quot;, names(x))] &lt;- &quot;hours2&quot;
-  names(x)[grep(&quot;5th.and.6th&quot;, names(x))] &lt;- &quot;hours3&quot;
-  names(x)[grep(&quot;7th.and.8th&quot;, names(x))] &lt;- &quot;hours4&quot;
-  names(x)[grep(&quot;doubled&quot;, names(x))] &lt;- &quot;hours_prize_double&quot;
-  names(x)[grep(&quot;halved&quot;, names(x))] &lt;- &quot;hours_prize_half&quot;
-  names(x)[grep(&quot;how.hard&quot;, names(x))] &lt;- &quot;hard_target&quot;
-  names(x)[grep(&quot;machine.learning&quot;, names(x))] &lt;- &quot;approaches&quot;
-  names(x)[grep(&quot;first.to.reach&quot;, names(x))] &lt;- &quot;racing&quot;
-  names(x)[grep(&quot;risk&quot;, names(x))] &lt;- &quot;risk&quot;
-  names(x)[grep(&quot;t.shirt&quot;, names(x))] &lt;- &quot;tshirt&quot;
-
-  x$startdate &lt;- strptime(x$startdate,'%Y-%m-%d %H:%M:%S', tz='EST')
-  x$enddate &lt;- strptime(x$enddate,'%Y-%m-%d %H:%M:%S', tz='EST')
-  x$finished &lt;- as.logical(x$finished==1)
-  
-  x$handle &lt;- standardize.handle(x$handle)
-  x$risk &lt;- as.numeric(gsub(&quot;[^0-9]&quot;,&quot;&quot;, as.character(x$risk)))
+  x &lt;- x[, -c(1:7, 31:ncol(x), grep(&quot;info|thanks&quot;,names(x)))]
+  x$handle     &lt;- standardize.handle(x$handle)
+  x$startdate  &lt;- strptime(x$startdate,'%Y-%m-%d %H:%M:%S', tz='EST')
+  x$enddate    &lt;- strptime(x$enddate,'%Y-%m-%d %H:%M:%S', tz='EST')
+  x$finished   &lt;- as.logical(x$finished==1)
+  x$risk       &lt;- as.numeric(gsub(&quot;[^0-9]&quot;,&quot;&quot;, as.character(x$risk)))
   x$approaches &lt;- as.character(x$approaches)
-  x$racing &lt;- as.character(x$racing)
+  x$racing_thoughts &lt;- as.character(x$racing_thoughts)
   return(x)
 }
 svy.end.consistent &lt;- function(x) {
@@ -386,46 +355,46 @@ svy.end.consistent &lt;- function(x) {
 }
 svy.end &lt;- svy.end.consistent(svy.end.correct(svy.end.raw))
 summary(svy.end)</code></pre>
-<pre><code>##      status        startdate                  
-##  Min.   :0.000   Min.   :2015-03-17 16:39:48  
-##  1st Qu.:0.000   1st Qu.:2015-03-17 17:57:01  
-##  Median :0.000   Median :2015-03-18 02:28:26  
-##  Mean   :0.008   Mean   :2015-03-19 16:38:19  
-##  3rd Qu.:0.000   3rd Qu.:2015-03-22 18:49:55  
-##  Max.   :1.000   Max.   :2015-03-27 05:23:28  
-##                                               
-##     enddate                     finished             handle   
-##  Min.   :2015-03-17 16:40:50   Mode :logical   _kevin   :  1  
-##  1st Qu.:2015-03-17 18:04:02   FALSE:20        _romka_  :  1  
-##  Median :2015-03-18 03:15:01   TRUE :105       112atn323:  1  
-##  Mean   :2015-03-19 16:58:51   NA's :0         a9108tc  :  1  
-##  3rd Qu.:2015-03-22 18:57:11                   aaa      :  1  
-##  Max.   :2015-03-27 05:23:38                   ahoenig  :  1  
-##                                                (Other)  :119  
-##      hours1          hours2         hours3          hours4     
-##  Min.   : 0.00   Min.   : 0.0   Min.   : 0.00   Min.   : 0.00  
-##  1st Qu.: 1.00   1st Qu.: 0.0   1st Qu.: 0.00   1st Qu.: 0.00  
-##  Median : 2.00   Median : 2.0   Median : 2.00   Median : 2.50  
-##  Mean   : 4.03   Mean   : 3.7   Mean   : 3.89   Mean   : 5.08  
-##  3rd Qu.: 6.00   3rd Qu.: 5.0   3rd Qu.: 6.00   3rd Qu.: 8.25  
-##  Max.   :22.00   Max.   :32.0   Max.   :28.00   Max.   :28.00  
-##  NA's   :13      NA's   :13     NA's   :13      NA's   :13     
-##   hours_prize_double   hours_prize_half  approaches       
-##  The same  :51       The same  :60      Length:125        
-##  20% more  :17       30% less  :12      Class :character  
-##  &gt; 50% more:13       &gt; 50% less:11      Mode  :character  
-##  10% more  : 9       50% less  :10                        
-##  30% more  : 9       20% less  : 8                        
-##  (Other)   :12       (Other)   :10                        
-##  NA's      :14       NA's      :14                        
-##              hard_target    racing               risk       tshirt  
-##  Difficult         :30   Length:125         Min.   : 1.0   2XL : 4  
-##  Very Difficult    :25   Class :character   1st Qu.: 4.0   L   :28  
-##  Neutral           :23   Mode  :character   Median : 6.0   M   :35  
-##  Somewhat Difficult:16                      Mean   : 6.2   S   : 6  
-##  Somewhat Easy     : 5                      3rd Qu.: 8.0   XL  :23  
-##  (Other)           : 1                      Max.   :10.0   NA's:29  
-##  NA's              :25                      NA's   :36</code></pre>
+<pre><code>##    startdate                      enddate                   
+##  Min.   :2015-03-17 16:39:48   Min.   :2015-03-17 16:40:50  
+##  1st Qu.:2015-03-17 17:57:01   1st Qu.:2015-03-17 18:04:02  
+##  Median :2015-03-18 02:28:26   Median :2015-03-18 03:15:01  
+##  Mean   :2015-03-19 16:38:19   Mean   :2015-03-19 16:58:51  
+##  3rd Qu.:2015-03-22 18:49:55   3rd Qu.:2015-03-22 18:57:11  
+##  Max.   :2015-03-27 05:23:28   Max.   :2015-03-27 05:23:38  
+##                                                             
+##   finished             handle        hours1          hours2    
+##  Mode :logical   _kevin   :  1   Min.   : 0.00   Min.   : 0.0  
+##  FALSE:20        _romka_  :  1   1st Qu.: 1.00   1st Qu.: 0.0  
+##  TRUE :105       112atn323:  1   Median : 2.00   Median : 2.0  
+##  NA's :0         a9108tc  :  1   Mean   : 4.03   Mean   : 3.7  
+##                  aaa      :  1   3rd Qu.: 6.00   3rd Qu.: 5.0  
+##                  ahoenig  :  1   Max.   :22.00   Max.   :32.0  
+##                  (Other)  :119   NA's   :13      NA's   :13    
+##      hours3          hours4       hours_prize_double   hours_prize_half
+##  Min.   : 0.00   Min.   : 0.00   The same  :51       The same  :60     
+##  1st Qu.: 0.00   1st Qu.: 0.00   20% more  :17       30% less  :12     
+##  Median : 2.00   Median : 2.50   &gt; 50% more:13       &gt; 50% less:11     
+##  Mean   : 3.89   Mean   : 5.08   10% more  : 9       50% less  :10     
+##  3rd Qu.: 6.00   3rd Qu.: 8.25   30% more  : 9       20% less  : 8     
+##  Max.   :28.00   Max.   :28.00   (Other)   :12       (Other)   :10     
+##  NA's   :13      NA's   :13      NA's      :14       NA's      :14     
+##   approaches                    hard_target racing_thoughts   
+##  Length:125         Difficult         :30   Length:125        
+##  Class :character   Very Difficult    :25   Class :character  
+##  Mode  :character   Neutral           :23   Mode  :character  
+##                     Somewhat Difficult:16                     
+##                     Somewhat Easy     : 5                     
+##                     (Other)           : 1                     
+##                     NA's              :25                     
+##       risk       tshirt  
+##  Min.   : 1.0   2XL : 4  
+##  1st Qu.: 4.0   L   :28  
+##  Median : 6.0   M   :35  
+##  Mean   : 6.2   S   : 6  
+##  3rd Qu.: 8.0   XL  :23  
+##  Max.   :10.0   NA's:29  
+##  NA's   :36</code></pre>
 </div>
 <div id="scores-and-submissions" class="section level2">
 <h2>Scores and submissions</h2>
@@ -555,7 +524,7 @@ races &lt;- final.consistent(newdata3)</code></pre>
 ##                               41-50 years       :21                       
 ##                               51 years and above:12                       
 ##                                                                           
-##     plang         job                  country_origin    timezone    
+##     plang        employ                country_origin    timezone    
 ##  C#    : 33   Length:299         India        : 33    Min.   :-8.00  
 ##  C++   :134   Class :character   Russia       : 29    1st Qu.: 1.00  
 ##  Java  : 87   Mode  :character   China        : 27    Median : 2.00  
@@ -571,14 +540,14 @@ races &lt;- final.consistent(newdata3)</code></pre>
 ##  3rd Qu.: 8.00   3rd Qu.:10.0   3rd Qu.:10.0   3rd Qu.:10.0  
 ##  Max.   :10.00   Max.   :48.0   Max.   :48.0   Max.   :48.0  
 ##  NA's   :20      NA's   :20     NA's   :20     NA's   :20    
-##      hours4          lat             long            status   
-##  Min.   : 0.0   Min.   :-42.8   Min.   :-122.4   Min.   :0    
-##  1st Qu.: 4.0   1st Qu.: 31.6   1st Qu.:  -0.9   1st Qu.:0    
-##  Median : 8.0   Median : 40.4   Median :  27.6   Median :0    
-##  Mean   : 9.2   Mean   : 36.7   Mean   :  25.2   Mean   :0    
-##  3rd Qu.:11.0   3rd Qu.: 50.0   3rd Qu.:  79.7   3rd Qu.:0    
-##  Max.   :48.0   Max.   : 59.9   Max.   : 149.1   Max.   :0    
-##  NA's   :20     NA's   :20      NA's   :20       NA's   :179  
+##      hours4     locationlatitude locationlongitude locationaccuracy
+##  Min.   : 0.0   Min.   :-42.8    Min.   :-122.4    Min.   :-1      
+##  1st Qu.: 4.0   1st Qu.: 31.6    1st Qu.:  -0.9    1st Qu.:-1      
+##  Median : 8.0   Median : 40.4    Median :  27.6    Median :-1      
+##  Mean   : 9.2   Mean   : 36.7    Mean   :  25.2    Mean   :-1      
+##  3rd Qu.:11.0   3rd Qu.: 50.0    3rd Qu.:  79.7    3rd Qu.:-1      
+##  Max.   :48.0   Max.   : 59.9    Max.   : 149.1    Max.   :-1      
+##  NA's   :20     NA's   :20       NA's   :20        NA's   :19      
 ##  startdate.end                  enddate.end                 
 ##  Min.   :2015-03-17 16:42:44   Min.   :2015-03-17 16:46:08  
 ##  1st Qu.:2015-03-17 18:01:09   1st Qu.:2015-03-17 18:05:57  
@@ -603,7 +572,7 @@ races &lt;- final.consistent(newdata3)</code></pre>
 ##  3rd Qu.: 8    10% more  :  8      50% less  :  8                       
 ##  Max.   :28    (Other)   : 11      (Other)   : 10                       
 ##  NA's   :190   NA's      :191      NA's      :191                       
-##              hard_target     racing             risk.end     tshirt   
+##              hard_target  racing_thoughts       risk.end     tshirt   
 ##  Difficult         : 30   Length:299         Min.   : 1.0   2XL :  3  
 ##  Very Difficult    : 24   Class :character   1st Qu.: 4.0   L   : 28  
 ##  Neutral           : 22   Mode  :character   Median : 6.5   M   : 34  

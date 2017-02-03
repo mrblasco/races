@@ -93,3 +93,12 @@ A total of `r nrow(races)` competitors signed-up to take part in the challenge. 
 library(car)
 spm(~ mmrating+mmevents+algorating+algoevents, data=races, pch=16)
 ```
+
+
+Considerable geographic variation of registered participants.
+
+```{r}  
+library(maps)
+map()
+with(races, points(locationlongitude, locationlatitude, pch=21, col='red'))
+```

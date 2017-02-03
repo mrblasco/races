@@ -54,8 +54,8 @@ last_submission <- max(races.sub$timestamp)
 mins_from_1st <- as.numeric(difftime(races.sub$timestamp, first_submission, units='mins'))
 mins_from_last <- as.numeric(difftime(races.sub$timestamp, last_submission, units='mins'))
 
-tapply(mins_from_1st/60, races.sub$handle, FUN=min)
-tapply(mins_from_last/60, races.sub$handle, FUN=min)
+#tapply(mins_from_1st/60, races.sub$handle, FUN=min)
+#tapply(mins_from_last/60, races.sub$handle, FUN=min)
 ```
 
 Finally, let us focus on the timing of the first and last submission. xxxx
@@ -91,15 +91,14 @@ races$mmrating[is.na(races$mmrating)]<-0
 fit <- rep()
 fit$m1 <- glm(submit ~ poly(mmevents, deg=3), data=races, family='binomial')
 fit$m2 <- glm(submit ~ poly(mmevents, deg=2) + poly(mmrating, deg=2), data=races, family='binomial')
-fit$m3 <- glm(submit ~ poly(mmevents, deg=2) + poly(mmrating, deg=2) + lat + long, data=races, family='binomial')
 stargazer(fit, type='text')
 
-anova(fit$m3, test="Chisq") 
+anova(fit$m2, test="Chisq") 
 
-#best.model <- fit$m3
-#plot(jitter(ifelse(races$submit, 1, 0)) ~ predict(best.model), pch=4, yaxt="n", #col=ifelse(predict(best.model)>0, 2, 1))
-#points(ilogit(predict(fit$m2)) ~  predict(fit$m2), pch=16)
-#abline(h=c(0,1))
+best.model <- fit$m2
+plot(jitter(ifelse(races$submit, 1, 0)) ~ predict(best.model), pch=4, yaxt="n", col=ifelse(predict(best.model)>0, 2, 1))
+points(ilogit(predict(best.model)) ~  predict(best.model), pch=16)
+abline(h=c(0,1))
 ```
 
 This result does not seem to correlate well with the competitor's experience or skills, as the Pearsons's correlation coefficient between the count of past competitions or the rating and the count of submissions is positive but generally low; see Table XXX. Thus, differences in submissions appear idiosyncratic and perhaps related to the way to organize the work rather than systematically associated with underlying differences in experience or skills.

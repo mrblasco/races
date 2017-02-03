@@ -62,7 +62,7 @@
 University, 1737 Cambridge Street, Cambridge, MA 02138 (email:
 \href{mailto:ablasco@fas.harvard.edu}{\nolinkurl{ablasco@fas.harvard.edu}}).}}
 \author{Andrea Blasco \and Kevin J. Boudreau \and Karim R. Lakhani \and Michael Menietti}
-\date{Last updated: 31 January, 2017}
+\date{Last updated: 01 February, 2017}
 
 \begin{document}
 \maketitle
@@ -568,6 +568,10 @@ percentile; see Figure \ref{eq: distribution experience}.
 
 \includegraphics{Figures/unnamed-chunk-8-1.pdf}
 
+Considerable geographic variation of registered participants.
+
+\includegraphics{Figures/unnamed-chunk-9-1.pdf}
+
 \clearpage
 
 \section{Results}\label{results}
@@ -616,52 +620,6 @@ median final scores was higher in the Tournament w/reserve treatment
 (0.808), followed by the Tournament (0.805), and the Race treatment
 (0.799). As before, however, these differences are not statistically
 significant (a Kruskal-Wallis rank sum test gives a p-value of 0.577).
-
-\begin{verbatim}
-##       2       4       6      11      13      19      29      30      31 
-##   0.684 138.976 141.476 139.105  46.955  30.184 189.441 181.222  35.447 
-##      33      41      42      43      44      49      51      59      60 
-##  36.994  39.664  43.488  77.105  56.271 124.843  95.768  14.890  15.478 
-##      72      77      82      87      90      93      94      96      97 
-##   5.964 162.668  17.883 157.248  96.531 142.929 107.964  99.938 184.409 
-##      98     100     104     106     109     110     119     121     122 
-##  51.772  57.979  40.233  22.424  40.185  23.480  13.537   6.214  46.872 
-##     131     137     142     145     146     147     150     151     152 
-##  46.062  50.034  21.327  26.544 161.065   0.877  27.265  60.516  61.164 
-##     158     160     163     169     171     172     174     178     183 
-##  18.180  51.831   3.778  45.526   3.655 164.592  63.410  79.493 189.279 
-##     193     196     198     202     207     209     212     213     215 
-##  45.980 178.221  12.716  75.923  33.750 140.688   1.202  95.588   4.277 
-##     220     224     225     228     230     236     239     247     251 
-## 115.799 183.722  75.059   0.000  42.924  24.107  28.968 129.224  61.141 
-##     254     266     274     275     276     277     278     280     285 
-## 166.852 162.826  27.114  65.826   3.420  14.974 171.796 177.358   6.125 
-##     289     291     292     293     299 
-##  29.739  33.144 101.579  59.901 125.433
-\end{verbatim}
-
-\begin{verbatim}
-##       2       4       6      11      13      19      29      30      31 
-## -190.40  -52.11  -49.61  -51.98 -144.13 -160.91   -1.65   -9.87 -155.64 
-##      33      41      42      43      44      49      51      59      60 
-## -154.09 -151.42 -147.60 -113.98 -134.82  -66.25  -95.32 -176.20 -175.61 
-##      72      77      82      87      90      93      94      96      97 
-## -185.12  -28.42 -173.21  -33.84  -94.56  -48.16  -83.13  -91.15   -6.68 
-##      98     100     104     106     109     110     119     121     122 
-## -139.32 -133.11 -150.86 -168.66 -150.90 -167.61 -177.55 -184.88 -144.22 
-##     131     137     142     145     146     147     150     151     152 
-## -145.03 -141.05 -169.76 -164.54  -30.02 -190.21 -163.82 -130.57 -129.93 
-##     158     160     163     169     171     172     174     178     183 
-## -172.91 -139.26 -187.31 -145.56 -187.43  -26.50 -127.68 -111.60   -1.81 
-##     193     196     198     202     207     209     212     213     215 
-## -145.11  -12.87 -178.37 -115.17 -157.34  -50.40 -189.89  -95.50 -186.81 
-##     220     224     225     228     230     236     239     247     251 
-##  -75.29   -7.37 -116.03 -191.09 -148.16 -166.98 -162.12  -61.86 -129.95 
-##     254     266     274     275     276     277     278     280     285 
-##  -24.24  -28.26 -163.97 -125.26 -187.67 -176.11  -19.29  -13.73 -184.96 
-##     289     291     292     293     299 
-## -161.35 -157.95  -89.51 -131.19  -65.66
-\end{verbatim}
 
 Finally, let us focus on the timing of the first and last submission.
 xxxx
@@ -819,48 +777,42 @@ Let's consider first a simple logistic model
 
 \begin{verbatim}
 ## 
-## ======================================================
-##                               Dependent variable:     
-##                          -----------------------------
-##                                     submit            
-##                             (1)       (2)       (3)   
-## ------------------------------------------------------
-## poly(mmevents, deg = 3)1 12.200***                    
-##                           (4.120)                     
-##                                                       
-## poly(mmevents, deg = 3)2   1.210                      
-##                           (6.130)                     
-##                                                       
-## poly(mmevents, deg = 3)3  8.110*                      
-##                           (4.740)                     
-##                                                       
-## poly(mmevents, deg = 2)1            4.690*    4.990*  
-##                                     (2.540)   (2.590) 
-##                                                       
-## poly(mmevents, deg = 2)2            -0.212    -0.087  
-##                                     (2.470)   (2.530) 
-##                                                       
-## poly(mmrating, deg = 2)1           10.100*** 8.520*** 
-##                                     (3.120)   (3.260) 
-##                                                       
-## poly(mmrating, deg = 2)2            -0.942    -1.500  
-##                                     (2.380)   (2.430) 
-##                                                       
-## lat                                           0.021** 
-##                                               (0.009) 
-##                                                       
-## long                                           0.003  
-##                                               (0.002) 
-##                                                       
-## Constant                 -0.961*** -1.020*** -1.900***
-##                           (0.138)   (0.143)   (0.404) 
-##                                                       
-## ------------------------------------------------------
-## Observations                299       299       279   
-## Log Likelihood           -166.000  -164.000  -150.000 
-## Akaike Inf. Crit.         341.000   337.000   315.000 
-## ======================================================
-## Note:                      *p<0.1; **p<0.05; ***p<0.01
+## =====================================================
+##                              Dependent variable:     
+##                          ----------------------------
+##                                     submit           
+##                               (1)            (2)     
+## -----------------------------------------------------
+## poly(mmevents, deg = 3)1   12.200***                 
+##                             (4.120)                  
+##                                                      
+## poly(mmevents, deg = 3)2     1.210                   
+##                             (6.130)                  
+##                                                      
+## poly(mmevents, deg = 3)3     8.110*                  
+##                             (4.740)                  
+##                                                      
+## poly(mmevents, deg = 2)1                   4.690*    
+##                                            (2.540)   
+##                                                      
+## poly(mmevents, deg = 2)2                   -0.212    
+##                                            (2.470)   
+##                                                      
+## poly(mmrating, deg = 2)1                  10.100***  
+##                                            (3.120)   
+##                                                      
+## poly(mmrating, deg = 2)2                   -0.942    
+##                                            (2.380)   
+##                                                      
+## Constant                   -0.961***      -1.020***  
+##                             (0.138)        (0.143)   
+##                                                      
+## -----------------------------------------------------
+## Observations                  299            299     
+## Log Likelihood              -166.000      -164.000   
+## Akaike Inf. Crit.           341.000        337.000   
+## =====================================================
+## Note:                     *p<0.1; **p<0.05; ***p<0.01
 \end{verbatim}
 
 \begin{verbatim}
@@ -874,12 +826,12 @@ Let's consider first a simple logistic model
 ## 
 ## 
 ##                         Df Deviance Resid. Df Resid. Dev Pr(>Chi)
-## NULL                                      278        334         
-## poly(mmevents, deg = 2)  2    17.87       276        316  0.00013
-## poly(mmrating, deg = 2)  2     8.89       274        308  0.01172
-## lat                      1     4.97       273        303  0.02581
-## long                     1     1.83       272        301  0.17578
+## NULL                                      298        359         
+## poly(mmevents, deg = 2)  2     20.4       296        338  3.7e-05
+## poly(mmrating, deg = 2)  2     11.1       294        327   0.0039
 \end{verbatim}
+
+\includegraphics{Figures/unnamed-chunk-17-1.pdf}
 
 This result does not seem to correlate well with the competitor's
 experience or skills, as the Pearsons's correlation coefficient between
@@ -904,7 +856,7 @@ period with a peak of submissions made in the last of the competition.
 
 Consider panel data!
 
-\includegraphics{Figures/unnamed-chunk-18-1.pdf}
+\includegraphics{Figures/unnamed-chunk-19-1.pdf}
 
 \begin{verbatim}
 ## 

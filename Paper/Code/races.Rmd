@@ -46,7 +46,7 @@ source("functions.R")
 #########################
 
 knitr::opts_chunk$set(
-  cache=FALSE,
+  cache=TRUE,
   echo=FALSE,
   message=FALSE,
   warning=TRUE,

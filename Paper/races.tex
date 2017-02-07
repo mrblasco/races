@@ -5,7 +5,6 @@
 
 % Math
 \usepackage{amssymb,amsmath,amsthm} 
-\newtheorem{proposition}{Proposition}
 
 % Fontfamily
 \usepackage{palatino}%\usepackage{lmodern, times}
@@ -57,12 +56,16 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 
+\newtheorem{proposition}{Proposition}
+
+\newcommand\deadline{\bar{t}}
+\newcommand\target{\underline{y}}
 
 \title{Races or Tournaments? {[}PRELIMINARY AND INCOMPLETE{]}\thanks{Blasco: Harvard Institute for Quantitative Social Science, Harvard
 University, 1737 Cambridge Street, Cambridge, MA 02138 (email:
 \href{mailto:ablasco@fas.harvard.edu}{\nolinkurl{ablasco@fas.harvard.edu}}).}}
 \author{Andrea Blasco \and Kevin J. Boudreau \and Karim R. Lakhani \and Michael Menietti}
-\date{Last updated: 01 February, 2017}
+\date{Last updated: 07 February, 2017}
 
 \begin{document}
 \maketitle
@@ -259,63 +262,67 @@ prizes.
 
 We generalize the \emph{contest game} introduced by
 \citet{moldovanu2001optimal} to a situation where players allocate their
-effort along two dimensions: performance and time. A contest game is an
-N player game with asymmetric information. Players move simultaneously
-to maximize the expected utility. Each player \(i=1, 2, ..., N\) chooses
-a performance variable \(y_i\) and a timing \(t_i\), both being
-nonnegative numbers. These can be thought of as the quality of the
-solution given to a given data problem and the time to write the code
-implementing such solution.
-
-Players incur a cost from effort given by the function
+effort along two dimensions: performance and time. A (generalized)
+contest game is an N player game with asymmetric information. Players
+compete by choosing a performance variable \(y_i\) and a timing \(t_i\),
+both being nonnegative numbers. These variables can be thought of as the
+quality and time to completion of a job. Players move simultaneously to
+maximize the probability of winning a prize while minimizing the cost of
+effort. To simplify the analysis, we suppose only two prizes \(V_1\) and
+\(V_2< V_1\), the sum of which we normalize to one. Let \(\bar{t}>0\)
+denote a given deadline and \(\underline{y}\geq 0\) a (possibly
+positive) required minimum quality level. A player's probability of
+winning the \(k^{th}\) prize is given by the function
 
 \begin{equation}
-  C_i(y_i, t_i) = \gamma(a_i)c(y_i, t_i)
+  \Pr(\text{player }i\text{ wins }V_k) = p_{k}(y_i, t_i; y_1,..., y_N, t_1, ..., t_N)
 \end{equation}
 
-with \({c_{y}}(0)\geq 0\), \({c_{y}}^\prime>0\), \({c_{t}}(d)\geq 0\),
-and \({c_{t}}^\prime<0\). The function \(\gamma(\cdot)\) is a cost-shift
-that depends on the player \(i\)'s ability \(a_i\), which is privately
-observed at the beginning of the game. Although private, it is common
-knowledge that abilities are drawn from a common distribution \(F\) that
-is continuous on the semi-infinite interval \([0,\infty)\).
+which is zero when either the performance is below the required minimum
+level \(y_i<\target\) or the time to completion is above the deadline
+\(t_i>\deadline\).
 
-Let \(r_i\) denote the rank position of a player \(i\) relative to the
-\(N-1\) others. The top \(K\) players (e.g., \(r_i\leq K\)) are awarded
-a prize of value \(V_1 > V_2 > ... > V_K\). A player's probability of
-winning a prize is given by the function
-\(p_i(y_1,...y_N, t_1, ..., t_N)\).
+Individual costs depend on the player \(i\)'s ability \(a_i\) that is
+drawn from a common (continuous) distribution \(F\) and it is privately
+observed at the beginning of the game. The cost function is assumed to
+be multiplicative as
 
-The goal for each player is If the timing is above a given deadline
-\(d>0\) or the performance is below a certain level \(q>0\), the player
-gets zero utility. Otherwise, the player is given a rank based on his
-performance and timing. A contest is xxxx. Ranked .
+\begin{equation}
+  C(a_i, y_i, t_i) = c_a(a_i) c_y(y_i) c_t(t_i)
+\end{equation}
 
-Let \(d\) denote a given time unit and let \(q\) denote a given quality
-level.
+where the functions \(c_a(\cdot)\) and \(c_t(\cdot)\) are monotonic
+decreasing whereas \(c_{y}(\cdot)\) is monotonic increasing. To ensure
+nonnegative costs, we further impose \(c_{y}(0)\geq 0\),
+\(\lim_{t\rightarrow \infty}c_{t}(t)>0\), and
+\(\lim_{a\rightarrow \infty}c_{a}(a)>0\).
 
-Definition. A tournament is a contest game where players are ranked by
-their performance level \(y_i\) when they complete the project within
-the time unit (i.e., \(t_i \leq d\)).
+The race and tournament competitions are defined as special cases of a
+generalized contest game. Then a tournament is a contest game where
+players are ranked by their performance \(y_i\) but only if the time to
+complete the job is below a given deadline (i.e., \(t_i \leq \bar{t}\)).
+Formally:
 
-Definition. A race is a contest game where players are ranked by their
+\begin{definition}
+Let xxx denote the $N-1-k$ order statistic. A tournament is a contest game where the probability of winning the $k^{th}$ prize is 
+\begin{equation}
+  p_{k} = \Pr(y_i=xxxx\text{ and }t_i\leq \bar{t}). 
+\end{equation}
+\end{definition}
+
+Whereas a race is a contest game where players are ranked by their
 timing provided that the performance is above a minimum level
-\(y_i\geq q\).
+\(y_i\geq \underline y\).
 
-In both cases, if they xxxx they get no prizes (i.e., a rank \(r > K\)).
+\begin{definition}
+Let xxx denote the $N-1-k$ order statistic. A race is a contest game where the probability of winning the $k^{th}$ prize is 
+\begin{equation}
+  p_{k} = \Pr(t_i=xxxx\text{ and }q_i\geq \underline{y}). 
+\end{equation}
+\end{definition}
 
-In a tournament, the agent having achieved the highest output quality
-within the deadline gets the first prize, the agent having achieved the
-second highest output quality gets the second prize, and so on. In a
-race, by contrast, the first agent to achieve an output quality of at
-least \({\bar y}\) within the deadline wins the first prize, the second
-to achieve the same target gets the second prize, and so on.
-
-Each agent is risk neutral and faces the following decision problem
-
-\[\begin{array}{ll}
-    \mbox{maximize} & \sum_{j=1}^k \Pr(\text{ranked $j$'th}) V_j  - \frac{1}{a_i} C(y_i, t_i).
-  \end{array}\]
+Note that, in both cases, if players xxxx they get no prizes (i.e., a
+rank \(r > K\)).
 
 \subsection{Equilibrium}\label{equilibrium}
 
@@ -329,18 +336,14 @@ the \(y_j\)'s for every \(j\neq i\) and let \({F_{Y_{r:n}}}(\cdot)\) and
 density for the \(r\)'th order statistic.
 
 \begin{proposition}
-
 In a tournament, the unique symmetric equilibrium of the model gives,
-for every \(i=1, ..., n\), the optimal time to completion \(t^*(a_i)\)
-equal to the deadline \(d\) and the optimal output quality \(y^*(a_i)\)
-as
-
-\[\label{eq: optimal bid tournament}
-  y^*(a_i) =  V_1 \int_{a_i}^\infty {f_{Y_{n:n}}} (z) dz\]
-
-if \({a_i}\geq {\underline a}\) \citep[see][]{moldovanu2001optimal}, and
-equal to zero otherwise.
-
+for every $i=1, ..., N$, the optimal time to completion $t^*(a_i)$ equal
+to the deadline $\bar{t}$ and the optimal output quality $y^*(a_i)$ as
+\begin{equation}
+ \label{eq: optimal bid tournament}
+  y^*(a_i) =  V_1 \int_{a_i}^\infty {f_{Y_{n:n}}} (z) dz
+\end{equation}
+if ${a_i}\geq \underline a$ (see @moldovanu2001optimal), and zero otherwise.
 \end{proposition}
 
 An important property of xxx is that \(y^*(a_i)\) has its upper bound in
@@ -359,14 +362,18 @@ marginal ability \({\underline a}\) as
 
 \[{\underline a}= h(n, V, F_A, C, d).\]
 
-\begin{corollary}
+\begin{itemize}
+\tightlist
+\item
+  Using `duality' property of these games, we determine the equilibrium
+  behavior in a race as follows:
+\end{itemize}
 
-Equilibrium behavior in a race
+\begin{proposition}
+  Equilibrium behavior in a race is XXXX
+\end{proposition}
 
-\end{corollary}
-
-\subsubsection{Contest designer's
-problem}\label{contest-designers-problem}
+\subsection{Contest designer's problem}\label{contest-designers-problem}
 
 The sponsor of the contest chooses the rules of the competition
 including prize structure \(\{V_j\}_{j=1}^k\), deadline \(d\), target

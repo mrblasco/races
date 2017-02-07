@@ -56,10 +56,16 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 
+% Theorems
 \newtheorem{proposition}{Proposition}
 
+
+% Definitions
 \newcommand\deadline{\bar{t}}
 \newcommand\target{\underline{y}}
+
+\newcommand\race{\text{race}}
+\newcommand\tournament{\text{tournament}}
 
 \title{Races or Tournaments? {[}PRELIMINARY AND INCOMPLETE{]}\thanks{Blasco: Harvard Institute for Quantitative Social Science, Harvard
 University, 1737 Cambridge Street, Cambridge, MA 02138 (email:
@@ -269,10 +275,10 @@ both being nonnegative numbers. These variables can be thought of as the
 quality and time to completion of a job. Players move simultaneously to
 maximize the probability of winning a prize while minimizing the cost of
 effort. To simplify the analysis, we suppose only two prizes \(V_1\) and
-\(V_2< V_1\), the sum of which we normalize to one. Let \(\bar{t}>0\)
-denote a given deadline and \(\underline{y}\geq 0\) a (possibly
-positive) required minimum quality level. A player's probability of
-winning the \(k^{th}\) prize is given by the function
+\(V_2< V_1\), the sum of which we normalize to one. Let \(\deadline>0\)
+denote a given deadline and \(\target\geq 0\) a (possibly positive)
+required minimum quality level. A player's probability of winning the
+\(k^{th}\) prize is given by the function
 
 \begin{equation}
   \Pr(\text{player }i\text{ wins }V_k) = p_{k}(y_i, t_i; y_1,..., y_N, t_1, ..., t_N)
@@ -376,13 +382,18 @@ marginal ability \({\underline a}\) as
 \subsection{Contest designer's problem}\label{contest-designers-problem}
 
 The sponsor of the contest chooses the rules of the competition
-including prize structure \(\{V_j\}_{j=1}^k\), deadline \(d\), target
-quality \(q\), and competition format (race or tournament). The sponsor
-maximizes an objective function that is the sum of total quality
-\(Y=\sum_{i=1}^{n+1} Y_i\), time spent \(T=\sum_{i=1}^{n+1} T_i\) and
-prizes paid \(V=\sum_{j=1}^k p_{j} V_j\) (with \(p_j=1\) if the prize is
-awarded and \(p_j=0\) otherwise). Hence, the problem faced by the
-sponsor is
+including the prize structure \(V_1\) and \(V_2\), deadline
+\(\deadline\), and target quality \(\target\). Here we focus on the
+decision of competition format (race or tournament) for a given
+\(\deadline\) --- the same for everyone --- and a target
+\(\target_\race>0\) in the race larger than in the tournament which we
+normalize to zero.
+
+The sponsor maximizes an objective function that is the sum of total
+quality \(Y=\sum_{i=1}^{n+1} Y_i\), time spent
+\(T=\sum_{i=1}^{n+1} T_i\) and prizes paid \(V=\sum_{j=1}^k p_{j} V_j\)
+(with \(p_j=1\) if the prize is awarded and \(p_j=0\) otherwise). Hence,
+the problem faced by the sponsor is
 
 \[\begin{array}{ll}
     \mbox{maximize} & \int {Y}   -  {\tau}{{\bf E}}{T} - {{\bf E}}{V}

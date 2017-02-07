@@ -3,7 +3,7 @@
 The model
 =========
 
-We generalize the _contest game_ introduced by @moldovanu2001optimal to a situation where players allocate their effort along two dimensions: performance and time. A (generalized) contest game is an N player game with asymmetric information. Players compete by choosing a performance variable $y_i$ and a timing $t_i$, both being nonnegative numbers. These variables can be thought of as the quality and time to completion of a job. Players move simultaneously to maximize the probability of winning a prize while minimizing the cost of effort. To simplify the analysis, we suppose only two prizes $V_1$ and $V_2< V_1$, the sum of which we normalize to one. Let $\bar{t}>0$ denote a given deadline and $\underline{y}\geq 0$ a (possibly positive) required minimum quality level. A player's probability of winning the $k^{th}$ prize is given by the function 
+We generalize the _contest game_ introduced by @moldovanu2001optimal to a situation where players allocate their effort along two dimensions: performance and time. A (generalized) contest game is an N player game with asymmetric information. Players compete by choosing a performance variable $y_i$ and a timing $t_i$, both being nonnegative numbers. These variables can be thought of as the quality and time to completion of a job. Players move simultaneously to maximize the probability of winning a prize while minimizing the cost of effort. To simplify the analysis, we suppose only two prizes $V_1$ and $V_2< V_1$, the sum of which we normalize to one. Let $\deadline>0$ denote a given deadline and $\target\geq 0$ a (possibly positive) required minimum quality level. A player's probability of winning the $k^{th}$ prize is given by the function 
 \begin{equation}
   \Pr(\text{player }i\text{ wins }V_k) = p_{k}(y_i, t_i; y_1,..., y_N, t_1, ..., t_N)
 \end{equation} 
@@ -18,7 +18,6 @@ The cost function is assumed to be multiplicative as
 where the functions $c_a(\cdot)$ and $c_t(\cdot)$ are monotonic decreasing whereas $c_{y}(\cdot)$ is monotonic increasing. To ensure nonnegative costs, we further impose $c_{y}(0)\geq 0$, $\lim_{t\rightarrow \infty}c_{t}(t)>0$, and $\lim_{a\rightarrow \infty}c_{a}(a)>0$. 
 
 <!-- 
-
 The goal for each player is If the timing is above a given deadline $d>0$ or the performance is below a certain level $q>0$, the player gets zero utility. Otherwise, the player is given a rank based on his performance and timing. 
  A contest is xxxx. Ranked . 
  -->
@@ -90,11 +89,15 @@ $${\underline a}= h(n, V, F_A, C, d).$$
   Equilibrium behavior in a race is XXXX
 \end{proposition}
 
-## Contest designer's problem
+
+Contest designer's problem
+---------------------------
 
 The sponsor of the contest chooses the rules of the competition
-including prize structure $\{V_j\}_{j=1}^k$, deadline $d$, target
-quality $q$, and competition format (race or tournament). The sponsor
+including the prize structure $V_1$ and $V_2$, deadline $\deadline$, and target
+quality $\target$. Here we focus on the decision of competition format (race or tournament) for a given $\deadline$ --- the same for everyone --- and a target $\target_\race>0$ in the race larger than in the tournament which we normalize to zero.
+
+The sponsor
 maximizes an objective function that is the sum of total quality
 $Y=\sum_{i=1}^{n+1} Y_i$, time spent $T=\sum_{i=1}^{n+1} T_i$ and prizes
 paid $V=\sum_{j=1}^k p_{j} V_j$ (with $p_j=1$ if the prize is awarded

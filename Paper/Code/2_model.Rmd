@@ -95,19 +95,35 @@ Contest designer's problem
 
 The sponsor of the contest chooses the rules of the competition
 including the prize structure $V_1$ and $V_2$, deadline $\deadline$, and target
-quality $\target$. Here we focus on the decision of competition format (race or tournament) for a given $\deadline$ --- the same for everyone --- and a target $\target_\race>0$ in the race larger than in the tournament which we normalize to zero.
+quality $\target$. Here we focus on the decision of competition format (race or tournament) for a given $\deadline$ --- the same for everyone --- and a target $\target_\race>0$ in the race which is larger than in the tournament where it is normalized to zero (e.g., $\target_\tournament = 0$). Later we relax this assumption to consider an optimal $\target$. 
 
-The sponsor
-maximizes an objective function that is the sum of total quality
-$Y=\sum_{i=1}^{n+1} Y_i$, time spent $T=\sum_{i=1}^{n+1} T_i$ and prizes
-paid $V=\sum_{j=1}^k p_{j} V_j$ (with $p_j=1$ if the prize is awarded
-and $p_j=0$ otherwise). Hence, the problem faced by the sponsor is
+The contest designer's objective function is given by 
+\begin{equation}
+\begin{array}{ll}
+    \mbox{maximize} & \int_{0}^{\infty} y^*(x) dF_{n:n}(x)
+      - \tau \int_{0}^{\infty} t^*(x) dF_{n:n}(x) 
+      - 1
+  \end{array}
+\end{equation}
+where the expected quality of the winner and the expected time spent $T=\sum_{i=1}^{n+1} T_i$ and prizes paid $V=\sum_{j=1}^k p_{j} V_j$ (with $p_j=1$ if the prize is awarded
+and $p_j=0$ otherwise).
 
-$$\begin{array}{ll}
-    \mbox{maximize} & \int {Y}   -  {\tau}{{\bf E}}{T} - {{\bf E}}{V}
-  \end{array}$$
 
-with the intensity of preferences towards time weighted by $c_t\geq 0$.
+The main result is as given by the next proposition: 
+
+\begin{proposition}
+Given x, y, z, the optimal choice for the contest design is to pick a race when 
+\begin{equation}
+  \tau > \frac{\Delta y^*} {\Delta t^*} 
+\end{equation}
+and otherwise to pick the tournament.
+\end{proposition}
+
+This result hinges on $\target_\race > 0$. Now we show that, in general, it is always optimal to set a lower target in the tournament.  Maybe this lemma should go first and then the proposition. 
+
+\begin{lemma}
+Given x,y,z, it is optimal for the contest designer to choose $\target_\race > \target_\tournament$. 
+\end{lemma}
 
 Structural econometric model
 ----------------------------

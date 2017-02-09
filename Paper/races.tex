@@ -71,7 +71,7 @@
 University, 1737 Cambridge Street, Cambridge, MA 02138 (email:
 \href{mailto:ablasco@fas.harvard.edu}{\nolinkurl{ablasco@fas.harvard.edu}}).}}
 \author{Andrea Blasco \and Kevin J. Boudreau \and Karim R. Lakhani \and Michael Menietti}
-\date{Last updated: 07 February, 2017}
+\date{Last updated: 09 February, 2017}
 
 \begin{document}
 \maketitle
@@ -266,71 +266,81 @@ prizes.
 
 \section{The model}\label{the-model}
 
-We generalize the \emph{contest game} introduced by
+In this section, we generalize the \emph{contest game} introduced by
 \citet{moldovanu2001optimal} to a situation where players allocate their
-effort along two dimensions: performance and time. A (generalized)
-contest game is an N player game with asymmetric information. Players
-compete by choosing a performance variable \(y_i\) and a timing \(t_i\),
-both being nonnegative numbers. These variables can be thought of as the
+effort along two dimensions: performance and time. Then we explore the
+problem of maximization faced by a contest designer with xxx preferences
+for performance and time.
+
+\subsection{Basic setup}\label{basic-setup}
+
+A (generalized) contest game is an \(N\) player game with asymmetric
+information. Players compete by choosing a performance variable \(y\)
+and a timing \(t\), both nonnegative numbers --- to be thought of as the
 quality and time to completion of a job. Players move simultaneously to
-maximize the probability of winning a prize while minimizing the cost of
-effort. To simplify the analysis, we suppose only two prizes \(V_1\) and
-\(V_2< V_1\), the sum of which we normalize to one. Let \(\deadline>0\)
-denote a given deadline and \(\target\geq 0\) a (possibly positive)
-required minimum quality level. A player's probability of winning the
-\(k^{th}\) prize is given by the function
+maximize the probability of winning one of \(K\) available prizes while
+minimizing the cost of effort. Prizes are of decreasing value
+\(V_1>V_2>...>V_K\).
 
-\begin{equation}
-  \Pr(\text{player }i\text{ wins }V_k) = p_{k}(y_i, t_i; y_1,..., y_N, t_1, ..., t_N)
-\end{equation}
-
-which is zero when either the performance is below the required minimum
-level \(y_i<\target\) or the time to completion is above the deadline
-\(t_i>\deadline\).
-
-Individual costs depend on the player \(i\)'s ability \(a_i\) that is
-drawn from a common (continuous) distribution \(F\) and it is privately
-observed at the beginning of the game. The cost function is assumed to
-be multiplicative as
+Let \(a_1, ..., a_N\) denote a privately observed individual ability of
+players drawn from a common distribution \(F_{\mathcal{A}}\) on a given
+interval \(\mathcal{A}\). Let \(C(a_i, y_i, t_i)\) denote player \(i\)'s
+cost function and assume it is multiplicative
 
 \begin{equation}
   C(a_i, y_i, t_i) = c_a(a_i) c_y(y_i) c_t(t_i)
 \end{equation}
 
-where the functions \(c_a(\cdot)\) and \(c_t(\cdot)\) are monotonic
-decreasing whereas \(c_{y}(\cdot)\) is monotonic increasing. To ensure
-nonnegative costs, we further impose \(c_{y}(0)\geq 0\),
+with \(c_a(\cdot)\) and \(c_t(\cdot)\) both monotonic decreasing (the
+higher the ability or the time to complete, the lower the cost). Whereas
+\(c_{y}(\cdot)\) is monotonic increasing (the higher the performance,
+the higher the cost). To ensure nonnegative costs, we further impose the
+following conditions: \(c_{y}(0)\geq 0\),
 \(\lim_{t\rightarrow \infty}c_{t}(t)>0\), and
 \(\lim_{a\rightarrow \infty}c_{a}(a)>0\).
 
-The race and tournament competitions are defined as special cases of a
-generalized contest game. Then a tournament is a contest game where
-players are ranked by their performance \(y_i\) but only if the time to
-complete the job is below a given deadline (i.e., \(t_i \leq \bar{t}\)).
-Formally:
+Let \(p_{i, k}(y_1,..., y_N, t_1, ..., t_N)\) be player \(i\)'s
+probability of winning the \(k^{th}\) prize. Player \(i\)'s expected
+payoff is
 
-\begin{definition}
-Let xxx denote the $N-1-k$ order statistic. A tournament is a contest game where the probability of winning the $k^{th}$ prize is 
 \begin{equation}
-  p_{k} = \Pr(y_i=xxxx\text{ and }t_i\leq \bar{t}). 
+  \pi_i = \sum_{k=1}^{K} p_{i, k}(y_1,..., y_N, t_1, ..., t_N) V_k - C(a_i, y_i, t_i). 
 \end{equation}
-\end{definition}
 
-Whereas a race is a contest game where players are ranked by their
-timing provided that the performance is above a minimum level
-\(y_i\geq \underline y\).
+For convenience, suppose that to win a prize it is not sufficient to
+beat the other competitors but players have to successfully meet a given
+deadline and satisfy any minimum performance requirement. Let
+\(\deadline>0\) denote a given deadline and \(\target\geq 0\) a
+(possibly positive) required minimum performance.
 
-\begin{definition}
-Let xxx denote the $N-1-k$ order statistic. A race is a contest game where the probability of winning the $k^{th}$ prize is 
+The tournament competition corresponds to a special case where players
+that successfully meet the deadline (i.e., \(t_i\leq\deadline\)) are
+ranked by their performance and the probability of winning is
+
 \begin{equation}
-  p_{k} = \Pr(t_i=xxxx\text{ and }q_i\geq \underline{y}). 
+  xxxx.
 \end{equation}
-\end{definition}
 
-Note that, in both cases, if players xxxx they get no prizes (i.e., a
-rank \(r > K\)).
+The race competition, by contrast, corresponds to a special case where
+players are ranked by their timing provided that the performance is
+above a minimum level (\(y_i\geq\target\)) and the probability of
+winning is
+
+\begin{equation}
+  xxxx.
+\end{equation}
+
+Note the ``duality'' of the two competitions. \citep{baye2003strategic}
+
+Note that, in both competitions, if players xxxx they get no prizes
+(i.e., a rank \(r > K\)).
 
 \subsection{Equilibrium}\label{equilibrium}
+
+To simplify the analysis, we suppose there are only two prizes of total
+value normalized to one. We let \(\alpha\) denote the fraction going to
+the competitor placed first which is larger than fraction going to the
+second (\(\alpha\geq1/2\)).
 
 We provide here the symmetric equilibrium with one prize and \(n>2\)
 agents. In appendix XXX, we provide a general formula for \(k>2\)
@@ -424,6 +434,8 @@ Given x,y,z, it is optimal for the contest designer to choose $\target_\race > \
 
 \subsection{Structural econometric
 model}\label{structural-econometric-model}
+
+Identification of the model. suggest
 
 \section{The experimental design}\label{the-experimental-design}
 
@@ -646,12 +658,22 @@ Tournament w/reseve (15 percent), and the Race treatment (15.152
 percent). However, these differences are not statistically significant
 (using a Fisher's Exact Test for Count Data gives a p-value of 0.699)
 
+\begin{verbatim}
+##       Race Tournament    Reserve 
+##         12          6         15
+\end{verbatim}
+
 Regarding to the frequency of submissions per participant, the median
 count is larger in the race and in the tournament w/reserve (12 and 15
 respectively) compared to the Tournament (a median of 6 submissions).
 However, a Kruskal-Wallis rank sum test fails to reject the null
 hypothesis (p=0.794) that at least one treatment was different in the
 location of the frequency distribution of the submissions.
+
+\begin{verbatim}
+##       Race Tournament    Reserve 
+##      0.799      0.805      0.808
+\end{verbatim}
 
 Concerning the distribution of the scores on the last submission, the
 median final scores was higher in the Tournament w/reserve treatment
@@ -661,6 +683,8 @@ significant (a Kruskal-Wallis rank sum test gives a p-value of 0.577).
 
 Finally, let us focus on the timing of the first and last submission.
 xxxx
+
+\includegraphics{Figures/unnamed-chunk-16-1.pdf}
 
 Although we do not find significant differences through an univariate
 analysis, it is possible that differences will be xxx in a multivariate
@@ -869,7 +893,7 @@ Let's consider first a simple logistic model
 ## poly(mmrating, deg = 2)  2     11.1       294        327   0.0039
 \end{verbatim}
 
-\includegraphics{Figures/unnamed-chunk-17-1.pdf}
+\includegraphics{Figures/unnamed-chunk-18-1.pdf}
 
 This result does not seem to correlate well with the competitor's
 experience or skills, as the Pearsons's correlation coefficient between
@@ -894,7 +918,7 @@ period with a peak of submissions made in the last of the competition.
 
 Consider panel data!
 
-\includegraphics{Figures/unnamed-chunk-19-1.pdf}
+\includegraphics{Figures/unnamed-chunk-20-1.pdf}
 
 \begin{verbatim}
 ## 

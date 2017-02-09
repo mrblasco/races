@@ -29,7 +29,7 @@ Similar results are found when we consider only those who made submissions above
 races$nsub <- NA
 index <- match(races$handle, names(submissions))
 races$nsub <- as.numeric(submissions[index])
-ns <- tapply(races$nsub, races$treatment, FUN=median, na.rm=T)
+print(ns <- tapply(races$nsub, races$treatment, FUN=median, na.rm=T))
 kt <- kruskal.test(split(races$nsub, races$treatment))
 ```
 
@@ -42,7 +42,7 @@ races$score.final <- NA
 index <- match(races$handle, names(score.final))
 races$score.final <- as.numeric(score.final[index])
 
-ms <- tapply(races$score.final, races$treatment, FUN=median, na.rm=T)/1e6
+print(ms <- tapply(races$score.final, races$treatment, FUN=median, na.rm=T)/1e6)
 kt <- kruskal.test(split(races$score.final, races$treatment))
 ```
 
@@ -60,6 +60,14 @@ mins_from_last <- as.numeric(difftime(races.sub$timestamp, last_submission, unit
 
 Finally, let us focus on the timing of the first and last submission. xxxx
 
+```{r, fig.width=9.5}
+normalize <- function(x) (x - min(x))  / diff(range(x))
+timing <- normalize(as.numeric(races.sub$timestamp))
+index <- match(races.sub$handle, races$handle)
+timing.l <- split(timing, races$treatment[index])
+par(mfrow=c(1, 3))
+sapply(1:3, function(x) hist(timing.l[[x]], main=names(timing.l)[x], ylim=c(0, 200))) -> z
+```
 
 Although we do not find  significant differences through an univariate analysis, it is possible that differences will be xxx in a multivariate analysis. Adding controls can indeed reduce noise and improve precisions of our estimates. 
 

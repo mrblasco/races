@@ -193,7 +193,8 @@ Proof. Marginal type has utility zero in a race but the same type has a strictly
 Implications. The above proposition applies only if the target is higher in a race than in a tournament. But what if the two competitions had the same target ? In that case, tournaments and races have the same marginal type. Therefore, the performance of players in the tournament with reserve are always non-lower than those in the race. This does not imply that it is optimal to set the target. On the contrary, we will show that it is optimal to set an optimal target in a tournament that is below the optimal target in a race. Next section.  
 
 
-EXAMPLE 
+Example. Consider the following example. 
+
 ```{r}
 p <- plnorm   # pdf individual abilities 
 r <- rlnorm   # Simulate individual abilities
@@ -204,48 +205,78 @@ ct <- function(x) 2*exp(1-x)  # Cost function timing
 
 
 
-Contest designer's problem
+The contest designer's problem
 ---------------------------
 
-In general, the contest designer has to xxx several decisions, including the prize structure, deadline, and minimum required quality $\target$, among many others. In this section, we focus on the choice of a competition format (race or tournament) assuming a given deadline $\deadline$ --- the same for both the race and the tournament --- and a given minimum target that differs between the race and the tournament with 
-$\target_\race>\target_\tournament$ (the latter normalized to zero $\target_\tournament=0$). Later we will relax this assumption to consider an optimal $\target$. 
+Let now focus on the contest designer's problem. Imagine the contest designer can choose the competition format to be either the race or the tournament. Let assume all other aspects of design are fixed. That is, suppose the deadline $\deadline$ is given and there is a minimum target that differs between the race and the tournament: $\target_\race > \target_\tournament$ (the latter normalized to zero $\target_\tournament=0$). Later we will relax this assumption to consider a more general setting where setting the target is also part of the contest designer's problem
 
-The problem for the contest designer is to maximize an objective function that is the sum of the highest performance achieved and the time to completion. Generally, the maximization problem is 
+Assume the contest designer wants to maximize an objective function that is linearly additive. Imagine this consists of the sum of the expected (highest) performance achieved and the corresponding time to completion. 
+
+[Question: do the contest designers care about the second place? Assume they dom't.]
+
+In a tournament, the objective function is
 \begin{align}
-  \mbox{maximize} & \int y^*(x) dF_{N:N}(x)
-    - \tau \int t^*(x) dF_{N:N}(x) 
-    - \Pr(t_{1:N}\leq \deadline \text{ and } y_{N:N}\geq \target) .
+R_\tournament & = \Pr(t_{(1:N)}\leq \deadline) \left\{\int_{a\in\mathcal A} y^*(x \mid t_{(1:N)}\leq \deadline) dF_{N:N}(x) - \tau \deadline - 1 \right\} \nonumber\\
+  & = \int y^*(x) dF_{N:N}(x) - \tau \deadline - 1. 
+\end{align}
+(recall the prize pool is normalized to one). [Implicitly, you're assuming that the prize is always large enough to ensure positive effort.] [Second prize too is stochastic!!!!]
+
+In a race, the objective function is
+\begin{align}
+R_\race & =  
+  \Pr(a_{(N)}\geq \mtype) \left\{\target - \alpha -
+  \Pr(a_{(N-1)}\geq \mtype) (1-\alpha) \right\}
+  - \tau \int_{\mtype}^{\infty} t^*(x) dF_{N:N}(x) \nonumber\\
+  & = [1-F_{N:N}(\mtype)] \left\{\target - \alpha -
+  [1-F_{N-1:N}(\mtype)] (1 - \alpha) \right\}
+  - \tau \int_{\mtype}^{\infty} t^*(x) dF_{N:N}(x).
 \end{align}
 
-In a race, the above expression becomes
+
+Note. $t^*(x) \leq \deadline$ for all $x$'s. Thus, a lower bound for the above objective function can be computed: 
 \begin{align}
-  \Pr(a_{1:N}\geq \mtype) \target + 
-    - \tau \int t^*(x) dF_{N:N}(x) 
-    - \Pr(t_{1:N}\leq \deadline \text{ and } y_{N:N}\geq \target) .
+\underline {R_\race} & = 
+  [1-F_{N:N}(\mtype)] \left\{\target - \alpha -
+  [1-F_{N-1:N}(\mtype)] (1 - \alpha) - \tau \deadline\right\}
+\end{align}
+An even simpler lower bound is rewriting the above expression as if $\alpha=1$ (note if the real alpha was set 1 then also mtype would change and therefore setting alpha hits a lower bound only when mtype does xxxx  when alpha is 1). 
+ 
+Note. $y^*(x)$ is lower than $\target$ for all $a < \mtype$. Thus, a lower bound of the tournament's expression is
+\begin{align}
+\overline {R_\tournament} & = 
+  [1-F_{N:N}(\mtype)] \target + \int_{\mtype}^\infty y^*(x) dF_{N:N}(x) 
+  - \tau \deadline - 1. 
 \end{align}
 
-In a tournament, .... 
+Proposition.  (a sufficient condition such that) the race "dominates" the tournament is such that $\tau \geq \hat \tau$ and otherwise the tournament.
 
-<!---
-where the expected quality of the winner and the expected time spent $T=\sum_{i=1}^{n+1} T_i$ and prizes paid $V=\sum_{j=1}^k p_{j} V_j$ (with $p_j=1$ if the prize is awarded
-and $p_j=0$ otherwise).
---->
 
-The main result is as given by the next proposition: 
+Proof. Simple algebra.
+\begin{align}
+  \underline {R_\race} \geq & \overline {R_\tournament} \nonumber\\
+  [1-F_{N:N}(\mtype)] (\target - 1 - \tau \deadline) \geq &
+  [1-F_{N:N}(\mtype)] \target + \int_{\mtype}^\infty y^*(x) dF_{N:N}(x) 
+  - \tau \deadline - 1 \nonumber\\
+  - [1-F_{N:N}(\mtype)] (\tau\deadline + 1) \geq &
+  \int_{\mtype}^\infty y^*(x) dF_{N:N}(x) 
+  - (\tau \deadline + 1) \nonumber\\
+  F_{N:N}(\mtype) (\tau \deadline + 1) \geq &
+  \int_{\mtype}^\infty y^*(x) dF_{N:N}(x) \nonumber\\
+  \tau \geq & 
+    \left[
+      \frac{\int_{\mtype}^\infty y^*(x) dF_{N:N}(x)}{F_{N:N}(\mtype)} -1 
+    \right] \frac{1}{\deadline}
+\end{align}
 
-\begin{proposition}
-Given x, y, z, the optimal choice for the contest design is to pick a race when 
-\begin{equation}
-  \tau > \frac{\Delta y^*} {\Delta t^*} 
-\end{equation}
-and otherwise to pick the tournament.
-\end{proposition}
+As a result, the intuition was correct. When the preference for time $\tau$ is sufficiently high, the race should be preferred. The threshold is a function of the deadline to complete the job (or time horizon). It also depends on the gains in terms of higher performance for all types above the marginal one. The lower the gains, the lower the threshold. 
 
-This result hinges on $\target_\race > 0$. Now we show that, in general, it is always optimal to set a lower target in the tournament.  Maybe this lemma should go first and then the proposition. 
 
-\begin{lemma}
-Given x,y,z, it is optimal for the contest designer to choose $\target_\race > \target_\tournament$. 
-\end{lemma}
+Open question. What happens when $\target$ in a tournament is higher than in a race. 
+
+Conjecture. Suppose the contest designer can choose the target that max profits in both the race and the tournament. Then, the optimal $\target$ in tournament should be lower than that in a race. 
+
+Proof. Suppose that $\target$ was higher, then the optimal design of a race would be to increase the target $\target$ .... but computations are still a bit complicated. 
+
 
 
 

@@ -19,6 +19,7 @@ with $c_a(\cdot)$ and $c_t(\cdot)$ both monotonic decreasing (the higher the abi
 Let $p_{i, k}(y_1,..., y_N, t_1, ..., t_N)$ be player $i$'s probability of winning the $k^{th}$ prize. Player $i$'s expected payoff is
 
 \begin{equation}
+  \label{expected payoff}
   \pi_i = \sum_{k=1}^{K} p_{i, k}(y_1,..., y_N, t_1, ..., t_N) V_k - C(a_i, y_i, t_i). 
 \end{equation}
 
@@ -49,6 +50,7 @@ Let xxx denote the $N-1-k$ order statistic. A tournament is a contest game where
 
 The race competition, by contrast, corresponds to a special case where players are ranked by their timing provided that the performance is above a minimum level ($y_i\geq\target$) and the probability of winning is 
 \begin{equation}
+  \label{probability in a race}
   xxxx.
 \end{equation}
 
@@ -61,27 +63,105 @@ Note that, in both competitions, if players xxxx they get no prizes (i.e., a ran
 Equilibrium
 -------------
 
-To simplify the analysis, we suppose there are only two prizes of total value normalized to one. We let $\alpha$ denote the fraction going to the competitor placed first which is larger than fraction going to the second ($\alpha\geq1/2$).
+To simplify the analysis, we suppose there are only two prizes of total value normalized to one. We let $\alpha$ denote the fraction going to the first place which is larger than the fraction going to the second place ($\alpha\geq1/2$).
+
+Following @moldovanu2001optimal, we characterize the unique symmetric equilibrium in a race competition. 
+
+\begin{proposition}
+Player $i$'s optimal performance $y^*(a_i)$ is equal to the minimum requirement $\target$ and the optimal timing $t^*(a_i)$ is given by
+\begin{equation} 
+  \label{eq: optimal time race}
+  \ctime^{-1}\left[\ctime(\deadline) + \frac{1}{\cscore(\target)}\left(\alpha \int_{a_i}^{\infty} ... dz   + (1-\alpha) \int_{a_i}^{\infty} ...  dz\right)\right]
+  \quad \text{if }\ability\geq\marginaltype, 
+\end{equation}
+and is equal to zero otherwise. 
+\end{proposition}
+
+\begin{shaded}
+\begin{proof}
+Consider player $i$'s choice and suppose that the other $N-1$ players use the equilibrium strategy stated in the proposition. Let $\phi=t^{-1}$ denote the inverse of the optimal bidding function. Player $i$'s best response is a timing $t_i$ and performance $y_i$ that maximize the expected payoffs \eqref{expected payoff} given the other players' equilibrium. 
+
+Any $y_i > \target$ or $0<y_i<\target$ will raise costs while leaving unchanged the probability of winning. Thus, the choice of $y_i$ is binary. Either $y_i=0$ (with $t_i=\deadline$ by convention) or $y_i= \target$.
+
+Suppose $y_i=\target$. The optimal $t_i$ maximizes the expected payoffs. To compute the expected payoff we use the following notation. For any sequence of variables $x_1, ..., x_{N-1}$,  let $x_{(1:N-1)}, ..., x_{(N-1:N-1)}$ denote the $N-1$ order statistics of the $x$'s, and let $F^x_{(1:N-1)}, ..., F^x_{(N-1:N-1)}$ be the corresponding distribution function. Then the probability of winning a prize \eqref{probability in a race} becomes:
+\begin{align} \label{prob 1}
+  p_{i, 1}(y_1,..., y_N; t_1,..., t_N)
+    & = \Pr(t_i \leq t_{(1:N-1)}) \nonumber\\
+    & = \Pr(t_i \leq t^*(a_{(1:N-1)})) \nonumber\\
+    & = \Pr(\phi(t_i) \geq a_{(1:N-1)}) \nonumber\\
+    & = F^a_{(1:N-1)}(\phi(t_i)).
+\end{align}
+\begin{align} \label{prob 2}
+  p_{i, 2}(y_1,..., y_N; t_1,..., t_N) 
+    & = \Pr(t_{(1:N-1)} < t_i \leq t_{(2:N-1)})  \nonumber\\
+    & = \Pr(t_i\leq t_{(1:N-1)}\mid t_{(1:N-1)}<t_i) \Pr(t_{(1:N-1)} < t_i) \nonumber\\
+    & = \Pr(\phi(t_i)\geq a_{(1:N-1)} \mid a_{(1:N-1)} > \phi(t_i)) \Pr(a_{(1:N-1)} > \phi(t_i)) \nonumber\\
+    & \text{(using the independence of individual abilities)}\nonumber\\
+    & = F^a_{(1:N-2)}(\phi(t_i))\left[1 - F^a_{(1:N-1)}(\phi(t_i))\right].
+\end{align}
+Using \eqref{prob 1} and \eqref{prob 2} with \eqref{expected payoff}, player $i$'s expected payoff is (to simplify notation, we drop the index $a$ on the distribution of the order statistics of the individual abilities)
+\begin{align}
+  \alpha F_{(1:N-1)}(\phi(t_i)) 
+  + (1-\alpha) F_{(1:N-2)}(\phi(t_i))\left[1 - F_{(1:N-1)}(\phi(t_i))\right]
+  - \costs.
+\end{align}
+The first order condition for a maximum \citep[see][]{moldovanu2001optimal} is
+\begin{align} \label{foc0}
+  0 = & \alpha F_{(1:N-1)}^{\prime}(\phi) \phi^{\prime} + \nonumber\\
+    & + (1-\alpha)\phi^{\prime}\left\{
+        \left[1 - F_{(1:N-1)}(\phi)\right]F_{(1:N-2)}^{\prime}(\phi)
+        + F_{(1:N-1)}^{\prime}(\phi) F_{(1:N-2)}(\phi)\right\} + \nonumber\\
+    & - c_{a}(a) c_{y}(\target) c_{t}^{\prime}(t_i).
+\end{align}
+Using $\phi^\prime =  1 / t^{*\prime}(\phi)$ and the equilibrium $\phi(t_i) = \phi(t^*(a_i)) = a_i$, leads to
+\begin{align} \label{foc}
+  c_{t}^{\prime}(t^{*}(a_i)) t^{*\prime}(a_i) 
+      & = \frac{\alpha}{c_{a}(a) c_{y}(\target)} F_{(1:N-1)}^{\prime}(a_i)
+        + \frac{(1-\alpha)}{c_{a}(a) c_{y}(\target)}\times \nonumber\\
+      & \times\left\{\left[1 - F_{(1:N-1)}(a_i)\right]F_{(1:N-2)}^{\prime}(a_i)
+        + F_{(1:N-1)}^{\prime}(a_i) F_{(1:N-2)}(a_i)\right\}.
+\end{align}
+This gives a differential equation with boundary conditions $t^*(\mtype) = \deadline$. 
+Integrating both sides and using the integration rule $\int h(g(x)) g^\prime(x) dx = H(g(x)) + A$ (where $H(\cdot)$ is the antiderivative of $h(\cdot)$ and $A$ is an arbitrary constant) leads to
+\begin{align} \label{foc}
+  c_{t}(t^{*}(a_i))
+      & = A + \frac{\alpha}{c_{y}(\target)} \int A(x) dx
+        + \frac{(1-\alpha)}{c_{y}(\target)} \int B(x) dx
+\end{align}
+where 
+\[
+  A(x) = \frac{1}{c_{a}(x)} F_{(1:N-1)}^{\prime}(x)
+\]
+and
+\[
+  B(x) = \frac{1}{c_{a}(x)} \left\{
+      \left[1- F_{(1:N-1)}(x)\right]F_{(1:N-2)}^{\prime}(x)
+      + F_{(1:N-1)}^{\prime}(x) F_{(1:N-2)}(x)
+    \right\}.
+\]
+Then we pin down the marginal type $\mtype$ by imposing the zero profit condition
+%Now we need to show that this is greater than zero (the payoff obtained by setting $y^*=0$). That is:
+\begin{align}
+  \pi_i = & \alpha \left[1 - F_{(1:N-1)}(\mtype)\right] 
+      + (1-\alpha) \left[1- F_{(1:N-2)}(\mtype)\right]F_{(1:N-1)}(\mtype) + \nonumber\\
+    & - c_y(\target) c_a(\mtype) c_{t}(\deadline) = 0.
+\end{align}
+[Correction: it is not 1:N-1 but N-1:N-1]
+
+Clearly, when $\marginaltype$ goes to infinity (costs go to zero), the probability that the N-1'th order statistics will be higher then xxx becomes zero. Hence, the payoff becomes $\alpha \geq 0$. If instead $\marginaltype$ goes to zero, then payoffs are negative. Hence, there is alpha in the middle... (need to show it is concave). 
+
+\end{proof}
+\end{shaded}
 
 
+<!-- 
 We provide here the symmetric equilibrium with one prize and $n>2$
 agents. In appendix XXX, we provide a general formula for $k>2$ prizes.
-
 Let $y_{1:n} < y_{2:n} < ... < y_{n:n}$ denote the order statistics of
 the $y_j$’s for every $j\neq i$ and let ${F_{Y_{r:n}}}(\cdot)$ and
 ${f_{Y_{r:n}}}(\cdot)$ denote the corresponding distribution and density
 for the $r$’th order statistic.
-
-\begin{proposition}
-In a tournament, the unique symmetric equilibrium of the model gives,
-for every $i=1, ..., N$, the optimal time to completion $t^*(a_i)$ equal
-to the deadline $\bar{t}$ and the optimal output quality $y^*(a_i)$ as
-\begin{equation}
- \label{eq: optimal bid tournament}
-  y^*(a_i) =  V_1 \int_{a_i}^\infty {f_{Y_{n:n}}} (z) dz
-\end{equation}
-if ${a_i}\geq \underline a$ (see @moldovanu2001optimal), and zero otherwise.
-\end{proposition}
+ -->
 
 An important property of xxx is that $y^*(a_i)$ has its upper bound in xxx and
 lower bound in xxxx. Also, equilibrium output quality is monotonic
@@ -106,24 +186,43 @@ $${\underline a}= h(n, V, F_A, C, d).$$
 \end{proposition}
 
 
+EXAMPLE 
+```{r}
+p <- plnorm   # pdf individual abilities 
+r <- rlnorm   # Simulate individual abilities
+cy <- function(x) x^2 # Cost function performance
+ct <- function(x) 2*exp(1-x)  # Cost function timing 
+```
+
+
+
+
 Contest designer's problem
 ---------------------------
 
-The sponsor of the contest chooses the rules of the competition
-including the prize structure $V_1$ and $V_2$, deadline $\deadline$, and target
-quality $\target$. Here we focus on the decision of competition format (race or tournament) for a given $\deadline$ --- the same for everyone --- and a target $\target_\race>0$ in the race which is larger than in the tournament where it is normalized to zero (e.g., $\target_\tournament = 0$). Later we relax this assumption to consider an optimal $\target$. 
+In general, the contest designer has to xxx several decisions, including the prize structure, deadline, and minimum required quality $\target$, among many others. In this section, we focus on the choice of a competition format (race or tournament) assuming a given deadline $\deadline$ --- the same for both the race and the tournament --- and a given minimum target that differs between the race and the tournament with 
+$\target_\race>\target_\tournament$ (the latter normalized to zero $\target_\tournament=0$). Later we will relax this assumption to consider an optimal $\target$. 
 
-The contest designer's objective function is given by 
-\begin{equation}
-\begin{array}{ll}
-    \mbox{maximize} & \int_{0}^{\infty} y^*(x) dF_{n:n}(x)
-      - \tau \int_{0}^{\infty} t^*(x) dF_{n:n}(x) 
-      - 1
-  \end{array}
-\end{equation}
+The problem for the contest designer is to maximize an objective function that is the sum of the highest performance achieved and the time to completion. Generally, the maximization problem is 
+\begin{align}
+  \mbox{maximize} & \int y^*(x) dF_{N:N}(x)
+    - \tau \int t^*(x) dF_{N:N}(x) 
+    - \Pr(t_{1:N}\leq \deadline \text{ and } y_{N:N}\geq \target) .
+\end{align}
+
+In a race, the above expression becomes
+\begin{align}
+  \Pr(a_{1:N}\geq \mtype) \target + 
+    - \tau \int t^*(x) dF_{N:N}(x) 
+    - \Pr(t_{1:N}\leq \deadline \text{ and } y_{N:N}\geq \target) .
+\end{align}
+
+In a tournament, .... 
+
+<!---
 where the expected quality of the winner and the expected time spent $T=\sum_{i=1}^{n+1} T_i$ and prizes paid $V=\sum_{j=1}^k p_{j} V_j$ (with $p_j=1$ if the prize is awarded
 and $p_j=0$ otherwise).
-
+--->
 
 The main result is as given by the next proposition: 
 

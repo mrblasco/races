@@ -271,17 +271,91 @@ Proof. Simple algebra.
 As a result, the intuition was correct. When the preference for time $\tau$ is sufficiently high, the race should be preferred. The threshold is a function of the deadline to complete the job (or time horizon). It also depends on the gains in terms of higher performance for all types above the marginal one. The lower the gains, the lower the threshold. 
 
 
-Open question. What happens when $\target$ in a tournament is higher than in a race. 
+Now we turn to discuss the contest designer's choice of an optimal minimum requirement $\target$. So far, we have assumed that $\target_\race>\target_\tournament$. Now, we show that the assumption that xxxx is indeed an optimal choice of the contest designer. This is summarized in the next proposition.
 
-Conjecture. Suppose the contest designer can choose the target that max profits in both the race and the tournament. Then, the optimal $\target$ in tournament should be lower than that in a race. 
+Proposition. Suppose the contest designer can choose the target that max profits in both the race and the tournament. Then, the optimal $\target$ in tournament is generally lower than that in a race.
 
-Proof. Suppose that $\target$ was higher, then the optimal design of a race would be to increase the target $\target$ .... but computations are still a bit complicated. 
+
+To prove that it is indeed the case. We proceed in two steps. First, we assume that the contest designer does not care about minimizing the timing of the innovation by imposing $\tau = 0$. For simplicity, assume that $\alpha=1$ (winner-takes-all). In a race, this means that the optimal target will be a value that makes equal the costs in terms of less participation versus the gains in terms of higher values of the winning solutions. Formally, the contest designer's problem in a race is
+\begin{align}
+  \text{maximize } & R^\race = [1-F_{N:N}(\mtype)] (\target_\race - 1).
+\end{align}
+Note that $\mtype$ depends on the target. This is clearly concave in $\target_\race$. 
+Thus, the first order condition is also sufficient. 
+\begin{align}\label{foc race}
+  \text{FOC } & \Rightarrow -F^\prime_{N:N}(\mtype) \mtype^\prime (\target_\race - 1) + [1-F_{N:N}(\mtype)] = 0.
+\end{align}
+
+In a tournament, ... 
+\begin{align}
+  \text{maximize } & R^\race = \int_{\mtype}^\infty y^*(x, \target) d F_{N:N}(x) - [1-F_{N:N}(\mtype)]. 
+\end{align}
+Convexity is not sure. If not, then the optimal target is zero. Which is lower than the optimal target in a race. 
+
+Instead. If the objective function is (strictly) concave then there's an internal solution. 
+
+\begin{align} \label{foc tournament}
+  \text{FOC } \Rightarrow & 
+    \frac{d\int_{\mtype}^\infty y^*(x, \target) d F_{N:N}(x)) }{d \target}
+      + F^\prime_{N:N}(\mtype) \mtype^\prime =0 \nonumber\\ 
+    & \text{(by using Leibniz rule)}\nonumber\\
+  \Rightarrow & - y^*(\mtype, \target) \mtype^\prime F^\prime_{N:N}(\mtype) 
+      + \int_{\mtype}^\infty \dystar - F^\prime_{N:N}(\mtype) \mtype^\prime = 0\nonumber\\
+  \Rightarrow & -\target \mtype^\prime F^\prime_{N:N}(\mtype) 
+      + \int_{\mtype}^\infty \dystar - F^\prime_{N:N}(\mtype) \mtype^\prime = 0.
+\end{align}
+
+Using \eqref{foc race} with \eqref{foc tournament}, the optimal target is the same in the race and the tournament only if
+\begin{align} 
+  \int_{\mtype}^\infty \dystar = [1- F_{N:N}(\mtype)].
+\end{align}
+
+
+\[
+  \frac{\partial y^*(x, \target)}{\partial \target} = 
+    \frac{c_y^\prime(\target)}{c_y^\prime(y^*(x, \target))}. 
+\]
+
+Then. 
+
+- If $c_y(\cdot)$ is linear, we have that the ratio is one for all $x$. 
+
+- If $c_y(\cdot)$ is convex, then we have that it is less than one. If 
+
+- If $c_y(\cdot)$ is concave, then we have that it is higher than one.
+
+As a result, if linear or convex the first order condition is lower than that in the race. Since the obj. function is concave (second order is decreasing), the target should be lower in a tournament than in a race to satisfy the first order condition.  (a lower target increases the focs.).
+
+Conjecture. If $\tau>0$, the $\target$ in the race is higher. 
+
+
 
 
 
 
 Structural econometric model
 ----------------------------
+
+Readings: 
+
+- [The winner's curse, reserve prices, and endogenous entry: Empirical insights from eBay auctions][ebay]
+
+- [Entry and competition effects in first-price auctions: theory and evidence from procurement auctions][auctions]
+
+- [Auctions with entry][entry]
+
+[ebay]: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.199.680&rep=rep1&type=pdf 
+[entry]: http://www.vita.mcafee.cc/PDF/AuctionswithEntry.pdf
+[auctions]:  https://www.econstor.eu/bitstream/10419/79263/1/516364804.pdf
+
+
+General two-step strategy:
+
+- First step. Identify the marginal type from the data and the distribution of types. 
+
+- Second step. Using the estimated distribution of types. 
+
+
 
 
 Identification of the model. suggest

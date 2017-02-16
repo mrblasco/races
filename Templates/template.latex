@@ -2,6 +2,13 @@
 \usepackage{beamerarticle}
 \usepackage[utf8]{inputenc}
 \usepackage{hyperref}
+\hypersetup{%
+  colorlinks=true,% hyperlinks will be coloured
+  citecolor={blue!50!black},
+  urlcolor={blue!80!black},
+  linkcolor=blue,% hyperlink text will be green
+  linkbordercolor=blue,% hyperlink border will be red
+}
 
 % Math
 \usepackage{amssymb,amsmath,amsthm} 

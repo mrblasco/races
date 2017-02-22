@@ -1,4 +1,15 @@
-# Notes for a new project
-## Project Started: January 16, 2017
+% Races vs Tournaments
+% Andrea Blasco <ablasco@fas.harvard.edu>
+% Project Started: January 16, 2017
 
-This folder contains scripts used for the project Races vs Tournaments. Very preliminary and incomplete.
+Introduction
+-------------
+
+This folder contains scripts used for the project Races vs Tournaments. 
+Very preliminary and incomplete.
+
+
+Todos
+-------
+
+Write the paper!

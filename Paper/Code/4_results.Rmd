@@ -126,6 +126,41 @@ The timing of submissions was rather uniform during the submission period with a
 #    , yaxt='n', xlab='', ylab='', main='Dispersion time last submission')
 ```
 
+Proportions by rooms.
+```
+nsub <- tapply(races.sub$id, races.sub$handle, length)
+races$submit <- races$handle %in% names(nsub)
+treat <- tapply(races$treatment, races$room, unique)
+n1 <- tapply(races$submit, races$room, sum)
+n <- tapply(races$submit, races$room, length)
+p <- (n1 + 1) / (n + 2)
+SE <- sqrt(p*(1-p) / (n+2))
+CI <- cbind(p+1.96*SE, p - 1.96*SE)
+
+# All rooms
+plot(p, 1:length(p), xlim=c(-0.1, 1), yaxt='n', bty='n', ann=FALSE, col=treat, pch=16)
+segments(y0=1:length(p), x0=p+SE, x1=p-SE, col=treat, lwd=3)
+segments(y0=1:length(p), x0=CI[, 1], x1=CI[, 2], col=treat)
+text(y=1:length(p), x=p, levels(races$treatment)[treat], pos=3, cex=0.5, xpd=TRUE)
+abline(v=mean(races$submit))
+
+# Large rooms
+treat <- treat[n<15]
+p <- p[n<15]
+n <- n[n<15] 
+SE <- sqrt(p*(1-p) / (n+2))
+CI <- cbind(p+1.96*SE, p - 1.96*SE)
+plot(p, 1:length(p), xlim=c(-0.1, 1), yaxt='n', bty='n', ann=FALSE, col=treat, pch=16)
+segments(y0=1:length(p), x0=p+SE, x1=p-SE, col=treat, lwd=3)
+segments(y0=1:length(p), x0=CI[, 1], x1=CI[, 2], col=treat)
+text(y=1:length(p), x=p, levels(races$treatment)[treat], pos=3, cex=0.5, xpd=TRUE)
+abline(v=mean(races$submit))
+
+
+```
+
+
+
 
 Consider panel data!
 

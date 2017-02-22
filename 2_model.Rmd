@@ -1,62 +1,65 @@
 
-
 The model
 =========
 
-In this section, we generalize the _contest game_ introduced by @moldovanu2001optimal to a situation where players allocate their effort along two dimensions: performance and time. Then we explore the problem of maximization faced by a contest designer with xxx preferences for performance and time.
+In this section, we generalize the _contest game_ introduced by @moldovanu2001optimal to a situation where players allocate their effort along two dimensions: quality and time to complete a given job. Then we explore the problem of maximization faced by a contest designer with preferences for both quality and time.
 
 Basic setup
 ------------
 
-A (generalized) contest game is an $N$ player game with asymmetric information. Players compete by choosing a performance variable $y$ and a timing $t$, both nonnegative numbers --- to be thought of as the quality and time to completion of a job. Players move simultaneously to maximize the probability of winning one of $K$ available prizes while minimizing the cost of effort. Prizes are of decreasing value $V_1>V_2>...>V_K$.
+A (generalized) contest game is an $n$ player game with asymmetric information. Players compete for $k$ prizes by choosing a performance variable $y$ and a timing $t$ both nonnegative numbers. Each player holds a valuation $v_k$ that assignes a nonnegative value to each prize $k$ with $v_1\geq v_2 \geq ...\geq v_q$. Players move simultaneously to maximize the probability of winning a prize while minimizing the cost of effort. Costs are known up to an ability parameter that is private information of each player.
 
-Let $a_1, ..., a_N$ denote a privately observed individual ability of players drawn from a common distribution $F_{\mathcal{A}}$ on a given interval $\mathcal{A}$.  Let $C(a_i, y_i, t_i)$ denote player $i$'s cost function and assume it is multiplicative 
+Let $a_1, ..., a_n$ denote the privately observed individual ability of each player. Abilities are independently drawn at random from a common distribution $F_{\mathcal{A}}$ on an interval on the positive real line $\mathcal{A}$. Let $C(a_i, y_i, t_i)$ denote player $i$'s cost function that is multiplicative 
 \begin{equation}
   C(a_i, y_i, t_i) = c_a(a_i) c_y(y_i) c_t(t_i)
 \end{equation}
-with $c_a(\cdot)$ and $c_t(\cdot)$ both monotonic decreasing (the higher the ability or the time to complete, the lower the cost). Whereas $c_{y}(\cdot)$ is monotonic increasing (the higher the performance, the higher the cost). To ensure nonnegative costs, we further impose the following conditions: $c_{y}(0)\geq 0$, $\lim_{t\rightarrow \infty}c_{t}(t)>0$, and $\lim_{a\rightarrow \infty}c_{a}(a)>0$.
+with $c_a(\cdot)$ and $c_t(\cdot)$ being monotonic decreasing functions (the higher the ability or the time to complete, the lower the cost) and $c_{y}(\cdot)$ being a monotonic increasing function (the higher the quality, the higher the cost). We further impose conditions to ensure nonnegative costs: $\lim_{a\rightarrow \infty}c_{a}(a)>0$, $\lim_{t\rightarrow \infty}c_{t}(t)>0$, and $c_{y}(0)\geq 0$.
 
 Let $p_{i, k}(y_1,..., y_N, t_1, ..., t_N)$ be player $i$'s probability of winning the $k^{th}$ prize. Player $i$'s expected payoff is
 
 \begin{equation}
   \label{expected payoff}
-  \pi_i = \sum_{k=1}^{K} p_{i, k}(y_1,..., y_N, t_1, ..., t_N) V_k - C(a_i, y_i, t_i). 
+  \pi_i = \sum_{k=1}^{q} p_{i, k}(y_1,..., y_N, t_1, ..., t_N) v_k - C(a_i, y_i, t_i). 
 \end{equation}
 
-
-For convenience, suppose that to win a prize it is not sufficient to beat the other competitors but players have to successfully meet a given deadline and satisfy any minimum performance requirement. Let $\deadline>0$ denote a given deadline and $\target\geq 0$ a (possibly positive) required minimum performance. 
-
-<!--
-The goal for each player is If the timing is above a given deadline $d>0$ or the performance is below a certain level $q>0$, the player gets zero utility. Otherwise, the player is given a rank based on his performance and timing. 
- A contest is xxxx. Ranked . 
--->
-
-The tournament competition corresponds to a special case where players that successfully meet the deadline (i.e., $t_i\leq\deadline$) are ranked by their performance and the probability of winning is
+A generalized contest game $G$ can be then denoted by 
 \begin{equation}
-  xxxx.
+G \equiv \left\{
+    n, q, \{v_k\}_{k=1}^{q},  F_\mathcal{A}, C, \{p_{i,k}\}_{i,k=1}^{q,n} 
+  \right\}.
 \end{equation}
 
-<!-- In a tournament, the agent having achieved the highest output quality within the deadline gets the first prize, the agent having achieved the second highest output quality gets the second prize, and so on. In a race, by contrast, the first agent to achieve an output quality of at least ${\bar y}$ within the deadline wins the first prize, the second to achieve the same target gets the second prize, and so on. -->
+The game $G$ is said to have minimum-entry requirements when it is not sufficient to beat the other competitors to win a prize but players have also to successfully meet a given deadline and/or satisfy a minimum quality requirement. Let $\deadline>0$ denote the deadline and $\target\geq 0$ the required minimum performance. A game $G$ has minimum-entry requirements when, for every prize $k$ and player $i$, the probability $p_{i, k}(\cdot, \cdot)=0$ when player $i$'s quality is below a target level $q_i < \target$ or the timing to completion is above a given deadline $t_i>\deadline$.
 
-<!-- 
+
+Races and tournaments
+----------------------
+
+The tournament corresponds to a special case of a game with minimum-entry requirements where the player having achieved the highest output quality within the deadline gets the first prize, the player having achieved the second highest output quality gets the second prize, and so on. Let $y_{(1:n)}, ..., y_{(n:n)}$ denote the order statistics of the $y$'s for $n$ players. Formally, we have the following definition.
+
 \begin{definition}
-Let xxx denote the $N-1-k$ order statistic. A tournament is a contest game where the probability of winning the $k^{th}$ prize is 
+A tournament is a contest game $G$ with minimum-entry requirements $\deadline$ where player $i$'s probability of winning a prize is
 \begin{equation}
-  p_{k} = \Pr(y_i=xxxx\text{ and }t_i\leq \bar{t}). 
+  p_{i, k}^\tournament =
+  \begin{cases}
+    \Pr(y_i > y_{n-1:n-1}) & \text{if }k=1\\
+    \Pr(y_{n-k+1:n-1} > y_i > y_{n-k:n-1}) & \text{if }k>1.
+  \end{cases}
 \end{equation}
 \end{definition}
- -->
 
-The race competition, by contrast, corresponds to a special case where players are ranked by their timing provided that the performance is above a minimum level ($y_i\geq\target$) and the probability of winning is 
+The race corresponds, on the other hand, to a special case of a game with minimum-entry requirements where the player being the first to complete a job with a minimum quality gets the first prize, the player being the second to complete a job with a minimum quality gets the second prize, and so on. Let $t_{(1:n)}, ..., t_{(n:n)}$ denote the order statistics of the $t$'s. Formally, we have the following definition.
+
+\begin{definition}
+A race is a contest game $G$ with minimum-entry requirements $\target$ where player $i$'s probability of winning a prize is
 \begin{equation}
-  \label{probability in a race}
-  xxxx.
+  p_{i, k}^\race =
+  \begin{cases}
+    \Pr(t_i < t_{1:n-1}) & \text{if }k=1\\
+    \Pr(t_{1-k:n-1} > t_i > t_{k:n-1}) & \text{if }k>1.
+  \end{cases}
 \end{equation}
-
-
-Note the "duality" of the two competitions. [@baye2003strategic]
-
-Note that, in both competitions, if players xxxx they get no prizes (i.e., a rank $r > K$). 
+\end{definition}
 
 
 Equilibrium
@@ -67,13 +70,20 @@ To simplify the analysis, we suppose there are only two prizes of total value no
 Following @moldovanu2001optimal, we characterize the unique symmetric equilibrium in a race competition. 
 
 \begin{proposition}
-Player $i$'s optimal performance $y^*(a_i)$ is equal to the minimum requirement $\target$ and the optimal timing $t^*(a_i)$ is given by
+In a race, player $i$'s optimal quality $y^*(a_i)$ is equal to the minimum-entry requirement $\target$ and the optimal timing $t^*(a_i)$ is given by
 \begin{equation} 
   \label{eq: optimal time race}
-  \ctime^{-1}\left[\ctime(\deadline) + \frac{1}{\cscore(\target)}\left(\alpha \int_{a_i}^{\infty} ... dz   + (1-\alpha) \int_{a_i}^{\infty} ...  dz\right)\right]
-  \quad \text{if }\ability\geq\marginaltype, 
+  \ctime^{-1}
+  \left[
+    \ctime(\deadline) 
+    + \frac{1}{\cscore(\target)}\left(
+      \alpha \int_{a_i}^{\infty} ... dz
+      + (1-\alpha) \int_{a_i}^{\infty} ...  dz
+    \right)
+  \right]
+  \quad \text{if }a_i \geq \mtype.
 \end{equation}
-and is equal to zero otherwise. 
+Otherwise, if $a_i < \mtype$, the optimal choice is $y^*=0$ and $t^*=\infty$.
 \end{proposition}
 
 \begin{shaded}
@@ -152,15 +162,6 @@ Clearly, when $\marginaltype$ goes to infinity (costs go to zero), the probabili
 \end{shaded}
 
 
-<!-- 
-We provide here the symmetric equilibrium with one prize and $n>2$
-agents. In appendix XXX, we provide a general formula for $k>2$ prizes.
-Let $y_{1:n} < y_{2:n} < ... < y_{n:n}$ denote the order statistics of
-the $y_j$’s for every $j\neq i$ and let ${F_{Y_{r:n}}}(\cdot)$ and
-${f_{Y_{r:n}}}(\cdot)$ denote the corresponding distribution and density
-for the $r$’th order statistic.
- -->
-
 An important property of xxx is that $y^*(a_i)$ has its upper bound in xxx and
 lower bound in xxxx. Also, equilibrium output quality is monotonic
 increasing in the agent’s ability [see @moldovanu2001optimal]. Thus, for
@@ -179,40 +180,44 @@ marginal ability ${\underline a}$ as
   {\underline a}= h(n, V, F_A, C, d).
 \end{equation}
 
-- Using 'duality' property of these games, we determine the equilibrium behavior in a race as follows: 
 
+The equilibrium in a tournament is stated below. 
 \begin{proposition}
-  Equilibrium behavior in a race is XXXX
+  In a tournament, xxxx 
 \end{proposition}
 
-Proposition. Let target xxx be higher in a race than in a tournament.Then, there always exist a non-empty set of abilities $\mathcal A_0 \subset \mathcal A$ where players in the race generate higher performance than in the tournament.  
 
-Proof. Marginal type has utility zero in a race but the same type has a strictly positive utility in the tournament. Since probability of winning is not different in the race or the tournament (the bid is a monotonic transformation of the individual ability or, in other words, rankings are virtually the same), expected payoffs in equilibrium differ only in the cost functions. Hence, to be an equilibrium, the player in the tournament should bid less than the player in the race to earn a strictly positive expected payoff. 
+By comparing xxx and xxx, we find that xxxx. 
 
+\begin{proposition}
+Let target xxx be higher in a race than in a tournament.Then, there always exist a non-empty set of abilities $\mathcal A_0 \subset \mathcal A$ where players in the race generate higher performance than in the tournament.  
+\end{proposition}
 
-Implications. The above proposition applies only if the target is higher in a race than in a tournament. But what if the two competitions had the same target ? In that case, tournaments and races have the same marginal type. Therefore, the performance of players in the tournament with reserve are always non-lower than those in the race. This does not imply that it is optimal to set the target. On the contrary, we will show that it is optimal to set an optimal target in a tournament that is below the optimal target in a race. Next section.  
+\begin{proof}
+Marginal type has utility zero in a race but the same type has a strictly positive utility in the tournament. Since probability of winning is not different in the race or the tournament (the bid is a monotonic transformation of the individual ability or, in other words, rankings are virtually the same), expected payoffs in equilibrium differ only in the cost functions. Hence, to be an equilibrium, the player in the tournament should bid less than the player in the race to earn a strictly positive expected payoff. 
+\end{proof}
 
-
-Example. Consider the following example. 
-
-```{r}
+Let's make an example. Suppose xxxx. 
+```
 p <- plnorm   # pdf individual abilities 
 r <- rlnorm   # Simulate individual abilities
 cy <- function(x) x^2 # Cost function performance
 ct <- function(x) 2*exp(1-x)  # Cost function timing 
 ```
+FIGURE 1. Equilibrium bids in a race and a tournament. 
 
 
+Implications. The above proposition applies only if the target is higher in a race than in a tournament. But what if the two competitions had the same target ? In that case, tournaments and races have the same marginal type. Therefore, the performance of players in the tournament with reserve are always non-lower than those in the race. This does not imply that it is optimal to set the target. On the contrary, we will show that it is optimal to set an optimal target in a tournament that is below the optimal target in a race. Next section.  
 
 
 The contest designer's problem
 ---------------------------
 
-Let now focus on the contest designer's problem. Imagine the contest designer can choose the competition format to be either the race or the tournament. Let assume all other aspects of design are fixed. That is, suppose the deadline $\deadline$ is given and there is a minimum target that differs between the race and the tournament: $\target_\race > \target_\tournament$ (the latter normalized to zero $\target_\tournament=0$). Later we will relax this assumption to consider a more general setting where setting the target is also part of the contest designer's problem
+Let us now focus on the contest designer's problem. Imagine the contest designer can choose the competition format $(c=\race, \tournament)$ to be either the race or the tournament. Let's keep all other aspects of design fixed. The deadline $\deadline_c$ is the same between competition formats $\deadline_c=\deadline$. There is a minimum-entry requirement $\target_c$ that is higher in the race than in the tournament ($\target_\race > \target_\tournament$), where the latter is normalized to zero to ease notation ($\target_\tournament=0$). We will relax this assumption later to consider a more general setting where the level of the minimum-entry requirement is also part of the contest designer's problem.
 
-Assume the contest designer wants to maximize an objective function that is linearly additive. Imagine this consists of the sum of the expected (highest) performance achieved and the corresponding time to completion. 
+The contest designer maximizes an objective function that is linearly additive. It consists of the sum of the expected quality achieved by the winners and the corresponding time to completion. 
 
-[Question: do the contest designers care about the second place? Assume they dom't.]
+[Question: do the contest designers care about the second place? Assume they don't.]
 
 In a tournament, the objective function is
 \begin{align}
@@ -310,7 +315,6 @@ Using \eqref{foc race} with \eqref{foc tournament}, the optimal target is the sa
   \int_{\mtype}^\infty \dystar = [1- F_{N:N}(\mtype)].
 \end{align}
 
-
 \[
   \frac{\partial y^*(x, \target)}{\partial \target} = 
     \frac{c_y^\prime(\target)}{c_y^\prime(y^*(x, \target))}. 
@@ -327,10 +331,6 @@ Then.
 As a result, if linear or convex the first order condition is lower than that in the race. Since the obj. function is concave (second order is decreasing), the target should be lower in a tournament than in a race to satisfy the first order condition.  (a lower target increases the focs.).
 
 Conjecture. If $\tau>0$, the $\target$ in the race is higher. 
-
-
-
-
 
 
 Structural econometric model
@@ -356,6 +356,18 @@ General two-step strategy:
 - Second step. Using the estimated distribution of types. 
 
 
+Basic idea. Equilibrium condition gives:
+\begin{equation}
+  y_i^* = y^*(a_i; F_{\mathcal{A}}). 
+\end{equation}
+with $y^*(\cdot)$ being an invertible function with $\phi$ denoting the inverse.
 
+Hence the distribution of bids is
+\begin{equation}
+F_{Y}(y) = \Pr(y_i^* \leq y) 
+        = \Pr(y^*(a_i) \leq y) 
+        = \Pr(a_i \leq \phi(y)) 
+        = F_\mathcal{A}( \phi(y)).
+\end{equation}
 
 Identification of the model. suggest

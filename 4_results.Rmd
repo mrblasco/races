@@ -16,12 +16,31 @@ ft <- fisher.test(tab)
 
 Participation across treatments was higher in the Tournament treatment (`r pp["Tournament"]` percent), followed by the Tournament w/reseve (`r pp["Reserve"]` percent), and the Race treatment (`r pp["Race"]` percent). However,  these differences are not statistically significant (using a `r ft$method` gives a p-value of `r ft$p.value`)
 
+```{r, fig.width=5, fig.height=7, fig.cap="Participation rates by rooms"}
+races$room_size <- ave(as.numeric(races$handle), races$room, FUN=length)
+part <- aggregate(submit ~ treatment + room + room_size, sum, data=races)
+part.l <- split(part, part$treatment)
+par(mfrow=c(3, 1), mar=c(3, 3, 3, 1))
+for (i in 1:3) {
+  x <- part.l[[i]]
+  p <- (x$submit + 1) / (x$room_size + 2)
+  SE <- sqrt(p * (1-p) / x$room_size)
+  x.title <- names(part.l)[i]
+  plot(p, 1:length(p), xlim=c(0, 1), pch=16, main=x.title)
+  segments(x0=p+SE, x1=p-SE, y0=1:length(p))
+  abline(v=(sum(x$submit) + 1) / (sum(x$room_size)+2))
+}
+```
+
+Figure xxx shows the participation rates by rooms.
+
 ```{r}
 races$submit2 <- races$handle %in% unique(subset(races.sub,  system>=800000)$handle)
 pp <- 100*tapply(races$submit2, races$treatment, mean)
 (tab <- table(races$submit2, races$treatment))
 ft <- fisher.test(tab)
 ```
+
 
 Similar results are found when we consider only those who made submissions above a score of xxxx. Participation across treatments was higher in the Tournament treatment (`r pp["Tournament"]` percent), followed by the Tournament w/reseve (`r pp["Reserve"]` percent), and the Race treatment (`r pp["Race"]` percent). However,  these differences are not statistically significant (using a `r ft$method` gives a p-value of `r ft$p.value`)
 
@@ -60,7 +79,7 @@ mins_from_last <- as.numeric(difftime(races.sub$timestamp, last_submission, unit
 
 Finally, let us focus on the timing of the first and last submission. xxxx
 
-```{r, fig.width=9.5}
+```{r, fig.cap="Submissions timing within the submission period"}
 normalize <- function(x) (x - min(x))  / diff(range(x))
 timing <- normalize(as.numeric(races.sub$timestamp))
 index <- match(races.sub$handle, races$handle)
@@ -68,6 +87,25 @@ timing.l <- split(timing, races$treatment[index])
 par(mfrow=c(1, 3))
 sapply(1:3, function(x) hist(timing.l[[x]], main=names(timing.l)[x], ylim=c(0, 200))) -> z
 ```
+
+Here we consider the hours of the day on the 24h. We normalize the 24h on the unit interval (here I think we should take into account the different timezoes.)
+
+```{r, fig.cap="Submissions within the 24h (need to adjust for timezone)"}
+hours <- as.numeric(format(races.sub$timestamp, '%H'))
+index <- match(races.sub$handle, races$handle)
+hours.l <- split(hours, races$treatment[index])
+par(mfrow=c(1, 3))
+for (i in 1:3) {
+  x <- hours.l[[i]]
+  x.title <- names(hours.l)[i]
+  hist(x, ylim=c(0, 120), xlim=c(0, 24), main=x.title, xlab="Day hours")
+}
+```
+
+
+Regressions
+------------
+
 
 Although we do not find  significant differences through an univariate analysis, it is possible that differences will be xxx in a multivariate analysis. Adding controls can indeed reduce noise and improve precisions of our estimates. 
 

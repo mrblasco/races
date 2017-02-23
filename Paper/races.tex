@@ -70,21 +70,26 @@
 \newtheorem{proposition}{Proposition}
 
 
-% Definitions
+% Thresholds, limits, bounds, etc.
 \newcommand\deadline{\bar{t}}
 \newcommand\target{\underline{y}}
 
+% Competitions
 \newcommand\race{\text{race}}
 \newcommand\tournament{\text{tour}}
 
+% Cost functions
 \newcommand\ctime{c_{t}}
 \newcommand\cscore{c_{y}}
+\newcommand\cability{c_{a}}
+\newcommand\costs{\cability(a_i)\cscore(y_i)\ctime(t_i)}
+
+% Distribution of types
 \newcommand\ability{a_i}
-
-\newcommand\costs{c_a(a_i)c_y(y_i)c_t(t_i)}
-
 \newcommand\marginaltype{\underline{a}}
 \newcommand\mtype{\underline{a}}
+\newcommand\lotype{\underline{a}}
+\newcommand\hitype{\bar{a}}
 
 
 
@@ -95,7 +100,7 @@
 University, 1737 Cambridge Street, Cambridge, MA 02138 (email:
 \href{mailto:ablasco@fas.harvard.edu}{\nolinkurl{ablasco@fas.harvard.edu}}).}}
 \author{Andrea Blasco \and Kevin J. Boudreau \and Karim R. Lakhani \and Michael Menietti}
-\date{Last updated: 21 February, 2017}
+\date{Last updated: 22 February, 2017}
 
 \begin{document}
 \maketitle
@@ -354,17 +359,24 @@ above a given deadline \(t_i>\deadline\).
 \subsection{Races and tournaments}\label{races-and-tournaments}
 
 The tournament corresponds to a special case of a game with
-minimum-entry requirements where the player having achieved the highest
-output quality within the deadline gets the first prize, the player
-having achieved the second highest output quality gets the second prize,
-and so on. Let \(y_{(1:n)}, ..., y_{(n:n)}\) denote the order statistics
-of the \(y\)'s for \(n\) players. Formally, we have the following
-definition.
+minimum-entry requirements. Generally, players have a deadline to meet
+and the player having achieved the highest output quality within the
+deadline gets the first prize, the player having achieved the second
+highest output quality gets the second prize, and so on.
+
+Let \(y_{(1:n)}, ..., y_{(n:n)}\) denote the order statistics of the
+\(y\)'s for \(n\) players, let \(t_{(1:n)}, ..., t_{(n:n)}\) denote the
+order statistics of the \(t\)'s. To ease notation, let use the
+convention that the quality of players who completed the job after the
+deadline \(\deadline\) is zero and the time to complete a job of quality
+less than required level \(\target\) is above the deadline.
+
+Formally, we have the following definition.
 
 \begin{definition}
-A tournament is a contest game $G$ with minimum-entry requirements $\deadline$ where player $i$'s probability of winning a prize is
+A tournament is a contest game $G$ with a minimum-entry requirement $\deadline$ where player $i$'s probability of winning a prize $(k=1,...,p)$ is
 \begin{equation}
-  p_{i, k}^\tournament =
+  p_{\tournament, i, k} =
   \begin{cases}
     \Pr(y_i > y_{n-1:n-1}) & \text{if }k=1\\
     \Pr(y_{n-k+1:n-1} > y_i > y_{n-k:n-1}) & \text{if }k>1.
@@ -372,18 +384,20 @@ A tournament is a contest game $G$ with minimum-entry requirements $\deadline$ w
 \end{equation}
 \end{definition}
 
-The race corresponds, on the other hand, to a special case of a game
-with minimum-entry requirements where the player being the first to
-complete a job with a minimum quality gets the first prize, the player
-being the second to complete a job with a minimum quality gets the
-second prize, and so on. Let \(t_{(1:n)}, ..., t_{(n:n)}\) denote the
-order statistics of the \(t\)'s. Formally, we have the following
-definition.
+That is, in a tournament, player \(i\)'s probability of winning the
+\(k\)th prize is simply the probability of player \(i\)'s quality being
+smaller than the \(n-k+1\)'s and greater than the \(n-k\)'s order
+statistic of the \(y\)'s.
+
+Likewise the race corresponds to a special case where the player being
+the first to complete a job with a minimum quality gets the first prize,
+the player being the second to complete a job with a minimum quality
+gets the second prize, and so on. Hence, the following definition.
 
 \begin{definition}
 A race is a contest game $G$ with minimum-entry requirements $\target$ where player $i$'s probability of winning a prize is
 \begin{equation}
-  p_{i, k}^\race =
+  p_{\race, i, k} =
   \begin{cases}
     \Pr(t_i < t_{1:n-1}) & \text{if }k=1\\
     \Pr(t_{1-k:n-1} > t_i > t_{k:n-1}) & \text{if }k>1.
@@ -391,18 +405,78 @@ A race is a contest game $G$ with minimum-entry requirements $\target$ where pla
 \end{equation}
 \end{definition}
 
+That is, in a race xxxxx.
+
 \subsection{Equilibrium}\label{equilibrium}
 
-To simplify the analysis, we suppose there are only two prizes of total
-value normalized to one. We let \(\alpha\) denote the fraction going to
-the first place which is larger than the fraction going to the second
-place (\(\alpha\geq1/2\)).
+Suppose there are only two prizes of total value normalized to one. Let
+\(\alpha\geq 1/2\) denote the fraction of total prizes going to the
+first placed competitor, and \(1-\alpha\) that going to the second
+placed competitor.
 
-Following \citet{moldovanu2001optimal}, we characterize the unique
-symmetric equilibrium in a race competition.
+Let first focus the analysis on the case of a tournament.
 
-\begin{proposition}
-In a race, player $i$'s optimal quality $y^*(a_i)$ is equal to the minimum-entry requirement $\target$ and the optimal timing $t^*(a_i)$ is given by
+First, notice that picking a completion time equal to the deadline
+(\(t_i^*=\deadline\)) is a (weakly) dominant strategy for each player.
+This is because, while each player finds costly to lower the time to
+complete a job, the probability of winning a prize is not affected by
+the completion time as soon as the deadline is met.
+
+Fixing \(t_i^*=\deadline\) for each player works like a uniform increase
+in the marginal costs that is equal to \(\ctime(\deadline)\).
+Alternatively, it can be seen as a uniform reduction in the total value
+of prizes by a factor of \(1/\ctime(\deadline)\). In this case, the
+minimum-entry requirement does not reduce the number of participating
+competitors.
+
+Following \citet{moldovanu2001optimal}, the (unique) symmetric XXXX
+equilibrium for player \(i\)'s quality is
+
+\begin{equation}  \label{eq: optimal time tournament}
+  \cscore^{-1}
+  \left[\cscore(\target) 
+    + \frac{1}{\ctime(\deadline)}
+    \left(
+      \alpha \int_{a_i}^{\hitype} A(z) dz
+      + (1-\alpha) \int_{a_i}^{\hitype} B(z)  dz
+    \right)
+  \right]
+\end{equation}
+
+where
+
+\begin{equation}
+  A(x) = \frac{1}{c_{a}(x)} F_{(n-1:n-1)}^{\prime}(x)
+\end{equation}
+
+and
+
+\begin{equation}
+  B(x) = \frac{1}{c_{a}(x)} \left\{
+      \left[1- F_{(n-1:n-1)}(x)\right]F_{(n-1:n-2)}^{\prime}(x)
+      + F_{(n-1:n-1)}^{\prime}(x) F_{(n-1:n-2)}(x)
+    \right\}.
+\end{equation}
+
+This equilibrium strategy is obtained by solving the first-order
+differential equation:
+
+\begin{align} \label{foc0}
+  0 = & \alpha F_{(1:N-1)}^{\prime}(\phi) \phi^{\prime} + \nonumber\\
+    & + (1-\alpha)\phi^{\prime}\left\{
+        \left[1 - F_{(1:N-1)}(\phi)\right]F_{(1:N-2)}^{\prime}(\phi)
+        + F_{(1:N-1)}^{\prime}(\phi) F_{(1:N-2)}(\phi)\right\} + \nonumber\\
+    & - c_{a}(a) c_{y}(\target) c_{t}^{\prime}(t_i)
+\end{align}
+
+with boundary condition \(xxxx\).
+
+Race. In a similar way, we derive the xxxx in a race. Clearly, any
+positive quality that is below the minimum-entry requirement will raise
+costs while giving a zero probability of winning. Thus, player \(i\)'s
+choice of optimal quality \(y_i^*\) is binary. Either \(y_i=0\) (with
+\(t_i=\deadline\) by convention) or \(y_i= \target\).
+
 \begin{equation} 
   \label{eq: optimal time race}
   \ctime^{-1}
@@ -415,11 +489,9 @@ In a race, player $i$'s optimal quality $y^*(a_i)$ is equal to the minimum-entry
   \right]
   \quad \text{if }a_i \geq \mtype.
 \end{equation}
-Otherwise, if $a_i < \mtype$, the optimal choice is $y^*=0$ and $t^*=\infty$.
-\end{proposition}
 
 \begin{shaded}
-\begin{proof}
+\begin{proof}[APPENDIX]
 Consider player $i$'s choice and suppose that the other $N-1$ players use the equilibrium strategy stated in the proposition. Let $\phi=t^{-1}$ denote the inverse of the optimal bidding function. Player $i$'s best response is a timing $t_i$ and performance $y_i$ that maximize the expected payoffs \eqref{expected payoff} given the other players' equilibrium. 
 
 Any $y_i > \target$ or $0<y_i<\target$ will raise costs while leaving unchanged the probability of winning. Thus, the choice of $y_i$ is binary. Either $y_i=0$ (with $t_i=\deadline$ by convention) or $y_i= \target$.
@@ -985,6 +1057,14 @@ Race treatment (26.263 percent). However, these differences are not
 statistically significant (using a Fisher's Exact Test for Count Data
 gives a p-value of 0.526)
 
+\begin{figure}
+\centering
+\includegraphics{Figures/unnamed-chunk-12-1.pdf}
+\caption{Participation rates by rooms}
+\end{figure}
+
+Figure xxx shows the participation rates by rooms.
+
 \begin{verbatim}
 ##        
 ##         Race Tournament Reserve
@@ -1025,7 +1105,23 @@ significant (a Kruskal-Wallis rank sum test gives a p-value of 0.577).
 Finally, let us focus on the timing of the first and last submission.
 xxxx
 
-\includegraphics{Figures/unnamed-chunk-16-1.pdf}
+\begin{figure}
+\centering
+\includegraphics{Figures/unnamed-chunk-17-1.pdf}
+\caption{Submissions timing within the submission period}
+\end{figure}
+
+Here we consider the hours of the day on the 24h. We normalize the 24h
+on the unit interval (here I think we should take into account the
+different timezoes.)
+
+\begin{figure}
+\centering
+\includegraphics{Figures/unnamed-chunk-18-1.pdf}
+\caption{Submissions within the 24h (need to adjust for timezone)}
+\end{figure}
+
+\subsection{Regressions}\label{regressions}
 
 Although we do not find significant differences through an univariate
 analysis, it is possible that differences will be xxx in a multivariate
@@ -1234,7 +1330,7 @@ Let's consider first a simple logistic model
 ## poly(mmrating, deg = 2)  2     11.1       294        327   0.0039
 \end{verbatim}
 
-\includegraphics{Figures/unnamed-chunk-18-1.pdf}
+\includegraphics{Figures/unnamed-chunk-20-1.pdf}
 
 This result does not seem to correlate well with the competitor's
 experience or skills, as the Pearsons's correlation coefficient between
@@ -1292,7 +1388,7 @@ abline(v=mean(races$submit))
 
 Consider panel data!
 
-\includegraphics{Figures/unnamed-chunk-20-1.pdf}
+\includegraphics{Figures/unnamed-chunk-22-1.pdf}
 
 \begin{verbatim}
 ## 

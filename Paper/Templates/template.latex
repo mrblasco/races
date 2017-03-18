@@ -12,6 +12,9 @@
 
 % Math
 \usepackage{amssymb,amsmath,amsthm} 
+\theoremstyle{plain} % other formats: definition, plain, remark
+\newtheorem{proposition}{Proposition}
+\newtheorem{define}{Definition}
 
 % Fontfamily
 $if(fontfamily)$

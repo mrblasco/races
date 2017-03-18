@@ -13,5 +13,5 @@ pdf_document:
 #    after_body:    Templates/doc_suffix.tex
   pandoc_args: [
       "--bibliography", "$HOME/Papers/library.bib"
-      , "--natbib", "--filter", "pandoc-amsthm.py"
+      , "--natbib"
     ]

@@ -12,6 +12,9 @@
 
 % Math
 \usepackage{amssymb,amsmath,amsthm} 
+\theoremstyle{plain} % other formats: definition, plain, remark
+\newtheorem{proposition}{Proposition}
+\newtheorem{define}{Definition}
 
 % Fontfamily
 \usepackage{palatino}%\usepackage{lmodern, times}
@@ -66,9 +69,6 @@
 \usepackage{framed}
 \colorlet{shadecolor}{orange!15}
 
-% Theorems
-\newtheorem{proposition}{Proposition}
-
 
 % Thresholds, limits, bounds, etc.
 \newcommand\deadline{\bar{t}}
@@ -100,7 +100,7 @@
 University, 1737 Cambridge Street, Cambridge, MA 02138 (email:
 \href{mailto:ablasco@fas.harvard.edu}{\nolinkurl{ablasco@fas.harvard.edu}}).}}
 \author{Andrea Blasco \and Kevin J. Boudreau \and Karim R. Lakhani \and Michael Menietti}
-\date{Last updated: 22 February, 2017}
+\date{Last updated: 23 February, 2017}
 
 \begin{document}
 \maketitle
@@ -304,19 +304,20 @@ with preferences for both quality and time.
 \subsection{Basic setup}\label{basic-setup}
 
 A (generalized) contest game is an \(n\) player game with asymmetric
-information. Players compete for \(k\) prizes by choosing a performance
-variable \(y\) and a timing \(t\) both nonnegative numbers. Each player
-holds a valuation \(v_k\) that assignes a nonnegative value to each
-prize \(k\) with \(v_1\geq v_2 \geq ...\geq v_q\). Players move
-simultaneously to maximize the probability of winning a prize while
-minimizing the cost of effort. Costs are known up to an ability
-parameter that is private information of each player.
+information. Each player (\(i=1,..., n\)) competes for multiple prizes
+by choosing a performance variable \(y_i\) and a timing \(t_i\) both
+nonnegative numbers. Players hold a valuation \(v_k\) that assignes a
+nonnegative value to each prize (\(k=1, ..., q\)) with
+\(v_1\geq v_2 \geq ...\geq v_q\).
 
-Let \(a_1, ..., a_n\) denote the privately observed individual ability
-of each player. Abilities are independently drawn at random from a
-common distribution \(F_{\mathcal{A}}\) on an interval on the positive
-real line \(\mathcal{A}\). Let \(C(a_i, y_i, t_i)\) denote player
-\(i\)'s cost function that is multiplicative
+Players move simultaneously to maximize the probability of winning a
+prize while minimizing the cost of effort. Costs are known up to an
+individual ability parameter \(a_i\) that is private information of each
+player and is drawn at random from a common distribution
+\(F_{\mathcal{A}}\) on the finite interval
+\(\mathcal{A}=[\lotype, \hitype]\).
+
+Player \(i\)'s cost function is
 
 \begin{equation}
   C(a_i, y_i, t_i) = c_a(a_i) c_y(y_i) c_t(t_i)
@@ -326,7 +327,7 @@ with \(c_a(\cdot)\) and \(c_t(\cdot)\) being monotonic decreasing
 functions (the higher the ability or the time to complete, the lower the
 cost) and \(c_{y}(\cdot)\) being a monotonic increasing function (the
 higher the quality, the higher the cost). We further impose conditions
-to ensure nonnegative costs: \(\lim_{a\rightarrow \infty}c_{a}(a)>0\),
+to ensure nonnegative costs: \(c_{a}(\hitype)>0\),
 \(\lim_{t\rightarrow \infty}c_{t}(t)>0\), and \(c_{y}(0)\geq 0\).
 
 Let \(p_{i, k}(y_1,..., y_N, t_1, ..., t_N)\) be player \(i\)'s
@@ -354,27 +355,19 @@ quality requirement. Let \(\deadline>0\) denote the deadline and
 minimum-entry requirements when, for every prize \(k\) and player \(i\),
 the probability \(p_{i, k}(\cdot, \cdot)=0\) when player \(i\)'s quality
 is below a target level \(q_i < \target\) or the timing to completion is
-above a given deadline \(t_i>\deadline\).
+above a given deadline \(t_i>\deadline\).\footnote{We further use the
+  convention that whenever \(t_i> \deadline\) then \(y_i=0\) and
+  whenever \(y_i<\target\) then \(t_i = \infty\). This simply means that
+  when one of the entry-requirements is not met players xxxxx.}
 
-\subsection{Races and tournaments}\label{races-and-tournaments}
+The tournament corresponds to a special case in which players have a
+deadline to meet and the player having achieved the highest output
+quality within the deadline gets the first prize, the player having
+achieved the second highest output quality gets the second prize, and so
+on. This is formally defined in Definition \ref{tournament} below.
 
-The tournament corresponds to a special case of a game with
-minimum-entry requirements. Generally, players have a deadline to meet
-and the player having achieved the highest output quality within the
-deadline gets the first prize, the player having achieved the second
-highest output quality gets the second prize, and so on.
-
-Let \(y_{(1:n)}, ..., y_{(n:n)}\) denote the order statistics of the
-\(y\)'s for \(n\) players, let \(t_{(1:n)}, ..., t_{(n:n)}\) denote the
-order statistics of the \(t\)'s. To ease notation, let use the
-convention that the quality of players who completed the job after the
-deadline \(\deadline\) is zero and the time to complete a job of quality
-less than required level \(\target\) is above the deadline.
-
-Formally, we have the following definition.
-
-\begin{definition}
-A tournament is a contest game $G$ with a minimum-entry requirement $\deadline$ where player $i$'s probability of winning a prize $(k=1,...,p)$ is
+\begin{define} \label{tournament}
+Let $y_{(1:n-1)}, ..., y_{(n-1:n-1)}$ denote the order statistics of the $y$'s for player $i$'s $n-1$ opponents. A tournament is a contest game $G$ with a minimum-entry requirement $\deadline$ where player $i$'s probability of winning a prize is
 \begin{equation}
   p_{\tournament, i, k} =
   \begin{cases}
@@ -382,7 +375,7 @@ A tournament is a contest game $G$ with a minimum-entry requirement $\deadline$ 
     \Pr(y_{n-k+1:n-1} > y_i > y_{n-k:n-1}) & \text{if }k>1.
   \end{cases}
 \end{equation}
-\end{definition}
+\end{define}
 
 That is, in a tournament, player \(i\)'s probability of winning the
 \(k\)th prize is simply the probability of player \(i\)'s quality being
@@ -409,10 +402,10 @@ That is, in a race xxxxx.
 
 \subsection{Equilibrium}\label{equilibrium}
 
-Suppose there are only two prizes of total value normalized to one. Let
-\(\alpha\geq 1/2\) denote the fraction of total prizes going to the
-first placed competitor, and \(1-\alpha\) that going to the second
-placed competitor.
+To simplify the analysis, suppose there are only two prizes of total
+value normalized to one. Let \(\alpha\geq 1/2\) denote the fraction of
+total prizes going to the first placed competitor with \(1-\alpha\)
+going to the second placed competitor.
 
 Let first focus the analysis on the case of a tournament.
 

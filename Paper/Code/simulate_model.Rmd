@@ -1,5 +1,5 @@
 f <- function(n, cy, ct, cy.inv=NULL, ct.inv=NULL
-              , xlim=c(0, Inf), ylim=c(0, Inf), tlim=ylim
+              , xlim=c(0, Inf), ylim=xlim, tlim=xlim
               , p=plnorm, d=dlnorm, r=rlnorm
               , deadline=1, target=1, V=1, inf.tol=1e2
               , type=c("bids", "utility"), ...) {
@@ -33,7 +33,6 @@ f <- function(n, cy, ct, cy.inv=NULL, ct.inv=NULL
   #-------------------------------------------------#
   if (any(V < 1/2 | V > 1)) stop("V must be higher then 1/2 and less than 1.")
   type <- match.arg(type)
-
   inverse <- function (f, lower, upper) {
     if (upper==Inf) upper <- inf.tol
     function (y) uniroot((function (x) f(x) - y), lower=lower, upper=upper)$root

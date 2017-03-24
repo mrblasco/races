@@ -23,44 +23,42 @@ xtab <- xtable(m, label="tab: results", caption="Participating competitors by ro
 print(xtab, comment=FALSE, include.rownames=FALSE)
 ```
 
-The following model is assumed: the number of participating competitors $Y_l$ at a room  $x_l = c(\tau_l, z_l)$, where $\tau_l$ is the treatment randomly assigned to the room and $z_l$ is a vector of additional room characteristics, is distributed as a binomial variable with parameters $N_l$ and $p(x_l, \theta)$ where $p(x, \theta)$ describes the probability for a competitor to participate in the challenge having been assigned to a room described by $x$. The model is then the following:
+We assume the number of participating competitors $Y_l$ at a room  $x_l = c(\tau_l, z_l)$, where $\tau_l$ is the treatment randomly assigned to the room and $z_l$ is a vector of additional room characteristics, is distributed as a binomial variable with parameters $N_l$ and $p(x_l, \theta)$ where $p(x, \theta)$ describes the probability for a competitor to participate in the challenge at a room described by $x$. The model is then the following:
 
 \begin{equation}
 	\label{model}
 	Y_{l} \sim \text{Binomial}(N_l, p(x_l, \theta)) \quad \text{for each } l=1,...,L.
 \end{equation}
 
-In binomial linear models, the probability function $p(x, \theta)$ is related to a linear prediction through a one-to-one transformation called the link function (see xxxx). 
-
-In the MS theoretical approach, our preliminary analysis of the model showed that the predictor is not generally linear and it is modeled as follows:
+In binomial linear models, the probability function $p(x, \theta)$ is related to a linear prediction through a one-to-one transformation called the link function (see xxxx). In the MS theoretical approach, our preliminary analysis of the model showed that the predictor is not generally linear and it is modeled as follows:
 
 \begin{equation}
 	\label{probability}
-	p(x_l, \theta) = 1 - F_{\theta}(\mtype)
+	p(x_l, \theta) = 1 - F(\mtype_l; \theta)
 \end{equation}
 
-where $F_{\theta}$ is a parametric distribution function of a latent ability variable that is privately observed by each player with $\theta$ being a vector of distributional parameters and $\mtype$ being the marginal type of the room. 
+where $F$ is a parametric distribution function of the latent ability variable (privately observed by each player) with $\theta$ being a vector of distributional parameters and $\mtype_l$ being the marginal type of the room.
 
-In each room, the marginal type is then determined by the following zero profit condition:
-
+In each room, the marginal type is determined by the following zero profit condition:
 \begin{equation}
 	\label{zero profit}
 	R(\mtype) = \cability(\mtype)\cscore(\target)\ctime(\deadline)
 \end{equation}
-where the $R(\mtype)$ is the expected revenue of the marginal type must be equal to the  costs. The expected revenue is
+where the $R(\mtype)$ the expected revenue of the marginal type must be equal to the  costs evaluated at the deadline and the target, if any. 
+
+In a contest with two prizes, the expected revenue is
 \begin{equation}
 	R(\mtype) = 
 		\alpha F_{(n-1:n-1)}(\mtype) 
 		+ (1-\alpha) [1-F_{(n-1:n-1)}(\mtype)]F_{(n-2:n-2)}(\mtype).
 \end{equation}
-
 The left hand side of the above equation describes the value of winning the first prize $\alpha$ times the probability of the marginal player $\mtype$ being the winner. The second term is the value of winning the second prize $1-\alpha$ times the probability of the marginal player being the second ranked competitor.
 
-Because abilities are drawn at random and independently, the distribution of the order statistics on the left hand side depends on the distribution $F_{\theta}$ and, hence, it is known up to the parameters $\theta$ that we want to estimate from the data. 
+Because abilities are drawn at random and independently, the distribution of the order statistics on the left hand side depends on the distribution $F$ and, hence, it is known up to the parameters $\theta$ that we want to estimate from the data. 
 
-Also, the cost function of the marginal type is evaluated at the target and the deadline, which are determined by the room characteristics $x$ (e.g., the problem, whether there's a deadline or not, whether's there's a minimum entry requirement or not). We assume the following linear relationship:
+Also, the cost function of the marginal type is determined by the room characteristics $x$ (e.g., the problem, whether there's a deadline or not, whether's there's a minimum entry requirement or not). The following linear relationship is assumed:
 \begin{equation}
-	C(\target, \deadline) =  \beta x_l
+	C(\target, \deadline) =  \beta x_l.
 \end{equation}
 That is, the costs is linear in the the room characteristics $x_l$ with the parameters $\beta$ that we also want to estimate from the data.
 

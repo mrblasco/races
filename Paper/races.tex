@@ -66,6 +66,7 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 
+\usepackage{xcolor}
 \usepackage{framed}
 \colorlet{shadecolor}{orange!15}
 
@@ -86,8 +87,8 @@
 
 % Distribution of types
 \newcommand\ability{a_i}
-\newcommand\marginaltype{\underline{a}}
-\newcommand\mtype{\underline{a}}
+\newcommand\marginaltype{\hat{a}}
+\newcommand\mtype{\hat{a}}
 \newcommand\lotype{\underline{a}}
 \newcommand\hitype{\bar{a}}
 
@@ -100,7 +101,7 @@
 University, 1737 Cambridge Street, Cambridge, MA 02138 (email:
 \href{mailto:ablasco@fas.harvard.edu}{\nolinkurl{ablasco@fas.harvard.edu}}).}}
 \author{Andrea Blasco \and Kevin J. Boudreau \and Karim R. Lakhani \and Michael Menietti}
-\date{Last updated: 23 February, 2017}
+\date{Last updated: 27 March, 2017}
 
 \begin{document}
 \maketitle
@@ -1014,13 +1015,14 @@ Risk aversion & 279 & 6.4 & 2.2 & 1 & 10 \\
 \end{table}
 
 A total of 299 competitors signed-up to take part in the challenge. They
-were all xxxx members of the platform with between 52.542 and 770.548
-weeks as registered members. In terms of skill ratings, the distribution
-was highly skewed with competitors in the highest 90th percentile having
-participated in 24 more competitions than those in the 10th percentile.
-Likewise skills as measured by the individual ratings, if there was one,
-had a skewed distribution with 1034 higher points than those in the 10th
-percentile; see Figure \ref{eq: distribution experience}.
+were all xxxx members of the platform with between 52.5416667 and
+770.547619 weeks as registered members. In terms of skill ratings, the
+distribution was highly skewed with competitors in the highest 90th
+percentile having participated in 24 more competitions than those in the
+10th percentile. Likewise skills as measured by the individual ratings,
+if there was one, had a skewed distribution with 1034 higher points than
+those in the 10th percentile; see Figure
+\ref{eq: distribution experience}.
 
 \includegraphics{Figures/unnamed-chunk-8-1.pdf}
 
@@ -1046,9 +1048,9 @@ making 50 more submissions than those in the 10th percentile.
 
 Participation across treatments was higher in the Tournament treatment
 (33 percent), followed by the Tournament w/reseve (27 percent), and the
-Race treatment (26.263 percent). However, these differences are not
+Race treatment (26.2626263 percent). However, these differences are not
 statistically significant (using a Fisher's Exact Test for Count Data
-gives a p-value of 0.526)
+gives a p-value of 0.5255004)
 
 \begin{figure}
 \centering
@@ -1068,9 +1070,10 @@ Figure xxx shows the participation rates by rooms.
 Similar results are found when we consider only those who made
 submissions above a score of xxxx. Participation across treatments was
 higher in the Tournament treatment (19 percent), followed by the
-Tournament w/reseve (15 percent), and the Race treatment (15.152
+Tournament w/reseve (15 percent), and the Race treatment (15.1515152
 percent). However, these differences are not statistically significant
-(using a Fisher's Exact Test for Count Data gives a p-value of 0.699)
+(using a Fisher's Exact Test for Count Data gives a p-value of
+0.6991539)
 
 \begin{verbatim}
 ##       Race Tournament    Reserve 
@@ -1081,8 +1084,8 @@ Regarding to the frequency of submissions per participant, the median
 count is larger in the race and in the tournament w/reserve (12 and 15
 respectively) compared to the Tournament (a median of 6 submissions).
 However, a Kruskal-Wallis rank sum test fails to reject the null
-hypothesis (p=0.794) that at least one treatment was different in the
-location of the frequency distribution of the submissions.
+hypothesis (p=0.7935069) that at least one treatment was different in
+the location of the frequency distribution of the submissions.
 
 \begin{verbatim}
 ##       Race Tournament    Reserve 
@@ -1091,9 +1094,10 @@ location of the frequency distribution of the submissions.
 
 Concerning the distribution of the scores on the last submission, the
 median final scores was higher in the Tournament w/reserve treatment
-(0.808), followed by the Tournament (0.805), and the Race treatment
-(0.799). As before, however, these differences are not statistically
-significant (a Kruskal-Wallis rank sum test gives a p-value of 0.577).
+(0.8084504), followed by the Tournament (0.8054121), and the Race
+treatment (0.7993725). As before, however, these differences are not
+statistically significant (a Kruskal-Wallis rank sum test gives a
+p-value of 0.5768076).
 
 Finally, let us focus on the timing of the first and last submission.
 xxxx
@@ -1578,6 +1582,6 @@ significant.
 \subsection{Simulation results}\label{simulation-results-1}
 
 \renewcommand\refname{References}
-\bibliography{/Users/andrea/Papers/library.bib}
+\bibliography{/Users/ablasco/Papers/library.bib}
 
 \end{document}

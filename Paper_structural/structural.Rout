@@ -1,0 +1,28 @@
+  |                                                                         |                                                                 |   0%  |                                                                         |.........                                                        |  14%
+  ordinary text without R code
+
+  |                                                                         |...................                                              |  29%
+label: unnamed-chunk-1 (with options) 
+List of 2
+ $ results: chr "asis"
+ $ echo   : logi FALSE
+
+  |                                                                         |............................                                     |  43%
+  ordinary text without R code
+
+  |                                                                         |.....................................                            |  57%
+label: unnamed-chunk-2 (with options) 
+List of 2
+ $ echo   : logi FALSE
+ $ fig.cap: chr "Simulated distribution of participants with uniform distribution. Parameters are $\\eta=0.1$ and $n=15$. Data simulated 500 tim"| __truncated__
+
+  |                                                                         |..............................................                   |  71%
+  ordinary text without R code
+
+  |                                                                         |........................................................         |  86%
+label: unnamed-chunk-3
+  |                                                                         |.................................................................| 100%
+  ordinary text without R code
+
+
+/usr/local/bin/pandoc +RTS -K512m -RTS structural.utf8.md --to latex --from markdown+autolink_bare_uris+ascii_identifiers+tex_math_single_backslash --output structural.tex --table-of-contents --toc-depth 2 --template Templates/template.latex --highlight-style kate --latex-engine /Library/TeX/texbin/pdflatex --include-in-header Templates/header.tex --bibliography $HOME/Papers/library.bib --natbib 

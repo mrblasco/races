@@ -1,0 +1,79 @@
+---
+title: "Races or Tournaments? [PRELIMINARY AND INCOMPLETE]"
+
+thanks: "Blasco: Harvard Institute for Quantitative Social Science, Harvard University, 1737 Cambridge Street, Cambridge, MA 02138 (email: ablasco@fas.harvard.edu)."
+
+date: "Last updated: `r format(Sys.time(), '%d %B, %Y')`"
+
+author: 
+    - Andrea Blasco
+    - Kevin J. Boudreau
+    - Karim R. Lakhani
+    - Michael Menietti
+
+abstract: "Contests are often used as incentive schemes to foster innovation. The typical goal of contest designers is to maximize quality while minimizing the time it takes to achieve the innovation. This situation leads to a difficult choice of design made under considerable uncertainty. In this study, we investigate one key aspect of this decision that is the way participants compete. Two extreme forms of competition are considered: the race, where the first to achieve the innovation wins, and the tournament, where the timing is not important. We develop a model to characterize under what conditions contest designers should go for one or the other approach. Then, we report the results of a field experiment conducted to compare the outcomes of three alternative competitive situations motivated by theory: the race, the tournament, and the tournament with a quality requirement. We find that outcomes in a race are of comparable quality, but are supplied faster. Based on our model, we also show what would be optimal to do under several simulated counterfactual situations."
+
+JEL: 
+  - xxx
+  - xxx
+  - xxx
+
+keywords: 
+  - xxxx
+  - xxxx xxxx
+
+amsthm:
+  plain:
+  - theorem
+  - proposition
+  - corollary
+  - definition
+
+fontsize: 12pt
+
+...
+
+
+```{r, echo=FALSE, warnings=FALSE, message=FALSE}
+
+#########################
+load(".RData")
+set.seed(4881) # for bootstrap
+require(magrittr)
+require(xtable)
+require(stargazer)
+source("functions.R")
+#########################
+
+knitr::opts_chunk$set(
+  cache=TRUE,
+  echo=FALSE,
+  message=FALSE,
+  warning=TRUE,
+  error=FALSE,
+  tidy=FALSE,
+  cache.path="Cache/",
+  fig.path="Figures/")
+```
+
+```{r child = '1_intro.Rmd'}
+```
+
+```{r child = '2_model.Rmd'}
+```
+
+```{r child = '3_data.Rmd'}
+```
+
+\clearpage
+
+
+```{r child = '4_results.Rmd'}
+```
+
+```{r child = '5_discussion.Rmd'}
+```
+
+
+References
+=============

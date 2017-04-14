@@ -1,0 +1,74 @@
+\begin{shaded}
+\begin{proof}[APPENDIX]
+Consider player $i$'s choice and suppose that the other $N-1$ players use the equilibrium strategy stated in the proposition. Let $\phi=t^{-1}$ denote the inverse of the optimal bidding function. Player $i$'s best response is a timing $t_i$ and performance $y_i$ that maximize the expected payoffs \eqref{expected payoff} given the other players' equilibrium. 
+
+Any $y_i > \target$ or $0<y_i<\target$ will raise costs while leaving unchanged the probability of winning. Thus, the choice of $y_i$ is binary. Either $y_i=0$ (with $t_i=\deadline$ by convention) or $y_i= \target$.
+
+Suppose $y_i=\target$. The optimal $t_i$ maximizes the expected payoffs. To compute the expected payoff we use the following notation. For any sequence of variables $x_1, ..., x_{N-1}$,  let $x_{(1:N-1)}, ..., x_{(N-1:N-1)}$ denote the $N-1$ order statistics of the $x$'s, and let $F^x_{(1:N-1)}, ..., F^x_{(N-1:N-1)}$ be the corresponding distribution function. Then the probability of winning a prize \eqref{probability in a race} becomes:
+\begin{align} \label{prob 1}
+  p_{i, 1}(y_1,..., y_N; t_1,..., t_N)
+    & = \Pr(t_i \leq t_{(1:N-1)}) \nonumber\\
+    & = \Pr(t_i \leq t^*(a_{(1:N-1)})) \nonumber\\
+    & = \Pr(\phi(t_i) \geq a_{(1:N-1)}) \nonumber\\
+    & = F^a_{(1:N-1)}(\phi(t_i)).
+\end{align}
+\begin{align} \label{prob 2}
+  p_{i, 2}(y_1,..., y_N; t_1,..., t_N) 
+    & = \Pr(t_{(1:N-1)} < t_i \leq t_{(2:N-1)})  \nonumber\\
+    & = \Pr(t_i\leq t_{(1:N-1)}\mid t_{(1:N-1)}<t_i) \Pr(t_{(1:N-1)} < t_i) \nonumber\\
+    & = \Pr(\phi(t_i)\geq a_{(1:N-1)} \mid a_{(1:N-1)} > \phi(t_i)) \Pr(a_{(1:N-1)} > \phi(t_i)) \nonumber\\
+    & \text{(using the independence of individual abilities)}\nonumber\\
+    & = F^a_{(1:N-2)}(\phi(t_i))\left[1 - F^a_{(1:N-1)}(\phi(t_i))\right].
+\end{align}
+Using \eqref{prob 1} and \eqref{prob 2} with \eqref{expected payoff}, player $i$'s expected payoff is (to simplify notation, we drop the index $a$ on the distribution of the order statistics of the individual abilities)
+\begin{align}
+  \alpha F_{(1:N-1)}(\phi(t_i)) 
+  + (1-\alpha) F_{(1:N-2)}(\phi(t_i))\left[1 - F_{(1:N-1)}(\phi(t_i))\right]
+  - \costs.
+\end{align}
+The first order condition for a maximum \citep[see][]{moldovanu2001optimal} is
+\begin{align} \label{foc0}
+  0 = & \alpha F_{(1:N-1)}^{\prime}(\phi) \phi^{\prime} + \nonumber\\
+    & + (1-\alpha)\phi^{\prime}\left\{
+        \left[1 - F_{(1:N-1)}(\phi)\right]F_{(1:N-2)}^{\prime}(\phi)
+        + F_{(1:N-1)}^{\prime}(\phi) F_{(1:N-2)}(\phi)\right\} + \nonumber\\
+    & - c_{a}(a) c_{y}(\target) c_{t}^{\prime}(t_i).
+\end{align}
+Using $\phi^\prime =  1 / t^{*\prime}(\phi)$ and the equilibrium $\phi(t_i) = \phi(t^*(a_i)) = a_i$, leads to
+\begin{align} \label{foc}
+  c_{t}^{\prime}(t^{*}(a_i)) t^{*\prime}(a_i) 
+      & = \frac{\alpha}{c_{a}(a) c_{y}(\target)} F_{(1:N-1)}^{\prime}(a_i)
+        + \frac{(1-\alpha)}{c_{a}(a) c_{y}(\target)}\times \nonumber\\
+      & \times\left\{\left[1 - F_{(1:N-1)}(a_i)\right]F_{(1:N-2)}^{\prime}(a_i)
+        + F_{(1:N-1)}^{\prime}(a_i) F_{(1:N-2)}(a_i)\right\}.
+\end{align}
+This gives a differential equation with boundary conditions $t^*(\mtype) = \deadline$. 
+Integrating both sides and using the integration rule $\int h(g(x)) g^\prime(x) dx = H(g(x)) + A$ (where $H(\cdot)$ is the antiderivative of $h(\cdot)$ and $A$ is an arbitrary constant) leads to
+\begin{align} \label{foc}
+  c_{t}(t^{*}(a_i))
+      & = A + \frac{\alpha}{c_{y}(\target)} \int A(x) dx
+        + \frac{(1-\alpha)}{c_{y}(\target)} \int B(x) dx
+\end{align}
+where 
+\[
+  A(x) = \frac{1}{c_{a}(x)} F_{(1:N-1)}^{\prime}(x)
+\]
+and
+\[
+  B(x) = \frac{1}{c_{a}(x)} \left\{
+      \left[1- F_{(1:N-1)}(x)\right]F_{(1:N-2)}^{\prime}(x)
+      + F_{(1:N-1)}^{\prime}(x) F_{(1:N-2)}(x)
+    \right\}.
+\]
+Then we pin down the marginal type $\mtype$ by imposing the zero profit condition
+%Now we need to show that this is greater than zero (the payoff obtained by setting $y^*=0$). That is:
+\begin{align}
+  \pi_i = & \alpha \left[1 - F_{(1:N-1)}(\mtype)\right] 
+      + (1-\alpha) \left[1- F_{(1:N-2)}(\mtype)\right]F_{(1:N-1)}(\mtype) + \nonumber\\
+    & - c_y(\target) c_a(\mtype) c_{t}(\deadline) = 0.
+\end{align}
+[Correction: it is not 1:N-1 but N-1:N-1]
+
+Clearly, when $\marginaltype$ goes to infinity (costs go to zero), the probability that the N-1'th order statistics will be higher then xxx becomes zero. Hence, the payoff becomes $\alpha \geq 0$. If instead $\marginaltype$ goes to zero, then payoffs are negative. Hence, there is alpha in the middle... (need to show it is concave). 
+\end{proof}
+\end{shaded}

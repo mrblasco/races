@@ -1,0 +1,134 @@
+\ifx\undefined\bysame
+\newcommand{\bysame}{\leavevmode\hbox to\leftmargin{\hrulefill\,\,}}
+\fi
+\begin{thebibliography}{xx}
+
+\harvarditem[Athey and Haile]{Athey and Haile}{2002}{athey2002identification}
+{\bf Athey, Susan and Philip~A Haile}, ``Identification of standard auction
+  models,'' {\it Econometrica}, 2002, {\it 70} (6), 2107--2140.
+
+\harvarditem[Athey and Haile]{Athey and Haile}{2007}{athey2007nonparametric}
+{\bf \bysame{} and \bysame{}}, ``Nonparametric approaches to auctions,'' {\it
+  Handbook of econometrics}, 2007, {\it 6}, 3847--3965.
+
+\harvarditem[Athey et al.]{Athey, Levin and Seira}{2011}{athey2011comparing}
+{\bf \bysame{}, Jonathan Levin, and Enrique Seira}, ``Comparing open and Sealed
+  Bid Auctions: Evidence from Timber Auctions*,'' {\it The Quarterly Journal of
+  Economics}, 2011, {\it 126} (1), 207--257.
+
+\harvarditem[Baye and Hoppe]{Baye and Hoppe}{2003}{baye2003strategic}
+{\bf Baye, Michael~R and Heidrun~C Hoppe}, ``The strategic equivalence of
+  rent-seeking, innovation, and patent-race games,'' {\it Games and Economic
+  Behavior}, 2003, {\it 44} (2), 217--226.
+
+\harvarditem[Bimpikis et al.]{Bimpikis, Ehsani and
+  Mostagir}{2014}{bimpikis2014designing}
+{\bf Bimpikis, Kostas, Shayan Ehsani, and Mohamed Mostagir}, ``Designing
+  dynamic contests,'' Technical Report, Working paper, Stanford University
+  2014.
+
+\harvarditem[Che and Gale]{Che and Gale}{2003}{che2003optimal}
+{\bf Che, Yeon-Koo and Ian Gale}, ``Optimal design of research contests,'' {\it
+  The American Economic Review}, 2003, {\it 93} (3), 646--671.
+
+\harvarditem[Dechenaux et al.]{Dechenaux, Kovenock and
+  Sheremeta}{2014}{dechenaux2014survey}
+{\bf Dechenaux, Emmanuel, Dan Kovenock, and Roman~M Sheremeta}, ``A survey of
+  experimental research on contests, all-pay auctions and tournaments,'' {\it
+  Experimental Economics}, 2014, pp.~1--61.
+
+\harvarditem[Dixit]{Dixit}{1987}{dixit1987strategic}
+{\bf Dixit, Avinash~Kamalakar}, ``Strategic Behavior in Contests,'' {\it The
+  American Economic Review}, 1987, {\it 77} (5), 891--98.
+
+\harvarditem[Donald and Paarsch]{Donald and
+  Paarsch}{1996}{donald1996identification}
+{\bf Donald, Stephen~G and Harry~J Paarsch}, ``Identification, estimation, and
+  testing in parametric empirical models of auctions within the independent
+  private values paradigm,'' {\it Econometric Theory}, 1996, {\it 12} (03),
+  517--567.
+
+\harvarditem[Good et al.]{Good, Nanis, Wu and Su}{2014}{good2014microtask}
+{\bf Good, Benjamin~M, Max Nanis, CHUNLEI Wu, and ANDREW~I Su}, ``Microtask
+  crowdsourcing for disease mention annotation in PubMed abstracts.,'' in
+  ``Pacific Symposium on Biocomputing. Pacific Symposium on Biocomputing'' NIH
+  Public Access 2014, pp.~282--293.
+
+\harvarditem[Green and Stokey]{Green and Stokey}{1983}{green1983comparison}
+{\bf Green, Jerry~R and Nancy~L Stokey}, ``A Comparison of Tournaments and
+  Contracts,'' {\it The Journal of Political Economy}, 1983, {\it 91} (3),
+  349--364.
+
+\harvarditem[Grossman and Shapiro]{Grossman and
+  Shapiro}{1987}{grossman1987dynamic}
+{\bf Grossman, Gene~M and Carl Shapiro}, ``Dynamic R\&D Competition,'' {\it
+  Economic Journal}, 1987, {\it 97} (386), 372--87.
+
+\harvarditem[Harris and Vickers]{Harris and Vickers}{1987}{harris1987racing}
+{\bf Harris, Christopher and John Vickers}, ``Racing with uncertainty,'' {\it
+  The Review of Economic Studies}, 1987, {\it 54} (1), 1--21.
+
+\harvarditem[Laffont et al.]{Laffont, Ossard and
+  Vuong}{1995}{laffont1995econometrics}
+{\bf Laffont, Jean-Jacques, Herve Ossard, and Quang Vuong}, ``Econometrics of
+  First-Price Auctions,'' {\it Econometrica}, 1995, {\it 63} (4), 953--80.
+
+\harvarditem[Lazear and Rosen]{Lazear and Rosen}{1981}{lazear1981rank}
+{\bf Lazear, Edward~P and Sherwin Rosen}, ``Rank-Order Tournaments as Optimum
+  Labor Contracts,'' {\it The Journal of Political Economy}, 1981, {\it 89}
+  (5), 841--864.
+
+\harvarditem[Leaman et al.]{Leaman, Gonzalez et~al.}{2008}{leaman2008banner}
+{\bf Leaman, Robert, Graciela Gonzalez et~al.}, ``BANNER: an executable survey
+  of advances in biomedical named entity recognition.,'' in ``Pacific symposium
+  on biocomputing,'' Vol.~13 2008, pp.~652--663.
+
+\harvarditem[Mary et al.]{Mary, Viscusi and Zeckhauser}{1984}{mary1984economic}
+{\bf Mary, O'Keeffe, W~Kip Viscusi, and Richard~J Zeckhauser}, ``Economic
+  Contests: Comparative Reward Schemes,'' {\it Journal of Labor Economics},
+  1984, {\it 2} (1), 27--56.
+
+\harvarditem[Moldovanu and Sela]{Moldovanu and
+  Sela}{2001}{moldovanu2001optimal}
+{\bf Moldovanu, Benny and Aner Sela}, ``The optimal allocation of prizes in
+  contests,'' {\it The American Economic Review}, 2001, pp.~542--558.
+
+\harvarditem[Moldovanu and Sela]{Moldovanu and
+  Sela}{2006}{moldovanu2006contest}
+{\bf \bysame{} and \bysame{}}, ``Contest architecture,'' {\it Journal of
+  Economic Theory}, 2006, {\it 126} (1), 70--96.
+
+\harvarditem[Paarsch]{Paarsch}{1992}{paarsch1992deciding}
+{\bf Paarsch, Harry~J}, ``Deciding between the common and private value
+  paradigms in empirical models of auctions,'' {\it Journal of econometrics},
+  1992, {\it 51} (1-2), 191--215.
+
+\harvarditem[Parreiras and Rubinchik]{Parreiras and
+  Rubinchik}{2010}{parreiras2010contests}
+{\bf Parreiras, S{\'e}rgio~O and Anna Rubinchik}, ``Contests with three or more
+  heterogeneous agents,'' {\it Games and Economic Behavior}, 2010, {\it 68}
+  (2), 703--715.
+
+\harvarditem[Siegel]{Siegel}{2009}{siegel2009all}
+{\bf Siegel, Ron}, ``All-Pay Contests,'' {\it Econometrica}, 2009, {\it 77}
+  (1), 71--92.
+
+\harvarditem[Siegel]{Siegel}{2014}{siegel2014contests}
+{\bf \bysame{}}, ``Contests with productive effort,'' {\it International
+  Journal of Game Theory}, 2014, {\it 43} (3), 515--523.
+
+\harvarditem[Szymanski]{Szymanski}{2003}{szymanski2003economic}
+{\bf Szymanski, Stefan}, ``The Economic Design of Sporting Contests,'' {\it
+  Journal of Economic Literature}, 2003, {\it 41} (4), 1137--1187.
+
+\harvarditem[Taylor]{Taylor}{1995}{taylor1995digging}
+{\bf Taylor, Curtis~R}, ``Digging for Golden Carrots: An Analysis of Research
+  Tournaments,'' {\it The American Economic Review}, 1995, {\it 85} (4),
+  872--90.
+
+\harvarditem[Zizzo]{Zizzo}{2002}{zizzo2002racing}
+{\bf Zizzo, Daniel~John}, ``Racing with uncertainty: a patent race
+  experiment,'' {\it International Journal of Industrial Organization}, 2002,
+  {\it 20} (6), 877--902.
+
+\end{thebibliography}

@@ -1,0 +1,238 @@
+% Notes Races vs Tournaments
+% Andrea Blasco (ablasco@fas.harvard.edu)
+% This version: \today
+
+```{r setup, echo=FALSE}
+load('.RData')
+library(xtable)
+```
+
+Identification
+==============
+
+In this section, we discuss the identification problem, which consists in the ability to use the observed data to identify one or more of the parameters of the contest model presented in Section \ref{the model}. In particular, we determine conditions necessary to identify parameters of the cost function and ability distribution (the "primitives" of the model) and how these vary across different competition modes: race, tournament, and tournament with a minimum-entry requirement.
+
+Our observations come from the results of the experimental rooms of the challenge described in Section \ref{experimental design}. For each room $(l=1, ..., L)$, we observe the number $Y_l$ of participating competitors among $N_l$ registered competitors who have been assigned to to some treatment $\tau_l$. The results are reported in Table \ref{tab: results}.
+
+
+```{r, results='asis', echo=FALSE}
+m <- aggregate(handle ~ room + treatment, data=races, length)
+colnames(m) <- c("Room name", "Treatment", "Registrants")
+m <- cbind(m, Participants=tapply(races$submit, races$room, sum))
+xtab <- xtable(m, label="tab: results", caption="Participating competitors by room and treatment group. Registered competitors signed up to the challenge and were randomly assigned to non-overlapping rooms. Each room was then randomly assigned to a treatment. A participant is a registered competitor who has made at least one submission during the eight-day submission period of the challenge.")
+print(xtab, comment=FALSE, include.rownames=FALSE)
+```
+
+
+We assume the number of participating competitors $Y_l$ at a room  $x_l = c(\tau_l, z_l)$, where $\tau_l$ is the treatment randomly assigned to the room and $z_l$ is a vector of additional room characteristics, is distributed as a binomial variable with parameters $N_l$ and $p(x_l, \theta)$ where $p(x, \theta)$ describes the probability for a competitor to participate in the challenge at a room described by $x$. The model is then the following:
+
+\begin{equation}
+	\label{model}
+	Y_{l} \sim \text{Binomial}(N_l, p(x_l, \theta)) \quad \text{for each } l=1,...,L.
+\end{equation}
+
+In binomial linear models, the probability function $p(x, \theta)$ is related to a linear prediction through a one-to-one transformation called the link function (see xxxx). In the MS theoretical approach, our preliminary analysis of the model showed that the predictor is not generally linear and it is modeled as follows:
+
+\begin{equation}
+	\label{probability}
+	p(x_l, \theta) = 1 - F(\mtype_l; \theta)
+\end{equation}
+
+where $F$ is a parametric distribution function of the latent ability variable (privately observed by each player) with $\theta$ being a vector of distributional parameters and $\mtype_l$ being the marginal type of the room.
+
+In each room, the marginal type is determined by the following zero profit condition:
+\begin{equation}
+	\label{zero profit}
+	R(\mtype) = \cability(\mtype)\cscore(\target)\ctime(\deadline)
+\end{equation}
+where the $R(\mtype)$ the expected revenue of the marginal type must be equal to the  costs evaluated at the deadline and the target, if any. 
+
+In a contest with two prizes, the expected revenue is
+\begin{equation}
+	R(\mtype) = 
+		\alpha F_{(n-1:n-1)}(\mtype) 
+		+ (1-\alpha) [1-F_{(n-1:n-1)}(\mtype)]F_{(n-2:n-2)}(\mtype).
+\end{equation}
+The left hand side of the above equation describes the value of winning the first prize $\alpha$ times the probability of the marginal player $\mtype$ being the winner. The second term is the value of winning the second prize $1-\alpha$ times the probability of the marginal player being the second ranked competitor.
+
+Because abilities are drawn at random and independently, the distribution of the order statistics on the left hand side depends on the distribution $F$ and, hence, it is known up to the parameters $\theta$ that we want to estimate from the data. 
+
+Also, the cost function of the marginal type is determined by the room characteristics $x$ (e.g., the problem, whether there's a deadline or not, whether's there's a minimum entry requirement or not). The following linear relationship is assumed:
+\begin{equation}
+	C(\target, \deadline) =  \beta x_l.
+\end{equation}
+That is, the costs is linear in the the room characteristics $x_l$ with the parameters $\beta$ that we also want to estimate from the data.
+
+If we divide all sides by the ability cost $\cability$  the left hand side of \eqref{zero profit}, then we use the following definition:
+\begin{equation}
+	G(\mtype, F_{\theta}) \equiv \cability(\mtype)^{-1} R (\mtype)
+\end{equation}
+where the function $G(\cdot, F_{\theta})$ is strictly monotone in the marginal type, as we showed in the discussion of the model. Because monotone in its first argument, the function is also invertible. This leads to the following
+
+\begin{equation}
+	\label{inverted}
+	\mtype = G^{-1}(\beta x_l, F_{\theta}). 
+\end{equation}
+
+Using \eqref{inverted} with \eqref{probability} leads to:
+
+\begin{equation}
+	p(x_l, \omega) = 1 - F_{\theta}( G^{-1}(\beta x_l, F_{\theta}))
+\end{equation}
+
+with $\omega = (\theta, \beta)$. 
+
+Example with the Uniform distribution
+----------------------------------
+
+Suppose $\alpha=1$ to simplify computations. Imagine that the distribution $F_\theta$ is uniform on $(0, \theta)$ and the cost ability $\cability(x) = 1/x$. Then the zero profit condition \eqref{zero profit} becomes
+
+\begin{align}
+	\left(\frac{\mtype}{\theta}\right)^{n-1} \mtype = \beta x_l 
+\end{align}
+
+Solving for the marginal type gives:
+
+\begin{align}
+	\mtype = \left(\beta x_l  \theta^{n-1}\right)^{1/n}
+\end{align}
+
+So, the probability of participation \eqref{probability} becomes
+
+\begin{align}
+	p(x_l, \theta) 
+		& = 1 - F_\theta(\mtype) \\
+		& = 1 - \frac{\left(\beta x_l \theta^{n-1}\right)^{1/n} }{\theta} \\
+		& = 1 - \left(\frac{\beta x_l}{\theta}\right)^{1/n}.
+\end{align}
+
+Because it is non-linear in its parameters, the model is not identifiable [need proof]. However, we can re-parametrize the model with $\beta/\theta \equiv \eta$ to make the parameter $\eta$ identifiable. 
+
+```{r, echo=FALSE, fig.cap="Simulated distribution of participants with uniform distribution. Parameters are $\\eta=0.1$ and $n=15$. Data simulated 500 times. Dashed curve had higher costs ($x_l=1.5$) than the solid curve ($x_l=0.5$)."}
+# Plot curves
+n <- 15
+x1 <- 0.5
+x2 <- 1.5
+beta <- 0.1
+p <- function(x, beta, theta, n) {
+	1 - (beta * x / theta)^{1/n}
+}
+rooms <- 500
+rooms.x1 <- replicate(rooms, rbinom(n=1, size=n, p=p(x1, beta, 1, n)))
+rooms.x2 <- replicate(rooms, rbinom(n=1, size=n, p=p(x2, beta, 1, n)))
+
+rooms.x1.prob <- data.frame(table(rooms.x1)/rooms)
+rooms.x2.prob <- data.frame(table(rooms.x2)/rooms)
+
+par(mar=c(4,4,0,0))
+plot(NA, NA, ylim=range(rooms.x1.prob[,2], rooms.x2.prob[,2])
+	, xlim=c(0,10), ylab="probability", xlab="Room participants")
+lines(rooms.x1.prob, type='b')
+lines(rooms.x2.prob, type='b', col=2, pch=2, lty=2)
+```
+
+<!-- 
+Estimation. Let $\hat p_l$ denote the empirical probability of participating in a room of type $l$. Using method of moments one obtains:
+
+\begin{equation}
+	\hat p_l = 1 - (\eta x_l)^{1/n_l}.
+\end{equation}
+
+If $x_l$ is a scalar, one can obtain an explicit parameter estimates $\hat\eta$: 
+\begin{equation}
+	\hat\eta  = (1 - \hat p_l)^{n} / x_l
+\end{equation}
+
+Note that this example looks like a Generalized linear model with a link function $h(x) = x^{1/n}$, which suggests an easy estimation strategy based on GLMs. 
+ -->
+
+Example with Beta distribution
+---------------------
+
+In this example, we assume abilities are drawn from a lognormal distribution with parameters $\mu$ and $\sigma$. 
+
+Estimation
+===========
+
+Our aim is to estimate the parameters $\theta$ and $\beta$ and to evaluate whether costs are different between the three competition modes under study: race, tournament, tournament + requirement. 
+
+It is natural to estimate the parameters $\theta$ by maximum likelihood because the ability distribution (and therefore the distribution of the outcomes) is known. The estimation criterion used here is the maximization of the _deviance_.
+
+The deviance is:
+\begin{equation}
+	D(\theta) = -2 \sum Y \log (\frac{N p(x, \theta)}{Y}) 
+		+ (N - Y) \log ( \frac{N - N p}{N - Y}).
+\end{equation}
+
+Note that the deviance is a function of the likelihood (see xxx pg. xxx). 
+
+```{r}
+
+# Define likelihood
+structreg <- function(x, y, wt = rep(1, length(y)), intercept = TRUE, start = rep(0, p), ...) {
+	fmin <- function(beta, X, y, w) {
+		p <- 1 - (beta %*% X)^(1/n)  # Function of parameters
+		-sum(2 * w * ifelse(y, log(p), log(1-p))) 
+	}
+# 	gmin <- function(beta, X, y, w) {
+# 		# Gradient here!
+# 	}
+	if(is.null(dim(x))) dim(x) <- c(length(x), 1)
+	dn <- dimnames(x)[[2]]
+	if(!length(dn)) dn <- paste("Var", 1:ncol(x), sep="")
+	p <- ncol(x) + intercept
+	if(intercept) {x <- cbind(1, x); dn <- c("(Intercept)", dn)} 
+	if(is.factor(y)) y <- (unclass(y) != 1)
+#	fit <- optim(start, fmin, gmin, X = x, y = y, w = wt, method = "BFGS", ...)
+	fit <- optim(0.5, fmin, X = x, y = y, w = wt, method = "BFGS", ...)
+	names(fit$par) <- dn
+	cat("\nCoefficients:\n"); print(fit$par)
+	cat("\nResidual Deviance:", format(fit$value), "\n") 
+	cat("\nConvergence message:", fit$convergence, "\n")
+	invisible(fit)
+}
+
+# Create data 
+ilogit <- function(x) exp(x)/(1+exp(x))
+n <- 50000
+competitors <- 5
+x1 <- rchisq(competitors, df=3)
+x2 <- runif(n)
+x3 <- rnorm(n)
+X <- cbind(rep(1, length(x1)), x1, x2, x3)
+betas <-  c(-2.5, 0.1, 0.25, 0.5)
+fc <- ilogit(X %*% betas) ## This the fixed cost
+p <-  1 - fc^(1/competitors) 
+y <- rbinom(n=n, size=competitors, prob=p)
+
+# Objective function
+fmin <- function(beta, X, y, w, competitors) {
+	p <- 1 - ilogit(X %*% beta)^(1/competitors)  # Function of parameters
+	-sum(2 * w * ifelse(y, log(p), log(1-p))) 
+}
+
+b.start <- runif(length(betas))
+(out <- optim(b.start, fmin, X=X, y=y, competitors=competitors, w=rep(1, length(y)))$par)
+
+rbind(out/competitors, betas)
+
+```
+
+More examples
+--------------
+
+Suppose F is lognormal($\mu, \sigma$), then the zero profit condition is:
+
+\begin{align}
+	\left[\frac 12 +\frac 12 \left(\frac{\log{\mtype}-\mu}{\sqrt{2\sigma}}\right)\right] = a^{-1/(n-1)} K_l
+\end{align}
+
+```
+# xxx
+zeroprofit <- function(x, mu, sigma, n) {
+	x * plnorm(x, meanlog=mu, sdlog=sigma)^(n-1)
+}
+for (i in 3:10)
+	curve(zeroprofit(x, i, 10, 10), add=TRUE, lty=i)
+```
+ 

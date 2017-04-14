@@ -20,7 +20,7 @@
 $if(fontfamily)$
 \usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
 $else$
-\usepackage{palatino}%\usepackage{lmodern, times}
+\usepackage{times}%\usepackage{palatino,lmodern, times}
 $endif$
 
 % Page settings

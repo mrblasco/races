@@ -166,6 +166,7 @@ The deviance is:
 Note that the deviance is a function of the likelihood (see xxx pg. xxx). 
 
 ```{r}
+
 # Define likelihood
 structreg <- function(x, y, wt = rep(1, length(y)), intercept = TRUE, start = rep(0, p), ...) {
 	fmin <- function(beta, X, y, w) {

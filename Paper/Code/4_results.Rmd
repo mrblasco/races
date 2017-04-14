@@ -2,19 +2,23 @@
 Results
 =======
 
-```{r}
+```{r results}
+options("digits"=3)
 submissions <- tapply(races.sub$id, races.sub$handle, max)
+nsub <- nrow(races.sub) # Number of submissions
+nsub.med <- median(submissions)
+nsub.max <- max(submissions)
+nsub.min <- min(submissions)
+npart <- sum(races$submit) # Number of participants
+
+p.part <- round(100*tapply(races$submit, races$treatment, mean))
+tab <- table(races$submit, races$treatment)
+ft <- fisher.test(tab)
 ``` 
 
-In the eight-day submission period, we collected a total of `r nrow(races.sub)` submissions  made by  `r sum(races$submit)` participants. The frequency distribution of submissions was rather skewed with participants in the 90th percentile making `r diff(quantile(submissions, p=c(0.1, 0.9)))` more submissions than those in the 10th percentile.
+In the eight-day submission period, we collected a total of `r nsub` submissions  made by  `r npart` competing participants, with a median of `r nsub.med` submissions per person (between a minimum of `r nsub.min` and a maximum of `r nsub.max` submissions).  The response rate was higher in the Tournament group (`r p.part["Tournament"]` percent), followed by the Tournament w/reseve (`r p.part["Reserve"]` percent), and the Race treatment (`r p.part["Race"]` percent). This is consistent with our prediction [xxxxx], although these differences were not statistically significant (a `r ft$method` gives a p-value of `r ft$p.value`). 
 
-```{r}
-pp <- 100*tapply(races$submit, races$treatment, mean)
-(tab <- table(races$submit, races$treatment))
-ft <- fisher.test(tab)
-```
 
-Participation across treatments was higher in the Tournament treatment (`r pp["Tournament"]` percent), followed by the Tournament w/reseve (`r pp["Reserve"]` percent), and the Race treatment (`r pp["Race"]` percent). However,  these differences are not statistically significant (using a `r ft$method` gives a p-value of `r ft$p.value`)
 
 ```{r, fig.width=5, fig.height=7, fig.cap="Participation rates by rooms"}
 races$room_size <- ave(as.numeric(races$handle), races$room, FUN=length)

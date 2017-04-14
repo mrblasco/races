@@ -17,7 +17,7 @@
 \newtheorem{define}{Definition}
 
 % Fontfamily
-\usepackage{palatino}%\usepackage{lmodern, times}
+\usepackage{times}%\usepackage{palatino,lmodern, times}
 
 % Page settings
 \usepackage[letterpaper, margin=1in]{geometry}
@@ -101,7 +101,7 @@
 University, 1737 Cambridge Street, Cambridge, MA 02138 (email:
 \href{mailto:ablasco@fas.harvard.edu}{\nolinkurl{ablasco@fas.harvard.edu}}).}}
 \author{Andrea Blasco \and Kevin J. Boudreau \and Karim R. Lakhani \and Michael Menietti}
-\date{Last updated: 11 April, 2017}
+\date{Last updated: 14 April, 2017}
 
 \begin{document}
 \maketitle
@@ -296,29 +296,33 @@ prizes.
 
 \section{The model}\label{the-model}
 
-In this section, we generalize the \emph{contest game} introduced by
+In this section, we first generalize the contest game introduced by
 \citet{moldovanu2001optimal} to a situation where players allocate their
-effort along two dimensions: quality and time to complete a given job.
-Then we explore the problem of maximization faced by a contest designer
-with preferences for both quality and time.
+effort along two dimensions: output quality and time to complete a given
+job. Then we explore the problem of maximization faced by a contest
+designer with preferences for both quality and time.
 
 \subsection{Basic setup}\label{basic-setup}
 
-A (generalized) contest game is an \(n\) player game with asymmetric
+A generalized contest game is an \(n\) player game with asymmetric
 information. Each player (\(i=1,..., n\)) competes for multiple prizes
 by choosing a performance variable \(y_i\) and a timing \(t_i\) both
 nonnegative numbers. Players hold a valuation \(v_k\) that assignes a
 nonnegative value to each prize (\(k=1, ..., q\)) with
-\(v_1\geq v_2 \geq ...\geq v_q\).
+\(v_1\geq v_2\geq ...\geq v_q\).
 
 Players move simultaneously to maximize the probability of winning a
-prize while minimizing the cost of effort. Costs are known up to an
-individual ability parameter \(a_i\) that is private information of each
-player and is drawn at random from a common distribution
-\(F_{\mathcal{A}}\) on the finite interval
-\(\mathcal{A}=[\lotype, \hitype]\).
+prize while minimizing the cost of effort. The players' cost functions
+are known up to an individual ability parameter \(a_i\) that is private
+information of each player. This parameter is drawn at random from a
+common distribution \(F\) on a finite interval \([\lotype, \hitype]\)
+with \(\lotype>0\). {[}This assumption rules out common parametric
+distributions like the log-normal and forces us to focus the analysis on
+beta-type distributions. However, results do not hinge on this
+particular assumption.{]}
 
-Player \(i\)'s cost function is
+For simplicity, we assume the cost function is multiplicative in all its
+arguments:
 
 \begin{equation}
   C(a_i, y_i, t_i) = c_a(a_i) c_y(y_i) c_t(t_i)
@@ -328,8 +332,8 @@ with \(c_a(\cdot)\) and \(c_t(\cdot)\) being monotonic decreasing
 functions (the higher the ability or the time to complete, the lower the
 cost) and \(c_{y}(\cdot)\) being a monotonic increasing function (the
 higher the quality, the higher the cost). We further impose conditions
-to ensure nonnegative costs: \(c_{a}(\hitype)>0\),
-\(\lim_{t\rightarrow \infty}c_{t}(t)>0\), and \(c_{y}(0)\geq 0\).
+to ensure nonnegative costs: \(c_{a}(\hitype)>0\), \(c_{t}(\lotype)>0\),
+and \(c_{y}(\lotype)\geq 0\).
 
 Let \(p_{i, k}(y_1,..., y_N, t_1, ..., t_N)\) be player \(i\)'s
 probability of winning the \(k^{th}\) prize. Player \(i\)'s expected
@@ -340,58 +344,57 @@ payoff is
   \pi_i = \sum_{k=1}^{q} p_{i, k}(y_1,..., y_N, t_1, ..., t_N) v_k - C(a_i, y_i, t_i). 
 \end{equation}
 
-A generalized contest game \(G\) can be then denoted by
+We can then denote a (generalized) contest game \(G\) by
 
 \begin{equation}
 G \equiv \left\{
-    n, q, \{v_k\}_{k=1}^{q},  F_\mathcal{A}, C, \{p_{i,k}\}_{i,k=1}^{q,n} 
+    n, q, \{v_k\}_{k=1}^{q},  F, C, \{p_{i,k}\}_{i,k=1}^{n,q} 
   \right\}.
 \end{equation}
 
-The game \(G\) is said to have minimum-entry requirements when it is not
-sufficient to beat the other competitors to win a prize but players have
-also to successfully meet a given deadline and/or satisfy a minimum
-quality requirement. Let \(\deadline>0\) denote the deadline and
-\(\target\geq 0\) the required minimum performance. A game \(G\) has
-minimum-entry requirements when, for every prize \(k\) and player \(i\),
-the probability \(p_{i, k}(\cdot, \cdot)=0\) when player \(i\)'s quality
-is below a target level \(q_i < \target\) or the timing to completion is
-above a given deadline \(t_i>\deadline\).\footnote{We further use the
-  convention that whenever \(t_i> \deadline\) then \(y_i=0\) and
-  whenever \(y_i<\target\) then \(t_i = \infty\). This simply means that
-  when one of the entry-requirements is not met players xxxxx.}
+A contest game \(G\) is said to have a minimum-entry requirement when
+players have to successfully meet a given deadline and/or satisfy a
+minimum quality level to be eligible to win a prize. Let \(\deadline>0\)
+denote the deadline and \(\target\geq 0\) the required minimum
+performance. A game \(G\) has a minimum-entry requirement when, for
+every prize \(k\) and player \(i\), the probability
+\(p_{i, k}(\cdot, \cdot)=0\) when player \(i\)'s quality is below a
+target level \(q_i < \target\) or the timing to completion is above a
+given deadline \(t_i>\deadline\). To simplify exposition, we further use
+the convention that whenever the deadline is not met \(t_i> \deadline\)
+then the output quality is zero \(y_i=0\), and whenever the required
+quality is not met \(y_i<\target\) then the time of completion is above
+the deadline \(t_i = \infty\). This simply ensures that when one of the
+entry-requirements is not met by a player, the player has a zero
+probability of winning a prize.
 
-The tournament corresponds to a special case in which players have a
-deadline to meet and the player having achieved the highest output
-quality within the deadline gets the first prize, the player having
-achieved the second highest output quality gets the second prize, and so
-on. This is formally defined in Definition \ref{tournament} below.
+Using the above notation, we define a tournament as a contest game with
+the following characteristics.
 
-\begin{define} \label{tournament}
-Let $y_{(1:n-1)}, ..., y_{(n-1:n-1)}$ denote the order statistics of the $y$'s for player $i$'s $n-1$ opponents. A tournament is a contest game $G$ with a minimum-entry requirement $\deadline$ where player $i$'s probability of winning a prize is
+\begin{definition}[Tournament] \label{tournament}
+Let $y_{(1:n-1)}, ..., y_{(n-1:n-1)}$ denote the order statistics of the $y$'s for the $n-1$ opponents of player $i$. A tournament is a contest game $G$ with a minimum-entry requirement $\deadline>0$ where player $i$'s probability of winning a prize is zero when $t_i > \deadline$. Otherwise, when $t_i\leq\deadline$, the probability is 
 \begin{equation}
-  p_{\tournament, i, k} =
+  p_{i, k} =
   \begin{cases}
     \Pr(y_i > y_{n-1:n-1}) & \text{if }k=1\\
     \Pr(y_{n-k+1:n-1} > y_i > y_{n-k:n-1}) & \text{if }k>1.
   \end{cases}
 \end{equation}
-\end{define}
+\end{definition}
 
-That is, in a tournament, player \(i\)'s probability of winning the
-\(k\)th prize is simply the probability of player \(i\)'s quality being
-smaller than the \(n-k+1\)'s and greater than the \(n-k\)'s order
-statistic of the \(y\)'s.
+In other words, the tournament corresponds to a special case of a
+contest game with minimum-entry requirement in which players have a
+deadline to meet and the player having achieved the highest output
+quality within the deadline gets the first prize, the player having
+achieved the second highest output quality gets the second prize, and so
+on.
 
-Likewise the race corresponds to a special case where the player being
-the first to complete a job with a minimum quality gets the first prize,
-the player being the second to complete a job with a minimum quality
-gets the second prize, and so on. Hence, the following definition.
+In a similar way, we describe a race as a contest game with the
+following characteristics.
 
-\begin{definition}
-A race is a contest game $G$ with minimum-entry requirements $\target$ where player $i$'s probability of winning a prize is
+\begin{definition}[Race] Let $t_{(1:n-1)}, ..., t_{(n-1:n-1)}$ denote the order statistics of the $t$'s for the $n-1$ opponents of player $i$.  A race is a contest game $G$ with a minimum-entry requirement $\target>0$ where player $i$'s probability of winning a prize is zero if $y_i < \target$. Otherwise, when $y_i\geq \target$, the probability is
 \begin{equation}
-  p_{\race, i, k} =
+  p_{i, k} =
   \begin{cases}
     \Pr(t_i < t_{1:n-1}) & \text{if }k=1\\
     \Pr(t_{1-k:n-1} > t_i > t_{k:n-1}) & \text{if }k>1.
@@ -399,177 +402,130 @@ A race is a contest game $G$ with minimum-entry requirements $\target$ where pla
 \end{equation}
 \end{definition}
 
-That is, in a race xxxxx.
+That is, the race corresponds to a special case where the player being
+the first to complete a job with a minimum quality gets the first prize,
+the player being the second to complete a job with a minimum quality
+gets the second prize, and so on.
 
 \subsection{Equilibrium}\label{equilibrium}
 
-To simplify the analysis, suppose there are only two prizes of total
-value normalized to one. Let \(\alpha\geq 1/2\) denote the fraction of
-total prizes going to the first placed competitor with \(1-\alpha\)
-going to the second placed competitor.
+In this section, we solve the model for the equilibrium actions of
+players. We assume throughout that there are only two prizes of total
+value normalized to one, where the fraction \(\alpha\geq 1/2\) goes to
+the first placed competitor and \(1-\alpha\) goes to the second placed
+competitor. We also let \(F_{r:n}\) and \(f_{r:n}\) be the distribution
+and density function of the \(r^{th}\) order statistic (i.e., the
+\(r^{th}\) lowest realization) of \(n\) draws from the ability
+distribution (i.e., the \(a\)'s).
 
-Let first focus the analysis on the case of a tournament.
+\subsubsection{Equilibrium in a
+tournament}\label{equilibrium-in-a-tournament}
 
-First, notice that picking a completion time equal to the deadline
-(\(t_i^*=\deadline\)) is a (weakly) dominant strategy for each player.
-This is because, while each player finds costly to lower the time to
-complete a job, the probability of winning a prize is not affected by
-the completion time as soon as the deadline is met.
+Because the probability of winning a prize in a tournament is not
+affected by the completion time (as soon as the deadline is met),
+picking a completion time equal to the deadline (\(t_i=\deadline\)) is a
+(weakly) dominant strategy for each player. Hence, from the point of
+view of the contest designer, imposing a more distant deadline has the
+same effect as a reduction in the marginal costs for everyone (i.e.,
+proportional to the cost \(\ctime(\deadline)\)). {[}Alternatively, it
+can be seen as a reduction in the total value of prizes.{]}
 
-Fixing \(t_i^*=\deadline\) for each player works like a uniform increase
-in the marginal costs that is equal to \(\ctime(\deadline)\).
-Alternatively, it can be seen as a uniform reduction in the total value
-of prizes by a factor of \(1/\ctime(\deadline)\). In this case, the
-minimum-entry requirement does not reduce the number of participating
-competitors.
+Following \citet{moldovanu2001optimal}, the (unique) symmetric
+equilibrium for each player \(i\) is the timing \(t_i^*=\deadline\) and
+the output quality \(y_i^*=y^*(a_i)\) with the function
 
-Following \citet{moldovanu2001optimal}, the (unique) symmetric XXXX
-equilibrium for player \(i\)'s quality is
-
-\begin{equation}  \label{eq: optimal time tournament}
-  \cscore^{-1}
-  \left[\cscore(\target) 
+\begin{equation} \label{ystar}
+y^*(a_i) = 
+    \cscore^{-1}
+    \left[\cscore(\target) 
     + \frac{1}{\ctime(\deadline)}
-    \left(
-      \alpha \int_{a_i}^{\hitype} A(z) dz
+    \left(\alpha \int_{a_i}^{\hitype} A(z) dz
       + (1-\alpha) \int_{a_i}^{\hitype} B(z)  dz
     \right)
-  \right]
+    \right]
 \end{equation}
 
 where
 
 \begin{equation}
-  A(x) = \frac{1}{c_{a}(x)} F_{(n-1:n-1)}^{\prime}(x)
+  A(x) = \frac{1}{c_{a}(x)} f_{(n-1:n-1)}(x)
 \end{equation}
 
 and
 
 \begin{equation}
   B(x) = \frac{1}{c_{a}(x)} \left\{
-      \left[1- F_{(n-1:n-1)}(x)\right]F_{(n-1:n-2)}^{\prime}(x)
-      + F_{(n-1:n-1)}^{\prime}(x) F_{(n-1:n-2)}(x)
+      \left[1- F_{(n-1:n-1)}(x)\right]f_{(n-1:n-2)}(x)
+      + f_{(n-1:n-1)}(x) F_{(n-1:n-2)}(x)
     \right\}.
 \end{equation}
 
-This equilibrium strategy is obtained by solving the first-order
-differential equation:
+An important property of \eqref{ystar} is that it has its upper bound in
+XXXX and lower bound in \(y^*(\lotype) = 0\). Also, equilibrium output
+quality is monotonic increasing in the agent's ability
+\citep[see][]{moldovanu2001optimal}. Thus, using \(\phi\) to denote the
+inverse function, the above equilibrium strategy is obtained by solving
+the first-order differential equation:
 
-\begin{align} \label{foc0}
-  0 = & \alpha F_{(1:N-1)}^{\prime}(\phi) \phi^{\prime} + \nonumber\\
-    & + (1-\alpha)\phi^{\prime}\left\{
-        \left[1 - F_{(1:N-1)}(\phi)\right]F_{(1:N-2)}^{\prime}(\phi)
-        + F_{(1:N-1)}^{\prime}(\phi) F_{(1:N-2)}(\phi)\right\} + \nonumber\\
-    & - c_{a}(a) c_{y}(\target) c_{t}^{\prime}(t_i)
+\begin{align}
+    \label{foc0}
+0 = & \alpha f_{(1:N-1)}(\phi) \phi^{\prime} 
+    + (1-\alpha)\phi^{\prime}\{[1 - F_{(1:N-1)}(\phi)]f_{(1:N-2)}(\phi) + \nonumber\\
+    & + f_{(1:N-1)}(\phi) F_{(1:N-2)}(\phi)\} - c_{a}(a) c_{y}(\target) c_{t}^{\prime}(t_i)
 \end{align}
 
-with boundary condition \(xxxx\).
+with boundary condition \(\phi(0) = \lotype\) (i.e., the lowest-ability
+competitor's optimal output quality is zero).
 
-Race. In a similar way, we derive the xxxx in a race. Clearly, any
-positive quality that is below the minimum-entry requirement will raise
-costs while giving a zero probability of winning. Thus, player \(i\)'s
-choice of optimal quality \(y_i^*\) is binary. Either \(y_i=0\) (with
-\(t_i=\deadline\) by convention) or \(y_i= \target\).
+Also, monotonicity of the equilibrium output quality implies that, for
+every \(i=1, ..., n\), the equilibrium expected payoff from the contest
+\(\pi_i^*\) depends on the rank of the player's ability relative to the
+others. That is, the equilibrium payoff is \(\pi_i^*=\pi^*(a_i)\) with
 
 \begin{equation} 
-  \label{eq: optimal time race}
-  \ctime^{-1}
-  \left[
-    \ctime(\deadline) 
-    + \frac{1}{\cscore(\target)}\left(
-      \alpha \int_{a_i}^{\infty} ... dz
-      + (1-\alpha) \int_{a_i}^{\infty} ...  dz
-    \right)
-  \right]
-  \quad \text{if }a_i \geq \mtype.
+    \pi^*(a_i) = \alpha F_{n:n}(a_i) + (1-\alpha)[1-F_{n:n}(a_i)] F_{n-1:n-1}(a_i)  
+    - C(y^*(a_i), \deadline, a_i),
 \end{equation}
 
-\begin{shaded}
-\begin{proof}[APPENDIX]
-Consider player $i$'s choice and suppose that the other $N-1$ players use the equilibrium strategy stated in the proposition. Let $\phi=t^{-1}$ denote the inverse of the optimal bidding function. Player $i$'s best response is a timing $t_i$ and performance $y_i$ that maximize the expected payoffs \eqref{expected payoff} given the other players' equilibrium. 
+where \(\pi^*(0) = 0\) and
+\(\pi^*(\hitype) = \alpha - C(y^*(\hitype), \deadline, \hitype)>0\).
 
-Any $y_i > \target$ or $0<y_i<\target$ will raise costs while leaving unchanged the probability of winning. Thus, the choice of $y_i$ is binary. Either $y_i=0$ (with $t_i=\deadline$ by convention) or $y_i= \target$.
+\subsubsection{Equilibrium in a race}\label{equilibrium-in-a-race}
 
-Suppose $y_i=\target$. The optimal $t_i$ maximizes the expected payoffs. To compute the expected payoff we use the following notation. For any sequence of variables $x_1, ..., x_{N-1}$,  let $x_{(1:N-1)}, ..., x_{(N-1:N-1)}$ denote the $N-1$ order statistics of the $x$'s, and let $F^x_{(1:N-1)}, ..., F^x_{(N-1:N-1)}$ be the corresponding distribution function. Then the probability of winning a prize \eqref{probability in a race} becomes:
-\begin{align} \label{prob 1}
-  p_{i, 1}(y_1,..., y_N; t_1,..., t_N)
-    & = \Pr(t_i \leq t_{(1:N-1)}) \nonumber\\
-    & = \Pr(t_i \leq t^*(a_{(1:N-1)})) \nonumber\\
-    & = \Pr(\phi(t_i) \geq a_{(1:N-1)}) \nonumber\\
-    & = F^a_{(1:N-1)}(\phi(t_i)).
-\end{align}
-\begin{align} \label{prob 2}
-  p_{i, 2}(y_1,..., y_N; t_1,..., t_N) 
-    & = \Pr(t_{(1:N-1)} < t_i \leq t_{(2:N-1)})  \nonumber\\
-    & = \Pr(t_i\leq t_{(1:N-1)}\mid t_{(1:N-1)}<t_i) \Pr(t_{(1:N-1)} < t_i) \nonumber\\
-    & = \Pr(\phi(t_i)\geq a_{(1:N-1)} \mid a_{(1:N-1)} > \phi(t_i)) \Pr(a_{(1:N-1)} > \phi(t_i)) \nonumber\\
-    & \text{(using the independence of individual abilities)}\nonumber\\
-    & = F^a_{(1:N-2)}(\phi(t_i))\left[1 - F^a_{(1:N-1)}(\phi(t_i))\right].
-\end{align}
-Using \eqref{prob 1} and \eqref{prob 2} with \eqref{expected payoff}, player $i$'s expected payoff is (to simplify notation, we drop the index $a$ on the distribution of the order statistics of the individual abilities)
-\begin{align}
-  \alpha F_{(1:N-1)}(\phi(t_i)) 
-  + (1-\alpha) F_{(1:N-2)}(\phi(t_i))\left[1 - F_{(1:N-1)}(\phi(t_i))\right]
-  - \costs.
-\end{align}
-The first order condition for a maximum \citep[see][]{moldovanu2001optimal} is
-\begin{align} \label{foc0}
-  0 = & \alpha F_{(1:N-1)}^{\prime}(\phi) \phi^{\prime} + \nonumber\\
-    & + (1-\alpha)\phi^{\prime}\left\{
-        \left[1 - F_{(1:N-1)}(\phi)\right]F_{(1:N-2)}^{\prime}(\phi)
-        + F_{(1:N-1)}^{\prime}(\phi) F_{(1:N-2)}(\phi)\right\} + \nonumber\\
-    & - c_{a}(a) c_{y}(\target) c_{t}^{\prime}(t_i).
-\end{align}
-Using $\phi^\prime =  1 / t^{*\prime}(\phi)$ and the equilibrium $\phi(t_i) = \phi(t^*(a_i)) = a_i$, leads to
-\begin{align} \label{foc}
-  c_{t}^{\prime}(t^{*}(a_i)) t^{*\prime}(a_i) 
-      & = \frac{\alpha}{c_{a}(a) c_{y}(\target)} F_{(1:N-1)}^{\prime}(a_i)
-        + \frac{(1-\alpha)}{c_{a}(a) c_{y}(\target)}\times \nonumber\\
-      & \times\left\{\left[1 - F_{(1:N-1)}(a_i)\right]F_{(1:N-2)}^{\prime}(a_i)
-        + F_{(1:N-1)}^{\prime}(a_i) F_{(1:N-2)}(a_i)\right\}.
-\end{align}
-This gives a differential equation with boundary conditions $t^*(\mtype) = \deadline$. 
-Integrating both sides and using the integration rule $\int h(g(x)) g^\prime(x) dx = H(g(x)) + A$ (where $H(\cdot)$ is the antiderivative of $h(\cdot)$ and $A$ is an arbitrary constant) leads to
-\begin{align} \label{foc}
-  c_{t}(t^{*}(a_i))
-      & = A + \frac{\alpha}{c_{y}(\target)} \int A(x) dx
-        + \frac{(1-\alpha)}{c_{y}(\target)} \int B(x) dx
-\end{align}
-where 
-\[
-  A(x) = \frac{1}{c_{a}(x)} F_{(1:N-1)}^{\prime}(x)
-\]
+In a similar way, one can derive the equilibrium strategy in a race.
+Because any quality that is below the minimum-entry requirement
+\(\target\) will give a zero probability of winning and any quality that
+is above \(\target\) is costly but gives a constant probability of
+winning, player \(i\)'s choice of optimal quality \(y^*\) is either zero
+(with \(t_i=\deadline\) by convention) or \(y^*=\target\).
+
+The (unique) symmetric equilibrium for player \(i\) is the xxxxx when
+\(xxxx\) and xxxx.
+
+\begin{equation}
+t^* = 
+    XXXX
+\end{equation}
+
+where
+
+\begin{equation}
+  A(x) = XXXX
+\end{equation}
+
 and
-\[
-  B(x) = \frac{1}{c_{a}(x)} \left\{
-      \left[1- F_{(1:N-1)}(x)\right]F_{(1:N-2)}^{\prime}(x)
-      + F_{(1:N-1)}^{\prime}(x) F_{(1:N-2)}(x)
-    \right\}.
-\]
-Then we pin down the marginal type $\mtype$ by imposing the zero profit condition
-%Now we need to show that this is greater than zero (the payoff obtained by setting $y^*=0$). That is:
-\begin{align}
-  \pi_i = & \alpha \left[1 - F_{(1:N-1)}(\mtype)\right] 
-      + (1-\alpha) \left[1- F_{(1:N-2)}(\mtype)\right]F_{(1:N-1)}(\mtype) + \nonumber\\
-    & - c_y(\target) c_a(\mtype) c_{t}(\deadline) = 0.
-\end{align}
-[Correction: it is not 1:N-1 but N-1:N-1]
 
-Clearly, when $\marginaltype$ goes to infinity (costs go to zero), the probability that the N-1'th order statistics will be higher then xxx becomes zero. Hence, the payoff becomes $\alpha \geq 0$. If instead $\marginaltype$ goes to zero, then payoffs are negative. Hence, there is alpha in the middle... (need to show it is concave). 
-\end{proof}
-\end{shaded}
-
-An important property of xxx is that \(y^*(a_i)\) has its upper bound in
-xxx and lower bound in xxxx. Also, equilibrium output quality is
-monotonic increasing in the agent's ability
-\citep[see][]{moldovanu2001optimal}. Thus, for every \(i=1, ..., n+1\),
-the equilibrium expected reward depends only on the rank of his ability
-relative to the others. Using \({F_{A_{r:n}}}\) to denote the
-distribution of the \(r\)'th order statistic of abilities gives
-
-\begin{equation} \label{equilibrium payoffs tournament}
-  {F_{A_{n:n}}}(a_i) V_1  - C(y_i^*, d, a_i).
+\begin{equation}
+  B(x) = XXXX.
 \end{equation}
+
+An important property of XX is that \(y^*(a_i)\) has its upper bound in
+XX and lower bound in XX. Also, equilibrium output quality is monotonic
+increasing in the agent's ability \citep[see][]{moldovanu2001optimal}.
+Thus, for every \(i=1, ..., n+1\), the equilibrium expected reward
+depends only on the rank of his ability relative to the others. Using
+\({F_{A_{r:n}}}\) to denote the distribution of the \(r\)'th order
+statistic of abilities gives
 
 Hence, by setting to zero and solving for the ability, gives the
 marginal ability \({\underline a}\) as
@@ -578,23 +534,23 @@ marginal ability \({\underline a}\) as
   {\underline a}= h(n, V, F_A, C, d).
 \end{equation}
 
-The equilibrium in a tournament is stated below.
+\subsubsection{Tournament vs races}\label{tournament-vs-races}
+
+By comparing equilibrium xxx and xxx, we find that the race and the
+tournament do not (ex-post) dominate one another with respect to output
+quality. Whereas the race always dominates the tournament with respect
+to completion time. {[}This is only when the deadline is the same.
+Otherwise, there's always xxxx.{]} This result is stated below.
 
 \begin{proposition}
-  In a tournament, xxxx 
-\end{proposition}
-
-By comparing xxx and xxx, we find that xxxx.
-
-\begin{proposition}
-Let target xxx be higher in a race than in a tournament.Then, there always exist a non-empty set of abilities $\mathcal A_0 \subset \mathcal A$ where players in the race generate higher performance than in the tournament.  
+There always exist an interval of abilities where the output quality is higher in the race than in the tournament. By contrast, every player takes less completion time in the race than in the tournament.
 \end{proposition}
 
 \begin{proof}
 Marginal type has utility zero in a race but the same type has a strictly positive utility in the tournament. Since probability of winning is not different in the race or the tournament (the bid is a monotonic transformation of the individual ability or, in other words, rankings are virtually the same), expected payoffs in equilibrium differ only in the cost functions. Hence, to be an equilibrium, the player in the tournament should bid less than the player in the race to earn a strictly positive expected payoff. 
 \end{proof}
 
-Let's make an example. Suppose xxxx.
+Let's make an example.
 
 \begin{verbatim}
 p <- plnorm   # pdf individual abilities 
@@ -618,34 +574,49 @@ optimal target in a race. Next section.
 problem}\label{the-contest-designers-problem}
 
 Let us now focus on the contest designer's problem. Imagine the contest
-designer can choose the competition format \((c=\race, \tournament)\) to
-be either the race or the tournament. Let's keep all other aspects of
-design fixed. The deadline \(\deadline_c\) is the same between
-competition formats \(\deadline_c=\deadline\). There is a minimum-entry
-requirement \(\target_c\) that is higher in the race than in the
-tournament (\(\target_\race > \target_\tournament\)), where the latter
-is normalized to zero to ease notation (\(\target_\tournament=0\)). We
-will relax this assumption later to consider a more general setting
-where the level of the minimum-entry requirement is also part of the
-contest designer's problem.
+designer can choose the competition format to be either the race or the
+tournament. Imagine all other aspects of design are given. The prize
+structure \(\alpha\) has been already chosen. There is a deadline
+\(\deadline\), which is the same in both competition formats. {[}The
+quality requirement \(\target_c\) in the tournament is smalle than that
+in the race \(\target_\race > \target_\tournament\)){]} We will relax
+this assumption later to consider a more general setting where these
+variables are also part of the contest designer's problem.
 
-The contest designer maximizes an objective function that is linearly
-additive. It consists of the sum of the expected quality achieved by the
-winners and the corresponding time to completion.
+The contest designer has an objective function that is increasing in the
+expected quality of the winning solution and decreasing in the
+corresponding time to completion. Here, to do not complicate exposition,
+we assume that the contest designer cares about the winning submission
+only: second placed efforts are not considered. {[}If the principal
+values the diversity of the solutions \ldots{} but we assume it does
+not.{]}
 
-{[}Question: do the contest designers care about the second place?
-Assume they don't.{]}
+XXX EQUATION XXXX
 
-In a tournament, the objective function is
+The optimal choice involves a comparison of the expected profits between
+the race and the tournament. Given xxxx, we can show that there will be
+a threshold on the cost of completion time \(\hat\tau\) above which the
+race is a better choice than the tournament, and vice versa.
+
+\begin{proposition}
+There's a tau above which ... 
+\end{proposition}
+
+Proof. In a tournament, the objective function is
 
 \begin{align}
-R_\tournament & = \Pr(t_{(1:N)}\leq \deadline) \left\{\int_{a\in\mathcal A} y^*(x \mid t_{(1:N)}\leq \deadline) dF_{N:N}(x) - \tau \deadline - 1 \right\} \nonumber\\
-  & = \int y^*(x) dF_{N:N}(x) - \tau \deadline - 1. 
+R_\tournament & = \Pr(t_{(1:n)}\leq \deadline) \left\{\int y^*(x \mid t_{(1:n)}\leq \deadline) dF_{n:n}(x) - \tau \deadline - 1 \right\}  \nonumber\\
+  & = \int_{\mtype}^{\hitype} y^*(x) dF_{n:n}(x) - \tau \deadline - 1. 
 \end{align}
 
-(recall the prize pool is normalized to one). {[}Implicitly, you're
-assuming that the prize is always large enough to ensure positive
-effort.{]} {[}Second prize too is stochastic!!!!{]}
+That is, the contest designer's objective function is the sum of the
+expected output quality for a given deadline, minus the cost \(\tau\) of
+having the winner working on the task until completion (i.e., until the
+deadline), and the cost of the prize pool (recall the prize pool is
+normalized to one).
+
+{[}Implicitly, you're assuming that the prize is always large enough to
+ensure positive effort.{]} {[}Second prize too is stochastic!!!!{]}
 
 In a race, the objective function is
 
@@ -682,12 +653,6 @@ a lower bound of the tournament's expression is
   - \tau \deadline - 1. 
 \end{align}
 
-Proposition. (a sufficient condition such that) the race ``dominates''
-the tournament is such that \(\tau \geq \hat \tau\) and otherwise the
-tournament.
-
-Proof. Simple algebra.
-
 \begin{align}
   \underline {R_\race} \geq & \overline {R_\tournament} \nonumber\\
   [1-F_{N:N}(\mtype)] (\target - 1 - \tau \deadline) \geq &
@@ -704,12 +669,13 @@ Proof. Simple algebra.
     \right] \frac{1}{\deadline}
 \end{align}
 
-As a result, the intuition was correct. When the preference for time
-\(\tau\) is sufficiently high, the race should be preferred. The
-threshold is a function of the deadline to complete the job (or time
-horizon). It also depends on the gains in terms of higher performance
-for all types above the marginal one. The lower the gains, the lower the
-threshold.
+End proof.
+
+When the cost of time \(\tau\) is sufficiently high, the race is
+preferred. Interestingly, the threshold is a function of the deadline to
+complete the job, as xxx. It also depends on the shape of xxxx.
+
+\subsubsection{Optimal minimum-entry}\label{optimal-minimum-entry}
 
 Now we turn to discuss the contest designer's choice of an optimal
 minimum requirement \(\target\). So far, we have assumed that
@@ -717,9 +683,9 @@ minimum requirement \(\target\). So far, we have assumed that
 that xxxx is indeed an optimal choice of the contest designer. This is
 summarized in the next proposition.
 
-Proposition. Suppose the contest designer can choose the target that max
-profits in both the race and the tournament. Then, the optimal
-\(\target\) in tournament is generally lower than that in a race.
+\begin{proposition}
+Suppose the contest designer can choose the target that max profits in both the race and the tournament. Then, the optimal $\target$ in tournament is generally lower than that in a race.
+\end{proposition}
 
 To prove that it is indeed the case. We proceed in two steps. First, we
 assume that the contest designer does not care about minimizing the
@@ -1035,26 +1001,18 @@ Considerable geographic variation of registered participants.
 \section{Results}\label{results}
 
 In the eight-day submission period, we collected a total of 1759
-submissions made by 86 participants. The frequency distribution of
-submissions was rather skewed with participants in the 90th percentile
-making 50 more submissions than those in the 10th percentile.
-
-\begin{verbatim}
-##        
-##         Race Tournament Reserve
-##   FALSE   73         67      73
-##   TRUE    26         33      27
-\end{verbatim}
-
-Participation across treatments was higher in the Tournament treatment
-(33 percent), followed by the Tournament w/reseve (27 percent), and the
-Race treatment (26.2626263 percent). However, these differences are not
-statistically significant (using a Fisher's Exact Test for Count Data
-gives a p-value of 0.5255004)
+submissions made by 86 competing participants, with a median of 11
+submissions per person (between a minimum of 1 and a maximum of 126
+submissions). The response rate was higher in the Tournament group (33
+percent), followed by the Tournament w/reseve (27 percent), and the Race
+treatment (26 percent). This is consistent with our prediction
+{[}xxxxx{]}, although these differences were not statistically
+significant (a Fisher's Exact Test for Count Data gives a p-value of
+0.5255004).
 
 \begin{figure}
 \centering
-\includegraphics{Figures/unnamed-chunk-12-1.pdf}
+\includegraphics{Figures/unnamed-chunk-10-1.pdf}
 \caption{Participation rates by rooms}
 \end{figure}
 
@@ -1089,7 +1047,7 @@ the location of the frequency distribution of the submissions.
 
 \begin{verbatim}
 ##       Race Tournament    Reserve 
-##      0.799      0.805      0.808
+##  0.7993725  0.8054121  0.8084504
 \end{verbatim}
 
 Concerning the distribution of the scores on the last submission, the
@@ -1104,7 +1062,7 @@ xxxx
 
 \begin{figure}
 \centering
-\includegraphics{Figures/unnamed-chunk-17-1.pdf}
+\includegraphics{Figures/unnamed-chunk-15-1.pdf}
 \caption{Submissions timing within the submission period}
 \end{figure}
 
@@ -1114,7 +1072,7 @@ different timezoes.)
 
 \begin{figure}
 \centering
-\includegraphics{Figures/unnamed-chunk-18-1.pdf}
+\includegraphics{Figures/unnamed-chunk-16-1.pdf}
 \caption{Submissions within the 24h (need to adjust for timezone)}
 \end{figure}
 
@@ -1133,16 +1091,18 @@ Let's consider first a simple logistic model
 ## glm(formula = submit ~ treatment, family = quasibinomial, data = races)
 ## 
 ## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -0.895  -0.793  -0.781   1.489   1.635  
+##     Min       1Q   Median       3Q      Max  
+## -0.8950  -0.7934  -0.7806   1.4891   1.6353  
 ## 
 ## Coefficients:
-##                     Estimate Std. Error t value Pr(>|t|)
-## (Intercept)          -1.0324     0.2295   -4.50  9.9e-06
-## treatmentTournament   0.3242     0.3136    1.03     0.30
-## treatmentReserve      0.0377     0.3224    0.12     0.91
+##                     Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)         -1.03236    0.22954  -4.498 9.88e-06 ***
+## treatmentTournament  0.32418    0.31365   1.034    0.302    
+## treatmentReserve     0.03774    0.32240   0.117    0.907    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## (Dispersion parameter for quasibinomial family taken to be 1.01)
+## (Dispersion parameter for quasibinomial family taken to be 1.010136)
 ## 
 ##     Null deviance: 358.81  on 298  degrees of freedom
 ## Residual deviance: 357.49  on 296  degrees of freedom
@@ -1158,31 +1118,33 @@ Let's consider first a simple logistic model
 ##     plang, family = quasibinomial, data = races)
 ## 
 ## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -1.533  -0.840  -0.648   1.168   2.079  
+##     Min       1Q   Median       3Q      Max  
+## -1.5326  -0.8404  -0.6485   1.1677   2.0786  
 ## 
 ## Coefficients:
-##                       Estimate Std. Error t value Pr(>|t|)
-## (Intercept)            -1.8533     0.9969   -1.86    0.064
-## treatmentTournament     0.2977     0.3381    0.88    0.379
-## treatmentReserve        0.0454     0.3491    0.13    0.897
-## genderMale              0.3312     0.6178    0.54    0.592
-## educHigh School         0.8063     0.6322    1.28    0.203
-## educMaster of Arts      0.2427     0.4906    0.49    0.621
-## educBachelor            0.5050     0.5141    0.98    0.327
-## age20-25 years old     -0.3094     0.6757   -0.46    0.647
-## age26-30 years          0.5366     0.7060    0.76    0.448
-## age31-40 years          0.9886     0.7021    1.41    0.160
-## age41-50 years          0.4718     0.8314    0.57    0.571
-## age51 years and above   1.1899     0.9109    1.31    0.193
-## timezone                0.0109     0.0279    0.39    0.695
-## plangC++               -0.1932     0.4441   -0.44    0.664
-## plangJava              -0.8340     0.4754   -1.75    0.080
-## plangOther             -0.4482     0.7454   -0.60    0.548
-## plangPython             0.2196     0.5838    0.38    0.707
-## plangVB                 1.1734     1.3532    0.87    0.387
+##                       Estimate Std. Error t value Pr(>|t|)  
+## (Intercept)           -1.85331    0.99694  -1.859   0.0641 .
+## treatmentTournament    0.29774    0.33808   0.881   0.3792  
+## treatmentReserve       0.04544    0.34908   0.130   0.8965  
+## genderMale             0.33120    0.61782   0.536   0.5923  
+## educHigh School        0.80634    0.63223   1.275   0.2032  
+## educMaster of Arts     0.24274    0.49063   0.495   0.6212  
+## educBachelor           0.50505    0.51409   0.982   0.3267  
+## age20-25 years old    -0.30941    0.67573  -0.458   0.6474  
+## age26-30 years         0.53659    0.70602   0.760   0.4479  
+## age31-40 years         0.98860    0.70209   1.408   0.1602  
+## age41-50 years         0.47180    0.83142   0.567   0.5709  
+## age51 years and above  1.18986    0.91086   1.306   0.1925  
+## timezone               0.01091    0.02785   0.392   0.6955  
+## plangC++              -0.19319    0.44406  -0.435   0.6639  
+## plangJava             -0.83401    0.47535  -1.754   0.0804 .
+## plangOther            -0.44823    0.74545  -0.601   0.5481  
+## plangPython            0.21963    0.58375   0.376   0.7070  
+## plangVB                1.17339    1.35317   0.867   0.3866  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## (Dispersion parameter for quasibinomial family taken to be 1.06)
+## (Dispersion parameter for quasibinomial family taken to be 1.062717)
 ## 
 ##     Null deviance: 358.81  on 298  degrees of freedom
 ## Residual deviance: 337.25  on 281  degrees of freedom
@@ -1198,23 +1160,25 @@ Let's consider first a simple logistic model
 ##     totalpayments, family = quasibinomial, data = races)
 ## 
 ## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -1.713  -0.771  -0.644   1.040   1.908  
+##     Min       1Q   Median       3Q      Max  
+## -1.7129  -0.7714  -0.6440   1.0400   1.9076  
 ## 
 ## Coefficients:
-##                            Estimate Std. Error t value Pr(>|t|)
-## (Intercept)               -1.503410   0.327239   -4.59  6.5e-06
-## treatmentTournament        0.372238   0.331949    1.12   0.2631
-## treatmentReserve          -0.000123   0.343707    0.00   0.9997
-## algorating                -0.000059   0.000228   -0.26   0.7957
-## mmevents                   0.035712   0.013466    2.65   0.0084
-## algoevents                 0.001907   0.003090    0.62   0.5377
-## totalpayments1 - 599      -0.182154   0.477411   -0.38   0.7031
-## totalpayments600 - 4500    0.226796   0.456516    0.50   0.6197
-## totalpayments4500 - 37000  0.723311   0.426958    1.69   0.0913
-## totalpayments>37000        0.466569   0.452361    1.03   0.3032
+##                             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)               -1.503e+00  3.272e-01  -4.594 6.49e-06 ***
+## treatmentTournament        3.722e-01  3.319e-01   1.121  0.26306    
+## treatmentReserve          -1.230e-04  3.437e-01   0.000  0.99971    
+## algorating                -5.897e-05  2.276e-04  -0.259  0.79573    
+## mmevents                   3.571e-02  1.347e-02   2.652  0.00845 ** 
+## algoevents                 1.907e-03  3.090e-03   0.617  0.53766    
+## totalpayments1 - 599      -1.822e-01  4.774e-01  -0.382  0.70308    
+## totalpayments600 - 4500    2.268e-01  4.565e-01   0.497  0.61971    
+## totalpayments4500 - 37000  7.233e-01  4.270e-01   1.694  0.09132 .  
+## totalpayments>37000        4.666e-01  4.524e-01   1.031  0.30321    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## (Dispersion parameter for quasibinomial family taken to be 1.03)
+## (Dispersion parameter for quasibinomial family taken to be 1.028631)
 ## 
 ##     Null deviance: 358.81  on 298  degrees of freedom
 ## Residual deviance: 334.04  on 289  degrees of freedom
@@ -1231,38 +1195,40 @@ Let's consider first a simple logistic model
 ##     data = races)
 ## 
 ## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -1.966  -0.759  -0.597   0.992   2.211  
+##     Min       1Q   Median       3Q      Max  
+## -1.9661  -0.7592  -0.5971   0.9922   2.2114  
 ## 
 ## Coefficients:
-##                            Estimate Std. Error t value Pr(>|t|)
-## (Intercept)               -2.13e+00   1.07e+00   -1.99    0.047
-## treatmentTournament        3.50e-01   3.56e-01    0.98    0.327
-## treatmentReserve          -5.13e-03   3.70e-01   -0.01    0.989
-## algorating                -3.52e-05   2.62e-04   -0.13    0.893
-## mmevents                   3.50e-02   1.61e-02    2.17    0.031
-## algoevents                 1.65e-03   3.34e-03    0.50    0.621
-## totalpayments1 - 599      -2.12e-02   5.18e-01   -0.04    0.967
-## totalpayments600 - 4500    2.56e-01   5.07e-01    0.50    0.614
-## totalpayments4500 - 37000  7.25e-01   4.68e-01    1.55    0.123
-## totalpayments>37000        3.60e-01   5.11e-01    0.70    0.482
-## genderMale                 2.56e-01   6.51e-01    0.39    0.694
-## educHigh School            8.29e-01   6.66e-01    1.24    0.215
-## educMaster of Arts         1.39e-01   5.17e-01    0.27    0.788
-## educBachelor               4.14e-01   5.43e-01    0.76    0.446
-## age20-25 years old        -2.84e-01   7.17e-01   -0.40    0.692
-## age26-30 years             3.45e-01   7.61e-01    0.45    0.651
-## age31-40 years             6.57e-01   7.65e-01    0.86    0.391
-## age41-50 years            -2.77e-01   9.49e-01   -0.29    0.770
-## age51 years and above      5.57e-01   1.02e+00    0.55    0.584
-## timezone                   1.17e-02   3.03e-02    0.39    0.700
-## plangC++                  -4.17e-02   4.72e-01   -0.09    0.930
-## plangJava                 -6.66e-01   4.99e-01   -1.34    0.183
-## plangOther                -2.35e-03   7.83e-01    0.00    0.998
-## plangPython                3.38e-01   6.13e-01    0.55    0.582
-## plangVB                    7.60e-01   1.51e+00    0.50    0.615
+##                             Estimate Std. Error t value Pr(>|t|)  
+## (Intercept)               -2.127e+00  1.068e+00  -1.991   0.0474 *
+## treatmentTournament        3.496e-01  3.557e-01   0.983   0.3265  
+## treatmentReserve          -5.133e-03  3.704e-01  -0.014   0.9890  
+## algorating                -3.518e-05  2.625e-04  -0.134   0.8935  
+## mmevents                   3.499e-02  1.614e-02   2.168   0.0310 *
+## algoevents                 1.655e-03  3.340e-03   0.495   0.6207  
+## totalpayments1 - 599      -2.123e-02  5.184e-01  -0.041   0.9674  
+## totalpayments600 - 4500    2.558e-01  5.069e-01   0.505   0.6142  
+## totalpayments4500 - 37000  7.253e-01  4.684e-01   1.548   0.1227  
+## totalpayments>37000        3.604e-01  5.114e-01   0.705   0.4816  
+## genderMale                 2.562e-01  6.513e-01   0.393   0.6944  
+## educHigh School            8.285e-01  6.660e-01   1.244   0.2146  
+## educMaster of Arts         1.391e-01  5.171e-01   0.269   0.7881  
+## educBachelor               4.139e-01  5.426e-01   0.763   0.4462  
+## age20-25 years old        -2.843e-01  7.175e-01  -0.396   0.6923  
+## age26-30 years             3.448e-01  7.612e-01   0.453   0.6510  
+## age31-40 years             6.570e-01  7.646e-01   0.859   0.3909  
+## age41-50 years            -2.772e-01  9.487e-01  -0.292   0.7704  
+## age51 years and above      5.574e-01  1.016e+00   0.549   0.5836  
+## timezone                   1.169e-02  3.034e-02   0.385   0.7003  
+## plangC++                  -4.168e-02  4.723e-01  -0.088   0.9297  
+## plangJava                 -6.662e-01  4.988e-01  -1.335   0.1829  
+## plangOther                -2.348e-03  7.828e-01  -0.003   0.9976  
+## plangPython                3.378e-01  6.130e-01   0.551   0.5820  
+## plangVB                    7.596e-01  1.507e+00   0.504   0.6146  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## (Dispersion parameter for quasibinomial family taken to be 1.09)
+## (Dispersion parameter for quasibinomial family taken to be 1.087974)
 ## 
 ##     Null deviance: 358.81  on 298  degrees of freedom
 ## Residual deviance: 320.83  on 274  degrees of freedom
@@ -1279,34 +1245,34 @@ Let's consider first a simple logistic model
 ##                                     submit           
 ##                               (1)            (2)     
 ## -----------------------------------------------------
-## poly(mmevents, deg = 3)1   12.200***                 
-##                             (4.120)                  
+## poly(mmevents, deg = 3)1   12.155***                 
+##                             (4.117)                  
 ##                                                      
-## poly(mmevents, deg = 3)2     1.210                   
-##                             (6.130)                  
+## poly(mmevents, deg = 3)2     1.205                   
+##                             (6.128)                  
 ##                                                      
 ## poly(mmevents, deg = 3)3     8.110*                  
-##                             (4.740)                  
+##                             (4.738)                  
 ##                                                      
-## poly(mmevents, deg = 2)1                   4.690*    
-##                                            (2.540)   
+## poly(mmevents, deg = 2)1                   4.694*    
+##                                            (2.537)   
 ##                                                      
 ## poly(mmevents, deg = 2)2                   -0.212    
-##                                            (2.470)   
+##                                            (2.467)   
 ##                                                      
-## poly(mmrating, deg = 2)1                  10.100***  
-##                                            (3.120)   
+## poly(mmrating, deg = 2)1                  10.131***  
+##                                            (3.123)   
 ##                                                      
 ## poly(mmrating, deg = 2)2                   -0.942    
-##                                            (2.380)   
+##                                            (2.385)   
 ##                                                      
 ## Constant                   -0.961***      -1.020***  
 ##                             (0.138)        (0.143)   
 ##                                                      
 ## -----------------------------------------------------
 ## Observations                  299            299     
-## Log Likelihood              -166.000      -164.000   
-## Akaike Inf. Crit.           341.000        337.000   
+## Log Likelihood              -166.358      -163.664   
+## Akaike Inf. Crit.           340.715        337.328   
 ## =====================================================
 ## Note:                     *p<0.1; **p<0.05; ***p<0.01
 \end{verbatim}
@@ -1321,13 +1287,15 @@ Let's consider first a simple logistic model
 ## Terms added sequentially (first to last)
 ## 
 ## 
-##                         Df Deviance Resid. Df Resid. Dev Pr(>Chi)
-## NULL                                      298        359         
-## poly(mmevents, deg = 2)  2     20.4       296        338  3.7e-05
-## poly(mmrating, deg = 2)  2     11.1       294        327   0.0039
+##                         Df Deviance Resid. Df Resid. Dev Pr(>Chi)    
+## NULL                                      298     358.81             
+## poly(mmevents, deg = 2)  2   20.409       296     338.40  3.7e-05 ***
+## poly(mmrating, deg = 2)  2   11.069       294     327.33 0.003947 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
 
-\includegraphics{Figures/unnamed-chunk-20-1.pdf}
+\includegraphics{Figures/unnamed-chunk-18-1.pdf}
 
 This result does not seem to correlate well with the competitor's
 experience or skills, as the Pearsons's correlation coefficient between
@@ -1385,7 +1353,7 @@ abline(v=mean(races$submit))
 
 Consider panel data!
 
-\includegraphics{Figures/unnamed-chunk-22-1.pdf}
+\includegraphics{Figures/unnamed-chunk-20-1.pdf}
 
 \begin{verbatim}
 ## 
@@ -1393,21 +1361,23 @@ Consider panel data!
 ## glm(formula = id ~ day, data = subs.long)
 ## 
 ## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -11.69   -4.00   -1.59    0.08   81.31  
+##     Min       1Q   Median       3Q      Max  
+## -11.686   -4.000   -1.593    0.078   81.314  
 ## 
 ## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)
-## (Intercept)     1.59       1.08    1.47     0.14
-## day[10,12)      1.58       1.53    1.03     0.30
-## day[12,14)      2.41       1.53    1.57     0.12
-## day[14,16]     10.09       1.53    6.60  1.6e-10
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)    1.593      1.081   1.473    0.142    
+## day[10,12)     1.581      1.529   1.034    0.302    
+## day[12,14)     2.407      1.529   1.574    0.116    
+## day[14,16]    10.093      1.529   6.600 1.58e-10 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## (Dispersion parameter for gaussian family taken to be 101)
+## (Dispersion parameter for gaussian family taken to be 100.5578)
 ## 
 ##     Null deviance: 39401  on 343  degrees of freedom
 ## Residual deviance: 34190  on 340  degrees of freedom
-## AIC: 2568
+## AIC: 2568.3
 ## 
 ## Number of Fisher Scoring iterations: 2
 \end{verbatim}
@@ -1418,17 +1388,19 @@ Consider panel data!
 ## glm(formula = id ~ day, family = quasipoisson, data = subs.long)
 ## 
 ## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -4.834  -2.828  -1.785   0.023  14.939  
+##     Min       1Q   Median       3Q      Max  
+## -4.8345  -2.8284  -1.7850   0.0229  14.9390  
 ## 
 ## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)
-## (Intercept)    0.466      0.342    1.36    0.174
-## day[10,12)     0.689      0.419    1.65    0.101
-## day[12,14)     0.921      0.404    2.28    0.023
-## day[14,16]     1.993      0.365    5.47  8.9e-08
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   0.4656     0.3419   1.362   0.1742    
+## day[10,12)    0.6895     0.4191   1.645   0.1008    
+## day[12,14)    0.9207     0.4043   2.277   0.0234 *  
+## day[14,16]    1.9928     0.3645   5.467 8.87e-08 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## (Dispersion parameter for quasipoisson family taken to be 16)
+## (Dispersion parameter for quasipoisson family taken to be 16.02175)
 ## 
 ##     Null deviance: 4500.3  on 343  degrees of freedom
 ## Residual deviance: 3587.7  on 340  degrees of freedom
@@ -1443,21 +1415,23 @@ Consider panel data!
 ## glm(formula = id > 0 ~ day, data = subs.long)
 ## 
 ## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -0.733  -0.500   0.267   0.465   0.651  
+##     Min       1Q   Median       3Q      Max  
+## -0.7326  -0.5000   0.2674   0.4651   0.6512  
 ## 
 ## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)
-## (Intercept)   0.3488     0.0521    6.70  8.7e-11
-## day[10,12)    0.1860     0.0736    2.53    0.012
-## day[12,14)    0.1512     0.0736    2.05    0.041
-## day[14,16]    0.3837     0.0736    5.21  3.3e-07
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.34884    0.05207   6.699 8.69e-11 ***
+## day[10,12)   0.18605    0.07364   2.526   0.0120 *  
+## day[12,14)   0.15116    0.07364   2.053   0.0409 *  
+## day[14,16]   0.38372    0.07364   5.211 3.27e-07 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## (Dispersion parameter for gaussian family taken to be 0.233)
+## (Dispersion parameter for gaussian family taken to be 0.2331737)
 ## 
 ##     Null deviance: 85.709  on 343  degrees of freedom
 ## Residual deviance: 79.279  on 340  degrees of freedom
-## AIC: 481.4
+## AIC: 481.35
 ## 
 ## Number of Fisher Scoring iterations: 2
 \end{verbatim}
@@ -1472,7 +1446,7 @@ Difference in participation by treatments are show in Table XX.
 Fisher's Exact Test for Count Data
 \end{verbatim}
 
-data: tab p-value = 0.5 alternative hypothesis: two.sided
+data: tab p-value = 0.5255 alternative hypothesis: two.sided
 
 We find no differences in the room size.
 
@@ -1481,8 +1455,8 @@ Fisher's Exact Test for Count Data
 \end{verbatim}
 
 data: tab p-value = 1 alternative hypothesis: true odds ratio is not
-equal to 1 95 percent confidence interval: 0.569 1.691 sample estimates:
-odds ratio 0.985
+equal to 1 95 percent confidence interval: 0.5689643 1.6912635 sample
+estimates: odds ratio 0.9846648
 
 Ex-post
 
@@ -1582,6 +1556,6 @@ significant.
 \subsection{Simulation results}\label{simulation-results-1}
 
 \renewcommand\refname{References}
-\bibliography{/Users/ablasco/Papers/library.bib}
+\bibliography{library.bib}
 
 \end{document}

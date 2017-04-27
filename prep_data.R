@@ -1,6 +1,6 @@
 # % Dataset preparation Races vs Tournament
 # % Andrea Blasco <ablasco@fas.harvard.edu>
-# % `r format(Sys.time(), '%d %B, %Y')`
+format(Sys.time(), '%d %B, %Y')
 rm(list=ls())
 library(magrittr)
 library(jsonlite)
@@ -14,7 +14,7 @@ output.identity <- ".handles"
 
 # For imputations
 set.seed(4881)
-
+ 
 # Upload data
 regdata.raw <- read.csv("Data/registered_platform_topcoder.txt", sep='\t')
 subs.raw    <- read.csv("Data/submissions.csv")
@@ -29,7 +29,6 @@ regdata.correct <- function(x) {
   x$handle <- standardize.handle(x$handle)
   x$create_date <- strptime(x$create_date, format='%m/%d/%Y', tz='')  
   x$country_name <- factor(as.character(x$country_name))
-  x$address <- NULL
   x$algorating <- as.numeric(x$algorating)
   x$algoevents <- as.numeric(x$algoevents)
   x$mmrating <- as.numeric(x$mmrating)
@@ -37,9 +36,10 @@ regdata.correct <- function(x) {
   x$mmevents <- impute.zero(x$mmevents)
   x$algoreg <- as.numeric(x$algoreg)
   x$mmreg <- as.numeric(x$mmreg)
-  x$school <- NULL 
-  x$age <- NULL # This is age at registration
-  x$gender <- NULL # ...
+  x$address <- NULL # Email address
+  x$school <- NULL 	# ... 
+  x$age <- NULL 	# This is age at registration
+  x$gender <- NULL 	# ... 
   breaks <- 100*round(quantile(x$totalpayments, na.rm=TRUE) / 100)
   breaks.lab <- c("0", "1 - 599", "600 - 4500","4500 - 37000",">37000")
   x$totalpayments %>% impute.zero %>% as.numeric %>%
@@ -215,9 +215,34 @@ z <- de.identify(races$handle)
 races.sub$handle <- match(races.sub$handle, z$identity)
 races$handle <- z$x
 
+# Create panel
+create.panel <- function(races, races.sub) {
+	id <- levels(races$handle)
+	dat <- expand.grid(days=1:4, id=id)
+	dat$hours <- NA
+	dat$hours[dat$days==1] <- races$hours1
+	dat$hours[dat$days==2] <- races$hours2
+	dat$hours[dat$days==3] <- races$hours3
+	dat$hours[dat$days==4] <- races$hours4
+	submission.start <- strptime("2015-03-08 12:00",'%Y-%m-%d %H:%M') 
+	submission.end <- strptime("2015-03-15 13:00",'%Y-%m-%d %H:%M')
+	difference <- difftime(races.sub$timestamp, submission.start, unit="hours")
+	days <- as.numeric(difference) %/% 48 + 1
+	races.sub$nsub <- 1
+	nsub.agg <- with(races.sub, aggregate(nsub ~ days + handle, FUN=length))
+	panel <- merge(dat, nsub.agg
+			, by.x=c("days", "id")
+			, by.y=c("days", "handle"), all=TRUE)
+	panel$nsub[is.na(panel$nsub)] <- 0
+	index <- match(panel$id, races$handle)
+	panel$treatment <- races$treatment[index]
+	return(panel)
+}
+
+panel <- create.panel(races, races.sub)
 
 # SAVE ########################################################################
 write.table(z$identity, quote=F, sep=",", col.names=FALSE, file=output.identity)
-save(list=c("races", "races.sub"), file=output)
+save(list=c("races", "races.sub", "panel"), file=output)
 ################################################################################
 

@@ -101,7 +101,7 @@
 University, 1737 Cambridge Street, Cambridge, MA 02138 (email:
 \href{mailto:ablasco@fas.harvard.edu}{\nolinkurl{ablasco@fas.harvard.edu}}).}}
 \author{Andrea Blasco \and Kevin J. Boudreau \and Karim R. Lakhani \and Michael Menietti}
-\date{Last updated: 14 April, 2017}
+\date{Last updated: 26 April, 2017}
 
 \begin{document}
 \maketitle
@@ -296,33 +296,33 @@ prizes.
 
 \section{The model}\label{the-model}
 
-In this section, we first generalize the contest game introduced by
-\citet{moldovanu2001optimal} to a situation where players allocate their
-effort along two dimensions: output quality and time to complete a given
-job. Then we explore the problem of maximization faced by a contest
-designer with preferences for both quality and time.
+We now generalize the contest game introduced by
+\citet{moldovanu2001optimal} to a situation where players simultaneously
+decide \(i)\) the quality and \(ii)\) how fast to produce a given
+output. Then we explore the problem of revenue maximization faced by a
+contest designer with preferences for both quality and time.
 
 \subsection{Basic setup}\label{basic-setup}
 
-A generalized contest game is an \(n\) player game with asymmetric
-information. Each player (\(i=1,..., n\)) competes for multiple prizes
-by choosing a performance variable \(y_i\) and a timing \(t_i\) both
-nonnegative numbers. Players hold a valuation \(v_k\) that assignes a
-nonnegative value to each prize (\(k=1, ..., q\)) with
-\(v_1\geq v_2\geq ...\geq v_q\).
+A generalized contest game is an n-player game with asymmetric
+information in which each player (\(i=1,..., n\)) competes against the
+others to win a prize. Players assign a nonnegative value \(v_k\) to
+each prize (\(k=1, ..., q\)) that is decreasing in the prize rank
+(\(v_1\geq v_2\geq ...\geq v_q\)). Each player's strategy consists in
+choosing an output quality \(y_i\) and a timing \(t_i\) both nonnegative
+numbers that determine player \(i\)'s probability \(p_{k}(y_i, t_i)\) of
+winning a prize \(k\).
 
-Players move simultaneously to maximize the probability of winning a
-prize while minimizing the cost of effort. The players' cost functions
-are known up to an individual ability parameter \(a_i\) that is private
-information of each player. This parameter is drawn at random from a
-common distribution \(F\) on a finite interval \([\lotype, \hitype]\)
-with \(\lotype>0\). {[}This assumption rules out common parametric
-distributions like the log-normal and forces us to focus the analysis on
-beta-type distributions. However, results do not hinge on this
-particular assumption.{]}
-
-For simplicity, we assume the cost function is multiplicative in all its
-arguments:
+Each player incurs a production cost \(c_i\) that is shaped by a cost
+function \(C(\cdot)\) which is increasing in quality and decreasing in
+timing. The cost function also depends on an individual ability
+parameter \(a_i\) that is private information of each player and that is
+drawn at random from a common distribution \(F\) on a finite interval
+\([\lotype, \hitype]\) with \(\lotype>0\).\footnote{This assumption
+  rules out common parametric distributions like the log-normal and
+  forces us to focus the analysis on beta-type distributions. However,
+  results do not hinge on this particular assumption.} For simplicity,
+we assume the cost function is multiplicative:
 
 \begin{equation}
   C(a_i, y_i, t_i) = c_a(a_i) c_y(y_i) c_t(t_i)
@@ -331,42 +331,40 @@ arguments:
 with \(c_a(\cdot)\) and \(c_t(\cdot)\) being monotonic decreasing
 functions (the higher the ability or the time to complete, the lower the
 cost) and \(c_{y}(\cdot)\) being a monotonic increasing function (the
-higher the quality, the higher the cost). We further impose conditions
-to ensure nonnegative costs: \(c_{a}(\hitype)>0\), \(c_{t}(\lotype)>0\),
-and \(c_{y}(\lotype)\geq 0\).
+higher the quality, the higher the cost). We impose additional
+conditions to ensure nonnegative costs \[
+    c_{a}(\hitype)>0, c_{t}(\lotype)>0, \text{ and } c_{y}(\lotype)\geq 0.
+\]
 
-Let \(p_{i, k}(y_1,..., y_N, t_1, ..., t_N)\) be player \(i\)'s
-probability of winning the \(k^{th}\) prize. Player \(i\)'s expected
-payoff is
+Player \(i\)'s payoff is then
 
 \begin{equation}
   \label{expected payoff}
-  \pi_i = \sum_{k=1}^{q} p_{i, k}(y_1,..., y_N, t_1, ..., t_N) v_k - C(a_i, y_i, t_i). 
+  \pi_i = \sum_{k=1}^{q} p_{k}(y_i, t_i) v_k - C(a_i, y_i, t_i). 
 \end{equation}
 
-We can then denote a (generalized) contest game \(G\) by
+And we can denote a (generalized) contest game \(G\) by
 
 \begin{equation}
 G \equiv \left\{
-    n, q, \{v_k\}_{k=1}^{q},  F, C, \{p_{i,k}\}_{i,k=1}^{n,q} 
+    n, q, \{v_k\}_{k=1}^{q},  F, C, \{p_{k}\}_{k=1}^{q} 
   \right\}.
 \end{equation}
 
-A contest game \(G\) is said to have a minimum-entry requirement when
-players have to successfully meet a given deadline and/or satisfy a
-minimum quality level to be eligible to win a prize. Let \(\deadline>0\)
-denote the deadline and \(\target\geq 0\) the required minimum
-performance. A game \(G\) has a minimum-entry requirement when, for
-every prize \(k\) and player \(i\), the probability
-\(p_{i, k}(\cdot, \cdot)=0\) when player \(i\)'s quality is below a
-target level \(q_i < \target\) or the timing to completion is above a
-given deadline \(t_i>\deadline\). To simplify exposition, we further use
-the convention that whenever the deadline is not met \(t_i> \deadline\)
-then the output quality is zero \(y_i=0\), and whenever the required
-quality is not met \(y_i<\target\) then the time of completion is above
-the deadline \(t_i = \infty\). This simply ensures that when one of the
-entry-requirements is not met by a player, the player has a zero
-probability of winning a prize.
+When players have to successfully meet a given deadline and/or satisfy a
+minimum quality level to be eligible to win a prize, we say that the
+contest game \(G\) has a minimum-entry requirement. Let \(\deadline>0\)
+be the deadline and \(\target\geq 0\) the required minimum performance.
+A game \(G\) has a minimum-entry requirement when, for every prize \(k\)
+and player \(i\), the probability \(p_{k}(\cdot, \cdot)=0\) when player
+\(i\)'s quality is below a target level \(q_i < \target\) or the timing
+to completion is above a given deadline \(t_i>\deadline\). To simplify
+exposition, we further use the convention that whenever the deadline is
+not met \(t_i> \deadline\) then the output quality is zero \(y_i=0\),
+and whenever the required quality is not met \(y_i<\target\) then the
+time of completion is above the deadline \(t_i = \infty\). This simply
+ensures that when one of the entry-requirements is not met by a player,
+the player has a zero probability of winning a prize.
 
 Using the above notation, we define a tournament as a contest game with
 the following characteristics.

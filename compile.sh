@@ -5,19 +5,30 @@ command=${1:---report}
 # Settings
 ################
 now=`date +%b%d`
-paper_dir="Paper"
-paper_appendix="Appendix"
-paper_notes="Paper_notes"
 config_dir="Config"
+data_dir="Data"
+paper_dir="Paper"
+paper_appendix="Paper_appendix"
+paper_notes="Paper_notes"
 bib_file="$HOME/Library/Application Support/BibDesk/library.bib"
 
-################
-# Commands
-################
+
+###################################
+if [ "$command" == "--data" ]; then
+	echo "Saving copy of existing data..."
+	cp .RData $data_dir/$now.RData
+	echo "Preparing new dataset..."
+	Rscript prep_data.R > $data_dir/prep_data.Rout 2> $data_dir/prep_data.Rerr
+	echo "Done!"
+	exit 0
+fi
+
+###################################
 if [ "$command" == "--report" ]; then
-	cp -R "$bib_file" *.Rmd *.R .RData $config_dir/* "$paper_dir"
-	cd "$paper_dir" && Rscript -e "rmarkdown::render('report.Rmd')" || exit -1
-	mv *.Rmd *.R Code/
+	cp -R "$bib_file" *.Rmd *.R .RData $config_dir/* $paper_dir
+	cd $paper_dir
+	Rscript -e "rmarkdown::render('report.Rmd')" || exit -1
+	mv *.Rmd *.R .RData Code/
 	exit 0
 fi
 
@@ -28,11 +39,7 @@ if [ "$command" == "--notes" ]; then
 	exit 0
 fi
 
-if [ "$command" == "--data" ]; then
-	cp .RData $now.RData
-	Rscript prep_data.R
-	exit 0
-fi
+
 
 # if [ "$1" == "--docx" ]; then
 #   echo "Compiling docx..."

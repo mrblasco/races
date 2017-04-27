@@ -1,12 +1,20 @@
 # % Dataset preparation Races vs Tournament
 # % Andrea Blasco <ablasco@fas.harvard.edu>
-# % `r format(Sys.time(), '%d %B, %Y')`
+format(Sys.time(), '%d %B, %Y')
+rm(list=ls())
 library(magrittr)
 library(jsonlite)
 library(xtable)
 library(knitr)
-set.seed(4881)
+source("help_prep_data.R")
 
+# Files
+output <- ".RData"
+output.identity <- ".handles"
+
+# For imputations
+set.seed(4881)
+ 
 # Upload data
 regdata.raw <- read.csv("Data/registered_platform_topcoder.txt", sep='\t')
 subs.raw    <- read.csv("Data/submissions.csv")
@@ -16,41 +24,11 @@ assign.raw  <- rbind(read.csv("Data/Assignment/race.csv")
               , read.csv("Data/Assignment/tournament.csv")
               , read.csv("Data/Assignment/reserve.csv"))
 
-# Helper functions:
-#     imputing missing values
-#     handling strings
-#     standardize handles
-#     unique datasets by id
-na.count <- function(x) sum(is.na(x))
-replace.pattern <- function(x, p1, p2) gsub(x, pattern=p1, replacement=p2)
-capitalize <- function(x) {
-  substr(x, 1, 1) <- toupper(substr(x, 1, 1))
-  return(x)
-}
-standardize.handle <- function(x) {
-  x %>% as.character %>% trimws %>% tolower %>%
-    replace.pattern("@gmail.com", "") %>%
-    replace.pattern("vidhyabhushan.*", "vidhyabhushanv") %>%
-    as.factor -> x
-  return(x)
-}
-unique.by.id <- function(x, id) {
-  index <- tapply(1:nrow(x), id, head, n=1)
-  return(x[index, ])
-}
-impute.zero <- function(x) ifelse(is.na(x), 0, x)
-impute.at.random <- function(x, ...) {
-  x.missing <- is.na(x)
-  x[x.missing] <- sample(levels(x), replace=TRUE, size=sum(x.missing), ...)
-  return(list(imputed=x, missing.yes=x.missing))
-}
- 
-# Registration data 
+# Correct registration data 
 regdata.correct <- function(x) {
   x$handle <- standardize.handle(x$handle)
   x$create_date <- strptime(x$create_date, format='%m/%d/%Y', tz='')  
   x$country_name <- factor(as.character(x$country_name))
-  x$address <- NULL
   x$algorating <- as.numeric(x$algorating)
   x$algoevents <- as.numeric(x$algoevents)
   x$mmrating <- as.numeric(x$mmrating)
@@ -58,9 +36,10 @@ regdata.correct <- function(x) {
   x$mmevents <- impute.zero(x$mmevents)
   x$algoreg <- as.numeric(x$algoreg)
   x$mmreg <- as.numeric(x$mmreg)
-  x$school <- NULL
-  x$age <- NULL # This is age at registration
-  x$gender <- NULL
+  x$address <- NULL # Email address
+  x$school <- NULL 	# ... 
+  x$age <- NULL 	# This is age at registration
+  x$gender <- NULL 	# ... 
   breaks <- 100*round(quantile(x$totalpayments, na.rm=TRUE) / 100)
   breaks.lab <- c("0", "1 - 599", "600 - 4500","4500 - 37000",">37000")
   x$totalpayments %>% impute.zero %>% as.numeric %>%
@@ -68,20 +47,17 @@ regdata.correct <- function(x) {
     factor(labels=breaks.lab) -> x$totalpayments
   return(x)
 }
+
+# Consistent registration data
 regdata.consistent <- function(x) {
   x <- unique.by.id(x, x$handle)
-  # Numeric must be non-negative numbers
-  for (i in 1:ncol(x)) {
-    if (is.numeric(x[, i])) {
-      x[, i][x[, i]<0] <- 0
-    }
+  for (i in 1:ncol(x)) {   # Numeric must be non-negative numbers
+    if (is.numeric(x[, i])) {x[, i][x[, i]<0] <- 0}
   }
-  # Impute missing factors
+  # Impute missing values
+  # ... 
   return(x)
 }
-regdata <- regdata.consistent(regdata.correct(regdata.raw))
-summary(regdata)
-
 
 # Assigned treatments
 assign.correct <- function(x) {
@@ -90,14 +66,12 @@ assign.correct <- function(x) {
   x$mmrating <- NULL
   return(x)
 }
+
 assign.consistent <- function(x) {
   x$room <- factor(paste("Group ", ifelse(x$treatment=="race", "1", ifelse(x$treatment=="tournament", "2", "3")), toupper(letters[x$room]), sep=""))
   levels(x$treatment) <- capitalize(levels(x$treatment))
   return(x)
 }
-assignment <- assign.consistent(assign.correct(assign.raw))
-summary(assignment)
-
 
 # Initial Survey
 svy.ini.correct <- function(x) {
@@ -127,8 +101,6 @@ svy.ini.consistent <- function(x) {
   x <- unique.by.id(x, x$handle)
   return(x)
 }
-svy.ini <- svy.ini.consistent(svy.ini.correct(svy.ini.raw))
-summary(svy.ini)
 
 # Final survey
 svy.end.correct <- function(x) {
@@ -151,8 +123,7 @@ svy.end.consistent <- function(x) {
   x <- unique.by.id(x, x$handle)
   return(x)
 }
-svy.end <- svy.end.consistent(svy.end.correct(svy.end.raw))
-summary(svy.end)
+
 
 # Scores and submissions
 subs.correct <- function(x) {
@@ -175,22 +146,28 @@ subs.consistent <- function(x) {
   x$system <- impute.zero(x$system)
   return(x)
 }
-subs <- subs.consistent(subs.correct(subs.raw))
-summary(subs)
+
+
+# Prepare all data
+summary(regdata <- regdata.consistent(regdata.correct(regdata.raw)))
+summary(assignment <- assign.consistent(assign.correct(assign.raw)))
+summary(svy.ini <- svy.ini.consistent(svy.ini.correct(svy.ini.raw)))
+summary(svy.end <- svy.end.consistent(svy.end.correct(svy.end.raw)))
+summary(subs <- subs.consistent(subs.correct(subs.raw)))
 
 # Merge datasets
-# Checks before merging
-# Handles assigned but not in registration data
-length(setdiff(assignment$handle, regdata$handle))
 
-# Handles assigned but not in initial survey
+## Checks before merging
+### Handles assigned but not in registration data
+length(setdiff(assignment$handle, regdata$handle))
+### Handles assigned but not in initial survey
 length(setdiff(assignment$handle, svy.ini$handle))
 
 
-# Merge and impute.
+# Merge and impute
 newdata   <- merge(regdata, assignment, by='handle')
 newdata2  <- merge(newdata, svy.ini, by="handle", suff=c("",".ini"), all.x=TRUE)
-newdata3 <- merge(newdata2, svy.end, by="handle", all.x=TRUE, suff=c("",".end"))
+newdata3  <- merge(newdata2, svy.end, by="handle", all.x=TRUE, suff=c("",".end"))
 
 final.consistent <- function(x) {
   x$age <- impute.at.random(x$age)$imputed
@@ -217,9 +194,10 @@ final.consistent <- function(x) {
       , size=1, replace=TRUE, prob=prob[z, ]))
   return(x)
 }
-races <- final.consistent(newdata3)
-summary(races)
 
+
+
+summary(races <- final.consistent(newdata3))
 races.sub <- subs
 races$submit <- races$handle %in% races.sub$handle
 
@@ -233,15 +211,38 @@ de.identify <- function(x) {
 }
 z <- de.identify(races$handle)
 
-# Store identity file
-write.table(z$identity, quote=F, sep=",", col.names=FALSE, file=".handles")
-
 # Replace handles
 races.sub$handle <- match(races.sub$handle, z$identity)
 races$handle <- z$x
 
-#############################
-db <- c("races", "races.sub")
-save(list=db, file=".RData")
-############################
+# Create panel
+create.panel <- function(races, races.sub) {
+	id <- levels(races$handle)
+	dat <- expand.grid(days=1:4, id=id)
+	dat$hours <- NA
+	dat$hours[dat$days==1] <- races$hours1
+	dat$hours[dat$days==2] <- races$hours2
+	dat$hours[dat$days==3] <- races$hours3
+	dat$hours[dat$days==4] <- races$hours4
+	submission.start <- strptime("2015-03-08 12:00",'%Y-%m-%d %H:%M') 
+	submission.end <- strptime("2015-03-15 13:00",'%Y-%m-%d %H:%M')
+	difference <- difftime(races.sub$timestamp, submission.start, unit="hours")
+	days <- as.numeric(difference) %/% 48 + 1
+	races.sub$nsub <- 1
+	nsub.agg <- with(races.sub, aggregate(nsub ~ days + handle, FUN=length))
+	panel <- merge(dat, nsub.agg
+			, by.x=c("days", "id")
+			, by.y=c("days", "handle"), all=TRUE)
+	panel$nsub[is.na(panel$nsub)] <- 0
+	index <- match(panel$id, races$handle)
+	panel$treatment <- races$treatment[index]
+	return(panel)
+}
+
+panel <- create.panel(races, races.sub)
+
+# SAVE ########################################################################
+write.table(z$identity, quote=F, sep=",", col.names=FALSE, file=output.identity)
+save(list=c("races", "races.sub", "panel"), file=output)
+################################################################################
 

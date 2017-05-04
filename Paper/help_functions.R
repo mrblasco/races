@@ -4,40 +4,43 @@
 #           email: ablasco@fas.harvard.edu
 ####################################################
 
-# Helpers
-ilogit <- function(x) exp(x) / (1+ exp(x))
-
 
 
 ####################################################
 # Render xtable
 ####################################################
-render.xtable <- function(x, caption, label, add=NULL, notes=NULL, ...) {
-  table.head <- "\\\\[-1.8ex]\\hline \\hline \\\\[-1.8ex]\n"
-  table.mid <- "\\hline \\\\[-1.86ex]\n"
-  table.bottom <- "\\hline \\\\[-1.8ex]\n"
-  add.to.cmd <- c(table.head, table.mid, table.bottom)
-  add.to.row <- list(pos = list(-1, 0, nrow(x)), command = add.to.cmd)
-  if (!is.null(add)) {
-    add.to.row$command  <- c(add.to.row$command, add$cmd)
-    add.to.row$pos[[4]] <- add$pos
-  }
-  cat("\\begin{table}\n")         
-  cat("\\centering\n")                  
-  cat(sprintf("\\caption{%s}\n", caption))
-  cat(sprintf("\\label{%s}\n", label))
-  print(x, add.to.row=add.to.row
-      , hline.after=NULL
-      , floating=FALSE
-      , comment=FALSE
-      , ...)
-  if (!is.null(notes)) {
-    cat("\\begin{tablenotes}\\footnotesize\n")                  
-    cat(sprintf("%s\n", notes))
-    cat("\\end{tablenotes}\n")
-  }
-  cat("\\end{table}\n")   
+render.xtable <- function(x, caption=caption(x), label=label(x), add=NULL, notes=NULL, ...) {
+	#..............................................................#
+	if (attributes(x)$class[1]!='xtable') stop("Missing xtable object")
+	if (is.null(caption)) stop("Missing table caption")
+	if (is.null(label)) stop("Missing table label")
+	#..............................................................#
+	top <- "\\\\[-1.8ex]\\hline\\hline\\\\[-1.8ex]\n"
+	middle <- "\\hline\\\\[-1.86ex]\n"
+	bottom <- "\\hline\\\\[-1.8ex]\n"
+  	cmd <- c(top, middle, bottom)
+  	pos <- list(-1, 0, nrow(x))
+  	add.to.row <- list(pos=pos, command=cmd)
+  	if (!is.null(add)) {
+    	add.to.row$command  <- c(add.to.row$command, add$cmd)
+    	add.to.row$pos[[4]] <- add$pos
+  	}
+	cat("\\begin{table}\n\\centering\n")
+	cat(sprintf("\\caption{%s}\n", caption))
+	cat(sprintf("\\label{%s}\n", label))
+	print(x, add.to.row=add.to.row
+	  , hline.after=NULL
+	  , floating=FALSE
+	  , comment=FALSE
+	  , ...)
+	if (!is.null(notes)) {
+		cat("\\begin{tablenotes}\\footnotesize\n")                  
+		cat(sprintf("%s\n", notes))
+		cat("\\end{tablenotes}\n")
+	}
+	cat("\\end{table}\n")   
 }
+
 
 ### Temporary
 render.table <- function(x, caption, label, add=NULL, align=NULL, digits=1, notes=NULL) {

@@ -1,3 +1,7 @@
+```{r}
+races2 <- races
+```
+
 The experimental design
 =====================
 
@@ -17,9 +21,11 @@ Groups were randomly assigned to one of three different competitive settings: a 
 
 The experimental design is summarized by the Table XXXX.
 
-```{r experimental-design, results='asis'}
-tab <- with(races, table(treatment, room_type))
-render.table(tab, "Experimental design", "tab: experimental design")
+```{r design, results='asis'}
+tab <- with(races, table(treatment, room))
+rownames(tab) <- capitalize(rownames(tab))
+xtab <- xtable(tab, caption="Experimental design", label='experimental design')
+render.xtable2(xtab)
 ```
 
 In all groups, the first placed competitor was awarded a prize of $1,000, and an additional, consolatory prize of $100 was awarded to the second one. 
@@ -33,40 +39,45 @@ Finally, in a tournament with reserve,  xxxx.
 Additional grand prizes of xxxx were awarded to the top xxx in every treatment.
 
 Data
----------
+-----
 
-The bulk of our data comes from the online Topcoder's profile of each participant. This profile typically includes information of when the member registered to the platform,  the current rating in a variety of different competitions, the number of past competitions, and so on. Additional demographic information,  was collected via a  pre-registration survey where competitors were asked to state their gender, age, geographic origin, etc. Participants were als also asked a self-reported measure of risk aversion [xxx] and to forecast how many hours they expected to compete in the next few days of the challenge(the exact question was: "looking ahead xxxx").  
+The bulk of our data comes from the online Topcoder's profile of each participant. This profile includes the date when the member registered to the platform, an array of ratings measuring coder's success in past competitions, the number of past competitions, and so on. These data are summarized in FIGURE XXXX. 
 
-Finally, we also asked participants to respond to a survey at the end of the submission phase. In this final survey, they were asked to look back and tell us their best estimate of the time spent working on the problem. Also, we gathered comments on the xxx. And questions such as xxxx. 
+FIGURE XXXX
 
-Table XXX summarizes the data. 
+Additional demographic information was collected via a pre-registration survey where competitors were asked their gender, age, geographic origins, education, and the most preferred programming language. Participants were als also asked their willingness to take risks "in general" [as in @dohmen2011individual]. We also collected their forecast on the hours they expected to work on the problem in the next few days of the challenge^[The exact question was: "The submission phase begins March 08. Looking ahead a week, how many hours do you forecast to be able to work on the solution of the problem?"]. At the end of the submission phase, competitors were also asked to fill a final suvery and looking back and tell us their best estimate of the time spent working on the problem. Also, we gathered reactions to the different competition modes with questions such as xxxx. 
+
+Table XXX summarizes the data.
 
 ```{r descriptive, results='asis'}
+vars <- c("country", "age", "gender", "educ", "plang")
+foo <- sapply(races[, vars], function(x) summary(x, maxsum=6))
+balance.test <- function(x) chisq.test(table(x, races$treatment) + 1, simul=TRUE)$p.val 
+foo.pval <- sapply(races[, vars], balance.test)
 
-# Factors
-vars <- c("country_name", "age", "gender", "educ", "plang")
-foo <- sapply(races[, vars], function(x) summary(x, maxsum=6)) ## get summary of each var
-foo.test <- sapply(races[, vars], function(x) chisq.test(table(x, races$treatment) + 1, simulate.p.value=TRUE)$p.val)
+xtab <- xtable.factors(foo, foo.pval)
+caption(xtab) <- "Descriptive statistics"
+label(xtab) <- "descriptives"
+align(xtab) <- c("{}l","l","p{5cm}","r","r","r")
 
-bar <- xtable.factors(foo, foo.test)
-align(bar) <- c("{}l","l","p{4cm}","r","r")
-render.xtable(bar, "Descriptive statistics", "tab: desc", include.rownames=FALSE, notes="This table shows the frequency for each response category of five categorical variables for country of residence, age, gender, highest degree achieved, and preferred programming language. For each variable, a Pearson's Chi-squared test shows no evidence of dependence  between the variable and the treatments. P-values are reported in the last column.")
+attributes(xtab)$notes <- "This table shows the frequency of each response category for five categorical variables: country of origin; age; gender; highest academic degree achieved; and most preferred programming language. A Pearson's Chi-squared test finds no association between each categorical variable and the treatments (p-values are reported in the last column)."
 
-# Table with numeric variables
-vars <- c("Algo rating"="algorating"
-          , "Algo competitions"="algoevents"
-          , "Algo registrations"="algoreg"
-          , "MM rating"="mmrating"
-          , "MM competitions"="mmevents"
-          , "MM registrations"="mmreg"
-          , "Time zone"="timezone"
-          , "Risk aversion"="risk"
-)
-# foo <- sapply(races[, vars], function(x) summary(x)) ## get summary of each var
-# foo.test <- sapply(races[, vars], function(x) kruskal.test(split(x, races$treatment))$p.val)
-# xtable.factors(foo, foo.test)
+render.xtable2(xtab, include.rownames=FALSE)
+```
 
-stargazer(races[, vars], header=FALSE, title='Descriptive statistics', covariate.labels=names(vars), digits=1)
+```{r risk, fig.height=6, fig.cap="Responses to the question about willingness to take risks \"in general,\" measured on an eleven-point scale."}
+tab <- table(factor(races$risk, levels=0:10))
+barplot(tab, xlab="Responses to general risk question\n(0=not at all willing, 10=very willing)", ylab="Respondents")
+```
+
+```{r looking-ahead, fig.cap="Responses to the question about expected hours of work for every 2 days of the competition."}
+with(races, boxplot(week1, week2, week3, week4, notch=TRUE, xlab="Days of the competition\n(1=first 2 days, 4=last 2 days)", ylab="Expected hours of work"))
+axis(1, 1:4)
+```
+
+```{r, fig.cap='xxxx'}
+# Ratings per room?
+with(races, hist(mm_events/mm_reg, main=NA, xlab="With-submission over registered-only competitions")) # With submission over registered
 ```
 
 ```{r}
@@ -77,28 +88,15 @@ Total <- function(x) sum(x)
 
 # Weeks at the start of the competition
 start_date <- as.Date("2016-03-02")
-as.numeric(difftime(start_date, races$create_date))/7 -> week_diff
+week_diff <- NA
 
-# Past competitions (experience)
-quantile(races$mmevents, p=c(0.1, 0.9)) -> rounds_qtl
-
-# Individual ratings (skills)
-quantile(races$mmrating, p=c(0.1, 0.9), na.rm=TRUE) -> rating_qtl
+quantile(races$mm_events, p=c(0.1, 0.9), na.rm=TRUE) -> rounds_qtl
+quantile(races$mm_rating, p=c(0.1, 0.9), na.rm=TRUE) -> rating_qtl
 ```
 
 A total of `r nrow(races)` competitors signed-up to take part in the challenge.  They were all xxxx members of the platform with between `r min(week_diff)` and `r max(week_diff)` weeks as registered members. In terms of skill ratings, the distribution was highly skewed with competitors in the highest 90th percentile having participated in `r diff(rounds_qtl)` more competitions than those in the 10th percentile. Likewise skills as measured by the individual ratings, if there was one, had a skewed distribution with `r round(diff(rating_qtl))` higher points than those in the 10th percentile; see Figure \ref{eq: distribution experience}. 
 
-
-```{r}
-library(car)
-spm(~ mmrating+mmevents+algorating+algoevents, data=races, pch=16)
-```
-
-
-Considerable geographic variation of registered participants.
-
-```{r}  
-library(maps)
-map()
-with(races, points(locationlongitude, locationlatitude, pch=21, col='red'))
+```{r ratings, fig.width=9, fig.height=9}
+require(car)
+spm(~ mm_rating+mm_events+algo_rating+algo_events, data=races, pch=16)
 ```

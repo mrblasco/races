@@ -22,38 +22,12 @@ keywords:
   - xxxx
   - xxxx xxxx
 
-amsthm:
-  plain:
-  - theorem
-  - proposition
-  - corollary
-  - definition
-
 fontsize: 12pt
 geometry: margin=1in
 ...
 
 
-```{r, echo=FALSE, warnings=FALSE, message=FALSE}
-
-#########################
-load(".RData")
-set.seed(4881) # for bootstrap
-require(magrittr)
-require(xtable)
-require(stargazer)
-source("functions.R")
-#########################
-
-knitr::opts_chunk$set(
-  cache=TRUE,
-  echo=FALSE,
-  message=FALSE,
-  warning=TRUE,
-  error=FALSE,
-  tidy=FALSE,
-  cache.path="Cache/",
-  fig.path="Figures/")
+```{r, child='0_config.Rmd'}
 ```
 
 ```{r child = '1_intro.Rmd'}
@@ -64,9 +38,6 @@ knitr::opts_chunk$set(
 
 ```{r child = '3_data.Rmd'}
 ```
-
-\clearpage
-
 
 ```{r child = '4_results.Rmd'}
 ```

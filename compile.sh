@@ -1,101 +1,56 @@
 #!/bin/bash
-command=${1:---report}
+# Andrea Blasco <ablasco@fas.harvard.edu>
+#***********************************************#
+E_BADDIR=85 # Error bad directory
+E_BADFILE=86 # Error bad file
 
-################
-# Settings
-################
-now=`date +%b%d`
-config_dir="Config"
-data_dir="Data"
-paper_dir="Paper"
-paper_appendix="Paper_appendix"
-paper_notes="Paper_notes"
+input_file=$1
+
+if [ ! -f "$input_file" ] # Check input file
+then
+	echo "$input_file file not found!"
+	exit $E_BADFILE
+fi	
+
+#***********************************************#
 bib_file="$HOME/Library/Application Support/BibDesk/library.bib"
+config_dir="Config"
+output_dir="$2"
+#***********************************************#
 
-
-###################################
-if [ "$command" == "--data" ]; then
-	echo "Saving copy of existing data..."
-	cp .RData $data_dir/$now.RData
-	echo "Preparing new dataset..."
-	Rscript prep_data.R > $data_dir/prep_data.Rout 2> $data_dir/prep_data.Rerr
-	echo "Done!"
-	exit 0
+if [ ! -d "$output_dir" ] || [ ! -d "$config_dir" ] # Check
+then
+	echo "$1 or $2 is not a directory."
+	exit $E_BADDIR
 fi
 
-###################################
-if [ "$command" == "--report" ]; then
-	cp -R "$bib_file" *.Rmd *.R .RData $config_dir/* $paper_dir
-	cd $paper_dir
-	Rscript -e "rmarkdown::render('report.Rmd')" || exit -1
-	mv *.Rmd *.R .RData Code/
-	exit 0
-fi
+# --------------------------------------------------------- #
+# copy_data ()                                         		#
+# Copy all files in designated directory.                	#
+# Parameters: $target_directory, $config_dir                #
+# Returns: 0 on success, $E_BADDIR if something went wrong. #
+# --------------------------------------------------------- #
+copy_data () {
+	cp -v "$bib_file" "$1"
+	cp -v .RData "$1"
+	cp -vR "$2"/* "$1"
+	cp -v *.Rmd "$1"
+	cp -v *.R "$1"
+	return 0
+}
+clean_dir () {
+	rm -r "$1"/*
+	return 0
+}
 
-if [ "$command" == "--notes" ]; then
-	input=report_notes.Rmd
-	cp -R "$bib_file" *.Rmd $config_dir/* "$paper_notes"
-	cd "$paper_notes" && Rscript -e "rmarkdown::render('$input')" || exit -1
-	exit 0
-fi
+# Compile report
+clean_dir $output_dir
+copy_data $output_dir $config_dir
+cd $output_dir
+Rscript -e "rmarkdown::render('$input_file')"
+mkdir Code && mv *.Rmd Code
 
+# Open document
+open -a Skim ${input_file%.*}.pdf
 
-
-# if [ "$1" == "--docx" ]; then
-#   echo "Compiling docx..."
-#   cp $config_dir/_output_docx.yml $paper_docx_dir/_output.yml
-#   compile $paper_docx_dir
-#   
-# elif [ "$1" == "--html" ]; then
-#   echo "Compiling html..."
-#   cp $config_dir/_output_html.yml $paper_html_dir/_output.yml
-#   cp $config_dir/*.py $paper_html_dir
-#   compile $paper_html_dir
-# 
-# elif [ "$1" == "--all" ]; then
-#   echo "Compiling all formats..."
-#   cp $config_dir/_output.yml $paper_dir 
-#   cp $config_dir/*.py $paper_dir
-#   cp $config_dir/_output_docx.yml $paper_docx_dir/_output.yml
-#   cp $config_dir/_output_html.yml $paper_html_dir/_output.yml
-#   compile $paper_dir && pwd && compile $paper_docx_dir && compile $paper_html_dir
-# 
-# elif  [ "$1" == "--structural" ]; then
-# 	echo "Compiling structural..."
-# 	mkdir -p $struct_dir/{Code,Templates}
-# 	echo "Copy templates, headers, footers..."
-# 	cp Templates/* $struct_dir/Templates
-# 	echo "Copy config files..."
-# 	cp $config_dir/_output.yml $struct_dir
-# 	echo "Copy main file..."
-# 	cp structural.Rmd $struct_dir
-# 	echo "Compile structural..."
-# 	cd $struct_dir && crmd structural.Rmd > structural.Rout 2> structural.err
-# 	echo "Done!"
-# 	
-# elif  [ "$1" == "--data" ]; then
-# 	Rscript prepare_data.Rmd > prep_data.Rout
-# 
-# else 
-#   output_dir=$paper_dir
-#   echo "Directory: $output_dir"
-#   echo "Copy config files..."
-#   cp $config_dir/_output.yml $output_dir
-#   cp $config_dir/*.py $output_dir
-#   echo "Copy template, header, footer..."
-#   cp Templates/* $output_dir/Templates
-#   echo "Copy data and R code..."
-#   cp .RData functions.R *.Rmd $output_dir
-#   echo "Compile paper..."
-#   cd $output_dir && crmd $main_file > report.Rout 2> report.err
-#   echo "Move source code..."
-#   mv *.Rmd Code/
-#   echo "Done!"
-# fi
-
-## Sharable folder
-# mkdir -p $share_dir
-# cp $paper_dir/report.pdf $share_dir/mgh_report_$now.pdf
-# cp $paper_docx_dir/report.docx $share_dir/mgh_report_$now.docx
-# cp $paper_appendix/report_appendix.pdf $share_dir/mgh_appendix_$now.pdf
-
+exit 0

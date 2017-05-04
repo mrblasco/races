@@ -69,6 +69,9 @@
 \usepackage{xcolor}
 \usepackage{framed}
 \colorlet{shadecolor}{orange!15}
+\usepackage{floatrow}
+\floatsetup[table]{capposition=top}
+\floatsetup[figure]{capposition=top}
 
 
 % Thresholds, limits, bounds, etc.
@@ -101,7 +104,7 @@
 University, 1737 Cambridge Street, Cambridge, MA 02138 (email:
 \href{mailto:ablasco@fas.harvard.edu}{\nolinkurl{ablasco@fas.harvard.edu}}).}}
 \author{Andrea Blasco \and Kevin J. Boudreau \and Karim R. Lakhani \and Michael Menietti}
-\date{Last updated: 26 April, 2017}
+\date{Last updated: 03 May, 2017}
 
 \begin{document}
 \maketitle
@@ -142,37 +145,37 @@ Keywords: xxxx; xxxx xxxx.
 
 \section{Introduction}\label{introduction}
 
-Organizations often use contests as incentive schemes to foster
-innovation. In an innovation contest, participants compete for prizes by
-investing time and energy in an innovation project. The typical aim of
-the contest designer is to maximize quality while minimizing the time to
-complete the innovation. Balancing between these two desirable but
-incompatible features it is often difficult. The lack of knowledge about
-individual costs and technical feasibility of the innovation may force
-contest designers to make their choices under considerable uncertainty.
-A growing literature on contest design offers insights on how to make
-better resolutions. However, while researchers have examined various
-aspects of managing this trade-off, the optimal design is still largely
-unknown.
+A contest is a competition where participants attempt to win a prize by
+investing time and energy in a project. A typical goal for contest
+designers is to maximize competitors efforts while minimizing the time
+to complete the project. Balancing between these two desirable but often
+incompatible goals is often difficult. When contest designers lack full
+knowledge of individual costs and skills, design choices are made under
+considerable uncertainty. A large economic literature on contest design
+offers insights on how to make better resolutions. However, how to
+achieve an optimal design is still a largely open question.
 
-Here, we investigate one key aspect of contest design concerning the way
-participants compete. There are two extreme forms of competition that we
-consider. One is the \emph{race} where the first to finish an innovation
-project wins. The second is the \emph{tournament} where the best
-finished project wins. To fix ideas, imagine a government designing an
-innovation contest to find a solution to a threat to the public health,
-such as the UK government on the problem of antibiotic
-resistance.\footnote{This example is taken\ldots{}} To minimize the
-risks that the threat will materialize before a solution is found, one
-choice is a tournament competition with a tight deadline for
-participants to provide their solutions. Alternatively, the government
-can use a race competition awarding a prize to the first participant
-that achieves, or goes beyond, a minimum effectiveness threshold. Fixed
-the prize, both approaches have specific advantages and limitations. If
-the duration of the competition is too low, a tournament may give
-insufficient incentives resulting in inadequate solutions. In a race
-competition, instead, timing is not an issue but participants have no
-incentives to exceed the minimum threshold.
+We investigate one key aspect of contest design which is the way people
+compete. In particular, we contrast two forms of competition with one
+another; the ``race,'' where the first to finish an innovation project
+wins; and the ``tournament,'' where the best finished project wins.
+
+One is xxx the other is xxxx. To fix ideas about this trade-off, imagine
+a government tasked with the design of an innovation contest to progress
+on finding a solution to a problem of public health, such as the problem
+of antibiotic resistance.\footnote{This example is taken\ldots{}} To
+minimize the risks that the threat of xxxx will materialize before a
+solution is found, one choice is to design the contest as a tournament
+competition with a tight deadline for participants to provide their
+solutions. However, if the duration of the competition is too low, a
+tournament may give insufficient incentives resulting in inadequate
+solutions. Alternatively, the government can set up a race competition
+with a prize being awarded to the first competitor who achieves, or goes
+beyond, a minimum quality threshold. Here the problem of accelarating
+the timing of innovation should not be a big issue but competitors may
+work inefficiently, as they have no incentives to exceed the minimum
+threshold. Clearly, fixed the prize structure, both approaches have
+specific advantages and limitations. However, xxxx.
 
 In the present study, we shed light on the conditions under which
 contest designers should choose between a race and a tournament
@@ -872,15 +875,15 @@ The experimental design is summarized by the Table XXXX.
 \begin{table}
 \centering
 \caption{Experimental design}
-\label{tab: experimental design}
-\begin{tabular}{@{}lcc}
-  \\[-1.8ex]\hline \hline \\[-1.8ex]
- & Large & Small \\ 
-  \hline \\[-1.86ex]
-Race & 60 & 39 \\ 
-  Tournament & 60 & 40 \\ 
-  Reserve & 60 & 40 \\ 
-   \\[-1.8ex]\hline \hline \\[-1.8ex]
+\label{experimental design}
+\begin{tabular}{rrrrrrrrr}
+  \\[-1.8ex]\hline\hline\\[-1.8ex]
+ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ 
+  \hline\\[-1.86ex]
+Race &   9 &  10 &  10 &  10 &  15 &  15 &  15 &  15 \\ 
+  Tournament &  10 &  10 &  10 &  10 &  15 &  15 &  15 &  15 \\ 
+  Reserve &  10 &  10 &  10 &  10 &  15 &  15 &  15 &  15 \\ 
+   \hline\\[-1.8ex]
 \end{tabular}
 \end{table}
 
@@ -901,657 +904,147 @@ treatment.
 \subsection{Data}\label{data}
 
 The bulk of our data comes from the online Topcoder's profile of each
-participant. This profile typically includes information of when the
-member registered to the platform, the current rating in a variety of
-different competitions, the number of past competitions, and so on.
-Additional demographic information, was collected via a pre-registration
-survey where competitors were asked to state their gender, age,
-geographic origin, etc. Participants were als also asked a self-reported
-measure of risk aversion {[}xxx{]} and to forecast how many hours they
-expected to compete in the next few days of the challenge(the exact
-question was: ``looking ahead xxxx'').
+participant. This profile includes the date when the member registered
+to the platform, an array of ratings measuring coder's success in past
+competitions, the number of past competitions, and so on. These data are
+summarized in FIGURE XXXX.
 
-Finally, we also asked participants to respond to a survey at the end of
-the submission phase. In this final survey, they were asked to look back
-and tell us their best estimate of the time spent working on the
-problem. Also, we gathered comments on the xxx. And questions such as
-xxxx.
+FIGURE XXXX
+
+Additional demographic information was collected via a pre-registration
+survey where competitors were asked their gender, age, geographic
+origins, education, and the most preferred programming language.
+Participants were als also asked their willingness to take risks ``in
+general'' \citep[as in][]{dohmen2011individual}. We also collected their
+forecast on the hours they expected to work on the problem in the next
+few days of the challenge\footnote{The exact question was: ``The
+  submission phase begins March 08. Looking ahead a week, how many hours
+  do you forecast to be able to work on the solution of the problem?''}.
+At the end of the submission phase, competitors were also asked to fill
+a final suvery and looking back and tell us their best estimate of the
+time spent working on the problem. Also, we gathered reactions to the
+different competition modes with questions such as xxxx.
 
 Table XXX summarizes the data.
 
 \begin{table}
 \centering
 \caption{Descriptive statistics}
-\label{tab: desc}
-\begin{tabular}{lp{4cm}rr}
-  \\[-1.8ex]\hline \hline \\[-1.8ex]
-Variable & Response Category & Frequency & P-value \\ 
-  \hline \\[-1.86ex]
-country\_name & India & 36 & 1.000 \\ 
-   & China & 31 &  \\ 
-   & United States & 31 &  \\ 
-   & Japan & 27 &  \\ 
-   & Russia & 26 &  \\ 
-   & (Other) & 148 &  \\ 
-  age & $<$20 years old & 18 & 0.893 \\ 
-   & 20-25 years old & 99 &  \\ 
-   & 26-30 years & 82 &  \\ 
-   & 31-40 years & 67 &  \\ 
-   & 41-50 years & 21 &  \\ 
-   & 51 years and above & 12 &  \\ 
-  gender & Female & 20 & 0.672 \\ 
-   & Male & 279 &  \\ 
-  educ & PhD & 31 & 0.454 \\ 
-   & High School & 37 &  \\ 
-   & Master of Arts & 111 &  \\ 
-   & Bachelor & 120 &  \\ 
-  plang & C\# & 33 & 0.640 \\ 
-   & C++ & 134 &  \\ 
-   & Java & 87 &  \\ 
-   & Other & 14 &  \\ 
-   & Python & 28 &  \\ 
-   & VB & 3 &  \\ 
-   \hline \\[-1.8ex]
+\label{descriptives}
+\begin{tabular}{lp{5cm}rrr}
+  \\[-1.8ex]\hline\hline\\[-1.8ex]
+Variable & Response Category & Frequency & Percent & P-value \\ 
+  \hline\\[-1.86ex]
+country & India & 33 & 11\% & 1.000 \\ 
+   & Russia & 28 & 9\% &  \\ 
+   & China & 27 & 9\% &  \\ 
+   & Japan & 22 & 7\% &  \\ 
+   & (Other) & 166 & 56\% &  \\ 
+   & NA's & 23 & 8\% &  \\ 
+  age & 20-25 years old & 94 & 31\% & 0.906 \\ 
+   & 26-30 years & 78 & 26\% &  \\ 
+   & 31-40 years & 64 & 21\% &  \\ 
+   & 41-50 years & 19 & 6\% &  \\ 
+   & (Other) & 23 & 8\% &  \\ 
+   & NA's & 21 & 7\% &  \\ 
+  gender & Female & 13 & 4\% & 0.505 \\ 
+   & Male & 263 & 88\% &  \\ 
+   & NA's & 23 & 8\% &  \\ 
+  educ & Doctorate/PhD & 27 & 9\% & 0.633 \\ 
+   & High School & 33 & 11\% &  \\ 
+   & Postgraduate/Master of arts & 104 & 35\% &  \\ 
+   & Undergraduate/Bachelor's degree & 114 & 38\% &  \\ 
+   & NA's & 21 & 7\% &  \\ 
+  plang & C++ & 132 & 44\% & 0.914 \\ 
+   & Java & 82 & 27\% &  \\ 
+   & C\# & 28 & 9\% &  \\ 
+   & Python & 25 & 8\% &  \\ 
+   & (Other) & 12 & 4\% &  \\ 
+   & NA's & 20 & 7\% &  \\ 
+   \hline\\[-1.8ex]
 \end{tabular}
 \begin{tablenotes}\footnotesize
-This table shows the frequency for each response category of five categorical variables for country of residence, age, gender, highest degree achieved, and preferred programming language. For each variable, a Pearson's Chi-squared test shows no evidence of dependence  between the variable and the treatments. P-values are reported in the last column.
+This table shows the frequency of each response category for five categorical variables: country of origin; age; gender; highest academic degree achieved; and most preferred programming language. A Pearson's Chi-squared test finds no association between each categorical variable and the treatments (p-values are reported in the last column).
 \end{tablenotes}
 \end{table}
 
-\begin{table}[!htbp] \centering 
-  \caption{Descriptive statistics} 
-  \label{} 
-\begin{tabular}{@{\extracolsep{5pt}}lccccc} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
-Statistic & \multicolumn{1}{c}{N} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{St. Dev.} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max} \\ 
-\hline \\[-1.8ex] 
-Algo rating & 299 & 1,051.0 & 730.0 & 0 & 2,958 \\ 
-Algo competitions & 299 & 40.6 & 57.7 & 0 & 338 \\ 
-Algo registrations & 299 & 45.7 & 64.3 & 0 & 365 \\ 
-MM rating & 205 & 1,322.0 & 425.0 & 593 & 3,071 \\ 
-MM competitions & 299 & 7.2 & 11.8 & 0 & 91 \\ 
-MM registrations & 299 & 17.6 & 23.0 & 1 & 161 \\ 
-Time zone & 299 & 2.3 & 5.1 & $-$8.0 & 10.0 \\ 
-Risk aversion & 279 & 6.4 & 2.2 & 1 & 10 \\ 
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table}
+\begin{figure}
+\centering
+\includegraphics{Figures/risk-1.pdf}
+\caption{Responses to the question about willingness to take risks ``in
+general,'' measured on an eleven-point scale.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{Figures/looking-ahead-1.pdf}
+\caption{Responses to the question about expected hours of work for
+every 2 days of the competition.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{Figures/unnamed-chunk-9-1.pdf}
+\caption{xxxx}
+\end{figure}
 
 A total of 299 competitors signed-up to take part in the challenge. They
-were all xxxx members of the platform with between 52.5416667 and
-770.547619 weeks as registered members. In terms of skill ratings, the
-distribution was highly skewed with competitors in the highest 90th
-percentile having participated in 24 more competitions than those in the
-10th percentile. Likewise skills as measured by the individual ratings,
-if there was one, had a skewed distribution with 1034 higher points than
-those in the 10th percentile; see Figure
-\ref{eq: distribution experience}.
+were all xxxx members of the platform with between NA and NA weeks as
+registered members. In terms of skill ratings, the distribution was
+highly skewed with competitors in the highest 90th percentile having
+participated in 28 more competitions than those in the 10th percentile.
+Likewise skills as measured by the individual ratings, if there was one,
+had a skewed distribution with 1034 higher points than those in the 10th
+percentile; see Figure \ref{eq: distribution experience}.
 
-\includegraphics{Figures/unnamed-chunk-8-1.pdf}
-
-Considerable geographic variation of registered participants.
-
-\includegraphics{Figures/unnamed-chunk-9-1.pdf}
-
-\clearpage
+\includegraphics{Figures/ratings-1.pdf}
 
 \section{Results}\label{results}
 
+\begin{verbatim}
+##        
+##         race tournament reserve
+##   FALSE   73         67      73
+##   TRUE    26         33      27
+\end{verbatim}
+
 In the eight-day submission period, we collected a total of 1759
-submissions made by 86 competing participants, with a median of 11
-submissions per person (between a minimum of 1 and a maximum of 126
-submissions). The response rate was higher in the Tournament group (33
-percent), followed by the Tournament w/reseve (27 percent), and the Race
-treatment (26 percent). This is consistent with our prediction
-{[}xxxxx{]}, although these differences were not statistically
-significant (a Fisher's Exact Test for Count Data gives a p-value of
-0.5255004).
-
-\begin{figure}
-\centering
-\includegraphics{Figures/unnamed-chunk-10-1.pdf}
-\caption{Participation rates by rooms}
-\end{figure}
-
-Figure xxx shows the participation rates by rooms.
+submissions made by 86 participants, with a median of 11 submissions per
+person (maximum of 126 submissions). Consistent with our prediction, the
+response rate was higher in the Tournament group (33 percent), followed
+by the Tournament w/reseve (27 percent), and the Race treatment (26
+percent). Though the association between treatment and response rates
+was not statistically significant (a Fisher's Exact Test for Count Data
+gives a p-value of 0.526).
 
 \begin{verbatim}
 ##        
-##         Race Tournament Reserve
-##   FALSE   84         81      85
-##   TRUE    15         19      15
+##         Large Small
+##   FALSE   128    85
+##   TRUE     52    34
 \end{verbatim}
 
-Similar results are found when we consider only those who made
-submissions above a score of xxxx. Participation across treatments was
-higher in the Tournament treatment (19 percent), followed by the
-Tournament w/reseve (15 percent), and the Race treatment (15.1515152
-percent). However, these differences are not statistically significant
-(using a Fisher's Exact Test for Count Data gives a p-value of
-0.6991539)
+We find no difference between participation in large or small rooms (a
+Fisher's Exact Test for Count Data gives a p-value of 1).
 
 \begin{verbatim}
-##       Race Tournament    Reserve 
-##         12          6         15
+##              race tournament reserve
+##                                     
+## Large FALSE    44         42      42
+##       TRUE     16         18      18
+## Small FALSE    29         25      31
+##       TRUE     10         15       9
 \end{verbatim}
 
-Regarding to the frequency of submissions per participant, the median
-count is larger in the race and in the tournament w/reserve (12 and 15
-respectively) compared to the Tournament (a median of 6 submissions).
-However, a Kruskal-Wallis rank sum test fails to reject the null
-hypothesis (p=0.7935069) that at least one treatment was different in
-the location of the frequency distribution of the submissions.
-
-\begin{verbatim}
-##       Race Tournament    Reserve 
-##  0.7993725  0.8054121  0.8084504
-\end{verbatim}
-
-Concerning the distribution of the scores on the last submission, the
-median final scores was higher in the Tournament w/reserve treatment
-(0.8084504), followed by the Tournament (0.8054121), and the Race
-treatment (0.7993725). As before, however, these differences are not
-statistically significant (a Kruskal-Wallis rank sum test gives a
-p-value of 0.5768076).
-
-Finally, let us focus on the timing of the first and last submission.
-xxxx
+We also find no evidence of an overall association between treatments,
+room size and participation (a Fisher's Exact Test for Count Data gives
+a p-value of 0.86).
 
 \begin{figure}
 \centering
-\includegraphics{Figures/unnamed-chunk-15-1.pdf}
-\caption{Submissions timing within the submission period}
+\includegraphics{Figures/unnamed-chunk-13-1.pdf}
+\caption{Participation rates by rooms}
 \end{figure}
-
-Here we consider the hours of the day on the 24h. We normalize the 24h
-on the unit interval (here I think we should take into account the
-different timezoes.)
-
-\begin{figure}
-\centering
-\includegraphics{Figures/unnamed-chunk-16-1.pdf}
-\caption{Submissions within the 24h (need to adjust for timezone)}
-\end{figure}
-
-\subsection{Regressions}\label{regressions}
-
-Although we do not find significant differences through an univariate
-analysis, it is possible that differences will be xxx in a multivariate
-analysis. Adding controls can indeed reduce noise and improve precisions
-of our estimates.
-
-Let's consider first a simple logistic model
-
-\begin{verbatim}
-## 
-## Call:
-## glm(formula = submit ~ treatment, family = quasibinomial, data = races)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -0.8950  -0.7934  -0.7806   1.4891   1.6353  
-## 
-## Coefficients:
-##                     Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)         -1.03236    0.22954  -4.498 9.88e-06 ***
-## treatmentTournament  0.32418    0.31365   1.034    0.302    
-## treatmentReserve     0.03774    0.32240   0.117    0.907    
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## (Dispersion parameter for quasibinomial family taken to be 1.010136)
-## 
-##     Null deviance: 358.81  on 298  degrees of freedom
-## Residual deviance: 357.49  on 296  degrees of freedom
-## AIC: NA
-## 
-## Number of Fisher Scoring iterations: 4
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Call:
-## glm(formula = submit ~ treatment + gender + educ + age + timezone + 
-##     plang, family = quasibinomial, data = races)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -1.5326  -0.8404  -0.6485   1.1677   2.0786  
-## 
-## Coefficients:
-##                       Estimate Std. Error t value Pr(>|t|)  
-## (Intercept)           -1.85331    0.99694  -1.859   0.0641 .
-## treatmentTournament    0.29774    0.33808   0.881   0.3792  
-## treatmentReserve       0.04544    0.34908   0.130   0.8965  
-## genderMale             0.33120    0.61782   0.536   0.5923  
-## educHigh School        0.80634    0.63223   1.275   0.2032  
-## educMaster of Arts     0.24274    0.49063   0.495   0.6212  
-## educBachelor           0.50505    0.51409   0.982   0.3267  
-## age20-25 years old    -0.30941    0.67573  -0.458   0.6474  
-## age26-30 years         0.53659    0.70602   0.760   0.4479  
-## age31-40 years         0.98860    0.70209   1.408   0.1602  
-## age41-50 years         0.47180    0.83142   0.567   0.5709  
-## age51 years and above  1.18986    0.91086   1.306   0.1925  
-## timezone               0.01091    0.02785   0.392   0.6955  
-## plangC++              -0.19319    0.44406  -0.435   0.6639  
-## plangJava             -0.83401    0.47535  -1.754   0.0804 .
-## plangOther            -0.44823    0.74545  -0.601   0.5481  
-## plangPython            0.21963    0.58375   0.376   0.7070  
-## plangVB                1.17339    1.35317   0.867   0.3866  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## (Dispersion parameter for quasibinomial family taken to be 1.062717)
-## 
-##     Null deviance: 358.81  on 298  degrees of freedom
-## Residual deviance: 337.25  on 281  degrees of freedom
-## AIC: NA
-## 
-## Number of Fisher Scoring iterations: 4
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Call:
-## glm(formula = submit ~ treatment + algorating + mmevents + algoevents + 
-##     totalpayments, family = quasibinomial, data = races)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -1.7129  -0.7714  -0.6440   1.0400   1.9076  
-## 
-## Coefficients:
-##                             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)               -1.503e+00  3.272e-01  -4.594 6.49e-06 ***
-## treatmentTournament        3.722e-01  3.319e-01   1.121  0.26306    
-## treatmentReserve          -1.230e-04  3.437e-01   0.000  0.99971    
-## algorating                -5.897e-05  2.276e-04  -0.259  0.79573    
-## mmevents                   3.571e-02  1.347e-02   2.652  0.00845 ** 
-## algoevents                 1.907e-03  3.090e-03   0.617  0.53766    
-## totalpayments1 - 599      -1.822e-01  4.774e-01  -0.382  0.70308    
-## totalpayments600 - 4500    2.268e-01  4.565e-01   0.497  0.61971    
-## totalpayments4500 - 37000  7.233e-01  4.270e-01   1.694  0.09132 .  
-## totalpayments>37000        4.666e-01  4.524e-01   1.031  0.30321    
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## (Dispersion parameter for quasibinomial family taken to be 1.028631)
-## 
-##     Null deviance: 358.81  on 298  degrees of freedom
-## Residual deviance: 334.04  on 289  degrees of freedom
-## AIC: NA
-## 
-## Number of Fisher Scoring iterations: 4
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Call:
-## glm(formula = submit ~ treatment + algorating + mmevents + algoevents + 
-##     totalpayments + gender + educ + age + timezone + plang, family = quasibinomial, 
-##     data = races)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -1.9661  -0.7592  -0.5971   0.9922   2.2114  
-## 
-## Coefficients:
-##                             Estimate Std. Error t value Pr(>|t|)  
-## (Intercept)               -2.127e+00  1.068e+00  -1.991   0.0474 *
-## treatmentTournament        3.496e-01  3.557e-01   0.983   0.3265  
-## treatmentReserve          -5.133e-03  3.704e-01  -0.014   0.9890  
-## algorating                -3.518e-05  2.625e-04  -0.134   0.8935  
-## mmevents                   3.499e-02  1.614e-02   2.168   0.0310 *
-## algoevents                 1.655e-03  3.340e-03   0.495   0.6207  
-## totalpayments1 - 599      -2.123e-02  5.184e-01  -0.041   0.9674  
-## totalpayments600 - 4500    2.558e-01  5.069e-01   0.505   0.6142  
-## totalpayments4500 - 37000  7.253e-01  4.684e-01   1.548   0.1227  
-## totalpayments>37000        3.604e-01  5.114e-01   0.705   0.4816  
-## genderMale                 2.562e-01  6.513e-01   0.393   0.6944  
-## educHigh School            8.285e-01  6.660e-01   1.244   0.2146  
-## educMaster of Arts         1.391e-01  5.171e-01   0.269   0.7881  
-## educBachelor               4.139e-01  5.426e-01   0.763   0.4462  
-## age20-25 years old        -2.843e-01  7.175e-01  -0.396   0.6923  
-## age26-30 years             3.448e-01  7.612e-01   0.453   0.6510  
-## age31-40 years             6.570e-01  7.646e-01   0.859   0.3909  
-## age41-50 years            -2.772e-01  9.487e-01  -0.292   0.7704  
-## age51 years and above      5.574e-01  1.016e+00   0.549   0.5836  
-## timezone                   1.169e-02  3.034e-02   0.385   0.7003  
-## plangC++                  -4.168e-02  4.723e-01  -0.088   0.9297  
-## plangJava                 -6.662e-01  4.988e-01  -1.335   0.1829  
-## plangOther                -2.348e-03  7.828e-01  -0.003   0.9976  
-## plangPython                3.378e-01  6.130e-01   0.551   0.5820  
-## plangVB                    7.596e-01  1.507e+00   0.504   0.6146  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## (Dispersion parameter for quasibinomial family taken to be 1.087974)
-## 
-##     Null deviance: 358.81  on 298  degrees of freedom
-## Residual deviance: 320.83  on 274  degrees of freedom
-## AIC: NA
-## 
-## Number of Fisher Scoring iterations: 4
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## =====================================================
-##                              Dependent variable:     
-##                          ----------------------------
-##                                     submit           
-##                               (1)            (2)     
-## -----------------------------------------------------
-## poly(mmevents, deg = 3)1   12.155***                 
-##                             (4.117)                  
-##                                                      
-## poly(mmevents, deg = 3)2     1.205                   
-##                             (6.128)                  
-##                                                      
-## poly(mmevents, deg = 3)3     8.110*                  
-##                             (4.738)                  
-##                                                      
-## poly(mmevents, deg = 2)1                   4.694*    
-##                                            (2.537)   
-##                                                      
-## poly(mmevents, deg = 2)2                   -0.212    
-##                                            (2.467)   
-##                                                      
-## poly(mmrating, deg = 2)1                  10.131***  
-##                                            (3.123)   
-##                                                      
-## poly(mmrating, deg = 2)2                   -0.942    
-##                                            (2.385)   
-##                                                      
-## Constant                   -0.961***      -1.020***  
-##                             (0.138)        (0.143)   
-##                                                      
-## -----------------------------------------------------
-## Observations                  299            299     
-## Log Likelihood              -166.358      -163.664   
-## Akaike Inf. Crit.           340.715        337.328   
-## =====================================================
-## Note:                     *p<0.1; **p<0.05; ***p<0.01
-\end{verbatim}
-
-\begin{verbatim}
-## Analysis of Deviance Table
-## 
-## Model: binomial, link: logit
-## 
-## Response: submit
-## 
-## Terms added sequentially (first to last)
-## 
-## 
-##                         Df Deviance Resid. Df Resid. Dev Pr(>Chi)    
-## NULL                                      298     358.81             
-## poly(mmevents, deg = 2)  2   20.409       296     338.40  3.7e-05 ***
-## poly(mmrating, deg = 2)  2   11.069       294     327.33 0.003947 ** 
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-\end{verbatim}
-
-\includegraphics{Figures/unnamed-chunk-18-1.pdf}
-
-This result does not seem to correlate well with the competitor's
-experience or skills, as the Pearsons's correlation coefficient between
-the count of past competitions or the rating and the count of
-submissions is positive but generally low; see Table XXX. Thus,
-differences in submissions appear idiosyncratic and perhaps related to
-the way to organize the work rather than systematically associated with
-underlying differences in experience or skills.
-
-The timing of submissions was rather uniform during the submission
-period with a peak of submissions made in the last of the competition.
-(explain more)
-
-\begin{verbatim}
-#scores$submax <- ave(races.sub$id, races.sub$handle, FUN=max)
-#par(mfrow=c(2, 1), mar=c(4,4,2,2))
-#plot(subid==1 ~ as.POSIXct(subts), data=scores, type='h', yaxt='n'
-#    , xlab='', ylab='', main='Dispersion time first submission')
-#plot(subid==submax ~ as.POSIXct(subts), data=scores, type='h'
-#    , yaxt='n', xlab='', ylab='', main='Dispersion time last submission')
-\end{verbatim}
-
-Proportions by rooms.
-
-\begin{verbatim}
-nsub <- tapply(races.sub$id, races.sub$handle, length)
-races$submit <- races$handle %in% names(nsub)
-treat <- tapply(races$treatment, races$room, unique)
-n1 <- tapply(races$submit, races$room, sum)
-n <- tapply(races$submit, races$room, length)
-p <- (n1 + 1) / (n + 2)
-SE <- sqrt(p*(1-p) / (n+2))
-CI <- cbind(p+1.96*SE, p - 1.96*SE)
-
-# All rooms
-plot(p, 1:length(p), xlim=c(-0.1, 1), yaxt='n', bty='n', ann=FALSE, col=treat, pch=16)
-segments(y0=1:length(p), x0=p+SE, x1=p-SE, col=treat, lwd=3)
-segments(y0=1:length(p), x0=CI[, 1], x1=CI[, 2], col=treat)
-text(y=1:length(p), x=p, levels(races$treatment)[treat], pos=3, cex=0.5, xpd=TRUE)
-abline(v=mean(races$submit))
-
-# Large rooms
-treat <- treat[n<15]
-p <- p[n<15]
-n <- n[n<15] 
-SE <- sqrt(p*(1-p) / (n+2))
-CI <- cbind(p+1.96*SE, p - 1.96*SE)
-plot(p, 1:length(p), xlim=c(-0.1, 1), yaxt='n', bty='n', ann=FALSE, col=treat, pch=16)
-segments(y0=1:length(p), x0=p+SE, x1=p-SE, col=treat, lwd=3)
-segments(y0=1:length(p), x0=CI[, 1], x1=CI[, 2], col=treat)
-text(y=1:length(p), x=p, levels(races$treatment)[treat], pos=3, cex=0.5, xpd=TRUE)
-abline(v=mean(races$submit))
-
-\end{verbatim}
-
-Consider panel data!
-
-\includegraphics{Figures/unnamed-chunk-20-1.pdf}
-
-\begin{verbatim}
-## 
-## Call:
-## glm(formula = id ~ day, data = subs.long)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -11.686   -4.000   -1.593    0.078   81.314  
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)    1.593      1.081   1.473    0.142    
-## day[10,12)     1.581      1.529   1.034    0.302    
-## day[12,14)     2.407      1.529   1.574    0.116    
-## day[14,16]    10.093      1.529   6.600 1.58e-10 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## (Dispersion parameter for gaussian family taken to be 100.5578)
-## 
-##     Null deviance: 39401  on 343  degrees of freedom
-## Residual deviance: 34190  on 340  degrees of freedom
-## AIC: 2568.3
-## 
-## Number of Fisher Scoring iterations: 2
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Call:
-## glm(formula = id ~ day, family = quasipoisson, data = subs.long)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -4.8345  -2.8284  -1.7850   0.0229  14.9390  
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   0.4656     0.3419   1.362   0.1742    
-## day[10,12)    0.6895     0.4191   1.645   0.1008    
-## day[12,14)    0.9207     0.4043   2.277   0.0234 *  
-## day[14,16]    1.9928     0.3645   5.467 8.87e-08 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## (Dispersion parameter for quasipoisson family taken to be 16.02175)
-## 
-##     Null deviance: 4500.3  on 343  degrees of freedom
-## Residual deviance: 3587.7  on 340  degrees of freedom
-## AIC: NA
-## 
-## Number of Fisher Scoring iterations: 6
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Call:
-## glm(formula = id > 0 ~ day, data = subs.long)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -0.7326  -0.5000   0.2674   0.4651   0.6512  
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  0.34884    0.05207   6.699 8.69e-11 ***
-## day[10,12)   0.18605    0.07364   2.526   0.0120 *  
-## day[12,14)   0.15116    0.07364   2.053   0.0409 *  
-## day[14,16]   0.38372    0.07364   5.211 3.27e-07 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## (Dispersion parameter for gaussian family taken to be 0.2331737)
-## 
-##     Null deviance: 85.709  on 343  degrees of freedom
-## Residual deviance: 79.279  on 340  degrees of freedom
-## AIC: 481.35
-## 
-## Number of Fisher Scoring iterations: 2
-\end{verbatim}
-
-Scores: xxxx
-
-\subsection{Treatment differences}\label{treatment-differences}
-
-Difference in participation by treatments are show in Table XX.
-
-\begin{verbatim}
-Fisher's Exact Test for Count Data
-\end{verbatim}
-
-data: tab p-value = 0.5255 alternative hypothesis: two.sided
-
-We find no differences in the room size.
-
-\begin{verbatim}
-Fisher's Exact Test for Count Data
-\end{verbatim}
-
-data: tab p-value = 1 alternative hypothesis: true odds ratio is not
-equal to 1 95 percent confidence interval: 0.5689643 1.6912635 sample
-estimates: odds ratio 0.9846648
-
-Ex-post
-
-Timing: early vs late
-
-Using a Chi-square test of independence, we find no significant
-differences in participation rates associated with the assigned
-treatments (p-value: 1); see Table XX.
-
-Further, we model participation rates as a logistic regression. We use a
-polynomial of third degree for the count of past competitions to account
-for non-linear effects of experience; and we use an indicator for
-whether the competitor had a win or not. Also, taking into account
-differences in ability, participation rates are not significantly
-different.
-
-\subsection{Estimation results}\label{estimation-results}
-
-Participation to the competition by treatment is shown in Figure
-\ref{fig:entry}. Participation here is measured by the proportion of
-registered participants per treatment who made any submission during the
-eight-day submission period. Recall that competitors may decide to enter
-into the competition and work on the problem without necessarily
-submitting. In a tournament, for example, competitors are awarded a
-prize based on their last submission and may decide to drop out without
-submitting anything. However, this scenario seems unlikely. In fact,
-competitors often end up making multiple submissions because by doing so
-they obtain intermediate feedback via preliminary scoring (see Section
-XXX for details). In a race, competitors have even stronger incentives
-to make early submissions as any submission that hits the target first
-wins.
-
-\begin{verbatim}
-Table xxx
-\end{verbatim}
-
-We find that the propensity to make a submission is higher in the
-Tournament than in the Race and in the Tournament with reserve, but the
-difference is not statistically significant (a Fisher's exact test gives
-a p-value of xxxxx). As discussed in Section XXX, we may not have enough
-power to detect differences below 5 percentage points. However, we find
-the same not-significant result in a parametric regression analysis of
-treatment differences with controls for the demographics and past
-experience on the platform; see Table \ref{entry}. Adding individual
-covariates reduces variability of outcomes, potentially increasing the
-power of our test. In particular, Table \ref{entry} reports the results
-from a logistic regression on the probability of making a submissions.
-Column 1 reports the results from a baseline model with only treatment
-dummies. Column 2 adds demographics controls, such as the age,
-education, and gender. Column 3 adds controls for the past experience on
-the platform. Across all these specifications, the impact of the
-treatment dummies (including room size) on entry is not statistically
-significant.
-
-\subsection{Simulation results}\label{simulation-results}
-
-\section{Empirical analysis}\label{empirical-analysis}
-
-\subsection{Estimation results}\label{estimation-results-1}
-
-Participation to the competition by treatment is shown in Figure
-\[fig:entry\]. Participation here is measured by the proportion of
-registered participants per treatment who made any submission during the
-eight-day submission period. Recall that competitors may decide to enter
-into the competition and work on the problem without necessarily
-submitting. In a tournament, for example, competitors are awarded a
-prize based on their last submission and may decide to drop out without
-submitting anything. However, this scenario seems unlikely. In fact,
-competitors often end up making multiple submissions because by doing so
-they obtain intermediate feedback via preliminary scoring (see Section
-XXX for details). In a race, competitors have even stronger incentives
-to make early submissions as any submission that hits the target first
-wins.
-
-\begin{verbatim}
-Table xxx
-\end{verbatim}
-
-We find that the propensity to make a submission is higher in the
-Tournament than in the Race and in the Tournament with reserve, but the
-difference is not statistically significant (a Fisher's exact test gives
-a p-value of~xxxx). As discussed in Section XXX, we may not have enough
-power to detect differences below 5 percentage points. However, we find
-the same not-significant result in a parametric regression analysis of
-treatment differences with controls for the demographics and past
-experience on the platform; see Table \[entry\]. Adding individual
-covariates reduces variability of outcomes, potentially increasing the
-power of our test. In particular, Table \[entry\] reports the results
-from a logistic regression on the probability of making a submissions.
-Column 1 reports the results from a baseline model with only treatment
-dummies. Column 2 adds demographics controls, such as the age,
-education, and gender. Column 3 adds controls for the past experience on
-the platform. Across all these specifications, the impact of the
-treatment dummies (including room size) on entry is not statistically
-significant.
-
-\subsection{Simulation results}\label{simulation-results-1}
 
 \renewcommand\refname{References}
 \bibliography{library.bib}

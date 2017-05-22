@@ -20,7 +20,7 @@ output_dir="$2"
 
 if [ ! -d "$output_dir" ] || [ ! -d "$config_dir" ] # Check
 then
-	echo "$1 or $2 is not a directory."
+	echo "$output_dir or $config_dir is not a directory."
 	exit $E_BADDIR
 fi
 

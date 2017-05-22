@@ -1,13 +1,16 @@
 \documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$babel-lang$,$endif$$if(papersize)$$papersize$paper,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
-\usepackage{beamerarticle}
 \usepackage[utf8]{inputenc}
+\usepackage{beamerarticle}
+
+% Todo notes
+\usepackage[textsize=tiny]{todonotes}
+
+% URLs
 \usepackage{hyperref}
 \hypersetup{%
-  colorlinks=true,% hyperlinks will be coloured
-  citecolor={blue!50!black},
-  urlcolor={blue!80!black},
-  linkcolor=blue,% hyperlink text will be green
-  linkbordercolor=blue,% hyperlink border will be red
+  colorlinks=false,% hyperlinks will be black
+  linkbordercolor=red,% hyperlink borders will be red
+  pdfborderstyle={/S/U/W 1}% border style will be underline of width 1pt
 }
 
 % Math
@@ -37,8 +40,7 @@ $endif$
 
 
 % Tables
-\usepackage{dcolumn}
-\usepackage{array,booktabs,longtable,rotating}
+\usepackage{array,booktabs,dcolumn,longtable,rotating}
 \newenvironment{tablenotes}[1][]{
   \begin{minipage}{\textwidth}\emph{Notes:}{\footnotesize #1}
 }{\end{minipage}}
@@ -149,14 +151,12 @@ $for(include-before)$
 $include-before$
 $endfor$ 
 
-% Todo notes
-%\usepackage[textsize=tiny]{todonotes}
-%\newcommand\redmarginpar[1]{\marginpar{\footnotesize{\textcolor{red}{#1}}}}
-%\listoftodos[Notes]
 \clearpage
+$if(toc)$
 \tableofcontents
 \setcounter{tocdepth}{2}
 \clearpage
+$endif$
 
 $body$
 

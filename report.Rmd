@@ -11,7 +11,7 @@ author:
     - Karim R. Lakhani
     - Michael Menietti
 
-abstract: "Contests are often used as incentive schemes to foster innovation. The typical goal of contest designers is to maximize quality while minimizing the time it takes to achieve the innovation. This situation leads to a difficult choice of design made under considerable uncertainty. In this study, we investigate one key aspect of this decision that is the way participants compete. Two extreme forms of competition are considered: the race, where the first to achieve the innovation wins, and the tournament, where the timing is not important. We develop a model to characterize under what conditions contest designers should go for one or the other approach. Then, we report the results of a field experiment conducted to compare the outcomes of three alternative competitive situations motivated by theory: the race, the tournament, and the tournament with a quality requirement. We find that outcomes in a race are of comparable quality, but are supplied faster. Based on our model, we also show what would be optimal to do under several simulated counterfactual situations."
+abstract: "We examine the performance of two different choices of contest design: the race (where the winner is the first to achieve a minimum quality) and the tournament (where the winner is the one with the highest quality in a given period). After characterizing  the optimal design, we report results of a field experiment conducted to compare the performance of three alternatives motivated by theory: the race, the tournament, and the tournament with a minimum quality requirement. Outcomes in a race are of comparable quality, supplied faster, and with lower participation rates. Based on these findings, we show the optimal design under several counterfactual situations."
 
 JEL: 
   - xxx
@@ -23,11 +23,30 @@ keywords:
   - xxxx xxxx
 
 fontsize: 12pt
-geometry: margin=1in
 ...
 
+```{r setup, echo=FALSE}
+load(".RData")
 
-```{r, child='0_config.Rmd'}
+set.seed(4881)
+
+require(knitr)
+require(magrittr)
+require(xtable)
+require(stargazer)
+
+options(digits=3, xtable.caption.placement='top', xtable.comment=FALSE)
+
+opts_chunk$set(
+	cache=TRUE,
+	echo=TRUE,
+	message=TRUE,
+	warning=TRUE,
+	error=TRUE,
+	tidy=FALSE,
+	tidy.opts=list(width.cutoff=60),
+	cache.path="Cache/",
+	fig.path="Figures/")
 ```
 
 ```{r child = '1_intro.Rmd'}
@@ -44,7 +63,10 @@ geometry: margin=1in
 
 ```{r child = '5_discussion.Rmd'}
 ```
-
+ 
+```{r session_info}	
+devtools::session_info()
+```
 
 References
 =============

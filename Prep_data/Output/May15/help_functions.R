@@ -1,33 +1,18 @@
-```{r, echo=FALSE, message=FALSE}
-load(".RData")
+#************************************************************************#
+# HELPER FUNCTIONS		 												 #
+#************************************************************************#
 
-set.seed(4881)
-require(magrittr)
-require(xtable)
-require(stargazer)
-source("help_functions.R")
+# Inverse logistic
+ilogit <- function(x) return(exp(x) / (1+ exp(x)))
 
-options(digits=3
-	, xtable.caption.placement='top'
-	, xtable.comment=FALSE)
-
-knitr::opts_chunk$set(
-  cache=TRUE,
-  echo=FALSE,
-  message=FALSE,
-  warning=TRUE,
-  error=FALSE,
-  tidy=FALSE,
-  cache.path="Cache/",
-  fig.path="Figures/")
-
-# HELPER FUNCTIONS BELOW #
-
-ilogit <- function(x) exp(x) / (1+ exp(x)) # Inverse logistic
-
+# Capitalize initials
 capitalize <- function(x) {
 	initials <- substring(x, 1, 1)
   	paste(toupper(initials), substring(x, 2), sep="")
+}
+
+compile.report <- function() {
+	system('sh compile.sh report.Rmd Paper')
 }
 
 #------------------------------------------------------------------------#
@@ -65,12 +50,14 @@ render.xtable2 <- function(x, add=NULL, ...) {
 	  , comment=FALSE
 	  , ...)
 	if (!is.null(notes)) {
-		cat("\\begin{tablenotes}\\footnotesize\n")                  
-		cat(sprintf("%s\n", notes))
-		cat("\\end{tablenotes}\n")
+		cat("\\begin{minipage}{\\textwidth}\n")                  
+		cat(sprintf("\\footnotesize\\emph{Notes:}{%s\n}", notes))
+		cat("\\end{minipage}\n")
 	}
 	cat("\\end{table}\n")   
 }
+
+
 
 
 #------------------------------------------------------------------------#
@@ -99,5 +86,4 @@ xtable.factors <- function(x, pval, ...) {
 	rownames(tab) <- rep("", nrow(tab))
 	return(xtable(tab, ...))
 }
-```
 

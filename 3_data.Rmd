@@ -1,25 +1,38 @@
 ```{r}
 races2 <- races
+source('help_functions.R')
 ```
 
 The experimental design
-=====================
+=======================
 
-The field experiment was conducted between March 2 and 16, 2016. The context of the experiment was an online programming contest. In an online programming contest,  participants compete to write source code that solves a designated problem. These contests are quite common and xxxx either as a tournament or a race competition. 
+The context
+-----------
 
-The contest was hosted on the online platform Topcoder.com. Since its launch in 2001, Topcoder.com administers on a weekly basis several competitive programming contests for thousands of competitors from all over the world. Typical assigned problems are data science problems (e.g., classification, prediction, natural language processing) that demand some background in machine learning and statistics. All Topcoder members (about 1M registered users in 2016) can compete and attain a "rating" that provides a metric of their ability as contestants. Other than attaining a rating, the competitors having made the top five submissions in a competition are typically awarded a monetary prize the extent of which depends on the nature and complexity of the problem but is generally between $5,000 and $20,000.
+The context of the experiment was an online programming competition conducted between March 2 and 16, 2016 on the online platform Topcoder.com. Registered participants were competing against one another on developing solutions to a hard Information Extraction (IE) problem. This consisted of developing source code to extract structured information from research papers on life sciences and biomedical topics. As an incentive for participation, a total prize pool of $41,000 was offered to top submissions.
 
-In this study, we worked together with researchers from the United States National Health Institute (NIH) and the Scripps Research Institute (SCRIPPS) to select a challenging problem for the experimental programming competition. The selected problem was based on an algorithm called BANNER built by NIH [@leaman2008banner] that uses expert labeling to annotate abstracts from a prominent life sciences and biomedical search engine, PubMed, so disease characteristics can be more easily identified. The goal of the programming competition was to improve upon the current NIH's system by using a combination of expert and non-expert labeling, as described by @good2014microtask.
+Since its launch in 2001, Topcoder hosts on a regular basis similar programming competitions engaging thousands of participants from all over the world (Topcoder has about 1M registered users in 2016). Typical assigned problems include classification, prediction, or natural language processing algorithms applied to datasets of various kind. In most cases, the problem is hard to solve and demands some strong background in machine learning and statistics. To encourage participation, the competition is often designed as a "tournament" where top five submissions are awarded a monetary prize the extent of which depends on the nature and complexity of the problem (generally between $5,000 and $20,000). But it is not uncommon to find competitions called "first-to-finish" that are equivalent to a race. Note that, since these two competition formats are generally employed for different problems, it is problematic using naturally occurring data to make any proper comparison of behavior across competitions. In addition to monetary incentives, all active competitors attain a "skill rating" that provides a metric of their ability as contestants and  sometimes play a role in signaling skills to potential employers. However, to better focus on the monetary incentives, our experiment was a non-rated event. 
 
-The competition was announced on the platform and to all community members via email. A preliminary online registration was required to enroll in the competition, which resulted in 340 pre-registered participants. Among the pre-registered members, we selected the 299 who had registered to a programming contest at least once before the present contest. This choice was to ensure that participants were xxxx.
+We worked together with researchers from the United States National Health Institute (NIH) and the Scripps Research Institute (SCRIPPS) to select a challenging computational problem for this competition. The selected problem was based on an algorithm called BANNER built by researchers at the NIH [@leaman2008banner] that uses expert labeling to annotate abstracts from a prominent life sciences and biomedical search engine (PubMed) so disease characteristics can be more easily identified. The goal of the programming competition was to improve upon the current NIH's system by using a combination of expert and non-expert labeling, as described by @good2014microtask.
 
-Participants were then randomly assigned to separate groups of 10 or 15 people. In each of these groups, contestants were given access to a "virtual room" that is a private web page listing handles of the other participants of the group, a leaderboard updated regularly during the competition, and a common chat that they can use to ask clarifying questions (visible to everyone in the group) with respect to the problem at hand. 
+- Why this was a good problem?
+- Efforts to find a threshold
+	+ Survey of desired threshold
+	+ Preliminary reserved competition for 4 
 
-A problem statement containing a full description of the algorithmic challenge, the rules of the game, and payoffs was published at the beginning of the submission phase. The submission phase was of 8 days in which participants could submit their computer programs. Each submission was automatically scored and feedback in the form of preliminary scores was published regularly on the website via the leaderboard.
 
-Groups were randomly assigned to one of three different competitive settings: a race, a tournament, and a tournament with a _reserve target_, which is the lowest acceptable score by the platform for a submission to be awarded a prize. 
+The design
+-----------
 
-The experimental design is summarized by the Table XXXX.
+<!-- 
+The competition was announced on the platform and to all community members via email.
+-->
+
+A xxx-day preliminary registration phase resulted in `r nrow(races)` pre-registered members.^[Here we excluded xxxx who xxxx requirements.] Registrants were then split into 24 separate rooms of either 10 or 15 people. Each room was then randomly assigned to a competitive condition.
+
+We study three competitive conditions: i) a tournament, ii) a race, and iii) a tournament with minimum-quality. In the tournament condition, the first placed competitor was the highest score at the end of the competition. In the race condition, was the first to achieve a score of xxxx. And in the tournament with reserve condition, was the highest among those achiecing a score of xxxx. The level was chosen following a pre-trail experiment with 4 competitors solving the same problem. It also reflected the desired objective of the NIH researchers xxxx.  To raise participation, additional . Note that in each condition competitors were sorted at random into 8 separate groups (four with 10 people and other four with 15 people). Hence, as shown in Table XXXX, our design generated a total of 3x8 = 24 groups.
+
+Grand prizes of xxxx were awarded to the top xxx in every conditions. 
 
 ```{r design, results='asis'}
 tab <- with(races, table(treatment, room))
@@ -28,75 +41,123 @@ xtab <- xtable(tab, caption="Experimental design", label='experimental design')
 render.xtable2(xtab)
 ```
 
-In all groups, the first placed competitor was awarded a prize of $1,000, and an additional, consolatory prize of $100 was awarded to the second one. 
+The competition was announced on the platform and to all community members via email. A preliminary online registration was required to participate, which resulted in 340 pre-registered members. Among these pre-registered members, we selected the 299 with  had registered to a programming contest at least once before the present contest. This choice was to ensure that participants were sufficiently experienced and understood the basic rules governing programming competitions.
 
-In a race competition, however, the first to achieve a score equal to xxxx was placed first. The level was chosen xxxx. 
+In each of these groups, contestants were given access to a "virtual room" that is a private web page listing handles of the other participants in the group, a leaderboard to be updated regularly during the competition, and a common chat that they can use to ask clarifying questions with respect to the problem at hand.
 
-In a tournament, xxxx. 
-
-Finally, in a tournament with reserve,  xxxx. 
-
-Additional grand prizes of xxxx were awarded to the top xxx in every treatment.
+A problem statement containing a full description of the algorithmic challenge, the rules of the game, and payoffs was published at the beginning of the submission phase. The submission phase was of 8 days in which participants could submit their computer programs. Each submission was automatically scored and feedback in the form of preliminary scores was published regularly on the website via the leaderboard.
 
 Data
 -----
 
-The bulk of our data comes from the online Topcoder's profile of each participant. This profile includes the date when the member registered to the platform, an array of ratings measuring coder's success in past competitions, the number of past competitions, and so on. These data are summarized in FIGURE XXXX. 
+```{r data}
+percent  <- function(x, digits=0, ...) {
+	round(100 * x, digits, ...)
+}
+difftime2 <- function(...) {
+	as.numeric(difftime(...))
+}
+attach(races)
+rated <- !is.na(mm_rating)
+years <- difftime2("2015-03-01", member_date, units='days')/365 
+event_py <- mm_reg / years
+tothours <- week1 + week2 + week3 + week4
 
-FIGURE XXXX
+# Default kernel density estimation
+density2 <- function(x, ...) density(x, bw='nrd', kernel='gaussian', ...)
 
-Additional demographic information was collected via a pre-registration survey where competitors were asked their gender, age, geographic origins, education, and the most preferred programming language. Participants were als also asked their willingness to take risks "in general" [as in @dohmen2011individual]. We also collected their forecast on the hours they expected to work on the problem in the next few days of the challenge^[The exact question was: "The submission phase begins March 08. Looking ahead a week, how many hours do you forecast to be able to work on the solution of the problem?"]. At the end of the submission phase, competitors were also asked to fill a final suvery and looking back and tell us their best estimate of the time spent working on the problem. Also, we gathered reactions to the different competition modes with questions such as xxxx. 
+# Skill rating
+rating_l <- split(mm_rating[rated], treatment[rated])
+rating_l.pdf <- lapply(rating_l, density2, from=500)
+rating_l.test <- kruskal.test(rating_l)
 
-Table XXX summarizes the data.
+rating.fig.cap <- sprintf("This picture shows kernel density estimates of the distribution of the skill ratings for each competitive condition. For testing whether samples originate from the same distribution we use a %s that gives a pvalue of %0.3f. Thus, we do not reject the null hypothesis of the data being drawn from the same distribution in each condition.\\label{skill rating pdf}", rating_l.test$method, rating_l.test$p.value)
 
-```{r descriptive, results='asis'}
-vars <- c("country", "age", "gender", "educ", "plang")
-foo <- sapply(races[, vars], function(x) summary(x, maxsum=6))
-balance.test <- function(x) chisq.test(table(x, races$treatment) + 1, simul=TRUE)$p.val 
-foo.pval <- sapply(races[, vars], balance.test)
+# Risk aversion
+nomiss <- !is.na(risk)
+risk_l <- split(risk[nomiss], treatment[nomiss])
+risk_l.pdf <- lapply(risk_l, density2, from=0, to=10)
+risk_l.test <- kruskal.test(risk_l)
 
-xtab <- xtable.factors(foo, foo.pval)
-caption(xtab) <- "Descriptive statistics"
-label(xtab) <- "descriptives"
-align(xtab) <- c("{}l","l","p{5cm}","r","r","r")
+risk.fig.cap <- sprintf("This picture shows kernel density estimates of the distribution of the responses to the question about willingness to take risks \"in general\" measured on an eleven-point scale for individuals in each competitive condition. For testing whether samples originate from the same distribution we use a a %s that gives a pvalue of %0.3f. Thus, the null hypothesis of the data being drawn from the same distribution cannot be rejected.\\label{risk aversion}", risk_l.test$method, risk_l.test$p.value)
 
-attributes(xtab)$notes <- "This table shows the frequency of each response category for five categorical variables: country of origin; age; gender; highest academic degree achieved; and most preferred programming language. A Pearson's Chi-squared test finds no association between each categorical variable and the treatments (p-values are reported in the last column)."
 
-render.xtable2(xtab, include.rownames=FALSE)
+# Total hours
+nomiss <- !is.na(tothours)
+tothours_l <- split(log(tothours[nomiss]), treatment[nomiss])
+tothours_l.pdf <- lapply(tothours_l, density2, from=0)
+tothours_l.test <- kruskal.test(tothours_l)
+
+tothours.fig.cap <- sprintf("This picture shows kernel density estimates of the distribution of the estimated total hours of work in each competitive condition. For testing whether samples originate from the same distribution we use a a %s that gives a pvalue of %0.3f. Thus, the null hypothesis of the data being drawn from the same distribution cannot be rejected.\\label{tothours pdf}", tothours_l.test$method, tothours_l.test$p.value)
+
 ```
 
-```{r risk, fig.height=6, fig.cap="Responses to the question about willingness to take risks \"in general,\" measured on an eleven-point scale."}
-tab <- table(factor(races$risk, levels=0:10))
-barplot(tab, xlab="Responses to general risk question\n(0=not at all willing, 10=very willing)", ylab="Respondents")
+For each registered competitor, we collected basic platform data including the time of the initial membership registration and statistics about participation in past programming competitions.  The large majority (`r percent(mean(rated))` percent) were rated members with a median membership period of `r round(median(years[rated]))` years and a median of `r median(mm_reg[rated])` registrations to past competitions (about `r median(event_py[rated])` competitions per year) of which `r median(mm_events[rated])` with submissions. The rest were unrated members being on the platform for a median of `r round(median(years[!rated]))` years with a median of `r median(mm_reg[!rated])` registrations and no submissions.
+
+A key variable to measure was expected ability of competitors. We examined several proxies. For rated competitors, a sensible measure was the skill rating earned for the performance in past competitions. This measure is based on a version of the Elo system used in Chess, which is used by Topcoder to rank-order competitors at the end of each challenge. As shown in Figure \ref{skill rating pdf}, the skill rating distribution is right-skewed reflecting the presence of a few competitors with very high skill ratings compared to the average.^[This right-skewed property is not specific of our sample but seems to hold more generally for the distribution of skill ratings of the entire platform.] The figure also shows that the distribution of skill ratings was the same in all three competitive conditions. We examined other proxies including the count of past wins, top ten positions, and the total prize money won while being a member of the platform. Though complete for both rated and unrated individuals in our sample, these other proxies contain less information about expected ability because most competitors have never won or earned a prize.
+
+```{r skill-rating-density, fig.cap=rating.fig.cap}
+plot.density <- function(list, ...) {
+	xlim <- range(sapply(list, function(x) range(x$x)))
+	ylim <- range(sapply(list, function(x) range(x$y)))
+	legend.names <- capitalize(names(list))
+	plot.new()
+	plot.window(xlim=xlim, ylim=ylim, ...)
+	sapply(1:3, function(i) lines(list[[i]], lty=i, lwd=2))
+	legend("topright", bty='n', legend.names, lty=1:3)
+	xseq <- pretty(seq(xlim[1], xlim[2], length=20))
+	axis(1, at=xseq, labels=xseq)
+}
+plot.density(rating_l.pdf)
+title("Skill rating distribution")
+```
+
+Additional demographic information was collected via a pre-registration survey where competitors were asked their gender, age, geographic origins, education, and the most preferred programming language. We also asked their willingness to take risks "in general," as a measure of risk aversion [@dohmen2011individual] and a forecast on how many hours they expected to be able to work on the problem in the next few days of the challenge.^[The exact question was: "The submission phase begins March 08. Looking ahead a week, how many hours do you forecast to be able to work on the solution of the problem?"]
+As shown in Figure \ref{risk aversion}, individuals reported being more willing to take risks than not (the median response was `r median(risk[!is.na(risk)])` out of 10) and prepared to work on the problem a median of `r median(tothours, na.rm=T)` hours in total over the eight day submission period. 
+
+
+```{r risk, fig.cap=risk.fig.cap}
+plot.density(risk_l.pdf)
+title("Willingness to take risks in general (risk aversion)")
+mtext("Responses to general risk question\n(0=not at all willing, 10=very willing)", 1, 3)
+mtext("Respondents", 2, 3)
+```
+
+```{r tothours-density}
+plot.density(tothours_l.pdf)
+title("Expected total hours of work (in logs)")
 ```
 
 ```{r looking-ahead, fig.cap="Responses to the question about expected hours of work for every 2 days of the competition."}
 with(races, boxplot(week1, week2, week3, week4, notch=TRUE, xlab="Days of the competition\n(1=first 2 days, 4=last 2 days)", ylab="Expected hours of work"))
 axis(1, 1:4)
+# t.test(week1, week4) # wilcox.test(week1, week4)
 ```
 
-```{r, fig.cap='xxxx'}
-# Ratings per room?
-with(races, hist(mm_events/mm_reg, main=NA, xlab="With-submission over registered-only competitions")) # With submission over registered
-```
 
-```{r}
-diff.days <- function(time1, time2, ...) {
-  as.numeric(difftime(time1, time2, units='days', ...))
+
+```{r balanced}
+# Variables
+demo <- cbind(age, gender, educ, plang, risk, tothours)
+skills <- cbind(mm_reg, mm_events, mm_rating, nwins, ntop10, paid)
+
+# Tests balanced covariates
+test.balanced.categ <- function(x, ...) {
+ 	chisq.test(table(x, races$treatment), ...)$p.val 
 }
-Total <- function(x) sum(x)
+test.balanced <- function(x, ...) {
+	miss <- is.na(x)
+	l <- split(x[!miss], races$treatment[!miss])
+	kruskal.test(l, ...)$p.val
+}
 
-# Weeks at the start of the competition
-start_date <- as.Date("2016-03-02")
-week_diff <- NA
-
-quantile(races$mm_events, p=c(0.1, 0.9), na.rm=TRUE) -> rounds_qtl
-quantile(races$mm_rating, p=c(0.1, 0.9), na.rm=TRUE) -> rating_qtl
+pval.categ <- apply(demo, 2, test.balanced, simul=TRUE)
+pval <- apply(skills, 2, test.balanced, simul=TRUE)
 ```
 
-A total of `r nrow(races)` competitors signed-up to take part in the challenge.  They were all xxxx members of the platform with between `r min(week_diff)` and `r max(week_diff)` weeks as registered members. In terms of skill ratings, the distribution was highly skewed with competitors in the highest 90th percentile having participated in `r diff(rounds_qtl)` more competitions than those in the 10th percentile. Likewise skills as measured by the individual ratings, if there was one, had a skewed distribution with `r round(diff(rating_qtl))` higher points than those in the 10th percentile; see Figure \ref{eq: distribution experience}. 
 
-```{r ratings, fig.width=9, fig.height=9}
-require(car)
-spm(~ mm_rating+mm_events+algo_rating+algo_events, data=races, pch=16)
-```
+The three experimental groups did not differ significantly in terms of the distribution of pre-treatment covariates. Using a Kruskal-Wallis rank sum test we find no difference in the distribution of participation measures (registrations, submissions) and ability proxies (skill rating, wins, top ten positions, earnings) across treatments (the lowest p-value was `r min(pval)`). Likewise, using a Pearson's Chi-squared test we find no association between each categorical variable (age, gender, education, programming language, risk attitudes,^[Risk attitudes can be also modeled as a continuous variable and tested using the Kruskal-Wallis rank sum test. Results of this test are reported in Figure \ref{risk aversion}.] and expected total hours of work) and treatments (the lowest p-value was `r min(pval.categ)`). Hence, the randomization was successful in keeping pre-treatment variables balanced across competitive conditions.
+
+<!-- 
+At the end of the submission phase, we administered a final survey asking competitors an assessment of the time spent working on the problem, how difficult the problem was, and  how much they would have worked on the problem if we had doubled or halved the prize pool.
+ -->

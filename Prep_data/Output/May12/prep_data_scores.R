@@ -4,7 +4,7 @@ rm(list=ls())
 
 # Data 
 input <- "Data/submissions.csv"
-output <- "Data/races_scores.RData"
+output <- "races_scores.RData"
 subs.raw    <- read.csv(input)
 
 # Correct variables 

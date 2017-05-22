@@ -1,0 +1,168 @@
+# pre-registered = 336
+# assigned = 299
+# platform data = 299
+# NOT merged with registration data = 0
+# NOT merged with platform data = 0
+17 May, 2017
+Start Date
+End Date
+Response Type
+IP Address
+Progress
+Duration (in seconds)
+Finished
+Recorded Date
+Response ID
+Recipient Last Name
+Recipient First Name
+Recipient Email
+External Data Reference
+Distribution Channel
+Please enter your Topcoder handle
+Browser Meta Info - Browser
+Browser Meta Info - Version
+Browser Meta Info - Operating System
+Browser Meta Info - Resolution
+Gender
+Age
+Highest academic degree achieved
+What is your most preferred programming language?
+Please enter your current employment/academic status
+Please select the country in which you were born
+In which timezone you will reside during this competition
+Rate your willingness to take risks in general (from 1 "unwilling" to 10 "completely willing"):
+The submission phase for Banner begins March 08. Looking ahead a week, how... - The 1st and 2nd day of the submission phase - The submission phase for Banner begins March 08. Looking ahead a week, how many hours do you forecast to be able to work on the solution of the problem? - The 1st and 2nd day of the submission phase - An integer from 0 to 48 hours
+The submission phase for Banner begins March 08. Looking ahead a week, how... - The 3rd and 4th day of the submission phase - The submission phase for Banner begins March 08. Looking ahead a week, how many hours do you forecast to be able to work on the solution of the problem? - The 3rd and 4th day of the submission phase - An integer from 0 to 48 hours
+The submission phase for Banner begins March 08. Looking ahead a week, how... - The 5th and 6th day of the submission phase - The submission phase for Banner begins March 08. Looking ahead a week, how many hours do you forecast to be able to work on the solution of the problem? - The 5th and 6th day of the submission phase - An integer from 0 to 48 hours
+The submission phase for Banner begins March 08. Looking ahead a week, how... - The 7th and 8th day of the submission phase - The submission phase for Banner begins March 08. Looking ahead a week, how many hours do you forecast to be able to work on the solution of the problem? - The 7th and 8th day of the submission phase - An integer from 0 to 48 hours
+Start Date
+End Date
+Response Type
+IP Address
+Progress
+Duration (in seconds)
+Finished
+Recorded Date
+Response ID
+Recipient Last Name
+Recipient First Name
+Recipient Email
+External Data Reference
+Location Latitude
+Location Longitude
+Distribution Channel
+Please enter your Topcoder handle
+Browser Meta Info - Browser
+Browser Meta Info - Version
+Browser Meta Info - Operating System
+Browser Meta Info - Resolution
+What is your best
+estimate of the hours worked on the problem? - The 1st and 2nd day of the submission phase - An integer from 0 to 48 hours
+What is your best
+estimate of the hours worked on the problem? - The 3rd and 4th day of the submission phase - An integer from 0 to 48 hours
+What is your best
+estimate of the hours worked on the problem? - The 5th and 6th day of the submission phase - An integer from 0 to 48 hours
+What is your best
+estimate of the hours worked on the problem? - The 7th and 8th day of the submission phase - An integer from 0 to 48 hours
+If the room prize award was 2x (doubled) how would your
+number of hours spent solving the problem have changed?
+If the room prize award was 0.5x (halved) how would your number of hours spent solving the problem have changed?
+Could you list one ore more machine
+learning approaches you have used to solve the problem?
+In some rooms there was a target score of 817,866, how hard was for you to
+achieve a score equal or above 817,866 on the system data in this marathon match?
+In some of the rooms prizes were awarded to the first to reach a target score, as in a race. Give us your thoughts on competing in a
+race as opposed to a regular marathon match. Consider elements [engagement,
+planning required ahead of time, perception of competition, amount of effort
+exerted, quality of submissions, fairness]
+If you missed this question at the registration. Please, rate your willingness to take risks in general (from 1 "unwilling" to 10 "completely willing"):
+Please choose a T-shirt size:
+Enter the mailing address where you want us to ship the T-shirt: - Name
+Enter the mailing address where you want us to ship the T-shirt: - Address
+Enter the mailing address where you want us to ship the T-shirt: - Address 2
+Enter the mailing address where you want us to ship the T-shirt: - City
+Enter the mailing address where you want us to ship the T-shirt: - State
+Enter the mailing address where you want us to ship the T-shirt: - Postal Code
+Enter the mailing address where you want us to ship the T-shirt: - Country
+17 May, 2017
+        handle       submission       timestamp                  
+ JRSSKumarD: 126   Min.   :  1.00   Min.   :2015-03-08 12:54:25  
+ all_random: 118   1st Qu.:  8.00   1st Qu.:2015-03-12 06:38:14  
+ sas4eka   :  87   Median : 19.00   Median :2015-03-14 10:05:17  
+ rado42    :  80   Mean   : 26.64   Mean   :2015-03-13 19:12:06  
+ kubapb    :  79   3rd Qu.: 37.00   3rd Qu.:2015-03-15 16:42:54  
+ Psyho     :  58   Max.   :126.00   Max.   :2015-03-16 11:59:45  
+ (Other)   :1211                                                 
+  provisional         final       
+ Min.   :     0   Min.   :     0  
+ 1st Qu.:791572   1st Qu.:780240  
+ Median :806000   Median :796733  
+ Mean   :777875   Mean   :767185  
+ 3rd Qu.:814107   3rd Qu.:805351  
+ Max.   :846359   Max.   :843962  
+                  NA's   :25      
+[1] "17 May, 2017"
+    coder_id          treatment        room       room_size  
+ Min.   :  1.0   race      : 99   Min.   :1.000   Large:180  
+ 1st Qu.: 75.5   tournament:100   1st Qu.:3.000   Small:119  
+ Median :150.0   reserve   :100   Median :5.000              
+ Mean   :150.0                    Mean   :4.913              
+ 3rd Qu.:224.5                    3rd Qu.:7.000              
+ Max.   :299.0                    Max.   :8.000              
+                                                             
+  member_date            algo_reg       algo_rating    algo_events    
+ Min.   :2001-05-26   Min.   :  0.00   Min.   :   0   Min.   :  0.00  
+ 1st Qu.:2007-09-29   1st Qu.:  2.00   1st Qu.: 551   1st Qu.:  1.50  
+ Median :2010-10-08   Median : 20.00   Median :1062   Median : 19.00  
+ Mean   :2010-05-10   Mean   : 45.75   Mean   :1051   Mean   : 40.62  
+ 3rd Qu.:2013-04-01   3rd Qu.: 60.50   3rd Qu.:1533   3rd Qu.: 52.00  
+ Max.   :2015-02-28   Max.   :365.00   Max.   :2958   Max.   :338.00  
+                                                                      
+     mm_reg         mm_rating      mm_events           paid          
+ Min.   :  1.00   Min.   : 593   Min.   : 0.000   Min.   :     25.0  
+ 1st Qu.:  3.00   1st Qu.:1027   1st Qu.: 0.000   1st Qu.:    578.9  
+ Median :  9.00   Median :1278   Median : 2.000   Median :   4500.0  
+ Mean   : 17.63   Mean   :1322   Mean   : 7.161   Mean   :  52912.8  
+ 3rd Qu.: 25.00   3rd Qu.:1566   3rd Qu.: 9.000   3rd Qu.:  36270.9  
+ Max.   :161.00   Max.   :3071   Max.   :91.000   Max.   :1283276.0  
+                  NA's   :94                      NA's   :160        
+     nwins             ntop10         lastround                       age    
+ Min.   : 0.0000   Min.   : 0.000   Min.   :2006-12-06   <20 years old  :12  
+ 1st Qu.: 0.0000   1st Qu.: 0.000   1st Qu.:2014-02-14   20-25 years old:94  
+ Median : 0.0000   Median : 0.000   Median :2014-12-23   26-30 years    :78  
+ Mean   : 0.2809   Mean   : 1.565   Mean   :2014-03-10   31-40 years    :64  
+ 3rd Qu.: 0.0000   3rd Qu.: 1.000   3rd Qu.:2015-02-19   >40 years      :30  
+ Max.   :27.0000   Max.   :64.000   Max.   :2015-02-23   NA's           :21  
+                                    NA's   :89                               
+    duration                                    educ      finished  
+ Min.   :   46.0   Doctorate/PhD                  : 27   False:  1  
+ 1st Qu.:  122.0   High School                    : 33   True :279  
+ Median :  173.0   Postgraduate/Master of arts    :104   NA's : 19  
+ Mean   :  660.3   Undergraduate/Bachelor's degree:114              
+ 3rd Qu.:  270.5   NA's                           : 21              
+ Max.   :79539.0                                                    
+ NA's   :19                                                         
+    gender             country       plang          risk       
+ Female: 13   India        : 33   C#    : 28   Min.   : 1.000  
+ Male  :263   Russia       : 28   C++   :132   1st Qu.: 5.000  
+ NA's  : 23   China        : 27   Java  : 82   Median : 7.000  
+              Japan        : 22   Other : 12   Mean   : 6.391  
+              United States: 19   Python: 25   3rd Qu.: 8.000  
+              (Other)      :147   NA's  : 20   Max.   :10.000  
+              NA's         : 23                NA's   :20      
+   startdate                      timezone          week1       
+ Min.   :2015-03-02 12:27:39   Min.   :-8.000   Min.   : 0.000  
+ 1st Qu.:2015-03-03 01:05:43   1st Qu.: 1.000   1st Qu.: 4.000  
+ Median :2015-03-03 11:03:06   Median : 2.000   Median : 6.000  
+ Mean   :2015-03-03 20:58:52   Mean   : 2.115   Mean   : 7.675  
+ 3rd Qu.:2015-03-04 19:15:53   3rd Qu.: 5.500   3rd Qu.:10.000  
+ Max.   :2015-03-05 18:01:02   Max.   :10.000   Max.   :48.000  
+ NA's   :19                    NA's   :22       NA's   :22      
+     week2            week3            week4       
+ Min.   : 0.000   Min.   : 0.000   Min.   : 0.000  
+ 1st Qu.: 3.000   1st Qu.: 4.000   1st Qu.: 4.000  
+ Median : 5.000   Median : 5.000   Median : 8.000  
+ Mean   : 7.047   Mean   : 7.543   Mean   : 9.058  
+ 3rd Qu.:10.000   3rd Qu.:10.000   3rd Qu.:10.000  
+ Max.   :48.000   Max.   :48.000   Max.   :48.000  
+ NA's   :22       NA's   :21       NA's   :22      

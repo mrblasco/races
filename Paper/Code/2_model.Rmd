@@ -6,15 +6,15 @@ We now generalize the contest game introduced by @moldovanu2001optimal to a situ
 Basic setup
 ------------
 
-A generalized contest game is an n-player game with asymmetric information in which each player ($i=1,..., n$) competes against the others to win a prize. Players assign a nonnegative value $v_k$ to each prize ($k=1, ..., q$) that is decreasing in the prize rank  ($v_1\geq v_2\geq ...\geq v_q$). Each player's strategy consists in choosing an output quality $y_i$ and a timing $t_i$ both nonnegative numbers that determine player $i$'s probability  $p_{k}(y_i, t_i)$ of winning a prize $k$.
+A generalized contest game is an $n$-player game with asymmetric information in which each player ($i=1,..., n$) competes against the others to win a prize. Players assign a nonnegative value $v_k$ to each prize ($k=1, ..., q$) that can be ordered as $v_1\geq v_2\geq ...\geq v_q$. A player strategy consists in choosing an output quality $y_i$ and a timing $t_i$ both nonnegative numbers that determine the probability  $p_{k}(y_i, t_i)$ of winning a prize $k$.
 
-Each player incurs a production cost $c_i$ that is shaped by a cost function $C(\cdot)$ which is increasing in quality and decreasing in timing. The cost function also depends on an individual ability parameter $a_i$ that is private information of each player and that is drawn at random from a common distribution $F$ on a finite interval $[\lotype, \hitype]$ with $\lotype>0$.^[This assumption rules out common parametric distributions like the log-normal and forces us to focus the analysis on beta-type distributions. However, results do not hinge on this particular assumption.] For simplicity, we assume the cost function is multiplicative:
+Each player incurs production costs as determined by a cost function $C(\cdot)$ which is  increasing in quality and decreasing in timing. The cost function also depends on an individual ability parameter $a_i$ that is private information of each player and is drawn at random from a common distribution $F$ on a bounded interval $[\lotype, \hitype]$ with $\lotype>0$.^[This assumption rules out common parametric distributions like the log-normal and forces us to focus the analysis on beta-type distributions. However, results do not hinge on this particular assumption.] For simplicity, we assume the cost function is multiplicative:
 \begin{equation}
   C(a_i, y_i, t_i) = c_a(a_i) c_y(y_i) c_t(t_i)
 \end{equation}
 with $c_a(\cdot)$ and $c_t(\cdot)$ being monotonic decreasing functions (the higher the ability or the time to complete, the lower the cost) and $c_{y}(\cdot)$ being a monotonic increasing function (the higher the quality, the higher the cost). We impose additional conditions to ensure nonnegative costs
 \[
-	c_{a}(\hitype)>0, c_{t}(\lotype)>0, \text{ and } c_{y}(\lotype)\geq 0.
+	c_{a}(\hitype)>0, c_{t}(\deadline)>0, \text{ and } c_{y}(\target)> 0.
 \]
 
 Player $i$'s payoff is then
@@ -24,40 +24,43 @@ Player $i$'s payoff is then
   \pi_i = \sum_{k=1}^{q} p_{k}(y_i, t_i) v_k - C(a_i, y_i, t_i). 
 \end{equation}
 
-And we can denote a (generalized) contest game $G$ by 
+Using the above notation, we denote a (generalized) contest game $G$ with
 \begin{equation}
 G \equiv \left\{
-    n, q, \{v_k\}_{k=1}^{q},  F, C, \{p_{k}\}_{k=1}^{q} 
+    n, \{v_k\}_{k=1}^{q},  F, C, \{p_{k}\}_{k=1}^{q} 
   \right\}.
 \end{equation}
 
-When players have to successfully meet a given deadline and/or satisfy a minimum quality level to be eligible to win a prize, we say that the contest game $G$ has a minimum-entry requirement. Let $\deadline>0$ be the deadline and $\target\geq 0$ the required minimum performance. A game $G$ has a minimum-entry requirement when, for every prize $k$ and player $i$, the probability $p_{k}(\cdot, \cdot)=0$ when player $i$'s quality is below a target level $q_i < \target$ or the timing to completion is above a given deadline $t_i>\deadline$. To simplify exposition, we further use the convention that whenever the deadline is not met $t_i> \deadline$ then the output quality is zero $y_i=0$, and whenever the required quality is not met $y_i<\target$ then the time of completion is above the deadline $t_i = \infty$. This simply ensures that when one of the entry-requirements is not met by a player, the player has a zero probability of winning a prize. 
+When players have to meet a time deadline and/or satisfy a minimum quality level to be eligible to win a prize, we say that a contest game $G$ has a "minimum-entry requirement." That is, a contest $G$ has a minimum-entry requirement if, whenever player $i$'s quality is below a target level $q_i<\target$ or the completion time is above a given deadline $t_i>\deadline$, then player $i$'s probability of winning a prize $k$ is zero $p_{k}(\cdot, \cdot)=0$. To simplify exposition later, we use the convention that whenever a deadline requirement is not met then the output quality is zero, and whenever the required quality is not met then the completion time is infinity $t_i = \infty$. This simply ensures that players who did not meet any minimum requirement are always ranked last in the contest.
 
-Using the above notation, we define a tournament as a contest game with the following characteristics. 
+After having introduced a general contest game, we now define tournaments and races as particular cases of it using the following notation: let $y_{(1:n-1)}, ..., y_{(n-1:n-1)}$ and $t_{(1:n-1)}, ..., t_{(n-1:n-1)}$ denote the order statistics of the $y$'s and the $t$
+'s for the $n-1$ opponents of player $i$. A tournament has the following characteristics. 
 
 \begin{definition}[Tournament] \label{tournament}
-Let $y_{(1:n-1)}, ..., y_{(n-1:n-1)}$ denote the order statistics of the $y$'s for the $n-1$ opponents of player $i$. A tournament is a contest game $G$ with a minimum-entry requirement $\deadline>0$ where player $i$'s probability of winning a prize is zero when $t_i > \deadline$. Otherwise, when $t_i\leq\deadline$, the probability is 
+A tournament is a contest game $G$ with a minimum-entry requirement $\deadline>0$ and $\target=0$ where player $i$'s probability of winning a prize is 
 \begin{equation}
-  p_{i, k} =
+  p_{k}(y_i, t_i) =
   \begin{cases}
     \Pr(y_i > y_{n-1:n-1}) & \text{if }k=1\\
     \Pr(y_{n-k+1:n-1} > y_i > y_{n-k:n-1}) & \text{if }k>1.
   \end{cases}
 \end{equation}
+when $t_i\leq\deadline$, and it is zero otherwise. 
 \end{definition}
 
-In other words, the tournament corresponds to a special case of a contest game with minimum-entry requirement in which players have a deadline to meet and the player having achieved the highest output quality within the deadline gets the first prize, the player having achieved the second highest output quality gets the second prize, and so on. 
+In other words, the tournament is a special case of a contest game with minimum-entry requirement in which players have a deadline to meet and the player having achieved the highest output quality within the deadline gets the first prize, the player having achieved the second highest output quality gets the second prize, and so on. 
 
-In a similar way, we describe a race as a contest game with the following characteristics.
+In a similar way, we define a race competition. 
 
-\begin{definition}[Race] Let $t_{(1:n-1)}, ..., t_{(n-1:n-1)}$ denote the order statistics of the $t$'s for the $n-1$ opponents of player $i$.  A race is a contest game $G$ with a minimum-entry requirement $\target>0$ where player $i$'s probability of winning a prize is zero if $y_i < \target$. Otherwise, when $y_i\geq \target$, the probability is
+\begin{definition}[Race] A race is a contest game $G$ with a minimum-entry requirement $\target>0$ and $\deadline=\infty$ where player $i$'s probability of winning a prize is 
 \begin{equation}
-  p_{i, k} =
+  p_{k}(y_i, t_i) =
   \begin{cases}
     \Pr(t_i < t_{1:n-1}) & \text{if }k=1\\
     \Pr(t_{1-k:n-1} > t_i > t_{k:n-1}) & \text{if }k>1.
   \end{cases}
 \end{equation}
+when $y_i < \target$ and it is zero otherwise.
 \end{definition}
 
 That is, the race corresponds to a special case where the player being the first to complete a job with a minimum quality gets the first prize, the player being the second to complete a job with a minimum quality gets the second prize, and so on.
@@ -65,13 +68,22 @@ That is, the race corresponds to a special case where the player being the first
 Equilibrium
 -------------
 
-In this section, we solve the model for the equilibrium actions of players. We assume throughout that there are only two prizes of total value normalized to one, where the fraction $\alpha\geq 1/2$ goes to the first placed competitor and $1-\alpha$ goes to the second placed competitor. We also let $F_{r:n}$ and $f_{r:n}$ be the distribution and density function of the $r^{th}$ order statistic (i.e., the $r^{th}$ lowest realization) of $n$ draws from the ability distribution (i.e., the $a$'s).
+In this section, we solve the model for the XXX XXX equilibrium of players. We assume throughout that there are only two prizes of total value normalized to one, where the fraction $\alpha\geq 1/2$ goes to the first placed competitor and $1-\alpha$ goes to the second placed competitor. We also let $F_{r:n}$ and $f_{r:n}$ be the distribution and density function of the $r^{th}$ order statistic (i.e., the $r^{th}$ lowest realization) of $n$ draws from the ability distribution (i.e., the $a$'s).
 
 ### Equilibrium in a tournament
 
-Because the probability of winning a prize in a tournament is not affected by the completion time (as soon as the deadline is met), picking a completion time equal to the deadline ($t_i=\deadline$) is a (weakly) dominant strategy for each player. Hence, from the point of view of the contest designer, imposing a more distant deadline has the same effect as a reduction in the marginal costs for everyone (i.e., proportional to the cost $\ctime(\deadline)$). [Alternatively, it can be seen as a reduction in the total value of prizes.] 
+At equilibrium, each player $i$ chooses $y_i$ and $t_i$ by maximizing $E[U]$... 
 
-Following @moldovanu2001optimal, the (unique) symmetric equilibrium for each player $i$ is the timing $t_i^*=\deadline$ and the output quality $y_i^*=y^*(a_i)$ with the function
+The key observation is that the probability of winning a prize in a tournament is affected by the completion time only when deadline is missed (it is zero in that case), otherwise the probability is a constant with respect ot completion time. As a result, picking  $t_i=\deadline$ is a (weakly) dominant strategy for each player. This also means that, from the point of view of the contest designer, imposing a more distant deadline has the same effect as a reduction in the marginal costs for every participant competitor. [This should go later] Then, the equilibrium $y_i$ must xxx a monotonic function $y^*()$ with an inverse $\phi()$ which satisfies the first-order differential equation
+\begin{align} \label{foc0}
+0 = & \alpha f_{(1:N-1)}(\phi) \phi^{\prime} 
+	+ (1-\alpha)\phi^{\prime}\{[1 - F_{(1:N-1)}(\phi)]f_{(1:N-2)}(\phi) + \nonumber\\
+    & + f_{(1:N-1)}(\phi) F_{(1:N-2)}(\phi)\} 
+    - c_{a}(a) c_{y}(\target) c_{t}^{\prime}(t_i)
+\end{align}
+subject to the boundary condition  $\phi(0) = \lotype$ (i.e., the lowest-ability competitor's optimal output quality is zero). 
+
+As shown by @moldovanu2001optimal, the solution is 
 \begin{equation} \label{ystar}
 y^*(a_i) = 
 	\cscore^{-1}
@@ -93,54 +105,42 @@ and
       + f_{(n-1:n-1)}(x) F_{(n-1:n-2)}(x)
     \right\}.
 \end{equation}
-An important property of \eqref{ystar} is that it has its upper bound in XXXX and
-lower bound in $y^*(\lotype) = 0$. Also, equilibrium output quality is monotonic
-increasing in the agent's ability [see @moldovanu2001optimal]. Thus, using $\phi$ to denote the inverse function, the above equilibrium strategy is obtained by solving the first-order differential equation:
-\begin{align}
-	\label{foc0}
-0 = & \alpha f_{(1:N-1)}(\phi) \phi^{\prime} 
-	+ (1-\alpha)\phi^{\prime}\{[1 - F_{(1:N-1)}(\phi)]f_{(1:N-2)}(\phi) + \nonumber\\
-    & + f_{(1:N-1)}(\phi) F_{(1:N-2)}(\phi)\} - c_{a}(a) c_{y}(\target) c_{t}^{\prime}(t_i)
-\end{align}
-with boundary condition $\phi(0) = \lotype$ (i.e., the lowest-ability competitor's optimal output quality is zero). 
-
-Also, monotonicity of the equilibrium output quality implies that, for every $i=1, ..., n$, the equilibrium expected payoff from the contest $\pi_i^*$ depends on the rank of the player's ability relative to the others. That is, the equilibrium payoff is $\pi_i^*=\pi^*(a_i)$ with 
+ 
+Monotonicity of the equilibrium output quality implies that, for every $i=1, ..., n$, the equilibrium expected payoff from the contest $\pi_i^*$ depends on the rank of the player's ability relative to the others. As a result, the equilibrium expected payoff net of costs is
 \begin{equation} 
-	\pi^*(a_i) = \alpha F_{n:n}(a_i) + (1-\alpha)[1-F_{n:n}(a_i)] F_{n-1:n-1}(a_i)  
-	- C(y^*(a_i), \deadline, a_i),
+	R(a_i) = \alpha F_{n:n}(a_i) + (1-\alpha)[1-F_{n:n}(a_i)] F_{n-1:n-1}(a_i).
 \end{equation}
-where  $\pi^*(0) = 0$ and $\pi^*(\hitype) = \alpha - C(y^*(\hitype), \deadline, \hitype)>0$.
+
 
 ### Equilibrium in a race
 
-In a similar way, one can derive the equilibrium strategy in a race. Because any quality that is below the minimum-entry requirement $\target$ will give a zero probability of winning and any quality that is above $\target$ is costly but gives a constant probability of winning, player $i$'s choice of optimal quality $y^*$ is either zero (with $t_i=\deadline$ by convention) or $y^*=\target$.
+In a similar way, one can derive the equilibrium strategy in a race. Again the key observation is that any quality below the target gives a zero probability of winning and any quality  above the target gives a constant probability of winning. Thus, player $i$'s choice of optimal quality $y^*$ is either zero (with $t_i=\deadline$ by convention) or $y^*=\target$.
 
-The (unique) symmetric equilibrium for player $i$ is the xxxxx when $xxxx$ and xxxx. 
-\begin{equation}
-t^* = 
-	XXXX
+Then, the equilibrium xxx for player $i$ is 
+\begin{equation} \label{tstar}
+t^*(a_i) = 
+	\ctime^{-1}
+	\left[\ctime(\deadline) 
+	+ \frac{1}{\cscore(\target)}
+	\left(\alpha \int_{a_i}^{\hitype} A^\prime(z) dz
+	  + (1-\alpha) \int_{a_i}^{\hitype} B^\prime(z)  dz
+	\right)
+	\right]
 \end{equation}
 where
 \begin{equation}
-  A(x) = XXXX
+  A(x) = \frac{1}{c_{a}(x)} f_{(n-1:n-1)}(x)
 \end{equation}
 and
 \begin{equation}
-  B(x) = XXXX.
+	B(x) = \frac{1}{c_{a}(x)} \left\{
+      		\left[1- F_{(n-1:n-1)}(x)\right]f_{(n-1:n-2)}(x)
+      		+ f_{(n-1:n-1)}(x) F_{(n-1:n-2)}(x)
+    \right\}.
 \end{equation}
 
 An important property of XX is that $y^*(a_i)$ has its upper bound in XX and
-lower bound in XX. Also, equilibrium output quality is monotonic
-increasing in the agent’s ability [see @moldovanu2001optimal]. Thus, for
-every $i=1, ..., n+1$, the equilibrium expected reward depends only on
-the rank of his ability relative to the others. Using ${F_{A_{r:n}}}$ to
-denote the distribution of the $r$’th order statistic of abilities gives
-
-
-
-Hence, by setting to zero and solving for the ability, gives the
-marginal ability ${\underline a}$ as
-
+lower bound in XX. Again payoffs are xxxx. Hence, by setting to zero and solving for the ability, gives the marginal ability ${\underline a}$ as
 \begin{equation}
   {\underline a}= h(n, V, F_A, C, d).
 \end{equation}

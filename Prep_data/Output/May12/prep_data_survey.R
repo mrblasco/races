@@ -10,6 +10,7 @@ clean.handle <- function(x) {
 	return(x)
 }
 
+output.file <- "races_survey.RData"
 input <- "Data/Qualtrics/BANNER_registration_April+24%2C+2017_11.20.csv"
 
 # Load data
@@ -22,11 +23,14 @@ dat.raw <- dat.raw[-c(1,2), ]
 # Correct variables
 handle <- factorize(clean.handle(dat.raw$handle))
 age <- factorize(dat.raw$age)
+levels(age)[levels(age)=="41-50 years"] <- ">40 years"
+levels(age)[levels(age)=="51 years and above"] <- ">40 years"
 country <- factorize(dat.raw$cntry)
 levels(country) <- gsub("^[A-Z]{2} - ","", levels(country))
 educ <- factorize(dat.raw$Q19)
 gender <- factorize(dat.raw$gender)
 plang <- factorize(dat.raw$Q21)
+levels(plang)[levels(plang)=="VB"] <- "Other"
 finished <- factorize(dat.raw$Finished)
 employ <- as.character(dat.raw$Q22)
 startdate <- strptime(dat.raw$StartDate,'%Y-%m-%d %H:%M:%S')
@@ -46,11 +50,4 @@ index <- tapply(1:nrow(survey), survey$handle, head, 1)
 rownames(index) <- NULL
 survey <- survey[index, ]
 
-save(survey, file="Data/races_survey.RData")
-# pie(table(country))
-# pie(table(plang))
-# pie(table(educ))
-# pie(table(age))
-# pie(table(gender))
-# barplot(table(risk))
-# hist(duration/60) # Minutes
+save(survey, file=output.file)

@@ -1,11 +1,11 @@
 pdf_document:
-  toc: true
-  keep_tex: true
+  toc: false
+  keep_tex: false
   fig_crop: false
   fig_width: 7
   fig_height: 6
   fig_caption: true
-  highlight: kate
+  highlight: tango #kate
   template: Templates/template.latex
   includes:
     in_header: Templates/header.tex
@@ -13,5 +13,5 @@ pdf_document:
 #    after_body:    Templates/doc_suffix.tex
   pandoc_args: [
       "--bibliography", "library.bib"
-      , "--natbib"
+#      , "--natbib"
     ]

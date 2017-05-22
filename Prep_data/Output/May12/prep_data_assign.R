@@ -1,9 +1,23 @@
-# % Dataset preparation Races vs Tournament
-# % Andrea Blasco <ablasco@fas.harvard.edu>
-format(Sys.time(), '%d %B, %Y')
+#!/usr/bin/env Rscript
 rm(list=ls())
+
+#*****************************************#
+# Dataset preparation Races vs Tournament #
+# Andrea Blasco <ablasco@fas.harvard.edu> #
+#*****************************************#
+
+output.file <- "races_assign.RData"
+
+#*****************************************#
+#  Helper functions
+#*****************************************#
 clean.handle <- function(x) {
 	x <- trimws(tolower(x))
+	return(x)
+}
+impute.zero <- function(x) {
+	if (!is.numeric(x)) stop("Variable is not numeric!")
+	x[is.na(x)] <- 0
 	return(x)
 }
 
@@ -16,6 +30,7 @@ assign.raw  <- rbind(read.csv("Data/Assignment/race.csv")
               , read.csv("Data/Assignment/tournament.csv")
               , read.csv("Data/Assignment/reserve.csv"))
 
+# Correct format
 handle <- clean.handle(as.character(reg.raw$handle))
 member_date <- as.Date(strptime(reg.raw$create_date, format='%m/%d/%Y', tz=''))
 algo_rating <- as.numeric(reg.raw$algorating)
@@ -24,9 +39,16 @@ algo_reg <- as.numeric(reg.raw$algoreg)
 mm_rating <- as.numeric(reg.raw$mmrating)
 mm_events <- as.numeric(reg.raw$mmevents)
 mm_reg <- as.numeric(reg.raw$mmreg)
+paid <- !is.na(reg.raw$totalpayments)
 
-coders <- data.frame(handle, member_date, algo_reg, algo_rating, algo_events, mm_reg, mm_rating, mm_events)
+# Consistent data
+mm_events 	<- impute.zero(mm_events)
+mm_reg 		<- impute.zero(mm_reg)
+algo_events <- impute.zero(algo_events)
+algo_reg 	<- impute.zero(algo_reg)
 
+# Data frame
+coders <- data.frame(handle, member_date, algo_reg, algo_rating, algo_events, mm_reg, mm_rating, mm_events, paid)
 
 # Assignment
 handle <- clean.handle(assign.raw$handle)
@@ -43,4 +65,4 @@ index <- tapply(1:nrow(races), races$handle, head, 1)
 rownames(index) <- NULL
 races <- races[index, ]
 
-save(races, file="Data/races_assign.RData")
+save(races, file=output.file)

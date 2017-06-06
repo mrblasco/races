@@ -1,0 +1,133 @@
+Questions & Answers -- Forum (Race)
+=====================================
+
+Here is a list of  FAQs that can be useful for this competition.
+
+**How do I know if I am the first to achieve the target score?**
+
+Every 48 hours Topcoder will compute the score on the system test data for *every* submissions, and will tell you by email when the target score has been achieved by someone in your room.
+
+**What type of score really matters to be eligible for a prize: preliminary or system?**
+
+Only scores based on the system test data count! Topcoder will compute such scores every 48 hours, and will tell you by email when the target score has been achieved by someone in your room.
+
+**How do I know if I am the first to achieve the target score across all rooms and to be eligible for the grand prizes?**
+
+Only at the end of the competition, Topcoder will announce the winners of the grand prizes. 
+
+**Can I communicate with Topcoder members assigned to other rooms?**
+
+No, you are not allowed to discuss any of the details of your room with other members of the community before 03/16, when competition ends.
+
+**Can I use the Forum to discuss individual performances or the outcomes in my room?**
+
+No, you are not allowed to discuss any of the details of your room in the forums. But you are allowed to post questions about the problem statement. If you are not sure on whether it is appropriate to post a particular question,  please contact  [Jin Paik](mailto:jpaik@iq.harvard.edu).
+
+**If I have any question about my individual performance, the competition rules or the prizes, whom should I contact?**
+
+For any question please contact  [Jin Paik](mailto:jpaik@iq.harvard.edu).
+
+**What happens if some of my submissions achieved the target score, but the more recent ones scored below the target? Can I still be eligible for prizes?**
+
+Yes. If any of your submissions, even the less recent ones, have achieved a score greater than or equal to the target score, then you are eligible for the prizes.
+
+**What happens if no one in my room achieves the target score?**
+
+If none of the submissions in your room achieve the target score, no money prizes will be awarded in your room.
+
+**What happens if I have 2 or more submissions that would qualify for both room prizes?** 
+
+You can win at most one room prize. So, if more than one of your submissions qualify for both room prizes, you will be awarded the first prize only. 
+
+**What criteria were used to pin down the target score?**
+
+The value of the target score has been selected based on combined feedback from testers and problem stakeholders, and it is meant to be *feasible* (it can be achieved in the due time),  *challenging* (not all competitors will be able to demonstrate the target score) and *useful* (an improvement of the algorithm beyond the target score is classified as "useful" by the problem stakeholders).
+
+**Question about BANNER: To what extent this problem refers to [DNorm](http://www.ncbi.nlm.nih.gov/CBBresearch/Lu/jbi14corpus.pdf)?**
+
+DNorm is a system that uses BANNER, so while there are some tangential relationships between the contest and DNorm, the contest is not at all about DNorm. 
+
+BANNER locates spans of text that reference a disease (the problem of named entity recognition). This gives you the text used to refer to the disease, and its surrounding context, but does not tell you which disease is the one being mentioned. Identifying the disease is what DNorm does, the contest is only about what BANNER does.
+
+**Question about BANNER: What is the [NCBI disease corpus data](http://www.ncbi.nlm.nih.gov/CBBresearch/Dogan/DISEASE/) and how it relates with the data in this match?**
+
+The NCBI disease corpus data is a dataset of annotated abstracts that we use for training and provisional scoring in this marathon match. Note, however, that the system test data is not based on the same dataset, so trying to overfit the provisional score would not help in final scoring.
+
+
+---------------------------------
+
+Questions & Answers -- Forum (Tournament)
+=====================================
+
+Here is a list of  FAQs that can be useful for this competition.
+
+**How do I know if I am the best across all rooms?**
+
+Only at the end of the competition, Topcoder will announce the winners of the grand prizes. 
+
+**Can I communicate with Topcoder members assigned to other rooms?**
+
+No, you are not allowed to discuss any of the details of your room with other members of the community before 03/16, when competition ends.
+
+**Can I use the Forum to discuss individual performances or the outcomes in my room?**
+
+No, you are not allowed to discuss any of the details of your room in the forums. But you are allowed to post questions about the problem statement. If you are not sure on whether it is appropriate to post a particular question,  please contact  [Jin Paik](mailto:jpaik@iq.harvard.edu).
+
+**If I have any question about my individual performance, the competition rules or the prizes, whom should I contact?**
+
+For any question please contact  [Jin Paik](mailto:jpaik@iq.harvard.edu).
+
+**Question about BANNER: To what extent this problem refers to [DNorm](http://www.ncbi.nlm.nih.gov/CBBresearch/Lu/jbi14corpus.pdf)?**
+
+DNorm is a system that uses BANNER, so while there are some tangential relationships between the contest and DNorm, the contest is not at all about DNorm. 
+
+BANNER locates spans of text that reference a disease (the problem of named entity recognition). This gives you the text used to refer to the disease, and its surrounding context, but does not tell you which disease is the one being mentioned. Identifying the disease is what DNorm does, the contest is only about what BANNER does.
+
+**Question about BANNER: What is the [NCBI disease corpus data](http://www.ncbi.nlm.nih.gov/CBBresearch/Dogan/DISEASE/) and how it relates with the data in this match?**
+
+The NCBI disease corpus data is a dataset of annotated abstracts that we use for training and provisional scoring in this marathon match. Note, however, that the system test data is not based on the same dataset, so trying to overfit the provisional score would not help in final scoring.
+
+-------------------------------------------
+
+Questions & Answers - Forum (Tournament w/reserve)
+=======================================
+
+Here is a list of  FAQs that can be useful for this competition.
+
+**How do I know if my score is greater than the target score?**
+
+Every 48 hours Topcoder will compute the score on the system test data for *every* submissions, and will tell you by email when the target score has been achieved by someone in your room.
+
+**What type of score really matters to be eligible for a prize: preliminary or system?**
+
+Only the score based on the system test data counts!
+
+**Can I communicate with Topcoder members assigned to other rooms?**
+
+No, you are not allowed to discuss any of the details of your room with other members of the community before 03/16, when competition ends.
+
+**Can I use the Forum to discuss the outcomes of other competitors in my room?**
+
+No, you are not allowed to discuss any of the details of your room in the forums. But you are allowed to post questions about the problem statement. If you are not sure on whether it is appropriate to post a particular question,  please contact  [Jin Paik](mailto:jpaik@iq.harvard.edu).
+
+**If I have any question about my individual performance, the competition rules or the prizes, whom should I contact?**
+
+For any question please contact  [Jin Paik](mailto:jpaik@iq.harvard.edu).
+
+**What happens if no one in my room achieves the target score?**
+
+If none of the submissions in your room achieve the target score, no money prizes will be awarded in your room.
+
+**What criteria were used to pin down the target score?**
+
+The value of the target score has been selected based on combined feedback from testers and problem stakeholders, and it is meant to be *feasible* (it can be achieved in the due time),  *challenging* (not all competitors will be able to demonstrate the target score) and *useful* (an improvement of the algorithm beyond the target score is classified as "useful" by the problem stakeholders).
+
+**Question about BANNER: To what extent this problem refers to [DNorm](http://www.ncbi.nlm.nih.gov/CBBresearch/Lu/jbi14corpus.pdf)?**
+
+DNorm is a system that uses BANNER, so while there are some tangential relationships between the contest and DNorm, the contest is not at all about DNorm. 
+
+BANNER locates spans of text that reference a disease (the problem of named entity recognition). This gives you the text used to refer to the disease, and its surrounding context, but does not tell you which disease is the one being mentioned. Identifying the disease is what DNorm does, the contest is only about what BANNER does.
+
+**Question about BANNER: What is the [NCBI disease corpus data](http://www.ncbi.nlm.nih.gov/CBBresearch/Dogan/DISEASE/) and how it relates with the data in this match?**
+
+The NCBI disease corpus data is a dataset of annotated abstracts that we use for training and provisional scoring in this marathon match. Note, however, that the system test data is not based on the same dataset, so trying to overfit the provisional score would not help in system scoring.

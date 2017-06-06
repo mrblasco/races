@@ -1,0 +1,28 @@
+---
+title: "Notebook: Races vs Tournament"
+date: "Last updated: `r format(Sys.time(), '%d %B, %Y')`"
+output:
+  pdf_document:
+    toc: true
+    template: ~/Templates/Pandoc/boyd.latex
+...
+
+```{r setup, echo=FALSE, message=FALSE}
+knitr::opts_chunk$set(
+	cache=TRUE,
+	echo=TRUE,
+	message=FALSE,
+	warning=FALSE,
+	error=TRUE,
+	tidy=TRUE,
+	tidy.opts=list(width.cutoff=60),
+	cache.path="Cache/",
+	fig.path="Figures/")
+
+
+child_docs <- setdiff(list.files(".", pattern='*.Rmd'), "_note.Rmd")
+```
+
+```{r child = child_docs}
+```
+ 

@@ -1,0 +1,56 @@
+# Descriptive statistics
+
+Table XXX shows summary statistics. It also provides p-values from Kruskal-Wallis non-parametric test, showing no evidence of systematic differences across the three treatment groups (the lowest p-value was xxxx). Hence, our randomization appears successful.
+
+
+```{r}
+# Library
+require(xtable)
+require(races)
+
+# Load data
+data(races)
+attach(races)
+
+# Define help functions
+balance.test <- function(x) {
+	l <- split(x, treatment)
+	kruskal.test(l)$p.val
+}	
+nomiss <- function(x) sum(!is.na(x))
+
+# New variables
+year <- as.numeric(format(member_date, '%Y'))
+month <- as.numeric(format(member_date, '%m'))
+hours <- week1 + week2 + week3 + week4
+rating <- mm_rating
+submissions <- mm_events
+registrations <- mm_reg
+lpaid  <- log(paid)
+
+# Dataset
+dat <- data.frame(year, month, rating, submissions, registrations, lpaid, nwins, ntop10, risk, hours, timezone)
+
+# Compute summary statistics
+mu <-sapply(dat, mean, na.rm=TRUE)
+q50 <-sapply(dat, median, na.rm=TRUE)
+std <-sapply(dat, sd, na.rm=TRUE)
+pval <- sapply(dat, balance.test)
+n <- sapply(dat, nomiss)
+
+# Render table
+tab <- cbind(mu, q50, std, n, pval)
+colnames(tab) <- c("Mean", "Median", "St.Dev.", "Obs.", "P-value")
+xtab <- xtable(tab)
+digits(xtab) <- c(rep(0, ncol(tab)), 3)
+align(xtab) <- c("@{}l", rep("r", ncol(tab)))
+caption(xtab) <- "Summary statistics"
+label(xtab) <- "summary"
+
+detach(races)
+```
+
+
+```{r, results='asis'}
+render.xtable(xtab)
+```

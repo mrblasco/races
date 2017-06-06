@@ -1,0 +1,113 @@
+\documentclass[serif]{amsart}
+
+% ------------------------------------------------------------%
+\title{Races vs. Tournaments?}
+\date{First Version:~April 10, 2014\\
+    Last updated:~\today}
+\author{Andrea Blasco}
+\thanks{Institute Quantitative Social Sciences and Nasa Tournament Laboratory}
+% ------------------------------------------------------------%
+\begin{document} 
+\maketitle 
+
+\section{The Model}
+Consider $N$ agents competing for a prize. Agent's $i$ cost for submitting a solution is $\theta_i$ 
+
+
+\section{Assumptions}
+Consider a set $N =\{ 1,2,..., n\}$ of risk-neutral agents.  Agents ability is a random variable $a\in[0,1]$ with a beta-family probability mass function  $f_{[0,1]}(a;\alpha,\beta)$, that is iid across agents.
+Consider that the quality of a solution is $q \in [0,\infty)$ and the time to produce a  solution of a given quality is represented by a continuous real-valued function
+\[
+	t(a,q) = a^{\gamma} \cdot q^{\delta}  
+\]
+with $\gamma<0$ so that the partial derivative of time with respect to ability $t^{\prime}(a)<0$ if $q\neq 0$ and $\delta>0$ so that the partial derivative of time with respect to quality $t^{\prime}(q)>0$. 
+\footnote{Here the idea is that agents commit resources at the beginning of the race in order to deliver a solution of a given quality by a certain time. It's clear that if any of the opponents wins the race, this means that the others will have some free time ex-post. Our assumption throught the paper is that this extra-time is a cost that cannot  cannot be reinvested. 
+In a more general model, we can assume that ...   }
+Agents' cost of time of development is represented by strictly increasing function $c(t(a,q)) =  C \cdot t(a,q)^{\kappa}$, and with no loss of generality we set $\kappa=1$.
+
+
+
+% ------------------------------------------------------------  %
+ %% RACE 
+% ------------------------------------------------------------  %
+\subsection{Race}
+The first agent to develop a solution that hits $q\geq \bar q$ is awarded a prize $v>0$.
+Under these rules, an agent $i$'s ex-post utility is:
+\[
+U_i = \left\{  
+	\begin{array}{cl}
+		v - c(t(a_i,q_i)) & if q_i \geq \bar q ~ and ~ t(a_i,q_i) < t(a_j,q_j)~\forall j \in N_i =\{k \in N/{i}:q_k\geq\bar q\} \\
+		-  c(t(a_i,q_i))  & otherwise 	
+	\end{array}
+\right.
+\] 
+At an interim stage, the agent learns his type $a_i$ and has to decide how much quality to develop (or equivalently how much time to develop a solution of a given quality).
+The maximization problem is (forget about ties): 
+\[
+	\max_{q_i\in A} ~ \mathbf{1}_{(q_i\geq \bar q)}\cdot \Pr( t(a_i,q_i) < \min\{t(a_j,q_j)\}_{j \in N_k} | a_i ) \cdot v - c(t(a_i,q_i))
+\]
+where $\mathbf{1}()$ is an indicator function.
+Note, fixed other agents' strategies, it is easy to show that the above problem reduces to a binary decision on $q\in\{0,\bar q\}$, as all other actions are (strictly) dominated. Indeed, the probability of winning is non-increasing in quality for any level $q_i>\bar q$ and recall that costs are strictly increasing in $q_i$. So this can be rewritten:
+\[
+	\max_{q_i\in \{0,\bar q\}} ~ \mathbf{1}_{(q_i = \bar q)}\cdot F_{A}(a_i > a_j)^{n-1} \cdot v - c(t(a_i,q_i))
+\]
+
+Furthermore, because the above expresion is monotone in $a_i$, we can simply look at a the marginal agent to pin down a threshold level of ability $\hat a$ above which all agents are going to bid $q^* = \bar q$ and below which they will bid $q^* = 0$. That is,
+\[
+	v \cdot \left( \frac{B(\hat a,\alpha,\beta)}{B(\alpha,\gamma)}\right)^{n-1}  = C \cdot \hat a^{\gamma} \cdot \bar q^{\delta}   
+\]
+which simplifies to the following remarkably simple expression if we assume that abilities are distributed uniformly on the unit interval:
+\[
+	 \hat a  = \left( \frac {C \cdot \bar q ^\delta}{v}\right)^{1/(n-1-\gamma)}
+\]
+notice that when $\delta / (n-1-\gamma) > 1 $, the threshold grows exponentially in $\bar q$, whereas when $\delta / (n-1-\gamma) <1 $ it grows logarithmically (or linear for the equal). This has a clear interpretation ... 
+ 
+
+For a principal, the problem is the following:
+\[
+	w_{race} =  \Pr(\max \{q_i\}_{i \in N } = \bar q)\cdot (\bar q - v)
+\]
+which for the uniform unit interval case becomes:
+\[
+	w_{race} =  \left[ 1 -  \left(\frac{C \cdot \bar q ^\delta}{v}\right)^{n/(n-1-\gamma)}  \right] \cdot (\bar q - v)
+\]
+
+% ------------------------------------------------------------  %
+ %% ALL PAY AUCTION
+% ------------------------------------------------------------  %
+\section{Equilibrium in the All-pay tournament}
+The problem here is the following:
+\[
+	\underset{q}{\arg\max} \qquad v \cdot \Pr\left( q_i  > \max \{q_j\}_{j\neq i}) \right) - c(t(a_i,q_i))
+\]
+and by following M-S (for $n>2$ and uniform unit interval) we have:
+\[
+	q_{allpay}^* =  \left(\frac{n-1}{n-1+\gamma} v  \cdot a^{n-1+\gamma}\right)^{1/\delta}
+\]
+ 
+\section{Which one is betterd?}
+We are in the shoes of a ``principal'' i.e., sponsor/crowdsourcing platform.
+First, suppose the principal does not care about time per se, but only as a mean to provide good incentives to participants or to save costs. 
+Second, the principal wants to max the expected \emph{max} quality. Third, the principal needs to optimally set the incentives. For example, in a race the problem of a principal is:
+\[
+	\max_{\rho \leq 1} ~ \hat{w}^{races} = w/V =  \left\{1 - [1-F(\bar x(\rho))]^{N} \right\} \cdot (\rho  - 1)
+\]
+On the other hand, in a tournament the only parameter to change is $V$. 
+First, given the bidding function, we want to know the expected min cost in the race:
+\[
+	F(\min(x,y)<k) = F(x<k)*F(y<k) = F(k)^2
+\]
+Hence, for N=2,
+\[
+	\int_{t_min}^1 F(k)^2 d k = \int_{t_m}^1  \frac{k-t_m}{1-t_m} dk   	=  \frac{1 - t_m}2 
+\]
+And the expected max value  is 
+\[
+	\hat w^{allpay} = w/V =  \frac{log(2/(1-t_m))}{1-t_m}  - 1
+\]
+
+
+\section{Description of the data}
+
+ 
+\end{document}

@@ -1,0 +1,200 @@
+```{r results}
+require(xtable)
+attach(races)
+
+# New Vars
+levels(treatment) <- capitalize(levels(treatment))
+tothours <- week1 + week2 + week3 + week4
+nsub <- submission
+rated <- !is.na(mm_rating)
+
+#****************************************#
+# Participation rates
+#****************************************#
+p <- round(100*tapply(submit, treatment, mean))
+p.table <- table(submit, treatment)
+p.test <- fisher.test(p.table)
+
+# p. between large & small rooms
+p.size <- round(100*tapply(submit, room_size, mean), 1)
+p.size.table <- table(submit, room_size)
+
+#****************************************#
+# TABLE "by rooms"
+#****************************************#
+table.rooms <- function() {
+	stats <- function(x) c(length(x), sum(x>0), sum(x))
+	m <- aggregate(submission ~ room + treatment, FUN=stats)
+	tab <- data.frame(m[, "treatment"], m[, 3])
+	colnames(tab) <- c("Treatment", "N", "Participants", "Submissions")
+	xtab <- xtable(tab, caption='Outcomes by rooms', label='outcomes', digits=0)
+	align(xtab) <- c("@{}l", rep("m{2cm}", ncol(tab)))
+	render.xtable(xtab)
+}
+``` 
+
+Results
+=======
+
+```{r}
+table(submit, treatment)
+```
+
+We obtained a total of `r sum(nsub)` submissions made by `r sum(submit)` participating coders (`r round(mean(100*submit))` percent of the sample). Our theoretical model predicts that participation should be higher in the tournament condition compared to the other two forms of competition. Consistent with this prediction, the overall response rate in the Tournament condition (`r p["Tournament"]` percent) was higher compared to that in the Race (`r p["Race"]` percent) and in the Reserve (`r p["Reserve"]` percent) condition. Though these differences were considerable,  a `r p.test$method` failed to reject the null hypothesis of independence (p-value=`r p.test$p.value`). Hence, our data were only in part consistent with theory.
+
+```{r}
+# Regression
+fit <- glm(submit ~ treatment*log(mm_rating), family=binomial(probit))
+summary(fit)
+
+pch <- as.character(as.numeric(treatment))
+plot(submit  ~ mm_rating, pch="|", ylab="Participation", xlab="Skill rating")
+x.20 <- seq(600, 3000, length=20)
+sapply(1:3, function(i) {
+	nd <- data.frame(mm_rating=x.20, treatment=levels(treatment)[i])
+	yhat <- predict(fit, newdata=nd, type='response')
+	lines(x.20, yhat, lty=i) # Race
+})
+legend("left", levels(treatment), lty=1:3, bty='n')
+```
+
+
+```{r, results='asis'}
+table.rooms()
+```
+
+To understand xxxx, we now specify a logistic regression model for the conditional probability of entry ($Y_i=1$) given the assignment $(Z_i=1,2,3)$  and a matrix of control variables ($X_i$):
+
+\begin{equation}
+	\Pr(Y_i = 1 \mid X_i=x, Z_i=z) = \Lambda (xxxx...) 
+\end{equation}
+
+
+
+```{r, fig.height=3}
+# Predictions
+plot.predictions <- function(fit, ...) {
+	yhat <- predict(fit)
+	plot(yhat, jitter(fit$y), pch=21, xlim=c(-2, 2), col=ifelse(yhat>0,2,1), ann=FALSE)
+	curve(ifelse(x>0, 1, 0), add=TRUE)
+	mtext('outcomes (jittered)', 2, 3)
+	mtext('estimates', 1, 3)
+}
+#par(mfrow=c(1, 3))
+#plot.predictions(fit$m1.race); title("Race")
+#plot.predictions(fit$m1.tour); title("Tournament")
+#plot.predictions(fit$m1.rese); title("Reserve")
+```
+
+
+```{r}
+# Skill rating distribution | entry
+# No difference
+i <- submit & rated
+rating_l <- split(mm_rating[i], treatment[i])
+rating_l.pdf <- lapply(rating_l, density)
+#plot.density(rating_l.pdf)
+kruskal.test(rating_l) # pval=0.433 
+t.test(rating_l$Race, rating_l$Tournament) # pval=0.67
+```
+
+
+### Room size
+
+Our model also predicts lower participation for individuals in large rooms (15 competitors) compared to those in small rooms (10 competitors). Under the model, the "marginal type" is increasing in group size and so the individual probability of entry is lower. However, our data proved only negligible differences in participation between large (`r p.size['Large']` percent) and small rooms (`r p.size['Small']` percent).  Additionally, we found no significant treatment differences conditional on the room size being large or small (xxxxx). Hence, one may conclude that a group-size difference of 5 people is probably not large enough to be impactful.
+
+```{r}
+# Testing size!
+#tab <- table(room_size, submit, treatment)
+#fisher.test(tab[,,'race'])
+#fisher.test(tab[,,'tournament'])
+#fisher.test(tab[,,'reserve'])
+#ftable(tab)
+```
+
+```{r nsub-pdf}
+detach(races)
+
+# Differences in submission distribution
+i <- which(names(races)=='submission')
+scores2 <- merge(scores, races[, -i], by='coder_id', all.x=TRUE)
+scores3 <- aggregate(submission ~ coder_id + treatment, data=scores2, FUN=max)
+
+nsub_l <- split(log(scores3$submission), scores3$treatment)
+nsub_l.pdf <- lapply(nsub_l, density, from=0)
+nsub_l.test <- kruskal.test(nsub_l)
+
+# T-test has more power than Kruskal or Wilcox
+t.test(nsub_l$race, nsub_l$tournament)
+wilcox.test(nsub_l$race, nsub_l$tournament)
+
+# Bimodal distribution
+#plot.density(nsub_l.pdf)
+#title("Submissions distribution (in logs)")
+#xlab <- pretty(seq(1, 150, length=10))
+
+submissions <- races$submission
+```
+
+
+The median submission per participant was of `r median(submissions)` submissions, with a minimum of `r min(submissions)` and a maximum of `r max(submissions)` submissions.
+
+
+```{r, include=FALSE, fig.width=5, fig.height=7, fig.cap="Participation rates by rooms"}
+x <- aggregate(submit ~ treatment + room + room_size, sum, data=races)
+x$size <- ifelse(x$room_size=='Large', 15, 10)
+x.l <- split(x, x$treatment)
+par(mfrow=c(3, 1), mar=c(3, 3, 3, 1))
+for (i in 1:3) {
+  x <- x.l[[i]]
+  p <- (x$submit + 1) / (x$size + 2)
+  SE <- sqrt(p * (1-p) / x$size)
+  x.title <- names(x.l)[i]
+  plot(p, 1:length(p), xlim=c(0, 0.7), pch=16, main=x.title, col=x$size-5)
+  segments(x0=p+SE, x1=p-SE, y0=1:length(p))
+  abline(v=(sum(x$submit) + 1) / (sum(x$size)+2))
+}
+```
+
+# Participation by experience
+
+```{r}
+attach(races)
+mm_qtl <- cut(mm_reg, quantile(mm_reg), include=T)
+chisq.test(table(submit, mm_qtl)) ## p<0.01 !!!
+(tab <- ftable(treatment, submit, mm_qtl))
+
+tothours <- week1 + week2 + week3 + week4
+impute.random <- function(x) {
+	index <- is.na(x)
+	x[index] <- sample(x[!index], size=sum(index), replace=TRUE)
+	return(x)
+}
+tothours_imp <- impute.random(tothours)
+hours_qtl <- cut(tothours_imp, quantile(tothours_imp), include=TRUE)
+
+mm_ratio <- mm_events / mm_reg
+fit <- rep()
+summary(fit$m0 <- glm(submit ~ treatment + mm_qtl + hours_qtl, binomial))
+summary(fit$m0 <- glm(submit ~ treatment + mm_qtl + hours_qtl + mm_ratio, binomial))
+summary(fit$m1 <- glm(submit ~ mm_qtl + hours_qtl+ mm_ratio, binomial, subset=treatment=='race'))
+summary(fit$m2 <- glm(submit ~ mm_qtl + hours_qtl+ mm_ratio, binomial, subset=treatment=='tournament'))
+summary(fit$m3 <- glm(submit ~ mm_qtl + hours_qtl+ mm_ratio, binomial, subset=treatment=='reserve'))
+
+stargazer(fit, type='text')
+
+# Tournament --> participation odds for expert coders 
+# are about 40% higher in tournaments than in the race
+
+# Nice plot with bootstrap
+races$mm_qtl  <- mm_qtl
+races.l <- split(races, treatment)
+#table(submit, mm_qtl, treatment) -> tab
+```
+
+
+
+
+
+
+

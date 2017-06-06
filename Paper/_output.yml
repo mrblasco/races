@@ -6,7 +6,7 @@ pdf_document:
   fig_height: 6
   fig_caption: true
   highlight: tango #kate
-  template: Templates/template.latex
+  template: ~/Templates/Pandoc/paper.latex
   includes:
     in_header: Templates/header.tex
 #    before_body:   Templates/doc_prefix.tex

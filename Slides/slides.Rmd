@@ -1,0 +1,465 @@
+---
+title: "Races or Tournaments?"
+author: 
+    - Andrea Blasco
+    - K. J. Boudreau
+    - M. Menietti
+    - K. R. Lakhani
+date: "This version: `r format(Sys.Date(),'%B %d, %Y')`" 
+bibliography: /Users/ablasco/Documents/papers.bib
+csl:  /Users/ablasco/Templates/Pandoc/csl/pnas.csl
+toc: true
+include-headers:
+    - \input{Config/Templates/header.tex}
+output: 
+  beamer_presentation:
+    template: /Users/ablasco/Templates/Pandoc/boyd.beamer
+    slide_level: 2
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  cache=TRUE,
+  echo=FALSE,
+  message=FALSE,
+  warning=TRUE,
+  error=FALSE,
+  tidy=FALSE,
+  fig.width=5,
+  fig.height=5,
+  cache.path="Cache/",
+  fig.path="Figures/")
+# $
+```
+
+Introduction
+============
+
+The impact of contests on the economy
+-------------------------------------
+
+Historically, contests have had tremendous impact on economic growth.^[@Brunt:2012ix reports evidence that awards offered by the Royal Agricultural Society accelerated agricoltural innovation in the period between 1839 and 1939; @Davis:2006ef documents the impact of the Orteig prize on the development of the aviation sector; XXXX for rail industries; XXXX the longitude prize for navigation in 1860.] Such an impact is perhaps more evident today, as contests are frequently used by all kinds of organizations (government agencies, philanthropic organizations, commercial firms) that recur to contests for promoting in-house R&D efforts, awarding bonuses or promotions to employees, or crowdsourcing solutions to the most vexing technical problems.^[XXX, XXX, XXXX]
+
+
+Contest structure: races or tournaments
+----------------------------------------
+
+Despite the diversity of the organizations involved and their goals, it is striking that contest sponsors have come to use very similar competition formats. These are usually either the "race" (e.g., Longitude prize, Orteig Prize, Ansari X-Prize, Netflix prize) where the winner is the first to achieve a particular performance target, or the "tournament" (e.g., Architectural competitions, Golden Carrot Contest, DARPA Grand Challenge, Progressive Insurance Automotive X-Prize) where the winner is the competitor who has achieved the best performance by a fixed deadline.^[Other options could be elimination tournaments, round robin, etc. need ref: XXXX]
+
+
+Why race or tournaments?
+------------------------
+
+Contests are cost-effective because help to select most qualified competitors who will carry results without further supervision [@fullerton1999auctionin].^[A large literature has focused on the benefits of contests [monitoring costs, insurance, adverse selection, etc.].]
+
+Such positive selection, however, crucially depends upon a correct prize structure and appropriate limitations on competition such as "deadlines" or minimum "targets." A poor prize, a short deadline, a difficult target may lead to adverse selection, thereby softening competition in the contest.
+
+The impact of deadlines and targets on competitors will differ whether the contest is a  "tournament" or a "race."  
+
+
+Example: prizes to stop the spread of antibiotic resistance
+--------------------------------
+
+Government cares about "quality" and "time" of solutions
+
+- The UK government launches a tournament called "xxxx"  in xxxx.
+
+- The EU commission launches a race called "xxxx" in xxxx.
+	
+- Why choosing one or the other? Seem equivalent. But may have different effects on entry, competitors' payoffs, total effort, etc.
+
+
+In this paper ...
+-------------
+
+We do xxx, yyy, zzzz
+
+
+Literature
+===========
+
+Contest models
+---------------
+
+Strategic equivalence: 
+
+- Contests are "equivalent" to all-pay auctions [ref.]
+- Rent-seeking contests are "equivalent" to races [ref.]
+
+However:
+
+- contest designer's payoff may be very different!
+- optimal prize structure?
+- ... 
+
+
+The model
+==========
+
+Basic setup
+------------
+
+Imagine $i=1,...,n$ players competing for $k=1,...,q$ prizes of value $v_1\geq v_2\geq ...\geq v_q$ (normalized $\sum v_k=1$). 
+
+Players simultaneously choose quality $y_i$ and time $t_i$ ($y_i/t_i$ speed). 
+
+Each player has an ability $a_i$ drawn at random from a common cdf $F(\cdot)$ with pdf $f(\cdot)$.
+
+The cost function $C(\cdot)$ is Cobb-Douglas: 
+
+\begin{equation}
+	C(a, q, t) = a^\alpha  y^\beta t^\gamma \qquad \text{with }\alpha,\gamma\leq-1, \beta\geq1
+\end{equation}
+
+- or denoting speed $(y/t)$ by $s$:
+
+\begin{equation}
+	C(a, q, t) = a^\alpha  y^{\beta^\prime} s^{\gamma^\prime} \qquad \beta^\prime=\beta+\gamma, \gamma^\prime=-\gamma. 
+\end{equation}
+
+Payoffs
+--------
+ 
+Player $i$'s payoffs:
+\begin{equation}
+	\pi_i = \sum_{k=1}^q p_k(y_i, t_i) v_k - C(a_i, y_i, t_i) 
+\end{equation}
+
+where $p_k(\cdot)$ is the prob. of winning prize $k$
+
+
+Competition
+-----------
+
+- Let denote a deadline by $t_0$ and a minimum-quality target by $y_0$. 
+ 
+ - We consider two competitive formats:
+ 
+ 	+ Race: competition with target where the first to achieve the target wins
+ 	+ Tournament: competition with deadline where the best wins
+
+
+Probability
+-----------
+
+Let $y_{1:n}, ..., y_{n:n}$ denote the order statistics of the $y$'s.  Let denote the corresponding distribution functions by $F_{y_{1:n}},..., F_{y_{n:n}}$. 
+
+Then the conditional probability of winning the first prize in a tournament  is 
+
+$$
+	\Pr(y_i\geq y_{n-1:n-1}) = F_{y_{n-1:n-1}} (y_i) = F(y_i)^{n-1}
+$$
+
+when $t_i \leq t_0$. And is zero otherwise.
+
+$$
+	\Pr(y_i xxxx ) =  [1 - F(y_i)]F(y_i)^{n-2}
+$$
+
+Probability 2
+-----------
+
+If $a\sim \text{Uniform}(0,1)$, then:
+
+$$
+	p_1(y) = y^{n-1}, \qquad p_2(y) =  [1 - y]y^{n-2}
+$$
+
+$$
+	p_1(y)^\prime =  (n-1) y^{n-2}
+$$
+
+$$
+	p_2(y)^\prime =  - y^{n-2} + (1-y)(n-2) y^{n-3} = y^{n-3} [(1-y)(n-1) - 1] 
+$$
+
+
+
+
+Contest designer's payoff
+------------------------
+
+Contest designer is risk neutral and wants to max quality while min time of the winner. 
+
+$Z$ is the competition format. Let denote the race by $Z=1$ and the tournament by $Z=0$.
+Let denote the winner's actions by $(y^w, t^w)$. 
+
+The contest designer's expected payoff: 
+
+\begin{equation}
+	\pi_{cd} = E[ y^w - \tau t^w  \mid y^w \geq y_0, t^w\leq t_0, R]. 
+\end{equation}
+
+Equilibria
+==========
+
+Solution concept 
+-----------------
+
+We solve the model for its unique symmetric Perfect Bayes Nash Equilibrium (the "equilibrium").
+
+Let denote equilibrium bidding functions with respect to ability by $t(\cdot)$ and $y(\cdot)$. 
+
+Consider Tournament first.
+
+Maximization problem
+-------------------
+
+- Key observation: $t_i = t_0$ is a (weakly) dominant strategy
+
+- This simplifies the maximization problem to:
+
+\begin{equation}
+	\max_{y} \hat\pi = \sum_{k=1}^q p_k(y) \hat v_k - a_i^\alpha  y^\beta 
+\end{equation}
+
+with $\hat v_k$ denoting each prize $v_k$ rescaled by a factor $t_0^\gamma$.
+
+First order condition
+----------------------
+
+For each $i=1,..., n$, first order conditions are:
+
+\begin{equation}
+ \sum_{k=1}^q p_k^\prime(y) \hat v_k =  a_i^\alpha \beta y^{\beta-1}
+\end{equation}
+
+
+Solving differential equation
+-----------------------------
+
+Substituting the equilibrium function $y(\cdot)$ increasing in $a_i$ and with inverse $\phi(\cdot)$, together with a "change of variable" (moving $a_i=\phi(y_i)$ to the lhs): 
+
+\begin{equation}
+ \phi^{-\alpha}\sum_{k=1}^q \hat p^\prime_k(\phi) \phi^\prime v_k  = t_0^\gamma \beta y(a)^{\beta-1}
+\end{equation}
+
+Integrating both sides (using the "chain of derivatives" on the lhs):
+
+\begin{equation}
+	\sum_{k=1}^q \hat v_k  \int_{a_0}^{a} p^\prime_k(x) x^\alpha dx  + \beta y (a_0)^{\beta-1}
+	=  \beta y (a)^{\beta-1} 
+\end{equation}
+
+
+Bidding function
+-----------------
+
+For every $i=1,..., n$:
+
+- Time $t(a) = t_0$ 
+
+- Equilibrium quality $y_i$ for competitor with ability $a$ is given by:
+
+\begin{equation}
+	y(a) = \left[y (a_0)^{\beta-1} + \frac 1\beta \sum_{k=1}^q \hat v_k  \int_{a_0}^{a} p^\prime_k(x) x^\alpha dx \right]^{1/{(\beta-1)}}
+\end{equation}
+
+with boundary condition $y(a_0)=0.$
+
+Example
+-------
+
+If $a\sim \text{Uniform}(0,1)$ and $q=2$
+
+First integral:
+
+$$
+	v_1 (n-1) \int_{0}^a x^{(n-2)-\alpha} dx = v_1 \frac{a^{(n-1) - \alpha}}{(n-1)-\alpha}
+$$
+
+Second integral:
+$$
+	v_2 \int_{0}^a x^{(n-3)-\alpha} [(1-x)(n-1) - 1]  dx 
+$$
+
+$$
+	= v_2 \frac{a^{-\alpha +n-2} ((n-2) (-\alpha +n-1)- a (n-1) (-\alpha +n-2))}{(-\alpha +n-2) (-\alpha +n-1)}
+$$
+
+Impose normalization: $t_0^\gamma = 1$. 
+
+Example 2
+----------
+
+```{r}
+integral1 <- function(v, a, n, alpha, a0) {
+	v * a^(n-1-alpha) / (n-1-alpha) - 	v * a0^(n-1-alpha) / (n-1-alpha)
+}
+integral2 <- function(v, a, n, alpha, a0) {
+	exponent <- (n-2-alpha)
+	r <- ((n-2)*(exponent+1) - a*(n-1) * exponent ) / (exponent*(exponent+1))
+	r0 <- ((n-2)*(exponent+1) - a*(n-1) * exponent ) / (exponent*(exponent+1))
+	(1-v) * a^exponent * r - 	(1-v) * a0^exponent * r0
+}
+y <- function(v, a, n, alpha, beta) {
+	V <- integral1(v, a, n, alpha, a0=0) + integral2(v, a, n, alpha, a0=0) 
+	V^(1/beta)
+}
+
+curve(y(v=1, a=x, n=4, alpha=-1, beta=2), n=1001, ann=FALSE)
+curve(y(v=0.75, a=x, n=4, alpha=-1, beta=2), lty=2, add=TRUE, n=1001)
+curve(y(v=0.5, a=x, n=4, alpha=-1, beta=2), lty=3, add=TRUE, n=1001)
+title("Equilibrium bids in a tournament")
+mtext("a ~ Uniform(0,1)", 1,3)
+mtext("y(a)", 2,3)
+```
+
+
+
+Equilibrium in races
+====================
+
+Bidding function
+-----------------
+
+For every $i=1,..., n$ with $a_i \geq \hat a$
+
+- Quality $y(a) = y_0$ 
+
+- Time:
+
+\begin{equation}
+	t(a) = \left[t (t_0)^{\gamma-1} + \frac 1\gamma \sum_{k=1}^q \tilde v_k  \int_{a_0}^{a} \hat p^\prime_k(x) x^\alpha dx \right]^{1/{(\gamma-1)}}
+\end{equation}
+
+with $\tilde v_k = v_k / y_0^{\beta}$. 
+
+Otherwise, when $a_i < \hat a$, and $y(a) < y_0$. 
+
+Zero profit
+------------
+
+The zero profit condition for the marginal player: 
+
+\begin{equation}
+	\sum p_k (y_0, t_0) v_k = \hat a^\alpha y_0^\beta t_0^\gamma
+\end{equation}
+
+Hence, the marginal ability is pinned down:
+
+\begin{equation}
+	\hat a = \left[\sum p_k (y_0, t_0) v_k / y_0^\beta t_0^\gamma\right]^{1/\alpha}
+\end{equation}
+
+
+Example 2
+-----------
+
+If $a\sim \text{Uniform}(0,1)$, then ZPC
+
+$$
+	p_1(y) = y^{n-1}, \qquad p_2(y) =  [1 - y]y^{n-2}
+$$
+
+($t_0^\gamma=1$)
+
+$$
+	\pi_i = v_1  p_1(a)  + v_2 p_2(a) - a^\alpha y_0^\beta
+$$
+
+$$
+	(ZPC) \qquad v_1  a^{n-1}  + (1-v_1)[1 - a]a^{n-2} - a^\alpha y_0^\beta = 0
+$$
+
+
+Example
+----------
+
+```{r}
+y0 <- 0.15
+payoff <- function(v, a, n, alpha, beta) {
+ v * a^(n-1)  +
+ (1-v) * (1-a) * a^(n-2) - 
+ a^alpha * y0^beta  
+}
+abilityhat <- uniroot(payoff, interval=c(0,1), v=0.5, n=4, alpha=-1, beta=2)$root
+# $
+curve(y(v=0.5, a=x, n=4, alpha=-1, beta=2), n=1001, ann=FALSE, lty=2)
+segments(x0=abilityhat, y0=0, y1=y0, lty=3)
+segments(x0=abilityhat, x1=1, y0=y0, y1=y0)
+title("Equilibrium bids in a race")
+mtext("a ~ Uniform(0,1)", 1,3)
+mtext("y(a)", 2,3)
+```
+
+
+Time
+------
+
+```{r}
+integral1 <- function(v, a, n, alpha) {
+	v * a^(n-1-alpha) / (n-1-alpha)
+}
+integral2 <- function(v, a, n, alpha) {
+	exponent <- (n-2-alpha)
+	numer <- (n-2)*(exponent+1) - a*(n-1) * exponent
+	denom <- (exponent*(exponent+1))
+	(1-v) * a^exponent * numer /  denom
+}
+race <- function(v, a, n, alpha, beta, gamma, a0) {
+	v <- v / y0^beta
+	int1 <- integral1(v, a, n, alpha) - integral1(v, a0, n, alpha)
+	int2 <- integral2(v, a, n, alpha) - integral2(v, a0, n, alpha)
+	y <- int1 + int2
+	( 1 +  y / gamma)^(1/(gamma-1))
+}
+payoff <- function(v, a, n, alpha, beta) {
+ v * a^(n-1)  +
+ (1-v) * (1-a) * a^(n-2) - 
+ a^alpha * y0^beta  
+}
+y0 <- 0.01
+abilityhat <- uniroot(payoff, interval=c(0,1), v=0.5, n=4, alpha=-1, beta=2)$root
+# $
+curve(race(v=0.5, a=x, n=4, alpha=-1, gamma=-2, beta=2, a0=abilityhat), n=1001, ann=FALSE, lty=2)
+
+
+
+```
+
+Race vs tournament
+==================
+
+
+Comparing bidding functions 
+---------------------------
+
+* PLOT HERE
+
+
+Differences
+-----------
+
+1. Not payoff equivalent for those at the bottom of the ability distribution. 
+
+2. Ex-post quality there is no  dominance
+
+3. Race ex-post dominates tournament wrt time
+
+4. Even seemingly similar competitions lead to behavior very different
+
+
+
+Econometrics
+============
+
+
+Experimental design
+===================
+
+
+Data
+-----
+
+
+Results
+=======
+
+
+Appendix
+========
+
+References {.allowframebreaks}
+-----------

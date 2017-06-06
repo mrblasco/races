@@ -1,0 +1,15 @@
+collection
+collection/date
+collection/document
+collection/document/id
+collection/document/infon
+collection/document/passage
+collection/document/passage/annotation
+collection/document/passage/annotation/infon
+collection/document/passage/annotation/location
+collection/document/passage/annotation/text
+collection/document/passage/infon
+collection/document/passage/offset
+collection/document/passage/text
+collection/key
+collection/source

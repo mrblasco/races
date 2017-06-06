@@ -1,9 +1,0 @@
-beamer_presentation:
-  toc: true
-  keep_tex: false
-  fig_crop: true
-  fig_width: 9.5
-  fig_height: 5
-  fig_caption: true
-  highlight: kate
-bibliography: ~/Papers/library.bib

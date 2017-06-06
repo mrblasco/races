@@ -1,0 +1,18 @@
+BANNER Time schedule:
+===================
+
+ * 03/02 - Registration Opens
+
+ * 03/05 - Registration Closes
+
+ * 03/05 - TC Provides Registrant Data to CIL
+
+ * 03/06 - CIL Provides Room Lists
+
+ * 03/08 - TC Completes Room Setup
+
+ * 03/08 - MM Submission Phase Start
+
+ * 03/16 - MM Submission Phase Close
+ 
+ 

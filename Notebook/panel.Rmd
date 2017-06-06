@@ -1,0 +1,107 @@
+# Timing of entry decision using panel data
+
+We transform data in a panel with the date of the first submission.
+The probability of entry in a given date is modeled with a conditional logit.
+We find that the probability of entry in a given date decreases over time. 
+(if it was at random 1/8 chances of having a submission in a given date).
+The estimated drop is about 13 percent from one date to the next 
+(a reduction of above 100% from the first to the last date). 
+Using interactions with treatment dummies, we find that the decrease in the probability of entry
+is negative in all treatments but it is about 25 percent in the race (with pvalue<0.05) 
+it is only 8 (pval) and 6 (pval) percent for tournaments and reserve, respectively. 
+
+
+```{r}
+rm(list=ls())
+require(magrittr)
+require(survival)
+require(races)
+data(scores)
+
+# Create variable
+dmin <- function(x) x - min(x)
+scores$date <- scores$timestamp %>% as.Date %>% as.numeric %>% dmin
+
+create.panel <- function(data) {
+	data$submit_first <- 1
+	g <- with(data, expand.grid(date=seq(min(date), max(date)), coder_id=unique(coder_id), submit_first=0))
+	g2 <- rbind(g, data[, c("date", "coder_id", "submit_first")])
+	aggregate(submit_first ~ date + coder_id, g2, FUN=sum)
+}
+
+scores.panel <- create.panel(subset(scores, submission==1)) 
+z <- merge(scores.panel, races, by='coder_id')
+
+
+# Unconditional semi-parametric [Odds(first) = exp(alpha + beta * t )]
+fit <- rep()
+fit$clog <- clogit(submit_first ~ date, data=z)
+summary(fit$clog)
+
+# Unconditional parametric [Odds(first) = exp(alpha + beta * t )]
+fit$logi <- glm(submit_first ~ date, data=z, binomial(logit))
+summary(fit$logi)
+
+# Unconditional with interaction
+fit$logi2 <- glm(submit_first ~ date + date:treatment, data=z, binomial(logit))
+summary(fit$logi2)
+# Note the difference when the intercept is not there
+
+# Conditional [Odds(first) = exp(alpha_i + beta * t )]
+fit$coclog <- clogit(submit_first ~ date + strata(coder_id), data=z)
+summary(fit$coclog)
+
+# Interactions with treatment dummies [Odds(first) = exp(alpha_i + beta_i * t )]
+fit$coclog2 <- clogit(submit_first ~ date:treatment + strata(coder_id), data=z)
+summary(fit$coclog2)
+# Note: the above model is the same as 
+# clogit(submit_first ~ date + date:treatment + strata(coder_id), data=z)
+
+# Coefficients
+sapply(fit, coef)
+
+# Days as factors
+
+
+# 
+# # Compute first submission time
+# time.max <- "2015-03-16 11:59:59 EDT"
+# time.min <- "2015-03-08 12:00:00 EDT"
+# time.censored <- 192
+# fsutime <- as.numeric(difftime(races.sub$timestamp, time.min , unit='hours'))
+# dat <- with(races.sub, aggregate(fsutime ~ handle, FUN=min))
+# dat$fsu <- 1
+# dat2 <- merge(dat, races, by='handle', all=TRUE)
+# dat2$fsu[is.na(dat2$fsu)] <- 0
+# dat2$fsutime[is.na(dat2$fsutime)] <- time.censored
+# 
+# 
+# surv <- rep()
+# surv$m1 <- survreg(Surv(fsutime, fsu) ~ 1, dat2, dist='weibull', scale=1)
+# surv$m2 <- survreg(Surv(fsutime, fsu) ~ treatment + mmevents, dat2
+# 	, dist='weibull', scale=1)
+# surv$m3 <- survreg(Surv(fsutime, fsu) ~ treatment + mmevents, dat2, dist='exponential')
+# 
+# surv$tobin <- survreg(Surv(fsutime, fsu, type='left') ~ treatment + mmevents, data=dat2, dist='gaussian')
+# 
+# stargazer(surv, type='text')
+# 
+# # A model with different baseline survival shapes for two groups, i.e.,
+# #   two different scale parameters
+# survreg(Surv(time, status) ~ ph.ecog + age + strata(sex), lung)
+# 
+# # There are multiple ways to parameterize a Weibull distribution. The survreg 
+# # function embeds it in a general location-scale family, which is a 
+# # different parameterization than the rweibull function, and often leads
+# # to confusion.
+# #   survreg's scale  =    1/(rweibull shape)
+# #   survreg's intercept = log(rweibull scale)
+# #   For the log-likelihood all parameterizations lead to the same value.
+# y <- rweibull(1000, shape=2, scale=5)
+# survreg(Surv(y)~1, dist="weibull")
+# 
+# # Economists fit a model called `tobit regression', which is a standard
+# # linear regression with Gaussian errors, and left censored data.
+# tobinfit <- survreg(Surv(durable, durable>0, type='left') ~ age + quant,
+# 	            data=tobin, dist='gaussian')
+```

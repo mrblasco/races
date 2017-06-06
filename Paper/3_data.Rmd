@@ -1,0 +1,157 @@
+```{r load-data}
+
+# Libraries
+require(xtable)
+require(races)
+
+# Load data
+data(races)
+attach(races)
+
+# Helper functions
+percent  <- function(x, digits=0, ...) {
+	round(100 * x, digits, ...)
+}
+difftime2 <- function(...) {
+	as.numeric(difftime(...))
+}
+
+
+# New vars
+rated <- !is.na(mm_rating)
+tothours <- week1 + week2 + week3 + week4
+years <- difftime2("2015-03-01", member_date, units='days')/365 
+event_py <- mm_reg / years
+top5coders <- sum(tail(sort(nwins), 5))
+
+#****************************************#
+# TABLE "design"
+#****************************************#
+table.design <- function() {
+	tab <- table(treatment, room)
+	rownames(tab) <- capitalize(rownames(tab))
+	xtab <- xtable(tab)
+	caption(xtab) <-  "Experimental design"
+	label(xtab) <- "experimental design"
+	render.xtable(xtab)
+}
+
+#****************************************#
+# FIGURE "density"
+#****************************************#
+rating_l <- split(mm_rating[rated], treatment[rated])
+rating_l.pdf <- lapply(rating_l, density, from=500, bw='nrd', kernel='gaussian')
+rating_l.test <- kruskal.test(rating_l)
+
+plot.density <- function(list, ...) {
+	xlim <- range(sapply(list, function(x) range(x$x)))
+	ylim <- range(sapply(list, function(x) range(x$y)))
+	legend.names <- capitalize(names(list))
+	plot.new()
+	plot.window(xlim=xlim, ylim=ylim, ...)
+	sapply(1:3, function(i) lines(list[[i]], lty=i, lwd=2))
+	legend("topright", bty='n', legend.names, lty=1:3)
+	xseq <- pretty(seq(xlim[1], xlim[2], length=20))
+	axis(1, at=xseq, labels=xseq)
+}
+
+cap.density <- sprintf("This picture shows kernel density estimates of the distribution of the skill ratings for each competitive condition. For testing whether samples originate from the same distribution we use a %s that gives a pvalue of %0.3f. Thus, we do not reject the null hypothesis of the data being drawn from the same distribution in each condition.\\label{skill rating pdf}", rating_l.test$method, rating_l.test$p.value)
+```
+
+Experimental design
+===================
+
+Context
+-----------
+
+The experiment was based on an eight-day programming competition hosted on the online platform Topcoder.com in 2016. The competition was inviting platform members to submit solutions to a hard information extraction problem: the automatic extraction of structured information from biomedical research papers. As an incentive for participation, a total prize pool of $41,000 was offered to top submissions in the form of cash prizes.
+
+Programming competition with similar characteristics, called "Marathon matches," are hosted regularly on Topcoder. Most of these competitions are sponsored by organizations (governamental agencies, research institutions, corporations) seeking a solution to a hard computational problem and willing to connect with a large online community of potential solvers (Topcoder's registered members were over 1M in 2016). Typical problems include a wide range of data science problems such as classification and regression, image processing, and natural language processing. Solutions are submitted in the form of computer programs to be run and scored by the platform. Thus, the problem demands good programming skills as well as a strong background in machine learning and statistics.
+
+The typical competition format on Topcoder is the "tournament." At the end of a given submission period, the last submissions of players are scored and ranked by performance on a holdout dataset. Based on the final ranking, top submissions are awarded cash prizes. The extent of prizes depends on the nature and complexity of the problem but is generally between $5,000 and $20,000. In addition to monetary incentives, all active competitors attain a "skill rating" that provides a metric of their ability as contestants and sometimes play a role in signaling skills to potential employers [need ref.]. Topcoder also host non-rated events.
+
+On occasions, Topcoder also hosts "race" competitions, called "first-to-finish." Compared to the marathon matches, these other competitions tend to be employed for less challenging problems and with smaller cash prizes. This practice, which makes problematic comparisons based on existing data, seems more motivated by tradition (with first-to-finish formats being introduced at a recent time and at a small scale) than by a proper calculation of the potentially different benefits associated with one or the other competition format.
+
+To select a challenging data science problem for our competition, we worked together with researchers from the United States National Health Institute (NIH) and the Scripps Research Institute (SCRIPPS). The selected problem was based on an algorithm called BANNER that was built by researchers at the NIH [@leaman2008banner]. The algorithm uses domain-expert manual labeling to train a natural language entity recognition model that performs automatic annotation of abstracts from a large corpus of biomedical research papers. Automatic annotations help disease characteristics to be more easily identified. The specific goal of the programming competition was to improve upon the current NIH's system by using a combination of domain-expert and non-expert manual labeling, as described by @good2014microtask.
+
+<!-- 
+Since people repeatedly participate in these competitions, our sample draws from a set of individuals who are skillful coders and have knowledge of online competitions acquired by experience.
+
+- Why this was a good problem?
+- Efforts to find a threshold
+	+ Survey of desired threshold
+	+ Preliminary reserved competition for 4 
+
+ -->
+
+Design
+------
+
+We study three competitive conditions: i) tournament, ii) race, and iii) tournament with minimum-quality requirement. All conditions were inviting competitors to solve the same problem under the same rules. The only difference was the structure of incentives. In the tournament condition, the top submission at the end of the competition was awarded a grand prize of $6,000. In the race condition, the first to achieve a score of xxxx was awarded the same grand prize of $6,000. Finally, in the tournament with a minimum-quality requirement, we awarded a grand prize of $6000 to the top submission achieving a score greater or equal than a given threshold (xxxxx). 
+
+To focus on monetary from winning, we dropped ratings. 
+
+The threshold in the "race" and in the "reserve" was chosen following two main criteria. First, we run a pre-trail experiment that involved 4 coders solving the same problem in isolation for 5 days. This helped us forming basic predictions about xxxx. Second, we surveyed the NIH researchers who developed Banner asking for three percentage improvements they considered "useful," "desirable," and "unlikely."  
+
+A xxx-day preliminary registration phase resulted in `r nrow(races)` pre-registered members.^[Here we excluded xxxx who xxxx requirements.] Registrants were then split into 24 separate rooms of either 10 or 15 people. Each room was then randomly assigned to a competitive condition.
+
+Pre-registration 
+To raise participation, additional . Note that in each condition competitors were sorted at random into 8 separate groups (four with 10 people and other four with 15 people). Hence, as shown in Table XXXX, our design generated a total of 3x8 = 24 groups.
+
+Grand prizes of xxxx were awarded to the top xxx in every conditions. 
+
+The competition was announced on the platform and to all community members via email.
+
+```{r design, results='asis'}
+table.design()
+```
+
+The competition was announced on the platform and to all community members via email. A preliminary online registration was required to participate, which resulted in 340 pre-registered members. Among these pre-registered members, we selected the 299 with  had registered to a programming contest at least once before the present contest. This choice was to ensure that participants were sufficiently experienced and understood the basic rules governing programming competitions.
+
+In each of these groups, contestants were given access to a "virtual room" that is a private web page listing handles of the other participants in the group, a leaderboard to be updated regularly during the competition, and a common chat that they can use to ask clarifying questions with respect to the problem at hand.
+
+A problem statement containing a full description of the algorithmic challenge, the rules of the game, and payoffs was published at the beginning of the submission phase. The submission phase was of 8 days in which participants could submit their computer programs. Each submission was automatically scored and feedback in the form of preliminary scores was published regularly on the website via the leaderboard.
+
+Data
+----
+
+For each registered competitor, we collected basic data including membership registration to the platform and statistics about participation in past programming competitions. A key variable to measure was expected ability of competitors. We examined several proxies. For rated competitors, a sensible measure was the skill rating earned for the performance in past competitions. The value of this proxy, however, was missing for all unrated competitors who had no history of submissions. Other proxies that we considered include the count of past wins, top ten positions, and the total prize money won while being a member of the platform. Though complete for both rated and unrated individuals, these other proxies contain less information about expected ability because most competitors have never won a competition or earned a prize.
+
+Additional demographic information was collected via a pre-registration survey where competitors were asked their gender, age, geographic origins, education, and the most preferred programming language.^[This question seemed relevant because the system to be improved (BANNER) was written in Java.] We also asked their willingness to take risks "in general," as a measure of risk aversion [@dohmen2011individual]; and a forecast on how many hours they expected to be able to work on the problem in the next few days of the challenge.^[The exact question was: "The submission phase begins March 08. Looking ahead a week, how many hours do you forecast to be able to work on the solution of the problem?"] 
+
+<!-- At the end of the submission phase, we  administered a final survey asking competitors how much time they spent working on the problem, how difficult the problem was, and how much they would have worked on the problem  under different incentives. -->
+
+Overall, our sample included an uneven mix of rated (`r percent(mean(rated))` percent) and unrated (`r percent(mean(!rated))` percent) competitors. Since one requirement for study enrollment was the minimum of one past registration in a marathon match, all competitors had some experience. However, experience varied a lot between rated and unrated competitors. The rated competitors were very experienced being members of the platform for a median of `r round(median(years[rated]))` years and having made a median of `r median(mm_reg[rated])` registrations to past competitions (about `r median(event_py[rated])` competitions per year) of which `r median(mm_events[rated])` with submissions. The unrated ones had less years as members on the platform (a median of `r round(median(years[!rated]))`), less registrations  (a median of `r median(mm_reg[!rated])`), and no submissions. 
+
+As shown in Figure \ref{skill rating pdf}, the distribution of our main proxy of individual ability for the rated competitors (the skill rating) was right-skewed reflecting the presence of a few individuals with very high ratings compared to the average.^[This right-skewed property is not specific of our sample but seems to hold more generally for the distribution of skill ratings of the entire platform.] This asymmetry was mirrored by the other proxies as well (with 5 coders accounting for `r percent(top5coders/sum(nwins))` percent of past wins). Hence, xxxx.  The figure also shows that the distribution of skill ratings was the same in all three competitive conditions.
+
+```{r skill-rating-density, fig.cap=cap.density}
+plot.density(rating_l.pdf)
+title("Skill rating distribution")
+```
+
+Table XXX reports summary statistics for our control variables. As shown in Figure \ref{risk aversion}, individuals reported being more willing to take risks than not (the median response was `r median(risk[!is.na(risk)])` out of 10) and prepared to work on the problem a median of `r median(tothours, na.rm=T)` hours in total over the eight day submission period. 
+
+
+```{r balanced}
+demo <- cbind(age, gender, educ, plang, risk, tothours)
+skills <- cbind(mm_reg, mm_events, mm_rating, nwins, ntop10, paid)
+
+# Tests balanced covariates
+test.balanced.categ <- function(x, ...) {
+ 	chisq.test(table(x, races$treatment), ...)$p.val 
+}
+test.balanced <- function(x, ...) {
+	miss <- is.na(x)
+	l <- split(x[!miss], races$treatment[!miss])
+	kruskal.test(l, ...)$p.val
+}
+
+pval.categ <- apply(demo, 2, test.balanced, simul=TRUE)
+pval <- apply(skills, 2, test.balanced, simul=TRUE)
+```
+
+
+All experimental groups did not differ significantly in terms of the distribution of pre-treatment covariates. Using a Kruskal-Wallis rank sum test we find no difference in the distribution of participation measures (registrations, submissions) and ability proxies (skill rating, wins, top ten positions, earnings) across treatments (the lowest p-value was `r min(pval)`). Likewise, using a Pearson's Chi-squared test we find no association between each categorical variable (age, gender, education, programming language, risk attitudes,^[Risk attitudes can be also modeled as a continuous variable and tested using the Kruskal-Wallis rank sum test. Results of this test are reported in Figure \ref{risk aversion}.] and expected total hours of work) and treatments (the lowest p-value was `r min(pval.categ)`). Hence, the randomization was successful in keeping pre-treatment variables balanced across competitive conditions.
+
+ 

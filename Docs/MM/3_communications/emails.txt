@@ -1,0 +1,94 @@
+Email Notification Banner -- Tournament w/reserve
+========================================
+Dear [HANDLE],
+
+Thanks for your interest in this competition. You have been randomly assigned to a competition room. In this room, your goal is **to reach the best final score** that is equal or above 817,866. 
+
+The top 2 competitors with a final score equal or above 817,866 will be awarded room prizes of $1,000 and $200 respectively. In addition to the room prizes, the 1st placed competitor across an overall number of 8 rooms will be awarded a prize of $4,000.
+
+**So you can win up to $5,000.**
+
+IMPORTANT: Only submissions with a final score equal or above 817,866 can win and are eligible for the prize money (room & grand prizes). No prize money will be distributed in your room, if no one obtains a score of at least 817,866.
+
+For the sake of a fair competition, you are also required to do not share any of the details or outcomes of your  room with other members of the community before March 16, when the competition is over.
+
+For any question please contact  [Jin Paik](mailto:jpaik@iq.harvard.edu).
+
+Good Luck!
+
+Here is the link to your room [LINK TO ROOM]
+
+A list of questions & answers on this competition style can be found here [LINK TO FORUM]
+
+---------------------------------
+
+Email Notification Banner -- Tournament
+========================================
+Dear [HANDLE],
+
+Thanks for your interest in this competition. You have been randomly assigned to a competition room. In this room, your goal is **to reach the best final score**. 
+
+The top 2 coders will be awarded room prizes of  $1,000 and $200 respectively. In addition to the room prizes, the 1st placed competitor across an overall number of 8 rooms will be awarded a prize of  $4,000. 
+
+**So you can win up to $5,000.**
+
+For the sake of a fair competition, you are also required to do not share any of the details or outcomes of your room with other members of the community before March 16, when the competition is over.
+
+For any question please contact  [Jin Paik](mailto:jpaik@iq.harvard.edu).
+
+Good Luck!
+
+Here is the link to your room [LINK TO ROOM]
+
+A list of questions & answers on this competition style can be found here [LINK TO FORUM]
+
+---------------------------------
+
+Email Notification Banner -- Race Setting
+========================================
+Dear [HANDLE],
+
+Thanks for your interest in this competition. You have been randomly assigned to a competition room. In this room, your goal  is **to be the fastest** to achieve a score equal or above 817,866.
+
+ The first 2 coders in your room to achieve a score equal or above 817,866 will be awarded room prizes of  $1,000 and $200 respectively. In addition to the room prizes, the fastest competitor to achieve a score equal or above 817,866 across an overall number of 8 rooms will be awarded a prize of  $4,000. 
+
+**So you can win up to $5,000.**
+
+IMPORTANT: In this contest *every submission* is scored on the system test data, and only the score computed on the system test data counts. Every 48h we will notify by email if there are winners in your room. No prize money will be distributed in your room, if no one obtains a score of at least 817,866.
+
+
+For the sake of a fair competition, you are also required to do not share any of the details or outcomes of your room with other members of the community before March 16, when the competition is over.
+
+For any question please contact  [Jin Paik](mailto:jpaik@iq.harvard.edu).
+
+Good Luck!
+
+Here is the link to your room [LINK TO ROOM]
+
+A list of questions & answers on this competition style can be found here [LINK TO FORUM]
+
+---------------------------------
+
+Notification Room Winners - Race & Tournament w/Reserve Only (every 48 hours)
+======================================================
+
+Dear [HANDLE],
+
+here is the list of coders who have achieved a score (on the system test data) equal or above 817,866 in your room, ordered by the time in which they hit the target score for the first time.
+
+ * 1st Place [HANDLE WINNER]
+
+ * 2nd Place [HANDLE WINNER] OR [STILL OPEN]
+ 
+ * 3rd Place [HANDLE NON-WINNER] 
+ 
+ *  ...
+
+The final ranking for the grand prizes will be shown after the end of the competition (03/08).
+
+**For the sake of a fair competition, please, do not share this information with competitors in other rooms or other members of the community before March 16, when the competition is over.**
+
+Many Thanks.
+
+
+

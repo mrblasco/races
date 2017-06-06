@@ -1,0 +1,305 @@
+<HTML>
+<BODY LANG="en-ZA" DIR="LTR">
+<p>&nbsp;</p>
+<p><b>Prizes</b></p>
+<ol>
+<li>1st to achieve a score greater than [SCORE THRESHOLD] across all rooms: $4,000</li>
+<li>1st to achieve a score greater than [SCORE THRESHOLD] in your room: $1,000</li>
+<li>2nd to achieve a score greater than [SCORE THRESHOLD] in your room: $200</li>
+</ol>
+<p>So you can win up to $5,000. Note, only submissions that score at least [SCORE THRESHOLD] on the system test data are eligible for prizes. Such scores will be computed every 24 hours, but you will not be able to see them. You will receive an email when someone in your room has achieved a score greater than the threshold. Other roms with different competition styles may have different prizes.</p>
+
+<P>&nbsp; 
+</P>
+<P><B>Overview</B> 
+</P>
+<P>
+The Crowd Innovation Lab at Harvard University and Scripps Research Institute are testing the limits of crowdsourcing for generating annotated corpora within the biomedical domain and for doing information extraction directly. To accomplish these tasks effectively, algorithms are needed that can learn to accurately merge data collected from multiple annotators of varying quality and integrate this data into predictive models.
+</P>
+<P>
+The National Institute of Health (NIH) has built a system on how crowd labeling can be used to annotate abstracts from Pubmed so disease characteristics can be identified. This open-source, supervised learning system called BANNER achieves a good level of prediction power. After training on about 500 abstracts manually annotated by experts, BANNER currently accomplishes this task with precision and recall around 0.8. While the result is successful, the training capabilities of the current algorithm are restricted to a very small (expert) dataset, which is limited by expensive expert's time. There is an idea that this limitation can be overcome if we teach BANNER how to further improve its accuracy by training on abstracts annotated by non-experts (<A HREF="http://www.mturk.com/">Mechanical Turkers</A>), potentially available in much larger quantities.
+</P>
+<P>
+The goal of this contest is to improve BANNER accuracy by teaching it on MTurk-annotated abstracts.
+</P>
+<P>&nbsp; 
+</P>
+<P><B>Available Software</B> 
+</P>
+<P>All the software is available through the following <A HREF="https://bitbucket.org/NTL_CIL_Harvard/banner">git
+repository</A> 
+</P>
+<P>The BANNER Java source code is available in the <A HREF="https://bitbucket.org/NTL_CIL_Harvard/banner/src/5fd83e65de5fc09b26d9576dd84e25469cbee2b5/banner_source/?at=master">banner_source</A>
+folder of the repository for usage and modifications. The file
+BANNER_BioC.sh in the banner_source/scripts folder can be used to
+execute BANNER on BioC formatted training and testing files. 
+</P>
+<P>More detail on the BioC format can be found <A HREF="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3889917/">here</A>. Open Source C++ library than handles BioC XML standard files can be downloaded <A HREF="http://sourceforge.net/projects/bioc/files/BioC_C%2B%2B_1.1.tar/download">here</A>.
+			</P>
+<P>A tutorial on getting started with BANNER can be found <A HREF="https://bitbucket.org/NTL_CIL_Harvard/banner/src/5fd83e65de5f/tutorial/?at=master">here</A>. A paper describing BANNER can be found <A HREF="http://psb.stanford.edu/psb-online/proceedings/psb08/leaman.pdf">here</A>.
+			</P>
+<P>The software trains a model by taking a number of annotated
+abstracts as input. The trained model can then be used to annotate
+abstracts that have not been annotated before. 
+</P>
+<P>Example code can be download <A HREF="https://bitbucket.org/NTL_CIL_Harvard/banner/src/5fd83e65de5fc09b26d9576dd84e25469cbee2b5/crowd_words/?at=master">here</A>
+that performs the following: 
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">Reads in a MTurk annotation
+	file 
+	</P>
+	<LI><P STYLE="margin-bottom: 0cm">Applies a simple voting
+	procedure to make reasonably good approximations of a
+	non-redundant training corpus and stores them as new BioC files 
+	</P>
+	<LI><P>The BioC files can be used directly in order to train
+	BANNER. 
+	</P>
+</UL>
+<P>&nbsp; 
+</P>
+<P><B>Available Data</B> 
+</P>
+<P>The training and the testing data are available in the same <A HREF="https://bitbucket.org/NTL_CIL_Harvard/banner">git
+repository</A> in their respective folders: <A HREF="https://bitbucket.org/NTL_CIL_Harvard/banner/src/5fd83e65de5fc09b26d9576dd84e25469cbee2b5/training_data/?at=master">training_data</A>
+and <A HREF="https://bitbucket.org/NTL_CIL_Harvard/banner/src/5fd83e65de5fc09b26d9576dd84e25469cbee2b5/testing_data/?at=master">testing_data</A>.
+			</P>
+<P>Some of the abstracts are labelled by experts, while some are
+labelled by MTurk workers (15 annotators per abstract). You will
+be given the following training data: 
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">593 abstracts annotated by both
+	experts (expert1_bioc.xml) and MTurk (mturk1_bioc.xml).
+					</P></LI>
+	<LI><P>900 abstracts annotated only with MTurk
+	(mturk2_bioc.xml). 
+	</P></LI>
+</UL>
+<P>You will be given 2300 abstracts that needs to be annotated.
+Only a subset of 300 will be used for scoring. The remaining
+abstracts will be used to prevent contestants from manually
+annotating the abstracts. The example case will only score 5
+abstract, for provisional scoring 195 abstracts will be used and
+the remaining 100 abstracts will be used for system tests. 
+</P>
+<P>In order to be eligible for a prize, you will be requested to
+submit all the source code and data that you used to generate your
+results. We must be able to re-create your submission results from
+the provided source. 
+</P>
+<P>&nbsp; 
+</P>
+<P><B>Implementation</B> 
+</P>
+<P>In this contest, the training and testing data will remain the
+same for example, provisional and system tests. You have to
+generate your results offline and embed them in your submission. 
+</P>
+<P>Your annotate method should return the contents of the
+generated annotated abstracts. For each annotation, 3 integer
+values (ID, Offset, Length) need to be added to your return array.
+The ID value indicates the ID of the abstract while the offset
+relates to the starting index of the section in the abstract
+followed by the length in characters for the annotation. The
+provided software will generate a submission file for you. 
+</P>
+<P>Steps that you can take in order to generate a submission file
+by training BANNER on some data: 
+</P>
+<UL>
+	<LI><P>Get the banner code and data from BitBucket: 
+	</P>
+	<PRE CLASS="western" STYLE="margin-bottom: 0.5cm">git clone https://bitbucket.org/NTL_CIL_Harvard/banner</PRE>
+	<LI><P>Browse to the banner_source folder, compile the code: 
+	</P>
+	<PRE CLASS="western" STYLE="margin-bottom: 0.5cm">ant -buildfile build.xml</PRE>
+	<LI><P>Train a model: 
+	</P>
+	<PRE CLASS="western" STYLE="margin-bottom: 0.5cm">java -cp 'lib/*' banner.eval.BANNER train config/banner_bioc.xml</PRE>
+	<LI><P>Test the model: 
+	</P>
+	<PRE CLASS="western" STYLE="margin-bottom: 0.5cm">java -cp 'lib/*' BANNER_BioC config/banner_bioc.xml data/test_file.xml out.xml</PRE>
+</UL>
+<P>A <I>BannerAnnotate.java</I> file will be created that can be
+submitted. The <I>BannerAnnotatorVis.java</I> can be compiled and
+executed together with the generated file in order to test your
+submission with the example test locally on your PC. 
+</P>
+<P>&nbsp; 
+</P>
+<P><B>Scoring</B> 
+</P>
+<P>Your score will be calculated by matching your annotations with
+our expert annotations. <A HREF="http://en.wikipedia.org/wiki/F1_score">F-Score</A>
+over the set of abstracts will be used and multiplied by 1000000. 
+</P>
+<P>Code that calculates your score can be downloaded <A HREF="https://bitbucket.org/NTL_CIL_Harvard/banner/src/5fd83e65de5fc09b26d9576dd84e25469cbee2b5/mm_tester/?at=master">here</A>.
+			</P>
+<P>You can see these scores for example test cases when you make
+example test submissions. If your solution fails to produce a
+proper return value, your score for this test case will be 0. 
+</P>
+<P>&nbsp; 
+</P>
+<P><B>Use of Git</B> 
+</P>
+<P>As part of this contest, we would like for you to use Git
+<A HREF="http://git-scm.com/downloads">(http://git-scm.com/downloads)</A>
+and to make daily code commits as you develop your solution. When
+the competition is over, you can share with us your local
+repository and this will allow us to examine the history of your
+code commits. 
+</P>
+<P>&nbsp; 
+</P>
+<P><B>Special Rules</B> 
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm">In order to receive the prize
+	money, you will need to fully document your code and explain your
+	algorithm. If any parameters were obtained from the training data
+	set, you will also need to provide the program used to generate
+	these parameters. There is no restriction on the programming
+	language used to generate these training parameters. Note that
+	all this documentation should not be submitted anywhere during
+	the coding phase. Instead, if you win a prize, a TopCoder
+	representative will contact you directly in order to collect this
+	data. 
+	</P></LI>
+	<LI><P STYLE="margin-bottom: 0cm">You may not use any external
+	(outside of this competition) source of data to train your
+	solution. 
+	</P></LI>
+	<LI><P STYLE="margin-bottom: 0cm">You are not limited to using
+	BANNER, you can use any other publicly available tool or write
+	your own software to produce the output. You can use multiple threads.
+	</P></LI>
+	<LI><P>You are not allowed to manually annotate the testing data.
+					</P></LI>
+</UL>
+			<P>&nbsp; 
+			</P>
+			<P><B>Definition</B> 
+			</P>
+
+			<TABLE CELLPADDING=2 CELLSPACING=2>
+				<TR>
+					<TD STYLE="border: none; padding: 0cm">
+						<P>Class: 
+						</P>
+					</TD>
+					<TD STYLE="border: none; padding: 0cm">
+						<P>BannerAnnotate 
+						</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD STYLE="border: none; padding: 0cm">
+						<P>Method: 
+						</P>
+					</TD>
+					<TD STYLE="border: none; padding: 0cm">
+						<P>annotate 
+						</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD STYLE="border: none; padding: 0cm">
+						<P>Parameters: 
+						</P>
+					</TD>
+					<TD STYLE="border: none; padding: 0cm"></TD>
+				</TR>
+				<TR>
+					<TD STYLE="; border: none; padding: 0cm">
+						<P>Returns: 
+						</P>
+					</TD>
+					<TD STYLE="border: none; padding: 0cm">
+						<P>int[] 
+						</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD STYLE="border: none; padding: 0cm">
+						<P>Method signature: 
+						</P>
+					</TD>
+					<TD STYLE="border: none; padding: 0cm">
+						<P>int[] annotate() 
+						</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD COLSPAN=2 STYLE="border: none; padding: 0cm">
+						<P>(be sure your methods are public) 
+						</P>
+					</TD>
+				</TR>
+			</TABLE>
+			<P><BR><BR>
+			</P>
+			<P><B>Limits</B> 
+			</P>			
+			<TABLE CELLPADDING=2 CELLSPACING=2>
+				<TR>
+					<TD STYLE="border: none; padding: 0cm">
+						<P>Time limit (s): 
+						</P>
+					</TD>
+					<TD STYLE="border: none; padding: 0cm">
+						<P>300.000 
+						</P>
+					</TD>
+				</TR>
+				<TR>
+					<TD STYLE="border: none; padding: 0cm">
+						<P>Memory limit (MB): 
+						</P>
+					</TD>
+					<TD STYLE="border: none; padding: 0cm">
+						<P>1024 
+						</P>
+					</TD>
+				</TR>
+			</TABLE>
+			<P><BR><BR>
+			</P>
+			<P><B>Notes</B> 
+			</P>
+			<UL>
+			<LI>
+			<P>The match forum is located <a href="https://apps.topcoder.com/forums/?module=ThreadList&forumID=593301">here</a>. Please check it regularly
+			because some important clarifications and/or updates may be posted
+			there. 
+			</P>
+			</LI><LI>
+			<P>You can train your solution offline based on the given files
+			and you can hardcode data into your solution--just remember that
+			you can't use data from other sources than this contest. 
+			</P>
+			</LI><LI>
+			<P>Time limit is 5 minutes per test set and memory limit is
+			1024MB. 
+			</P>
+			</LI><LI>
+			<P>There is no explicit code size limit. The implicit source code
+			size limit is around 1 MB (it is not advisable to submit codes of
+			size close to that or larger). 
+			</P>
+			</LI><LI>
+			<P>The compilation time limit is 60 seconds.
+			</P>
+			</LI></UL>
+
+<P>This problem statement is the exclusive and proprietary property
+of TopCoder, Inc. Any unauthorized use or reproduction of this
+information without the prior written consent of TopCoder, Inc. is
+strictly prohibited. (c)2003, TopCoder, Inc. All rights reserved. 
+</P>
+<P><BR><BR>
+</P>
+</BODY>
+</HTML>

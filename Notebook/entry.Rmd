@@ -1,0 +1,120 @@
+# Analysis of entry decision (June 2, 2017)
+
+We test differences in participation rates across treatment groups. 
+We find no significant differences using a Fisher's exact test.
+We further test differences in participation rates between large and small rooms. 
+But we find no significant differences.
+
+We model binary responses of entry as logistic:
+$$
+	y = 1 	\iff 	\text{ability} \geq \theta.
+$$
+
+We find that "ratings" and "hours" are strong predictors of entry. Yet, precision of the predictions seems pretty low using GLM. Fit does not seem change much if we use more flexible non-parametric models, such as GAMs.
+
+
+```{r, message=FALSE}
+rm(list=ls())
+
+# Load libraries
+require(races)
+require(stargazer)
+# require(mgcv)
+# require(arm)
+
+# Load Data
+data(races)
+attach(races)
+
+# Odds between treatments
+tab <- table(submit, treatment)
+fisher.test(tab)
+
+# Odds between large & small rooms
+tab <- table(submit, room_size)
+fisher.test(tab)
+
+# New variables
+year <- as.numeric(format(member_date, '%Y'))
+month <- as.numeric(format(member_date, '%m'))
+hours <- week1 + week2 + week3 + week4
+rating <- (mm_rating - median(mm_rating, na.rm=TRUE))/100
+
+# Impute missing values
+hours.imp <- impute(hours, "random")
+lhours.imp <- log(hours.imp)
+risk.imp <- impute(risk, "random")
+timezone.imp <- impute(timezone, "random")
+
+
+# New dataset
+dat <- data.frame(submit, treatment, rating, nwins, ntop10, year, month
+	, lhours.imp, risk.imp, timezone.imp)
+
+
+# Binomial [odds(y) = exp(alpha_i + beta * rating)]
+fit <- rep()
+fit$m1 <- glm(submit ~ treatment, binomial(logit), data=dat) 
+fit$m2 <- update(fit$m1, "~ . + rating")
+fit$m3 <- update(fit$m1, "~ . + rating + lhours.imp")
+fit$m4 <- glm(submit ~ ., binomial(logit), data=dat) 
+fit$m5 <- glm(submit ~ .*treatment, binomial(logit), data=dat) 
+
+# Model selection
+fit$m5 <- step(fit$m4)
+
+# Coefficients
+stargazer(fit, type='text', digits=2, keep.stat='n')
+
+# Non-symmetric distributions
+fit$cauchit <- update(fit$m4, family=binomial(cauchit))
+fit$cloglog <- update(fit$m4, family=binomial(cloglog))
+
+# What model to choose?
+cbind(deviance=sapply(fit, deviance), n=sapply(fit, function(x) length(x$y)))
+ 
+# FIGURE 
+plot.fit <- function(x, ...) {
+	yhat <- predict(x)
+	plot(jitter(yhat), jitter(as.numeric(x$y)), pch=16
+		, col=ifelse(yhat>0.5,"red","blue")
+		, ...)
+	curve(ilogit, add=TRUE)
+	abline(h=c(0,1), lty=2, col=gray(.9))
+}
+par(mfrow=c(3,3), mar=c(2,2,1,1))
+sapply(1:length(fit), function(i) { 
+	plot.fit(fit[[i]], xlim=c(-3, 3))
+	title(names(fit)[i])
+})
+
+
+# Regression by treatment
+fit2 <- rep()
+fit2$race  <- glm(submit ~ rating, data=dat, binomial(logit), subset=treatment=='race')
+fit2$tourn <- glm(submit ~ rating, data=dat, binomial(logit), subset=treatment=='tournament')
+fit2$rese  <- glm(submit ~ rating, data=dat, binomial(logit), subset=treatment=='reserve')
+
+stargazer(fit2, type='text', column.labels=names(fit2))
+
+# Plot
+par(mfrow=c(1,3), mar=c(2,2,1,1))
+sapply(1:3, function(i) { 
+	plot.fit(fit2[[i]], xlim=c(-3, 3))
+	title(names(fit2)[i])
+})
+
+
+# Bayesian models
+model 	<- "submit ~ treatment + tothours.imp + mm_rating.100 + educ+gender+timezone"
+# bayes <- arm::bayesglm(model, family=binomial)
+# summary(bayes)
+
+# Generalized additive models
+b <- mgcv::gam(submit ~ treatment + s(lhours.imp, rating), data=dat,family=binomial)
+plot(b, pages=1, seWithMean=TRUE) ## `with intercept' CIs
+mgcv::gam.check(b)
+plot.fit(b, xlim=c(-3, 3))
+
+```
+

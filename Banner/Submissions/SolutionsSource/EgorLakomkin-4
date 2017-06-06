@@ -1,0 +1,2 @@
+def annotate():
+  return [(0,0,15), (0,17,16)]

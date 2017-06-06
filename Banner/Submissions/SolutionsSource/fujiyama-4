@@ -1,0 +1,21 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using System.Xml;
+
+using System.IO;
+
+public class BannerAnnotate
+{
+    public int[] annotate()
+    {
+        var a = new int[]{
+            0,40,8
+        };
+        
+        return a;
+    }
+}

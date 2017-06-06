@@ -1,0 +1,3898 @@
+A deficiency	1034
+A deficiency	1067
+A deficiency	1075
+A deficiency	1087
+A deficiency	1130
+A deficiency	1144
+A deficiency	1147
+A deficiency	1159
+A deficiency	1525
+A deficiency	1608
+A deficiency	1655
+A deficiency	1702
+A deficiency	1725
+A deficiency	1786
+A deficiency	2172
+A deficiency	2291
+A deficiency	292
+A deficiency	497
+A deficiency	536
+A deficiency	539
+A deficiency	542
+A deficiency	629
+A deficiency	709
+A deficiency	790
+A deficiency	858
+A deficiency	866
+A deficiency	877
+A deficiency	955
+A rare disorder	1271
+A rare disorder	620
+A rare disorder	793
+A rare disorder	800
+A syndrome	1040
+A syndrome	1624
+A syndrome	1788
+A syndrome	2095
+A syndrome	2188
+A syndrome	2208
+A syndrome	693
+A syndrome	775
+AA	1015
+AA	932
+ACD	1180
+AD	1189
+ADNDI	86
+AF	1549
+AF	492
+AFP	788
+AHC	47
+AHUS	1106
+AI	1875
+AIM	1734
+AIM	1915
+AIMS	1203
+AIMS	1459
+AIMS	1824
+AIMS	237
+AIMS	262
+AIMS	353
+AIMS	641
+AIMS	949
+AJ	1554
+AJ	1932
+ALDP	1386
+ALDP	1531
+ALDP	1587
+ALDP	1954
+AO2	1720
+AP	171
+AP	819
+AP	828
+AP	961
+APC	0
+APC	1459
+APC	1965
+APC	474
+ARF	1690
+ARMS	1430
+ARMS	1549
+ARMS	209
+ARMS	760
+ARMS	949
+AS	315
+AS	805
+ASDs	775
+AT	1044
+AT	1212
+AT	1298
+AT	1495
+AT	153
+AT	1749
+AT	2046
+AT	304
+AT	529
+AT	961
+ATM	1012
+ATM	1050
+ATM	1053
+ATM	1155
+ATM	1177
+ATM	120
+ATM	1215
+ATM	1269
+ATM	1270
+ATM	1305
+ATM	1363
+ATM	138
+ATM	1491
+ATM	1712
+ATM	1735
+ATM	1779
+ATM	178
+ATM	1798
+ATM	1836
+ATM	1837
+ATM	1963
+ATM	1968
+ATM	210
+ATM	248
+ATM	281
+ATM	3
+ATM	319
+ATM	324
+ATM	380
+ATM	400
+ATM	417
+ATM	429
+ATM	458
+ATM	466
+ATM	476
+ATM	48
+ATM	500
+ATM	518
+ATM	536
+ATM	54
+ATM	561
+ATM	585
+ATM	631
+ATM	714
+ATM	779
+ATM	796
+ATM	813
+ATM	824
+ATM	829
+ATM	843
+ATM	881
+ATM	930
+ATM	960
+ATM	989
+ATR	1837
+ATR	429
+Aarskog-Scott syndrome	1072
+Abdominal mass	1443
+Abnormal body composition	464
+Acidosis	1584
+Acidosis	2098
+Acidosis	983
+Activation-induced cell death	522
+Acute anterior uveitis	2299
+AdRP	686
+Adipose tissue	1316
+Adipose tissue	543
+Adipose tissue	948
+Afibrinogenemia	669
+Age at diagnosis	1181
+Age at diagnosis	1220
+Age at diagnosis	1388
+Age at diagnosis	1557
+Age at diagnosis	1754
+Age at diagnosis	1856
+Age at diagnosis	1932
+Age at diagnosis	226
+Age at diagnosis	384
+Age at diagnosis	540
+Age at diagnosis	569
+Age at diagnosis	571
+Age at diagnosis	591
+Age at diagnosis	632
+Age at diagnosis	919
+Age at diagnosis	941
+Albinism	1046
+Albinism	1602
+Albinism	1816
+Alcoholism	1534
+Allelic disorders	1343
+Allelic loss	10
+Allelic loss	1653
+Allelic loss	1833
+Allelic loss	186
+Allelic loss	289
+Allelic loss	324
+Allelic loss	471
+Allelic loss	936
+Alpha	1009
+Alpha	1026
+Alpha	1058
+Alpha	1064
+Alpha	1085
+Alpha	1088
+Alpha	1108
+Alpha	1115
+Alpha	1129
+Alpha	1135
+Alpha	1157
+Alpha	1159
+Alpha	1211
+Alpha	1212
+Alpha	1219
+Alpha	1247
+Alpha	1254
+Alpha	1268
+Alpha	1271
+Alpha	129
+Alpha	1295
+Alpha	1297
+Alpha	1316
+Alpha	1342
+Alpha	136
+Alpha	1386
+Alpha	1396
+Alpha	1405
+Alpha	1433
+Alpha	1440
+Alpha	1443
+Alpha	1447
+Alpha	148
+Alpha	1512
+Alpha	1514
+Alpha	1517
+Alpha	1556
+Alpha	165
+Alpha	1650
+Alpha	1690
+Alpha	1734
+Alpha	1800
+Alpha	1842
+Alpha	1846
+Alpha	1905
+Alpha	193
+Alpha	1998
+Alpha	2002
+Alpha	2009
+Alpha	2023
+Alpha	2043
+Alpha	2046
+Alpha	2073
+Alpha	2083
+Alpha	2212
+Alpha	2219
+Alpha	235
+Alpha	245
+Alpha	279
+Alpha	308
+Alpha	32
+Alpha	352
+Alpha	384
+Alpha	490
+Alpha	524
+Alpha	526
+Alpha	529
+Alpha	554
+Alpha	570
+Alpha	594
+Alpha	604
+Alpha	61
+Alpha	610
+Alpha	633
+Alpha	661
+Alpha	684
+Alpha	701
+Alpha	729
+Alpha	737
+Alpha	742
+Alpha	762
+Alpha	788
+Alpha	807
+Alpha	822
+Alpha	826
+Alpha	833
+Alpha	841
+Alpha	866
+Alpha	882
+Alpha	884
+Alpha	897
+Alpha	906
+Alpha	940
+Alpha-galactosidase	1009
+Alpha-galactosidase	1295
+Alpha-galactosidase	1514
+Alpha-galactosidase	554
+Alpha-galactosidase A	1009
+Alpha-galactosidase A	1295
+Alpha-galactosidase A	1734
+Alternative complement pathway	1939
+Alternative complement pathway	221
+Alveolar	1096
+Alveolar	1961
+Alveolar	512
+Amyloid A	1729
+Amyloid A	632
+Amyloid A	762
+Anaemia	944
+Androgen independent	720
+Aneuploidy	1131
+Aneuploidy	2011
+Angelman Syndrome	1594
+Angelman syndromes	393
+Ankylosis	2208
+Anomalous	2073
+Anomalous	622
+Antimalarial drugs	1771
+Anxiety	1228
+Anxiety	162
+Anxiety	1896
+Anxiety	1931
+Anxiety	2284
+Anxiety	339
+Anxiety	491
+Apc	1032
+Apc	133
+Apc	149
+Apc	1645
+Apc	1683
+Apc	987
+Apoptosis	1007
+Apoptosis	1064
+Apoptosis	1101
+Apoptosis	1143
+Apoptosis	1171
+Apoptosis	1196
+Apoptosis	1218
+Apoptosis	1221
+Apoptosis	1252
+Apoptosis	1257
+Apoptosis	1304
+Apoptosis	1364
+Apoptosis	1398
+Apoptosis	1421
+Apoptosis	15
+Apoptosis	1544
+Apoptosis	166
+Apoptosis	1664
+Apoptosis	167
+Apoptosis	1968
+Apoptosis	1983
+Apoptosis	201
+Apoptosis	203
+Apoptosis	224
+Apoptosis	235
+Apoptosis	308
+Apoptosis	354
+Apoptosis	357
+Apoptosis	373
+Apoptosis	400
+Apoptosis	408
+Apoptosis	423
+Apoptosis	429
+Apoptosis	446
+Apoptosis	449
+Apoptosis	466
+Apoptosis	48
+Apoptosis	493
+Apoptosis	511
+Apoptosis	512
+Apoptosis	518
+Apoptosis	522
+Apoptosis	54
+Apoptosis	568
+Apoptosis	585
+Apoptosis	597
+Apoptosis	710
+Apoptosis	720
+Apoptosis	723
+Apoptosis	745
+Apoptosis	773
+Apoptosis	780
+Apoptosis	799
+Apoptosis	847
+Apoptosis	849
+Apoptosis	881
+Apoptosis	922
+Apoptosis	926
+Apoptosis	951
+Apoptosis	997
+Arrhythmia	485
+Arrhythmias	2179
+Associated	1005
+Associated	101
+Associated	1012
+Associated	1015
+Associated	103
+Associated	1039
+Associated	1042
+Associated	1054
+Associated	1056
+Associated	1057
+Associated	1058
+Associated	1059
+Associated	1060
+Associated	1063
+Associated	1064
+Associated	1066
+Associated	1074
+Associated	1076
+Associated	1079
+Associated	1081
+Associated	1086
+Associated	1091
+Associated	1092
+Associated	1098
+Associated	11
+Associated	1104
+Associated	1105
+Associated	1106
+Associated	1112
+Associated	1117
+Associated	1119
+Associated	1131
+Associated	1132
+Associated	1134
+Associated	1138
+Associated	1141
+Associated	1143
+Associated	1144
+Associated	1152
+Associated	1154
+Associated	1157
+Associated	1165
+Associated	1167
+Associated	1169
+Associated	1183
+Associated	119
+Associated	1192
+Associated	1193
+Associated	1194
+Associated	1196
+Associated	1197
+Associated	1198
+Associated	1200
+Associated	1211
+Associated	1215
+Associated	1219
+Associated	1220
+Associated	1226
+Associated	1228
+Associated	1237
+Associated	1239
+Associated	1240
+Associated	1243
+Associated	1249
+Associated	1250
+Associated	1251
+Associated	1253
+Associated	1254
+Associated	1260
+Associated	1262
+Associated	1263
+Associated	1264
+Associated	1266
+Associated	1267
+Associated	1271
+Associated	1274
+Associated	128
+Associated	129
+Associated	1294
+Associated	1296
+Associated	1299
+Associated	13
+Associated	1302
+Associated	1305
+Associated	1311
+Associated	1313
+Associated	1315
+Associated	1319
+Associated	1325
+Associated	1339
+Associated	1343
+Associated	1344
+Associated	1345
+Associated	1351
+Associated	1352
+Associated	1353
+Associated	1358
+Associated	1364
+Associated	1366
+Associated	1367
+Associated	1368
+Associated	1372
+Associated	1377
+Associated	1378
+Associated	1381
+Associated	1382
+Associated	1383
+Associated	1385
+Associated	1386
+Associated	1388
+Associated	1390
+Associated	1392
+Associated	1393
+Associated	1398
+Associated	1402
+Associated	1403
+Associated	1407
+Associated	1409
+Associated	1411
+Associated	142
+Associated	1426
+Associated	1427
+Associated	1428
+Associated	1434
+Associated	1436
+Associated	1438
+Associated	1440
+Associated	1442
+Associated	1443
+Associated	1450
+Associated	1451
+Associated	1457
+Associated	1460
+Associated	1461
+Associated	1463
+Associated	1465
+Associated	1468
+Associated	1469
+Associated	1473
+Associated	1474
+Associated	1477
+Associated	1482
+Associated	1488
+Associated	1492
+Associated	1494
+Associated	1496
+Associated	1497
+Associated	1498
+Associated	15
+Associated	1502
+Associated	1503
+Associated	1506
+Associated	1508
+Associated	1510
+Associated	1515
+Associated	1516
+Associated	1517
+Associated	1519
+Associated	1523
+Associated	1538
+Associated	1553
+Associated	1555
+Associated	1557
+Associated	1563
+Associated	1568
+Associated	157
+Associated	1579
+Associated	1602
+Associated	1605
+Associated	1609
+Associated	161
+Associated	1613
+Associated	1615
+Associated	1618
+Associated	1621
+Associated	1622
+Associated	1633
+Associated	1636
+Associated	1639
+Associated	1640
+Associated	1649
+Associated	1650
+Associated	1652
+Associated	1658
+Associated	166
+Associated	1664
+Associated	1665
+Associated	1668
+Associated	1670
+Associated	1673
+Associated	1674
+Associated	1675
+Associated	1676
+Associated	1677
+Associated	1679
+Associated	168
+Associated	1686
+Associated	1697
+Associated	1704
+Associated	1706
+Associated	171
+Associated	1710
+Associated	1716
+Associated	1720
+Associated	1722
+Associated	1724
+Associated	1730
+Associated	1733
+Associated	1739
+Associated	174
+Associated	1750
+Associated	1752
+Associated	1753
+Associated	1754
+Associated	1756
+Associated	1759
+Associated	1768
+Associated	1769
+Associated	1772
+Associated	1779
+Associated	1781
+Associated	1783
+Associated	1785
+Associated	1788
+Associated	179
+Associated	1790
+Associated	1793
+Associated	1794
+Associated	18
+Associated	1809
+Associated	181
+Associated	1813
+Associated	1815
+Associated	1816
+Associated	1817
+Associated	1818
+Associated	1821
+Associated	1825
+Associated	1831
+Associated	1836
+Associated	1840
+Associated	1848
+Associated	1849
+Associated	185
+Associated	186
+Associated	1863
+Associated	1869
+Associated	1872
+Associated	1879
+Associated	1883
+Associated	1884
+Associated	1886
+Associated	1887
+Associated	1898
+Associated	1901
+Associated	1903
+Associated	191
+Associated	1911
+Associated	1912
+Associated	192
+Associated	1923
+Associated	1925
+Associated	1926
+Associated	1928
+Associated	1929
+Associated	1931
+Associated	1939
+Associated	1941
+Associated	1942
+Associated	1949
+Associated	1951
+Associated	1952
+Associated	1955
+Associated	1959
+Associated	1960
+Associated	1962
+Associated	1963
+Associated	1964
+Associated	1966
+Associated	1970
+Associated	1973
+Associated	1977
+Associated	1984
+Associated	1988
+Associated	1991
+Associated	1995
+Associated	1997
+Associated	2005
+Associated	2014
+Associated	2023
+Associated	2027
+Associated	2044
+Associated	2049
+Associated	205
+Associated	2055
+Associated	2057
+Associated	2068
+Associated	2069
+Associated	207
+Associated	2081
+Associated	209
+Associated	2097
+Associated	210
+Associated	2101
+Associated	2106
+Associated	2111
+Associated	2112
+Associated	2114
+Associated	2118
+Associated	2127
+Associated	2137
+Associated	2143
+Associated	216
+Associated	2161
+Associated	2162
+Associated	2164
+Associated	217
+Associated	2172
+Associated	2179
+Associated	2180
+Associated	2189
+Associated	2190
+Associated	2194
+Associated	2199
+Associated	2202
+Associated	2209
+Associated	2218
+Associated	2238
+Associated	224
+Associated	226
+Associated	2265
+Associated	228
+Associated	2281
+Associated	23
+Associated	233
+Associated	236
+Associated	237
+Associated	241
+Associated	245
+Associated	247
+Associated	248
+Associated	251
+Associated	252
+Associated	253
+Associated	258
+Associated	26
+Associated	260
+Associated	262
+Associated	268
+Associated	275
+Associated	276
+Associated	28
+Associated	283
+Associated	284
+Associated	290
+Associated	291
+Associated	295
+Associated	296
+Associated	3
+Associated	300
+Associated	301
+Associated	305
+Associated	31
+Associated	313
+Associated	314
+Associated	32
+Associated	321
+Associated	323
+Associated	326
+Associated	327
+Associated	333
+Associated	335
+Associated	339
+Associated	340
+Associated	341
+Associated	343
+Associated	346
+Associated	347
+Associated	352
+Associated	355
+Associated	358
+Associated	363
+Associated	364
+Associated	370
+Associated	372
+Associated	373
+Associated	381
+Associated	382
+Associated	385
+Associated	387
+Associated	390
+Associated	393
+Associated	402
+Associated	421
+Associated	423
+Associated	424
+Associated	425
+Associated	427
+Associated	43
+Associated	430
+Associated	433
+Associated	437
+Associated	440
+Associated	441
+Associated	442
+Associated	443
+Associated	444
+Associated	456
+Associated	458
+Associated	460
+Associated	462
+Associated	463
+Associated	474
+Associated	478
+Associated	483
+Associated	484
+Associated	486
+Associated	489
+Associated	491
+Associated	492
+Associated	493
+Associated	494
+Associated	499
+Associated	512
+Associated	516
+Associated	517
+Associated	519
+Associated	527
+Associated	528
+Associated	531
+Associated	534
+Associated	539
+Associated	540
+Associated	547
+Associated	551
+Associated	556
+Associated	557
+Associated	560
+Associated	561
+Associated	568
+Associated	571
+Associated	578
+Associated	579
+Associated	589
+Associated	590
+Associated	591
+Associated	594
+Associated	596
+Associated	597
+Associated	60
+Associated	600
+Associated	601
+Associated	609
+Associated	61
+Associated	624
+Associated	626
+Associated	63
+Associated	633
+Associated	637
+Associated	638
+Associated	64
+Associated	648
+Associated	65
+Associated	652
+Associated	654
+Associated	655
+Associated	659
+Associated	681
+Associated	683
+Associated	694
+Associated	695
+Associated	702
+Associated	711
+Associated	714
+Associated	719
+Associated	721
+Associated	722
+Associated	726
+Associated	727
+Associated	728
+Associated	729
+Associated	732
+Associated	738
+Associated	742
+Associated	745
+Associated	746
+Associated	753
+Associated	762
+Associated	766
+Associated	767
+Associated	770
+Associated	773
+Associated	775
+Associated	779
+Associated	781
+Associated	783
+Associated	796
+Associated	797
+Associated	803
+Associated	810
+Associated	812
+Associated	815
+Associated	816
+Associated	821
+Associated	822
+Associated	823
+Associated	830
+Associated	834
+Associated	838
+Associated	841
+Associated	843
+Associated	848
+Associated	85
+Associated	850
+Associated	852
+Associated	86
+Associated	861
+Associated	862
+Associated	864
+Associated	867
+Associated	868
+Associated	875
+Associated	877
+Associated	882
+Associated	890
+Associated	897
+Associated	898
+Associated	899
+Associated	90
+Associated	900
+Associated	904
+Associated	907
+Associated	91
+Associated	912
+Associated	914
+Associated	916
+Associated	924
+Associated	925
+Associated	931
+Associated	932
+Associated	935
+Associated	939
+Associated	942
+Associated	944
+Associated	946
+Associated	947
+Associated	954
+Associated	957
+Associated	965
+Associated	967
+Associated	969
+Associated	978
+Associated	979
+Associated	980
+Associated	983
+Associated	986
+Associated	988
+Associated	99
+Associated	991
+Associated	996
+Astrocytoma	862
+Ataxia	1328
+Ataxia	1816
+Ataxia	1905
+Ataxia	210
+Atherogenic lipid profile	595
+Atm-deficient	1252
+Atm-deficient	1779
+Atrophy	18
+Atrophy	613
+Attacks of fever	308
+Attenuated FAP	794
+Attenuated phenotype	1863
+Author	1360
+Author	2235
+Author	2277
+Autism	1738
+Autistic	1835
+Autistic	1843
+Autistic	2044
+Autistic	363
+Autistic	428
+Autistic	775
+Autoimmune	1442
+Autoimmune	2291
+Autoimmune	25
+Autoimmune	357
+Autoimmune	365
+Autoimmune	372
+Autoimmune	483
+Autoimmune	713
+Autoimmune	995
+Autosomal dominant	1071
+Autosomal dominant	11
+Autosomal dominant	1134
+Autosomal dominant	1311
+Autosomal dominant	1333
+Autosomal dominant	1373
+Autosomal dominant	1381
+Autosomal dominant	1445
+Autosomal dominant	1496
+Autosomal dominant	1539
+Autosomal dominant	1552
+Autosomal dominant	1707
+Autosomal dominant	1926
+Autosomal dominant	1992
+Autosomal dominant	1997
+Autosomal dominant	2026
+Autosomal dominant	2045
+Autosomal dominant	2143
+Autosomal dominant	2182
+Autosomal dominant	2188
+Autosomal dominant	2189
+Autosomal dominant	2195
+Autosomal dominant	2210
+Autosomal dominant	2227
+Autosomal dominant	2232
+Autosomal dominant	227
+Autosomal dominant	270
+Autosomal dominant	274
+Autosomal dominant	277
+Autosomal dominant	355
+Autosomal dominant	410
+Autosomal dominant	438
+Autosomal dominant	481
+Autosomal dominant	521
+Autosomal dominant	524
+Autosomal dominant	596
+Autosomal dominant	642
+Autosomal dominant	648
+Autosomal dominant	653
+Autosomal dominant	692
+Autosomal dominant	697
+Autosomal dominant	736
+Autosomal dominant	833
+Autosomal dominant	893
+Autosomal dominant condition	1071
+Autosomal dominant condition	1992
+Autosomal dominant condition	697
+Autosomal dominant disease	1997
+Autosomal recessive condition	1675
+Autosomal recessive inheritance	2172
+BAC	127
+BAC	1332
+BAC	1456
+BAC	1899
+BAC	1956
+BAC	217
+BAC	249
+BAC	351
+BAC	478
+BAC	838
+BAF	1837
+BMI	1701
+BMI	26
+BMI	948
+BPH	217
+BRCA testing	1646
+BRCA testing	204
+Bacteria	25
+Bacteria	607
+Bedlington terriers	1332
+Behavior	104
+Behavior	1143
+Behavior	1146
+Behavior	1452
+Behavior	1454
+Behavior	1534
+Behavior	1587
+Behavior	1594
+Behavior	1810
+Behavior	1910
+Behavior	1912
+Behavior	2028
+Behavior	2044
+Behavior	2067
+Behavior	263
+Behavior	41
+Behavior	512
+Behavior	526
+Behavior	535
+Behavior	537
+Behavior	614
+Behavior	726
+Behavior	729
+Behavior	832
+Behavior	867
+Behavior	900
+Behavior	974
+Behavioral abnormalities	1361
+Behavioral abnormalities	500
+Behavioral abnormalities	726
+Benign and malignant tumors	734
+Benign familial neonatal convulsions	61
+Bilateral sensorineural hearing loss	834
+Biochemical abnormalities	1081
+Biochemical abnormalities	691
+Bipolar affective disorder	176
+Bipolar affective disorder	2025
+Blindness	1183
+Blindness	1197
+Blindness	1367
+Blindness	1490
+Blindness	18
+Blindness	1838
+Blindness	681
+Blindness	96
+Body mass index	1352
+Body mass index	1615
+Body mass index	247
+Body mass index	26
+Brachydactyly	38
+Breast Cancer	1563
+Breast and ovarian cancer	649
+C4	1164
+C4	132
+C4	197
+C4	2014
+C4	2164
+C4	221
+C4	415
+C4	560
+C4	618
+C4	671
+C4	767
+C4	911
+C7-deficient	1530
+C7-deficient	326
+C9-deficient	525
+CB	1144
+CB	1571
+CB	272
+CB	448
+CC	1092
+CC	1149
+CC	171
+CC	595
+CC	73
+CC	796
+CCAAT	1614
+CCAAT	337
+CCAAT	345
+CD	1304
+CETP	1015
+CETP	1105
+CETP	143
+CETP	1477
+CETP	1508
+CETP	1510
+CETP	1753
+CETP	1875
+CETP	1890
+CETP	1984
+CETP	1990
+CETP	2174
+CETP	29
+CETP	381
+CETP	595
+CETP	932
+CFH	1939
+CFH	957
+CH	1636
+CH	630
+CHO	82
+CIC	1938
+CIN	1200
+CLL	380
+CNS	1078
+CNS	1083
+CNS	1193
+CNS	1364
+CNS	1792
+CNS	1913
+CNS	1948
+CNS	2114
+CNS	364
+CNS	372
+CNS	469
+CNS	80
+COS	1108
+COS	1297
+COS	1470
+COS	1689
+COS	180
+COS	1898
+COS	2023
+COS	328
+COS	412
+COS	489
+COS	586
+COS	596
+COS	627
+COS	772
+COS	82
+COS	964
+COS	976
+COX	933
+CPO	270
+CPT	636
+CRC	647
+CRI	1025
+CRI	1027
+CRI	1044
+CRI	748
+CSF	1094
+CSF	1386
+CSF	1532
+CSF	189
+CTD	103
+CTNT	1547
+Cancer	100
+Cancer	133
+Cancer	1856
+Cancer	1932
+Cancer syndrome	253
+Cancerous	724
+Cancers	1006
+Cancers	1320
+Cancers	150
+Cancers	203
+Cancers	397
+Carcinoma	1979
+Carcinoma of the breast	390
+Carcinomas	724
+Cardiac	1
+Cardiac	1022
+Cardiac	103
+Cardiac	1192
+Cardiac	1245
+Cardiac	1295
+Cardiac	1517
+Cardiac	1521
+Cardiac	1622
+Cardiac	1625
+Cardiac	1739
+Cardiac	1887
+Cardiac	1928
+Cardiac	1948
+Cardiac	323
+Cardiac	596
+Cardiac	668
+Cardiac	685
+Cardiac	722
+Cardiac	740
+Cardiac	81
+Cardiac	817
+Cardiac	92
+Cardiac	983
+Cardiac conduction	92
+Cardiac myocytes	92
+Cell carcinoma	1979
+Central nervous system	1078
+Central nervous system	1081
+Central nervous system	1124
+Central nervous system	1167
+Central nervous system	1184
+Central nervous system	135
+Central nervous system	1364
+Central nervous system	1368
+Central nervous system	1496
+Central nervous system	1686
+Central nervous system	1736
+Central nervous system	1804
+Central nervous system	1948
+Central nervous system	20
+Central nervous system	330
+Central nervous system	43
+Central nervous system	584
+Central nervous system	719
+Central nervous system	728
+Central nervous system	766
+Central nervous system	80
+Central nervous system	916
+Central nervous system	984
+Childhood cancer	1152
+Chromatography	117
+Chromatography	1369
+Chromatography	1397
+Chromatography	1567
+Chromatography	1940
+Chromatography	1946
+Chromatography	2175
+Chromatography	2190
+Chromatography	2217
+Chromatography	538
+Chromatography	566
+Chromatography	614
+Chromatography	615
+Chromatography	62
+Chromatography	710
+Chromatography	732
+Chromatography	734
+Chromatography	769
+Chromatography	790
+Chromatography	791
+Chromatography	793
+Chromatography	848
+Chromatography	915
+Chromosomal abnormalities	90
+Chromosomal instability	1200
+Chromosomal instability	1606
+Chromosomal instability	444
+Chronic non-spherocytic hemolytic anemia	1419
+Circular dichroism	2043
+Circular dichroism	718
+Cirrhosis	110
+Cirrhosis	1176
+Cirrhosis	1332
+Cirrhosis	1996
+Cirrhosis	390
+Class III	161
+Class III	2014
+Class III	483
+Classical adenomatous polyposis	591
+Classical phenylketonuria	1415
+Classical phenylketonuria	2109
+Clinical syndrome	1660
+Cognitive deficits	927
+Cognitive impairment	1506
+Cognitive impairment	1782
+Cognitive impairment	43
+Colorectal carcinogenesis	100
+Colorectal carcinogenesis	1220
+Colorectal carcinogenesis	847
+Colorectal tumorigenesis	1764
+Colorectal tumorigenesis	703
+Coma	942
+Complement C7 deficiency	427
+Complement dysregulation	1344
+Complement factor H deficiency	797
+Congenital afibrinogenemia	669
+Congenital analbuminemia	800
+Congenital aniridia	1047
+Congenital cataract	2293
+Congenital cataracts	1694
+Congenital cataracts	1841
+Congenital chloride diarrhea	472
+Congenital chloride diarrhea	885
+Congenital malformations	71
+Congenital myotonic dystrophy	2044
+Congenital nystagmus	1343
+Congenital sensorineural deafness	1389
+Connective tissue disorders	992
+Copy number abnormalities	1506
+Course of the disease	1830
+Course of the disease	1895
+Course of the disease	2042
+Course of the disease	793
+CpG methylation	1542
+CpG methylation	1618
+Craniosynostosis syndromes	1624
+Criteria	1001
+Criteria	1037
+Criteria	1060
+Criteria	1136
+Criteria	1191
+Criteria	1276
+Criteria	1322
+Criteria	1340
+Criteria	1352
+Criteria	1365
+Criteria	1427
+Criteria	1455
+Criteria	1477
+Criteria	1811
+Criteria	1836
+Criteria	1911
+Criteria	1950
+Criteria	1958
+Criteria	2196
+Criteria	2208
+Criteria	2218
+Criteria	231
+Criteria	244
+Criteria	262
+Criteria	265
+Criteria	290
+Criteria	534
+Criteria	541
+Criteria	737
+Criteria	775
+Criteria	81
+Criteria	869
+Criteria	955
+Criteria	993
+Criteria	994
+Cystic fibrosis	288
+DAF	139
+DBA	193
+DCC	1785
+DCC	461
+DCC	604
+DCC	647
+DCC	867
+DCC	936
+DD	2018
+DFNB10	388
+DGS	103
+DM1	1078
+DM1	1265
+DM1	1371
+DM1	1542
+DM1	1733
+DM1	344
+DM1	648
+DM1	785
+DM1	839
+DM1	851
+DM1	878
+DM1	903
+DMPK	1078
+DMPK	1241
+DMPK	1265
+DMPK	1296
+DMPK	1321
+DMPK	1335
+DMPK	1371
+DMPK	1728
+DMPK	1733
+DMPK	1751
+DMPK	1759
+DMPK	1980
+DMPK	327
+DMPK	334
+DMPK	579
+DMPK	600
+DMPK	648
+DMPK	702
+DMPK	785
+DMPK	839
+DMPK	864
+DMPK	878
+DMPK	903
+DMPK	92
+DQ	1042
+DQ	1319
+DQ	2099
+DSB	1155
+DSB	1320
+DSB	322
+DSB	585
+DSB	636
+DSB	779
+DSB	843
+DZ	1276
+DZ	158
+DZ	1823
+DZ	1925
+DZ	819
+DZ	956
+Deafness	1040
+Deafness	2135
+Deafness	967
+Defective IL-2	961
+Deficiency anemia	353
+Deficiency of activity	1592
+Deficient individuals	1175
+Deficient individuals	2014
+Deficient individuals	221
+Deficient individuals	422
+Demographic	1591
+Demographic	1900
+Demographic	611
+Demographic	867
+Demyelination	1532
+Demyelination	372
+Desferrioxamine	1505
+Desferrioxamine	2108
+Devastating disease	720
+Developmental abnormalities	916
+Developmental delay	1091
+Developmental delay	231
+Developmental disorder	1858
+Diagnosis	1016
+Diagnosis	1021
+Diagnosis	1034
+Diagnosis	1037
+Diagnosis	1040
+Diagnosis	1045
+Diagnosis	1046
+Diagnosis	1054
+Diagnosis	106
+Diagnosis	1062
+Diagnosis	1073
+Diagnosis	1084
+Diagnosis	1085
+Diagnosis	1093
+Diagnosis	1104
+Diagnosis	1109
+Diagnosis	1111
+Diagnosis	1119
+Diagnosis	1150
+Diagnosis	1156
+Diagnosis	1166
+Diagnosis	1167
+Diagnosis	1176
+Diagnosis	1181
+Diagnosis	1191
+Diagnosis	1192
+Diagnosis	1205
+Diagnosis	1220
+Diagnosis	1225
+Diagnosis	1231
+Diagnosis	1233
+Diagnosis	1242
+Diagnosis	1256
+Diagnosis	1273
+Diagnosis	1276
+Diagnosis	1284
+Diagnosis	1291
+Diagnosis	1296
+Diagnosis	1298
+Diagnosis	1308
+Diagnosis	132
+Diagnosis	1322
+Diagnosis	1325
+Diagnosis	1326
+Diagnosis	1369
+Diagnosis	1380
+Diagnosis	1388
+Diagnosis	139
+Diagnosis	1393
+Diagnosis	1394
+Diagnosis	1402
+Diagnosis	1418
+Diagnosis	1430
+Diagnosis	1433
+Diagnosis	1442
+Diagnosis	1444
+Diagnosis	1449
+Diagnosis	1454
+Diagnosis	1460
+Diagnosis	1462
+Diagnosis	1481
+Diagnosis	1490
+Diagnosis	1498
+Diagnosis	1501
+Diagnosis	1502
+Diagnosis	1539
+Diagnosis	1549
+Diagnosis	155
+Diagnosis	1557
+Diagnosis	1562
+Diagnosis	1565
+Diagnosis	1584
+Diagnosis	1594
+Diagnosis	1597
+Diagnosis	160
+Diagnosis	1609
+Diagnosis	1612
+Diagnosis	1613
+Diagnosis	1622
+Diagnosis	1624
+Diagnosis	1627
+Diagnosis	1660
+Diagnosis	1673
+Diagnosis	1675
+Diagnosis	1679
+Diagnosis	1686
+Diagnosis	1695
+Diagnosis	1698
+Diagnosis	1699
+Diagnosis	1710
+Diagnosis	1715
+Diagnosis	1722
+Diagnosis	173
+Diagnosis	1754
+Diagnosis	176
+Diagnosis	1775
+Diagnosis	1776
+Diagnosis	1782
+Diagnosis	1784
+Diagnosis	1791
+Diagnosis	1807
+Diagnosis	1809
+Diagnosis	1815
+Diagnosis	1831
+Diagnosis	1832
+Diagnosis	1834
+Diagnosis	1845
+Diagnosis	1853
+Diagnosis	1856
+Diagnosis	1861
+Diagnosis	1865
+Diagnosis	1872
+Diagnosis	1880
+Diagnosis	1902
+Diagnosis	1909
+Diagnosis	1924
+Diagnosis	1931
+Diagnosis	1934
+Diagnosis	1939
+Diagnosis	1940
+Diagnosis	1941
+Diagnosis	1949
+Diagnosis	1961
+Diagnosis	198
+Diagnosis	1983
+Diagnosis	1986
+Diagnosis	1987
+Diagnosis	1996
+Diagnosis	1999
+Diagnosis	2010
+Diagnosis	2011
+Diagnosis	2013
+Diagnosis	2028
+Diagnosis	2055
+Diagnosis	206
+Diagnosis	2061
+Diagnosis	2063
+Diagnosis	2078
+Diagnosis	2112
+Diagnosis	2122
+Diagnosis	2125
+Diagnosis	2130
+Diagnosis	2131
+Diagnosis	2138
+Diagnosis	2144
+Diagnosis	2152
+Diagnosis	2166
+Diagnosis	2177
+Diagnosis	218
+Diagnosis	2180
+Diagnosis	2191
+Diagnosis	2192
+Diagnosis	2197
+Diagnosis	220
+Diagnosis	2201
+Diagnosis	2211
+Diagnosis	222
+Diagnosis	2221
+Diagnosis	2232
+Diagnosis	2237
+Diagnosis	2242
+Diagnosis	226
+Diagnosis	2293
+Diagnosis	231
+Diagnosis	238
+Diagnosis	239
+Diagnosis	259
+Diagnosis	262
+Diagnosis	265
+Diagnosis	267
+Diagnosis	272
+Diagnosis	28
+Diagnosis	283
+Diagnosis	302
+Diagnosis	307
+Diagnosis	310
+Diagnosis	312
+Diagnosis	334
+Diagnosis	336
+Diagnosis	348
+Diagnosis	352
+Diagnosis	359
+Diagnosis	376
+Diagnosis	379
+Diagnosis	38
+Diagnosis	383
+Diagnosis	384
+Diagnosis	391
+Diagnosis	393
+Diagnosis	421
+Diagnosis	432
+Diagnosis	439
+Diagnosis	442
+Diagnosis	447
+Diagnosis	451
+Diagnosis	485
+Diagnosis	495
+Diagnosis	505
+Diagnosis	515
+Diagnosis	540
+Diagnosis	543
+Diagnosis	545
+Diagnosis	554
+Diagnosis	56
+Diagnosis	569
+Diagnosis	571
+Diagnosis	591
+Diagnosis	592
+Diagnosis	613
+Diagnosis	614
+Diagnosis	625
+Diagnosis	632
+Diagnosis	640
+Diagnosis	650
+Diagnosis	651
+Diagnosis	653
+Diagnosis	656
+Diagnosis	66
+Diagnosis	663
+Diagnosis	676
+Diagnosis	685
+Diagnosis	716
+Diagnosis	739
+Diagnosis	767
+Diagnosis	775
+Diagnosis	777
+Diagnosis	781
+Diagnosis	786
+Diagnosis	790
+Diagnosis	793
+Diagnosis	795
+Diagnosis	800
+Diagnosis	816
+Diagnosis	823
+Diagnosis	83
+Diagnosis	840
+Diagnosis	842
+Diagnosis	856
+Diagnosis	858
+Diagnosis	861
+Diagnosis	863
+Diagnosis	869
+Diagnosis	871
+Diagnosis	874
+Diagnosis	9
+Diagnosis	905
+Diagnosis	908
+Diagnosis	910
+Diagnosis	919
+Diagnosis	94
+Diagnosis	941
+Diagnosis	942
+Diagnosis	943
+Diagnosis	969
+Diagnosis	977
+Diagnosis	978
+Diagnosis	982
+Diagnosis	992
+Diagnostic criteria	1191
+Diagnostic criteria	1340
+Diagnostic criteria	1352
+Diagnostic criteria	1365
+Diagnostic criteria	1950
+Diagnostic criteria	262
+Diagnostic criteria	517
+Diagnostic criteria	737
+Diagnostic criteria	775
+Dialysis	1675
+Dialysis	724
+Dilated cardiomyopathy	1625
+Dilated cardiomyopathy	590
+Disease-free survival	823
+Disorder	1037
+Disorder	1039
+Disorder	1065
+Disorder	1084
+Disorder	109
+Disorder	110
+Disorder	1196
+Disorder	1254
+Disorder	1341
+Disorder	1365
+Disorder	1419
+Disorder	151
+Disorder	1582
+Disorder	1636
+Disorder	1695
+Disorder	1698
+Disorder	176
+Disorder	1803
+Disorder	1824
+Disorder	1835
+Disorder	1843
+Disorder	1948
+Disorder	1973
+Disorder	1995
+Disorder	1999
+Disorder	2025
+Disorder	2026
+Disorder	2064
+Disorder	2087
+Disorder	2103
+Disorder	2128
+Disorder	213
+Disorder	2135
+Disorder	2204
+Disorder	2213
+Disorder	236
+Disorder	258
+Disorder	28
+Disorder	310
+Disorder	321
+Disorder	352
+Disorder	360
+Disorder	365
+Disorder	419
+Disorder	421
+Disorder	441
+Disorder	443
+Disorder	453
+Disorder	454
+Disorder	458
+Disorder	495
+Disorder	521
+Disorder	524
+Disorder	58
+Disorder	580
+Disorder	63
+Disorder	668
+Disorder	708
+Disorder	716
+Disorder	774
+Disorder	775
+Disorder	785
+Disorder	793
+Disorder	795
+Disorder	800
+Disorder	816
+Disorder	854
+Disorder	894
+Disorder	897
+Disorder	945
+Disorder	958
+Disorder	96
+Disorder	995
+Dominantly inherited disorder	236
+Donors	1247
+Donors	1282
+Donors	1319
+Donors	139
+Donors	1412
+Donors	1732
+Donors	1971
+Donors	2203
+Donors	2285
+Donors	242
+Donors	255
+Donors	455
+Donors	456
+Donors	470
+Donors	569
+Donors	589
+Donors	792
+Donors	856
+Donors	91
+Donors	975
+Dysmorphism	1918
+Dysplasia	1292
+Dysplasia	1767
+Dysplasia	1978
+Dysplasia	2187
+Dysplastic	869
+Dystrophic	2039
+Dystrophic	434
+Dystrophic	633
+Dystrophic	68
+EBV	1692
+EBV	827
+EBV	91
+EBV	977
+EC	1067
+EC	1585
+EC	209
+EC	820
+EC	897
+EC	985
+ECs	1579
+Early infancy	1996
+Eczema	1807
+Emphasis	1097
+Emphasis	1098
+Emphasis	1321
+Emphasis	767
+End-stage renal disease	1159
+End-stage renal disease	1675
+End-stage renal disease	284
+End-stage renal disease	576
+End-stage renal disease	724
+Endocytosis	1284
+Endocytosis	1505
+Endocytosis	1694
+Endocytosis	2174
+Endocytosis	309
+Endocytosis	378
+Endocytosis	565
+Enhancer	1746
+Enhancer	1975
+Enhancer	329
+Enhancer	490
+Enhancer	850
+Enzymatic disorder	1419
+Enzyme deficiencies	2130
+Enzyme deficiency	1372
+Enzyme deficiency	2023
+Enzymopathy	1783
+Epidemic	1370
+Epidermal growth	1006
+Epidermal growth	1109
+Epidermal growth	1752
+Epidermal growth	2043
+Epidermal growth	2159
+Epidermal growth	76
+Epidermal growth	974
+Epilepsy	1038
+Epilepsy	1574
+Epilepsy	1624
+Epilepsy	1685
+Epilepsy	441
+Epilepsy	47
+Epilepsy	732
+Epilepsy	775
+Epilepsy	859
+Epilepsy	954
+Episodes	1106
+Episodes	1204
+Episodes	1242
+Episodes	1271
+Episodes	1319
+Episodes	1324
+Episodes	1345
+Episodes	1454
+Episodes	1536
+Episodes	1802
+Episodes	1843
+Episodes	2066
+Episodes	218
+Episodes	350
+Episodes	609
+Episodes	801
+Episodes	942
+Epithelial ovarian cancer	1581
+Epstein-Barr	447
+Epstein-Barr	827
+Epstein-Barr	999
+Epstein-Barr virus	2004
+Epstein-Barr virus	827
+Epstein-Barr virus	999
+Erythropoiesis	207
+Excess	1027
+Excess	110
+Excess	1104
+Excess	1249
+Excess	1350
+Excess	1372
+Excess	1384
+Excess	1658
+Excess	1977
+Excess	2174
+Excess	2177
+Excess	287
+Excess	338
+Excess	655
+Excess	661
+Excess	836
+Excess	840
+Excess	932
+Excess	998
+FADD	1089
+FAP adenomas	1283
+FCM	505
+FH	1106
+FH	1939
+FH	797
+FHM1	942
+FINDINGS	1151
+FINDINGS	1516
+FINDINGS	713
+FINDINGS	825
+FINDINGS	876
+FMR	1228
+FRAXE	698
+FST	1973
+Factor H	1066
+Factor H	1106
+Factor H	1794
+Factor H	1939
+Factor H	314
+Factor H	781
+Factor H	797
+Familial Mediterranean fever	1729
+Familial aniridia	680
+Familial breast and ovarian cancers	435
+Familial hypercholesterolemia	2266
+Familial hypercholesterolemia	827
+Fatty liver	302
+Favism	161
+Feeding difficulties	1060
+Feeding difficulties	1075
+Feeding difficulties	109
+Feeding difficulties	1340
+Feeding difficulties	1400
+Feeding difficulties	2210
+Feeding difficulties	379
+Feeding difficulties	43
+Female breast cancer	1048
+Female breast cancer	226
+Female breast cancer	534
+Fever	1020
+Fever	1110
+Fever	1729
+Fever	1823
+Fever	218
+Fever	299
+Fever	395
+Fever	657
+Fever	727
+Fever	762
+Fever	861
+Fever	880
+Fibrosis	1284
+Fibrosis	1316
+Fibrosis	1728
+Fibrosis	2095
+Fibrosis	288
+Fibrosis	390
+Flow cytometry	1346
+Flow cytometry	139
+Flow cytometry	1405
+Flow cytometry	1680
+Flow cytometry	1955
+Flow cytometry	248
+Flow cytometry	397
+Flow cytometry	799
+Flow cytometry	802
+Flow cytometry	827
+Fragile X	1030
+Fragile X	231
+Fragile X	233
+Fragile X	578
+Fragile X	644
+Fragile X	698
+Fragile X	705
+Fragile X	854
+G6PD A	1035
+G6PD A	161
+G6PD A	19
+G6PD A	216
+G6PD A	2274
+G6PD deficient	608
+GBM	1344
+GBM	1512
+GBM	640
+GC	111
+GC	128
+GC	711
+GC	985
+GEF	1471
+GH	1233
+GH	244
+GIST	1085
+GIST	1093
+GISTs	1443
+GS	1744
+GSH	1972
+GT	1025
+GT	1041
+GT	115
+GT	116
+GT	1643
+GT	1956
+GT	2002
+GT	219
+GT	284
+GT	300
+GT	675
+GT	96
+GalT	1972
+Galactocerebrosidase	1792
+Galactose	1045
+Galactose	1128
+Galactose	1136
+Galactose	118
+Galactose	1537
+Galactose	1609
+Galactose	1681
+Galactose	1972
+Galactose	213
+Galactose	2285
+Galactose	387
+Galactose	404
+Galactose	431
+Galactose	735
+Galactose	757
+Ganglion cell layer	1064
+Gangliosidosis	1054
+Gangliosidosis	1991
+Gangliosidosis	2023
+Gastrulation	114
+Gastrulation	1398
+Gastrulation	1421
+Gastrulation	1626
+Gastrulation	250
+Gastrulation	30
+Gaucher	1619
+Gaucher	288
+Gene defects	1103
+Gene defects	1942
+Gene defects	270
+Gene defects	464
+Gene defects	771
+Gene defects	775
+Generalized epilepsy	954
+Genetic conditions	264
+Genetic criteria	1322
+Genetic defect	1613
+Genetic defects	722
+Genetic defects	739
+Genetic disease	874
+Genetic diseases	893
+Genetic disorders	1598
+Genetic information	1017
+Genetic information	558
+Genetic information	791
+Genetic instability	60
+Genetic mapping	1332
+Genetic mapping	2060
+Genetic mapping	2065
+Genetic mapping	496
+Genetic mapping	651
+Genetic predisposition	142
+Genetic predisposition	1781
+Genetic predisposition	1788
+Genetic predisposition	1828
+Genetic predisposition	2048
+Genetic predisposition	215
+Genetic predisposition	314
+Genetic predisposition	954
+Genetic testing	1001
+Genetic testing	1172
+Genetic testing	1220
+Genetic testing	1296
+Genetic testing	1301
+Genetic testing	1362
+Genetic testing	1541
+Genetic testing	1607
+Genetic testing	1646
+Genetic testing	1695
+Genetic testing	1708
+Genetic testing	1716
+Genetic testing	1744
+Genetic testing	1879
+Genetic testing	1885
+Genetic testing	1934
+Genetic testing	299
+Genetic testing	485
+Genetic testing	605
+Genetic testing	695
+Genetic testing	921
+Genetic testing	983
+Genitalia	1194
+Genome instability	1606
+Genome-wide association studies	1576
+Genome-wide association studies	1884
+Genomic instability	146
+Genomic instability	1779
+Genomic instability	3
+Genomic instability	556
+Genomic instability	837
+Glomerular	1344
+Glomerular	1584
+Glomerular	1706
+Glomerular	2226
+Glomerular	410
+Glomerular	640
+Glucocerebrosidase	1257
+Glucocerebrosidase	1356
+Glucocerebrosidase	1402
+Glucocerebrosidase	1619
+Glucocerebrosidase	1898
+Glucocerebrosidase	209
+Glucocerebrosidase	288
+Glucose-6-phosphate dehydrogenase-deficient	129
+Glucose-6-phosphate dehydrogenase-deficient	2271
+Glucosylceramide	1257
+Glucosylceramide	1898
+Glycosaminoglycans	1327
+Glycosaminoglycans	539
+Glycosaminoglycans	897
+Glycosaminoglycans	969
+Growth	100
+Growth	1002
+Growth	1006
+Growth	1008
+Growth	1064
+Growth	1071
+Growth	1076
+Growth	1085
+Growth	1109
+Growth	111
+Growth	1135
+Growth	1165
+Growth	1174
+Growth	1217
+Growth	123
+Growth	1232
+Growth	1252
+Growth	128
+Growth	129
+Growth	1299
+Growth	1309
+Growth	1315
+Growth	1333
+Growth	1337
+Growth	1374
+Growth	1384
+Growth	1385
+Growth	1398
+Growth	1421
+Growth	144
+Growth	1443
+Growth	1444
+Growth	1452
+Growth	1475
+Growth	1488
+Growth	149
+Growth	1496
+Growth	15
+Growth	1512
+Growth	1516
+Growth	1524
+Growth	1545
+Growth	1555
+Growth	1560
+Growth	1606
+Growth	1623
+Growth	1626
+Growth	1635
+Growth	1639
+Growth	1649
+Growth	1650
+Growth	1701
+Growth	1704
+Growth	1752
+Growth	1764
+Growth	1765
+Growth	1784
+Growth	1785
+Growth	1791
+Growth	1840
+Growth	1882
+Growth	1909
+Growth	191
+Growth	1930
+Growth	1967
+Growth	1972
+Growth	2007
+Growth	2043
+Growth	2051
+Growth	2126
+Growth	2128
+Growth	2146
+Growth	2159
+Growth	2187
+Growth	2210
+Growth	2229
+Growth	225
+Growth	2285
+Growth	244
+Growth	252
+Growth	260
+Growth	30
+Growth	323
+Growth	337
+Growth	344
+Growth	373
+Growth	383
+Growth	394
+Growth	397
+Growth	423
+Growth	430
+Growth	449
+Growth	466
+Growth	486
+Growth	495
+Growth	500
+Growth	512
+Growth	518
+Growth	559
+Growth	584
+Growth	585
+Growth	597
+Growth	604
+Growth	611
+Growth	626
+Growth	633
+Growth	657
+Growth	664
+Growth	698
+Growth	711
+Growth	719
+Growth	745
+Growth	76
+Growth	773
+Growth	783
+Growth	799
+Growth	818
+Growth	820
+Growth	841
+Growth	847
+Growth	855
+Growth	906
+Growth	91
+Growth	926
+Growth	928
+Growth	948
+Growth	951
+Growth	953
+Growth	974
+Growth	984
+Growth retardation	1421
+Growth retardation	657
+Growth-retarded	1909
+HB	541
+HC	1232
+HCM	1192
+HDAC	876
+HDL	1015
+HDL	1088
+HDL	1105
+HDL	1138
+HDL	119
+HDL	1211
+HDL	1352
+HDL	143
+HDL	1477
+HDL	1508
+HDL	1520
+HDL	1612
+HDL	1675
+HDL	1774
+HDL	1817
+HDL	1977
+HDL	1984
+HDL	2214
+HDL	2298
+HDL	247
+HDL	26
+HDL	29
+HDL	381
+HDL	555
+HDL	595
+HDL	932
+HDL2	2175
+HDL2	894
+HEXB	1054
+HEXB	1786
+HGD	1500
+HIF	1650
+HNPCC	994
+HPA	375
+HPA	448
+HPA	456
+HPA	475
+HPA	815
+Haematopoietic	139
+Haematopoietic	160
+Haemolysis	1023
+Harderoporphyria	940
+HbAS	1800
+Healthy donors	1247
+Healthy donors	1971
+Hearing loss	1191
+Hearing loss	1869
+Hearing loss	844
+Hemolysis	1035
+Hemolysis	1498
+Hemolysis	2147
+Hemolysis	607
+Hemolysis	62
+Hemolytic uremic syndrome	1939
+Hemostasis	2161
+Hepatic fibrosis	1316
+Hepatomegaly	1695
+Hereditary colorectal cancer	869
+Hereditary disease	410
+Heterodisomy	439
+Heterodisomy	805
+Heteroduplex	1181
+Heteroduplex	1298
+Heteroduplex	1447
+Heteroduplex	1603
+Heteroduplex	1663
+Heteroduplex	1665
+Heteroduplex	240
+Heteroduplex	267
+Heteroduplex	290
+Heteroduplex	296
+Heteroduplex	348
+Heteroduplex	484
+Heteroduplex	686
+Heteroduplex	837
+Heterogeneous disease	1929
+Heterogeneous disease	596
+Heterogeneous disease	755
+Hex A deficiency	790
+Hexosaminidase A deficiency	79
+High fat	143
+Hispanic	1337
+Hispanic	1932
+Hispanic	226
+Hispanic	502
+Human disease	1086
+Human disease	1098
+Human disease	1293
+Human disease	1472
+Human disease	1492
+Human disease	1724
+Human disease	373
+Human disease	698
+Human disease	897
+Huntington's disease	645
+Hydrocortisone	1454
+Hydrolysis	1045
+Hydrolysis	1671
+Hydrolysis	1940
+Hydrolysis	389
+Hydrolysis	467
+Hydrolysis	543
+Hydrolysis	618
+Hypercholesterolemia	2266
+Hypercoagulability	368
+Hypermethylation	1198
+Hypermethylation	1374
+Hypermethylation	399
+Hypermethylation	471
+Hypermethylation	547
+Hypermethylation	734
+Hyperplastic	447
+Hypersensitivity	1838
+Hypersensitivity	1848
+Hypersensitivity	50
+Hypertension	1344
+Hypertension	1510
+Hypertension	1692
+Hypertension	284
+Hypertension	325
+HypoPP	245
+Hypokalemic periodic paralysis	245
+Hypothalamus	531
+Hypothalamus	719
+Hypothalamus	86
+Hypothesis	1039
+Hypothesis	1067
+Hypothesis	107
+Hypothesis	109
+Hypothesis	1151
+Hypothesis	1170
+Hypothesis	1272
+Hypothesis	1339
+Hypothesis	1409
+Hypothesis	1415
+Hypothesis	143
+Hypothesis	1435
+Hypothesis	1451
+Hypothesis	1517
+Hypothesis	1523
+Hypothesis	1610
+Hypothesis	1640
+Hypothesis	1673
+Hypothesis	1742
+Hypothesis	1754
+Hypothesis	1757
+Hypothesis	1767
+Hypothesis	1848
+Hypothesis	1934
+Hypothesis	1948
+Hypothesis	1963
+Hypothesis	201
+Hypothesis	2014
+Hypothesis	2022
+Hypothesis	2045
+Hypothesis	2091
+Hypothesis	2126
+Hypothesis	255
+Hypothesis	321
+Hypothesis	341
+Hypothesis	343
+Hypothesis	344
+Hypothesis	350
+Hypothesis	443
+Hypothesis	449
+Hypothesis	526
+Hypothesis	531
+Hypothesis	584
+Hypothesis	590
+Hypothesis	595
+Hypothesis	601
+Hypothesis	628
+Hypothesis	639
+Hypothesis	697
+Hypothesis	796
+Hypothesis	80
+Hypothesis	819
+Hypothesis	877
+Hypoxia	1963
+ID	1675
+ID	396
+III	100
+III	1050
+III	1070
+III	1088
+III	1108
+III	1115
+III	1174
+III	1402
+III	1420
+III	1436
+III	145
+III	1544
+III	1581
+III	161
+III	1658
+III	1687
+III	176
+III	1852
+III	1900
+III	1928
+III	1950
+III	1971
+III	2002
+III	2014
+III	2112
+III	2121
+III	2189
+III	2217
+III	2221
+III	270
+III	325
+III	381
+III	412
+III	483
+III	543
+III	861
+III	867
+III	896
+III	936
+III	992
+IVF	1393
+Idiopathic epilepsies	954
+Immune disease	2274
+Immunodeficiency	1155
+Immunodeficiency	122
+Immunodeficiency	1269
+Immunodeficiency	1504
+Immunostains	1784
+Immunostains	663
+Impacts	1096
+Impacts	757
+Impaired peroxisomal beta-oxidation	101
+In ataxia telangiectasia	1798
+In ataxia telangiectasia	2004
+In ataxia telangiectasia	201
+Increased cancer	1459
+Increased cancer	1831
+Infectious diseases	1947
+Inherited breast cancer	194
+Inherited breast cancer	324
+Inherited deficiency	1142
+Inherited deficiency	1515
+Inherited deficiency	1585
+Inherited deficiency	1717
+Inherited deficiency	209
+Inherited deficiency	2162
+Inherited deficiency	2164
+Inherited disease	1926
+Inherited disease	762
+Inherited disorder	2135
+Inherited metabolic disease	2012
+Inherited neurodegenerative disease	1893
+Inherited the disease	650
+Insulin-like growth	1008
+Insulin-like growth	1315
+Insulin-like growth	1701
+Insulin-like growth	1882
+Insulin-like growth	1930
+Insulin-like growth	383
+Insulin-like growth	430
+Insulin-like growth	719
+Iron deficiency anemia	353
+Isodisomy	332
+Isodisomy	439
+Isolated SRNS	791
+Isolated clefts	763
+KD	1645
+KD	266
+KD	435
+KD	641
+KD	797
+Kidney disease	1344
+LA	1794
+LEF	21
+LEF	256
+LEF	918
+LOH	100
+LOH	1198
+LOH	1474
+LOH	1652
+LOH	259
+LOH	324
+LOH	394
+LOH	436
+LOH	471
+LOH	520
+LOH	547
+LOH	556
+LOH	601
+LOH	615
+LOH	734
+LOH	779
+Leukocytosis	1110
+Limb anomalies	1906
+Linkage disequilibrium	1021
+Linkage disequilibrium	105
+Linkage disequilibrium	1059
+Linkage disequilibrium	1162
+Linkage disequilibrium	1250
+Linkage disequilibrium	1336
+Linkage disequilibrium	1418
+Linkage disequilibrium	1600
+Linkage disequilibrium	1711
+Linkage disequilibrium	2009
+Linkage disequilibrium	2055
+Linkage disequilibrium	24
+Linkage disequilibrium	288
+Linkage disequilibrium	359
+Linkage disequilibrium	422
+Linkage disequilibrium	661
+Linkage disequilibrium	89
+Linkage disequilibrium	962
+Linkage disequilibrium	99
+Lipid droplets	1508
+Lipid droplets	1613
+Lipid droplets	2044
+Lipolysis	2135
+Lipolysis	2183
+Lissencephaly	44
+Liver cirrhosis	2138
+Liver disease	1157
+Liver disease	1830
+Loss of heterozygosity	100
+Loss of heterozygosity	1076
+Loss of heterozygosity	1277
+Loss of heterozygosity	149
+Loss of heterozygosity	1656
+Loss of heterozygosity	1826
+Loss of heterozygosity	1876
+Loss of heterozygosity	1911
+Loss of heterozygosity	1941
+Loss of heterozygosity	1988
+Loss of heterozygosity	2045
+Loss of heterozygosity	2067
+Loss of heterozygosity	2069
+Loss of heterozygosity	240
+Loss of heterozygosity	259
+Loss of heterozygosity	324
+Loss of heterozygosity	355
+Loss of heterozygosity	380
+Loss of heterozygosity	384
+Loss of heterozygosity	394
+Loss of heterozygosity	436
+Loss of heterozygosity	520
+Loss of heterozygosity	547
+Loss of heterozygosity	559
+Loss of heterozygosity	601
+Loss of heterozygosity	612
+Loss of heterozygosity	615
+Loss of heterozygosity	734
+Loss of heterozygosity	779
+Loss of heterozygosity	88
+Loss of heterozygosity	9
+Loss of heterozygosity	930
+Loss of heterozygosity	98
+Lymphoma	1274
+Lymphoma	1886
+Lymphoma	1961
+Lymphoma	2020
+Lymphoma	345
+Lymphoma	446
+Lymphoma	447
+Lymphoma	46
+Lymphomas	1779
+Lymphomas	458
+Lymphomas	598
+Lymphoproliferative disorders	1162
+Lysosomal acid beta-galactosidase	2233
+Lysosomal beta-hexosaminidase	1054
+Lysosomal storage disease	969
+MA	393
+MAP	1025
+MAP	1027
+MAP	285
+MAP	698
+MAP	748
+MBP	721
+MBP	870
+MD	1333
+MDA	707
+MEFV	1020
+MEFV	1119
+MEFV	1204
+MEFV	1349
+MEFV	1353
+MEFV	1802
+MEFV	187
+MEFV	218
+MEFV	308
+MEFV	403
+MEFV	442
+MEFV	632
+MEFV	708
+MEFV	762
+MEFV	861
+MEFV	949
+MEK	1967
+MEK	698
+MEN1	355
+METHODS	1001
+METHODS	1006
+METHODS	1007
+METHODS	1009
+METHODS	1011
+METHODS	1022
+METHODS	1039
+METHODS	1059
+METHODS	1061
+METHODS	1063
+METHODS	1064
+METHODS	1073
+METHODS	1079
+METHODS	1080
+METHODS	1091
+METHODS	1101
+METHODS	1103
+METHODS	1104
+METHODS	1110
+METHODS	1111
+METHODS	1116
+METHODS	1119
+METHODS	1132
+METHODS	1139
+METHODS	1149
+METHODS	1153
+METHODS	1165
+METHODS	1184
+METHODS	1197
+METHODS	1203
+METHODS	1206
+METHODS	1243
+METHODS	1260
+METHODS	1268
+METHODS	1273
+METHODS	1274
+METHODS	1276
+METHODS	1277
+METHODS	1278
+METHODS	1280
+METHODS	1297
+METHODS	1298
+METHODS	1306
+METHODS	1311
+METHODS	1316
+METHODS	132
+METHODS	1326
+METHODS	1327
+METHODS	1328
+METHODS	1329
+METHODS	1333
+METHODS	1342
+METHODS	1343
+METHODS	1349
+METHODS	1364
+METHODS	1366
+METHODS	1369
+METHODS	1377
+METHODS	1381
+METHODS	1388
+METHODS	1393
+METHODS	1405
+METHODS	1411
+METHODS	1423
+METHODS	1428
+METHODS	1443
+METHODS	1445
+METHODS	1455
+METHODS	1456
+METHODS	1459
+METHODS	1477
+METHODS	1483
+METHODS	1494
+METHODS	1498
+METHODS	1502
+METHODS	1503
+METHODS	1510
+METHODS	1519
+METHODS	1528
+METHODS	1549
+METHODS	1552
+METHODS	1554
+METHODS	1557
+METHODS	1569
+METHODS	1570
+METHODS	1571
+METHODS	1581
+METHODS	1582
+METHODS	1591
+METHODS	1616
+METHODS	1620
+METHODS	1627
+METHODS	1634
+METHODS	1635
+METHODS	1638
+METHODS	1653
+METHODS	1680
+METHODS	1686
+METHODS	1707
+METHODS	1708
+METHODS	1709
+METHODS	1716
+METHODS	1727
+METHODS	1730
+METHODS	1732
+METHODS	1734
+METHODS	1737
+METHODS	1747
+METHODS	1761
+METHODS	177
+METHODS	1772
+METHODS	1773
+METHODS	1774
+METHODS	1788
+METHODS	1793
+METHODS	1794
+METHODS	1814
+METHODS	1815
+METHODS	1817
+METHODS	1819
+METHODS	1821
+METHODS	1824
+METHODS	1831
+METHODS	1832
+METHODS	1833
+METHODS	1836
+METHODS	1841
+METHODS	1856
+METHODS	1875
+METHODS	1885
+METHODS	189
+METHODS	1895
+METHODS	1902
+METHODS	1905
+METHODS	1915
+METHODS	1920
+METHODS	1922
+METHODS	1925
+METHODS	1927
+METHODS	1932
+METHODS	1952
+METHODS	1958
+METHODS	1975
+METHODS	1977
+METHODS	198
+METHODS	1981
+METHODS	1982
+METHODS	1987
+METHODS	204
+METHODS	223
+METHODS	225
+METHODS	231
+METHODS	236
+METHODS	237
+METHODS	240
+METHODS	243
+METHODS	248
+METHODS	25
+METHODS	262
+METHODS	277
+METHODS	294
+METHODS	296
+METHODS	300
+METHODS	303
+METHODS	31
+METHODS	315
+METHODS	325
+METHODS	328
+METHODS	334
+METHODS	336
+METHODS	340
+METHODS	346
+METHODS	348
+METHODS	353
+METHODS	356
+METHODS	368
+METHODS	375
+METHODS	393
+METHODS	398
+METHODS	410
+METHODS	411
+METHODS	42
+METHODS	442
+METHODS	443
+METHODS	454
+METHODS	481
+METHODS	485
+METHODS	515
+METHODS	519
+METHODS	520
+METHODS	541
+METHODS	551
+METHODS	554
+METHODS	572
+METHODS	574
+METHODS	576
+METHODS	589
+METHODS	591
+METHODS	595
+METHODS	598
+METHODS	603
+METHODS	609
+METHODS	610
+METHODS	613
+METHODS	62
+METHODS	623
+METHODS	624
+METHODS	626
+METHODS	632
+METHODS	634
+METHODS	641
+METHODS	642
+METHODS	704
+METHODS	708
+METHODS	714
+METHODS	717
+METHODS	737
+METHODS	739
+METHODS	740
+METHODS	762
+METHODS	766
+METHODS	769
+METHODS	791
+METHODS	80
+METHODS	801
+METHODS	816
+METHODS	821
+METHODS	823
+METHODS	84
+METHODS	847
+METHODS	854
+METHODS	856
+METHODS	862
+METHODS	863
+METHODS	899
+METHODS	900
+METHODS	908
+METHODS	921
+METHODS	925
+METHODS	935
+METHODS	936
+METHODS	942
+METHODS	949
+METHODS	956
+METHODS	961
+METHODS	978
+METHODS	987
+METHODS	992
+METHODS	994
+METHODS	996
+MM	1342
+MM	529
+MM	769
+MM	82
+MR	1571
+MR	2171
+MR	537
+MS	1365
+MS	393
+MS	399
+MS	760
+MS	769
+MS	908
+MSI	615
+MTP	738
+MYH	1126
+MYH	240
+MYH	591
+MYH	869
+Macrocephaly	437
+Macrocephaly	900
+Major prostate cancer	338
+Malaria infections	563
+Malarial parasites	1536
+Male breast cancer	744
+Malfunction	1517
+Malfunction	668
+Malignancies	1308
+Malignancies	1436
+Malignancies	1443
+Malignancies	150
+Malignancies	1764
+Malignancies	2020
+Malignancies	2045
+Malignancies	3
+Malignancies	559
+Malignancies	91
+Malignancies	984
+Malignancy	1308
+Malignancy	1426
+Malignancy	146
+Malignancy	1930
+Malignancy	1967
+Malignancy	2221
+Malignancy	330
+Malignancy	594
+Malignancy	597
+Malignancy	631
+Malondialdehyde	707
+Mass spectrometry	1142
+Mass spectrometry	1147
+Mass spectrometry	1567
+Mass spectrometry	1739
+Mass spectrometry	1940
+Mass spectrometry	1946
+Mass spectrometry	538
+Mass spectrometry	570
+Mass spectrometry	614
+Mass spectrometry	760
+Mass spectrometry	769
+Maternal UPD	206
+Maternal UPD	219
+Maternal UPD	32
+Maternal UPD	439
+Maternal UPD	739
+Maternal disomy	439
+Maternal uniparental disomy	206
+Mediterranean fever	1729
+Mediterranean fever	861
+Medium	1000
+Medium	1297
+Medium	1323
+Medium	1452
+Medium	1755
+Medium	1760
+Medium	2139
+Medium	2150
+Medium	2159
+Medium	2201
+Medium	2211
+Medium	286
+Medium	302
+Medium	378
+Medium	689
+Medium	87
+Melanoma	316
+Membranoproliferative glomerulonephritis	957
+Metabolic acidosis	1584
+Metabolic defect	378
+Metabolic disease	1427
+Metabolic disorder	757
+Metabolic disturbances	1559
+Metachromatic leukodystrophy	1166
+Metastasis	106
+Metastasis	1385
+Metastasis	1475
+Metastasis	1544
+Metastasis	1629
+Metastasis	1947
+Metastasis	394
+Metastasis	471
+Metastasis	821
+Metastasis	823
+Metastasis	85
+Microcephaly	1075
+Microcephaly	1594
+Microcephaly	1845
+Microcephaly	71
+Microsatellite instability	1652
+Microsatellite instability	547
+Microsatellite instability	615
+Microsatellite stable	615
+Migraine with aura	822
+Milder disease	1429
+Milder disease	1587
+Misdiagnosis	83
+Mitochondrial dysfunction	1900
+Mitosis	1010
+Mitosis	141
+Mitosis	191
+Mitosis	2105
+Mitosis	2127
+Mitosis	281
+Mitosis	950
+Moderate mental retardation	360
+Moderate mental retardation	537
+Molecular abnormalities	38
+Molecular defect	1019
+Molecular defect	1298
+Molecular defect	1622
+Molecular defect	38
+Molecular defects	1057
+Molecular defects	1845
+Molecular defects	427
+Molecular defects	690
+Molecular defects	771
+Molecular testing	1825
+Molecular testing	517
+Morbid obesity	1340
+Motor impairment	557
+Much less	1374
+Much less	1520
+Much less	640
+Much less	775
+Multilayered patella	1292
+Multimeric VWF	425
+Muscle wasting	903
+Myeloid	2080
+Myeloid	287
+Myeloid	308
+Myeloid	76
+Myopathy	656
+Myotonic discharges	379
+NAD	2229
+NDP	1843
+NH	192
+NM	1108
+NM	1501
+NM	2108
+NPL	1162
+NPL	1268
+NPL	1333
+NPL	325
+NPL	887
+NS	595
+Necrosis	1064
+Necrosis	1219
+Necrosis	1386
+Necrosis	1536
+Necrosis	1961
+Necrosis	409
+Necrosis	414
+Neisseria	2066
+Neisseria gonorrhoeae	307
+Neonatal adrenoleukodystrophy	931
+Neonatal jaundice	1960
+Neoplasm	1374
+Neoplasm	594
+Neoplasms	2080
+Neoplasms	369
+Neoplasms	90
+Neoplastic	191
+Neoplastic	1961
+Neoplastic	21
+Neoplastic	2112
+Neoplastic	447
+Neoplastic	818
+Neoplastic process	766
+Neoplastic transformation	191
+Neoplastic transformation	21
+Nerve atrophy	18
+Neurobehavioral	271
+Neurobehavioral	41
+Neurodegeneration	1893
+Neurodegeneration	974
+Neurofibromatosis	277
+Neurological involvement	1619
+Neurological manifestations	1227
+Neurological manifestations	1249
+Neurological manifestations	1568
+Neurological manifestations	1619
+Neurological manifestations	1742
+Neurological symptoms	1242
+Neurological symptoms	1869
+Neurological symptoms	220
+Neurological symptoms	222
+Neurological symptoms	537
+Neurological symptoms	939
+Neuronopathic	1725
+Neuronopathic Gaucher disease	1257
+Neuropathology	1114
+Neuropathology	1386
+Neuropathology	402
+Neuropathology	894
+Neuropsychiatric	41
+Neutropenia	607
+New syndrome	573
+Newborns	1075
+Newborns	1142
+Newborns	1638
+Newborns	1960
+Newborns	1973
+Newborns	735
+Newborns	938
+Next-generation sequencing	1521
+Next-generation sequencing	1715
+Next-generation sequencing	1881
+Next-generation sequencing	1884
+Next-generation sequencing	1982
+Non-parametric linkage	325
+Non-parametric linkage	626
+Non-parametric linkage	822
+Norrie's disease	2250
+OBJECTIVES	1061
+OBJECTIVES	1063
+OBJECTIVES	1377
+OBJECTIVES	1405
+OBJECTIVES	1510
+OBJECTIVES	1557
+OBJECTIVES	1591
+OBJECTIVES	1709
+OBJECTIVES	1727
+OBJECTIVES	1836
+OBJECTIVES	1905
+OBJECTIVES	1922
+OBJECTIVES	204
+OBJECTIVES	223
+OBJECTIVES	294
+OBJECTIVES	325
+OBJECTIVES	368
+OBJECTIVES	507
+OBJECTIVES	589
+OBJECTIVES	591
+OBJECTIVES	62
+OBJECTIVES	626
+OBJECTIVES	632
+OBJECTIVES	71
+OBJECTIVES	84
+OBJECTIVES	892
+OBJECTIVES	956
+OD	1623
+OMIM	1191
+OMIM	1199
+OMIM	1229
+OMIM	1249
+OMIM	1409
+OMIM	1440
+OMIM	1464
+OMIM	1698
+OMIM	1714
+OMIM	1725
+OMIM	1972
+OMIM	312
+OMIM	355
+OMIM	478
+OMIM	524
+OMIM	538
+OMIM	812
+OMIM	877
+OMIM	969
+Obese	1043
+Obese	1817
+Obesity	1233
+Obesity	1594
+Obesity	2068
+Observed abnormalities	1341
+Obvious	1291
+Obvious	154
+Obvious	1905
+Obvious	1961
+Obvious	2048
+Obvious	2077
+Obvious	2164
+Obvious	2194
+Obvious	333
+Obvious	395
+Obvious	573
+Obvious	657
+Obvious	674
+Obvious	795
+Oculocerebrorenal syndrome	1341
+Oculocerebrorenal syndrome of Lowe	1341
+Osteophytes	2208
+Other abnormalities	1075
+Other cancers	1244
+Other cancers	1314
+Other cancers	1535
+Other cancers	1819
+Other cancers	290
+Other cancers	98
+Outer nuclear layer	457
+PC	1894
+PC	712
+PC	928
+PD	2080
+PD	2216
+PD	2244
+PD	62
+PG	102
+PG	1553
+PG	1627
+PG	1937
+PI	210
+PI	257
+PI	618
+PK	1693
+PK	2130
+PK	322
+PK	48
+PK	80
+PK	843
+PSACH	1146
+PTEN	123
+PTEN	1475
+PTEN	149
+PTEN	1776
+PTEN	1833
+PTEN	1876
+PTEN	217
+PTEN	315
+PTEN	330
+PTEN	397
+PTEN	618
+PTEN	72
+PWS-IC	1417
+Pacemaker	2179
+Pancreas	1542
+Pancreas	2128
+Pancreas	683
+Parabasal layers	821
+Parkinson's disease	1457
+Parkinsonism	613
+Paroxysmal nocturnal hemoglobinuria	139
+Partial deficiency	1249
+Partial deficiency	1295
+Partial deficiency	1926
+Partial deficiency	2132
+Paternal uniparental disomy	1816
+Percussion myotonia	2044
+Peripheral neuropathy	721
+Peripheral retina	1490
+Peripheral retina	328
+Peroxisomal VLCFA beta-oxidation	1531
+Peroxisomal beta-oxidation	1287
+Peroxisomal beta-oxidation	391
+Pervasive developmental disorder	1950
+Phagocytosis	2162
+Phagocytosis	76
+Phenylketonuric	691
+Photoreceptor degeneration	1101
+Photoreceptor degeneration	1730
+Photoreceptor degeneration	629
+Plasma	101
+Plasma	1019
+Plasma	1055
+Plasma	1105
+Plasma	1106
+Plasma	1116
+Plasma	1138
+Plasma	1141
+Plasma	119
+Plasma	1210
+Plasma	1211
+Plasma	1227
+Plasma	1243
+Plasma	1263
+Plasma	1287
+Plasma	1293
+Plasma	1312
+Plasma	1352
+Plasma	1390
+Plasma	143
+Plasma	1473
+Plasma	148
+Plasma	149
+Plasma	1501
+Plasma	1508
+Plasma	1515
+Plasma	1517
+Plasma	1531
+Plasma	1562
+Plasma	1605
+Plasma	1612
+Plasma	1615
+Plasma	1616
+Plasma	1620
+Plasma	1658
+Plasma	1673
+Plasma	1723
+Plasma	1774
+Plasma	1817
+Plasma	1853
+Plasma	1875
+Plasma	1888
+Plasma	1913
+Plasma	1939
+Plasma	1946
+Plasma	197
+Plasma	1984
+Plasma	2018
+Plasma	2087
+Plasma	2098
+Plasma	2101
+Plasma	2102
+Plasma	2131
+Plasma	214
+Plasma	2141
+Plasma	2162
+Plasma	2164
+Plasma	2168
+Plasma	2174
+Plasma	2175
+Plasma	2176
+Plasma	2183
+Plasma	220
+Plasma	221
+Plasma	2211
+Plasma	2214
+Plasma	2228
+Plasma	2232
+Plasma	2298
+Plasma	238
+Plasma	247
+Plasma	272
+Plasma	284
+Plasma	29
+Plasma	302
+Plasma	391
+Plasma	412
+Plasma	464
+Plasma	48
+Plasma	489
+Plasma	513
+Plasma	519
+Plasma	52
+Plasma	538
+Plasma	543
+Plasma	555
+Plasma	565
+Plasma	587
+Plasma	595
+Plasma	661
+Plasma	710
+Plasma	719
+Plasma	735
+Plasma	765
+Plasma	771
+Plasma	82
+Plasma	908
+Plasma	939
+Plasma	957
+Plasma	975
+Plasma	982
+Ploidy	436
+Polydipsia	1660
+Polyposis	653
+Polyps	1277
+Polyps	1629
+Polyps	566
+Polyps	591
+Polyps	776
+Polyps	794
+Polyps	869
+Polyps	935
+Polyps	946
+Polyps	987
+Porphyria	1284
+Porphyria	270
+Prader-Willi and Angelman syndromes	393
+Precursor lesions	124
+Precursor lesions	1915
+Precursor lesions	1988
+Premature	1118
+Premature	1177
+Premature	1181
+Premature	1227
+Premature	1298
+Premature	13
+Premature	1355
+Premature	1369
+Premature	140
+Premature	1429
+Premature	1435
+Premature	1458
+Premature	1467
+Premature	147
+Premature	1543
+Premature	1585
+Premature	1639
+Premature	1665
+Premature	1695
+Premature	1720
+Premature	1754
+Premature	1761
+Premature	1789
+Premature	1880
+Premature	1888
+Premature	1953
+Premature	197
+Premature	1982
+Premature	1989
+Premature	230
+Premature	296
+Premature	314
+Premature	352
+Premature	427
+Premature	450
+Premature	468
+Premature	481
+Premature	499
+Premature	50
+Premature	51
+Premature	543
+Premature	566
+Premature	573
+Premature	740
+Premature	75
+Premature	827
+Premature	829
+Premature	862
+Premature	868
+Premature	875
+Premature	884
+Premature	891
+Premature	898
+Premature	924
+Premature	93
+Premature	931
+Premature	960
+Prenatal diagnosis	1021
+Prenatal diagnosis	1109
+Prenatal diagnosis	1111
+Prenatal diagnosis	1231
+Prenatal diagnosis	1402
+Prenatal diagnosis	1418
+Prenatal diagnosis	1430
+Prenatal diagnosis	1549
+Prenatal diagnosis	1695
+Prenatal diagnosis	1872
+Prenatal diagnosis	1909
+Prenatal diagnosis	1940
+Prenatal diagnosis	1999
+Prenatal diagnosis	2010
+Prenatal diagnosis	2055
+Prenatal diagnosis	206
+Prenatal diagnosis	2063
+Prenatal diagnosis	2131
+Prenatal diagnosis	2192
+Prenatal diagnosis	336
+Prenatal diagnosis	359
+Prenatal diagnosis	376
+Prenatal diagnosis	439
+Prenatal diagnosis	545
+Prenatal diagnosis	56
+Prenatal diagnosis	650
+Prenatal diagnosis	653
+Prenatal diagnosis	656
+Prenatal diagnosis	685
+Prenatal diagnosis	775
+Prenatal diagnosis	790
+Prenatal diagnosis	842
+Prenatal diagnosis	858
+Prenatal diagnosis	905
+Prenatal diagnosis	908
+Prenatal diagnosis	969
+Prenatal diagnosis	992
+Programmed cell death	373
+Programmed cell death	720
+Progressive cerebellar ataxia	1905
+Proteinuria	1159
+Proteinuria	1344
+Proteinuria	640
+Proximal myopathy	2134
+Pseudoachondroplasia	1146
+Psychiatric symptoms	1636
+Psychiatric symptoms	2078
+Ptosis	121
+Ptosis	1624
+Putamen, globus pallidus	349
+RA	1562
+RAS	1807
+RB	132
+RB	2106
+RB	512
+RCC	1299
+RCC	1632
+RCC	471
+RCCs	128
+RCCs	1383
+RCCs	1849
+RCCs	2069
+RCCs	724
+RDS	1445
+RDS	229
+RDS	643
+RDS	686
+RDS	925
+REP-1	1367
+ROI	201
+RS	1571
+Radiosensitivity	1269
+Radiosensitivity	2004
+Radiosensitivity	2027
+Radiosensitivity	322
+Radiosensitivity	54
+Radiosensitivity	631
+Radiosensitivity	813
+Radiosensitivity	829
+Radiosensitivity	843
+Rare disease	1110
+Rare disease	1141
+Rare disease	1304
+Rare disease	68
+Rare disorder	793
+Rb	1385
+Rb	1645
+Rb	1941
+Rb	212
+Rb	655
+Rb	952
+Rd	1416
+Rd	2006
+Rd	328
+Recessive deafness	388
+Recurrent disease	1057
+Recurrent disease	1780
+Recurrent disease	835
+Refractory prostate cancer	150
+Related disorders	576
+Renal disease	1675
+Renal disease	724
+Reticulocytosis	2130
+Retinal degeneration	1730
+Retinal degeneration	2248
+Retinal detachment	1993
+Retinal layers	1064
+Retinal layers	2194
+Retinoschisis	544
+SCA	1328
+SCA1	1328
+SCA1	1938
+SCA1	283
+SCA1	613
+SCA1	993
+SCA2	283
+SCA2	613
+SCA2	924
+SCA2	993
+SCA3	1154
+SCA3	1328
+SCA3	1484
+SCA3	1494
+SCA3	283
+SCA6	283
+SCA6	613
+SCA6	924
+SD	1038
+SD	1328
+SD	1396
+SD	1463
+SD	1971
+SD	2138
+SD	303
+SD	755
+SEP	1227
+SEP	234
+SF	1002
+SF	1716
+SF	407
+SF	492
+SF	70
+SF-1	407
+SF-1	492
+SF-1	70
+SS	529
+SZ	1224
+SZ	529
+Schizophrenia	202
+Schizophrenia	887
+Secondary disorders	2196
+Short stature	244
+Short stature	58
+Single-gene disorder	2204
+Skeletal myopathy	1728
+Skin fragility	1145
+Soft tissue sarcomas	773
+Spasticity	537
+Spasticity	945
+Speech impairment	1845
+Spinocerebellar ataxias	1328
+Splenomegaly	1554
+Sporadic breast cancers	520
+Sporadic breast cancers	853
+Sporadic breast carcinomas	463
+Sporadic cancers	853
+Sporadic renal cell carcinomas	471
+Sporadic tumours	779
+Symptoms of the disease	1330
+Symptoms of the disease	607
+System atrophy	613
+Systemic disease	1948
+T-PLL	3
+T-PLL	380
+T-cell lymphomas	930
+TH	1424
+TNF	1064
+TNF	1219
+TNF	129
+TNF	1304
+TNF	193
+TNF	409
+TNF	522
+TNF	841
+TSH	1213
+TT	1092
+TT	1410
+TT	975
+Thrombosis	460
+Thrombotic	1271
+Thrombotic	238
+Thrombotic	609
+Thrombotic	784
+Tortuosity	2227
+Total disability	1587
+Trauma	1219
+Trauma	2284
+Trauma	367
+Trauma	421
+Trauma	910
+Treatment modalities	1379
+Treatment modalities	1931
+Treatment modalities	1988
+Treatment modalities	2221
+Tumor	1221
+Tumor	1784
+Tumor	1854
+Tumor	291
+Tumor	313
+Tumor	558
+Tumor	606
+Tumor necrosis	1064
+Tumor necrosis	1219
+Tumor necrosis	1386
+Tumor necrosis	1536
+Tumor necrosis	1961
+Tumor necrosis	409
+Tumor necrosis	414
+Tumoral	1436
+Tumoral	695
+Tumorigenesis	1002
+Tumorigenesis	1007
+Tumorigenesis	1232
+Tumorigenesis	1629
+Tumorigenesis	1690
+Tumorigenesis	1764
+Tumorigenesis	1854
+Tumorigenesis	192
+Tumorigenesis	1962
+Tumorigenesis	1981
+Tumorigenesis	2048
+Tumorigenesis	3
+Tumorigenesis	329
+Tumorigenesis	459
+Tumorigenesis	471
+Tumorigenesis	502
+Tumorigenesis	541
+Tumorigenesis	568
+Tumorigenesis	639
+Tumorigenesis	703
+Tumorigenesis	734
+Tumorigenesis	788
+Tumorigenesis	928
+Tumorigenesis	93
+Tumorigenicity	394
+Tumorigenicity	720
+Tumorigenicity	928
+Tumors	615
+Tumour	281
+Tumours	150
+Type 1 diabetes mellitus	756
+Type I	1108
+Type I	1135
+Type I	1394
+Type I	1402
+Type I	1405
+Type I	1557
+Type I	1718
+Type I	2114
+Type I	272
+Type I	30
+Type I	412
+Type I	44
+Type I	816
+Type I	940
+Type I	957
+Type I	993
+Type II	1402
+Type II	145
+Type II	15
+Type II	1557
+Type II	170
+Type II	1718
+Type II	193
+Type II	207
+Type II	30
+Type II	405
+Type II	432
+Type II	438
+Type II	521
+Type II	957
+Type II	96
+Type IV	1174
+Type IV	1248
+Type IV	1706
+Type IV	2189
+Tyrosine hydroxylase	265
+UPD	393
+UPD	739
+UPD15	1233
+UPD15	739
+US	1225
+US	455
+UVA	42
+Ulcerative colitis	1283
+Uniparental disomy	1816
+Uniparental disomy	32
+Unrelated healthy individuals	1423
+VII	1420
+VII	309
+VPA	1300
+VWF	1019
+VWF	1108
+VWF	1224
+VWF	1310
+VWF	1324
+VWF	1390
+VWF	1525
+VWF	2101
+VWF	2102
+VWF	2168
+VWF	22
+Very-long-chain acyl-CoA dehydrogenase deficiency	477
+Virus infection	827
+Visual acuity	1038
+Visual acuity	1133
+Visual acuity	1445
+Visual acuity	1552
+Visual acuity	1561
+Visual acuity	1634
+Visual acuity	1722
+Visual acuity	303
+Visual acuity	73
+Visual acuity	925
+Visuospatial	912
+Vomiting	1141
+WAGR	1194
+WAGR	506
+WASP	1099
+WASP	1208
+WASP	1411
+WASP	1570
+WASP	160
+WASP	1694
+WASP	1731
+WASP	1807
+WASP	1857
+WASP	1942
+WASP	347
+WASP	499
+WASP	505
+WASP	713
+WASP	91
+WASP	923
+WASP	961
+WD	706
+WD	785
+WT	1228
+WT	1484
+WT	552
+WT	646
+WT	791
+WT	875
+WT	951
+WT	976
+WTX	1358
+Weakness	1255
+Weakness	1373
+Weakness	2026
+Weakness	642
+Wechsler Adult Intelligence Scale	717
+Wild type	1083
+Wild type	1157
+Wild type	1257
+Wild type	1452
+Wild type	1517
+Wild type	1581
+Wild type	1620
+Wild type	1716
+Wild type	1848
+Wild type	1866
+Wild type	1898
+Wild type	1959
+Wild type	1987
+Wild type	2107
+Wild type	2229
+Wild type	28
+Wild type	315
+Wild type	355
+Wild type	387
+Wild type	446
+Wild type	585
+Wild type	758
+Wild type	820
+Wild type	951
+Wild type	963
+Wild type	999
+XI	1695
+XI	284
+XLMR	47
+XY	1194
+XY	1499
+XY	1906
+XY	2159
+XY	567
+XY	728
+Xanthomas	1055
+Xanthomas	1449
+Xanthomas	1658
+Xanthomas	955
+Xenopus laevis	117
+Xenopus laevis	261
+Xenopus laevis	844
+Zellweger	1559

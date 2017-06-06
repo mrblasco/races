@@ -1,0 +1,54 @@
+# Analysis of scores
+
+Each submission was scored on 300 abstracts. The score was the F-measure 
+
+$$
+	F = 2 * (prediction * recall) / (prediction + recall).
+$$
+
+This measure ranges from 0 to 1 (perfect score). Abstracts had about 5 mentions to annotate each, for a total of about 1500 entites to "predict" but the number of entities in an abstract was very large.
+
+The best score achieved by Banner was $F=0.817866$. 
+The winning code achieved a score of $F=0.843962$. 
+This `r 0.843962 - 0.817866` percentage points difference corrsponded to an improvement of more than `r round(100*0.843962/0.817866 - 100)` percent of the baseline, which was considered excellent by researchers at NIH.
+
+```{r}
+# How many passed the baseline?
+baseline <- 817866
+final <- tapply(scores$final, scores$coder_id, FUN=max)
+table(final > baseline) 
+```
+
+```{r, message=FALSE}
+rm(list=ls())
+
+# Load libraries
+require(races)
+require(stargazer)
+# require(mgcv)
+# require(arm)
+
+# Load Data
+data(races)
+data(scores)
+
+# Merge
+dat <- merge(scores, races[, c('coder_id','treatment','room')], by='coder_id')
+attach(dat)
+
+# New variable
+last_submission <- ave(submission, coder_id, FUN=max)
+
+
+submission.cap <- ifelse(submission>15, 15, submission)
+boxplot(provisional/1e6 ~ submission.cap, pch='-')
+abline(h=0.8, col=2)
+
+# Time series
+l <- split(dat, paste(treatment, room))
+xlim <- range(timestamp)
+ylim <- c(0.7, 0.9)
+par(mfrow=c(5,5), mar=c(2,2,1,1))
+sapply(l, function(x)plot(x$timestamp, x$provisional/1e6, xlim=xlim, ylim=ylim, pch=16))
+
+```

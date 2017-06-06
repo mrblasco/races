@@ -1,0 +1,122 @@
+% Threshold For Banner
+% Andrea Blasco (\url{ablasco@fas.harvard.edu})
+% \today
+
+The Cost Function
+========
+
+Let the individual problem-solving ability $X$ be a continuous random variable with pdf $f(x)$ defined over the support $[c_1, c_2]$. And, let the cost shifting parameter $C = g(X)$ be a *continuous*, *decreasing* function of $X$, with the inverse function $X=\nu(C)$. 
+
+The distribution function of $C$ is then: 
+
+$$ F_C(c) = P(C \leq c)  = P(g(X) \leq c) = P(X \geq \nu(c))  = 1 - P(X\leq \nu(c)) $$
+
+for $d_1=g(c_1) < c<g(c_2)=d_2$.
+
+The Fundamental Theorem of Calculus, in conjunction with the Chain Rule, tells us that the pdf is:
+
+$$  f_C(c)  = F_C^\prime(c) =  - f_X(\nu(c)) \nu^\prime(c) $$
+
+again for $d_1=g(c_1) < c<g(c_2)=d_2$.
+
+We postulate that 
+
+(@marginal) $$ C = g(X) = \frac{\gamma}{X}$$ 
+(@inverse) $$ X= \nu(C) = \frac{\gamma}{C}$$ 
+(@inverseprime) $$ \nu'(C) =  - \frac{\gamma}{C^2}$$ 
+
+Thus the pdf is :
+
+(@pdf) $$ f_C(c) = f_X(c) \frac{\gamma}{C^2}$$ 
+
+
+
+We postulate that coders behavior is well captured by a simple economic model. 
+Coders have $T$ days to submit a solution, and they incur a disutility of effort or cost to develop a solution of quality $Q_i$  in  $t_i < T$ that is expressed by the following cost function: 
+
+(@cost)  $$ C(c_i, Q_i, t_i)  =   c_i \left( \frac{Q_i}{t_i} \right)^{k} $$
+
+where $c_i$ is a cost shifting parameter that is randomly and independently drawn for each coder $i$, and $k>0$ is a shape parameter of the cost function (i.e., $k<1$ concave, $k=1$ linear, $k>1$ convex, $k=2$ quadratic).
+We further assume that the cost shifting parameter is:
+
+(@marginal) $$ c_i = \frac{\gamma}{a_i}$$ 
+
+where $\gamma>0$ is a deterministic baseline level, which is common to all coders, and $a_i>0$ denotes a random component, such as individual ability,  randomly drown from a distribution $F$.
+
+We can measure $a_i$ with the MM rating. However, we need a measure for $\gamma$. 
+
+To do that, we use the outcomes of a private five-day MM in which we offered a flat wage $w=\$750$ to solve the same problem. Suppose all coders in the private MM are rational (i.e., profit maximizers), then we have that costs should be lower than the wage:
+
+(@bound) $$C(a_i, Q_i)  \leq w$$ 
+
+By using (@cost), (@marginal) and (@bound), we obtain the following upper bound for $\gamma$:
+$$
+    \gamma \leq \bar \gamma = \frac{a_i w }{(Q_i)^k }
+$$
+where we have normalized $t=1$.
+The upper bound can be estimated, since the bids in the private match were independent (i.e., the average $E[\bar\gamma]$ is unbiased), and we can use the individual skill rating as a measure for $a_i$. Table 1 shows the data and the results of the estimation.
+
+\begin{table}[hpt!]
+\caption{Estimating Marginal Costs}
+\begin{tabular}{ccccccccc}
+\hline\hline
+Rank & $a_i$ & $q_i$ & $100\times(q_i-\text{banner})$ & $w$ & $t$ & $\bar \gamma(k=1)$ & $\bar \gamma(k=2)$\\ 
+1 &2256 &0.82165605 &2.878911 &750 &0.5 &293861.1162 &51036.85321 \\
+2 &2296 &0.82049037 &2.762343 &750 &0.5 &311691.9224 &56418.03397 \\
+3 &1878 &0.80658436 &1.371742 &750 &0.5 &513398.2921 &187133.6928 \\
+4 &1967 &0.80608015 &1.321321 &750 &0.5 &558248.1471 &211246.2252 \\
+& & & & & & & \\
+\multicolumn{6}{r}{Average} &419299.8695 &126458.7013 \\
+\multicolumn{6}{r}{Min} & 311691.9224 &	56418.03397 \\
+\hline\hline
+\end{tabular}
+\end{table}
+
+Notes:
+
+ * We have only a few data points, this makes our estimates very inaccurate.
+ * The true costs can be far away from the upper bound. 
+ * We need a way to pick the right shape parameter $k$ 
+ * There seems to be a positive correlation between our $\gamma$ and the ratings. This might suggest a bias, e.g., higher rating have also higher reputation and tend to work more.
+
+Equilibrium in a Tournament or a Race
+==========================
+
+Now we can use the model of [Moldovanu & Sela, 2001][ms] to simulate the outcomes for a full-length MM, or for the race, in which coders will act strategically and choose (simultaneously) $t_i$ and $Q_i$. 
+
+In a Race  
+-----------
+
+Let $\bar Q$ denote the target score for the race.  Theory predicts that every coder will set $Q_i^* =\bar Q$ (or $Q_i^*=0$ if they quit). This means that we can rewrite $c_i$ for those who decide to participate in the race as follows: 
+
+$$ c_i = \frac{\gamma \bar Q ^k}{a_i} = \frac{\gamma^\prime}{a_i} $$
+
+In other words, a race is modeled as a tournament with a modified support of the distribution of the individual cost shifting parameters, which is: 
+
+$$ c_i \in \left[ \frac{\gamma^\prime}{a^{\min}}, \frac{\gamma^\prime}{a^{\max}}\right]$$
+
+Now we can apply [Moldovanu & Sela, 2001][ms] to find the equilibrium time of the submission:
+
+$$ t_i^* = \left[g \left(A(a_i) V_1 + B(a_i) V_2\right)\right]^{-1}  $$
+
+where $g=  x^{1/k}$.
+
+First, note that in a tournament of $T$ periods, it is a dominant strategy for every agent to set $t_i=T$. In our case since we the length of the full length MM is twice as much the length of the private MM, we set $T=2$. Then, we have:
+
+(@tournament)  $$ Q_i^* = 2 q^*_i(a_i\gamma) $$
+
+where  $q^*_i(a_i\gamma)$ is the equilibrium submission of a coder with ability $a_i\gamma$. 
+
+  In a race with threshold $\bar Q$, it is a dominant strategy to set $Q_i = \bar Q$, therefore the equilibrium:   
+
+(@race)  $$ t_i^* =  \bar Q / q^*_i(c_i)$$
+
+Notice that, if $t_i > 2$, the coder is willing to drop out of the competition (i.e., setting $Q_i=0$). 
+  
+  
+![Density ratings](/Users/andrea/NTL/Banner/Figures/ability.pdf "Density of Rating")
+
+  
+  
+ 
+[ms]: http://www.econ2.uni-bonn.de/pdf/papers/pearson22.pdf

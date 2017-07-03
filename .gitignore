@@ -1,5 +1,6 @@
 Archive
 Cache
+Banner
 .*
 *.RData
 *.pdf

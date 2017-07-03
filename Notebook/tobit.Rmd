@@ -1,0 +1,63 @@
+
+Tobit
+======
+
+## Theory 
+
+In the standard tobit model [@amemiya1985advanced], we have:
+
+$$
+	y_i = 
+	\begin{cases}
+	y_l  & \text{if } y^*_i < y_l\\
+	y^*_i  & \text{if } y^*_i \geq y_l\\
+	\end{cases}
+$$
+
+Where $y^* = x\beta + \epsilon$, assuming disturbance $\epsilon \sim N(0, \sigma^2)$
+
+Let denote the standard normal distribution by $\Phi(\cdot)$ and the density function by $\phi(\cdot)$. The likelihood is:
+
+$$
+	\mathcal{L} = \prod_{i}^n \left(\sigma^{-1}\phi\left(\frac{y_i - X_i\beta}{\sigma}\right)\right) ^{I(y_i)}
+	\left(1 - \Phi\left(\frac{X_i\beta - y_l}{\sigma}\right)\right) ^{1-I(y_i)}
+$$
+
+where $I(\cdot)$ is an indicator function that is 1 when $y_i > y_l$ and 0 otherwise.
+
+## Application
+
+```{r}
+require(AER)
+
+# Example with left censoring
+n <- 1000
+yl <- 0.1
+x1 <- runif(n)
+x2 <- rchisq(n, 1)
+betas <- c(0.25, -0.1)
+simulate.tobit <- function(n, betas, yl, x1, x2) {
+	ystar <- rnorm(n, mean=cbind(x1, x2) %*% betas)
+	y <- ifelse(ystar<yl, yl, ystar)
+	return(y)
+}	
+
+# Try
+y <- simulate.tobit(n, betas, yl=0.1, x1, x2)
+summary(tobit(y ~ x1 + x2 - 1, left=yl))
+
+# Simulations
+coef.sim <- replicate(499, {
+	y <- simulate.tobit(n, betas, yl, x1, x2)
+	coef(tobit(y ~ x1 + x2 - 1, left=yl)) - betas
+})
+
+# Consistency looks good
+boxplot(t(coef.sim), ylim=0.5*c(-1, 1))
+
+# Inference looks good
+apply(coef.sim, 1, sd)
+```
+
+
+

@@ -1,16 +1,14 @@
 ---
 title: "Races or Tournaments?"
 author: 
-    - Andrea Blasco
-    - K. J. Boudreau
-    - M. Menietti
-    - K. R. Lakhani
+    - \textbf{Andrea Blasco}\footnote{ablasco@fas.harvard.edu}
+    - KJ Boudreau
+    - M Menietti
+    - KR Lakhani
+#institute: "Harvard's Institute for Quantitative Social Sciences"
 date: "This version: `r format(Sys.Date(),'%B %d, %Y')`" 
 bibliography: /Users/ablasco/Documents/papers.bib
-csl:  /Users/ablasco/Templates/Pandoc/csl/pnas.csl
 toc: true
-include-headers:
-    - \input{Config/Templates/header.tex}
 output: 
   beamer_presentation:
     template: /Users/ablasco/Templates/Pandoc/boyd.beamer
@@ -25,77 +23,198 @@ knitr::opts_chunk$set(
   message=FALSE,
   warning=TRUE,
   error=FALSE,
-  tidy=FALSE,
-  fig.width=5,
+  tidy=TRUE,
+  tidy.opts=list(width.cutoff=60),
+  fig.width=9,
   fig.height=5,
   cache.path="Cache/",
   fig.path="Figures/")
-# $
+
+# Prepare data
+within(races, {
+	year <- as.numeric(format(member_date, '%Y'))
+	hours <- week1 + week2 + week3 + week4
+	rating <- mm_rating
+	submissions <- mm_events
+	registrations <- mm_reg
+	lpaid  <- log(paid)
+	male <- gender=='Male'
+	grad <- educ == "Doctorate/PhD" | educ == "Postgraduate/Master of arts"
+	below30 <- age == "<20 years old" | age== "20-25 years old" | age =="26-30 years"
+}) -> dat
+
 ```
 
 Introduction
 ============
 
-The impact of contests on the economy
--------------------------------------
+Contests and economic growth
+-------------------------
 
-Historically, contests have had tremendous impact on economic growth.^[@Brunt:2012ix reports evidence that awards offered by the Royal Agricultural Society accelerated agricoltural innovation in the period between 1839 and 1939; @Davis:2006ef documents the impact of the Orteig prize on the development of the aviation sector; XXXX for rail industries; XXXX the longitude prize for navigation in 1860.] Such an impact is perhaps more evident today, as contests are frequently used by all kinds of organizations (government agencies, philanthropic organizations, commercial firms) that recur to contests for promoting in-house R&D efforts, awarding bonuses or promotions to employees, or crowdsourcing solutions to the most vexing technical problems.^[XXX, XXX, XXXX]
+Historically, awards offered by government
 
+- navigation and cartography (Longitude awards in 1714)
+- agricoltural innovation (Royal Agricultural Society awards 1900's)
+- aviation industry (Orteig prize in 1919)
+- architecture (Thomas Jefferson organized the first US design contest to build the White House in 1790)
 
-Contest structure: races or tournaments
-----------------------------------------
+Today, contests are common management tool
 
-Despite the diversity of the organizations involved and their goals, it is striking that contest sponsors have come to use very similar competition formats. These are usually either the "race" (e.g., Longitude prize, Orteig Prize, Ansari X-Prize, Netflix prize) where the winner is the first to achieve a particular performance target, or the "tournament" (e.g., Architectural competitions, Golden Carrot Contest, DARPA Grand Challenge, Progressive Insurance Automotive X-Prize) where the winner is the competitor who has achieved the best performance by a fixed deadline.^[Other options could be elimination tournaments, round robin, etc. need ref: XXXX]
-
-
-Why race or tournaments?
-------------------------
-
-Contests are cost-effective because help to select most qualified competitors who will carry results without further supervision [@fullerton1999auctionin].^[A large literature has focused on the benefits of contests [monitoring costs, insurance, adverse selection, etc.].]
-
-Such positive selection, however, crucially depends upon a correct prize structure and appropriate limitations on competition such as "deadlines" or minimum "targets." A poor prize, a short deadline, a difficult target may lead to adverse selection, thereby softening competition in the contest.
-
-The impact of deadlines and targets on competitors will differ whether the contest is a  "tournament" or a "race."  
+- Incentives for workers
+- Philanthropic initiatives 
+- Crowdsourcing internal activities to online communities of freelancers
 
 
-Example: prizes to stop the spread of antibiotic resistance
---------------------------------
+The problem of contest design
+-----------------------------
 
-Government cares about "quality" and "time" of solutions
+How to design a contest? Contest designers need to deal with:
 
-- The UK government launches a tournament called "xxxx"  in xxxx.
+- "Incentive" design problem 
+	+ What is the optimal prize structure?
 
-- The EU commission launches a race called "xxxx" in xxxx.
-	
-- Why choosing one or the other? Seem equivalent. But may have different effects on entry, competitors' payoffs, total effort, etc.
-
-
-In this paper ...
--------------
-
-We do xxx, yyy, zzzz
+- "Competition" design problem
+	+ a "race" competition? or in a "tournament" competition?
 
 
-Literature
-===========
+Race or tournaments?
+====================
 
-Contest models
+
+Examples by competition design
+---------------------------
+
++ Races
+	- Longitude prize (1714 and 2014)
+	- Orteig Prize
+	- Netflix prize
+	- Ansari's X-prize
+
++ Tournaments
+	- White House design contest
+	- Golden Carrot Contest
+	- DARPA Grand Challenges
+	- X-Prize Challenges
+	- European Commission's Horizon Challenge
+
+
+Race or tournaments?
+--------------------
+
+- Contest designers face trade-off between "speed" and "quality"
+	+ Example: seeking solutions to public health care problems (effective and timely)
+	+ EC's Horizon Challenge (race) and 2014 Longitude Prize (tournament) about antibiotic resistance
+
+- Efficiency concerns
+	+ Fullerton & MacAfee (1992)'s result that only 2 competitors are optimal
+	+ Prevent entry:
+		+ **Minimum quality requirements**
+		+ **Time deadlines**
+	+ Example: online platforms running many contests
+
+Prior literature
 ---------------
 
-Strategic equivalence: 
+Theory: 
 
-- Contests are "equivalent" to all-pay auctions [ref.]
-- Rent-seeking contests are "equivalent" to races [ref.]
+Patent races (e.g., Loury 1979, Nalebuff & Stiglitz 1983); contests (e.g., Lazear & Rosen 1981, Green Stokey 1983, Dixit 1987); debate on prizes or patents for R&D (Wright 1983); strategic equivalence (Baye Hoppe 2003)
 
-However:
+Empirical works:
 
-- contest designer's payoff may be very different!
-- optimal prize structure?
-- ... 
+Non-experimental data on contests (e.g., Ehrenberg Bognanno 1990, Knoeber Thurman 1994, Eriksson 1999) and on races (Cockburn Henderson 1994); Laboratory experiments on contests and on races (see Dechenaux et al. 2014). 
+
+
+
+In this paper
+-------------
+
+- We develop a model to examine contest designer's choice between races and tournaments in one framework
+	+ The model extends Moldovanu and Sela (2001)'s static "all-pay" contest model
+
+- We design and conduct a field experiment to examine predictions of the model
+	+ An online community of highly skilled coders with experience in programming competitions
+
+
+Model's basic setup
+---------------
+
+- "All-pay" contest with deadline $t_0$ and target $y_0$
+
+- Cost: $C(a, q, t) = a^\alpha  y^\beta t^\gamma \qquad \text{with }\alpha,\gamma\leq-1, \beta\geq1$
+
+- Payoff: $\pi_i = \sum_{k=1}^q p_k(y_i, t_i) v_k - C(a_i, y_i, t_i)$
+
+- Equilibrium in a race: $t^*=b_{\text{race}}(a)$  and $y^*=y_0$
+
+- Equilibrium in a tournament: $y^*=b_{\text{tournament}}(a)$  and $t^*=t_0$
+
+Equilibrium performance
+-----------------------
+
+```{r}
+integral1 <- function(v, a, n, alpha, a0) {
+	v * a^(n-1-alpha) / (n-1-alpha) - 	v * a0^(n-1-alpha) / (n-1-alpha)
+}
+integral2 <- function(v, a, n, alpha, a0) {
+	exponent <- (n-2-alpha)
+	r <- ((n-2)*(exponent+1) - a*(n-1) * exponent ) / (exponent*(exponent+1))
+	r0 <- ((n-2)*(exponent+1) - a*(n-1) * exponent ) / (exponent*(exponent+1))
+	(1-v) * a^exponent * r - 	(1-v) * a0^exponent * r0
+}
+y <- function(v, a, n, alpha, beta) {
+	V <- integral1(v, a, n, alpha, a0=0) + integral2(v, a, n, alpha, a0=0) 
+	V^(1/beta)
+}
+
+#curve(y(v=1, a=x, n=4, alpha=-1, beta=2), n=1001, ann=FALSE)
+#curve(y(v=0.75, a=x, n=4, alpha=-1, beta=2), lty=2, add=TRUE, n=1001)
+#curve(y(v=0.5, a=x, n=4, alpha=-1, beta=2), lty=3, add=TRUE, n=1001)
+#title("Equilibrium bids in a tournament")
+#mtext("a ~ Uniform(0,1)", 1,3)
+#mtext("y(a)", 2,3)
+
+## RACE ############
+y0 <- 0.15
+payoff <- function(v, a, n, alpha, beta) {
+ v * a^(n-1)  +
+ (1-v) * (1-a) * a^(n-2) - 
+ a^alpha * y0^beta  
+}
+abilityhat <- uniroot(payoff, interval=c(0,1), v=0.5, n=4, alpha=-1, beta=2)$root
+
+curve(y(v=0.5, a=x, n=4, alpha=-1, beta=2), n=1001, ann=FALSE, lty=2)
+segments(x0=abilityhat, y0=0, y1=y0, lty=3)
+segments(x0=abilityhat, x1=1, y0=y0, y1=y0)
+#title("Equilibrium bids in a race")
+mtext("a ~ Uniform(0,1)", 1,3)
+mtext("y(a)", 2,3)
+legend("topright", c("race", "tournament"), lty=1:2, bty='n')
+```
+
+Behavioral predictions
+----------------------
+
+1. Competitors will enter a Tournament more than a Race
+	+ Entry in a tournament is driven by "low-ability" competitors
+
+4. On speed, Race  $\succ$ ("dominates") Tournament
+	+ No clear dominance on performance
+
+5. On performance, Tournament "with Reserve" $\succ$ Tournament and Race
+
+
+Contest designer's problem
+--------------------------
+
+- Maximize expected revenues
+- Revenues increase in performance, decrease in time of the winner ($y^w$, $t^w$)
+- Consider $t_0$ and $y_0$ as given
+- Expected payoff: $\pi_{cd} = E[y^w - \tau t^w  \mid y^w \geq y_0, t^w\leq t_0]$
+- Main result:  if $\tau \geq \hat \tau$, the race should be preferred
 
 
 The model
-==========
+=========
 
 Basic setup
 ------------
@@ -174,9 +293,6 @@ $$
 	p_2(y)^\prime =  - y^{n-2} + (1-y)(n-2) y^{n-3} = y^{n-3} [(1-y)(n-1) - 1] 
 $$
 
-
-
-
 Contest designer's payoff
 ------------------------
 
@@ -190,9 +306,6 @@ The contest designer's expected payoff:
 \begin{equation}
 	\pi_{cd} = E[ y^w - \tau t^w  \mid y^w \geq y_0, t^w\leq t_0, R]. 
 \end{equation}
-
-Equilibria
-==========
 
 Solution concept 
 -----------------
@@ -307,12 +420,8 @@ mtext("y(a)", 2,3)
 ```
 
 
-
-Equilibrium in races
-====================
-
-Bidding function
------------------
+Bidding function in a race
+-------------------------
 
 For every $i=1,..., n$ with $a_i \geq \hat a$
 
@@ -385,10 +494,8 @@ mtext("y(a)", 2,3)
 ```
 
 
-Time
-------
-
-```{r}
+```{r, include=FALSE}
+# TIME ... 
 integral1 <- function(v, a, n, alpha) {
 	v * a^(n-1-alpha) / (n-1-alpha)
 }
@@ -411,51 +518,477 @@ payoff <- function(v, a, n, alpha, beta) {
  a^alpha * y0^beta  
 }
 y0 <- 0.01
-abilityhat <- uniroot(payoff, interval=c(0,1), v=0.5, n=4, alpha=-1, beta=2)$root
-# $
-curve(race(v=0.5, a=x, n=4, alpha=-1, gamma=-2, beta=2, a0=abilityhat), n=1001, ann=FALSE, lty=2)
-
-
-
+#abilityhat <- uniroot(payoff, interval=c(0,1), v=0.5, n=4, alpha=-1, beta=2)
+#curve(race(v=0.5, a=x, n=4, alpha=-1, gamma=-2, beta=2, a0=abilityhat), n=1001, ann=FALSE, lty=2)
 ```
 
-Race vs tournament
+Experimental design
 ==================
 
+The context: Topcoder.com
+----------
 
-Comparing bidding functions 
----------------------------
+Recruit 229 competitors on Topcoder for eight-day programming competition
 
-* PLOT HERE
+Three key factors: 
 
+- Platform members are sophisticated competitors
+- Observe measures of skills
+- Rich data analytics about performance and timing
 
-Differences
------------
+The contest
+--------
 
-1. Not payoff equivalent for those at the bottom of the ability distribution. 
-
-2. Ex-post quality there is no  dominance
-
-3. Race ex-post dominates tournament wrt time
-
-4. Even seemingly similar competitions lead to behavior very different
-
-
-
-Econometrics
-============
+- Total prize purse $41000
+	+ Grand prizes of $6000 across competition styles
+	+ Room prizes of $1000 and $100 for 1st and 2nd
+- Task solving Named Entity Recognition Problem in medical research
 
 
 Experimental design
-===================
+-------------------
 
+- 8 day submission phase
+- Split into 24 rooms of 10 and 15 competitors
+- 3x2 experimental design (Race, Tournament, Reserve) x (10, 15)
 
 Data
 -----
 
 
+```{r, results='asis'}
+descriptives <- function(dat, treat=races$treatment) {
+	balance.test <- function(x, treat=races$treatment) {
+		if (is.logical(x)) return(fisher.test(table(x, treat))$p.val)
+		l <- split(x, treat)
+		kruskal.test(l)$p.val
+	}
+	mu <-sapply(dat, mean, na.rm=TRUE)
+	q50 <-sapply(dat, median, na.rm=TRUE)
+	lo <-sapply(dat, min, na.rm=TRUE)
+	hi <-sapply(dat, max, na.rm=TRUE)
+	std <-sapply(dat, sd, na.rm=TRUE)
+	pval <- sapply(dat, balance.test)
+	n <- sapply(dat, function(x) sum(!is.na(x)))
+	tab <- cbind(mu, q50, std, lo, hi, n, pval)
+	colnames(tab) <- c("Mean", "Median","St.Dev.", "Min", "Max", "Obs.", "P-value")
+	return(tab)
+}
+covars <- with(dat, data.frame(year, rating, registrations, submissions, lpaid, nwins, ntop10, risk, hours, male, timezone, grad, below30))
+tab <- descriptives(covars)
+xtab <- xtable(tab)
+digits(xtab) <- c(1, 1, rep(0, ncol(tab)-2), 3)
+align(xtab) <- c("@{}l", rep("r", ncol(tab)))
+print(xtab, comment=FALSE)
+```
+
+Skill rating distribution
+-------------------------
+
+```{r}
+attach(races)
+rated <- !is.na(mm_rating)
+rating_l <- split(mm_rating[rated], treatment[rated])
+rating_l.pdf <- lapply(rating_l, density, from=500, bw='nrd', kernel='gaussian')
+rating_l.test <- kruskal.test(rating_l)
+
+plot.density <- function(list, ...) {
+	xlim <- range(sapply(list, function(x) range(x$x)))
+	ylim <- range(sapply(list, function(x) range(x$y)))
+	legend.names <- capitalize(names(list))
+	plot.new()
+	plot.window(xlim=xlim, ylim=ylim, ...)
+	sapply(1:3, function(i) lines(list[[i]], lty=i, lwd=2))
+	legend("topright", bty='n', legend.names, lty=1:3)
+	xseq <- pretty(seq(xlim[1], xlim[2], length=20))
+	axis(1, at=xseq, labels=xseq)
+}
+
+plot.density(rating_l.pdf)
+detach(races)
+```
+
+
 Results
-=======
+========
+
+Distribution of room outcomes
+--------------
+
+```{r, fig.width=9, fig.height=4}
+
+# CREATE DATA for ROOMS
+entrants <- aggregate(submit ~ room + room_size + treatment, data=races, sum)
+cap.scores <- function(x, baseline=0.792867) ifelse(x<baseline, baseline, x)
+races$final.cap <- cap.scores(races$final/1e6)
+final <- aggregate(final.cap ~ room + room_size + treatment, data=races, FUN=mean, na.rm=TRUE)
+firstsub <- as.numeric(with(races, difftime(timestamp, "2015-03-08 12:00:00 EDT", units='hours')))
+speed <- aggregate(firstsub ~ room + room_size + treatment, data=races, FUN=mean, na.rm=TRUE)
+
+
+par(mfrow=c(1, 3))
+boxplot(submit ~ treatment, data=entrants, xlab='Room entrants'
+	, col="lightgray", horizontal=TRUE, boxwex=0.5); title("Participation")
+boxplot(final.cap ~ treatment, data=final, xlab='Room final score (avg.)'
+	, col="lightgray", horizontal=TRUE, boxwex=0.5); title("Performance")
+boxplot(firstsub ~ treatment, data=speed, xlab='Time first submission (hours)'
+	, col="lightgray", horizontal=TRUE, boxwex=0.5); title("Speed")
+```
+
+
+Greater participation in the Tournament
+---------------------------------------
+
+\columnsbegin
+\column{.3\textwidth}
+
+```{r}
+boxplot(submit ~ treatment, data=entrants, xlab='Room entrants'
+	, col="lightgray", horizontal=TRUE, boxwex=0.5); title("Participation")
+```
+
+\column{.7\textwidth}
+
+```{r}
+t.test(submit ~ treatment!='tournament', alternative='greater', var.equal=FALSE, data=entrants)
+```
+\columnsend
+
+
+No evidence of skill-based selection
+------------------------------------
+
+```{r skill-based-selection, fig.width=9, fig.height=7}
+covars <- covars[dat$submit, ]
+covars$nwins <- covars$nwins>0
+covars$ntop10 <- covars$ntop10>0
+covars$submission_pc <- covars$submissions  / covars$registrations
+plot.covars <- function(x, ...) {
+	stars.pval <- function(x) {
+		if (x <= 0.01) return("***")
+		if (x <= 0.05) return("** ")
+		if (x <= 0.1) return("*  ")
+		else return("   ")
+	}
+#	l <- dat$treatment[dat$submit]
+	l <- ifelse(dat$treatment[dat$submit]=='tournament', "Tourn", "Other")
+	if (!is.logical(x)) {
+		x.l <- split(x, l)
+#		p <- kruskal.test(x.l)$p.value
+		p <- t.test(x ~ l)$p.value
+		pval <- sprintf("P-value=%0.3f%s", p, stars.pval(p))
+		boxplot(x ~ l, horizontal=TRUE, las=2, xlab=pval, ...)
+	} else {
+		tab <- table(x, l)
+		p <- fisher.test(tab)$p.value
+		pval <- sprintf("P-value=%0.3f%s", p, stars.pval(p))
+		barplot(prop.table(tab, 2), horiz=TRUE, las=2, xlab=pval, ...)
+	}
+	return(p)
+}
+par(mfrow=c(4,4), mar=c(4,4,3,2))
+pval <- sapply(1:ncol(covars), function(i) plot.covars(covars[, i], main=colnames(covars)[i]))
+#pval #p.adjust(pval, method='bonferroni') # only one remains
+```
+
+Deal with noise in performance
+------------------------------
+
+```{r performance-appendix, fig.width=9, fig.cap="Scores over time\\label{scores over time}"}
+data(scores)
+
+## Order scores by time
+scores <- scores[order(scores$submission), ]
+index <- tapply(1:nrow(scores), scores$coder_id, tail, 1) # last submission
+scores <- scores[index, ]
+scores <- scores[order(scores$timestamp), ] # order by time
+scores$final[is.na(scores$final)] <- 0  # Impute 2 missing scores
+
+## https://en.wikipedia.org/wiki/Winsorized_mean
+cap.scores <- function(x, threshold) ifelse(x<threshold, threshold, x)
+cap.01 <- quantile(scores$final, na.rm=TRUE, p=0.1)
+scores$final.cap <- cap.scores(scores$final, threshold=cap.01) 
+scores$final.cap2 <- cap.scores(scores$final, threshold=792867)  # Baseline
+
+par(mfrow=c(3, 1), mar=c(2,3,3,1))
+plot(final/1e6 ~ timestamp, data=scores
+	, type='l', col='lightgray', ylab="Final score")
+title("Observed")
+abline(h=0.792867, lty=3) # Baseline
+abline(h=0.817866, lty=2, col=2) # Target
+
+plot(final.cap/1e6 ~ timestamp, data=scores
+	, type='l', col='lightgray', ylab="Final score")
+title("Winsorized at 10 percent")
+abline(h=0.792867, lty=3) # Baseline
+abline(h=0.817866, lty=2, col=2) # Target
+
+plot(final.cap2/1e6 ~ timestamp, data=scores
+	, type='l', col='lightgray', ylab="Final score")
+title("Capped at the baseline")
+abline(h=0.792867, lty=3) # Baseline
+abline(h=0.817866, lty=2, col=2) # Target
+
+
+# Merge with treatment
+#z <- merge(scores, races[, c("coder_id", "room", "treatment")], by='coder_id')
+#z.mean <- aggregate(final.cap ~ room + treatment, data=z, mean)
+#z.mean2 <- aggregate(final.cap2 ~ room + treatment, data=z, mean)
+#par(mfrow=c(2, 1), mar=c(4,5, 2,2))
+#boxplot(final.cap ~ treatment, data=z.mean, horizontal=TRUE, las=2)
+#boxplot(final.cap2 ~ treatment, data=z.mean2, horizontal=TRUE, las=2)
+```
+
+No evidence of higher performance in Reserve
+---------------------------------------------------------
+
+\columnsbegin
+\column{.3\textwidth}
+
+```{r}
+boxplot(final.cap ~ treatment, data=final, xlab='Room final score (avg.)'
+	, col="lightgray", horizontal=TRUE, boxwex=0.5); title("Performance")
+```
+
+\column{.7\textwidth}
+
+```{r}
+t.test(final.cap ~ treatment=='reserve', var.equal=FALSE, data=final) # p = 0.94
+```
+\columnsend
+
+
+
+No evidence of difference in performance between Tournament and Race
+---------------------------------------------------------
+
+\columnsbegin
+\column{.3\textwidth}
+
+```{r}
+boxplot(final.cap ~ treatment, data=final, xlab='Room final score (avg.)'
+	, col="lightgray", horizontal=TRUE, boxwex=0.5); title("Performance")
+```
+
+\column{.7\textwidth}
+
+```{r}
+t.test(final.cap ~ treatment, var.equal=FALSE, data=final, subset=treatment!='reserve') # p = 0.94
+```
+\columnsend
+
+
+Speed was higher in the Race 
+-----------------------------
+
+\columnsbegin
+\column{.3\textwidth}
+
+```{r}
+boxplot(firstsub ~ treatment, data=speed, xlab='Time first submission (hours)'
+	, col="lightgray", horizontal=TRUE, boxwex=0.5); title("Speed")
+```
+
+\column{.7\textwidth}
+
+```{r}
+t.test(firstsub ~ treatment=='race', alternative='greater', var.equal=FALSE, data=speed)  # p = 0.03
+```
+\columnsend
+
+To summarize
+------------
+
+1. Participation was higher in the Tournament
+	+ It was not driven by low-skill competitors
+
+2. No evidence of a difference in performance
+
+3. Competitors worked faster in a race
+
+Interpretation: 
+
+- Taken together, though competitors seemed to "like" tournaments more, they "worked" more in a race.
+- Tournament with reserve does not seem to be better than tournament
+
+
+Structural approach
+===================
+
+Modeling individual behavior
+----------------------------
+
+Identification of causal effect of competition on individual behavior is problematic
+
+1. Actions are correlated, violating one key assumption of Rubin's potential outcomes causality model
+2. Censoring (entry/exit decisions are only partially observed)
+3. Dynamics
+
+Under our model, however, we have:
+
+$$y = 1 \iff \text{ability} > a_0$$ 
+
+$\leadsto$ "single-index" models have nice structural interpretation.
+
+Entry decision
+--------------
+
+```{r, echo=FALSE, include=FALSE}
+# Create dataset for regression imputing missing values at random
+within(dat, {
+	set.seed(2159)
+#	set.seed(25978)
+	rating.100 <- rating / 100
+	hours.imp <- impute(hours, "random")
+	risk.imp <- impute(risk, "random")
+	grad.imp <- impute(grad, "random")
+	male.imp <- impute(male, "random")
+	below30.imp <- impute(below30, "random")
+	timezone.imp <- impute(timezone, "random")
+	expert <- cut(submissions, quantile(submissions[!is.na(rating)]), include=TRUE)
+}) -> dat.imp
+
+
+# First model has no covariates (i.e., $\gamma=0$)
+summary(m0 <- glm(submit ~ treatment, binomial(logit), data=dat.imp))
+
+# The second model adds the main skill rating measure which is available for 2/3 of our population. It seemed better to rescale rating in 100-point units and center it on the median value. Thus, the estimate of the intercept can be easily transformed in the probability of participation of the median rated individual assigned to a room with a race competition style.
+
+summary(m1 <- update(m0, " ~ . + rating.100"))
+
+# The third column adds time availability (hours)
+summary(m2 <- update(m1, " ~ . + hours.imp"))
+
+# ... add demographics to m2
+summary(m3 <- update(m2, " ~ . + timezone.imp + grad.imp + below30.imp + male.imp + risk.imp"))
+```
+
+```{r, results='asis'}
+# Compare models 
+models <- list(m0, m1, m2, m3)
+stargazer(models, digits=2, header=FALSE, single.row = FALSE
+	, no.space=TRUE, float=FALSE, column.sep.width='1pt'
+	, font.size='scriptsize', style='io'
+	, dep.var.labels.include=FALSE)
+```
+
+Model's fit is ok
+------------
+
+```{r, fig.width=9}
+summarize.fit <- function(x) {
+	yhat <- predict(x)
+	with(x, plot(jitter(y) ~ yhat, col=ifelse(yhat>0,'brown', 'blue'), pch=16, xlab="ability ~ Logistic"))
+	curve(ilogit, add=T)
+}
+par(mfrow=c(1, 2))
+summarize.fit(m1); title("M1")
+summarize.fit(m3); title("M3")
+```
+
+Entry decision across competition styles
+----------------------------------------
+
+```{r, include=FALSE}
+m.selected <- step(m3)
+# Using Akaike criterion to select the best model, we now compute the model for each treatment alone
+summary(m.race <- update(m.selected, "~ . -treatment", subset=treatment=='race'))
+summary(m.tour <- update(m.selected, "~ . -treatment", subset=treatment=='tournament'))
+summary(m.rese <- update(m.selected, "~ . -treatment", subset=treatment=='reserve'))
+```
+
+```{r, results='asis'}
+# Compare models
+models <- list(m.selected, m.race, m.tour, m.rese)
+stargazer(models, digits=2, header=FALSE, single.row = FALSE
+	, no.space=TRUE, float=FALSE, column.sep.width='1pt'
+	, font.size='scriptsize', style='io'
+	, dep.var.labels.include=FALSE
+	, column.labels=c("All", "Race", "Tourn", "Rese")
+	, model.numbers=FALSE)
+```
+
+Model's fit
+------------
+
+```{r, fig.width=9}
+summarize.fit <- function(x) {
+	yhat <- predict(x)
+	with(x, plot(jitter(y) ~ yhat, col=ifelse(yhat>0,'brown', 'blue'), pch=16, xlab="ability ~ Logistic"))
+	curve(ilogit, add=T)
+}
+par(mfrow=c(1, 3))
+summarize.fit(m.race); title("Race")
+summarize.fit(m.tour); title("Tournament")
+summarize.fit(m.rese); title("Reserve")
+```
+
+Incorporating Scores
+--------------------
+
+Individual scores are censored $\leadsto$ OLS is problematic. 
+
+We examine "production speed" $y_i$ ($=\text{score}_i/t_i$) at a given point in time. 
+
+Then, our data's likelihood is (e.g., Tobit):
+
+$$
+	\mathcal{L} = \prod_{i=1}^N \Pr(Y \geq 0)^{1-I(y_i)} \times
+		\Pr(Y=y_i)^{I(y_i)}. 
+$$
+
+Under the model's equilibrium, this becomes
+
+$$
+	\mathcal{L} = \prod_{i=1}^N [1-F(a_{0,i})]^{1-I(y_i)} \times
+		f(b(\text{ability}_i)=y_i)^{I(y_i)}. 
+$$
+
+
+Estimation
+----------
+
+- We use parametric $F$ known up to a vector $\theta$, that we estimate from the data.
+
+- Compare against Tobit model (our main benchmark)
+
+- Alternatively, replace $F$ with skill rating's $\hat F$ (our second benchmark)
+
+
+Benchmark
+--------------
+
+```{r, include=FALSE}
+library("AER")
+dat.imp$final0 <- impute(dat.imp$final/1e6, "zero")
+fit.tobit <- tobit(final0 ~ treatment, left=0.1, data=dat.imp)
+fit.tobit2 <- tobit(final0 ~ treatment + rating.100 + hours.imp, left=0.1, data=dat.imp)
+ols <- glm(final0 ~ treatment, data=dat.imp)
+ols2 <- glm(final0 ~ treatment + rating.100 + hours.imp, data=dat.imp)
+```
+
+```{r, results='asis'}
+# Compare models
+models <- list(fit.tobit, fit.tobit2, ols, ols2)
+stargazer(models, digits=2, header=FALSE, single.row = FALSE
+	, no.space=TRUE, float=FALSE, column.sep.width='1pt'
+	, font.size='scriptsize', style='io'
+	, dep.var.labels.include=FALSE
+	, keep.stat=c('n','ll'))
+```
+
+
+Estimated probability of entry
+-------------------------------
+
+```{r}
+params <- coef(fit.tobit)
+curve(pnorm(x, mean=params[1]), ylab='Prob. of entry', xlab="Ability", from=0, to=4)
+curve(pnorm(x, mean=params[1] + params[2]), add=TRUE, lty=2)
+curve(pnorm(x, mean=params[1] + params[3]), add=TRUE, lty=3)
+legend("bottomright", bty='n', levels(races$treatment), lty=1:3)
+```
+
 
 
 Appendix

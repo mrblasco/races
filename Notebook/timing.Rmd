@@ -1,0 +1,27 @@
+
+data(scores)
+dat <- merge(scores, races[, c("coder_id", "treatment")], by='coder_id')
+attach(dat)
+
+time_l <- split(timestamp, coder_id)
+
+difftime2 <- function(x) {
+	n <- length(x)
+	init <- as.POSIXct("2015-03-08 12:00:00 EDT")
+	y <- x - c(init, x[-n])
+	units(y) <- "hours"
+	return(as.numeric(y))
+}
+
+interval <- unlist(tapply(timestamp, coder_id, FUN=difftime2))
+boxplot(interval ~ treatment, outline=FALSE)
+
+# difference of location
+sapply(interval_l, mean)
+sapply(interval_l, median)
+
+# test difference
+interval_l <- split(interval, treatment)
+kruskal.test(interval_l) # Significant!!!!
+
+

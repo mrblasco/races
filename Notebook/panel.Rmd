@@ -1,5 +1,62 @@
 # Timing of entry decision using panel data
 
+Here we consider the panel of submissions. Next we look at the timing of submissions
+
+
+```{r}
+data(scores)
+
+# Create panel
+create.panel <- function(z, id) {
+	diffmin <- function(x) x - min(x)
+	z$date <- z$timestamp %>% as.Date %>% as.numeric %>% diffmin
+	z$y <- 1
+	g <- expand.grid(date=seq(min(z$date), max(z$date)), coder_id=id, y=0)
+	g2 <- rbind(g, z[, c("date", "coder_id", "y")])
+	g2$date <- ifelse(g2$date<3, 1, 
+				ifelse(g2$date<5, 2, 
+					ifelse(g2$date<7, 3, 4)))
+	aggregate(y ~ date + coder_id, data=g2, FUN=sum)
+}
+
+scores.panel0 <- create.panel(scores, races$coder_id)
+scores.panel <- merge(scores.panel0, races, by='coder_id')
+
+
+# Unconditional semi-parametric [Odds(first) = exp(alpha + beta * t )]
+scores.panel$submit <- scores.panel$y>0
+clog <- clogit(submit ~ treatment + strata(date2), data=scores.panel)
+summary(clog)
+
+# Logistic
+m.log <- glm(submit ~ treatment + factor(date), binomial(logit), data=scores.panel)
+summary(m.log)
+
+## Add rating
+clog2 <- clogit(submit ~ treatment + I(mm_rating/100) + strata(date), data=scores.panel)
+summary(clog2)
+
+# Add week hours
+hours <- 0
+for (i in 1:4) {
+	with(scores.panel, switch(i, 
+		"1" = week1,
+		"2" = week2,
+		"3" = week3,
+		"4" = week4)) -> w
+	index <- scores.panel$date==i
+	hours[index] <- w[index]
+}
+clog3 <- clogit(submit ~ treatment + hours + strata(date), data=scores.panel)
+summary(clog3)
+clog4 <- clogit(submit ~ treatment + I(mm_rating/100) + hours + strata(date), data=scores.panel)
+summary(clog4)
+
+# Compare models
+models <- list(clog, clog2, clog3, clog4, m.log)
+stargazer(models, type='text')
+```
+
 We transform data in a panel with the date of the first submission.
 The probability of entry in a given date is modeled with a conditional logit.
 We find that the probability of entry in a given date decreases over time. 
@@ -11,12 +68,8 @@ is negative in all treatments but it is about 25 percent in the race (with pvalu
 it is only 8 (pval) and 6 (pval) percent for tournaments and reserve, respectively. 
 
 
+
 ```{r}
-rm(list=ls())
-require(magrittr)
-require(survival)
-require(races)
-data(scores)
 
 # Create variable
 dmin <- function(x) x - min(x)

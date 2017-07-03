@@ -1,120 +1,219 @@
-# Analysis of entry decision (June 2, 2017)
+# Entry
 
-We test differences in participation rates across treatment groups. 
-We find no significant differences using a Fisher's exact test.
-We further test differences in participation rates between large and small rooms. 
-But we find no significant differences.
+We examine differences in the count of room entrants between different competition styles and large and small room sizes. 
 
-We model binary responses of entry as logistic:
-$$
-	y = 1 	\iff 	\text{ability} \geq \theta.
-$$
+```{r}
+# Compute room entrants
+counts <- aggregate(submit ~ room + room_size + treatment, data=races, sum)
 
-We find that "ratings" and "hours" are strong predictors of entry. Yet, precision of the predictions seems pretty low using GLM. Fit does not seem change much if we use more flexible non-parametric models, such as GAMs.
+par(mfrow=c(1, 2))
+boxplot(submit ~ treatment, data=counts, ylab='Entrants'); title("Competition")
+boxplot(submit ~ room_size, data=counts, ylab='Entrants'); title("Room size")
 
+#********************************************************************************#
+# Test differences between threshold (race & reserve) and tournament 
+# using Mann-Whitney's non-parametric test. 
+#********************************************************************************#
+wilcox.test(submit ~ treatment=="tournament", data=counts, alternative='less', exact=FALSE, correct=FALSE)
 
-```{r, message=FALSE}
-rm(list=ls())
-
-# Load libraries
-require(races)
-require(stargazer)
-# require(mgcv)
-# require(arm)
-
-# Load Data
-data(races)
-attach(races)
-
-# Odds between treatments
-tab <- table(submit, treatment)
-fisher.test(tab)
-
-# Odds between large & small rooms
-tab <- table(submit, room_size)
-fisher.test(tab)
-
-# New variables
-year <- as.numeric(format(member_date, '%Y'))
-month <- as.numeric(format(member_date, '%m'))
-hours <- week1 + week2 + week3 + week4
-rating <- (mm_rating - median(mm_rating, na.rm=TRUE))/100
-
-# Impute missing values
-hours.imp <- impute(hours, "random")
-lhours.imp <- log(hours.imp)
-risk.imp <- impute(risk, "random")
-timezone.imp <- impute(timezone, "random")
-
-
-# New dataset
-dat <- data.frame(submit, treatment, rating, nwins, ntop10, year, month
-	, lhours.imp, risk.imp, timezone.imp)
-
-
-# Binomial [odds(y) = exp(alpha_i + beta * rating)]
-fit <- rep()
-fit$m1 <- glm(submit ~ treatment, binomial(logit), data=dat) 
-fit$m2 <- update(fit$m1, "~ . + rating")
-fit$m3 <- update(fit$m1, "~ . + rating + lhours.imp")
-fit$m4 <- glm(submit ~ ., binomial(logit), data=dat) 
-fit$m5 <- glm(submit ~ .*treatment, binomial(logit), data=dat) 
-
-# Model selection
-fit$m5 <- step(fit$m4)
-
-# Coefficients
-stargazer(fit, type='text', digits=2, keep.stat='n')
-
-# Non-symmetric distributions
-fit$cauchit <- update(fit$m4, family=binomial(cauchit))
-fit$cloglog <- update(fit$m4, family=binomial(cloglog))
-
-# What model to choose?
-cbind(deviance=sapply(fit, deviance), n=sapply(fit, function(x) length(x$y)))
- 
-# FIGURE 
-plot.fit <- function(x, ...) {
-	yhat <- predict(x)
-	plot(jitter(yhat), jitter(as.numeric(x$y)), pch=16
-		, col=ifelse(yhat>0.5,"red","blue")
-		, ...)
-	curve(ilogit, add=TRUE)
-	abline(h=c(0,1), lty=2, col=gray(.9))
+# Small sample demands for Bootstrap resampling.
+# A bootstrap permutation test, however, does not work well because with many ties p-values are unstable
+mean.diff <- function(d, i) {
+	diff(tapply(d$submit[i], d$treatment=='tournament', mean))
 }
-par(mfrow=c(3,3), mar=c(2,2,1,1))
-sapply(1:length(fit), function(i) { 
-	plot.fit(fit[[i]], xlim=c(-3, 3))
-	title(names(fit)[i])
-})
+t.boot <- boot(counts, mean.diff, R=9999, sim='permutation') 
+hist(t.boot$t, breaks="Scott"); abline(v=t.boot$t0)
+mean(t.boot$t0 < t.boot$t)
+mean(t.boot$t0 <= t.boot$t)
+
+# Bootstrap Wilcox works better
+# ... 
+
+#********************************************************************************#
+# Test differences between small and large rooms
+#********************************************************************************#
+wilcox.test(submit ~ room_size, data=counts, exact=FALSE, correct=FALSE)
+```
+
+# Individual propensity to submit
+
+We then turn to the individual propensity to submit. 
+
+- We strongly reject differences in the propensity to submit between large and small rooms
+- We do not have enough data for differences between competition styles
+
+```{r}
+# Room size
+tab.size <- with(races, table(submit, room_size))
+fisher.test(tab.size) 
+# Test differences in individual propensity to submit
+# ==> Largely not significant!!!
 
 
-# Regression by treatment
-fit2 <- rep()
-fit2$race  <- glm(submit ~ rating, data=dat, binomial(logit), subset=treatment=='race')
-fit2$tourn <- glm(submit ~ rating, data=dat, binomial(logit), subset=treatment=='tournament')
-fit2$rese  <- glm(submit ~ rating, data=dat, binomial(logit), subset=treatment=='reserve')
+# Competition styles
+# ==> no overall significance
+tab <- with(races, table(submit, treatment))
+fisher.test(tab) 
 
-stargazer(fit2, type='text', column.labels=names(fit2))
+# Competition styles with target
+# one-sided p-value is small but not significant
+tab <- with(races, table(submit, treatment=='tournament'))
+fisher.test(tab, alternative='greater')
+```
 
-# Plot
-par(mfrow=c(1,3), mar=c(2,2,1,1))
-sapply(1:3, function(i) { 
-	plot.fit(fit2[[i]], xlim=c(-3, 3))
-	title(names(fit2)[i])
-})
+One idea is to use Bayesian analysis. If we assume uniform priors, we can easily compute the posteriors in each treatment. Not sure what we can do with this result.
 
+```{r}
+# Bayesian analysis
+# Compute posteriors Beta(1 + success, 1 + n - success)
+plot.posterior <- function(x, ...) {
+	tab <- with(races, table(submit, treatment))
+	param <- data.frame(tab + 1)
+	index <- param$treatment==x
+	shape <- param[index, ]
+	curve(dbeta(x, shape$Freq[2], shape$Freq[1]), ...)
+}
+
+# PLOTs
+plot.posterior('race', from=0.1, to=0.5, xlab="propensity to submit", ylab='posterior density')
+plot.posterior('tournament', add=TRUE, lty=2)
+plot.posterior('reserve', add=TRUE, lty=3)
+title("theta | y \\sim Beta(y + alpha, n-y + beta)")
+legend("topright", legend=levels(races$treatment), lty=1:3, bty='n')
+```
+
+Our model indicates a latent variable $y^*$ appraoch.
+
+- We first look at logistic regression for entry
+- Then we look at regression for the scores
+- Finally, we use a Tobit-type of approach to back up the primitives of our model
+
+
+## Binary regression model for entry
+
+For each individual we observe a variable $Z_i$, an indicator for the "competition style" of the room person $i$ was assigned to; a binary outcome variable $Y_i$, equal to 1 if person $i$ made a valid code submission during the competition [non example and with score greater than zero], and 0 otherwise; and a vector of covariates $X_i$, these include measures of individual ability, such as the skill rating, platform experience, time availability during the competition, and risk aversion.
+
+Since the outcome variable was a binary indicator, we estimate the logistic regression model:
+
+$$
+	\Pr( Y_i = 1 \mid Z_i, X_i) = \text{logit}^{-1}(\beta_0 + \beta_1 Z_i + \sum \beta_{k} X_{i,k})
+$$
+
+where $logit(\cdot)$ is the logistic distribution function. [Results are below]
+
+```{r}
+# Create dataset for regression imputing missing values at random
+within(dat, {
+	set.seed(25978)
+	rating.100 <- rating / 100
+	hours.imp <- impute(hours, "random")
+	risk.imp <- impute(risk, "random")
+	grad.imp <- impute(grad, "random")
+	male.imp <- impute(male, "random")
+	below30.imp <- impute(below30, "random")
+	timezone.imp <- impute(timezone, "random")
+	expert <- cut(submissions, quantile(submissions[!is.na(rating)]), include=TRUE)
+}) -> dat.imp
+
+
+# First model has no covariates (i.e., $\gamma=0$)
+summary(m0 <- glm(submit ~ treatment, binomial(logit), data=dat.imp))
+
+# The second model adds the main skill rating measure which is available for 2/3 of our population. It seemed better to rescale rating in 100-point units and center it on the median value. Thus, the estimate of the intercept can be easily transformed in the probability of participation of the median rated individual assigned to a room with a race competition style.
+
+summary(m1 <- update(m0, " ~ . + rating.100"))
+
+# The third column adds time availability (hours)
+summary(m2 <- update(m1, " ~ . + hours.imp"))
+
+#  ... and experience (measured in quantiles)
+summary(m3 <- update(m1, " ~ . + expert"))
+
+summary(m4 <- update(m1, "~ . + hours.imp + expert"))
+
+# ... add demographics to m2
+summary(m5 <- update(m4, " ~ . + timezone.imp + grad.imp + below30.imp + male.imp"))
+
+# ... add risk aversion
+summary(m6 <- update(m4, " ~ . + risk.imp"))
+
+# ... add everything
+summary(m7 <- update(m5, " ~ . + risk.imp"))
+
+# Compare models 
+models <- list(m0, m1, m2, m3, m4, m5, m6, m7)
+stargazer(models, type='text')
+
+# Compare models in terms of prediction accuracy
+accuracy <- function(fit) {
+	yhat <- predict(fit, type='response')
+	tab <- table(predicted=ifelse(yhat>0.5, 1, 0), actual=fit$y)
+	tp <- tab[2,2]
+	fp <- tab[2,1]
+	fn <- tab[1,2]
+	precision <- tp / (tp+fp)
+	recall <- tp / (tp + fn)
+	fmeasure <-  2 * precision * recall / (precision + recall)
+	list(conf.table=tab, precision=precision, recall=recall, f.measure=fmeasure)
+}
+accuracy(m1)
+accuracy(m4)
+
+summarize.fit <- function(x) {
+	yhat <- predict(x)
+	with(x, plot(jitter(y) ~ yhat, col=ifelse(yhat>0,'brown', 'blue'), pch=16, xlab="ability ~ Logistic"))
+	curve(ilogit, add=T)
+}
+par(mfrow=c(1, 2))
+summarize.fit(m1); title("M1")
+summarize.fit(m4); title("M4")
+
+# Using Akaike criterion to select the best model, we now compute the model for each treatment alone
+summary(m4.race <- update(m4, "~ . -treatment", subset=treatment=='race'))
+summary(m4.tour <- update(m4, "~ . -treatment", subset=treatment=='tournament'))
+summary(m4.rese <- update(m4, "~ . -treatment", subset=treatment=='reserve'))
+
+models <- list(m4, m4.race, m4.tour, m4.rese)
+stargazer(models, type='text')
+
+# Using simpler model
+summary(m2.race <- update(m2, "~ . -treatment", subset=treatment=='race'))
+summary(m2.tour <- update(m2, "~ . -treatment", subset=treatment=='tournament'))
+summary(m2.rese <- update(m2, "~ . -treatment", subset=treatment=='reserve'))
+
+# Model w/reserve is very hard to predict
+models <- list(m2, m2.race, m2.tour, m2.rese)
+stargazer(models, type='text')
+
+# This identification result holds under the assumption that the skill distribution is logistic. Next, we relax this distributional assumption. First, we check different distributions [e.g., probit, cauchit, cloglog]. We find Probit model seems slightly better in terms of deviance
+probit <- update(m4, family=binomial(probit))
+cauchit <- update(m4, family=binomial(cauchit))
+cloglog <- update(m4, family=binomial(cloglog))
+fit <- list(logit=m4, probit=probit, cauchit=cauchit, cloglog=cloglog)
+cbind(deviance=sapply(fit, deviance), n=sapply(fit, function(x) length(x$y)))
+
+#  ... but not necessarily in terms of prediction accuracy
+accuracy(probit)
+accuracy(m4)
+```
+
+Under the assumption of independence, the parameter $\beta_1$ is the average treatment effect of the competition style on participation. Correlation in decisions can be introduced with a quasi-binomial specification.
+
+The estimtes have a structural interpetation. In terms of our contest theoretical model, due to the monotonicity of equilibrium, entry occurs only if the person $i$'s ability is greater than a given threshold $a_0$ (the marginal type). This threshold is determined by the competition style among other things. Given in our experimental data one can assume that all else is equal except the competition style, this coefficient identifies the marginal type conditional on the competition style.
+
+Here we try some more stuff ...
+
+```{r}
+# Klein-spady ... Not sure about this implementation!
+m.np <- np::npindexbw(as.numeric(submit) ~  rating + lhours.imp + treatment, data=dat, method="kleinspady")
+summary(m.np)
 
 # Bayesian models
 model 	<- "submit ~ treatment + tothours.imp + mm_rating.100 + educ+gender+timezone"
 # bayes <- arm::bayesglm(model, family=binomial)
 # summary(bayes)
 
-# Generalized additive models
+# GAMs Generalized additive models
 b <- mgcv::gam(submit ~ treatment + s(lhours.imp, rating), data=dat,family=binomial)
-plot(b, pages=1, seWithMean=TRUE) ## `with intercept' CIs
-mgcv::gam.check(b)
-plot.fit(b, xlim=c(-3, 3))
-
 ```
 

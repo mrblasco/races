@@ -2,34 +2,35 @@
 #****************************************#
 library(devtools)
 library(roxygen2)
+options("devtools.desc.author"="person(\"Andrea\", \"Blasco\", email = \"ablasco@fas.harvard.edu\", role = c(\"aut\", \"cre\"))")
 
 
 #****************************************#
 # Create dataset
 #****************************************#
-source("prep_data_assign.R")
-source("prep_data_survey.R")
-source("prep_data_survey_final.R")
-source("prep_data_scores.R")
-source("prep_data_merge.R")
+source("1_assign.R")
+source("2_survey.R")
+source("3_survey_final.R")
+source("4_scores.R")
+source("5_merge.R")
 
 #****************************************#
 # Package information
 #****************************************#
 pkgname <- "races" # Package name
-options("devtools.desc.author"="person(\"Andrea\", \"Blasco\", email = \"ablasco@fas.harvard.edu\", role = c(\"aut\", \"cre\"))")
-desc <- list(
-  Title = "Package for xxxx.",
-  Version = "0.1",
-  Description = "This package does x, y, z.")
+desc <- list(Title="Package for the paper: \"Races or Tournaments?\"", Version="0.2",
+	Description="This package for \"Races or Tournaments? Theory and Evidence from a Field Experiment\"",
+	LazyData="true")
 
 #****************************************#
-# Create package in temp directory
+# Create package in folder and install
 #****************************************#
-tmp_dir <- file.path(tempdir(), pkgname)
-create(tmp_dir, description=desc, rstudio=FALSE)
-use_data(races, scores, final_survey, pkg=tmp_dir)
-system(paste("cp package_definitions.R ", tmp_dir, "/R", sep="")) # Copy source files
-document(tmp_dir) # Create documentation    
-install(tmp_dir)  # remove.packages(pkgname)
+create.package <- function(folder) { 
+	create(folder, description=desc, rstudio=FALSE)
+	use_data(races, scores, final_survey, pkg=folder)
+	system(paste("cp package_definitions.R ", folder, "/R", sep="")) # Copy source files
+	document(folder) # Create documentation    
+	install(folder)  # remove.packages(pkgname)
+}
+create.package("races")
 ## END

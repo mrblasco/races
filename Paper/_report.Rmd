@@ -1,5 +1,5 @@
 ---
-title: "Races or Tournaments?"
+title: "Races or Tournaments? Theory and Evidence from the Field"
 
 subtitle: "[PRELIMINARY AND INCOMPLETE]"
 
@@ -27,13 +27,32 @@ keywords:
   - crowdsourcing
   - innovation
 
-fontsize: 12pt
+fontsize: 11pt
+setspace: \doublespacing
+
+output:
+  pdf_document:
+    toc: false
+    keep_tex: false
+    fig_crop: false
+    fig_width: 5
+    fig_height: 5
+    fig_caption: true
+    highlight: tango #kate
+    template: ~/Templates/Pandoc/paper.latex
+    includes:
+      in_header: Templates/header.tex
+#    before_body:   Templates/doc_prefix.tex
+#    after_body:    Templates/doc_suffix.tex
+    pandoc_args: [
+      "--bibliography", "library.bib" #, "--natbib"
+    ]
 ...
 
 ```{r setup, echo=FALSE, message=FALSE}
 
 knitr::opts_chunk$set(
-	cache=FALSE,
+	cache=TRUE,
 	echo=FALSE,
 	message=FALSE,
 	warning=FALSE,
@@ -50,10 +69,27 @@ require(magrittr)
 require(xtable)
 require(stargazer)
 
+# Helper function
+percent  <- function(x, digits=0, ...) round(100 * x, digits, ...)
+difftime2 <- function(...) as.numeric(difftime(...))
+
 options(digits=3, xtable.caption.placement='top', xtable.comment=FALSE)
 
-#  "3_data.Rmd", "4_results.Rmd",
-child_docs <- c("1_intro.Rmd", "2_model.Rmd", "3_data.Rmd",  "5_discussion.Rmd")	
+# Prepare data
+within(races, {
+	year <- as.numeric(format(member_date, '%Y'))
+	hours <- week1 + week2 + week3 + week4
+	rating <- mm_rating
+	submissions <- mm_events
+	registrations <- mm_reg
+	lpaid  <- log(paid)
+	male <- gender=='Male'
+	grad <- educ == "Doctorate/PhD" | educ == "Postgraduate/Master of arts"
+	below30 <- age == "<20 years old" | age== "20-25 years old" | age =="26-30 years"
+}) -> dat
+
+# Documents
+child_docs <- c("1_intro.Rmd", "2_model.Rmd", "3_data.Rmd", "4_results.Rmd", "5_discussion.Rmd")	
 ```
 
 ```{r child = child_docs}

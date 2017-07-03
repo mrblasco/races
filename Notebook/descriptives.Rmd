@@ -1,56 +1,62 @@
 # Descriptive statistics
 
-Table XXX shows summary statistics. It also provides p-values from Kruskal-Wallis non-parametric test, showing no evidence of systematic differences across the three treatment groups (the lowest p-value was xxxx). Hence, our randomization appears successful.
+Table \ref{summary} shows descriptive statistics for these variables. It also provides p-values from a series of Kruskal-Wallis non-parametric tests, showing no evidence of systematic differences across treatment groups (the lowest p-value was xxxx). Hence, our randomization appears successful.
+
+```{r, results='asis'}
+within(races, {
+	year <- as.numeric(format(member_date, '%Y'))
+	hours <- week1 + week2 + week3 + week4
+	rating <- mm_rating
+	submissions <- mm_events
+	registrations <- mm_reg
+	lpaid  <- log(paid)
+	male <- gender=='Male'
+	grad <- educ == "Doctorate/PhD" | educ == "Postgraduate/Master of arts"
+	below30 <- age == "<20 years old" | age== "20-25 years old" | age =="26-30 years"
+}) -> dat
+
+# FUNC to compute descriptive statistics
+descriptives <- function(dat, treat=races$treatment) {
+	balance.test <- function(x) {
+		l <- split(x, treat)
+		kruskal.test(l)$p.val
+	}
+	mu <-sapply(dat, mean, na.rm=TRUE)
+	q50 <-sapply(dat, median, na.rm=TRUE)
+	lo <-sapply(dat, min, na.rm=TRUE)
+	hi <-sapply(dat, max, na.rm=TRUE)
+	std <-sapply(dat, sd, na.rm=TRUE)
+	pval <- sapply(dat, balance.test)
+	n <- sapply(dat, function(x) sum(!is.na(x)))
+	tab <- cbind(mu, q50, std, lo, hi, n, pval)
+	colnames(tab) <- c("Mean", "Median","St.Dev.", "Min", "Max", "Obs.", "P-value")
+	return(tab)
+}
+covars <- with(dat, data.frame(year, rating, registrations, submissions, lpaid, nwins, ntop10, risk, hours, male, timezone, grad, below30))
+tab <- descriptives(covars)
+xtab <- xtable(tab)
+digits(xtab) <- c(1, 1, rep(0, ncol(tab)-2), 3)
+align(xtab) <- c("@{}l", rep("r", ncol(tab)))
+caption(xtab) <- "Descriptive statistics"
+label(xtab) <- "summary"
+render.xtable(xtab)
+```
+
 
 
 ```{r}
-# Library
-require(xtable)
-require(races)
-
-# Load data
-data(races)
 attach(races)
-
-# Define help functions
-balance.test <- function(x) {
-	l <- split(x, treatment)
-	kruskal.test(l)$p.val
-}	
-nomiss <- function(x) sum(!is.na(x))
-
-# New variables
-year <- as.numeric(format(member_date, '%Y'))
-month <- as.numeric(format(member_date, '%m'))
-hours <- week1 + week2 + week3 + week4
-rating <- mm_rating
-submissions <- mm_events
-registrations <- mm_reg
-lpaid  <- log(paid)
-
-# Dataset
-dat <- data.frame(year, month, rating, submissions, registrations, lpaid, nwins, ntop10, risk, hours, timezone)
-
-# Compute summary statistics
-mu <-sapply(dat, mean, na.rm=TRUE)
-q50 <-sapply(dat, median, na.rm=TRUE)
-std <-sapply(dat, sd, na.rm=TRUE)
-pval <- sapply(dat, balance.test)
-n <- sapply(dat, nomiss)
-
-# Render table
-tab <- cbind(mu, q50, std, n, pval)
-colnames(tab) <- c("Mean", "Median", "St.Dev.", "Obs.", "P-value")
-xtab <- xtable(tab)
-digits(xtab) <- c(rep(0, ncol(tab)), 3)
-align(xtab) <- c("@{}l", rep("r", ncol(tab)))
-caption(xtab) <- "Summary statistics"
-label(xtab) <- "summary"
-
+pcl <- cut(mm_events, breaks=quantile(mm_events[mm_events>0],p=0:5/5), include=TRUE)
+boxplot(mm_rating ~ pcl)
+title("Skill rating and submissions")
 detach(races)
+
+# Note: 
+# 1. rating is positively associated with time (perhaps selection of the top coders over time)
+# 2. Also the variance seems positively associated with time.
 ```
 
 
-```{r, results='asis'}
-render.xtable(xtab)
-```
+
+
+

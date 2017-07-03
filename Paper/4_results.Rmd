@@ -1,5 +1,181 @@
+# Results
+
+## Room differences
+
+Competitors in 24 rooms were randomly assigned to either a race, a tournament, or a tournament with reserve competition. After an eight day submission period, the count of competitors with submissions, scores, and timing of submissions were recored for each room. The distribution of room entrants, average scores, and average timing is shown in Figure \ref{room outcomes}.
+
+```{r, fig.width=9, fig.height=4, fig.cap="Distribution of room outcomes by competition style\\label{room outcomes}"}
+
+# CREATE DATA for ROOMS
+entrants <- aggregate(submit ~ room + room_size + treatment, data=races, sum)
+cap.scores <- function(x, baseline=0.792867) ifelse(x<baseline, baseline, x)
+races$final.cap <- cap.scores(races$final/1e6)
+final <- aggregate(final.cap ~ room + room_size + treatment, data=races, FUN=mean, na.rm=TRUE)
+firstsub <- as.numeric(with(races, difftime(timestamp, "2015-03-08 12:00:00 EDT", units='hours')))
+speed <- aggregate(firstsub ~ room + room_size + treatment, data=races, FUN=mean, na.rm=TRUE)
+
+
+par(mfrow=c(1, 3))
+boxplot(submit ~ treatment, data=entrants, xlab='Room entrants'
+	, col="lightgray", horizontal=TRUE, boxwex=0.5); title("Participation")
+boxplot(final.cap ~ treatment, data=final, xlab='Room final score (avg.)'
+	, col="lightgray", horizontal=TRUE, boxwex=0.5); title("Performance")
+boxplot(firstsub ~ treatment, data=speed, xlab='Time first submission (hours)'
+	, col="lightgray", horizontal=TRUE, boxwex=0.5); title("Speed")
+```
+
+```{r test-entrants}
+# Was entry in a tournament competition greater? 
+entrants.t0 <- t.test(submit ~ treatment!='tournament', alternative='greater', var.equal=FALSE, data=entrants)
+
+#****************************************#
+# Bootstrap results
+#****************************************#
+# Non-parametric bootstrap for difference in means
+# diff.boot <- function(d, i) {
+# 	coef(lm(submit ~ treatment!='tournament', data=d, subset=i))[2]
+# }
+# entrants.boot <- boot(entrants, diff.boot, 9999, strata=entrants$treatment!='tournament')
+# 1 - mean(entrants.boot$t <= 0) # p-value: 0.06
+
+# Non-parametric bootstrap for t.test
+# entrants$y <- with(entrants, submit - ave(submit, treatment!='tournament', FUN=mean))
+# t.boot <- function(d, i) {
+# 	t.test(y ~ treatment!='tournament', data=d, subset=i)$statistic
+# }
+# entrants.boot <- boot(entrants, t.boot, 9999, strata=entrants$treatment!='tournament')
+
+# UNCOMMENT to PLOT figures
+# par(mfrow=c(1, 2))
+# hist(entrants.boot$t, "Scott"); abline(v=entrants.t0$statistic)
+# qqplot(rt(1000, df=entrants.t0$parameter), entrants.boot$t, xlab="Quantiles of T-student")
+# qqline(entrants.boot$t, distribution=function(x) qt(x, df=entrants.t0$parameter))
+# 1 - mean(entrants.boot$t <= entrants.t0$stat)
+#****************************************#
+```
+
+Our theoretical model predicts that competitors will enter more a Tournament than a Race or a Tournament with Reserve competition, given the absence of any performance target. Consistent with this prediction, the left panel of Figure \ref{room outcomes} shows a higher median count of room entrants in the Tournament than in the other groups.  To test to see if the difference in means between room entrants in the Tournament and the other groups is greater than zero, we use a `r entrants.t0$method` which gives a (one-sided) p-value of `r entrants.t0$p.value`. Bootstrap resampling gives very similar results, indicating robustness to problems due to our small sample size. Hence, there is evidence to suggest that the average count of room entrants in the Tournament was greater than in the other groups.
+
+
+```{r skill-based-selection, fig.width=9, fig.height=7, fig.cap="Conditional distribution of competitors' characteristics given entry\\label{conditional on entry}"}
+covars <- covars[dat$submit, ]
+covars$nwins <- covars$nwins>0
+covars$ntop10 <- covars$ntop10>0
+covars$submission_pc <- covars$submissions  / covars$registrations
+plot.covars <- function(x, ...) {
+	stars.pval <- function(x) {
+		if (x <= 0.01) return("***")
+		if (x <= 0.05) return("** ")
+		if (x <= 0.1) return("*  ")
+		else return("   ")
+	}
+#	l <- dat$treatment[dat$submit]
+	l <- ifelse(dat$treatment[dat$submit]=='tournament', "Tourn", "Other")
+	if (!is.logical(x)) {
+		x.l <- split(x, l)
+#		p <- kruskal.test(x.l)$p.value
+		p <- t.test(x ~ l)$p.value
+		pval <- sprintf("P-value=%0.3f%s", p, stars.pval(p))
+		boxplot(x ~ l, horizontal=TRUE, las=2, xlab=pval, ...)
+	} else {
+		tab <- table(x, l)
+		p <- fisher.test(tab)$p.value
+		pval <- sprintf("P-value=%0.3f%s", p, stars.pval(p))
+		barplot(prop.table(tab, 2), horiz=TRUE, las=2, xlab=pval, ...)
+	}
+	return(p)
+}
+
+par(mfrow=c(4,4), mar=c(4,4,3,2))
+pval <- sapply(1:ncol(covars), function(i) plot.covars(covars[, i], main=colnames(covars)[i]))
+pval #p.adjust(pval, method='bonferroni') # only one remains
+```
+
+According to our model, the higher proportion of entrants in the Tournament will be driven by low-skilled competitors. We test this prediction on three main measures of individual skills --- the skill rating (`rating`) and whether the competitor had ever won (`nwins`) or been in the top 10 rank (`ntop10`) of a competition before. While entrants had on average higher skills than non-entrants, we find no evidence supporting any skill-based selection across treatments using these measures (see Figure \ref{conditional on entry}). Another possibility was that differences in time availability like being in a different timezone than the United States could have had a negative effect on competitors' participation in a Race. We find no evidence supporting this view by examining differences across treatments in the competitors' time zone automatically identified at registration (`timezone`) and self-reported, forecasted hours of work (`hours`) that we collected prior to the submission phase. Finally, we also find no differences in other demographics like age, gender, and platform registration year and experience. Thus, somewhat contrary to our model's predictions, the higher proportion of entrants in the Tournament did not seem to be associated with measures of skills, time availability, and experience. This result could be in part due to our imperfect measures of skills that do not consent fine-grained analysis. On the other hand, one may speculate that the extra participation was driven by an individual "taste" for the Tournament over the other competition styles.
+
+```{r test-performance}
+# Was average final score greater in a tournament, tournament w. reserve, or both? 
+final.test <- t.test(final.cap ~ treatment=='reserve', var.equal=FALSE, data=final) # p = 0.94
+
+# Other tests for scores
+kruskal.test(with(final, split(final.cap, treatment))) 	# p = 0.35
+summary(lm(final.cap ~ treatment, data=final)) 			# F-test of significance, p = xxxx
+var.test(final.cap ~ treatment=='reserve', data=final) 	# Test of variance, p = 0.60 
+```
+
+We next examine differences in performance across competition styles (see middle panel of Figure \ref{room outcomes}). Our theoretical model indicates the Tournament with Reserve will provide higher scores on average compared to the other groups. We test this prediction using the mean of the competitors' last scored submission in each room. One problem in computing the room means was the need to cope with extreme values in the distribution of scores, as any small bug in the code could generate very low scores (e.g., zero), as shown in Figure \ref{scores over time}. To deal with extreme values we used two methods (1) we trimmed last scores before computing the room means and (2) we capped scores at the value of the baseline score (i.e., the score one would obtain by submitting the BANNER's algorithm without making any useful change). Using either measure, we do not find evidence supporting our hypothesis that mean room scores were higher in the Tournament with Reserve compared to the other treatments.  The reader may find this finding not entirely surprising given the lack skill-based selection across groups that we documented earlier.
+
+
+```{r performance-appendix, fig.width=9, fig.cap="Scores over time\\label{scores over time}"}
+data(scores)
+
+# Order scores by time
+scores <- scores[order(scores$submission), ]
+index <- tapply(1:nrow(scores), scores$coder_id, tail, 1) # last submission
+scores <- scores[index, ]
+scores <- scores[order(scores$timestamp), ] # order by time
+scores$final[is.na(scores$final)] <- 0  # Impute 2 missing scores
+
+# https://en.wikipedia.org/wiki/Winsorized_mean
+cap.scores <- function(x, threshold) ifelse(x<threshold, threshold, x)
+cap.01 <- quantile(scores$final, na.rm=TRUE, p=0.1)
+scores$final.cap <- cap.scores(scores$final, threshold=cap.01) 
+scores$final.cap2 <- cap.scores(scores$final, threshold=792867)  # Baseline
+
+# 
+par(mfrow=c(3, 1), mar=c(2,3,3,1))
+plot(final/1e6 ~ timestamp, data=scores
+	, type='l', col='lightgray', ylab="Final score")
+title("Observed")
+abline(h=0.792867, lty=3) # Baseline
+abline(h=0.817866, lty=2, col=2) # Target
+
+plot(final.cap/1e6 ~ timestamp, data=scores
+	, type='l', col='lightgray', ylab="Final score")
+title("Winsorized at 10 percent")
+abline(h=0.792867, lty=3) # Baseline
+abline(h=0.817866, lty=2, col=2) # Target
+
+plot(final.cap2/1e6 ~ timestamp, data=scores
+	, type='l', col='lightgray', ylab="Final score")
+title("Capped at the baseline")
+abline(h=0.792867, lty=3) # Baseline
+abline(h=0.817866, lty=2, col=2) # Target
+
+
+# Merge with treatment
+#z <- merge(scores, races[, c("coder_id", "room", "treatment")], by='coder_id')
+#z.mean <- aggregate(final.cap ~ room + treatment, data=z, mean)
+#z.mean2 <- aggregate(final.cap2 ~ room + treatment, data=z, mean)
+#par(mfrow=c(2, 1), mar=c(4,5, 2,2))
+#boxplot(final.cap ~ treatment, data=z.mean, horizontal=TRUE, las=2)
+#boxplot(final.cap2 ~ treatment, data=z.mean2, horizontal=TRUE, las=2)
+```
+
+
+```{r test-speed}
+# Was average time lower in a race?
+speed.test <- t.test(firstsub ~ treatment=='race'
+	, alternative='greater', var.equal=FALSE, data=speed)  # p = 0.03
+```
+
+Finally, we examined differences in submission speed measured by the mean time of the first submission in each room. As shown in the right panel of Figure \ref{room outcomes}, the median room time-to-submit in the Race was about 20 and 40 hours shorter than the Tournament and the Tournament with Reserve, respectively. The variance, however, was also larger with values ranging from below 60 to 190 hours, whereas by comparison the other groups' distributions were both above the 120 hours. To test to see if the difference in means between speed in the Race and the other groups was greater than zero, we used a `r speed.test$method` which gives a (one-sided) p-value of `r speed.test$p.value`. [Bootstrap] Thus, our data support the hypothesis that competitors' speed in a Race was higher than in the other groups. Taken together with the absence of skill-based selection and score differences, this result implies that competitors in the Race competition have exerted greater efforts (i.e., by lowering execution time while keeping performance at a comparable level)  relative to the other groups.
+
+
+To summarize the results obtained so far, we have found evidence supporting a higher participation in the Tournament. This higher participation, however, does not seem to be driven by low-skilled competitors. We have also found that competitors in the race made submissions faster without sacrificing performance, which suggests that they have paid higher costs from effort associated with the accelerated speed compared to other competitors. Finally, we reject the hypothesis that the Tournament with Reserve yields higher performance levels. [One explanation is that competitors were fishing to hit the threshold and then stopped exerting effort]. 
+
+
+## Self-reported measures of hours worked
+
+To partially corroborate [final survey]
+
+
+## Panel data
+
+
+
+
 ```{r results}
-require(xtable)
 attach(races)
 
 # New Vars
@@ -33,42 +209,70 @@ table.rooms <- function() {
 }
 ``` 
 
-Results
-=======
 
-```{r}
-table(submit, treatment)
+
+```{r, fig.width=9, fig.cap='Count distribution of room entrants\\label{entry}'}
+counts <- aggregate(submit ~ room + room_size + treatment, data=races, sum)
+levels(counts$treatment) <- c("Race", "Tournament", "Reserve")
+ 
+
+# Testing differences
+entry.test <- wilcox.test(submit ~ treatment=="Tournament", data=counts, alternative='less', exact=FALSE, correct=FALSE)
+
+# Room size
+entry.test2 <- wilcox.test(submit ~ room_size=='Large', data=counts, alternative='less', exact=FALSE, correct=FALSE)
+
+# Bootstrap permutation resampling for the difference of means.
+# Assumption: observations are exchangeable under the null hyp. 
+# Distribution of test statistic under the null, can be approximated by random permutations
+# Random permutations give the Wilcoxon-statistic under the null
+perm <- function(d, i) {
+	y <- d$submit[i]
+	wilcox.test(y ~ treatment=="Tournament", data=d, exact=FALSE)$statistic
+} 
+bt <- boot(counts, perm, 999, sim="permutation")
+# qqnorm(bt$t); qqline(bt$t) Inspect quant
+entry.test$p.value.boot <- 1 - mean(bt$t>=bt$t0)
 ```
 
-We obtained a total of `r sum(nsub)` submissions made by `r sum(submit)` participating coders (`r round(mean(100*submit))` percent of the sample). Our theoretical model predicts that participation should be higher in the tournament condition compared to the other two forms of competition. Consistent with this prediction, the overall response rate in the Tournament condition (`r p["Tournament"]` percent) was higher compared to that in the Race (`r p["Race"]` percent) and in the Reserve (`r p["Reserve"]` percent) condition. Though these differences were considerable,  a `r p.test$method` failed to reject the null hypothesis of independence (p-value=`r p.test$p.value`). Hence, our data were only in part consistent with theory.
 
-```{r}
-# Regression
-fit <- glm(submit ~ treatment*log(mm_rating), family=binomial(probit))
-summary(fit)
+## Structural model
 
-pch <- as.character(as.numeric(treatment))
-plot(submit  ~ mm_rating, pch="|", ylab="Participation", xlab="Skill rating")
-x.20 <- seq(600, 3000, length=20)
-sapply(1:3, function(i) {
-	nd <- data.frame(mm_rating=x.20, treatment=levels(treatment)[i])
-	yhat <- predict(fit, newdata=nd, type='response')
-	lines(x.20, yhat, lty=i) # Race
-})
-legend("left", levels(treatment), lty=1:3, bty='n')
-```
+To understand individual propensities to enter the contest, we now specify a logistic regression model for the conditional probability of entry ($Y_i=1$, entry; $Y_i=0$, exit) given the assigned competition style $(Z_i)$, and a matrix of control variables ($X_i$):
+
+\begin{equation}
+	\Pr(Y_i = 1 \mid X_i=x_i, Z_i=z_i) = \text{probit}^{-1} (z_i + x_i\beta )
+\end{equation}
 
 
 ```{r, results='asis'}
-table.rooms()
+# Prepare data for regress
+d.imp <- within(dat, {
+	set.seed(25978) 	# Impute missing values
+	rating.100 <- rating / 100 # Rescale
+	hours.imp <- impute(hours, "random")
+	risk.imp <- impute(risk, "random")
+	below30.imp <- impute(below30, "random")
+	grad.imp <- impute(grad, "random")
+	male.imp <- impute(male, "random")
+	timezone.imp <- impute(timezone, "random")
+}) 
+fit <- rep()
+fit$m0 <- glm(submit ~ treatment, d.imp, family=binomial(probit))
+fit$m1 <- glm(submit ~ treatment + rating.100, d.imp, family=binomial(probit))
+fit$m2 <- glm(submit ~ treatment + rating.100 + hours.imp, d.imp, family=binomial(probit))
+fit$m3 <- update(fit$m2, " ~ . + timezone.imp")
+fit$m4 <- update(fit$m2, " ~ . + male.imp+below30.imp")
+fit$m5 <- update(fit$m2, " ~ . + risk.imp")
+stargazer(fit, header=FALSE)
 ```
 
-To understand xxxx, we now specify a logistic regression model for the conditional probability of entry ($Y_i=1$) given the assignment $(Z_i=1,2,3)$  and a matrix of control variables ($X_i$):
+The estimates show that:
 
-\begin{equation}
-	\Pr(Y_i = 1 \mid X_i=x, Z_i=z) = \Lambda (xxxx...) 
-\end{equation}
-
+* the difference in individual propensity between tournaments and other competition style is positive but not significant (low power) 
+* individual skill ratings are good predictor of participation (an increase of 100 points corresponds to about a 6 percent increase in the odds of submitting).
+* The stated hours are also important predictors (an increase of 1 hour corresponds to a 1 percent increase in probability).
+* This model has a nice structural interpretation. Players have a latent "ability" variable that is based upon their own skill rating plus some error noise. They submit if and only if ability is higher than a threshold, which is determined by the competition styles and room size.
 
 
 ```{r, fig.height=3}
@@ -86,20 +290,18 @@ plot.predictions <- function(fit, ...) {
 #plot.predictions(fit$m1.rese); title("Reserve")
 ```
 
+Interesting test. Is the skill rating distribution conditional on entry different across competition. A t.test rejects this hypothesis.
 
 ```{r}
 # Skill rating distribution | entry
 # No difference
-i <- submit & rated
-rating_l <- split(mm_rating[i], treatment[i])
+i <- races$submit & races$submit>0
+rating_l <- split(races$mm_rating[i], races$treatment[i])
 rating_l.pdf <- lapply(rating_l, density)
 #plot.density(rating_l.pdf)
 kruskal.test(rating_l) # pval=0.433 
-t.test(rating_l$Race, rating_l$Tournament) # pval=0.67
+t.test(rating_l$race, rating_l$tournament) # pval=0.68
 ```
-
-
-### Room size
 
 Our model also predicts lower participation for individuals in large rooms (15 competitors) compared to those in small rooms (10 competitors). Under the model, the "marginal type" is increasing in group size and so the individual probability of entry is lower. However, our data proved only negligible differences in participation between large (`r p.size['Large']` percent) and small rooms (`r p.size['Small']` percent).  Additionally, we found no significant treatment differences conditional on the room size being large or small (xxxxx). Hence, one may conclude that a group-size difference of 5 people is probably not large enough to be impactful.
 
@@ -156,41 +358,6 @@ for (i in 1:3) {
 }
 ```
 
-# Participation by experience
-
-```{r}
-attach(races)
-mm_qtl <- cut(mm_reg, quantile(mm_reg), include=T)
-chisq.test(table(submit, mm_qtl)) ## p<0.01 !!!
-(tab <- ftable(treatment, submit, mm_qtl))
-
-tothours <- week1 + week2 + week3 + week4
-impute.random <- function(x) {
-	index <- is.na(x)
-	x[index] <- sample(x[!index], size=sum(index), replace=TRUE)
-	return(x)
-}
-tothours_imp <- impute.random(tothours)
-hours_qtl <- cut(tothours_imp, quantile(tothours_imp), include=TRUE)
-
-mm_ratio <- mm_events / mm_reg
-fit <- rep()
-summary(fit$m0 <- glm(submit ~ treatment + mm_qtl + hours_qtl, binomial))
-summary(fit$m0 <- glm(submit ~ treatment + mm_qtl + hours_qtl + mm_ratio, binomial))
-summary(fit$m1 <- glm(submit ~ mm_qtl + hours_qtl+ mm_ratio, binomial, subset=treatment=='race'))
-summary(fit$m2 <- glm(submit ~ mm_qtl + hours_qtl+ mm_ratio, binomial, subset=treatment=='tournament'))
-summary(fit$m3 <- glm(submit ~ mm_qtl + hours_qtl+ mm_ratio, binomial, subset=treatment=='reserve'))
-
-stargazer(fit, type='text')
-
-# Tournament --> participation odds for expert coders 
-# are about 40% higher in tournaments than in the race
-
-# Nice plot with bootstrap
-races$mm_qtl  <- mm_qtl
-races.l <- split(races, treatment)
-#table(submit, mm_qtl, treatment) -> tab
-```
 
 
 

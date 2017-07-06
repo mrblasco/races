@@ -81,6 +81,7 @@ cat(sprintf("# NOT merged with registration data = %i\n", sum(missed_matches)))
 
 # Correct format
 handle <- clean.handle(details.raw$Handle)
+mm_rating2 <- details.raw$Rating
 nwins <- details.raw$Num.Wins
 ntop5 <- details.raw$Num.Top.5
 ntop10 <- details.raw$Num.Top.10
@@ -89,7 +90,7 @@ mm_rating_max <- details.raw$High.Rating
 mm_rating_min <- details.raw$Low.Rating
 ave_nsub_past <- details.raw$Avg.Submissions
 lastround <- as.Date(details.raw$Last.Round.Date, '%m/%d/%Y')
-dat <- data.frame(handle, ave_nsub_past, nwins, ntop5, ntop10, volatility, mm_rating_max, mm_rating_min, lastround)
+dat <- data.frame(handle, mm_rating2, ave_nsub_past, nwins, ntop5, ntop10, volatility, mm_rating_max, mm_rating_min, lastround)
 
 # Merge
 races.2 <- merge(races.1, dat, by='handle', all.x=TRUE)

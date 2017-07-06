@@ -3,19 +3,23 @@ title: "Notebook: Races vs Tournament"
 date: "Last updated: `r format(Sys.time(), '%d %B, %Y')`"
 
 output:
-  pdf_document:
-    highlight: kate #monochrome
+  html_document:
     toc: true
-    template: ~/Templates/Pandoc/boyd.latex
-    keep_tex: false
+    toc_float:
+      collapsed: true
+      smooth_scroll: false
+# output:
+#   pdf_document:
+#     highlight: kate #monochrome
+#     toc: true
+#     template: ~/Templates/Pandoc/boyd.latex
+#     keep_tex: false
+# header-includes: 
+#   - \usepackage{titlesec}
+#   - \newcommand{\sectionbreak}{\clearpage}
+#   - \input{defs.tex}
+#   - \setlength\parindent{0pt}
 
-header-includes: 
-  - \usepackage{titlesec}
-  - \newcommand{\sectionbreak}{\clearpage}
-  - \input{defs.tex}
-  - \setlength\parindent{0pt}
-
-abstract: "This document contains data analysis for the paper \"Races or Tournaments?\"."
 ...
 
 ```{r setup, echo=FALSE, message=FALSE}

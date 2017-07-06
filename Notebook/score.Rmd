@@ -1,4 +1,4 @@
-# Analysis of scores
+# Scores
 
 As a measure of the ability to make correct predictions of domain expert annotations we used the "F-score" defined as the harmonic mean of precision and recall: $F = 2 * (precision * recall) / (precision + recall)$).
 This score was computed on 300 abstracts (100 of which were not disculosed to avoid overfitting) with about xxxx entities to correctly identify from a dictionary with xxxx labels. 

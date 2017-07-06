@@ -1,58 +1,32 @@
-# Identification
+# Model estimation
 
-## The model
-
-For each room $(l=1, ..., L)$, we observe the count of participants $y_l$ among the $n_l$ registered competitors who have been assigned to some treatment $w_l\in\{0, 1, 2\}$. The count of participating competitors is the realization of a random variable $Y_l$ that depends on a vector of room characteristics $z_l=(x_l, w_l)$ that include the assignment $w_l$ and additional room characteristics $x_l$. We assume that $Y_l$ is distributed as a binomial variable with parameters $n_l$ and $p(x_l, \theta)$ where $p(x, \theta)$ describes the probability for a competitor to participate in a room described by the vector $x$. The model is then the following:
+*  We observe $Y_1, ..., Y_L$  participants for $(l=1, ..., L)$ rooms
+* Each room has $n_l$ registered competitors and room characteristcs $X_l$ (deadline, target, etc.).
+* We assume that $Y_l$ is distributed as a binomial variable with parameters $n_l$ and $p(x_l, \theta)$ where $p(x, \theta)$ describes the probability for a competitor to participate in a room described by the vector $x$: 
 
 \begin{equation}
 	\label{model}
 	Y_{l} \sim \text{Binomial}(N_l, p(x_l, \theta)) \quad \text{for each } l=1,...,L.
 \end{equation}
 
-In binomial linear models, the probability function $p(x, \theta)$ is related to a linear prediction through a one-to-one transformation called the link function (see xxxx). Following our theoretical approach, participation is one for those with abilities above a given value:
+*  In binomial linear models, the probability function $p(x, \theta)$ is related to a linear prediction through a one-to-one transformation called the link function (see XXXX). [Let see if our model is linear]
+
+* Competitors have a latent ability variable $a^*$ drawn from a common distribution $F_l(\cdot)$ (distributions may differ across rooms). 
+
+* At equilibrium, $Y_{l} = 1 \iff  a^* \geq a_{0l}$ where $a_{0l}$ is the marginal type for the room in room $l$. 
+
+* Zero profit condition (revenues = costs) is
 
 $$
-	Y_{l} = 1 \iff  \text{ability}  \geq m_{l}
+	R(a; F_l) = C(a, y_{0,l}, t_{0,l})
 $$
 
-where $m_l$ is the marginal type for the room.  Given $F_l(\cdot)$ the distribution of individual abilities in each room, the probability of entry is:
+* Given $F_l(\cdot)$ the distribution of individual abilities in each room, the probability of entry is:
 
 \begin{equation} 
-	p(m_l, \theta) = 1 - F_l(m_l)
+	p(x_l, \theta) = 1 - F_l(a_{0l})
 \end{equation}
 
-The marginal type is determined by the zero profit condition:
-
-\begin{equation}
-	\label{zero profit}
-	R_l(m_l) = m_l^\alpha y_0^\beta t_0^\gamma
-\end{equation}
-
-where the $R_l(m_l)$ is the expected revenue of the marginal type in a given room and it must be equal to the  costs evaluated at the deadline $t_0$ and the target $y_0$. 
-
-If we assume one single prize $q=1$ (and we normalize the cost of meeting the deadline to one $t_0^\gamma=1$)  the zero profit condition becomes: 
-
-\begin{equation}
-	F_l(m_l)^{n_l-1} = m_l^\alpha y_0^\beta 
-\end{equation}
-
-By raising to the power $1/(n_l-1)$ both sides of the equation, we obtain a structural relationship between the probability of entry (eq. XXX) and the marginal type, the number of registered competitors, and the cost function.
-
-$$
-	p(x_l, \theta) = 1 - \left[m_l^\alpha y_0^\beta \right]^{1/(n_l-1)} \qquad \text{with } \alpha\leq-1, \beta\geq1.
-$$
-
-
-<!--
-We further assume the distribution is known up to the parameters $\theta$ that we want to estimate from the data: 
-$$
-	F_l(x) = F(x;\theta_l). 
-$$
--->
-
-As a result, one could use a "method of moments" to estimate the parameters $\theta=(\alpha, \beta, m_l)$ ($y_0$ and $n_l$ are observed). 
-
-## Estimation
 
 First, we rewrite the probability $p(x, \theta)$ in the following way:
 

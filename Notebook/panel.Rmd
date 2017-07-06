@@ -1,7 +1,4 @@
-# Timing of entry decision using panel data
-
-Here we consider the panel of submissions. Next we look at the timing of submissions
-
+# Panel data
 
 ```{r}
 data(scores)

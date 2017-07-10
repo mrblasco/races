@@ -1,15 +1,7 @@
-% Races vs Tournaments
-% Andrea Blasco <ablasco@fas.harvard.edu>
-% Project Started: January 16, 2017
+# Races or Tournaments? Theory and Evidence from the Field
 
-Introduction
--------------
+## Overview
 
-This folder contains scripts used for the project Races vs Tournaments. 
-Very preliminary and incomplete.
+This report contains scripts for the paper `Races or Tournaments? Theory and Evidence from the Field`. 
 
-
-Todos
--------
-
-Write the paper!
+Contacts: Andrea Blasco <ablasco@fas.harvard.edu>

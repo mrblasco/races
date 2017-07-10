@@ -6,7 +6,7 @@
 \usage{
 contest(x, n, type = c("race", "tournament"), prize = c(1, 0),
   elasticity = c(-1, 2, -1), p = punif, d = dunif, xlim = c(0, 1),
-  deadline = 1, target = 0.1, ...)
+  deadline = 1, target = 0.4, ...)
 }
 \arguments{
 \item{x}{vector of ability values}
@@ -34,7 +34,7 @@ A `contest` object
 Computes equilibrium bids and expected utility of a contest game with `n` rivals competing for two prizes of value `prizes` for a vector of iid abilities `x` drawn from a given distribution `p` with density `d`.
 }
 \examples{
-contest(seq(0.1,0.9,length=10), n=10, type="race")
+contest(seq(0, 1, length=10), n=10, type="race")
 }
 \keyword{contest,}
 \keyword{game}

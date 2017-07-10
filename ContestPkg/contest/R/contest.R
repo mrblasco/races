@@ -58,16 +58,16 @@ pord <- function(x, k, n, p, ...) {
 #' @name contest
 #' @export
 #' @examples
-#' contest(seq(0.1,0.9,length=10), n=10, type="race")
+#' contest(seq(0, 1, length=10), n=10, type="race")
 
 contest <- function(x, n, type=c("race","tournament"), prize=c(1, 0), elasticity=c(-1, 2, -1)
-								, p=punif, d=dunif, xlim=c(0, 1), deadline=1, target=0.1, ...) {
-	stopifnot(all(x <= xlim[2] & x >= xlim[1])) # Check ability interval
-	stopifnot(n>2) # Check number of competitors
+								, p=punif, d=dunif, xlim=c(0, 1), deadline=1, target=0.4, ...) {
+	stopifnot(all(x <= xlim[2] & x >= xlim[1])) # Check ability
+	stopifnot(n>2) 															# Check number of competitors
+	stopifnot(length(prize)==2 & sum(prize)==1 & diff(prize)<=0)
+	stopifnot(sign(elasticity)==c(-1, 1, -1))	
 	rivals <- n-1
 	type <- match.arg(type)
-	stopifnot(length(prize)==2 & sum(prize)==1 & diff(prize)<=0) # Check prize
-	stopifnot(sign(elasticity)==c(-1, 1, -1))	
 	ALPHA <- elasticity[1]
 	BETA <- elasticity[2]
 	GAMMA <- elasticity[3]
@@ -98,6 +98,7 @@ contest <- function(x, n, type=c("race","tournament"), prize=c(1, 0), elasticity
 		ystar <- cost(b0 + prize.scaled[1] * v1 + prize.scaled[2] * v2, 1/BETA) # Missing scaling
 		ustar <- ifelse(x<type.zero, 0, payoff(x, ystar, deadline, prize, rivals, p))
 		tstar <- ifelse(x<type.zero, 0, deadline)
+		ystar <- ifelse(x<type.zero,0, ystar)
 	} else {
 		b0 <- cost(deadline, GAMMA)
 		prize.scaled <- prize / cost(target, BETA)
@@ -128,7 +129,7 @@ contest <- function(x, n, type=c("race","tournament"), prize=c(1, 0), elasticity
 #' plot(example(contest))
 
 plot.contest <- function(x, ...) {
-	info <- sprintf("%s\n(alpha=%0.2f,n=%i)", x$type, x$params$v[1], x$params$n)
+	info <- sprintf("%s\n(alpha=%0.2f,n=%i)", x$type, x$params$prize[1], x$params$n)
 	with(x, plot(ability, score, type="b", ...)); title(info)
 	abline(h=x$param$target, lty=3, col='lightgray')
 	with(x, plot(ability, timing, type="b", ...)); title(info)

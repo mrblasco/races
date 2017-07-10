@@ -2,6 +2,7 @@ Archive
 Cache
 Banner
 .*
+*.rda
 *.RData
 *.pdf
 *.png

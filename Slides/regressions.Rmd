@@ -1,0 +1,104 @@
+---
+title: Regressions in Tournaments vs Races
+author: Andrea Blasco
+institute: ablasco@fas.harvard.edu
+date: \today
+output: 
+  beamer_presentation:
+    slide_level: 2
+    template: ~/Templates/Pandoc/boyd.beamer
+---
+
+```{r setup, include=FALSE}
+library(stargazer)
+knitr::opts_chunk$set(cache=TRUE)
+```
+
+# Data preparation
+
+
+## Main covariates
+
+```{r}
+# Prepare data
+within(races, {
+	year <- as.numeric(format(member_date, '%Y'))
+	hours <- week1 + week2 + week3 + week4
+	rating <- mm_rating
+	submissions <- mm_events
+	registrations <- mm_reg
+	lpaid  <- log(paid)
+	male <- gender=='Male'
+	grad <- educ == "Doctorate/PhD" | educ == "Postgraduate/Master of arts"
+	below30 <- age == "<20 years old" | age== "20-25 years old" | age =="26-30 years"
+}) -> dat
+
+covars <- with(dat, data.frame(year, rating, registrations, submissions, lpaid, nwins, ntop10, risk, hours, male, timezone, grad, below30))
+```
+
+
+## Descriptives
+
+
+```{r, echo=FALSE, results='asis'}
+# Compute descriptives
+descriptives <- function(dat, treat=races$treatment) {
+	balance.test <- function(x, treat=races$treatment) {
+		if (is.logical(x)) return(fisher.test(table(x, treat))$p.val)
+		l <- split(x, treat)
+		kruskal.test(l)$p.val
+	}
+	mu <-sapply(dat, mean, na.rm=TRUE)
+	q50 <-sapply(dat, median, na.rm=TRUE)
+	lo <-sapply(dat, min, na.rm=TRUE)
+	hi <-sapply(dat, max, na.rm=TRUE)
+	std <-sapply(dat, sd, na.rm=TRUE)
+	pval <- sapply(dat, balance.test)
+	n <- sapply(dat, function(x) sum(!is.na(x)))
+	tab <- cbind(mu, q50, std, lo, hi, n, pval)
+	colnames(tab) <- c("Mean", "Median","St.Dev.", "Min", "Max", "Obs.", "P-value")
+	return(tab)
+}
+tab <- descriptives(covars)
+xtab <- xtable(tab)
+digits(xtab) <- c(1, 1, rep(0, ncol(tab)-2), 3)
+align(xtab) <- c("@{}l", rep("r", ncol(tab)))
+print(xtab, comment=FALSE)
+```
+
+## Impute ratings
+
+```{r, include=FALSE}
+z <- na.omit(with(dat, data.frame(rating, year, registrations, risk, hours, male, timezone, grad, below30)))
+fit.rating <- step(lm(rating ~ ., data=z))
+sd.hat <- sigma(fit.rating); yhat <- predict(fit.rating, newdata=dat)
+```
+
+```{r, echo=FALSE}
+set.seed(4881)
+coef(fit.rating) 
+rating.star <- rnorm(length(yhat), mean=yhat, sd=sd.hat)
+dat$rating.imp <- ifelse(is.na(dat$rating), rating.star, dat$rating)
+summary(dat$rating.imp)
+summary(dat$rating)
+```
+
+# Entry -- Linear models
+
+## Model specification
+
+```{r, echo=FALSE}
+dat$entry <- dat$nsub>0
+m0 <- glm(entry ~ treatment, data=dat, family=binomial(logit))
+m1 <- glm(entry ~ treatment + I(rating/100), data=dat, family=binomial(logit))
+m2 <- glm(entry ~ treatment + I(rating/100) + risk + timezone + grad, data=dat, family=binomial(logit))
+m3 <- glm(entry ~ treatment + I(rating.imp/100) + risk + timezone + grad, data=dat, family=binomial(logit))
+
+# Impute missing ratings
+stargazer(m0, m1, m2, m3, type='text', digits=2)
+
+# No difference with means computed by hand
+# predict(m0, type='response', newdata=data.frame(treatment=levels(dat$treatment)))
+# tapply(dat$entry, dat$treatment, mean)
+```
+

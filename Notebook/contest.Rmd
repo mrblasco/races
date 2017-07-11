@@ -1,0 +1,57 @@
+# Montecarlo simulations
+
+```{r}
+require(contest)
+
+elastic <- c(-1, 2, -2)
+n <- 10
+
+# Study tournament
+x.100 <- seq(0.01,0.99, length=100)
+t4 <- contest(x=x.100, n=n, type='tournament', deadline=1, target=0.2, elasticity=elastic)
+
+par(mfrow=c(3,3))
+plot(t4, pch=16, cex=0.5)
+
+# Create a large matrix of abilities
+n <- 50
+a <- matrix(runif(100*n), 100, n)
+
+# Simulations 
+ystar <- apply(a, 1, function(x) max(contest(x, n=10, type="tournament", deadline=1, target=0.5)$score))
+tstar <- apply(a, 1, function(x) max(contest(x, n=10, type="tournament", deadline=1, target=0.5)$timing))
+mean(ystar) - 0.5 * mean(tstar)
+
+# Optimize target in a tournament
+tournament <- function(x, y) contest(x, n=length(x), target=y, type="tournament")$score
+h <- apply(a, 1, function(x) max(tournament(x, 0.1)))
+
+f <- function(x, data) {
+	ystar <- apply(data, 1, function(x)
+				max()
+	tstar <- apply(data, 1, function(x)
+				max(contest(x, n=ncol(data), type="tournament", target=x)$timing))
+	- mean(ystar) + mean(tstar)
+}
+
+optimize(f, interval=c(0, 1), n=10) # Optimal target 0.5716364
+
+# Optimize number of competitors in a tournament
+f <- function(x, R=99, elastic=c(-1, 2, -2)) {
+	n <- as.integer(x)
+	rp <- replicate(R, max(contest(x=runif(n), n=n, type='tournament', deadline=1, target=0.5)$score))
+	- mean(rp)
+}
+optimize(f, interval=c(2, 50)) # Optimal number of competitors
+
+# Optimize with concerns for timing 
+f <- function(x, R=99, elastic=c(-1, 2, -2)) {
+	n <- as.integer(x)
+	rp <- replicate(R, max(contest(x=runif(n), n=n, type='tournament', deadline=1, target=0.5)$score))
+	- mean(rp) + mean()
+}
+optimize(f, interval=c(2, 50)) # Optimal number of competitors
+ 
+
+
+```

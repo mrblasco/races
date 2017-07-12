@@ -4,7 +4,9 @@ author: Andrea Blasco
 institute: ablasco@fas.harvard.edu
 date: \today
 output: 
-  beamer_presentation:
+#   pdf_document:
+#     template: ~/Templates/Pandoc/boyd.latex
+ beamer_presentation:
     slide_level: 2
     template: ~/Templates/Pandoc/boyd.beamer
 ---
@@ -16,89 +18,96 @@ knitr::opts_chunk$set(cache=TRUE)
 
 # Data preparation
 
-
 ## Main covariates
 
 ```{r}
-# Prepare data
-within(races, {
+names(races)
+```
+
+
+## Missing values
+
+```{r}
+missings <- apply(races, 2, function(x) sum(is.na(x)))
+missings[missings>0]
+```
+
+## Imputing missing values
+
+```{r, echo=FALSE}
+set.seed(25978) # For imputations
+
+## Prepare data.frame with covariates only
+dat <- within(races, {
+	finished <- finished=='True' 
 	year <- as.numeric(format(member_date, '%Y'))
 	hours <- week1 + week2 + week3 + week4
 	rating <- mm_rating
-	submissions <- mm_events
-	registrations <- mm_reg
-	lpaid  <- log(paid)
+	rating2 <- algo_rating
+	nsub <- mm_events
+	nreg <- mm_reg
+	nperc <- (nsub+1)/(nreg+1)
+	paid  <- ifelse(is.na(paid), 0, paid)
+	paid_b  <- paid > 0
 	male <- gender=='Male'
 	grad <- educ == "Doctorate/PhD" | educ == "Postgraduate/Master of arts"
 	below30 <- age == "<20 years old" | age== "20-25 years old" | age =="26-30 years"
-}) -> dat
-
-covars <- with(dat, data.frame(year, rating, registrations, submissions, lpaid, nwins, ntop10, risk, hours, male, timezone, grad, below30))
-```
-
-
-## Descriptives
-
-
-```{r, echo=FALSE, results='asis'}
-# Compute descriptives
-descriptives <- function(dat, treat=races$treatment) {
-	balance.test <- function(x, treat=races$treatment) {
-		if (is.logical(x)) return(fisher.test(table(x, treat))$p.val)
-		l <- split(x, treat)
-		kruskal.test(l)$p.val
-	}
-	mu <-sapply(dat, mean, na.rm=TRUE)
-	q50 <-sapply(dat, median, na.rm=TRUE)
-	lo <-sapply(dat, min, na.rm=TRUE)
-	hi <-sapply(dat, max, na.rm=TRUE)
-	std <-sapply(dat, sd, na.rm=TRUE)
-	pval <- sapply(dat, balance.test)
-	n <- sapply(dat, function(x) sum(!is.na(x)))
-	tab <- cbind(mu, q50, std, lo, hi, n, pval)
-	colnames(tab) <- c("Mean", "Median","St.Dev.", "Min", "Max", "Obs.", "P-value")
-	return(tab)
-}
-tab <- descriptives(covars)
-xtab <- xtable(tab)
-digits(xtab) <- c(1, 1, rep(0, ncol(tab)-2), 3)
-align(xtab) <- c("@{}l", rep("r", ncol(tab)))
-print(xtab, comment=FALSE)
-```
+	# Impute missing values
+	hours.imp <- impute(hours, "random")
+	risk.imp <- impute(risk, "random")
+	below30.imp <- impute(below30, "random")
+	grad.imp <- impute(grad, "random")
+	male.imp <- impute(male, "random")
+	timezone.imp <- impute(timezone, "random")
+}) 
 
 ## Impute ratings
+impute.rating <- function(dat) {
+	fit <- lm(rating ~ year + nreg + grad.imp + paid_b, data=dat)
+	SIGMA <- sigma(fit); MEAN <- predict(fit)
+	sim <- rnorm(length(MEAN), mean=MEAN, sd=SIGMA)
+	ifelse(is.na(dat$rating), sim, dat$rating)
+}
+impute.volatility <- function(dat) {
+	fit <- lm(volatility ~ nreg, data=dat)
+	SIGMA <- sigma(fit); MEAN <- predict(fit)
+	sim <- rnorm(length(MEAN), mean=MEAN, sd=SIGMA)
+	ifelse(is.na(dat$volatility), sim, dat$volatility)
+}
 
-```{r, include=FALSE}
-z <- na.omit(with(dat, data.frame(rating, year, registrations, risk, hours, male, timezone, grad, below30)))
-fit.rating <- step(lm(rating ~ ., data=z))
-sd.hat <- sigma(fit.rating); yhat <- predict(fit.rating, newdata=dat)
+dat$rating.imp <- impute.rating(dat)
+dat$volatility.imp <- impute.volatility(dat)
+
+## Covars with missing
+covars.imp <- with(dat, data.frame(year, rating.imp, volatility.imp, rating2, nreg, nsub, nperc, paid_b, nwins, ntop10, risk.imp, hours.imp, male.imp, timezone.imp, grad.imp, below30.imp))
+covars <- dat[, gsub(".imp", "", names(covars.imp))]
+
+## Compare imputed
+m <- cbind(observed=apply(covars, 2, mean, na.rm=TRUE), imputed=apply(covars.imp, 2, mean,na.rm=TRUE))
+round(m, 1)
 ```
+
+
+## Correlations 
 
 ```{r, echo=FALSE}
-set.seed(4881)
-coef(fit.rating) 
-rating.star <- rnorm(length(yhat), mean=yhat, sd=sd.hat)
-dat$rating.imp <- ifelse(is.na(dat$rating), rating.star, dat$rating)
-summary(dat$rating.imp)
-summary(dat$rating)
+panel.smooth<-function (x, y, col="blue", bg=NA, pch=16, cex=0.5, col.smooth = "red", span=2/3, iter=3, ...) {
+  points(x, y, pch=pch, col=col, bg=bg, cex=cex)
+  ok <- is.finite(x) & is.finite(y)
+  if (any(ok)) 
+    lines(stats::lowess(x[ok], y[ok], f=span, iter=iter), col=col.smooth, ...)
+}
+pairs(covars.imp, lower.panel=panel.smooth, upper.panel=NULL, pch=16, cex=.5)
 ```
 
-# Entry -- Linear models
+# Exploratory Analysis
 
-## Model specification
+## Basic model
 
-```{r, echo=FALSE}
-dat$entry <- dat$nsub>0
-m0 <- glm(entry ~ treatment, data=dat, family=binomial(logit))
-m1 <- glm(entry ~ treatment + I(rating/100), data=dat, family=binomial(logit))
-m2 <- glm(entry ~ treatment + I(rating/100) + risk + timezone + grad, data=dat, family=binomial(logit))
-m3 <- glm(entry ~ treatment + I(rating.imp/100) + risk + timezone + grad, data=dat, family=binomial(logit))
+```{r, echo=FALSE, results='asis'}
+z <- data.frame(submit=dat$submit, covars.imp)
+fit <- glm(submit ~ ., data=z, quasibinomial(logit))
 
-# Impute missing ratings
-stargazer(m0, m1, m2, m3, type='text', digits=2)
-
-# No difference with means computed by hand
-# predict(m0, type='response', newdata=data.frame(treatment=levels(dat$treatment)))
-# tapply(dat$entry, dat$treatment, mean)
+fit.step <- step(fit)
+stargazer(fit, font.size='tiny', align=TRUE, header=FALSE, no.space=FALSE, single.row=TRUE, float=FALSE)
 ```
-

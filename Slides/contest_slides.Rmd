@@ -132,10 +132,9 @@ plot(race, pch=16, cex=.5)
 
 
 # Monte Carlo Experiments
-
 ## Monte Carlo Method
 
-- Random sampling from true distribution to compute expected values (e.g., contest designer's revenues)
+- Random sampling from true distribution to compute expected values (e.g., expected average performance)
 
 - Let $y^*(\cdot)$ $t^*(\cdot)$ denote the equilibrium functions for performance and time
 
@@ -191,256 +190,364 @@ boxplot(out, xlab="Monte Carlo replications", ylab="Estimates")
 ```
 
 # Optimal contest design
-
 ## Contest designer's revenues
 
-Imagine timing is not an issue, then only top expected performance matters:
+* When timing is not an issue, revenues depend only upon performance.
+
+* Imagine the contest designer wants to maximize expected top performance:
 
 $$
 	\pi_{cd} = E_{F_{(n)}}[y^*] 
 $$
 
-* Can CDs increase revenues by imposing a minimum target performance?
-* What is the optimal target?
+* What is the **optimal allocation of prizes**? 
+* What is the **optimal target**?
+* What is optimal between **race and tournament competitions**?
+
+## The Optimal Allocation of Prizes in a Tournament
+
+MS (2001) proves that:
+
+> [ With **linear** or **concave** cost functions,] "it is optimal to allocate the entire prize sum to a single first prize. [...] With **convex** cost functions, the beneficial effect of the second prize on middle- and low- ability players is amplified, while the advantage of having one prize (which strongly motivates high-ability contestants) is decreased."
+
+## The optimal allocation of prizes in R
+
+```{r optim-prize}
+# Linear costs, e.g., x^1
+f <- function(x, elasticity) {
+	mc.contest(R=1e4, n=10, prize=c(x, 1-x), elasticity=elasticity)
+}
+set.seed(1)
+optimize(f, interval=c(0.5, 1), maximum=TRUE, elasticity=c(-1, 1, -1))$maximum
+
+# Convex costs, e.g., x^2
+set.seed(1)
+optimize(f, interval=c(0.5, 1), maximum=TRUE, elasticity=c(-1, 2, -1))$maximum
+```
+
+## Optimal Target
+
+Blasco, Boudreau, Lakhani and Menietti (2017)'s paper on races vs tournaments shows that:
+
+1. Optimal target is always lower in a tournament compared to a race.
+
+2. Tournaments generally dominate races in terms of (ex-ante) top performance
+
+3. Difference between tournaments and races reduces when the distribution is asymmetric
 
 ##  Optimal Target in a Tournament
 
 ```{r optim-tournament}
-f <- function(x) {
-	mc.contest(R=200, n=10, type='tournament', target=x)
+f <- function(x, n=10, R=350, ...) {
+	mc.contest(R=R, n=n, target=x, ...)
 }
 # optimal target
-optimize(f, interval=c(0, 1), maximum=TRUE) 
+set.seed(1)
+optimize(f, type='tournament', interval=c(0, 1), maximum=TRUE) 
 ```
 
 ## Optimal Target in a Race
 
 ```{r optim-race}
-f <- function(x) {
-	mc.contest(R=200, n=10, type='race', target=x)
-}
-optimize(f, interval=c(0, 1), maximum=TRUE) 
+set.seed(1)
+optimize(f, type='race', interval=c(0, 1), maximum=TRUE) 
 ```
 
 ## Races vs tournaments
 
-```{r, echo=FALSE}
+```{r racs-vs-tournaments, echo=FALSE}
+m <- numeric(2)
+m[1] <- optimize(f, type='tournament', interval=c(0, 1), maximum=TRUE
+				, p=pbeta, d=dbeta, shape1=2, shape2=4)$maximum 
+m[2] <- optimize(f, type='race', interval=c(0, 1), maximum=TRUE
+				, p=pbeta, d=dbeta, shape1=2, shape2=4)$maximum
+
 x <- seq(0.6, 1, length=200)
+par(mfrow=c(2, 3))
+
+# Uniform distribution
 tournament <- contest(x, n=10, type='tournament', target=0.189)
 race <- contest(x, n=10, type='race', target=0.49)
 
-par(mfrow=c(1, 2))
+curve(dunif, xlab="Ability ~ Uniform", ylab="density")
+title("Ability distribution")
 plot(x, tournament$score, pch=16, cex=.5, type='b', xlab="ability", ylab="Score")
 points(x, race$score, pch=16, cex=.5, type='b', col=2)
 plot(x, tournament$timing, pch=16, cex=.5, type='b', xlab="ability", ylab="Timing")
 points(x, race$timing, pch=16, cex=.5, type='b', col=2)
+
+## Beta distribution
+tournament2 <- contest(x, n=10, type='tournament', target=m[1], p=pbeta, d=dbeta, shape1=2, shape2=4)
+race2 <- contest(x, n=10, type='race', target=m[2], p=pbeta, d=dbeta, shape1=2, shape2=4)
+
+curve(dbeta(x, 2, 4))
+title("Ability distribution")
+plot(x, tournament2$score, pch=16, cex=.5, type='b', xlab="ability", ylab="Score")
+points(x, race2$score, pch=16, cex=.5, type='b', col=2)
+plot(x, tournament2$timing, pch=16, cex=.5, type='b', xlab="ability", ylab="Timing")
+points(x, race2$timing, pch=16, cex=.5, type='b', col=2)
+
 ```
 
-## The optimal allocation of prizes in tournaments
+## Suppose now that time matters ... 
 
-MS (2001) proves that:
+* Imagine the contest designer wants to maximize: 
 
-* With **linear** cost functions, "it is optimal to allocate the entire prize sum to a single first prize."
+$$
+	\pi_{cd} = E_{F_{(n)}}[y^* + \tau t^*] 
+$$
 
-* "With **convex** cost functions, the beneficial effect of the second prize on middle- and low- ability players is amplified, while the advantage of having one prize (which strongly motivates high-ability contestants) is decreased."
+where the intensity of completion-time preferences are denoted by $\tau \leq 0$. 
 
-* "Exactly the opposite occurs for **concave** cost functions."
+* What is the optimal prize structure? 
+* What is the optimal target?
+* What is optimal between a race and tournament competition?
 
+## Update the contest simulator
 
-## The optimal allocation of prizes in R
-
-```{r optim-prize}
-# Convex costs, e.g., x^2
-f <- function(x) {
-	mc.contest(R=1e3, n=10, prize=c(x, 1-x), elasticity=c(-1, 2, -1))
+```{r}
+mc.contest2 <- function(R, n=10, tau, ...) {
+	a <- runif(R*n) # abilities
+	a.max <- tapply(a, rep(1:R, each=n), max)
+	out <- contest(a.max, n=n, ...)
+	scores <- contest(a.max, n=n, ...)$score
+	timing  <- contest(a.max, n=n, ...)$timing
+	mean(scores + tau*timing)
 }
-optimize(f, interval=c(0.5, 1), maximum=TRUE)$maximum
+mc.contest2(R=300, tau=-0.1)
+``` 
 
+## The optimal allocation of prizes (with time) in R
+
+```{r optim-time}
 # Linear costs, e.g., x^1
-f <- function(x) {
-	mc.contest(R=1e3, n=10, prize=c(x, 1-x), elasticity=c(-1, 1, -1))
+f <- function(x, tau, elasticity, R=1e3, n=10) {
+	mc.contest2(R=R, n=n, prize=c(x, 1-x),  tau=tau, elasticity=elasticity)
 }
-optimize(f, interval=c(0.5, 1), maximum=TRUE)$maximum
+set.seed(1)
+optimize(f, interval=c(0.5, 1), maximum=TRUE, tau=-0.1, elasticity=c(-1, 1, -1))$maximum
+
+# Convex costs, e.g., x^2
+set.seed(1)
+optimize(f, interval=c(0.5, 1), maximum=TRUE, tau=-0.1, elasticity=c(-1, 2, -1))$maximum
+```
+
+## The optimal target (with time)
+
+BBLM (2017)'s paper shows that:
+
+1. There exist a threshold in $\tau$ above which races are preferred to tournaments, and viceversa
+
+
+## The optimal target (with time) in R
+
+```{r time-target}
+f <- function(x, tau, elasticity, R=1e3, n=10, ...) {
+	mc.contest2(R=R, n=n, target=x,  tau=tau, ...)
+}
+
+# Optimal target in a tournament
+set.seed(1)
+optimize(f, tau=-0.6, type='tournament', interval=c(0, 1), maximum=TRUE, p=pbeta, d=dbeta,shape1=2,shape2=4) 
+
+# Optimal target in a race
+set.seed(1)
+optimize(f, tau=-0.6, type='race', interval=c(0, 1), maximum=TRUE, p=pbeta, d=dbeta,shape1=2,shape2=4) 
+
 ```
 
 
-# Estimation
+# Estimation -- Approach #1
+## Estimating the ability distribution 
 
-## Estimating an unknown ability distribution 
+* The ability distribution $F(\cdot \mid \theta)$ is known up to a paramter $\theta$ that we want to estimate from the data
 
-* The ability distribution $F(\cdot; \theta)$ is known up to a paramter $\theta$ that we want to estimate from the data
+* We observe a sample of $y_1,...,y_s$ from $F_{Y}(\cdot \mid \theta)$ where $y_i$ is observed only when it is higher than a target $y_0$, otherwise is zero.
 
-* Observe a sample of $y_1,...,y_s$  from $F_{Y}$
+* At equilibrium, we have that $Y= y^*(A; \theta)$ where $y^*(\cdot;\theta)$ is a monotonic increasing function with inverse denoted by $\phi=y^{*-1}$. 
 
+## The likelihood function
 
-* Let $\mathbf{1}_{y_0}(x)$ denote an indicator function that is 1 if $x>y_0$. 
-
-* The likelihood function is
+* Let $\mathbf{1}_{y_0}(x)$ denote an indicator function that is 1 when $x>y_0$, and 0 otherwise
 
 $$
-	\mathcal{L} = \prod_{i=1}^s F_{Y}(y_0)^{1-\mathbf{1}_{y_0}(y_i)}f_{Y}(y_i)^{\mathbf{1}_{y_0}(y_i)}
+	\mathcal{L}(\theta) = \prod_{i=1}^s F_{Y}(y_0\mid\theta)^{1-\mathbf{1}_{y_0}(y_i)}f_{Y}(y_i\mid\theta)^{\mathbf{1}_{y_0}(y_i)}
 $$
+
+The log likelihood is
 
 \begin{align*}
-	\log\mathcal{L} & = \sum_{i=1}^s [1-\mathbf{1}_{y_0}(y_i)] \log F_{Y}(y_0) 
+	\log\mathcal{L}(\theta) & = \sum_{i=1}^s [1-\mathbf{1}_{y_0}(y_i)] \log F_{Y}(y_0) 
 										+ \mathbf{1}_{y_0}(y_i) \log f_{Y}(y_i)\\
 			 & = n_0 \log F_{Y}(y_0) +  \sum_{i=1}^s \mathbf{1}_{y_0}(y_i) \log f_{Y}(y_i)
 \end{align*}
 
-## Estimating an unknown ability distribution, cont'd
+## The likelihood function, cont'd
 
-At equilibrium, we have $y_i = y^*(a_i)$ and $y_i\leq y_0 \iff a_i \leq a_0(\theta)$
-
-* Let $\phi$ denote the inverse of $y^*$
-
-* Using a change of variable, we have 
+We substitute $F_{Y}$ with the known ability distribution $F$ (change of variable)
 \begin{align*}
-	\log\mathcal{L} & = n0 \log F(\phi(y_0)) 
-										+ \sum_{i=1}^s \mathbf{1}_{y_0}(y_i) \log f(\phi(y_i)) \phi^\prime(y_i) \\
-									& \text{(by the chain's rule)} \\
-									& = n0 \log F(\phi(y_0)) 
-										+ \sum_{i=1}^s \mathbf{1}_{y_0}(y_i) \log f(\phi(y_i)) \frac{1}{y^{*\prime}(\phi(y_i))}\\
-									& = n0 \log F(a_0) 
-										+ \sum_{i=1}^s \mathbf{1}_{y_0}(y_i) \log f(a_i) \frac{1}{y^{*\prime}(a_i)}
+	\log\mathcal{L}(\theta) & = n0 \log F(\phi(y_0;\theta)\mid\theta) 
+					+ \sum_{i=1}^s \mathbf{1}_{y_0}(y_i) \log f(\phi(y_i;\theta)\mid\theta) \phi^\prime(y_i;\theta))
 \end{align*}
+where $\phi(y_i;\theta)$ represents the theoretical ability $a_i(\theta)$ of an individual with a score $y_i$ conditional on the ability distribution's parameter $\theta$
 
-## First derivative of bid function
 
-Whe $a>a_0$, the equilibrium score: 
+## Compute the inverse $\phi$ and its first derivative
 
-$$
-	y^*(a) = \left[ y_0^\beta + v_1 \int_{a_0}^a g_1(x)dx + v_2 \int_{a_0}^a g_2(x)dx \right]^{1/\beta}
-$$
+The invertible function is: $y^* = (y_0^{\beta} + \sum v_k \int g_k(x) dx )^{1/\beta}$
 
-$$
-		y^{*\prime}(a) = \frac{1}\beta (y^*(a))^{1-\beta} \left[ v_1 g_1(a) + v_2 g_2(a) \right]
-$$
+We use **cubic spline interpolation** to compute $\hat\phi(\cdot;\theta)$ and $\hat\phi^\prime(\cdot;\theta)$.
 
-```{r}
-contest(seq(0, 1, length=20), n=4)$deriv
+
+```{r spline}
+# First compute contest equilibrium function on a grid under a given theta
+x.100 <- seq(0, 1, length=100)
+f <- function(x) contest(x, n =4, p=pbeta,d=dbeta,shape1=2,shape2=4)$score
+y <- f(x.100)
+
+# Then we compute the interpolated bid function
+fun <- splinefun(x.100, y)
+# or the inverse
+fun.inv <- splinefun(y, x.100)
 ```
 
-## Data generating process in R
 
-Assume we observe $m$ replications of contests with $j$ competitors
+## Example of spline interpolation
 
-```{r}
-# Data simulator
-sim.contest <- function(m, j, type="tournament", ...) {
-	n <- m * j  # total obs
-	x <- rbeta(n, ...) # sim abilities
-	out <- contest(x, n=j, type, p=pbeta, d=dbeta, ...)
-	y <- out$score # simulated scores
-	return(list(y=y, n=j, type='tournament', param=out))
-}
-#dat <- sim.contest(m=20, j=4, shape1=2, shape2=5)
+```{r spline-example, echo=FALSE}
+# Plot results
+curve(f, from=0, to=1)
+curve(fun, from=0, to=1, add=TRUE, lty=2, col=2)
 ```
 
 ## Define $\log \mathcal{L}$ in R
 
-```{r}
-# Log-likelihood
+```{r loglik}
 loglik <- function(par, data)  {
-	y <- data$y; n <- data$n; type <- data$type # parse data
-	x.seq <- seq(0, 1, length=100) # Evaluation "grid"
-	out <- contest(x.seq, n=n, type=type, p=pbeta, d=dbeta
+	y <- data$y; n <- data$n # parse data
+	x.grid <- seq(0, 1, length=100) # Evaluation "grid"
+	out <- contest(x.grid, n=n, type="tournament", p=pbeta, d=dbeta
 					, shape1=par[1], shape2=par[2])
-	a0 <- out$marginal.type # Marginal type given par
-	n0 <- sum(y==0)
-	# Instead of inverting the function, pick nearest 
-	# score to identify an ability in the grid
-	index <- out$score>0 			# Only positive scores
-	ystar <- out$score[index] # Positive bids
-	deriv  <- out$deriv[index] # Derivative
-	xstar	<- x.seq[index] 		# Abilities higher than marginal
-	y.obs <- y[y>0] 					# Only positive y's
-	near <- sapply(y.obs, function(x) which.min(abs(ystar - x)))
-	ll <- n0 * pbeta(a0, shape1=par[1], shape2=par[2], log=TRUE) + 
-	sum(dbeta(xstar[near], shape1=par[1], shape2=par[2], log=TRUE) / deriv[near])
-	return(ll/length(y))
+	entrants <- y>0
+	n0 <- sum(!entrants)
+	a0 <- out$marginal.type # Marginal type given theta
+	inv <- splinefun(x=out$score, y=x.grid)
+	a <- inv(y[entrants])
+	a <- ifelse(a>1, 1, a) # Trim at the top
+	a.deriv <- inv(y[entrants], deriv=1)
+	ll <- n0 * pbeta(a0, shape1=par[1], shape2=par[2], log.p=TRUE) + 
+	sum(dbeta(a, shape1=par[1], shape2=par[2], log=TRUE) * a.deriv)
+	return(ll)
 }
 ```
 
-## Check concavity ... argh!!!
+## Check $L(\tilde\theta)\leq L(\theta)$ for any $\tilde\theta\neq\theta$
 
-```{r, echo=FALSE}
+Assume we observe $m$ replications of contests with $j$ competitors
+
+```{r lokglik-sim, echo=FALSE}
+# Data simulator
+sim <- function(m, j, ...) {
+	args <- list(...)
+	x <- rbeta(m * j, args$shape1, args$shape2)
+	out <- contest(x, n=j, p=pbeta, d=dbeta, ...)
+	return(list(y=out$score, n=j, x=x))
+}
+
+# Simulate data
+# set.seed(1)
+# dat <- sim(m=100, j=4, type='tournament', shape1=2, shape2=4)
+# plot(dat$x, dat$y, cex=.5, pch=16, ylim=c(0, 1), xlim=c(0, 1))
+# curve(contest(x, n=4, p=pbeta,d=dbeta,shape1=2,shape2=4)$score, add=TRUE)
+# curve(contest(x, n=4, p=pbeta,d=dbeta,shape1=2,shape2=4.5)$score, add=TRUE, lty=2)
+# curve(contest(x, n=4, p=pbeta,d=dbeta,shape1=2,shape2=3.5)$score, add=TRUE, lty=3)
+
+# Compute ll
+# par.grid <- pretty(seq(1.01, 4.5, length=10))
+# ll <- replicate(100, {
+# 	dat <- sim(m=10, j=4, shape1=2, shape2=4)
+# 	sapply(par.grid, function(x) loglik(c(2, x), dat))
+# })
+# 
+# boxplot(t(ll[-c(8), ]), names=par.grid[-8], outline=FALSE)
+# 
+# plot(par.grid, ll, ylab="Log Likelihood", xlab='theta', pch=16, cex=.5)
+# abline(v=5)
+
 set.seed(1)
 theta <- 5
-dat <- sim.contest(m=30, j=4, shape1=2, shape2=theta)
+dat <- sim(m=30, j=4, shape1=2, shape2=theta)
 par.grid <- seq(1.01, 8, length=50)
 ll <- sapply(par.grid, function(x) loglik(c(2, x), dat))
 plot(par.grid, ll, ylab="Log Likelihood", xlab='theta', pch=16, cex=.5)
 abline(v=theta, lty=3, col=2)
 ```
 
-## Check concavity 3
+## Open Issues
+
+- Understanding sources of bias 
+	+ None seen so far
+- Double checking implementation 
+- Work out simple example by hand
+
+
+# Estimation -- Approach #2
+## Estimating ability distribution from entry data
+
+Under the model:  $\text{entry} \iff \text{ability}\geq a_0$
+
+
+Assume: 
+
+$$
+	\text{ability}_i - a_{0} = \underbrace{\sum g_i(X_i\beta) + \epsilon_i}_{\text{index}}
+$$
+
+with $\epsilon \sim F(\cdot\mid\theta)$ which is known up to a parameter $\theta$
+
+Potential limitations:
+
+1. $a_0$ might depend on $\theta$ and $X\beta$ (we ignore such dependence)
+2. Competitors might observe $X$'s (violating "ex-ante identical" assumption)
+
+
+## Estimating the entry model from experimental data
 
 ```{r, echo=FALSE}
-set.seed(1)
-theta <- 5
-dat <- sim.contest(m=30, j=4, shape1=2, shape2=theta)
-par.grid <- seq(1.01, 8, length=50)
-ll <- sapply(par.grid, function(x) loglik(c(2, x), dat))
-plot(par.grid, ll, ylab="Log Likelihood", xlab='theta', pch=16, cex=.5)
-abline(v=theta, lty=3, col=2)
+races$hours <- with(races, week1 + week2 + week3 + week4)
+races$hour.imp <- impute(races$hours, "random")
+summary(fit <- glm(submit ~ treatment*log(mm_reg)*mm_events*hour.imp + I(!is.na(paid)), data=races, family=binomial))
+
+# plot
+yhat <- predict(fit)
+plot(yhat, jitter(fit$y,.2), pch=16, cex=.5, col=ifelse(yhat>0,"brown","blue"), xlab="Ability ~ logistic", ylab="Entry (jittered)", yaxt='n')
+axis(2, at=c(0,1))
+curve(plogis, add=TRUE)
 ```
 
+## Simulate ability distribution
 
-## Check concavity ... issues
-
-\columnsbegin
-\column{.5\textwidth}
-
-
-```{r, echo=FALSE, fig.cap="The non-monotonicity issue"}
-out <- curve(dbeta(x, shape1=2, shape2=1), ylim=c(0, 4))
-text(out$x[90], out$y[90], sprintf("theta=%i",1), pos=2, cex=.8)
-for (i in 2:8) {
-	out <- curve(dbeta(x, shape1=2, shape2=i), add=TRUE, lty=2)
-	text(out$x[50+i*2], out$y[50+i*2], sprintf("theta=%i",i), pos=2, cex=.8)
+```{r, echo=FALSE}
+simulate.ability <- function(fit) {
+	index <- predict(fit)
+	rlogis(length(index), location=index, scale=1)
 }
+hist(replicate(100, simulate.ability(fit)), "Scott")
 ```
 
 
-\column{.5\textwidth}
+## Contest simulations
 
-```{r, echo=FALSE, fig.cap="The highest possible bid"}
-highest <- sapply(1:8, function(x)contest(1, n=4, p=pbeta, d=dbeta, shape1=2, shape2=x)$score)
-plot(1:8, highest, type="o", xlab="theta", ylim=c(dat$param$params$target, max(highest)))
-abline(h=max(dat$y), lty=2, col=2)
-abline(h=dat$param$params$target, lty=3)
-legend("topright",c("Obs. highest bid", "Target"), lty=2:3, col=c(2, 1), bty='n')
+```r
+kde <- function(x, ...) approxfun(density(simulate.ability(fit)))
+kde.cum <- function(x, ...) integrate(kde, lower=0, upper=x)$value
+contest(seq(0, 1), n=15, d=kde, p=kde.cum)
 ```
 
-\columnsend
+## Results
 
-
-## Estimator 
-
-Compute Mean Squared Error $n^{-1} \sum\theta - \hat\theta_i$
-
+```{r, echo=FALSE}
+par(mfrow=c(2, 3))
+plot(contest(seq(0, 1, length=10), n=15, d=dbeta, p=pbeta, shape1=2,shape2=3, type='tournament'))
+plot(contest(seq(0, 1, length=10), n=15, d=dbeta, p=pbeta, shape1=2,shape2=3, type='race'))
 ```
-# Slow implementation ... simulate first and then compute
-ll2 <- function(x, data) loglik(c(2, x), data)
-n800 <- replicate(100, {
-	dat <- sim.contest(m=20, j=4, shape1=2, shape2=theta)
-	optimize(f=ll2, data=dat, lower=2, upper=5.6, maximum=TRUE)$maximum
-})
-n400 <- replicate(100, {
-	dat <- sim.contest(m=10, j=4, shape1=2, shape2=theta)
-	optimize(f=ll2, data=dat, lower=2, upper=5.6, maximum=TRUE)$maximum
-})
-boxplot(theta, n400, n800, names=c("Theta","hatTheta(400)","hatTheta(800)"))
-# mse800 <- mean((theta - n800)^2)
-# mse400 <- mean((theta - n400)^2)
-
-```
-
-
-
-
-
-
-
-
-

@@ -6,3 +6,4 @@ Banner
 *.RData
 *.pdf
 *.png
+*cache

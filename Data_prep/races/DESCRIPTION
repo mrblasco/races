@@ -1,8 +1,8 @@
 Package: races
-Title: Package for the paper: "Races or Tournaments?"
-Version: 0.2
-Authors@R: person("Andrea", "Blasco", email = "ablasco@fas.harvard.edu", role = c("aut", "cre"))
-Description: This package for "Races or Tournaments? Theory and Evidence from a Field Experiment"
+Title: Data for the paper: "Races or Tournaments? Theory and Evidence from a Field Experiment"
+Version: 0.3
+Authors@R: person("Andrea", "Blasco", email="ablasco@fas.harvard.edu", role=c("aut", "cre"))
+Description: Data from the field experiment described in the paper: "Races or Tournaments? Theory and Evidence from a Field Experiment"
 Depends: R (>= 3.3.2)
 License: What license is it under?
 Encoding: UTF-8

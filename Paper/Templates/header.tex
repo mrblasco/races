@@ -1,9 +1,12 @@
 %\usepackage{xcolor}
 %\usepackage{framed}
 %\colorlet{shadecolor}{orange!15}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+
 \usepackage{floatrow}
 \floatsetup[table]{capposition=top}
-\floatsetup[figure]{capposition=bottom}
+\floatsetup[figure]{capposition=top}
 
 % Math environments
 \newtheorem{proposition}{Proposition}

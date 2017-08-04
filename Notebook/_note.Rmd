@@ -1,13 +1,18 @@
 ---
-title: "Notebook: Races vs Tournament"
+title: "Races or Tournaments? Theory and Evidence in the Field"
+subtitle: "Appendices"
 date: "Last updated: `r format(Sys.time(), '%d %B, %Y')`"
+author: "Contact: Andrea Blasco (ablasco@fas.harvard.edu)"
 
 output:
   html_document:
+    theme: cosmo
+    code_folding: hide
+    highlight: kate #monochrome
     toc: true
     toc_float:
       collapsed: true
-      smooth_scroll: false
+      smooth_scroll: true
 # output:
 #   pdf_document:
 #     highlight: kate #monochrome
@@ -24,7 +29,7 @@ output:
 
 ```{r setup, echo=FALSE, message=FALSE}
 knitr::opts_chunk$set(
-	cache=TRUE,
+	cache=FALSE,
 	echo=TRUE,
 	message=FALSE,
 	warning=FALSE,

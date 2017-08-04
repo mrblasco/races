@@ -2,7 +2,8 @@
 #****************************************#
 library(devtools)
 library(roxygen2)
-options("devtools.desc.author"="person(\"Andrea\", \"Blasco\", email = \"ablasco@fas.harvard.edu\", role = c(\"aut\", \"cre\"))")
+options("devtools.desc.author" = 
+			"person(\"Andrea\", \"Blasco\", email=\"ablasco@fas.harvard.edu\", role=c(\"aut\", \"cre\"))")
 
 
 #****************************************#
@@ -13,24 +14,30 @@ source("2_survey.R")
 source("3_survey_final.R")
 source("4_scores.R")
 source("5_merge.R")
+source("6_cleanup.R")
 
 #****************************************#
 # Package information
 #****************************************#
-pkgname <- "races" # Package name
-desc <- list(Title="Package for the paper: \"Races or Tournaments?\"", Version="0.2",
-	Description="This package for \"Races or Tournaments? Theory and Evidence from a Field Experiment\"",
-	LazyData="true")
+desc <- list()
+desc$Title <- 'Data for the paper: \"Races or Tournaments? Theory and Evidence from a Field Experiment\"'
+desc$Description <- 'Data from the field experiment described in the paper: \"Races or Tournaments? Theory and Evidence from a Field Experiment\"'
+desc$Version="0.3"
 
 #****************************************#
 # Create package in folder and install
 #****************************************#
-create.package <- function(folder) { 
+create.package <- function(folder, desc, ...) {
+	if (file.exists(folder)) {
+		file.rename(folder, paste(folder, "old",sep="_"))
+	}
 	create(folder, description=desc, rstudio=FALSE)
-	use_data(races, scores, final_survey, pkg=folder)
-	system(paste("cp package_definitions.R ", folder, "/R", sep="")) # Copy source files
+	use_data(..., pkg=folder)
+	file.copy("package_definitions.R", paste(folder,"R", sep="/"))
 	document(folder) # Create documentation    
 	install(folder)  # remove.packages(pkgname)
 }
-create.package("races")
+
+
+create.package(folder="races", desc=desc, races, scores, final_survey)
 ## END

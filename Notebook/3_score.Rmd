@@ -1,0 +1,27 @@
+## Scores
+
+The distribution of final scores shows a few values much smaller than the rest of data points. These outliers come from submissions that either failed to compile while testing, thus returning a null value, or returned extremely small values for some other reason. As submissions could not be much smaller than the baseline... 
+
+```{r, fig.cap="Scores over time"}
+plot.scores.time <- function(...) {
+	scores <- scores[order(scores$submission), ] # Order scores by time
+	index <- tapply(1:nrow(scores), scores$coder_id, tail, 1) # last submission
+	scores <- scores[index, ]
+	scores <- scores[order(scores$timestamp), ] # order by time
+	scores$final[is.na(scores$final)] <- 0.792867  # Impute 2 missing scores
+	plot(final/1e6 ~ timestamp, data=scores, type='l', ...)
+	abline(h=0.792867, lty=3) # Baseline
+	abline(h=0.817866, lty=2, col=2) # Target
+}
+plot.scores.time(col='lightgray', xlab="Time of submission (days)", ylab="Final score")
+```
+
+We drop these outliers in regression, which is somewhat equivalent to using one-way winsorized group means in regression.
+
+```{r}
+# https://en.wikipedia.org/wiki/Winsorized_mean
+# cap.scores <- function(x, threshold) ifelse(x<threshold, threshold, x)
+# cap.01 <- quantile(scores$final, na.rm=TRUE, p=0.1)
+# scores$final.cap <- cap.scores(scores$final, threshold=cap.01) 
+# scores$final.cap2 <- cap.scores(scores$final, threshold=792867)  # Baseline
+```

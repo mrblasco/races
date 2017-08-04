@@ -1,0 +1,92 @@
+---
+title: "Races or Tournaments? Theory and Evidence from the Field"
+
+subtitle: "[PRELIMINARY AND INCOMPLETE]"
+
+thanks: "Blasco: Harvard Institute for Quantitative Social Science, Harvard University, 1737 Cambridge Street, Cambridge, MA 02138 (email: ablasco@fas.harvard.edu)."
+
+date: "Last updated: `r format(Sys.time(), '%d %B, %Y')`"
+
+author: 
+    - Andrea Blasco
+    - Kevin J. Boudreau
+    - Karim R. Lakhani
+    - Michael Menietti
+
+abstract: "We examine the performance of two different choices of contest design: the race (where the winner is the first to achieve a minimum quality) and the tournament (where the winner is the one with the highest quality in a given period). After characterizing  the optimal design, we report results of a field experiment conducted to compare the performance of three alternatives motivated by theory: the race, the tournament, and the tournament with a minimum quality requirement. Outcomes in a race are of comparable quality, supplied faster, and with lower participation rates. Based on these findings, we show the optimal design under several counterfactual situations."
+
+JEL: 
+  - M15 # IT Management
+  - M52 # Personnel Economics, compensations and compensation methods
+  - O31 # Innovation and Invention: Processes and Incentives
+
+keywords: 
+  - races
+  - tournaments
+  - contest theory
+  - crowdsourcing
+  - innovation
+
+fontsize: 10pt
+#setspace: \doublespacing
+
+output:
+  pdf_document:
+    toc: false
+    keep_tex: false
+    fig_crop: false
+    fig_width: 5
+    fig_height: 5
+    fig_caption: true
+    highlight: tango #kate
+    template: ~/Templates/Pandoc/paper.latex
+    includes:
+      in_header: Templates/header.tex
+#    before_body:   Templates/doc_prefix.tex
+#    after_body:    Templates/doc_suffix.tex
+    pandoc_args: [
+      "--bibliography", "library.bib" #, "--natbib"
+    ]
+...
+
+```{r setup, echo=FALSE, message=FALSE}
+
+library(races)
+library(magrittr)
+library(xtable)
+library(stargazer)
+library(knitr)
+
+
+opts_chunk$set(
+	cache=TRUE,
+	echo=FALSE,
+	message=FALSE,
+	warning=FALSE,
+	error=TRUE,
+	tidy=FALSE,
+	tidy.opts=list(width.cutoff=60),
+	cache.path="Cache/",
+	fig.path="Figures/")
+
+set.seed(4881)
+
+# Helper function
+percent  <- function(x, digits=0, ...) round(100 * x, digits, ...)
+difftime2 <- function(...) as.numeric(difftime(...))
+
+options(digits=3, xtable.caption.placement='top', xtable.comment=FALSE)
+
+# Documents 
+child_docs <- c("1_intro.Rmd", "2_model.Rmd", "3_data.Rmd", "4_results.Rmd","5_discussion.Rmd")	
+```
+
+```{r child = child_docs}
+```
+ 
+```{r session_info}	
+devtools::session_info()
+```
+
+References
+=============

@@ -4,7 +4,7 @@
 \name{races}
 \alias{races}
 \title{Dataset for races vs tournaments study}
-\format{An object of class \code{data.frame} with 299 rows and 42 columns.}
+\format{An object of class \code{data.frame} with 299 rows and 43 columns.}
 \usage{
 data(races)
 }

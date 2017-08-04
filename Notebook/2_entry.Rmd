@@ -1,0 +1,594 @@
+# Entry
+
+## Create room-level data
+```{r}
+add.covars <- function(x, logs=FALSE) {
+	covars <- with(races, data.frame(year=2015-year
+							, rating, nreg, nsub
+							, algo_rating=algo_rating/100, algo_nreg, algo_nsub
+							, paid, nwins=nwins>0, ntop5=ntop5>0, ntop10=ntop10>0
+							, risk, hours
+							, timezone.dist=abs(timezone+5)
+							, male
+							, postgrad=ifelse(educ=="Postgraduate (MA)" | educ=="Phd", 1,0)
+							, below30=ifelse(age=="<20" | age=="20-25" | age=="26-30", 1, 0)))
+	controls <- aggregate(covars, by=with(races, list(room_id=room_id)), mean, na.rm=TRUE)
+	out <- merge(x, controls)
+	out$lpaid <- log(out$paid) # Use logs for paid
+	out$paid <- NULL
+	if (logs) {
+		out$lpaid <- log(out$paid)
+		out$lhours <- log(out$hours)
+		out$lnreg <- log(out$nreg)
+	}
+  out$nwins <- out$nwins>0
+	return(out)
+}
+races$n <- ave(races$submit, races$room_id, FUN=length)
+entry <- add.covars(aggregate(submit ~ n + room_id + treatment + room_size, data=races, sum))
+summary(entry)
+```
+
+## Linear regression
+
+```{r}
+entry.lm <- glm(log(submit/n)  ~ treatment + room_size, data=entry)
+summary(entry.lm)
+```
+
+## Linear regression diagnostics
+
+```{r}
+layout(matrix(c(1,2,3,4),2,2))
+plot(entry.lm)
+```
+
+
+## Linear regression with all controls
+
+```{r}
+entry.lm.all <- glm(log(submit/n)  ~ ., data=entry[, -1])
+summary(entry.lm.all)
+```
+
+## Linear regression with all controls -- diagnostics
+
+```{r}
+layout(matrix(c(1,2,3,4),2,2))
+plot(entry.lm.all)
+```
+
+## Linear regression with some of the controls
+
+```{r}
+entry.lm.some <- update(entry.lm, "~ . + rating+nreg+nwins+hours+below30+risk+year+timezone.dist")
+summary(entry.lm.some)
+```
+
+## Linear regression with some of the controls -- diagnostics
+
+```{r}
+layout(matrix(c(1,2,3,4),2,2))
+plot(entry.lm.some)
+```
+
+## Data-driven model selection
+
+> "If we do go ahead and use the same data twice, once to pick a model and once to test hypotheses about that model, we will get confidence intervals which are systematically too narrow, p-values which are systematically too small, etc." -- Shalizi (2015)
+
+## Step-wise model selection on half sample
+
+```{r}
+i <- sample(1:nrow(entry), size=nrow(entry)/2)
+j <- c("submit","n","treatment", "room_size", "year", "rating", "nreg", "nwins", "risk", "hours", "below30")
+entry.lm.step.half <- step(update(entry.lm.all, data=entry[,j], subset=i))
+summary(entry.lm.step.half)
+```
+
+## Inference on other half sample
+
+```{r}
+model <- formula(entry.lm.step.half)
+entry.lm <- lm(model, data=entry, subset=setdiff(1:nrow(entry), i))
+summary(entry.lm)
+```
+
+
+## Robust Linear regression with all controls -- failed
+
+```{r}
+require(MASS)
+entry.rlm <- rlm(log(submit/n)  ~ .	, data=entry[, -1], maxit=50)
+summary(entry.rlm)
+```
+
+## Robust Linear regression with some of the controls
+
+```{r}
+require(MASS)
+entry.rlm <- rlm(log(submit/n)  ~ treatment + room_size + rating + nreg + nwins + hours + below30 + risk + year + timezone.dist, data=entry[, -1], maxit=50)
+summary(entry.rlm)
+```
+
+
+## PCA to reduce dimensionality of controls
+
+```{r}
+# Principal component
+pca <- prcomp(entry[,-c(1:5)], center=TRUE, scale=TRUE)
+#summary(pca)
+par(mfrow=c(1, 2))
+plot(pca)
+biplot(pca)
+
+# Predict 
+pca.hat <- predict(pca)
+entry$pca1 <- pca.hat[, 1]
+entry$pca2 <- pca.hat[, 2]
+entry$pca3 <- pca.hat[, 3]
+entry$pca4 <- pca.hat[, 4]
+entry$pca5 <- pca.hat[, 5] # 74 % of variance
+```
+
+## Linear regression with PCA controls
+
+```{r}
+m <- rep()
+m$m1 <- update(entry.lm, "~.+pca1")
+m$m2 <- update(entry.lm, "~.+pca1+pca2")
+m$m3 <- update(entry.lm, "~.+pca1+pca2+pca3")
+m$m4 <- update(entry.lm, "~.+pca1+pca2+pca3+pca4")
+m$m5 <- update(entry.lm, "~.+pca1+pca2+pca3+pca4+pca5")
+stargazer(entry.lm, m, type='text', digits=2)
+```
+
+## Other differences in entry
+
+We start with differences in the empirical proportions. 
+
+```{r}
+entry <- xtabs(submit ~ treatment + room_size, data=aggregate(submit ~ treatment + room_size,races,mean))
+knitr::kable(round(100*entry,1), caption="Participation rates by competition style and room size")
+```
+
+## Regression models
+
+We first study the impact of competition style on entry.
+
+
+
+
+## Sorting
+
+We regress all variables against treatment and room size dummies. 
+
+```{r}
+rating.lm <- lm(rating ~ submit*treatment + room_size, data=races)
+rating.sum <- summary(rating.lm)
+extract_info <- function(object) {
+	est <- round(object$coef[, 1], 2)
+	se <- paste("(", round(object$coef[, 2],2), ")", sep='')
+	vec <- as.vector(rbind(est, se))
+	vec.info <- rep(c("Estimates", "St.err"), length(est))
+	vec.names <- rep(names(est), each=2)
+	data.frame(names=vec.names, info=vec.info, values=vec)
+}
+merge_info <- function(x, y) merge(x, y, by=c('names','info'), all=TRUE)
+regmat <- function(x) {
+	models_l <- lapply(x, function(x) extract_info(summary(x)))
+	Reduce(merge_info, models_l)
+}
+
+summary(lm(rating ~ submit*treatment + room_size, data=races))
+coefplot <- function(object, ...) { 
+	object.sum <- summary(object)
+	est <- object.sum$coef[-1, 1]
+	se <- object.sum$coef[-1, 2]
+	xlim <- range(c(est+2*se, est-2*se))
+	plot(y=1:length(est), x=est, xlim=xlim, ...)
+	segments(x0=est+se, x1=est-se, y0=1:length(est), lwd=2)
+	segments(x0=est+2*se, x1=est-2*se, y0=1:length(est))
+}
+rating.lm <- lm(rating ~ submit*I(treatment=='race') + room_size, data=races)
+vars <- c('year', 'rating', 'nreg', 'nsub','nwins','ntop10','hours', 'timezone')
+par(mfrow=c(3,3))
+models <- lapply(vars, function(x) {
+	 coefplot(update(rating.lm, paste(x, "~.")), pch=16, bty='n', yaxt='n')
+	 abline(v=0, lty=3)
+	 title(x)
+})
+m <- regmat(models)
+mt <- t(m)
+rownames(mt) <- c("names", "info", vars)
+mt[-c(1,2), ]
+```
+
+We assume the conditional mean of the proportion of entrants $Y_{ij}=E_{ij}/N_{j}$ observed in a room randomly assigned to the $i$th treatment and of room size $N_j$ is
+$$
+	E[Y_{ij}=y \mid x] = \text{competition}_{i} + \text{size}_{j}
+$$
+
+The model is fully specified with $var(Y\mid x)$ assumed normal and costant.  
+```{r}
+races$n <- ave(races$submit, races$room_id, FUN=length)
+rooms <- aggregate(submit ~ room + room_size + n + treatment, data=races, sum)
+
+rooms$y <- rooms$submit/rooms$n
+rooms.lm <- lm(y ~ treatment+room_size, data=rooms)
+#rooms.lm <- lm(log(y) ~ treatment+room_size, data=rooms)
+summary(rooms.lm)
+```
+
+This model shows that the difference is significant (one-sided) but the model is not significant F-test. We try with the logarithm.
+```{r}
+rooms.lm.log <- lm(log(y) ~ treatment+room_size, data=rooms)
+summary(rooms.lm.log)
+```
+
+Robust linear regression model.
+```{r}
+library(MASS)
+rooms.rlm <- rlm(y ~ treatment + room_size, data=rooms)
+mat <- coef(summary(rooms.rlm))
+round(cbind(mat, pval=2*(1-pt(abs(mat[, 3]), df=20))),3)
+```
+
+
+Model checking. Residuals do not look normal.
+```{r}
+res <- resid(rooms.lm) ## Raw residuals
+lev <- hatvalues(rooms.lm) ## Leverages
+res.mo <- res/sqrt(1-lev) ## Modified residuals
+
+# Diagnostic plots
+par(mfrow=c(1, 2))
+qqnorm(res.mo, pch=16, xlab="Quantiles Standard Normal", ylab="Modified residuals", main="")
+qqline(res.mo, pch=16)
+plot(lev, res.mo, pch=16, xlab="Leverage h", ylab="Modified residuals")
+```
+
+After resampling errors, we find only small differences between bootstrapped and asymptotic estimates of coefficients' standard errors. 
+
+```{r}
+rooms$res <- resid(rooms.lm)
+rooms$fitted <- predict(rooms.lm)
+f <- function(data, i, object) {
+	d <- data
+	d$y <- d$fitted + d$res[i]
+	lm.res <- update(object, data=d)
+	c(coef(lm.res), sigma(lm.res))
+}	
+rooms.boot <- boot(f, R=499, data=rooms, object=rooms.lm)
+plot(rooms.boot, index=2)
+SE <- apply(rooms.boot$t, 2, sd) # St. errors compared to 0.096 and 0.0285
+round(cbind(boot=SE,approx=c(coef(summary(rooms.lm))[, 2], err=sigma(rooms.lm))), 3)
+```
+
+
+We check after resampling cases
+
+```{r}
+f <- function(data, i, object) {
+	d <- data[i, ]
+	lm.res <- update(object, data=d)
+	c(coef(lm.res), sigma(lm.res))
+}	
+rooms.boot <- boot(f, R=499, data=rooms, object=rooms.lm)
+plot(rooms.boot, index=2)
+SE <- apply(rooms.boot$t, 2, sd) # St. errors compared to 0.096 and 0.0285
+round(cbind(boot=SE,approx=c(coef(summary(rooms.lm))[, 2], err=sigma(rooms.lm))), 3)
+```
+
+
+Another simple model is that the number of entrants $e_{i}$ for the ith competition style is a binomial random variable with probability $\pi_{i}$ and size $n_{i}$.  The responses are taken $y_i = e_i / n_i$ so the mean response is equal to the probability that a competitor enters. 
+
+```{r}
+rooms.glm <- glm(cbind(submit, n) ~ treatment+room_size, binomial(logit), data=rooms)
+summary(rooms.glm)
+```
+
+For an adequate fit, the deviance should be approximately distributed as Chisq with 23 degrees of freedom. A chisq test gives a pvalue of `r 1 - pchisq(rooms.glm$deviance, rooms.glm$df.residual)`, indicating under-dispersion relative to the model. This can be due to heterogeneity of probability of entering which is not well accounted for in the aggregated model. 
+
+```{r, include=FALSE}
+curve(dchisq(x, df=rooms.glm$df.residual), from=0, to=3*rooms.glm$df.residual)
+abline(v=deviance(rooms.glm))
+
+# Resampling can be used to show that the deviance/df under model is different than observed
+# e.g., Davison Hinkley p. 340
+# [...]
+```			
+
+A quasi-binomial model seems to fit better; confirms the under-dispersion; and now the races vs tournament effect is almost significant (one-sided, 10 percent). Again, however, deviance appears very low relative to the theoretical model.
+```{r}
+rooms.qb <- glm(cbind(submit, n) ~ treatment+room_size, quasibinomial(logit), data=rooms)
+summary(rooms.qb) # races vs tournament is slightly nonsignificant (one-sided)
+```
+
+Since the binomial model does not fit well the data, we try modeling entrants in a room as independent poisson variables with mean $\mu_{ij}$ for the i-th competition style and k-th room size. That is: 
+$$
+	\mu_{ik} = exp(\alpha_i + \beta_k) 
+$$
+where $\alpha_i$ is the competition style and $\beta$ the roome size. The poisson model might be better than binomial because it allows individual probabilities of entry not be identical.  [Need to very it]
+
+The poisson model gives very similar results to the binomial model, including under-dispersion.
+
+```{r}
+rooms.poi <- glm(submit ~ offset(log(n)) + treatment+room_size, quasipoisson, data=rooms)
+summary(rooms.poi)
+```
+
+Another way to model under-dispersed data is with the beta-binomial model (following Davison's book ch. 10). In this case, the probability of entry $\pi$ has the beta distribution with parameters $a$ and $b$. Hence.
+
+The model is 
+$$
+	E[y] = m \mu,\quad Var(R) = m \mu (1-\mu) + m(m-1)\sigma^2
+$$
+where $\mu$ and $\sigma^2$ denote mean and variance of $\pi$ (according to beta-binomial these are $a / (a+b)$ and ab/\{(a+b)(a+b+1)\}). 
+
+```{r, include=FALSE}
+# Setup a negative log likelihood
+nlogL <- function(th, r, m) {
+	mu <- th[1]
+	del <- th[2]
+	a <- mu*(1/del-1)
+	b <- (1-mu) * (1/del-1)
+	sum(lbeta(a, b) - lbeta(r+a,m-r+b))
+}
+init <- c(0.5, 0.1)
+# nlogL(init, ) XXX
+rooms.beta <- nlm(nlogL, init, hessian=TRUE, r=rooms$submit, m=rooms$n)
+rooms.beta$estimate # parameter estimates
+sqrt(diag(solve(rooms.beta$hessian))) # St. errors
+```
+
+A binomial model with individual data should give very similar results. Let's check this intuition
+
+```{r}
+# With individual data
+races.glm <- glm(submit ~ treatment+room_size, quasibinomial(logit), data=races)
+summary(races.glm)
+```
+
+There's over-dispersion relative to the model, as a chisq test gives a pvalue of `1 - pchisq(races.glm$deviance, races.glm$df.residual)`.  So we fit quasi-binomial model to account for overdispersion. 
+
+```
+races.qb <- glm(submit ~ treatment+room_size, quasibinomial(logit), data=races)
+summary(races.qb) 
+```
+
+The estimated effect of races vs tournament on the probability of entry is larger but nonsignificant. 
+
+We check different link functions like `probit` and `clolog` that give very similar results.
+
+```{r}
+summary(races.probit <- glm(submit ~ treatment+room_size, quasibinomial(probit), data=races))
+summary(races.cloglog <- glm(submit ~ treatment+room_size, quasibinomial(cloglog), data=races))
+```
+
+It's clear that the probability of entry is not constant among competitors but depends on ability. So we assume: 
+
+$$
+	\pi = \beta_{0i} + \beta_{1j} + \beta_{2} \text{skill rating}_i
+$$
+
+Again we use quasibinomial to account for overdispersion. 
+
+```{r}
+races$rating.imp <- impute(races$rating, "zero")
+races.glm <- glm(submit ~ treatment+room_size+ log(nreg), quasibinomial(logit), data=races)
+summary(races.glm)
+```
+
+Mmmhhh... perhaps I should look at number of submissions... instead of participation. 
+
+
+### Submissions per competitor
+
+```{r}
+subm <- aggregate(nsub ~ n + room_id + room_size + treatment, data=races, sum)
+par(mfrow=c(1, 2))
+boxplot(nsub/n ~ room_size, subm, horizontal=TRUE)
+boxplot(nsub/n ~ treatment, subm, horizontal=TRUE)
+```
+
+Testing differences between threshold (race & reserve) and tournament. Bootstrap
+
+```{r}
+# OLS
+subm.lm <- rlm(nsub/n ~ treatment + room_size, data=subm)
+summary(subm.lm)
+
+# OLS with log
+subm.lm.log <- glm(log(nsub/n) ~ treatment + room_size, data=subm)
+summary(subm.lm.log)
+
+# Poisson
+subm.poi <- glm(nsub ~ log(offset(n)) + treatment + room_size, poisson, data=subm)
+summary(subm.poi)
+
+subm.qpoi <- glm(nsub ~ log(offset(n)) + treatment + room_size, quasipoisson, data=subm)
+summary(subm.qpoi)
+
+```
+
+When we turn to the individual propensity to submit, we strongly reject differences in the propensity to submit between large and small rooms. No evidence of competition styles effects.
+
+```{r}
+# Submit and room size
+tab.size <- with(races, table(submit, room_size))
+fisher.test(tab.size)  # p = 0.98
+
+# Submit and competition styles
+tab <- with(races, table(submit, treatment))
+fisher.test(tab)  # p = 0.52
+
+# Competition styles with target
+tab <- with(races, table(submit, treatment=='tournament'))
+fisher.test(tab, alternative='greater') # p=0.15
+```
+
+If we assume uniform priors, we can easily compute the posteriors in each treatment. 
+(Not sure what we can do with this result.)
+
+```{r}
+# Bayesian analysis
+# Compute posteriors Beta(1 + success, 1 + n - success)
+plot.posterior <- function(x, ...) {
+	tab <- with(races, table(submit, treatment))
+	param <- data.frame(tab + 1)
+	index <- param$treatment==x
+	shape <- param[index, ]
+	curve(dbeta(x, shape$Freq[2], shape$Freq[1]), ...)
+}
+
+# PLOTs
+plot.posterior('race', from=0.1, to=0.5, xlab="propensity to submit", ylab='posterior density')
+plot.posterior('tournament', add=TRUE, lty=2)
+plot.posterior('reserve', add=TRUE, lty=3)
+title("Beta(y + alpha, n-y + beta)")
+legend("topright", legend=levels(races$treatment), lty=1:3, bty='n')
+```
+
+
+# Regression analysis of entry
+
+Impute missing values at random for the survey.  Ignore missing ratings (or impute them). 
+
+```{r}
+within(dat, {
+	set.seed(25978)
+	rating.100 <- rating / 100
+	rated <- !is.na(rating)
+	rating.100imp <- impute(rating/100, "zero")
+	hours.imp <- impute(hours, "random")
+	risk.imp <- impute(risk, "random")
+	grad.imp <- impute(grad, "random")
+	male.imp <- impute(male, "random")
+	below30.imp <- impute(below30, "random")
+	timezone.imp <- impute(timezone, "random")
+	expert <- cut(submissions, quantile(submissions[!is.na(rating)]), include=TRUE)
+}) -> dat.imp
+```
+
+Fitting the model
+
+```{r}
+
+# First model has no covariates (i.e., $\gamma=0$)
+summary(m0 <- glm(submit ~ treatment, binomial(logit), data=dat.imp))
+
+# The second model adds the main skill rating measure which is available for 2/3 of our population. It seemed better to rescale rating in 100-point units and center it on the median value. Thus, the estimate of the intercept can be easily transformed in the probability of participation of the median rated individual assigned to a room with a race competition style.
+
+summary(m1 <- update(m0, " ~ . + rating.100"))
+summary(m1bis <- update(m0, " ~ . + rating.100imp + rated"))
+
+# The third column adds time availability (hours)
+summary(m2 <- update(m1bis, " ~ . + hours.imp"))
+
+# ... add demographics to m2
+summary(m3 <- update(m2, " ~ . + timezone.imp + grad.imp + below30.imp + male.imp"))
+
+# ... add risk aversion
+summary(m4 <- update(m2, " ~ . + risk.imp"))
+
+# ... add everything stepwise regression
+summary(m5 <- step(update(m3, " ~ . + risk.imp")))
+
+# Compare models 
+models <- list(m0, m1, m1bis, m2, m3, m4, m5)
+stargazer(models, type='text', digits=2)
+```
+
+Explore accuracy of predictions of the stepwise model
+
+```{r}
+# Compare models in terms of prediction accuracy
+accuracy <- function(fit) {
+	yhat <- predict(fit, type='response')
+	tab <- table(predicted=ifelse(yhat>0.5, 1, 0), actual=fit$y)
+	tp <- tab[2,2]
+	fp <- tab[2,1]
+	fn <- tab[1,2]
+	precision <- tp / (tp+fp)
+	recall <- tp / (tp + fn)
+	fmeasure <-  2 * precision * recall / (precision + recall)
+	list(conf.table=tab, precision=precision, recall=recall, f.measure=fmeasure)
+}
+accuracy(m5)
+
+summarize.fit <- function(x) {
+	yhat <- predict(x)
+	with(x, plot(jitter(y) ~ yhat, col=ifelse(yhat>0,'brown', 'blue'), pch=16, xlab="ability ~ Logistic"))
+	curve(ilogit, add=T)
+}
+par(mfrow=c(3, 3))
+sapply(models, summarize.fit)
+```
+
+Study interaction effecs first with models on a subset and then using interaction terms in the regression. 
+
+```{r}
+# Using Akaike criterion to select the best model, we now compute the model for each treatment alone
+summary(race <- update(m5, "~ . -treatment", subset=treatment=='race'))
+summary(tour <- update(m5, "~ . -treatment", subset=treatment=='tournament'))
+summary(rese <- update(m5, "~ . -treatment", subset=treatment=='reserve'))
+
+# Interact on stepwise model
+summary(interact <- update(m5, "~ (.)*treatment"))
+summary(stepwise <- step(interact))
+
+# Interaction on full model
+summary(interact.full <- update(m4, "~ (.)*treatment"))
+summary(stepwise.full <- step(interact.full))
+
+models <- list(m5, race, tour, rese, interact, stepwise, interact.full, stepwise.full)
+stargazer(models, type='text', digits=3)
+
+par(mfrow=c(3, 3))
+sapply(models, summarize.fit)
+```
+
+
+```{r}
+# This identification result holds under the assumption that the skill distribution is logistic. Next, we relax this distributional assumption. First, we check different distributions [e.g., probit, cauchit, cloglog]. We find Probit model seems slightly better in terms of deviance
+probit <- update(m5, family=binomial(probit))
+cauchit <- update(m5, family=binomial(cauchit))
+cloglog <- update(m5, family=binomial(cloglog))
+fit <- list(logit=m5, probit=probit, cauchit=cauchit, cloglog=cloglog)
+cbind(deviance=sapply(fit, deviance), n=sapply(fit, function(x) length(x$y)))
+
+#  ... but not necessarily in terms of prediction accuracy
+accuracy(probit)
+accuracy(m5)
+```
+
+We try generalized additive models
+
+```{r}
+# GAMs Generalized additive models
+m.gam <- mgcv::gam(submit ~ treatment + s(hours.imp) + s(rating.100imp), data=dat.imp, family=binomial)
+summary(m.gam)
+plot(m.gam)
+```
+
+And non-parametric models like KS and Ichimura.
+
+```{r}
+require(np)
+
+# Ichimura
+m.np <- npindexbw(as.numeric(submit) ~ rating.100imp + hours.imp + treatment, data=dat.imp)
+summary(m.np)
+plot(m.np)
+
+# Klein-spady ... Not sure about this implementation!
+kleinspad <- npindexbw(as.numeric(submit) ~ rating.100imp + hours.imp + treatment, data=dat.imp, method="kleinspady")
+summary(kleinspad)
+
+plot(kleinspad)
+# Bayesian models
+#model 	<- "submit ~ treatment + tothours.imp + mm_rating.100 + educ+gender+timezone"
+# bayes <- arm::bayesglm(model, family=binomial)
+# summary(bayes)
+```
+

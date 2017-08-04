@@ -5,13 +5,12 @@
 #****************************************#
 compile_notebook () {
 	Rscript -e "rmarkdown::render('Notebook/_note.Rmd')"
-	osascript -e 'tell application "Safari" to set URL of current tab of front window to "file:///Users/ablasco/Documents/NTL/races/Notebook/_note.html"'
 	#	open Notebook/_note.html
 	#	open -a Skim Notebook/_note.pdf
 }
 compile_paper () {
-	Rscript -e "rmarkdown::render('Paper/_report.Rmd')"
-	open -a Skim Paper/_report.pdf
+	Rscript -e "rmarkdown::render('Paper/report.Rmd')" 
+	open Paper/report.pdf
 }
 compile_slides () {
 	Rscript -e "rmarkdown::render('Slides/slides.Rmd')"
@@ -22,7 +21,7 @@ open_files () {
 }
 prepare_data () {
 	cd Data_prep
-	mv races races_old
+	rm -r races_old
 	Rscript package_creation.R
 }
 display_help () {

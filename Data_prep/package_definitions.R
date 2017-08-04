@@ -111,10 +111,10 @@ render.xtable <- function(x, add=NULL, ...) {
   	cmd <- c(top, middle, bottom)
   	pos <- list(-1, 0, nrow(x))
   	add.to.row <- list(pos=pos, command=cmd)
-  	if (!is.null(add)) {
-    	add.to.row$command  <- c(add.to.row$command, add$cmd)
-    	add.to.row$pos[[4]] <- add$pos
-  	}
+    if (!is.null(add)) {
+				add.to.row$command <- c(add.to.row$command, add$cmd)
+				add.to.row$pos <- c(add.to.row$pos, add$pos)
+    }
 	cat("\\begin{table}\n\\centering\n")
 	cat(sprintf("\\caption{%s}\n", caption))
 	cat(sprintf("\\label{%s}\n", label))
@@ -130,5 +130,3 @@ render.xtable <- function(x, add=NULL, ...) {
 	}
 	cat("\\end{table}\n")
 }
-
-

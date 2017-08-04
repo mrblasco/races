@@ -1,6 +1,6 @@
 # Montecarlo simulations
 
-```{r}
+```
 require(contest)
 
 elastic <- c(-1, 2, -2)
@@ -51,7 +51,4 @@ f <- function(x, R=99, elastic=c(-1, 2, -2)) {
 	- mean(rp) + mean()
 }
 optimize(f, interval=c(2, 50)) # Optimal number of competitors
- 
-
-
 ```

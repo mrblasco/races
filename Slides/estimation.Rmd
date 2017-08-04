@@ -1,0 +1,200 @@
+---
+title: Contest package in R
+author: Andrea Blasco
+institute: ablasco@fas.harvard.edu
+date: \today
+output: 
+  beamer_presentation:
+    slide_level: 2
+    template: ~/Templates/Pandoc/boyd.beamer
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache=TRUE)
+```
+
+# Monte Carlo Experiments
+## Monte Carlo Method
+
+- Random sampling from true distribution to compute expected values (e.g., expected average performance)
+
+- Let $y^*(\cdot)$ $t^*(\cdot)$ denote the equilibrium functions for performance and time
+
+- The expected average (equilibrium) performance under $F$ is
+
+$$
+	E_F[y*] = \int_{0}^1 y^*(x) dF(x)
+$$
+
+- By the law of large numbers, the sample mean computed on several replications of this process converges (in distribution) to the expected value
+
+
+## Example: expected top performance
+
+In equilibrium, the expected top performance under $F$ is
+
+$$
+	\theta = E_{F}[\max\{y_1^*,y_2^*,...,y_n^*\}] = E_{F_{(n)}}[y^*]
+$$
+
+where $F_{(n)}$ is the distribution of the $n$-th order statistics of the $y$'s.
+
+Monte Carlo estimation:
+
+- Simulate $s$ abilities $a_1, a_2,...,a_s$ from $F_{(n)}$
+
+$$
+	\hat\theta = \frac{1}{s}\sum y^*(a_i) 
+$$
+
+
+## Example: expected top performance in R
+
+```{r}
+## Monte Carlo simulator function
+mc.contest <- function(R, n=10, ...) {
+	a <- runif(R*n) # abilities
+	a.max <- tapply(a, rep(1:R, each=n), max)
+	scores <- contest(a.max, n=n, ...)$score
+	mean(scores) # Estimated expected top performance
+}
+mc.contest(R=100, type='tournament')
+``` 
+
+## How many replications?
+
+```{r replications, echo=FALSE, fig.cap="Each boxplot shows 50 monte carlo simulations with the number of replications along the x-axis"}
+nsim <- c(seq(50, 1000, by=100))
+out <- sapply(nsim, function(x) replicate(50, mc.contest(R=x, type='tournament')))
+colnames(out) <- nsim
+boxplot(out, xlab="Monte Carlo replications", ylab="Estimates")
+```
+
+## Example: optimal prize allocation
+
+```{r optimal-prize, echo=FALSE, fig.cap="Each boxplot shows 50 monte carlo simulations with the number of replications along the x-axis"}
+# Function to optimize
+f <- function(x, R, ...) mc.contest(R, n=10, prize=c(x, 1-x), ...)
+nsim <- c(100, 300, 500, 1000)
+out <- sapply(nsim, function(x) replicate(50, optimize(f, R=x, interval=c(0.5, 1), maximum=TRUE)$maximum))
+colnames(out) <- nsim
+boxplot(out, xlab="Monte Carlo replications", ylab="Optimal prize allocation")
+```
+
+# Estimation
+## Estimating an unknown ability distribution 
+
+* The ability distribution $F(\cdot \mid \theta)$ is known up to a paramter $\theta$ that we want to estimate from the data
+
+* We observe a sample from $Y_1, Y_2, ..., Y_s$ iid from $F_{Y}(\cdot \mid \theta)$ where $y_i$ is observed only when it is higher than a target $y_0$, otherwise is zero.
+
+* At equilibrium, there's a structural relationship between performance and abilities $Y= y^*(A; \theta)$ where $y^*(\cdot;\theta)$ is a monotonic increasing function with inverse denoted by $\phi=y^{*-1}$. 
+
+## The likelihood function
+
+* Let $\mathbf{1}_{y_0}(x)$ denote an indicator function that is 1 when $x>y_0$, and 0 otherwise
+
+$$
+	\mathcal{L}(\theta) = \prod_{i=1}^s F_{Y}(y_0\mid\theta)^{1-\mathbf{1}_{y_0}(y_i)}
+	f_{Y}(y_i\mid\theta)^{\mathbf{1}_{y_0}(y_i)}
+$$
+
+The log likelihood is
+
+\begin{align*}
+	\log\mathcal{L}(\theta) & = \sum_{i=1}^s [1-\mathbf{1}_{y_0}(y_i)] \log F_{Y}(y_0) 
+										+ \mathbf{1}_{y_0}(y_i) \log f_{Y}(y_i)\\
+			 & = n_0 \log F_{Y}(y_0) +  \sum_{i=1}^s \mathbf{1}_{y_0}(y_i) \log f_{Y}(y_i)
+\end{align*}
+
+## The likelihood function, cont'd
+
+We don't know  $F_{Y}$ but we the known ability distribution $F$. 
+
+With a change of variable, we obtain
+\begin{align*}
+	\log\mathcal{L}(\theta) & = n0 \log F(\phi(y_0;\theta)\mid\theta) 
+					+ \sum_{i=1}^s \mathbf{1}_{y_0}(y_i) \log f(\phi(y_i;\theta)\mid\theta) \phi^\prime(y_i;\theta))
+\end{align*}
+where $\phi(y_i;\theta)=a_i(\theta)$ represents the theoretical ability of player $i$ with a score $y_i$ given the distribution's parameter $\theta$. 
+
+
+## Compute the inverse $\phi$ and its first derivative
+
+The invertible function is: $y^* = (y_0^{\beta} + \sum v_k \int g_k(x) dx )^{1/\beta}$
+
+We use **cubic spline interpolation** to compute $\hat\phi(\cdot;\theta)$ and $\hat\phi^\prime(\cdot;\theta)$.
+
+
+```{r spline}
+# First compute contest equilibrium function on a grid under a given theta
+x.100 <- seq(0, 1, length=100)
+f <- function(x) contest(x, n=4, p=pbeta, d=dbeta, shape1=2, shape2=4)$score
+y <- f(x.100)
+
+# Then we compute the interpolated bid function
+fun <- splinefun(x.100, y)
+fun.inv <- splinefun(y, x.100) # or the inverse
+```
+
+
+## Example of spline interpolation
+
+```{r spline-example, echo=FALSE}
+# Plot results
+curve(f, from=0, to=1)
+curve(fun, from=0, to=1, add=TRUE, lty=2, col=2)
+```
+
+## One-parameter example
+
+```{r loglik}
+loglik <- function(param, data)  {
+	# parse data
+	S1 <- 2
+	S2 <- param
+	y <- data$score
+	n <- data$params$n
+	target <- data$params$target
+	deadline <- data$params$deadline
+	# Simulate the model given params
+	x.grid <- seq(0.0001, 1, length=100) # Evaluation "grid"
+	out <- contest(x.grid, n=n, type="tournament", p=pbeta, d=dbeta
+					, shape1=S1, shape2=S2, target=target, deadline=deadline)
+	inv <- splinefun(x=out$score, y=x.grid)
+	a <- inv(y)
+	a <- ifelse(a>1, 1, a) # Trim at the top
+	a <- ifelse(a<=0, 0.000001, a) # Trim at the bottom
+	a.deriv <- inv(y, deriv=1)
+	ll <- mean(dbeta(a, shape1=S1, shape2=S2, log=TRUE) * a.deriv)
+	return(ll)
+}
+```
+
+## Check $L(\tilde\theta)\leq L(\theta)$ for any $\tilde\theta\neq\theta$
+
+Assume we observe $m$ replications of contests with $j$ competitors
+
+```{r lokglik-sim, echo=FALSE}
+# Data simulator
+sim <- function(m, j, ...) {
+	args <- list(...)
+	x <- rbeta(m * j, args$shape1, args$shape2)
+	out <- contest(x, n=j, p=pbeta, d=dbeta, ...)
+	return(out)
+}
+
+dat <- sim(10, j=10, shape1=2, shape2=4, target=0.01)
+
+# Check feasibility
+f <- function(x, maxvalue) {
+	contest(1, n=10, target=0.01, p=pbeta, d=dbeta, shape1=2, shape2=x)$score - maxvalue
+}
+uniroot(f, maxvalue=max(dat$score), interval=c(1, 10))$root
+
+optimize(loglik, data=dat, interval=c(1, 5.33), maximum=TRUE)
+
+p.grid <- seq(2, 4.5, length=50)
+out <- sapply(p.grid, function(x)loglik(param=x, data=dat))
+plot(p.grid, out)
+

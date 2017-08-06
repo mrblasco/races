@@ -1,42 +1,26 @@
-\clearpage
 
 # Results
 At the end of the eight day submission period of the contest, we collected individual data like the number, timing, and score of each code submission made by competitors. As competitors behaviors are generally correlated within each room, we then aggregated these individual data into room responses to examine differences between competition styles at the room level.[^dependence]
 
-[^dependence]: While such a dependence does not generally affect estimatation of mean differences, it might bias inference accuracy. As actions across rooms can be treated as independent, the inferential problem is thus less severe when the analysis is at the room level. 
-
-```{r entry}
-races$n <- ave(races$submit, races$room_id, FUN=length)
-entry0 <- aggregate(submit ~ n + room_id + treatment + room_size, data=races, sum)
-controls <- aggregate(covars, by=with(races, list(room_id=room_id)), mean, na.rm=TRUE)
-entry <- merge(entry0, controls)
-entry$nwins <- impute(entry$nwins, 'zero') > 0
-entry$ntop5 <- NULL
-entry$ntop10 <- log(impute(entry$ntop10, 'zero')+1)
-```
+[^dependence]: While such a dependence does not generally affect estimatation of mean differences, it might bias inference accuracy. As actions across rooms can be treated as independent, the inferential problem is thus less severe when the analysis is at the room level.
 
 ## Entry
 Our analysis of the effects of different competition styles begins by looking at competitors' entry. The entry variable is the fraction of competitors in a room who made at least one submission during the eight day submission period of the contest. Our theoretical model predicts that, all else being equal, competitors' entry will be higher in a tournament than in a race competition, because of the lack of minimum performance requirements. For the same reason, it also predicts higher entry rates in regular tournaments compared to tournaments with reserve. Consistent with these predictions, Figure \ref{room entrants} shows a higher median percentage of entrants in tournaments compared to both races and tournaments with reserve. It also shows that the difference in entry was more marked in small rather than big competition rooms, suggesting sobering effects associated with group size.
 
-```{r entrybox, fig.width=9, fig.height=4, fig.cap="Room entrants by competition style and room size\\label{room entrants}"}
-boxplot.custom <- function(formula, data, ...) {
-	h <- seq(0, 1, length=5)
-	colors <- c("brown", gray(0.75), gray(0.95))
- 	boxplot(formula, data, col=colors, boxwex=0.5, frame=F, yaxt='n', xaxt="n", ylim=c(0.1, 0.55),...)
-	abline(h=h, lty=3, col='lightgray')
- 	boxplot(formula, data, col=colors, boxwex=0.5, frame=F, yaxt='n', xaxt="n", add=TRUE, ...)
-	axis(2, at=h, h, col='lightgray', col.ticks='lightgray', las=2)
-}
-
-par(mfrow=c(1, 3))
+```{r entrybox, fig.width=9, fig.height=4, include=FALSE}
+par(mfrow=c(1, 3)); ylim=c(0, .6)
 form <- formula(submit/n ~ treatment)
-boxplot.custom(form, data=entry, main="All rooms")
-axis(1, at=1:3, levels(entry$treatment))
-boxplot.custom(form, data=subset(entry, room_size=='Small'), main="Small rooms\n(10 competitors)")
-axis(1, at=1:3, levels(entry$treatment))
-boxplot.custom(form, data=subset(entry, room_size=='Large'), main="Large rooms\n(15 competitors)")
-axis(1, at=1:3, levels(entry$treatment))
+boxplot.custom(form, data=entry, main="All rooms", ylim=ylim)
+boxplot.custom(form, data=subset(entry, room_size=='Small'), main="Small rooms\n(10 competitors)", ylim=ylim)
+boxplot.custom(form, data=subset(entry, room_size=='Large'), main="Large rooms\n(15 competitors)", ylim=ylim)
 ```
+
+\begin{figure}
+\caption{Percentage of room entrants by competition and room size}
+\label{room entrants}
+\includegraphics{Figures/entrybox-1.pdf}
+\end{figure}
+
 
 ```{r entrydiff}
 entry.diff <- round(with(entry, tapply(submit, treatment, mean)), 1)
@@ -52,26 +36,21 @@ m <- rep()
 m$entry.lm <- lm(submit/n ~ treatment + room_size, data=entry)
 m$entry.lm.partial <- update(m$entry.lm, ~ . + nwins + ntop10 + timezone + postgrad + male)
 m$entry.lm.full <- lm(submit/n ~ . -hours12-hours34-hours56-hours78, data=entry[, -1])
-
-# Log-transformed
 m.log <- lapply(m, function(x) update(x, "log(submit/n) ~ ."))
 
-#stargazer(c(m,m.log), type='text'
-#	, omit="nwins|hours|rating|nreg|nsub|ntop|risk|male|time|postgrad|below|paid|year")
-
-# Summary
-entry.lm.sum <- summary(m$entry.lm) # F-test 0.846 (pval=0.48)
-entry.lm.log.sum <- summary(m.log$entry.lm) # F-test 0.846 (pval=0.48)
-
-source("regtab.R")
 regtab(c(m, m.log), digits=3, notes.width=1, keep.stat=c('n','rsq')
 	, omit="nwins|hours|rating|nreg|nsub|ntop|risk|male|time|postgrad|below|paid|year"
 	, add.lines=list(c("Room controls", rep(c("no controls", "partial", "full"), 2)))
 	, dep.var.labels=c("Entry/n","log(Entry/n)")
 	, covariate.labels=c("Tournament","Tournament w/reserve", "Room size (small)")
 	, notes="The table reports regression estimates of the effects of different competition styles on entry computed using three sets of room controls: ``no controls\", ``partial\", ``full.\" Standard errors are reported in parenthesis. ***,**, * indicate statistical significance at 1, 5, and 10 percent level."
-	, caption="Estimates of the Effect of Competition Style on Entry"
+	, caption="Estimates of the effects of competition and room size on entry"
 	, label='ols entry')
+```
+
+```{r entrysum}
+entry.lm.sum <- summary(m$entry.lm) 
+entry.lm.log.sum <- summary(m.log$entry.lm)
 ```
 
 As shown in Table \ref{ols entry}, the estimated difference in entry between tournaments and races is of `r round(coef(m$entry.lm)['treatmenttournament'],2)`. This corresponds to a difference of 1 more entrant every `r round(1/coef(m$entry.lm)['treatmenttournament'])` = 1/`r coef(m$entry.lm)['treatmenttournament']` competitors or, using the specification with a log-transformed proportion (column 4), an increase by a factor of 
@@ -98,22 +77,25 @@ contrasts(races$treatment2) <- contr.sum(3, contrasts=TRUE)
 models2 <- gsub("treatment","treatment2", models)
 models.fit2 <- sapply(models2, function(x) lm(formula=x, data=cbind(covars, races)))
 
-# Table
-get.star.string <- function(x) ifelse(x < 0.01, '***', ifelse(x<0.05, "**", ifelse(x<0.1,"*", "")))
-get.column <- function(varname, object, digits=2) {
-	est <- sapply(object, function(x) coef(summary(x))[varname, 1])
-	SE <- sapply(object, function(x) coef(summary(x))[varname, 2])
-	pval <- sapply(object, function(x) coef(summary(x))[varname, 4])
-	depvar <- as.vector(rbind(gsub("~.*","", names(est)), rep("", length(est))))
-	stars <- get.star.string(pval)
-	out <- as.vector(rbind(paste(format(round(est, digits)), stars, sep=''), paste("(",round(SE, digits),")", sep='')))
-	data.frame(depvar, out)
+table.sorting <- function() {
+	get.star.string <- function(x) ifelse(x < 0.01, '***', ifelse(x<0.05, "**", ifelse(x<0.1,"*", "")))
+	get.column <- function(varname, object, digits=2) {
+		est <- sapply(object, function(x) coef(summary(x))[varname, 1])
+		SE <- sapply(object, function(x) coef(summary(x))[varname, 2])
+		pval <- sapply(object, function(x) coef(summary(x))[varname, 4])
+		depvar <- as.vector(rbind(gsub("~.*","", names(est)), rep("", length(est))))
+		stars <- get.star.string(pval)
+		out <- as.vector(rbind(paste(format(round(est, digits)), stars, sep='')
+			, paste("(",round(SE, digits),")", sep='')))
+		data.frame(depvar, out)
+	}
+	x1 <- get.column('submitTRUE', models.fit2)
+	x2 <- get.column('submitTRUE:treatmenttournament', models.fit)
+	x3 <- get.column('submitTRUE:treatmentreserve', models.fit)
+	x4 <- as.vector(rbind(sapply(models.fit, function(x) length(x$fitted)), rep("",length(models.fit))))
+	tab <- cbind(x1, tournament=x2[,-1], reserve=x3[,-1], obs=x4)
 }
-x1 <- get.column('submitTRUE', models.fit2)
-x2 <- get.column('submitTRUE:treatmenttournament', models.fit)
-x3 <- get.column('submitTRUE:treatmentreserve', models.fit)
-x4 <- as.vector(rbind(sapply(models.fit, function(x) length(x$fitted)), rep("",length(models.fit))))
-tab <- cbind(x1, tournament=x2[,-1], reserve=x3[,-1], obs=x4)
+tab <- table.sorting()
 colnames(tab) <- c('Variable', "\\multicolumn{1}{L{2cm}}{Difference entrants vs non-entrants}"
 	, "\\multicolumn{1}{L{2cm}}{Difference entrants in races vs tournaments}"
 	, "\\multicolumn{1}{L{2cm}}{Difference entrants in races vs tournaments w/reserve}"
@@ -135,58 +117,19 @@ As shown in Table \ref{sorting panel 1}, on average, entrants were more skilled 
 - Risk averse people seem to xxx to affact but regression shows signs of multi-collinearity that may not indicative...  
 - other demographics... 
 
-```{r final}
-races$final_raw <- races$final
-races$final <-races$final_raw/1e4
-final <- aggregate(final ~ room_id + treatment + room_size, data=races, max)
-```
-
 ## Scores
 The results on entry suggest that tournaments had a positive impact on competitors' participation relative to races and tournaments with reserve. The analysis of sorting showed further that the increment of entrants was driven by xxxx rather than differences in experience and proficiency in solving problems, raising the question of whether xxxx will generate relatively higher performance levels. Our model predicts that, all else being equal, tournaments will yield higher performance levels relative to races. It also predicts that tournaments with reserve will dominate both regular tournaments and races in terms of performance.  To investigate this issue, we now focus on differences in performance as measured by the highest score attained by a competitor's last submission in each room. 
 
 Figure XXX shows xxxx. The platform keeps record of provisional and system scores for each submission. Provisional and system scores are computed in the same way but on different datasets: provisional scores are computed on a "testing" dataset and then published on the leaderboard; system scores, by contrast, are computed on a "system testing" dataset and kept secret until the end of the contest. As final scores matter for awarding cash prizes, keeping these scores secret prevents the so-called "overfitting" problem (i.e., a form of model misspecification).^[When competitors have made more than one submission, the final score is generally computed on the competitor's last submission.] 
 
 
-```{r finalscores}
-# Focus on the highest score
-compute.max.score <- function(races, scores) {
-	y <- with(scores, ave(final, coder_id, FUN=max))
-	y.agg <- aggregate(y ~ coder_id, data=scores, max)
-	colnames(y.agg)[2] <- "final.max"
-	y.max <- merge(races, y.agg, by='coder_id', all=TRUE)
-	aggregate(final.max ~ room_id + treatment + room_size, data=y.max, max)
-}
-final0 <- compute.max.score(races, scores)
-controls <- aggregate(covars, by=with(races, list(room_id=room_id)), mean, na.rm=TRUE)
-final <- merge(final0, controls)
-final$nwins <- impute(final$nwins,'zero')>0
-final$ntop10 <- log(impute(final$ntop10,'zero')+1)
-final$ntop5 <- NULL
-
-# Censoring
-final.baseline <- 0.792867
-final.max.raw <- final$final.max
-final$final.max <- ifelse(final.max.raw/1e6<0.792867, 0.792867, final.max.raw/1e6)
-final$final.max <- final$final.max*100
-```
-
 ```{r finalbox, fig.width=9, fig.height=4, fig.cap="Highest room scores by competition style and room size\\label{scores}"}
-boxplot.custom <- function(formula, data, ...) {
-	h <- seq(0, 1, length=5)
-	colors <- c("brown", gray(0.75), gray(0.95))
- 	boxplot(formula, data, col=colors, boxwex=0.5, frame=F, yaxt='n', xaxt="n", ylim=c(0.78, 0.85),...)
-	abline(h=h, lty=3, col='lightgray')
- 	boxplot(formula, data, col=colors, boxwex=0.5, frame=F, yaxt='n', xaxt="n", add=TRUE, ...)
-	axis(2, at=h, h, col='lightgray', col.ticks='lightgray', las=2)
-}
-par(mfrow=c(1, 3))
-form <- formula(final.max ~ treatment)
-boxplot.custom(form, data=final, main="All rooms")
-axis(1, at=1:3, levels(final$treatment))
-boxplot.custom(form, data=subset(final, room_size=='Small'), main="Small rooms\n(10 competitors)")
-axis(1, at=1:3, levels(final$treatment))
-boxplot.custom(form, data=subset(final, room_size=='Large'), main="Large rooms\n(15 competitors)")
-axis(1, at=1:3, levels(final$treatment))
+
+par(mfrow=c(1, 3)); ylim <- c(0.97, 1.04)
+form <- formula(final.cens ~ treatment, ylim=ylim)
+boxplot.custom(form, data=final, main="All rooms", ylim=ylim)
+boxplot.custom(form, data=subset(final, room_size=='Small'), main="Small rooms\n(10 competitors)", ylim=ylim)
+boxplot.custom(form, data=subset(final, room_size=='Large'), main="Large rooms\n(15 competitors)", ylim=ylim)
 ```
 
 While final scores give a very powerful indication of performance, one problem with measuring individual performance using final scores is that any failure in the submitted code might return very low values, as shown in Figure \ref{scores over time}, that are not wholly indicative of performance. As outliers will in general bias the room means, we explored two corrective methods (1) we trimmed last scores before computing the room means; and (2) we replaced all final scores that were below the baseline score with the baseline. The first method gives a winsorized mean, which is an unbiased estimate of the average [XXXX]. The second approach equals censoring by  assuming that all entrants had a performance at least equal to the final score that one would obtain by submitting the BANNER's algorithm without making any useful change.
@@ -194,22 +137,18 @@ While final scores give a very powerful indication of performance, one problem w
 
 ```{r scorelm, results='asis'}
 m <- rep()
-m$final.lm <- lm(final.max ~ treatment + room_size, data=final)
+m$final.lm <- lm(100*final.cens ~ treatment + room_size, data=final)
 m$final.lm.partial <- update(m$final.lm, ~ . + nwins + ntop10 + timezone + postgrad + male)
-m$final.lm.full <- lm(final.max ~ . -hours12-hours34-hours56-hours78, data=final[,-1])
+m$final.lm.full <- lm(100*final.cens ~ . -hours12-hours34-hours56-hours78-final, data=final[,-1])
+m.log <- lapply(m, function(x) update(x, "log(100*final.cens) ~ .")) 
 
-# Log-transformed
-m.log <- lapply(m, function(x) update(x, "log(final.max) ~ ."))
 
-#stargazer(c(m,m.log), type='text'
-#	, omit="nwins|hours|rating|nreg|nsub|ntop|risk|male|time|postgrad|below|paid|year")
-
-regtab(c(m, m.log), digits=3, notes.width=1, keep.stat=c('n','rsq')
+regtab(c(m, m.log), digits=2, notes.width=1, keep.stat=c('n','rsq')
 	, omit="nwins|hours|rating|nreg|nsub|ntop|risk|male|time|postgrad|below|paid|year"
 	, add.lines=list(c("Room controls", rep(c("no controls", "partial", "full"), 2)))
 	, dep.var.labels=c("Highest score","log(Highest score)")
 	, covariate.labels=c("Tournament","Tournament w/reserve", "Room size (small)")
-	, notes="The table reports regression estimates of the effects of different competition styles on entry computed using three sets of room controls: ``no controls\", ``partial\", ``fulla.\" Standard errors are reported in parenthesis. ***,**, * indicate statistical significance at 1, 5, and 10 percent level."
+	, notes="The table reports regression estimates of the effects of different competition and room size on the highest score in a room computed using three sets of room controls: ``no controls\", ``partial\", ``fulla.\" Standard errors are reported in parenthesis. ***,**, * indicate statistical significance at 1, 5, and 10 percent level."
 	, caption="Estimates of the Effect of Competition Style on Performance"
 	, label='ols entry')
 ```
@@ -224,96 +163,64 @@ Results. we do not find evidence supporting our hypothesis that mean room scores
 
 ## Speed
 
-```{r speed}
-races$days <- difftime(races$firstsub, "2015-03-08 12:00:00 EDT", units='days')
-speed0 <- aggregate(days ~ n + room_id + treatment + room_size, data=races, mean)
-controls <- aggregate(covars, by=with(races, list(room_id=room_id)), mean, na.rm=TRUE)
-speed <- merge(speed0, controls)
-speed$days <- as.numeric(speed$days)
-speed$nwins <- impute(speed$nwins, 'zero') > 0
-speed$ntop5 <- NULL
-speed$ntop10 <- log(impute(speed$ntop10, 'zero')+1)
-```
-
 Finally, we examined differences in submission speed measured by the mean time of the first submission in each room. As shown in the right panel of Figure \ref{room outcomes}, the median room time-to-submit in the Race was about 20 and 40 hours shorter than the Tournament and the Tournament with Reserve, respectively. The variance, however, was also larger with values ranging from below 60 to 190 hours, whereas by comparison the other groups' distributions were both above the 120 hours. To test to see if the difference in means between speed in the Race and the other groups was greater than zero, we used a  xxxx which gives a (one-sided) p-value of xxxxx. [Bootstrap] Thus, our data support the hypothesis that competitors' speed in a Race was higher than in the other groups. Taken together with the absence of skill-based selection and score differences, this result implies that competitors in the Race competition have exerted greater efforts (i.e., by lowering execution time while keeping performance at a comparable level)  relative to the other groups.
 
 
-```{r speedbox, fig.width=9, fig.height=4, fig.cap="xxxx"}
-boxplot.custom <- function(formula, data, ...) {
-	h <- seq(0, 10, length=5)
-	colors <- c("brown", gray(0.75), gray(0.95))
- 	boxplot(formula, data, col=colors, boxwex=0.5, frame=F, yaxt='n', xaxt="n",...)
-	abline(h=h, lty=3, col='lightgray')
- 	boxplot(formula, data, col=colors, boxwex=0.5, frame=F, yaxt='n', xaxt="n", add=TRUE, ...)
-	axis(2, at=h, h, col='lightgray', col.ticks='lightgray', las=2)
-}
+```{r firstsubbox, fig.width=9, fig.height=4, include=FALSE}
 par(mfrow=c(1, 3))
-form <- formula(days ~ treatment)
-boxplot.custom(form, data=speed, main="All rooms", ylim=c(0, 8))
-axis(1, at=1:3, levels(final$treatment))
-boxplot.custom(form, data=subset(speed, room_size=='Small'), main="Small rooms\n(10 competitors)", ylim=c(0, 8))
-axis(1, at=1:3, levels(final$treatment))
-boxplot.custom(form, data=subset(speed, room_size=='Large'), main="Large rooms\n(15 competitors)", ylim=c(0, 8))
-axis(1, at=1:3, levels(final$treatment))
-```
-
-
-```{r speed2}
-races$days <- difftime(races$firstsub, "2015-03-08 12:00:00 EDT", units='days')
-prov2 <- ifelse(races$provisional_first/1e6 < 0.79, 0.79, races$provisional_first/1e6)
-races$speed <- prov2/as.numeric(races$days)
-
-speed0 <- aggregate(speed ~ n + room_id + treatment + room_size, data=races, mean)
-controls <- aggregate(covars, by=with(races, list(room_id=room_id)), mean, na.rm=TRUE)
-speed <- merge(speed0, controls)
-#speed$days <- as.numeric(speed$days)
-speed$nwins <- impute(speed$nwins, 'zero') > 0
-speed$ntop5 <- NULL
-speed$ntop10 <- log(impute(speed$ntop10, 'zero')+1)
-```
-
-
-```{r speedbox2, fig.width=9, fig.height=4, fig.cap="xxxx"}
-boxplot.custom <- function(formula, data, ...) {
-	h <- seq(0, 10, length=5)
-	colors <- c("brown", gray(0.75), gray(0.95))
- 	boxplot(formula, data, col=colors, boxwex=0.5, frame=F, yaxt='n', xaxt="n",...)
-	abline(h=h, lty=3, col='lightgray')
- 	boxplot(formula, data, col=colors, boxwex=0.5, frame=F, yaxt='n', xaxt="n", add=TRUE, ...)
-	axis(2, at=h, h, col='lightgray', col.ticks='lightgray', las=2)
-}
-par(mfrow=c(1, 3))
-form <- formula(log(speed) ~ treatment)
-ylim <- c(-3, 3)
+form <- formula(days ~ treatment); ylim=c(0,8)
 boxplot.custom(form, data=speed, main="All rooms", ylim=ylim)
-axis(1, at=1:3, levels(final$treatment))
 boxplot.custom(form, data=subset(speed, room_size=='Small'), main="Small rooms\n(10 competitors)", ylim=ylim)
-axis(1, at=1:3, levels(final$treatment))
 boxplot.custom(form, data=subset(speed, room_size=='Large'), main="Large rooms\n(15 competitors)", ylim=ylim)
-axis(1, at=1:3, levels(final$treatment))
+```
+
+\begin{figure}
+\caption{Average time of first submission by competition and room size}
+\label{room entrants}
+\includegraphics{Figures/firstsubbox-1.pdf}
+\end{figure}
+
+
+```{r}
+speed0 <- speed
+speed1 <- aggregate(provisional_first ~ room_id + treatment + room_size, data=races, mean)
+speed <- merge(speed0, speed1)
+speed$speed <- ((speed$provisional_first/1e6)/target) / speed$day
 ```
 
 
-```{r speed2}
-scores$provisional.raw <- scores$provisional
-scores$provisional <- scores$provisional.raw/1e6
-scores$days <- difftime(scores$timestamp, "2015-03-08 12:00:00 EDT", units='days')
-scores$days <- as.numeric(scores$days)
+```{r speedbox, fig.width=9, fig.height=4, include=FALSE}
+par(mfrow=c(1, 3))
+form <- formula(((provisional_first/1e6)/target) ~ treatment); ylim=c(.5,1.1)
+boxplot.custom(form, data=speed, main="All rooms", ylim=ylim)
+boxplot.custom(form, data=subset(speed, room_size=='Small'), main="Small rooms\n(10 competitors)", ylim=ylim)
+boxplot.custom(form, data=subset(speed, room_size=='Large'), main="Large rooms\n(15 competitors)", ylim=ylim)
+```
 
-# Speed
-scores2 <- subset(scores, submission<3)
-speed <- scores2$provisional / scores2$days
-boxplot(log(speed) ~ scores2$submission)
+\begin{figure}
+\caption{Average score of first submissions by competition and room size}
+\label{room entrants}
+\includegraphics{Figures/speedbox-1.pdf}
+\end{figure}
 
 
-# Speed
-speed.lm <- glm(provisional ~ days + submission, data=scores, family=gaussian(log), subset=provisional>0)
-plot(speed.lm)
-speed.lm.log <- lm(log(provisional) ~ days, data=scores)
-speed.lm.y.log <- lm(provisional ~ log(days+1), data=scores)
-speed.lm.loglog <- lm(log(provisional) ~ log(days), data=scores)
-stargazer(speed.lm, speed.lm2, type='text')
+```{r speedlm, results='asis'}
+speed$days <- NULL
+speed$provisional_first <- NULL
+m <- rep()
+m$speed.lm <- lm(speed ~ treatment + room_size, data=speed)
+m$speed.lm.partial <- update(m$speed.lm, ~ . + nwins + ntop10 + timezone + postgrad + male)
+m$speed.lm.full <- lm(speed ~ . -hours12-hours34-hours56-hours78, data=speed[,-1])
+m.log <- lapply(m, function(x) update(x, "log(speed) ~ .")) 
 
+regtab(c(m, m.log), digits=2, notes.width=1, keep.stat=c('n','rsq')
+	, omit="nwins|hours|rating|nreg|nsub|ntop|risk|male|time|postgrad|below|paid|year"
+	, add.lines=list(c("Room controls", rep(c("no controls", "partial", "full"), 2)))
+	, dep.var.labels=c("Speed","log(Speed)")
+	, covariate.labels=c("Tournament","Tournament w/reserve", "Room size (small)")
+	, notes="The table reports regression estimates of the effects of different competition and room size on the highest score in a room computed using three sets of room controls: ``no controls\", ``partial\", ``fulla.\" Standard errors are reported in parenthesis. ***,**, * indicate statistical significance at 1, 5, and 10 percent level."
+	, caption="Estimates of the Effect of Competition Style on Production Speed"
+	, label='ols entry')
 ```
 
 

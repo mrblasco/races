@@ -20,9 +20,9 @@ As a first step, a four day registration period for a new competition was announ
 
 The online registration process was not overly burdensome. It simply involved giving an informed consent to participation in the research and responding to a short initial survey to collect participant demographics.  As experienced members are more likely to behave according to model predictions, we limited participation to those members. Platform members who had never registered for a MMs competition before the experiment were unable to register. Newly signed-up  members were thus excluded from our sample.
 
-A total of `r nrow(races)` participants registered for this experiment. We then sorted at random all participants into 24 groups or "competition rooms".^[The choice of having 24 competition rooms instead of a higher number was somewhat fixed by non-experimental reasons; it was the largest number of concomitant virtual rooms allowed by the platform at that time.]  These rooms differed in size, as half of the rooms had 10 competitors and the rest had 15 competitors.  Each competition room can be viewed as an independent contest where we offered cash prizes of $1,000 and $100 to the first and second placed competitor.  In addition, each room provided competitors with access to a private leaderboard (updated about every 48 hours), a web forum to ask questions about the computational problem, and a submission system through which they could submit their codes. The whole submission period lasted 8 days. 
+A total of `r nrow(races)` participants registered for this experiment. We then sorted at random all participants into 24 groups or "competition rooms" --- the largest number of concomitant virtual rooms allowed by the platform at that time.  Each competition room can be viewed as an independent contest where we offered cash prizes of $1,000 and $100 to the first and second placed competitor.  In addition, each room provided competitors with access to a private leaderboard (updated about every 48 hours), a web forum to ask questions about the computational problem, and a submission system through which they could submit their codes. The whole submission period lasted 8 days. 
 
-From each block of rooms with equal room size, we then split rooms at random into 3 competition styles: i) tournament, ii) race, and iii) tournament with a reservation quality (hereinafter simply "reserve"), that we describe below. Hence, our experimental design is summarized by a 3x2 matrix, as shown in Table \ref{experimental design}.
+Rooms differed in size, as half of the rooms had 10 competitors and the rest had 15 competitors. From each block of rooms with equal room size, we split rooms at random into 3 competition styles: i) tournament, ii) race, and iii) tournament with a reservation quality (hereinafter simply "reserve"), that we describe below. Hence, our experimental design is summarized by a 3x2 matrix, as shown in Table \ref{experimental design}.
 
 ```{r, results='asis'}
 table.design <- function(tab, ...) {
@@ -48,52 +48,22 @@ The competition style was announced at the start of the submission phase via ema
 
 ## The algorithmic problem and fixing a target.
 
-Typical problems [xxxx].[^problems]
+To select a challenging algorithmic problem for the experiment, we worked together with researchers from the United States National Health Institute (NIH) and the Scripps Research Institute (SCRIPPS). The selected problem was based on an algorithm called BANNER [@leaman2008banner] that was built by researchers at the NIH. The algorithm uses domain-expert manual labeling to train a Natural Language Entity Recognition (NLER)'s model that performs automatic annotation of abstracts from a large corpus of biomedical research papers (e.g., PubMed). As automatic annotations help disease characteristics to be more easily identified, improving the [xxx] was very important for x, y, and z.  Though adding annotations can be very costly, because [xxxx]. 
 
-To select a challenging algorithmic problem for the experiment, we worked together with researchers from the United States National Health Institute (NIH) and the Scripps Research Institute (SCRIPPS). The selected problem was based on an algorithm called BANNER that was built by researchers at the NIH [@leaman2008banner]. The algorithm uses domain-expert manual labeling to train a Natural Language Entity Recognition (NLER)'s model that performs automatic annotation of abstracts from a large corpus of biomedical research papers (e.g., PubMed). As automatic annotations help disease characteristics to be more easily identified, improving the [xxx] was very important for x, y, and z.  Though adding annotations can be very costly, because [xxxx]. 
-
-The specific goal of the programming competition was to improve upon the current NIH's BANNER by using a combination of domain-expert and non-expert manual labeling [e.g., @good2014microtask]. [xxxx]
+The specific goal of the programming competition was to improve upon the current NIH's BANNER by using a combination of domain-expert and non-expert (e.g., Amazon Mechanical Turk's workers) manual labeling [e.g., @good2014microtask]. [xxxx]
 
 * The threshold in the "race" and in the "reserve" was chosen following two main criteria. First, we run a pre-trail experiment that involved 4 coders solving the same problem in isolation for 5 days. This helped us forming basic predictions about xxxx. Second, we surveyed the NIH researchers who developed Banner asking for three percentage improvements they considered "useful," "desirable," and "unlikely."
 
 * As a measure of the ability to make correct predictions of domain expert annotations we used the "F-score" defined as the harmonic mean of precision and recall: $F = 2 * (precision * recall) / (precision + recall)$).
 This score was computed on 300 abstracts (100 of which were not disculosed to avoid overfitting) with about xxxx entities to correctly identify from a dictionary with xxxx labels. 
 
-```{r}
-baseline <- 0.792867
-target <- 0.817866
-winner <- 0.843962
-```
-
 * The baseline F-score achieved by NIH researchers was `r baseline`. We set up a hard-to-reach F-score target for the race competition which was `r target` (about a `r round(100*target/baseline - 100)` percent increase of the baseline). The winner achieved a score of `r winner`. This represents  a `r 100*(winner - baseline)` percentage points increase compared to the baseline which can be regarded as a very remarkable improvement (more than `r round(100*winner/baseline - 100)` percent).
-
-
-[^problems]: Typical algorithmic problems include a wide range of data science problems such as classification and regression, image processing, and natural language processing. Solutions are submitted in the form of computer programs to be run and scored by the platform. the problem demands good programming skills as well as a strong background in machine learning and statistics.
-
-[^pstatement]
-
-[^pstatement]: A problem statement containing a full description of the algorithmic challenge, the rules of the game, and payoffs was published at the beginning of the submission phase. The submission phase was of 8 days in which participants could submit their computer programs. Each submission was automatically scored and feedback in the form of preliminary scores was published regularly on the website via the leaderboard.
 
 
 ## Data
 
-```{r covars}
-covars <- with(races, data.frame(rating, ratingsrm=ifelse(algo_rating>0,algo_rating,NA)
-					, nreg, nsub, nregsrm=algo_nreg, nsubsrm=algo_nsub
-					, year=2015-year
-					, paidyr=paid/(100*(1+2015-year))
-					, nwins=ifelse(nwins==0,NA,nwins)
-					, ntop5=ifelse(ntop5==0,NA,ntop5)
-					, ntop10=ifelse(ntop10==0,NA,ntop10)
-					, male, timezone, postgrad=ifelse(educ=="Postgraduate (MA)" | educ=="Phd", 1,0)
-					, below30=ifelse(age=="<20" | age=="20-25" | age=="26-30", 1, 0)
-					, risk, hours, hours12=week1, hours34=week2, hours56=week3, hours78=week4
-					))
-```
-
 ```{r covarstable, results='asis'}
-source('../descriptives.R')
-tab <- descriptives(covars[,-c(1:2)])
+tab <- descriptives(covars)
 xtab <- xtable(tab)
 digits(xtab) <- c(1, 1, rep(0, ncol(tab)-2), 3)
 align(xtab) <- c("@{}l", rep("r", ncol(tab)))

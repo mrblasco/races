@@ -1,3 +1,4 @@
+\newcommand\competition{c}
 \newcommand\ability{a}
 \newcommand\performance{y}
 \newcommand\timing{t}
@@ -5,36 +6,50 @@
 \newcommand\Performance{Y}
 
 # The model
-
-We now generalize the contest game introduced by @moldovanu2001optimal to a situation where players simultaneously decide $i)$ the quality and $ii)$ how fast to produce a given output. Then we explore the problem of revenue maximization faced by a contest designer with preferences for both quality and time.
+We now generalize the contest game introduced by @moldovanu2001optimal to a situation where players simultaneously decide $i)$ how fast to perform a given task and $ii)$ the quality of their performance (e.g., the time to solve a problem and effectiveness of the solution). Then we explore the problem of revenue maximization faced by a contest designer with preferences for both time and quality.
 
 ## Basic setup
+Consider a contest game where $i=1,..., n$ contestants are competing for $p$ prizes of value $v_1\geq v_2\geq ...\geq v_p\geq0$; and imagine the total value distributed to winners is normalized to one, $\sum_{k=1}^p v_k =1$. To win a prize, each contestant will act independently over the course of a given period of time $\deadline>0$ working to develop solutions to a given problem. The time it takes to develop their solutions and the effectiveness or quality of the delivered solutions are denoted by two nonnegative variables $\timing_i$ and $\performance_i$ respectively. Solving the problem can be thus defined as developing a solution with an effectiveness of at least $\target\geq0$. 
 
-There are $i=1,..., n$ players competing for $k=1, ..., q$ prizes of values $v_1\geq v_2\geq ...\geq v_q\geq0$ and total value normalized to one, $\sum_{k=1}^q v_k =1$. Prizes are awarded on the basis of a nonnegative variable $\performance_i$ measuring performance and how much time $\timing_i$ it takes each player to carry out a given task (e.g., solve a problem). Players simultaneously decide on their performance and time, and pay at once any cost of effort incurred. Players differ in an individual ability $\ability_i$, reflecting skills, time constraints, and other elements affecting their cost of effort. A function $C(\cdot)$ determines the cost each player incurs:
+Each contestant $i$ has a cost of problem solving $c_i$ given by 
+$$
+	c_i = \ability_i^\alpha C(\performance_i, \timing_i)
+$$ 
+where $C(\cdot)$ denotes a cost function of the inputs and $a_i$ is a (strictly positive) ability parameter changing across contestants and $\alpha<0$.
 
+The cost function $C(\cdot)$ is decreasing in the time to develop solutions. It is increasing in the quality of the developed sultions.  It is _multiplicative_ (the higher the quality the more time it takes to develop the solution at the same cost). And it is assumed to have the following functional form: $C(\performance, \timing) = \performance^\alpha \timing^\beta,$ where the parameters $\alpha>1$ and $\beta<0$ denote the _elasticity_ of the cost function with respect to its inputs.
+
+[^speed]: Alternatively, one can re-parametrize the model by replacing time $t_i$ with a new variable "speed" $s_i$ defined as the ratio of quality over time.
+
+The ability parameter reflects heterogeneity in skills, time constraints, and other elements affecting their ability to solve the problem. Each ability parameter $a_i$ is drawn at random from a common distribution function $F_A(\cdot)$ with (absolutely continuous) density $f_A(\cdot)$ on a bounded interval. Players observe privately the realization of their own ability (their _type_) before making their choices. 
+
+The contest designer determines how contestants compete for prizes. We consider three types of competition: the race, tournament, and tournament with reserve. 
+
+- In a race, the first contestant that solves the problem (i.e., achieves a performance equal or higher than $\target$) wins the first prize. The second contestant to solve the problem wins the second prize, and so on until either all the prizes are awarded or there are no more eligible contestants (i.e., those who have solved the problem in the given time). 
+
+- In a tournament, the contestant achieving the highest performance within the given deadline $\deadline$ wins the first prize. The contestant with the second highest performance wins the second prize, and so on until all prizes are awarded.  
+
+- Finally, the tournament with reserve is a slightly more general form of tournament competition where, to win a prize, competitors must achieve a performance equal or higher than the target $\target$. Prizes are thus awarded based on performance until either all prizes are allocated or there no more eligible contestants (i.e., those with a performance equal or higher than $\target$). 
+
+In all three types of competition, the payoff of a contestant $i$ with ability $a_i$ who has developed a solution of quality $y_i$ that was delivered in time $t_i$, is either $v_k - \ability_i^\alpha C(y_i, t_i)$ if $i$ wins the k-th prize, or $-\ability_i^\alpha C(y_i, t_i)$ if $i$ does not win a prize.
+
+<!-- As information is asymmetric and players move simultaneously, the quality and time of the opponents of a player $i$ can be treated as $n-1$ independent realizations of two (nonnegative) random variables $Y$ and $T$ that are drawn from some unknown distributions denoted by $F_{Y}(\cdot)$ and $F_{T}(\cdot)$ respectively. These variables help defining the individual probability of winning a prize.  -->
+
+<!-- 
+Let denote the $j$'th smallest of the order statistics of the $Y$'s by $Y_{(j)}$ ---with $Y_{(1)}$ being the smallest, $Y_{(2)}$ being the second smallest, and so on---and the $j$'th smallest of the $T$'s by $T_{(j)}$---with $T_{(1)}$ being the smallest, $T_{(2)}$ being the second smallest, and so on. The probability of winning a prize will then depend on how the rules of the contest rank-order players based on the realized values. 
+ -->
+
+<!-- 
+For each player $i$'s actions $(y_i, t_i)$, the competition style of the contest determines the probability of player $i$ winning a prize and hence $i$'s expected payoffs;
 \begin{equation}
-	\label{cost function}
-		C(\ability, \performance, \timing) = \ability^\alpha \performance^\beta \timing^\gamma 
-		\qquad\text{with }\alpha, \gamma < 0, \beta>1.
+		\label{expected payoffs}
+		\pi_{i}^\competition 
+						= \sum_{k=1}^{q} p_{i}^{k,\competition}(\performance_i, \timing_i) v_k 
+						-  C(\ability_i, \performance_i, \timing_i)
 \end{equation}
 
-Thus, costs are decreasing in $\ability$, increasing in $\performance$, and decreasing in $\timing$, with constant elasticities $\alpha$, $\beta$, and $\gamma$, respectively. (Alternatively, one can replace time $t_i$ with a new variable "speed" $s_i$ defined as the ratio of quality over time.)
+where $p_{i}^{k,\competition}(\cdot)$ denotes the conditional probability of winning the $k$-th prize given a performance $\performance_i$ and a completion time $\timing_i$.
 
-Abilities are drawn at random from a common distribution function $F(\cdot)$ with density $f(\cdot)$ on a bounded interval. Information is asymmetric, as players observe privately the realization
-of their own ability variable before making their choices. 
-
-Players are risk neutral and maximize their expected payoffs
-
-\begin{equation}
-	\label{expected payoffs}
-	\pi_i = \sum_{k=1}^{q} p_{i}^{k}(\performance_i, \timing_i) v_k -  C(\ability_i, \performance_i, \timing_i)
-\end{equation}
-
-where $p_{i}^{k}(\cdot)$ denotes player $i$'s conditional probability of winning the $k$-th prize given a performance $\performance_i$ and a time $\timing_i$ to complete the task.
-
-For a given distribution of the actions of player $i$'s opponents, the probability of winning a prize $p_{i}^{k}(\cdot)$ is fully specified by the "competition style" of the contest. We consider three competition styles: the race; the tournament; and the tournament with reserve.  
-
-To define the probability under each competition style we need first to define the distribution of the actions of the opponents for each player. As information is asymmetric and players move simultaneously, opponents' performances and timings can be treated as random variables $Y_1, ..., Y_{n-1}$ and $T_1, ..., T_{n-1}$ drawn from common distributions $F_{Y}(\cdot)$ and $F_{T}(\cdot)$, respectively. In a contest, realizations of these variables need to be ordered to award any prize. Let denote the $j$'th smallest of the order statistics of the $Y$'s by $Y_{(j)}$, with $Y_{(1)}$ being the smallest, $Y_{(2)}$ being the second smallest, and so on; and the $j$'th smallest of the $T$'s by $T_{(j)}$, with $T_{(1)}$ being the smallest, $T_{(2)}$ being the second smallest, and so on. 
 
 In a race competition, the first player to achieve a given minimum performance target $\target$ gets the first prize, the second to achieve the same target gets the second prize, and so on.  Hence, the conditional probability of winning the $k$-th prize in a race is 
 
@@ -45,49 +60,62 @@ $$
 	 0 & \text{otherwise;}
 	 \end{cases}
 $$
+ -->
  
-where $T_{(0)}=0$ and we use the convention that an opponent $j$'s timing is infinite if the performance is (strictly) below the target ($y_j<\target$).
-
-In a tournament competition, instead, the player having achieved the highest performance by a given deadline $\deadline$ gets the first prize, the player having achieved the second highest performance gets the second prize, and so on. Hence, the conditional probability of winning the $k$-th prize in a tournament is
-
-\begin{equation}	\label{probability tournament}
-	 p_{i}^{k,\text{tournament}}(\performance_i, \timing_i) = 
-	 \begin{cases}
-	 \Pr\{Y_{(n-k)} > \performance_i \geq Y_{(n-k-1)}\} & \text{if } \timing_i\leq\deadline \\
-	 0 & \text{otherwise;}
-	 \end{cases}
-\end{equation}
-
-where we use the convention that an opponent $j$'s performance is zero if the time is (strictly) above the deadline ($t_j>\deadline$).
- 
-Finally, in a tournament with reserve competition, the conditional probability is similar to that in  a tournament competition as in \ref{probability tournament} with the only difference that it is zero when the performance is below a given "reserve" performance target $\target$.
-
-The contest designer can influence player's choices by choosing the competition style of the contest and, therefore, one the above conditional probabilities. The contest designer is risk neutral agent and aims to maximize its revenues by increasing the winner's performance, while keeping low the time spent (alternatively, maximizing the speed of production). Let denote the actions of the contest winner by $(Y^w, T^w)$. The contest designer's expected payoff (net of payments to competitors) is:
+The contest designer is risk neutral and aims to maximize its revenues by increasing the winner's performance, while keeping low the time of delivery (i.e., max the speed of production). The actions of the contest winner are random variables denoted by $(Y^w, T^w)$. The contest designer's expected payoff (net of total prizes distributed to winners) is:
 
 $$
-	\pi_{cd} = E[Y^w + \tau T^w \mid Y^w \geq \target, T^w\leq\deadline]
+	\pi_{cd} = E[Y^w - \tau T^w]
 $$
 
-where $\tau\leq0$ denotes the contest designer's (negative) preferences towards time.
+where $E$ denotes the expectation with respect to the distribution of players' actions in equilibrium; and $\tau$ denotes the intensity of the contest designer's (negative) preferences towards solutions delivered later in time.
 
-
+<!-- For simplicity, assume the total prizes distributed in the contest (either paid or not to winners) are sunk.  -->
 
 ## Equilibrium
+We now solve the model for the unique symmetric Bayesian Nash equilibrium of players.
 
-In this section, we solve the model for the unique symmetric Bayesian Nash equilibrium of players. To simplify notation, we focus on a contest with two prizes $q=2$.
+### Races
+The first key observation is that, in a race, any solution of quality below the target $\target$ gives a zero probability of winning prizes; and any solution of quality above the target gives a constant probability of winning. It is thus a dominant strategy for every contestant to choose a quality either of zero (i.e., the lowest possible) or equal to the target $\target$.^[As choosing a quality of zero gives a null payoff for any $t$, we use the convention that when $y_i=0$ then $t_i = \deadline$ to avoid multiplicity of equilibria.]
 
-### Race
+Since contestants act independently, for each contestant $i$ the actions of its opponents can be treated like realizations of the random variables $Y$ and $T$ that are independently drawn from the distributions $F_Y$ for time and $F_T$ for quality. 
 
-At equilibrium, each player $i$ chooses $\performance_i$ and $\timing_i$ by maximizing $\pi_i$ given beliefs about the equilibrium actions of the other players.
-
-In a race competition, the key observation is that any performance below the target gives a zero probability of winning and any performance above the target gives a constant probability of winning. Thus, player $i$'s optimal choice $\performance_i^*$ is either zero (i.e., the lowest possible) or $\performance_i^*=\target$. 
-
-Assuming $\performance_i^{*}$, the optimal timing $t_i^*$ is given by first order conditions
-
+Let denote the $j$'th smallest of the $T$'s by $T_{(j)}$, with $T_{(1)}$ being the smallest, $T_{(2)}$ being the second smallest, and so on. For each contestant $i$ with a timing $t_i$, the probability of winning the first prize is:
 $$
-	\partial xxxx  = \sum_{} 
+	Pr(\text{winning first prize})
+		 = Pr(t_i \leq T_{(1)}) = 1 - F_{T_{(1)}}(t_i);
+$$
+the probability of winning the second prize is:
+$$
+	Pr(\text{winning second prize}) 
+		= Pr( T_{(1)} < t_i \leq T_{(2)}) =  F_{T_{(1)}}(t_i) [1- F_{T_{(1,n-2)}}(t_i)];
+$$
+and so on.
+
+<!-- 
+Let denote the $j$'th smallest of the $Y$'s by $Y_{(j)}$ ---with $Y_{(1)}$ being the smallest, $Y_{(2)}$ being the second smallest, and so on---and the $j$'th smallest of the $T$'s by $T_{(j)}$---with $T_{(1)}$ being the smallest, $T_{(2)}$ being the second smallest, and so on. The probability of winning a prize will then depend on how the rules of the contest rank-order players based on the realized values. 
+ -->
+
+Assuming there exists a monotonic function $t^*(\cdot)$, we use  change of variable to express xxxx into axxxx. Then the optimal action for contestant $i$ is xxxx. 
+
+that the optimal timing $t_i^*$ for a player with ability $a_i$ is $t^*_i = t^*(a_i)$. The optimal timing $t_i^*$ is given by first order conditions
+$$
+	\frac{d g(\phi)}{d \phi} \dot\phi = a^\alpha y^\beta \delta t^{\delta-1}
 $$
 
+Using the definition: 
+$$
+	\frac{d \phi}{d y} =  g(\phi) h(t)
+$$
+where 
+$$
+	g(\phi) = \phi^\alpha \left[\sum \dot p^k (\phi) v_k \right]^{-1}
+$$
+and
+$$
+	h(y) =  \target^\beta  \delta t^{\delta -1}
+$$
+with initial conditions $\phi(\deadline)=0$. 
 
 Here, the key observation is that, for a given level of quality, any time that is strictly below the deadline does not affect the probability of winning but is costly in terms of effort (working faster is costlier) and any time that is strictly above the deadline gives a negative payoff. Thus, choosing  $t_i=\deadline$ is a (weakly) dominant strategy for each player. Then the first order condition with respect to quality is:
 

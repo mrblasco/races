@@ -1,7 +1,8 @@
 # Races or Tournaments? Theory and Evidence from the Field
 
+Contacts: Andrea Blasco <ablasco@fas.harvard.edu>
+
 ## Overview
 
-This report contains scripts for the paper `Races or Tournaments? Theory and Evidence from the Field`. 
+This repository contains data and scripts for the paper titled "Races or Tournaments? Theory and Evidence from the Field." 
 
-Contacts: Andrea Blasco <ablasco@fas.harvard.edu>

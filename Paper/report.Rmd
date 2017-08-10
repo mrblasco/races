@@ -29,6 +29,7 @@ keywords:
 
 fontsize: 10pt
 #setspace: \doublespacing
+endfloat: true
 
 output:
   pdf_document:
@@ -59,7 +60,7 @@ library(knitr)
 
 
 opts_chunk$set(
-	cache=TRUE,
+	cache=FALSE,
 	echo=FALSE,
 	message=FALSE,
 	warning=FALSE,
@@ -76,10 +77,10 @@ options(digits=3, xtable.caption.placement='top', xtable.comment=FALSE)
 percent  <- function(x, digits=0, ...) round(100 * x, digits, ...)
 difftime2 <- function(...) as.numeric(difftime(...))
 
-source("../prep-data.R")
-source('../boxplot.R')
-source('../descriptives.R')
-source('../regtab.R')
+source("../R/prep-data.R")
+source('../R/boxplot.R')
+source('../R/descriptives.R')
+source('../R/regtab.R')
 
 # Documents 
 child_docs <- c("1_intro.Rmd", "2_model.Rmd", "3_data.Rmd", "4_results.Rmd","5_discussion.Rmd")	

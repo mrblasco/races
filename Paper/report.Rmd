@@ -58,7 +58,6 @@ library(xtable)
 library(stargazer)
 library(knitr)
 
-
 opts_chunk$set(
 	cache=FALSE,
 	echo=FALSE,

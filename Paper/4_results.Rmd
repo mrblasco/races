@@ -1,3 +1,8 @@
+```{r}
+read_chunk("R/results.R")
+read_chunk("R/results_sorting.R")
+```
+
 # Results
 At the end of the eight day submission period of the contest, we collected individual data like the number, timing, and score of each code submission made by competitors. As competitors behaviors are generally correlated within each room, we then aggregated these individual data into room responses to examine differences between competition styles at the room level.[^dependence]
 
@@ -6,50 +11,20 @@ At the end of the eight day submission period of the contest, we collected indiv
 ## Entry
 Our analysis of the effects of different competition styles begins by looking at competitors' entry. The entry variable is the fraction of competitors in a room who made at least one submission during the eight day submission period of the contest. Our theoretical model predicts that, all else being equal, competitors' entry will be higher in a tournament than in a race competition, because of the lack of minimum performance requirements. For the same reason, it also predicts higher entry rates in regular tournaments compared to tournaments with reserve. Consistent with these predictions, Figure \ref{room entrants} shows a higher median percentage of entrants in tournaments compared to both races and tournaments with reserve. It also shows that the difference in entry between tournaments and races, though it is consistently positive across room sizes, seemed more marked in small rooms compared to large rooms, suggesting sobering effects associated with size.
 
-```{r entrybox, fig.width=9, fig.height=4, include=FALSE}
-par(mfrow=c(1, 3)); ylim=c(0, .6)
-form <- formula(submit/n ~ treatment)
-boxplot.custom(form, data=entry, main="All rooms", ylim=ylim)
-boxplot.custom(form, data=subset(entry, room_size=='Small'), main="Small rooms\n(10 competitors)", ylim=ylim)
-boxplot.custom(form, data=subset(entry, room_size=='Large'), main="Large rooms\n(15 competitors)", ylim=ylim)
+```{r entryPlot, fig.width=9, fig.height=4, include=FALSE}
 ```
 
 \begin{figure}
 \caption{Percentage of room entrants by competition and room size}
 \label{room entrants}
-\includegraphics{Figures/entrybox-1.pdf}
+\includegraphics{Figures/entryPlot-1.pdf}
 \end{figure}
-
-
-```{r entrydiff}
-entry.diff <- round(with(entry, tapply(submit, treatment, mean)), 1)
-entry.pcnt <- round(with(entry, 100*tapply(submit/n, treatment, mean)), 1)
-```
 
 On average, `r entry.diff['tournament']` competitors (`r entry.pcnt['tournament']` percent) assigned to tournaments were submitting solutions compared to `r entry.diff['race']` competitors  (`r entry.pcnt['race']` percent) assigned to races and `r entry.diff['reserve']`  (`r entry.pcnt['reserve']` percent) assigned to tournaments with reserve. To test if the observed positive difference in entry between tournaments and races was statistically greater than zero, we used a multiple linear regression model. We regressed the fraction of entrants in each room against treatment dummies and room size dummies. To control for random differences in competitors' baseline characteristics across rooms, we added controls for differences in room abilities and demographics.[^controls]
 
 [^controls]: We consider two sets of room controls: a "partial set" and a "full set." The partial set includes  control variables with a relatively higher chance of being different across treatment groups. Those are variables with a relatively high (i.e., equal or larger than one) F statistic as reported on Table \ref{summary}. The full set includes all the available controls with the exception of a few variables. To avoid multicollinearity issues, the full set does not include: the anticipated hours of work in each day (`hours12-78`) that are replaced by the sum (`hours`); and the number of top five placements that was highly correlated with the number of wins. Other minor issues. Since our data has only a few winners with many wins, instead of using the mean number of wins of the room, we took an indicator for whether a winner was in the room or not.
 
 ```{r entrylm, results='asis'}
-m <- rep()
-m$entry.lm <- lm(submit/n ~ treatment + room_size, data=entry)
-m$entry.lm.partial <- update(m$entry.lm, ~ . + nwins + ntop10 + timezone + postgrad + male)
-m$entry.lm.full <- lm(submit/n ~ . -hours12-hours34-hours56-hours78, data=entry[, -1])
-m.log <- lapply(m, function(x) update(x, "log(submit/n) ~ ."))
-
-regtab(c(m, m.log), digits=3, notes.width=1, keep.stat=c('n','rsq')
-	, omit="nwins|hours|rating|nreg|nsub|ntop|risk|male|time|postgrad|below|paid|year"
-	, add.lines=list(c("Room controls", rep(c("no controls", "partial", "full"), 2)))
-	, dep.var.labels=c("Entry/n","log(Entry/n)")
-	, covariate.labels=c("Tournament","Tournament w/reserve", "Room size (small)")
-	, notes="The table reports regression estimates of the effects of different competition styles on entry computed using three sets of room controls: ``no controls\", ``partial\", ``full.\" Standard errors are reported in parenthesis. ***,**, * indicate statistical significance at 1, 5, and 10 percent level."
-	, caption="Estimates of the effects of competition and room size on entry"
-	, label='ols entry')
-```
-
-```{r entrysum}
-entry.lm.sum <- summary(m$entry.lm) 
-entry.lm.log.sum <- summary(m.log$entry.lm)
 ```
 
 As shown in Table \ref{ols entry}, the estimated difference in entry between tournaments and races is of `r round(coef(m$entry.lm)['treatmenttournament'],2)`. This corresponds to a difference of 1 more entrant every `r round(1/coef(m$entry.lm)['treatmenttournament'])` = 1/`r coef(m$entry.lm)['treatmenttournament']` competitors or, using the specification with a log-transformed proportion (column 4), an increase by a factor of 
@@ -57,134 +32,77 @@ As shown in Table \ref{ols entry}, the estimated difference in entry between tou
 
 Because tournaments yielded higher entry rates relative to races, it is now useful to discuss possible drivers of entry by looking at the sorting patterns across competition styles. Our theory suggests that, all else being equal, the positive gap in entry of tournaments compared to races should be driven by low-ability competitors sorting into tournaments at higher rates. Though theory prescinds from practical definitions of ability, two main types of abilities seemd the most relevent in our context. One involves proficiency in solving algorithmic problems like having adequate problem-solving skills and a good knowledge of programming. The second pertains to having as much time availability as required to solve the given problem. Our analysis thus focused on two types of data: platform data on skills and experience; and the hours of work as anticipated by competitors at registration.
 
+To examine the sorting patterns in our data, we first estimated the conditional probability of entry as a function of our favourite ability measures --- the skill ratings and anticipated hours of work. As shown in the upper panels of Figure \ref{sorting plot}, the linear-regression estimates of the conditional probability of entry computed for the median competitor (i.e., `r median(races$hours, na.rm=TRUE)` anticipated hours) was increasing in both our ability measures --- the skill rating (left panel) and anticipated hours (right panel) --- with large differences in probability between individuals at the top and the bottom of the covariate distribution. So, entrants were more skilled than non-entrants. To see if these sorting patterns were different across tournaments and races, we then estimated the same relationships conditional on competitors being randomly assigned to races or tournaments (i.e., interacting the covariates with treatment dummies). As shown in the lower panels of Figure \ref{sorting plot}, the linear-regression estimates with interactions overlap quite well one another. This means that the propensity to enter of an individual with a given programming skills --- measured by the skill rating --- holding constant time availability --- measured by the anticipated hours of work --- was the same across treatments, and vice versa.  So, based on these measures, our data provide no evidence of a differential in ability-based sorting between tournaments and races.
 
-```{r sorting, results='asis'}
-models <- paste('log(',colnames(covars),"+1)", "~submit*treatment", sep='')
-for (i in c('timezone','male','below30','postgrad','hours','hours12','hours34','hours56','hours78')) {
-	cmd <- paste('log\\(', i, "\\+1\\)", sep='')
-	models <- gsub(cmd, i, models)
-}
-for (i in c('nreg','paidyr', 'nwins','ntop5','ntop10','risk','rating','ratingsrm')) {
-	models <- gsub(paste(i, "\\+1", sep=''), i, models)
-}
-models.fit <- sapply(models, function(x) lm(formula=x, data=cbind(covars, races)))
-
-# Average differences
-races$treatment2 <- races$treatment
-contrasts(races$treatment2) <- contr.sum(3, contrasts=TRUE)
-models2 <- gsub("treatment","treatment2", models)
-models.fit2 <- sapply(models2, function(x) lm(formula=x, data=cbind(covars, races)))
-
-table.sorting <- function() {
-	get.star.string <- function(x) ifelse(x < 0.01, '***', ifelse(x<0.05, "**", ifelse(x<0.1,"*", "")))
-	get.column <- function(varname, object, digits=2) {
-		est <- sapply(object, function(x) coef(summary(x))[varname, 1])
-		SE <- sapply(object, function(x) coef(summary(x))[varname, 2])
-		pval <- sapply(object, function(x) coef(summary(x))[varname, 4])
-		depvar <- as.vector(rbind(gsub("~.*","", names(est)), rep("", length(est))))
-		stars <- get.star.string(pval)
-		out <- as.vector(rbind(paste(format(round(est, digits)), stars, sep='')
-			, paste("(",round(SE, digits),")", sep='')))
-		data.frame(depvar, out)
-	}
-	x1 <- get.column('submitTRUE', models.fit2)
-	x2 <- get.column('submitTRUE:treatmenttournament', models.fit)
-	x3 <- get.column('submitTRUE:treatmentreserve', models.fit)
-	x4 <- as.vector(rbind(sapply(models.fit, function(x) length(x$fitted)), rep("",length(models.fit))))
-	tab <- cbind(x1, tournament=x2[,-1], reserve=x3[,-1], obs=x4)
-}
-tab <- table.sorting()
-colnames(tab) <- c('Variable'
-	, "\\multicolumn{1}{L{2cm}}{Difference entrants vs non-entrants}"
-	, "\\multicolumn{1}{L{2cm}}{Difference entrants in races vs tournaments}"
-	, "\\multicolumn{1}{L{2cm}}{Difference entrants in races vs tournaments w/reserve}"
-	, "Obs.")
-xtab <- xtable(tab)
-caption(xtab) <- 'Sorting patterns'
-label(xtab) <- 'sorting'
-align(xtab) <- c("@{}l","@{}l", rep("c", ncol(tab)-1))
-attributes(xtab)$notes <- " The table reports conditional mean differences of various competitors' characteristics conditional on entry and the randomly assigned competition style. Standard errors are reported in parenthesis. ***,**, * indicate statistical significance for t-test at 1, 5, and 10 percent level."
-render.xtable(xtab
-	, include.rownames=FALSE
-	, sanitize.colnames.function=function(x)x
-	, sanitize.text.function=function(x)gsub('-','$-$', x)
-)
+```{r sortingplots, fig.width=8, fig.height=8, include=FALSE}
 ```
 
-```{r sortingsum}
-models.sum <- sapply(models.fit2, function(x)coef(summary(x))["submitTRUE", ])
-colnames(models.sum) <- gsub("~.*", "", colnames(models.sum))
+\begin{figure}
+\caption{Sorting by skills and time availability}
+\label{sorting plot}
+\includegraphics{Figures/sortingplots-1.pdf}
+\end{figure}
 
-log.effect <- function(x) {
-	100*(round(exp(x), 2) - 1)
-}
-linear.effect <- function(x) round(x, 2)
+
+Differences in means for the all other covariates (not shown) supported the same conclusion --- positive and significant differences in ability between entrants and non-entrants but no differing patterns between tournaments and races. Somewhat surprisingly, the analysis of differences in means showed an unexpected difference in ability characteristics between entrants in races and those in tournaments w/reserve. As shown in Table \ref{sorting table}, those in the races had significantly more time availability and had registered to less past competitions than those in the tournaments w/reserve. Since entry was the same in both treatments, this evidence suggests the presence of a "substitution" effect. Such as substitution effect is not predicted by our theory, as it predicts differences to be driven by higher/lower entry rates, which are not expected to arise when races and tournament w/reserve have the same target quality. And we will return on this point in the discussion of the results. 
+
+```{r sortingtable, cache=FALSE, results='asis'}
 ```
 
-As shown in Table \ref{sorting}, entrants were more skilled than non-entrants. They had, on average, `r log.effect(models.sum[1, "log(rating)"])` percent higher (p=`r models.sum[4, "log(rating)"]`) skill ratings (computed on MMs), registered to xxx more past competitions, earned `r round(exp(models.sum[1, "log(paidyr)"]),2)` times more (p=`r models.sum[4, "log(paidyr)"]`) money in cash prizes per year relative to non-entrants. Regarding time availability, the other dimension of interest, the analysis of our registration survey data showed that entrants --- before knowing the randomly assigned competition style --- anticipated working many more hours relative than non-entrants (an average of `r round(models.sum[1, "hours"],1)` more total hours of work on programming/solving the algorithmic problem). Since skill ratings and anticipated hours of work are uncorrelated in our dataset, an interpretation of these results is that our measures were indeed capturing two different dimensions of ability (problem solving skills and time availability) and that these factors were significant determinants of entry.
-
-
-While our results show stark differences between entrants and non-entrants, we failed to detect significant differences in entrants' characteristics between races and tournaments. As reported in Table \ref{sorting}, all our estimates of the mean differences between races and tournaments are insignificant (with the only exception of one variable). Thus, we find no evidence of skill-based sorting in terms of both our measures of ability (time and skill ratings). By contrast, we find significant differences in entrants' anticipated hours of work between races and tournaments with reserve. Since entry rates are not different between these two treatment groups, one may conclude that some sort of substitution effect must have occurred. As these effects are not explicitly tackled by our model, we will not be focusing on the determinants of this substitution effect.
-
-```{r, include=FALSE}
-est <- sapply(models.fit, function(x)coef(summary(x))["submitTRUE",1])
-CI <- t(sapply(models.fit, function(x)confint(x)["submitTRUE",]))
-rownames(CI) <- gsub("~.*","", rownames(CI))
-x <- est; x.CI <- CI
-plot(x, 1:nrow(CI), xlim=c(-2, 5))
-segments(x0=x.CI[,1], x1=x.CI[,2],y0=1:nrow(CI))
-abline(v=0)
-text(x=x,y=1:nrow(CI), rownames(CI), pos=1)
-```
+Let us now summarize the evidence obtained so far. Consistent with theoretical predictions, we found evidence that competitors in tournaments had higher propensity to enter the competition relative to those randomly assigned to the other treatments. While our data show stark differences between entrants and non-entrants, we did not detect significant differences in entrants' characteristics between races and tournaments. Both conditional and unconditional differences in means between races and tournaments are insignificant. In particular, we found no evidence of skill-based sorting in terms of two well-suited measures of ability ---  skill ratings and anticipated hours of work. By contrast, we found significant differences in entrants' characteristics between races and tournaments with reserve. Since entry rates are not different between these two treatment groups, a substitution effect must have occurred, which was unexpected as not predicted by theory.
 
 ## Scores
-The results on entry suggest that tournaments had a positive impact on competitors' participation relative to races and tournaments with reserve. The analysis of sorting showed further that the increment of entrants was driven by xxxx rather than differences in experience and proficiency in solving problems, raising the question of whether xxxx will generate relatively higher performance levels. Our model predicts that, all else being equal, tournaments will yield higher performance levels relative to races. It also predicts that tournaments with reserve will dominate both regular tournaments and races in terms of performance.  To investigate this issue, we now focus on differences in performance as measured by the highest score attained by a competitor's last submission in each room. 
+
+After the analysis on entry, we focused on comparing treatment effects on performance. Our model predicts that, all else being equal, tournaments with reserve will yield higher performance levels compared to races and "regular" tournaments. The model also predicts lower volatility in performance of races relative to tournaments. To investigate these issues, we collected data on scores for each solution submitted during the contest. We then focused the analysis on the highest score attained by a competitor's last submission in each room, and we divided all room values by the target quality to express the percentage relative to the target quality.[^scores]
+
+<!-- 
+The results on entry suggest that tournaments had a positive impact on competitors' participation relative to races and tournaments with reserve. The analysis of sorting showed further that the excess of entry was not driven by differences in ability --- at least according to our measures, --- raising the question of whether incentives alone --- without sorting in skills --- can generate relatively higher performance levels. 
+ -->
+
+[^scores]: During each contest, the platform keeps "provisional" and "system" scores for each solution submitted. In data science problems, provisional and system scores are computed in the same way but on different datasets to prevent the so-called "overfitting" problem (i.e., a form of model misspecification). Provisional scores are computed on a "testing" dataset and then published on the leaderboard. System scores are computed on a smaller "system testing" dataset and kept secret until the end of the contest. As these dataset are representative of the same data generating process, both scores are basically measuring the same kind of performance and indeed are highly correlated (the correlation coefficient was `r with(scores, cor(provisional, final,use='complete.obs'))` in our data). To simplify exposition, we report the analysis based on the system scores but results are the same with provisional scores as well. 
 
 
-Figure XXX shows xxxx. The platform keeps record of provisional and system scores for each submission. Provisional and system scores are computed in the same way but on different datasets: provisional scores are computed on a "testing" dataset and then published on the leaderboard; system scores, by contrast, are computed on a "system testing" dataset and kept secret until the end of the contest. As final scores matter for awarding cash prizes, keeping these scores secret prevents the so-called "overfitting" problem (i.e., a form of model misspecification).^[When competitors have made more than one submission, the final score is generally computed on the competitor's last submission.] 
-
-
-```{r finalbox, fig.width=9, fig.height=4, fig.cap="Highest room scores by competition style and room size\\label{scores}"}
-
-par(mfrow=c(1, 3)); ylim <- c(0.97, 1.04)
-form <- formula(final.cens ~ treatment, ylim=ylim)
-boxplot.custom(form, data=final, main="All rooms", ylim=ylim)
-boxplot.custom(form, data=subset(final, room_size=='Small'), main="Small rooms\n(10 competitors)", ylim=ylim)
-boxplot.custom(form, data=subset(final, room_size=='Large'), main="Large rooms\n(15 competitors)", ylim=ylim)
+```{r scoresplot, fig.width=8, fig.height=4, include=FALSE}
 ```
 
-While final scores give a very powerful indication of performance, one problem with measuring individual performance using final scores is that any failure in the submitted code might return very low values, as shown in Figure \ref{scores over time}, that are not wholly indicative of performance. As outliers will in general bias the room means, we explored two corrective methods (1) we trimmed last scores before computing the room means; and (2) we replaced all final scores that were below the baseline score with the baseline. The first method gives a winsorized mean, which is an unbiased estimate of the average [XXXX]. The second approach equals censoring by  assuming that all entrants had a performance at least equal to the final score that one would obtain by submitting the BANNER's algorithm without making any useful change.
+\begin{figure}
+\caption{Highest room scores by competition style and room size}
+\label{scores plot}
+\includegraphics{Figures/scoresplot-1.pdf}
+\end{figure}
 
-
-```{r scorelm, results='asis'}
-m <- rep()
-m$final.lm <- lm(100*final.cens ~ treatment + room_size, data=final)
-m$final.lm.partial <- update(m$final.lm, ~ . + nwins + ntop10 + timezone + postgrad + male)
-m$final.lm.full <- lm(100*final.cens ~ . -hours12-hours34-hours56-hours78-final, data=final[,-1])
-m.log <- lapply(m, function(x) update(x, "log(100*final.cens) ~ .")) 
-
-
-regtab(c(m, m.log), digits=2, notes.width=1, keep.stat=c('n','rsq')
-	, omit="nwins|hours|rating|nreg|nsub|ntop|risk|male|time|postgrad|below|paid|year"
-	, add.lines=list(c("Room controls", rep(c("no controls", "partial", "full"), 2)))
-	, dep.var.labels=c("Highest score","log(Highest score)")
-	, covariate.labels=c("Tournament","Tournament w/reserve", "Room size (small)")
-	, notes="The table reports regression estimates of the effects of different competition and room size on the highest score in a room computed using three sets of room controls: ``no controls\", ``partial\", ``fulla.\" Standard errors are reported in parenthesis. ***,**, * indicate statistical significance at 1, 5, and 10 percent level."
-	, caption="Estimates of the Effect of Competition Style on Performance"
-	, label='ols entry')
+```{r scorestable, results='asis'}
 ```
 
+As shown in Figure \ref{scores plot}, the distribution of the top final scores was centered around the target quality in each treatment, with higher variance in tournaments and tournaments w/reserve compared to races. The top final scores were thus below the target quality in about half of the rooms in each treatment; with larger differences between high and low scores in tournaments relative to races. 
 
-Results. we do not find evidence supporting our hypothesis that mean room scores were higher in the Tournament with Reserve compared to the other treatments.  The reader may find this finding not entirely surprising given the lack skill-based selection across groups that we documented earlier.
 
-- We find a significant difference in variance, suggesting that variance was higher in the reserve. 
+```{r}
+vt <- var.test(final.cens ~ treatment=='race', data=final)
+```
 
-- We replace 3 values that were 1.5 times below the inter-quantile range of the distribution with the baseline value. 
+Regression estimates of the treatment effects are shown in Table \ref{scores table}. In all our specifications --- with or without adjustment for random differences in the baseline characteristics of the rooms --- estimates of treatment effects were small ($<1$ percentage point) and insignificant, suggesting performance differences were too small to be detected. By contrast, using an F-test to compare the variances of two samples, we found the difference in variance between races and the other two treatments combined was significant (p=`r vt$p.value`).
+
+
+Taken together, these results show that top final scores were below the target quality in about half of the rooms in each treatment. The total payout in tournaments was hence about twice as high as in the races and tournaments w/reserve, where prizes are distributed only when top solutions achieve a score equal or higher than the target. And, at the same time, the mean top scores in tournaments was significantly different from those in the other treatments. This seems to suggest that races and tournaments w/reserve were more "efficient" than tournaments. 
+
+
+<!-- 
+percentage of entrants in tournaments compared to both races and tournaments with reserve. It also shows that the difference in entry between tournaments and races, though it is consistently positive across room sizes, seemed more marked in small rooms compared to large rooms, suggesting sobering effects associated with size.
+ -->
+
+
+^[FOOTNOTE --- While final scores give a very powerful indication of performance, one problem with measuring individual performance using final scores is that any failure in the submitted code might return very low values, as shown in Figure \ref{scores over time}, that are not wholly indicative of performance. As outliers will in general bias the room means, we explored two corrective methods (1) we trimmed last scores before computing the room means; and (2) we replaced all final scores that were below the baseline score with the baseline. The first method gives a winsorized mean, which is an unbiased estimate of the average. The second approach equals censoring by  assuming that all entrants had a performance at least equal to the final score that one would obtain by submitting the BANNER's algorithm without making any useful change.]
+
 
 
 ## Speed
 
-Finally, we examined differences in submission speed measured by the mean time of the first submission in each room. As shown in the right panel of Figure \ref{room outcomes}, the median room time-to-submit in the Race was about 20 and 40 hours shorter than the Tournament and the Tournament with Reserve, respectively. The variance, however, was also larger with values ranging from below 60 to 190 hours, whereas by comparison the other groups' distributions were both above the 120 hours. To test to see if the difference in means between speed in the Race and the other groups was greater than zero, we used a  xxxx which gives a (one-sided) p-value of xxxxx. [Bootstrap] Thus, our data support the hypothesis that competitors' speed in a Race was higher than in the other groups. Taken together with the absence of skill-based selection and score differences, this result implies that competitors in the Race competition have exerted greater efforts (i.e., by lowering execution time while keeping performance at a comparable level)  relative to the other groups.
+We now turn to examine differences in the timing of submissions. Our theory predicts that, all else being equal, solutions will be developed faster in races compared to tournaments. The prediction can be seen either with respect to the average "time" to develop a submission or the speed to develop a submission of a given quality. To test this prediction we examined he mean time of the first submission scaled by the score. 
+
+As shown in Figure \ref{room time}, races yielded solutions, in median, about 2 days faster than tournaments; and this difference seems larger in small rooms where contestant in tournaments might have less incentives to act in advance to prevent others from entering the contest. 
+
+To test to see if the difference between races and tournaments was greater than zero, we used a multiple regression approach. Estimates and standard errors are shown in Table \ref{ols speed}. Speed was significantly lower in races than in the other treatments. When we add controls for random differences in baseline characteristics like average experience of room competitors, the result becomes slightly insignificant, though it remains well below the significant threshold for a one-sided test. Statistical significance is higher in the specification with the log-transformed variable, which is to be preferred as it gives a better fit in terms of $R^2$. 
 
 
 ```{r firstsubbox, fig.width=9, fig.height=4, include=FALSE}
@@ -196,8 +114,8 @@ boxplot.custom(form, data=subset(speed, room_size=='Large'), main="Large rooms\n
 ```
 
 \begin{figure}
-\caption{Average time of first submission by competition and room size}
-\label{room entrants}
+\caption{Time of first submission by competition and room size}
+\label{room time}
 \includegraphics{Figures/firstsubbox-1.pdf}
 \end{figure}
 
@@ -218,11 +136,13 @@ boxplot.custom(form, data=subset(speed, room_size=='Small'), main="Small rooms\n
 boxplot.custom(form, data=subset(speed, room_size=='Large'), main="Large rooms\n(15 competitors)", ylim=ylim)
 ```
 
+<!-- 
 \begin{figure}
-\caption{Average score of first submissions by competition and room size}
-\label{room entrants}
+\caption{Average Speed by competition and room size}
+\label{room speed}
 \includegraphics{Figures/speedbox-1.pdf}
 \end{figure}
+ -->
 
 
 ```{r speedlm, results='asis'}
@@ -241,11 +161,12 @@ regtab(c(m, m.log), digits=2, notes.width=1, keep.stat=c('n','rsq')
 	, covariate.labels=c("Tournament","Tournament w/reserve", "Room size (small)")
 	, notes="The table reports regression estimates of the effects of different competition and room size on the highest score in a room computed using three sets of room controls: ``no controls\", ``partial\", ``fulla.\" Standard errors are reported in parenthesis. ***,**, * indicate statistical significance at 1, 5, and 10 percent level."
 	, caption="Estimates of the Effect of Competition Style on Production Speed"
-	, label='ols entry')
+	, label='ols speed')
 ```
 
 
+To summarize the results obtained so far, we have found evidence supporting a higher participation in the Tournament. This higher participation, however, does not seem to be driven by low-skilled competitors. We have also found that competitors in the race made submissions faster without sacrificing performance, which suggests that they have paid higher costs from effort associated with the accelerated speed compared to other competitors. Finally, we reject the hypothesis that the Tournament with Reserve yields higher performance levels.
 
-To summarize the results obtained so far, we have found evidence supporting a higher participation in the Tournament. This higher participation, however, does not seem to be driven by low-skilled competitors. We have also found that competitors in the race made submissions faster without sacrificing performance, which suggests that they have paid higher costs from effort associated with the accelerated speed compared to other competitors. Finally, we reject the hypothesis that the Tournament with Reserve yields higher performance levels. [One explanation is that competitors were fishing to hit the threshold and then stopped exerting effort]. 
+## Structural estimation
 
-
+[TBA]

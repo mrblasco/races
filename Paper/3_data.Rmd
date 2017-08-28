@@ -1,124 +1,79 @@
-# Experimental design
-While many observational studies have examined behavior in contests, the design of observational studies for comparing races and tournaments can be problematic.  As our simple theoretical model indicates, contest designers will adopt competition styles that best suit their preferences for time and quality and, as a result, contestants are likely to face sensible payoff differences between a race and a tournament competition. These elements will create selection problems that are hard to control in purely observational studies.
+# The experiment
+## The context
+While many observational studies have focused on various aspects of races and tournaments, the design of observational studies for comparing races with tournaments can be problematic. First, contests are run under widely differing circumstances like the objective, duration, and prize structure of the competition. But even lacking any of these differing aspects, a proper comparison might be impossible. As our model illustrates, contestants are generally confronted with sensible payoff differences between a race and a tournament competition, all else being equal. These differences and other elements will create selection problems that are hard to control in purely observational studies.
 
-Instead of using naturally occurring data, we test our theory by designing and executing a field experiment. In doing so, one need an environment where the same type of contest can be replicated under different competition styles, while keeping fixed all other relevant features. It is also crucial to avoid the selection problem by registering competitors for the contest before they learn about the competition style. Finally, one should be able to record accurately competitors' actions and to obtain performance measures like the timing and quality of the submissions made during the contest.
+Instead of using naturally occurring data, we test our theory by designing and executing a field experiment. In doing so, one need an environment where the same type of contest can be replicated under different competition styles, and while keeping fixed all other relevant characteristics. In particular, it is important to fix the same objective and prize structure while changing only the competition style; and it is crucial to avoid selection problems by assigning at random contestants to each competition style. <!-- Finally, one should be able to record accurately competitors' actions and obtain performance measures like the timing and quality of the submissions made during the contest. -->
 
-Such an environment was provided by the online platform for programming competitions _Topcoder_ who agreed to provide i) access to its large member base of competitors (over 1 million registered users in 2016) and ii) access to its platform's tools (leaderboards, payment system, scoring methods) for managing online contests that we used for the execution of our experimental design.
+Such an environment was provided by  _Topcoder_, a company based in the United States that administers a popular online platform for computer programming competitions and that agreed to provide (a) access to its large member base of competitors (over 1 million registered users in 2016) and (b) access to its platform's tools for managing online contests like web-based leaderboards, scoring methods to determine the winners, and a payment system to reward competitors residing all over the world. These two aspects --- large sample and tools for managing online contests --- considerably simplified the execution of our experiment. 
 
-Three key factors made this platform ideal for our experiment. 
+Beyond simplifying the execution of our experimental design, three key factors made this platform ideal for our experiment. First, the platform offers periodic programming competitions in which members usually participate. It hosts biweekly race-style programming competitions based on programming speed (known as "Single Round Matches" or SRMs) and once a month tournament-like programming competitions based on performance in data science problems (known as "Marathon Matches" or MMs).[^marathons] Therefore, one can expect platform members to be familiar with the kind of strategic interactions of a race or a tournament competition, as implicitly assumed by our game-theoretic contest model.
 
-First, platform members have generally a great deal of experience and knowledge of programming competitions. The platform offers periodic programming competitions in which members usually participate. These competitions can be of two types: Single Round Matches (SRMs) --- a two hour competition where contestants are presented with three problems and get points based on the time elapsed between when a problem was open until a working solution was submitted; and Marathon Matches (MMs) --- a two-to-four week competition where contestasts are presented with a difficult algorithmic problem and top solutions that satisfy given requirements are awarded cash prizes. We thus expected platform members to understand and be familiar with the kind of strategic interactions that naturally arise in a race or a tournament, and be comfortable with a situation in which they are competing for cash prizes.
+[^marathons]: The SRMs involve a race-like competition whereby contestants are presented with several algorithmic problems and get points based on the time elapsed between when a problem was open until a working solution was submitted. The other type (MMs) is a two-week-long tournament where contestants are presented with one difficult algorithmic problem and the top five solutions are awarded a cash prize.
 
-Second, the platform provides us with different measures of competitors' individual ability based on their past performance. These include two independent "skill ratings" (one for each competition type) that are computed and provide a metric of their ability as contestants in each competition type (SRMs and MMs). These metrics are publicly available for each member on the platform. The fact that these measures are publicly available is particularly important because our theoretical approach presumes competitors will form common beliefs about the overall distribution of skills in the contest, which is particularly reasonable when members have constant access to information about the overall distribution of ratings on the platform.
+Second, the platform computes and keeps track of different measures of competitors' individual ability based on their past performance. These include multiple "skill ratings" that are computed and provide a metric of their ability as contestants in the race-like competitions (SRMs) and tournament-like competitions (MMs). As a result, one could expect to (a) estimate treatment effects controlling for very accurate measures of individual ability,[^signal] and (b) examine the association between individual ability and the observed sorting patterns in races and tournaments.  In a contest, showing the distribution of skill ratings to the contestants was also an easy way to help them forming common beliefs about the distribution of abilities, as assumed by the model. 
 
-Third, the platform collects rich data analytics on contest participation (timing and number of submissions) and computes an objective metric of the quality of a solution in the form of a submission score. This is habitually done for each programming competition. Contestants are free to choose when and how many submissions to make. Solutions are recorded on the platform and automatically scored. In general, the correctness of a solution is not a simple pass/fail, but solutions may be scored on many different criteria including how close the return values match a theoretical "correct" answer like a prediction error or how fast solutions run. These scoring metrics serve to form a provisional leaderboard that updates in real time during the submission phase. After the submission phase is over, a final leaderboard is then shown that serves to name the winners of the contest. Provisional and final leaderboards will generally differ as final scores are computed with additional tests like estimating prediction errors on unseen datasets. As the platform provides us with all this information, it gives us the capability of measuring the extent and quality of participation for each competitor with high accuracy.
+[^signal]: Topcoder's skill ratings are often used by software companies for hiring. 
 
-The timing of the experiment was as follows. 
 
-As a first step, a four day registration period for a new competition was announced to the entire community. The announcement was inviting platform members to register and participate in a new (Marathon Match) programming competition for solving a hard algorithmic problem (which we will describe later). As an incentive for participation, a total prize pool of more than \$40,000 was offered to top submissions in the form of cash prizes. The announcement was sent via email to all newsletter subscribers and was publicized in a post on the platform's blog.
+A third key factors making this platform ideal for our experiment was that it collects rich data analytics on contest participation like the timing, extent, and score of solutions submitted during the contest. This is because all solutions must be submitted online to be considered for the contest. A typical submission consists of a single source code file.[^libraries] The submitted file is then executed on the server and returns a score. Scores are an objective metric of quality that usually combine different criteria like how fast solutions run or the prediction error in a classification task into one single numeric value. As the platform provided us with all these measures, we were able to measure the timing, extent, and quality of participation for each competitor with high accuracy.
 
-The online registration process was not overly burdensome. It simply involved giving an informed consent to participation in the research and responding to a short initial survey to collect participant demographics.  As experienced members are more likely to behave according to model predictions, we limited participation to those members. Platform members who had never registered for a MMs competition before the experiment were unable to register. Newly signed-up  members were thus excluded from our sample.
+[^libraries]: The source code being one single file does not end up limiting the complexity of the solutions, as coders are allowed to call other functions from a large database of libraries.
 
-A total of `r nrow(races)` participants registered for this experiment. We then sorted at random all participants into 24 groups or "competition rooms" --- the largest number of concomitant virtual rooms allowed by the platform at that time.  Each competition room can be viewed as an independent contest where we offered cash prizes of $1,000 and $100 to the first and second placed competitor.  In addition, each room provided competitors with access to a private leaderboard (updated about every 48 hours), a web forum to ask questions about the computational problem, and a submission system through which they could submit their codes. The whole submission period lasted 8 days. 
 
-Rooms differed in size, as half of the rooms had 10 competitors and the rest had 15 competitors. From each block of rooms with equal room size, we split rooms at random into 3 competition styles: i) tournament, ii) race, and iii) tournament with a reservation quality (hereinafter simply "reserve"), that we describe below. Hence, our experimental design is summarized by a 3x2 matrix, as shown in Table \ref{experimental design}.
+## Experimental design
+The goal of the experiment was to compare and contrast treatment effects of three different competition styles: (a) races, (b) tournaments, and (c) tournaments with reserve, as defined in our theoretical model section. To further test treatment differences under a varying degree of competition intensity, each of the treatments had two levels of intensity determined by the number of competitors. One intensity level had 10 contestants (small size) and the other 15 contestants (large size).
 
-```{r, results='asis'}
-table.design <- function(tab, ...) {
-	rownames(tab) <- capitalize(rownames(tab))
-	xtab <- xtable(tab, ...)
-	caption(xtab) <-  "Experimental Design"
-	label(xtab) <- "experimental design"
-	render.xtable(xtab)
-}
-tab <- xtabs(~ treatment + room_size, data=races)
-table.design(addmargins(tab), digits=0)
+Forming the 3x2 factorial design shown in Table \ref{experimental design}, the treatments were applied to 24 virtual competition rooms, which are our main experimental units. Each room consisted of a list of randomly assigned competitors and a customized webpage with a problem description, a provisional leaderboard (updated about every 48 hours), and a submission system through which contestants could submit their codes. 
+
+```{r experimentalDesign, results='asis'}
 ```
+ 
+A total prize pool of more than \$40,000 was offered as an incentive for participation. The prize structure across the rooms was the same. In each room, we offered cash prizes of $1,000 and $100 to the first and second placed competitor. An additional "grand" prize of \$6,000 was offered to the top competitor (i.e., the first among all top room competitors) in each competition treatment (a total of 3 grand prizes).
 
-In a Tournament, the solution with the highest score in the room was awarded a first-place room prize of \$1000 and the solution with the second highest score in the room was awarded a second-place room prize of \$100. In addition, a "grand" prize of \$6,000 was awarded to the solution with the highest score from all rooms that were assigned to the Tournament condition. If a competitor had made more than one submission, only the the last solution in terms of time was scored. 
+<!-- Discussion: why ? -->
 
-In a Race, the first solution to achieve a score equal or higher than a given target (we will discuss later criteria used to pick the target) was awarded a first-place room prize of \$1000 and the solution with the second highest score in the room was awarded a second-place room prize of \$100. In addition, a "grand" prize of \$6,000 was awarded to the first solution to meet the target across all rooms that were assigned to the Race condition.  [Scores were computed at discrete intervals ...about every 48 hours.]  
+Registration to the contest was conducted online. The announcement of a a four-day registration period was sent via email to all newsletter subscribers and was publicized in a post on the platform's blog. Registration was free and open to every "experienced" platform member. In particular, we excluded newly signed-up members and all those who had never registered for a MMs competition before the experiment. Registration involved an informed consent and a short registration survey asking for demographics data.
 
-Finally, in a Reserve, [xxxxx]. 
+All registered members were then sorted at random into lists of 10 and 15 competitors. Instead of complete at random, randomization of competitors to lists was done trying to balance the skill rating distribution across rooms. In particular, registered participants were sorted by their skill rating and then sequentially assigned to different lists [AB: \textcolor{red}{double-check exact procedure}]. These lists were then randomly assigned to one of our treatments.^[Each room's webpage required a login and was inaccessible to anyone else. ] 
 
-The competition style was announced at the start of the submission phase via email and in one section of the description of the computational problem as well. Payments were administered by the platform. To collect self-reported measures of effort, limited-edition T-shirts were offered as incentive for responding to a final survey. This final survey took place a few days after the end of the submission period (but before the final ranking was shown and winners fully identified). 
+Participants knew in advance the nature of the problem, the timing of the competition, and the room size. They were, however, not aware of the competition style and the other contestants in the room. This information was communicated to them via an email with a link to their competition room and announcing the start of an eight day submission period.
 
-[Importantlty the contest was a non-rated event.]
+At the end of the submission phase, the platform administered the scoring of submissions and payments to the winners. All contestants were invited to take a final survey to collect self-reported measures of effort --- limited-edition T-shirts were offered as incentive. This final survey took place a few days after the end of the submission period (but before the final ranking was shown and winners fully identified). 
+ 
+### The algorithmic problem
 
-## The algorithmic problem and fixing a target.
+To select a challenging algorithmic problem for the experiment, we worked together with researchers from the United States National Health Institute (NIH) and the Scripps Research Institute (SCRIPPS). The selected problem was based on an algorithm called BANNER [@leaman2008banner] that was built by researchers at the NIH. The algorithm uses domain-expert manual labeling to train a Natural Language Entity Recognition (NLER)'s model that performs automatic annotation of abstracts from a large corpus of biomedical research papers (e.g., PubMed). As automatic annotations help disease characteristics to be more easily identified, improving the existing methods to annotate abstracts was very important for the searchability and identifiability of most relevant papers among millions of records.
 
-To select a challenging algorithmic problem for the experiment, we worked together with researchers from the United States National Health Institute (NIH) and the Scripps Research Institute (SCRIPPS). The selected problem was based on an algorithm called BANNER [@leaman2008banner] that was built by researchers at the NIH. The algorithm uses domain-expert manual labeling to train a Natural Language Entity Recognition (NLER)'s model that performs automatic annotation of abstracts from a large corpus of biomedical research papers (e.g., PubMed). As automatic annotations help disease characteristics to be more easily identified, improving the [xxx] was very important for x, y, and z.  Though adding annotations can be very costly, because [xxxx]. 
+The specific goal of the programming competition was to improve upon the current NIH's BANNER by using a combination of domain-expert and non-expert (e.g., Amazon Mechanical Turk's workers) manual labeling [e.g., @good2014microtask]. As a measure of the ability to make correct predictions of domain expert annotations we used the F-score defined as the harmonic mean of precision and recall: $F = 2 * (precision * recall) / (precision + recall)$). This score was computed on 300 abstracts (100 of which were not disculosed to avoid overfitting) with about a thousand entities to correctly identify from a dictionary with 15 hundred labels. 
 
-The specific goal of the programming competition was to improve upon the current NIH's BANNER by using a combination of domain-expert and non-expert (e.g., Amazon Mechanical Turk's workers) manual labeling [e.g., @good2014microtask]. [xxxx]
 
-* The threshold in the "race" and in the "reserve" was chosen following two main criteria. First, we run a pre-trail experiment that involved 4 coders solving the same problem in isolation for 5 days. This helped us forming basic predictions about xxxx. Second, we surveyed the NIH researchers who developed Banner asking for three percentage improvements they considered "useful," "desirable," and "unlikely."
+One crucial issue in the execution of our experiment was the choice of a quality target for the race and tournament with reserve competitions. To this end, we followed the following two main criteria. First, we wanted a target representing an improvement of current methods but that was achievable in a 8 days. To do that, we run a pre-trail experiment that involved 4 highly-skilled coders. They were asked to solve the same problem in isolation for 5 days. Results of this pre-trail experiment helped us forming basic predictions about technical feasibility of different targets.  To pick the final value, however, we relied on the expectations of NIH researchers who developed the current systems. That is, we surveyed the NIH researchers who developed Banner asking for three percentage improvements they considered "useful," "desirable," and "very unlikely." The final target used in the experiment was close to the "very unlikely" threshold. The baseline F-score achieved by NIH researchers was `r baseline`. We set up a hard-to-reach F-score target for the race competition which was `r target` (about a `r round(100*target/baseline - 100)` percent increase of the baseline). 
 
-* As a measure of the ability to make correct predictions of domain expert annotations we used the "F-score" defined as the harmonic mean of precision and recall: $F = 2 * (precision * recall) / (precision + recall)$).
-This score was computed on 300 abstracts (100 of which were not disculosed to avoid overfitting) with about xxxx entities to correctly identify from a dictionary with xxxx labels. 
-
-* The baseline F-score achieved by NIH researchers was `r baseline`. We set up a hard-to-reach F-score target for the race competition which was `r target` (about a `r round(100*target/baseline - 100)` percent increase of the baseline). The winner achieved a score of `r winner`. This represents  a `r 100*(winner - baseline)` percentage points increase compared to the baseline which can be regarded as a very remarkable improvement (more than `r round(100*winner/baseline - 100)` percent).
+<!-- 
+The winner achieved a score of `r winner`. This represents  a `r 100*(winner - baseline)` percentage points increase compared to the baseline which can be regarded as a very remarkable improvement (more than `r round(100*winner/baseline - 100)` percent).
+ -->
 
 
 ## Data
-
-```{r covarstable, results='asis'}
-tab <- descriptives(covars)
-xtab <- xtable(tab)
-digits(xtab) <- c(1, 1, rep(0, ncol(tab)-2), 3)
-align(xtab) <- c("@{}l", rep("r", ncol(tab)))
-caption(xtab) <- "Descriptive statistics"
-label(xtab) <- "summary"
-attributes(xtab)$notes <- " Platform data: `year` denotes the years as platform member; `nreg` and `nregsrm` are the counts of registrations to past MMs and SRMs competitions, respectively; `nsub` and `nsubsrm` are the counts of submissions to past MMs and SRMs competitions, respectively; `paidyr` is prize money per year (in thousand of dollars) won in past competitions; `nwins`, `ntop5`, `ntop10` denote placements in past MMs competitions; Registration survey: `risk` is a measure of risk aversion; `hours` anticipated hours of work on solving the problem of the contest; `male` indicates the gender; `timezone` refers to competitor's residence during the contest; `postgrad` is an indicator for post-graduate educational degree (MAs or PhDs); and `below30` indicates age below 30 years old."
-add <- list()
-add$cmd <- c('\\multicolumn{1}{@{}l}{\\emph{Platform data:}}\\\\\n'
-						, '\\\\[-1.86ex]\\hline\\multicolumn{1}{@{}l}{\\emph{Survey data:}}\\\\\n'
-						, rep('\\\\[-1.86ex]~', nrow(tab)))
-add$pos <- c(0, 9,0:(nrow(tab)-1))
-render.xtable(xtab, add)
-```
-
 We collected extensive platform data for each registered participant. These include the full history of their registrations in past contests, as well as the outcomes of these contests like the number of solutions submitted, placements in the final rankings, and total cash prizes earned. As reported in Table \ref{summary}, our data show that those who registered in the experiment were very experienced competitors. They had been platform members for an average of `r round(mean(covars$year))` years, had registered in an average of `r round(mean(covars$nreg))` multi-week long contests (MMs), in which they had been earning a median of `r round(median(covars$paidyr, na.rm=TRUE))` hundred dollars per year in cash prizes. As our data shows, on average, they had submitted solutions in only `r round(mean(covars$nsub))` of these contests (`r round(100*mean(covars$nsub/covars$nreg))` percent of their registrations), suggesting that even highly experienced platform members frequently drop out of competitions. Our sample had also registered in an average of `r round(mean(covars$nregsrm))` speed-based contests (SRMs) with a relatively higher submission rate (`r round(100*mean(with(covars, ifelse(nregsrm>0, nsubsrm/nregsrm, NA)), na.rm=TRUE))` percent), presumably because these contests take only a few hours to complete and have relatively simpler problems that require less effort to solve.
 
-```{r ratingplot, fig.width=9, fig.height=4, include=FALSE}
-rating_pdf <- with(subset(races, !is.na(rating)), tapply(rating, treatment, density))
-algo_rating_pdf <- with(subset(races, algo_rating>0), tapply(algo_rating/100, treatment, density))
-rating.lm <- lm(rating ~ algo_rating, data=races, subset=algo_rating>0)
 
-par(mfrow=c(1,3))
-colors <- c("brown", gray(.75), gray(.85))
-plot(NA, NA, xlim=c(0, 35), ylim=c(0, .1), xlab="Skill rating (MMs)", ylab='Density')
-title("Problem solving")
-for (i in 1:3) lines(rating_pdf[[i]], lty=i, lwd=2)
-
-plot(NA, NA, xlim=c(0, 35), ylim=c(0, .1), xlab="Skill rating (SRMs)", ylab='Density')
-title("Programming speed")
-for (i in 1:3) lines(algo_rating_pdf[[i]], lty=i, lwd=2)
-
-with(subset(races, algo_rating>0), plot(algo_rating, rating, xlab="Skill rating (SRMs)", ylab="Skill rating (MMs)"))
-abline(rating.lm, col=2, lwd=2)
-
-# Find right model
-#m <- rep()
-#m$baseline <- lm(rating ~ algo_rating, data=races, subset=algo_nreg>0 & algo_rating>0)
-# m$poly <- lm(rating ~ poly(algo_rating, 2), data=races, subset=algo_nreg>0 & algo_rating>0)
-#m$log <- lm(log(rating) ~ algo_rating, data=races, subset=algo_nreg>0 & algo_rating>0)
-#m$clog <- lm(rating ~ log(algo_rating), data=races, subset=algo_nreg>0 & algo_rating>0)
-#m$loglog <- lm(log(rating) ~ log(algo_rating), data=races, subset=algo_nreg>0 & algo_rating>0)
-#m$nreg <- lm((rating/nreg) ~ I(algo_rating/algo_nreg), data=races, subset=algo_nreg>0 & algo_rating>0)
-#m$nreglog <- lm(log(rating/nreg) ~ log(algo_rating/algo_nreg), data=races, subset=algo_nreg>0 & algo_rating>0)
-#stargazer(m, type='text')
+```{r descriptives, results='asis'}
 ```
-
-\begin{figure}
-\centering
-\caption{Distribution of skill ratings}
-\label{skill ratings}
-\includegraphics{Figures/ratingplot-1.pdf}
-\end{figure}
 
 A key variable to measure was competitors' ability in solving algorithmic problems (like the named entity recognition task used for the experiment) and their speed in programming working solutions. A sensible measure of problem-solving ability was the individual skill rating that is computed on multi-week long contests (MMs). Similarly, a sensible measure for programming speed was the skill rating computed on speed based competitions (SRMs).[^skillrating] 
 
 [^skillrating]: The skill rating is an elo-type measure of a competitor's relative ability compared to others. This measure is represented by a number that increases or decreases at the end of a competition depending on the difference between a hypothetical expected rank (based on the pre-contest values of the skill rating of the opponents) and the actual rank achieved by a competitor at the end of a competition. When the actual rank is higher than the expected rank, the skill rating increases whereas it decreases otherwise. Skill ratings are computed independently for each type of competition run on the platform (MMs and SRMS). 
+
+```{r ratingPlot, fig.width=9, fig.height=4, include=FALSE}
+```
+
+\begin{figure}
+\centering
+\caption{Distribution of Topcoder's skill ratings}
+\label{skill ratings}
+\includegraphics{Figures/ratingPlot-1.pdf}
+\end{figure}
 
 As shown in Figure \ref{skill ratings}, both skill ratings (those measuring problem solving ability and speed) have slightly asymmetric probability distributions due to the presence of a few competitors with very high skill ratings relative to the rest. The right-hand panel of Figure \ref{skill ratings} shows that, while the skill ratings computed on MMs is positively correlated with the skill rating computed on speed-based competitions SRMs, there is considerable variation in skills.[^rsquared]  So, a relatively good competitor in speed-based contests (SRMs), could turn out to be a relatively bad competitor when faced with hard-to-solve algorithmic problems in multi-week long contests (MMs) --- and vice versa. However, variation seems to reduce for the very top competitors, (those who have high scores in at least one of the two types of competitions), suggesting that being fast and being able to solve hard problems are highly correlated for top competitors.
 

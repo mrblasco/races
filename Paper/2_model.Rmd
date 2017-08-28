@@ -1,246 +1,215 @@
+\newcommand\reserve{\text{res}}
 \newcommand\competition{c}
 \newcommand\ability{a}
 \newcommand\performance{y}
 \newcommand\timing{t}
 \newcommand\Timing{T}
 \newcommand\Performance{Y}
+\newcommand\marginal{\underline{a}}
+
 
 # The model
-We now generalize the contest game introduced by @moldovanu2001optimal to a situation where players simultaneously decide $i)$ how fast to perform a given task and $ii)$ the quality of their performance (e.g., the time to solve a problem and effectiveness of the solution). Then we explore the problem of revenue maximization faced by a contest designer with preferences for both time and quality.
+Consider a generalization of the contest game introduced by @moldovanu2001optimal. In this game, $n$ contestants ($i=1,..., n$) are competing for $p$ money prizes ($k=1,...,p$) of value $v_1\geq v_2\geq ...\geq v_p\geq0$ with total value normalized to one $\sum_{k=1}^p v_k =1$. They simultaneously decide $(a)$ how fast to perform a given task and $(b)$ the quality of their performance (e.g., the time to solve a problem and effectiveness of the solution). The timing and performance for each contestant $i$ are denoted by $\timing_i\in(0,\deadline]$ and $\performance_i\in[0,\bar y]$, respectively. The upper limit of the time interval $\deadline>0$ is the deadline of the contest and the upper limit of the performance interval $\bar y>0$ is the highest technically feasible performance level (e.g., in a prediction task, making 100 percent accurate predictions).
 
-## Basic setup
-Consider a contest game where $i=1,..., n$ contestants are competing for $p$ prizes of value $v_1\geq v_2\geq ...\geq v_p\geq0$; and imagine the total value distributed to winners is normalized to one, $\sum_{k=1}^p v_k =1$. To win a prize, each contestant will act independently over the course of a given period of time $\deadline>0$ working to develop solutions to a given problem. The time it takes to develop their solutions and the effectiveness or quality of the delivered solutions are denoted by two nonnegative variables $\timing_i$ and $\performance_i$ respectively. Solving the problem can be thus defined as developing a solution with an effectiveness of at least $\target\geq0$. 
+Each contestant $i$ incurs a cost of performing the task $c_i =  C(\performance_i, \timing_i) / \ability_i$ given by the cost function $C(\performance_i, \timing_i)$ scaled by an individual ability parameter $a_i$ reflecting skills, time constraints, and other elements affecting contestant $i$'s performance. 
 
-Each contestant $i$ has a cost of problem solving $c_i$ given by 
+The cost function $C(\cdot)$ is a decreasing function of time, an increasing function of quality, is multiplicative (i.e., the higher the quality the more time it takes to perform the task), and is zero when performance is zero $C(y_i=0, \cdot)=0$ (i.e., the contestants can drop out of the competition at no cost). 
+
+To make things more concrete, we consider the following functional form: 
 $$
-	c_i = \ability_i^\alpha C(\performance_i, \timing_i)
-$$ 
-where $C(\cdot)$ denotes a cost function of the inputs and $a_i$ is a (strictly positive) ability parameter changing across contestants and $\alpha<0$.
-
-The cost function $C(\cdot)$ is decreasing in the time to develop solutions. It is increasing in the quality of the developed sultions.  It is _multiplicative_ (the higher the quality the more time it takes to develop the solution at the same cost). And it is assumed to have the following functional form: $C(\performance, \timing) = \performance^\alpha \timing^\beta,$ where the parameters $\alpha>1$ and $\beta<0$ denote the _elasticity_ of the cost function with respect to its inputs.
-
-[^speed]: Alternatively, one can re-parametrize the model by replacing time $t_i$ with a new variable "speed" $s_i$ defined as the ratio of quality over time.
-
-The ability parameter reflects heterogeneity in skills, time constraints, and other elements affecting their ability to solve the problem. Each ability parameter $a_i$ is drawn at random from a common distribution function $F_A(\cdot)$ with (absolutely continuous) density $f_A(\cdot)$ on a bounded interval. Players observe privately the realization of their own ability (their _type_) before making their choices. 
-
-The contest designer determines how contestants compete for prizes. We consider three types of competition: the race, tournament, and tournament with reserve. 
-
-- In a race, the first contestant that solves the problem (i.e., achieves a performance equal or higher than $\target$) wins the first prize. The second contestant to solve the problem wins the second prize, and so on until either all the prizes are awarded or there are no more eligible contestants (i.e., those who have solved the problem in the given time). 
-
-- In a tournament, the contestant achieving the highest performance within the given deadline $\deadline$ wins the first prize. The contestant with the second highest performance wins the second prize, and so on until all prizes are awarded.  
-
-- Finally, the tournament with reserve is a slightly more general form of tournament competition where, to win a prize, competitors must achieve a performance equal or higher than the target $\target$. Prizes are thus awarded based on performance until either all prizes are allocated or there no more eligible contestants (i.e., those with a performance equal or higher than $\target$). 
-
-In all three types of competition, the payoff of a contestant $i$ with ability $a_i$ who has developed a solution of quality $y_i$ that was delivered in time $t_i$, is either $v_k - \ability_i^\alpha C(y_i, t_i)$ if $i$ wins the k-th prize, or $-\ability_i^\alpha C(y_i, t_i)$ if $i$ does not win a prize.
-
-<!-- As information is asymmetric and players move simultaneously, the quality and time of the opponents of a player $i$ can be treated as $n-1$ independent realizations of two (nonnegative) random variables $Y$ and $T$ that are drawn from some unknown distributions denoted by $F_{Y}(\cdot)$ and $F_{T}(\cdot)$ respectively. These variables help defining the individual probability of winning a prize.  -->
-
-<!-- 
-Let denote the $j$'th smallest of the order statistics of the $Y$'s by $Y_{(j)}$ ---with $Y_{(1)}$ being the smallest, $Y_{(2)}$ being the second smallest, and so on---and the $j$'th smallest of the $T$'s by $T_{(j)}$---with $T_{(1)}$ being the smallest, $T_{(2)}$ being the second smallest, and so on. The probability of winning a prize will then depend on how the rules of the contest rank-order players based on the realized values. 
- -->
-
-<!-- 
-For each player $i$'s actions $(y_i, t_i)$, the competition style of the contest determines the probability of player $i$ winning a prize and hence $i$'s expected payoffs;
-\begin{equation}
-		\label{expected payoffs}
-		\pi_{i}^\competition 
-						= \sum_{k=1}^{q} p_{i}^{k,\competition}(\performance_i, \timing_i) v_k 
-						-  C(\ability_i, \performance_i, \timing_i)
-\end{equation}
-
-where $p_{i}^{k,\competition}(\cdot)$ denotes the conditional probability of winning the $k$-th prize given a performance $\performance_i$ and a completion time $\timing_i$.
-
-
-In a race competition, the first player to achieve a given minimum performance target $\target$ gets the first prize, the second to achieve the same target gets the second prize, and so on.  Hence, the conditional probability of winning the $k$-th prize in a race is 
-
+	C(\performance, \timing) = \performance^\alpha \timing^\beta,
 $$
-	 p_{i}^{k, \text{race}}(\performance_i, \timing_i) = 
-	 \begin{cases}
-	 \Pr\{T_{(k-1)} < \timing_i \leq T_{(k)} \} & \text{if } \performance_i\geq\target \\
-	 0 & \text{otherwise;}
-	 \end{cases}
-$$
- -->
- 
-The contest designer is risk neutral and aims to maximize its revenues by increasing the winner's performance, while keeping low the time of delivery (i.e., max the speed of production). The actions of the contest winner are random variables denoted by $(Y^w, T^w)$. The contest designer's expected payoff (net of total prizes distributed to winners) is:
+where the elasticity of the cost function with respect to its inputs is denoted by the parameters $\alpha\geq1$ and $\beta\leq0$. 
 
-$$
-	\pi_{cd} = E[Y^w - \tau T^w]
-$$
+The individual ability $a_i$ of each contestant is drawn at random from a common distribution function $F_A(\cdot)$ with (absolutely continuous) density $f_A(\cdot)$ on the unit interval. Players observe privately the realization of their own ability (their _type_) before making their choices of how much cost to incur.
 
-where $E$ denotes the expectation with respect to the distribution of players' actions in equilibrium; and $\tau$ denotes the intensity of the contest designer's (negative) preferences towards solutions delivered later in time.
+Each contestant $i$ gets a payoff that is either $v_k - c_i$, if $i$ wins the kth prize, or is $-c_i$, if $i$ does not win a prize. Winners are determined according to a set of competition rules, which are common knowledge. We consider three kinds of competition rules --- called "race," "tournament," and "tournament with reserve" competitions --- defined below.
 
-<!-- For simplicity, assume the total prizes distributed in the contest (either paid or not to winners) are sunk.  -->
+\begin{definition}[Races]
+In a race competition, contestants are required to achieve a minimum target performance $\target\in(0, \bar y)$. The first to achieve a performance equal or higher than $\target$ wins the first prize; the second to achieve a performance equal or higher than $\target$ wins the second prize; and so on until either all the prizes are awarded or there are no more contestants who have achieved a performance equal or higher than $\target$.
+\end{definition}
+
+\begin{definition}[Tournaments]
+In a tournament competition, contestants face no minimum performance requirements. So, everyone is eligible for prizes. The contestant that achieves the highest performance relative to others wins the first prize; the contestant that achieves the second highest performance wins the second prize, and so on until all prizes are awarded.
+\end{definition}
+
+\begin{definition}[Tournaments with reserve]
+In a tournament with reserve competition, contestants are required to achieve a minimum target performance $\target_{\reserve}\in(0,\bar y)$ and, unlike races, prizes are awarded based on performance. The contestant that achieves the highest performance relative to others wins the first prize; the contestant that achieves the second highest performance wins the second prize, and so on until all prizes are awarded  or there are no more contestants who have achieved a performance equal or higher than $\target_{\reserve}$.
+\end{definition}
+
 
 ## Equilibrium
-We now solve the model for the unique symmetric Bayesian Nash equilibrium of players.
-
+We now solve the model for the unique symmetric Bayesian Nash equilibrium (hereafter equilibrium) separately for each kind of competition rules --- races, tournaments, and tournaments with reserve.
+ 
 ### Races
-The first key observation is that, in a race, any solution of quality below the target $\target$ gives a zero probability of winning prizes; and any solution of quality above the target gives a constant probability of winning. It is thus a dominant strategy for every contestant to choose a quality either of zero (i.e., the lowest possible) or equal to the target $\target$.^[As choosing a quality of zero gives a null payoff for any $t$, we use the convention that when $y_i=0$ then $t_i = \deadline$ to avoid multiplicity of equilibria.]
+Consider first a race competition. A key observation in this case is that any performance below the target $\target$ gives a payoff of zero and any performance equal or above $\target$ gives a constant probability of winning a prize. Since the cost function is increasing in performance, it is a dominant strategy for the contestants to either drop out the competition --- choosing a cost of zero (i.e., setting $y_i^*=0$) --- or enter the competition ---  choosing a strictly positive cost (i.e., setting $y_i^*=\target$). 
 
-Since contestants act independently, for each contestant $i$ the actions of its opponents can be treated like realizations of the random variables $Y$ and $T$ that are independently drawn from the distributions $F_Y$ for time and $F_T$ for quality. 
+At equilibrium, for any contestant $i=1, .., n$ in a race competition, there is an ability threshold  $\marginal>0$ such that any contestant with an ability below the threshold will drop out the competition; and any contestant with an ability above the threshold will enter the competition incurring a cost given by 
+\begin{equation}
+	\label{cost races}
+	c_i^* = \target^\alpha t^*(a_i)^\beta / a_i
+\end{equation}
+where $t^*(\cdot)$ is a monotonic decreasing function of ability given by
+\begin{equation}
+		t^*(a_i) = \left[
+			\deadline^\beta - \frac{1}{\target^\alpha}\sum_{k=1}^{p} v_k \int_{\marginal}^{a_i} x \dot p_k(x) d x
+		\right]^{1/\beta}
+\end{equation}
+and $\dot p_k(\cdot)$ is the first derivative of $p_k(\cdot)$ the probability of winning the kth prize. 
+This probability involves the distribution of the $k$ first order statistics of individual abilities and is given by
 
-Let denote the $j$'th smallest of the $T$'s by $T_{(j)}$, with $T_{(1)}$ being the smallest, $T_{(2)}$ being the second smallest, and so on. For each contestant $i$ with a timing $t_i$, the probability of winning the first prize is:
 $$
-	Pr(\text{winning first prize})
-		 = Pr(t_i \leq T_{(1)}) = 1 - F_{T_{(1)}}(t_i);
+	p_k(x) = \frac{(n-1)!}{(k-1)!(n-k)!} F_A(x)^{k-1} (1-F_A(x))^{n-k}. 
 $$
-the probability of winning the second prize is:
+
+Note that $t^*(\marginal)=\deadline$, as the marginal type  $\marginal$ picks the deadline at equilibrium; and the marginal type is defined implicitly by the zero profits condition
+\begin{equation}
+	\label{zero profits}
+	\sum_{k=1}^p p_{k}(\marginal) v_k - \target^\alpha \deadline^\beta / \marginal = 0, 
+\end{equation}
+where, for the above expression to hold, $\marginal$ must be positive, not zero.
+
+### Tournaments
+Unlike races, tournaments do not award prizes based on the contestants' timing. In particular, any $t_i$ equal or below the deadline $\deadline$ gives a constant probability of winning a prize. It is thus a dominant strategy for the contestants to select a timing exactly equal to $\deadline$. This choice does not affect entry, as contestants can still choose to incur arbitrarily small costs by lowering their performance. So, everyone enter at equilibrium.^[More specifically, even when the deadline is exceedingly short, then the expected reward of winning becomes zero for everyone, which makes the contestants indifferent between entering the contest with a performance of zero, or dropping out.]
+
+At equilibrium, any contestant $i=1, .., n$ with an ability $a_i$ will enter the competition incurring a cost given by 
+\begin{equation}
+	\label{cost tournaments}
+	c_i^* = y^*(a_i)^\alpha \deadline^\beta / a_i
+\end{equation}
+where $y^*(\cdot)$ is a monotonic increasing function of ability given by
+\begin{equation}
+		y^*(a_i) = 
+		\left[\frac{1}{\deadline^\beta}\sum_{k=1}^{p} v_k \int_{0}^{a_i} x \dot p_k(x) d x \right]^{1/\alpha}. 
+\end{equation}
+
+Note that $y^*(0)=0$ (so, the equilibrium cost $\lim_{a_i\to 0} c_i^* = 0$). 
+
+### Tournaments with reserve
+Tournaments with reserve generalize tournaments by adding a minimum performance requirement $\target_{\reserve}$. As for races, any performance below the target $\target_{\reserve}$ gives a zero probability of winning a prize. It is thus a dominant strategy for players to either drop out the competition --- by choosing a cost of zero --- or enter the competition with a strictly positive cost.  In addition, since awards are not based on the timing of performance, it is a dominant strategy for the contestants to choose a timing equal to the deadline $\deadline$.
+
+At equilibrium, for any contestant $i=1, .., n$ in a tournament with reserve competition, there is an ability threshold  $\marginal_\reserve>0$ such that any contestant with an ability below the threshold will drop out the competition; and any contestant with an ability above the threshold will enter the competition incurring a cost given by 
 $$
-	Pr(\text{winning second prize}) 
-		= Pr( T_{(1)} < t_i \leq T_{(2)}) =  F_{T_{(1)}}(t_i) [1- F_{T_{(1,n-2)}}(t_i)];
+	c_i^* = y_\reserve^*(a_i)^\alpha \deadline^\beta / a_i
 $$
-and so on.
+where $y_\reserve^*(\cdot)$ is a monotonic increasing function of ability given by
+\begin{equation}
+		y_\reserve^*(a_i) = \left[
+			\target_{\reserve}^\alpha + \frac{1}{\deadline^\beta}\sum_{k=1}^{p} v_k \int_{\marginal_\reserve}^{a_i} x \dot p_k(x) d x
+		\right]^{1/\alpha}.
+\end{equation}
+
+Since the equilibrium performance for the contestants entering the competition is a monotonic transformation of the individual ability, the marginal ability threshold $\marginal_\reserve$ is defined implicitly by a similar zero profits condition as equation \eqref{zero profits} in the races. Therefore, the marginal type $\marginal_{\reserve}$ is strictly positive. Moreover, the marginal type in tournaments with reserve and races is the same when both competitions have an equal minimum required performance target, all else being equal.
 
 <!-- 
-Let denote the $j$'th smallest of the $Y$'s by $Y_{(j)}$ ---with $Y_{(1)}$ being the smallest, $Y_{(2)}$ being the second smallest, and so on---and the $j$'th smallest of the $T$'s by $T_{(j)}$---with $T_{(1)}$ being the smallest, $T_{(2)}$ being the second smallest, and so on. The probability of winning a prize will then depend on how the rules of the contest rank-order players based on the realized values. 
+When the target in a tournament with reserve is zero, then the marginal ability becomes zero as well. So, at equilibrium in a tournament (with no reserve) competition, every contestant will enter the competition with a timing $t_i^* = \deadline$ and a performance $y_i^* =  y^*(a_i)$ where $y^*(\cdot)$ is a monotonic increasing function of ability given by
+\begin{equation}
+		y^*(a_i) = \frac{1}{\deadline^{\beta/\alpha}}
+			\left[\sum_{k=1}^{p} v_k \int_{0}^{a_i} x \dot p_k(x) d x\right]^{1/\alpha}.
+\end{equation}
  -->
 
-Assuming there exists a monotonic function $t^*(\cdot)$, we use  change of variable to express xxxx into axxxx. Then the optimal action for contestant $i$ is xxxx. 
+## Races vs Tournaments
 
-that the optimal timing $t_i^*$ for a player with ability $a_i$ is $t^*_i = t^*(a_i)$. The optimal timing $t_i^*$ is given by first order conditions
-$$
-	\frac{d g(\phi)}{d \phi} \dot\phi = a^\alpha y^\beta \delta t^{\delta-1}
-$$
-
-Using the definition: 
-$$
-	\frac{d \phi}{d y} =  g(\phi) h(t)
-$$
-where 
-$$
-	g(\phi) = \phi^\alpha \left[\sum \dot p^k (\phi) v_k \right]^{-1}
-$$
-and
-$$
-	h(y) =  \target^\beta  \delta t^{\delta -1}
-$$
-with initial conditions $\phi(\deadline)=0$. 
-
-Here, the key observation is that, for a given level of quality, any time that is strictly below the deadline does not affect the probability of winning but is costly in terms of effort (working faster is costlier) and any time that is strictly above the deadline gives a negative payoff. Thus, choosing  $t_i=\deadline$ is a (weakly) dominant strategy for each player. Then the first order condition with respect to quality is:
-
-\[
-	\sum_{k=1}^{q} \hat p^{\prime}_{k}(y_i) v_k = \cability(a_i) \cscore^\prime(y_i) \ctime(\deadline).
-\]
-
-where $\hat p = p(\cdot, \deadline).$ Then it can be show that xxxx. 
-
-
-<!---
- also means that, from the point of view of the contest designer, imposing a more distant deadline has the same effect as a reduction in the marginal costs for every participant competitor. [This should go later] Then, the equilibrium $y_i$ must xxx a monotonic function $y^*()$ with an inverse $\phi()$ which satisfies the first-order differential equation
--->
-
-\begin{align}
-0 = & \alpha f_{(1:N-1)}(\phi) \phi^{\prime} 
-	+ (1-\alpha)\phi^{\prime}\{[1 - F_{(1:N-1)}(\phi)]f_{(1:N-2)}(\phi) + \nonumber\\
-    & + f_{(1:N-1)}(\phi) F_{(1:N-2)}(\phi)\} 
-    - c_{a}(a) c_{y}(\target) \ctime^{\prime}(t_i)
-\end{align}
-
-subject to the boundary condition  $\phi(0) = \lotype$ (i.e., the lowest-ability competitor's optimal output quality is zero). 
-
-As shown by @moldovanu2001optimal, the solution is 
-
-\begin{equation} \label{ystar}
-y^*(a_i) = 
-	\cscore^{-1}
-	\left[\cscore(\target) 
-	+ \frac{1}{\ctime(\deadline)}
-	\left(\alpha \int_{a_i}^{\hitype} A(z) dz
-	  + (1-\alpha) \int_{a_i}^{\hitype} B(z)  dz
-	\right)
-	\right]
-\end{equation}
-where
-\begin{equation}
-  A(x) = \frac{1}{c_{a}(x)} f_{(n-1:n-1)}(x)
-\end{equation}
-and
-\begin{equation}
-  B(x) = \frac{1}{c_{a}(x)} \left\{
-      \left[1- F_{(n-1:n-1)}(x)\right]f_{(n-1:n-2)}(x)
-      + f_{(n-1:n-1)}(x) F_{(n-1:n-2)}(x)
-    \right\}.
-\end{equation}
- 
-Monotonicity of the equilibrium output quality implies that, for every $i=1, ..., n$, the equilibrium expected payoff from the contest $\pi_i^*$ depends on the rank of the player's ability relative to the others. As a result, the equilibrium expected payoff net of costs is
-\begin{equation} 
-	R(a_i) = \alpha F_{n:n}(a_i) + (1-\alpha)[1-F_{n:n}(a_i)] F_{n-1:n-1}(a_i).
-\end{equation} % payoffs
-
-
-### Equilibrium in a race
-
-In a similar way, one can derive the equilibrium strategy in a race. Again the key observation is that any quality below the target gives a zero probability of winning and any quality  above the target gives a constant probability of winning. Thus, player $i$'s choice of optimal quality $y^*$ is either zero (with $t_i=\deadline$ by convention) or $y^*=\target$.
-
-Then, the equilibrium xxx for player $i$ is 
-\begin{equation} \label{tstar}
-t^*(a_i) = 
-	\ctime^{-1}
-	\left[\ctime(\deadline) 
-	+ \frac{1}{\cscore(\target)}
-	\left(\alpha \int_{a_i}^{\hitype} A^\prime(z) dz
-	  + (1-\alpha) \int_{a_i}^{\hitype} B^\prime(z)  dz
-	\right)
-	\right]
-\end{equation}
-where
-\begin{equation}
-  A(x) = \frac{1}{c_{a}(x)} f_{(n-1:n-1)}(x)
-\end{equation}
-and
-\begin{equation}
-	B(x) = \frac{1}{c_{a}(x)} \left\{
-      		\left[1- F_{(n-1:n-1)}(x)\right]f_{(n-1:n-2)}(x)
-      		+ f_{(n-1:n-1)}(x) F_{(n-1:n-2)}(x)
-    \right\}.
-\end{equation}
-
-An important property of XX is that $y^*(a_i)$ has its upper bound in XX and
-lower bound in XX. Again payoffs are xxxx. Hence, by setting to zero and solving for the ability, gives the marginal ability ${\underline a}$ as
-\begin{equation}
-  {\underline a}= h(n, V, F_A, C, d).
-\end{equation}
-
-### Tournament vs races
-
-By comparing equilibrium xxx and xxx, we find that the race and the tournament do not (ex-post) dominate one another with respect to output quality. Whereas the race always dominates the tournament with respect to completion time. [This is only when the deadline is the same. Otherwise, there's always xxxx.] This result is stated below.
-
+From the contestants' point of view, the main difference between races and tournaments lies in the incurred costs at equilibrium. In particular, as summarized by the next proposition, there are two main differences in terms of equilibrium costs between races and tournaments.
 \begin{proposition}
-There always exist an interval of abilities where the output quality is higher in the race than in the tournament. By contrast, every player takes less completion time in the race than in the tournament.
+(a) the low-ability contestants --- those with an ability below the marginal type ($a_i<\marginal$) --- will drop out the race competition thereby incurring no cost, whereas they will enter a tournament competition incurring positive costs; and (b) the high-ability contestants --- those with an ability above the marginal type ($a_i\geq\marginal$)--- will enter both types of competition incurring positive costs that are higher in races relative to tournaments with a difference that is independent on individual ability. 
 \end{proposition}
 
 \begin{proof}
-Marginal type has utility zero in a race but the same type has a strictly positive utility in the tournament. Since probability of winning is not different in the race or the tournament (the bid is a monotonic transformation of the individual ability or, in other words, rankings are virtually the same), expected payoffs in equilibrium differ only in the cost functions. Hence, to be an equilibrium, the player in the tournament should bid less than the player in the race to earn a strictly positive expected payoff. 
+Omitted.
 \end{proof}
 
-Let's make an example.  
-```
-p <- plnorm   # pdf individual abilities 
-r <- rlnorm   # Simulate individual abilities
-cy <- function(x) x^2 # Cost function performance
-ct <- function(x) 2*exp(1-x)  # Cost function timing 
-```
-FIGURE 1. Equilibrium bids in a race and a tournament. 
+In particular, for any high-ability contestant ($a_i\geq\marginal$) the difference in cost at equilibrium $\Delta_i$  between race and tournament competitions is given by the difference between equation \eqref{cost races} and \eqref{cost tournaments}, which can be written as
+\begin{equation}
+	\Delta_i = c_{i,\tournament}^* - c_{i,\race}^* 
+	= \sum_{k=1}^{p} v_k \int_0^{\marginal} x \dot p_k(x) d x - \target^\alpha \deadline^\beta \leq 0.
+\end{equation}
+It can be hence shown (using the zero profit condition \eqref{zero profits}) that the equilibrium cost difference $\Delta_i$ is less or equal than zero for any $a_i\geq \marginal$. It is also interesting to note that the individual ability $a_i$ does not appear in the equation. The cost difference between races and tournaments is thus the same for everyone, independently of their ability (provided it is higher than the marginal type). 
+
+The comparison between races and tournaments with reserve leads to similar results. As soon as, the tournament has a lower performance target than the race ($\target_{\reserve} \leq \target$) there are higher entry rates in the tournament with reserve and there is a negative cost difference for the entrants. These differential effects, however, are decreasing in the difference between the targets and will eventually vanish  entry in competitions with equal targets ($\Delta_{i}=0$ for any $a_i\geq\marginaltype$ when $\target_{\reserve}=\target$).
 
 
-Implications. The above proposition applies only if the target is higher in a race than in a tournament. But what if the two competitions had the same target ? In that case, tournaments and races have the same marginal type. Therefore, the performance of players in the tournament with reserve are always non-lower than those in the race. This does not imply that it is optimal to set the target. On the contrary, we will show that it is optimal to set an optimal target in a tournament that is below the optimal target in a race. Next section.  
-
-
-## The contest designer's problem
-
-Let us now focus on the contest designer's problem. Imagine the contest designer can choose the competition format to be either the race or the tournament. Imagine all other aspects of design are given. The prize structure $\alpha$ has been already chosen. There is a deadline $\deadline$, which is the same in both competition formats. [The quality requirement $\target_c$ in the tournament  is smalle than that in the race $\target_\race > \target_\tournament$)] We will relax this assumption later to consider a more general setting where these variables are also part of the contest designer's problem.
-
-The contest designer has an objective function that is increasing in the expected quality of the winning solution and decreasing in the corresponding time to completion. Here, to do not complicate exposition, we assume that the contest designer cares about the winning submission only: second placed efforts are not considered. [If the principal values the diversity of the solutions ... but we assume it does not.]
-
-
-XXX EQUATION XXXX
-
-The optimal choice involves a comparison of the expected profits between the race and the tournament. Given xxxx, we can show that there will be a threshold on the cost of completion time $\hat\tau$ above which the race is a better choice than the tournament, and vice versa.
+In what concerns differences in performance, the model shows that the performance of contestants in tournaments do not always dominate that of those in races, and vice versa. 
 
 \begin{proposition}
-There's a tau above which ... 
+There always exist an interval of ability realizations $\hat A$ such that the equilibrium performance of a contestant with an ability $a_i\in \hat A$ in a race is greater than the performance of the same in  individual in the tournament.
 \end{proposition}
+
+\begin{proof}
+Consider the individual ability to be the marginal type $\marginal$. The individual with an ability equal to the marginal type gets at equilibrium an expected payoff of zero in a race, whereas it gets a strictly positive expected payoff in tournament. Since the probability of winning the kth prize is the same between races and tournaments --- it is the probability of the ability being higher than $k-1$ order statistics and lower than $n-k$ order statistics of the realized abilities (the bid is a monotonic transformation of the individual ability or, in other words, rankings are virtually the same). The expected payoffs in equilibrium can only differ in the incurred cost. Hence, to be an equilibrium, the player in the tournament should bid less than the player in the race to earn a strictly positive expected payoff. 
+\end{proof}
+
+To illustrate this point, we use a numeric example. Consider $n=3$ contestants competing for $p=2$ prizes of value $v_1=2/3$ and $v_2=1/3$; the cost elasticities are $\alpha=1$ and $\beta=-1$; and abilities are distributed from a Beta distribution (with shape parameters $s_1=4$ and $s_2=2$).  As shown in Figure \ref{example contest}, there is an interval of abilities between about 0.82 and 0.9 where the equilibrium performance of a contestant $i$ with an ability $a_i\in (0.82,0.9)$ in a race competition is greater than that of the same contestant in a tournament.
+
+```{r contestExample, fig.width=9, include=FALSE}
+library(contest) 
+ability <- seq(0.01, 1, length=100)
+cost.performance <- 1
+tourn <- contest(ability, n=3, type = "tournament", prize = c(2/3, 1/3),
+       elasticity = c(-1, cost.performance, -1)
+       , p = pbeta, d = dbeta, shape1=4, shape2=2, xlim = c(0, 1),
+       deadline = 1, target = 0)
+race <- contest(ability, n=3, type = "race", prize = c(2/3, 1/3),
+       elasticity = c(-1, cost.performance, -1)
+       , p = pbeta, d = dbeta, shape1=4, shape2=2, xlim = c(0, 1),
+       deadline = 1, target = 0.45)
+
+par(mfrow=c(1, 2))
+with(tourn, plot(score ~ ability, type='l', lwd=2))
+with(race, lines(score ~ ability, type='l', lty=3, lwd=2, col='brown'))
+title("Equilibrium performance")
+race$timing <- ifelse(race$timing==0, 1, race$timing)
+with(tourn, plot(timing ~ ability, type='l', lwd=2, ylim=c(0.6, 1)))
+with(race, lines(timing ~ ability, type='l', lty=3, lwd=2, col='brown'))
+title("Equilibrium timing")
+```
+
+\begin{figure}
+\centering
+\caption{Example of equilibrium behavior in a race (dotted) and tournament competition (solid)}
+\label{example contest}
+\includegraphics{Figures/contestExample-1.pdf}
+\begin{minipage}{\textwidth}
+\footnotesize\emph{Notes:} xxxx
+\end{minipage}
+\end{figure}
+
+## The designer's problem
+
+We consider now the contest designer's problem of selecting the competition style that maximizes its expected revenues. The problem consists of choosing a set of rules --- race, tournament, and tournament with reserve --- and, for the race and tournament with reserve, an optimal target of performance. 
+
+We assume that the contest designer's revenues are an increasing function of the performance achieved by the winner, a decreasing function of the time to perform the task of the winner; and are not affected by the outcomes of the non-winning contestants. Let the winner's equilibrium actions be denoted by the pair $(y^w, t^w)$ and let $p^*$ denote the lower value between $p$ --- the number of available prizes --- and the number of contestants eligible for prizes.  For a given competition style with target $\target$ and deadline $\deadline$, the contest designer's revenues are given by
+$$
+	y_w + \tau (\deadline - t_w) - \sum_{k=1}^{p^*} v_k 
+$$
+when $p^*>0$; and are zero when there is no winner $p^*=0$. The parameter $\tau$ allows differences in the impact on revenues between the time and performance of the winner (e.g., when $\tau=0$ revenues are independent of the time it took the winner to perform the task).
+
+
+<!-- 
+Let us now focus on the contest designer's problem. Imagine the contest designer can choose the competition format to be either the race or the tournament. Imagine all other aspects of design are given. The prize structure $\alpha$ has been already chosen. There is a deadline $\deadline$, which is the same in both competition formats. [The quality requirement $\target_c$ in the tournament  is smalle than that in the race $\target_\race > \target_\tournament$)] We will relax this assumption later to consider a more general setting where these variables are also part of the contest designer's problem.
+ -->
+
+<!-- 
+The contest designer has an objective function that is increasing in the expected quality of the winning solution and decreasing in the corresponding time to completion. Here, to do not complicate exposition, we assume that the contest designer cares about the winning submission only: second placed efforts are not considered. [If the principal values the diversity of the solutions ... but we assume it does not.]
+ -->
+
+At the beginning of the game, the contest designer makes its choice without knowning the realized abilities of the contestants, and assuming players behave according to the equilibrium described above.
+
+Let us first consider the comparison between races and tournaments, while holding the target in the race exogenously fixed. As summarized in the next proposition, the choice of the competition depends on the (relative) [XXX] 
+
+\begin{proposition}
+For a contest with xxxx, there is a threshold $\hat\tau$ given by 
+$$
+ \hat\tau = 
+$$
+above which the contest designer will prefer the race to the tournament.
+\end{proposition}
+
+\begin{proof}
+See the Appendix. 
+\end{proof}
+
 
 Proof.  In a tournament, the objective function is 
 \begin{align}
@@ -359,6 +328,7 @@ As a result, if linear or convex the first order condition is lower than that in
 Conjecture. If $\tau>0$, the $\target$ in the race is higher. 
 
 
+<!-- 
 ## Structural econometric model
 
 Readings: 
@@ -396,3 +366,4 @@ F_{Y}(y) = \Pr(y_i^* \leq y)
 \end{equation}
 
 Identification of the model. suggest
+ -->

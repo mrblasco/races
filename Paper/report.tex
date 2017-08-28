@@ -109,7 +109,7 @@ University, 1737 Cambridge Street, Cambridge, MA 02138 (email:
 \providecommand{\subtitle}[1]{}
 \subtitle{{[}PRELIMINARY AND INCOMPLETE{]}}
 \author{Andrea Blasco \and Kevin J. Boudreau \and Karim R. Lakhani \and Michael Menietti}
-\date{Last updated: 10 August, 2017}
+\date{Last updated: 28 August, 2017}
 
 \begin{document}
 \maketitle
@@ -134,194 +134,227 @@ Keywords: races; tournaments; contest theory; crowdsourcing; innovation.
 
 
 \clearpage
+\tableofcontents
+\setcounter{tocdepth}{2}
+\clearpage
 
 \section{Introduction}\label{introduction}
 
 Many economic situations---in the public sector, business, sports, and
 academia---are decided by either a tournament---a competition to be
-best---or a race---a competition to be first. Both types of competition
-have become increasingly widespread in large part due to their
-effectiveness as sources of incentives. As shown in recent studies,
-government-sponsored competitions have had a tremendous impact on
-economic growth leading to improvements in agriculture (xxx), navigation
-(xxx), and the aviation industry (xxxx). In business, patent laws have
-resulted in races that have in many cases encouraged
-innovation;\footnote{Although this view contendxxx and empirical
-  literature on the topic is not conclusive.} and internal contests have
-been proven successful in motivating workers inside organizations (xxxx)
-and promoting internal innovation (xxxx). In recent years, we have also
-witnessed an explosion of online competitions where organizations have
-been sponsoring competitions like tournaments and races to make use of
-large online communities of freelance workers (xxxx).
+best---or a race---a competition to be first. In the public sector,
+government-sponsored races and tournaments have lead to major
+improvements in numerous areas like agriculture (xxx), navigation (xxx),
+and aviation (xxx), exerting a tremendous impact on economic growth. In
+business, both types of competition are regularly used by managers to
+raise workers' motivation and performance (xxx). In academia, they are
+used by philanthropic organizations to increase the productivity of
+scientists via competitive research grant awards (xxx) and individual
+prizes for merit (xxx).
 
-While an extensive literature has focused on the effectiveness of both
-races and tournaments, it is unclear when to go for one or the other.
-Contest designer seem to choose one or the other depending on their
-preferences, the nature of the problem, etc. But there is no theoretical
-guidance in choosing how to compete. {[}How strategic players
-interact{]}. Two issues: preferences and efficiency when playrers are
-strategic {[}How the choice affects entry of strategic players and, in
-turn, how entry affects final outcomes{]}. For example, deadlines can be
-used but xxx. This also impact efficiency as more entry involves more
-duplication costs.
+While sometimes the competition being a race or tournament is due to
+external factors like regulation or tradition, in many other situations
+contest designers can choose how they want the contestants to compete.
+This is the case, for example, of governmental agencies procuring public
+services; executives designing internal remuneration schemes for their
+employees; organizations sponsoring external online competitions to
+engage the members of large online communities like in crowdsourcing
+contests (xxx).\footnote{online} Understanding the consequences of
+adopting different competition types is thus crucial for contest
+designers to make appropriate decisions.
 
-In this paper we do xx and yy.
+In this paper, we investigate this question by focusing on the possible
+trade-off between choosing a race and a tournament. The races vs
+tournaments issue is examined from two different perspectives. First, we
+consider the role of contestants' strategic interactions under these two
+competitive regimes. Then, we characterize the optimal design and we
+examine how it depends upon the contest designer's preferences towards
+the time and quality of contestants' effort. In particular, contest
+designer's revenues depend on how contestants perform a task (e.g.,
+solving a problem) that requires time to perform and can be performed at
+varying levels of quality.
 
-shown that government sponsored contests have use prize-based contests
-to procure public services, motivate workers, accelerate technical
-innovation, and promote scientific progress. These contests can be
-internal---among workers--- or external---inviting a large crowd of
-xxxx. The use of contests raises many questions on how these people
-should be choosing how to compete. {[}In public-sector agencies,
-managers use both types of competition to procure public services,
-accelerate technical innovation, and promote scientific progress. In
-business, executives arrange various forms of internal competition to
-motivate workers. In the last decade or so, we have also witnessed an
-explosion of online contest where many different organizations including
-firms and philanthropic organizations have been sponsoring competitions
-like tournaments and races to xxxx large online communities of freelance
-workers.{]}
+To investigate these issues, we proceed in two ways. Firstly, we develop
+a contest model that encompasses both the race and the tournament in a
+single framework. In particular, our approach extends the contest model
+introduced by Moldovanu and Sela (2001) to a situation in which contest
+designers care about both the timing and quality of effort. Exploring
+the duality of the model, we compare equilibrium behaviors under both
+competitive formats and characterize the optimal choice for the contest
+designer. Secondly, we design and execute an experiment to test key
+implications of the theory in the field. More specifically, the
+experiment compares and contrast behaviors under three different
+competition regimes: races, tournaments, and tournaments with a minimum
+quality reserve (called tournaments with reserve).
 
-As people are increasingly facing the question of choosing how to
-compete, xxxx.
+To fix ideas, consider the following real example. After the World
+Health Organization (WHO) issued a report in 2014 calling antimicrobial
+resistance\footnote{Antimicrobial resistance is ``the ability of a
+  microbe to resist the effects of medication previously used to treat
+  them'' (Wikipedia). It is often called ``antibiotic'' resistance
+  because it is a phenomenon likely caused by a misuse of antibiotics.
+  These resistant microbes are increasingly difficult to treat.} ``a
+major threat to public health,'' the United Kingdom and the European
+Commission decided independently to sponsor two different innovation
+contests aimed at boosting the development of solutions to the problem.
+The contest sponsored by the UK government was called the ``Longitude
+Prize: Reduce the use of antibiotics.'' The one sponsored by the EU was
+called ``Horizon prize for better use of antibiotics.'' Though both the
+contest designers were facing a seemingly identical problem --- it is
+striking how similar the contest names ended up being, the two contests
+were very different from a contest design perspective. The Longitude
+prize was a race competition: it awarded a prize to the first team to
+submit a solution satisfying some pre-specified effectiveness criteria.
+The Horizon prize was a tournament: teams were facing a fixed 12 month
+deadline within which they could submit solutions and the best solution
+relative to the other submissions was awarded a prize.
 
-Understanding the costs and benefits of these different forms of
-competition continues to be a formidable question for economists and
-practitioners. This xxx is subtle to analyze.
+The reasons why contest designers --- facing identical problems ---
+might end up with very different designs is unclear, raising questions
+about the determinants of contest designers' choices. We argue that
+there are two key factors that shape the decisions of contest designers.
+First, contest designers act to maximize their expected revenues.
+Expected revenues depend upon the intensity of their preferences for
+time and quality of effort --- e.g., developing effective solutions to
+antimicrobial resistance in the shortest time possible. According to
+these preferences, contest designers have (a) to schedule deadlines to
+create conditions of time pressure for contestants; and (b) select
+minimum criteria to avoid rewarding solutions of unsatisfying quality
+and (c) set up either a competition to be first or a competition to be
+best. By setting deadlines and minimum-quality criteria, contest
+designers affect the incentives for contestants to enter the
+competition, as well as the competitive pressure on their rivals. By
+choosing how contestants will compete, contest designers direct
+competitive pressures towards improving only one dimension of the
+problem, while keeping the efforts in other dimensions fixed. These
+different aspects --- deadlines, quality requirements, and competition
+styles --- interact with one another, greatly influencing the manner in
+which contestants behave.
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Preferences for time - It is not clear which is the most effective
-\item
-  Efficiency\\
-  - Avoid duplication costs - Mechanisms to force optimal entry in the
-  sense of Mcafee xxxx.
-\end{enumerate}
+While races and tournaments are similar in various respects, it is
+unclear which one will dominate the other. For example, tournaments can
+incentivize fast solutions of high quality by fixing appropriate
+deadlines. However, a tournament with a ``too short'' deadline may
+implicitly raise entry costs, which in turn will reduce the competitive
+pressure to increase quality. For similar reasons, a race with a ``too
+high'' quality requirement might incentivize performances of higher
+quality, but it might also limit participation, thus reducing the
+competitive pressure on the time to perform the task.
 
-One may claim that it depends on contest sponsors's preferences towards
-two desirable, but often incompatible, goals: \(i\)) maximizing revenues
-through raising competitors' performances while \(ii\)) lowering the
-time it takes to complete a given job. It is, however, unclear in
-general which of the type types of competition is more effective. A
-tournament may stimulate competition that increases performance and, by
-having a relatively short deadline, it may also accelerate production as
-well. At the same time, when the deadline is set too short, it may deter
-entry thereby lowering the intensity of competition, which in turn may
-move down performance. In a similar way, races do not necessarily
-improve faster \ldots{} If the target is too high and xxxx.
+Another important factor for contest designers is how the choice of
+tournaments vs races will affect the efficiency of the contest. In
+particular, one good reason to limit entry in a contest is to decrease
+inefficiencies like duplication costs. As suggested by Fullerton and
+McAfee (1999), it is sometimes more efficient to design contests that
+limit competition to only the two top contestants, instead of having an
+open competition. This is because having many low-skilled contestants
+may be just a waste of resources, as they keep essentially unaltered the
+competitive pressure on the top contestants while raising duplication
+costs. Also tournaments and races, by imposing deadlines and minimum
+quality requirements to win, limit competition in different ways and can
+be designed to deliver ``efficient'' results. This issue seems most
+relevant for firms and online platforms running multiple challenges at
+once among a fixed set of potential contestants, whereby seeking to
+implement an efficient allocation of workers/platform members to tasks.
 
-Alternatively, the choice between tournaments and races can be seen as
-the response to ``efficiency'' concerns of the contest sponsors. Under
-this view, races and tournaments may lead to the same expected outcomes
-in terms of time or effort but lead to different duplication costs by
-regulating ``entry'' into the contest {[}as discussed by Fullerton
-Mcafee, xxxx{]}. Hence, the ``time preferences'' story and the
-``efficiency'' are two possible explanation for using a race or a
-contest.
+Our theoretical approach follows traditional contest models, as in
+Moldovanu and Sela (2001). In this setting, contests have an all-pay
+structure by which participants pay an immediate cost for an uncertain
+future reward. The decision of timing and quality is made under the
+uncertainty of the costs of the rivals. The contest designer wants to
+maximize revenues and has preferences for both time and quality.
+Following the analysis of the model, we show that the optimal design
+depends on the number of participants and the concavity of their cost
+function. We also show conditions under which races dominate
+tournaments--- even when the contest designer does not care about the
+timing --- and vice versa. We also characterize outcomes when contest
+designers can introduce a minimum quality reserve (i.e., tournaments
+with reserve) showing that tournaments with (sufficiently high) reserve
+always dominate races in terms of performance.
 
-In this article, we investigate the choice between races and tournaments
-both theoretically, and empirically in the field. We proceed in two
-ways. First, we develop a contest model that encompasses both the race
-and the tournament in a single framework. Exploring the duality of the
-model, we compare equilibrium behaviors under both competitive formats
-and characterize the optimal choice for the contest designer. Then, we
-design and execute an experiment to test the implications of the theory
-in the field, and xxxx providing policy recommendations.
-
-Our theoritical approach extends the contest model introduced by
-Moldovanu and Sela (2001) to a situation in which xxx decide both time
-and quality. Thus, contests have an all-pay structure by which
-participants pay an immediate cost for an uncertain future reward. The
-decision of timing and quality is made under the uncertainty of the
-costs of the rivals. The contest designer wants to maximize reveues and
-has preferences for both time and quality. Following the analysis of the
-model, we show that the optimal design depends on the number of
-participants and the concavity of their cost function. We also show that
-XXX, YYY, and ZZZZ.
-
-To fix ideas, imagine a government willing to design an innovation
-contest aimed at finding solutions to a problem of public health, such
-as antibiotic resistance.\footnote{This example is taken\ldots{}} To
-minimize the risk that the threat of xxxx will materialize before a
-solution is found, one may choose a tournament competition format with a
-tight deadline for participants to provide their solutions. The problem
-is to find the right duration. When the duration of the competition is
-too short, incentives maybe insufficents for competitors to exert enough
-effort resulting in inadequate solutions. Alternatively, the government
-can set up a race competition with a prize being awarded to the first
-competitor who achieves, or goes beyond, a minimum quality threshold.
-Here the problem of accelarating the timing of innovation should not be
-a big issue but competitors may work inefficiently, as they have no
-incentives to exceed the minimum threshold. Fixed the prize structure,
-both approaches have specific advantages and limitations. However, xxxx.
-
-The context of the field experiment was an online programming
-competition run on Topcoder at the end of 2016. In a typical programming
-competition, participants compete writing source code that solves a
-given problem for winning a monetary prize. We worked together with
-researchers from the United States National Health Institute (NIH) and
-the Scripps Research Institute (SCRIPPS) to select a challenging problem
-for the contest. The selected problem was based on an algorithm called
-BANNER built by NIH (Leaman, Gonzalez, and others 2008) that uses expert
-labeling to annotate abstracts from a prominent life sciences and
-biomedical search engine, PubMed, so disease characteristics can be more
-easily identified. The goal of the programming competition was to
-improve upon the current NIH's system by using a combination of expert
-and non-expert labeling, as described by Good et al. (2014). The
-competition was hosted online on the platform Topcoder.com (about 1M
-registered users in 2016). Top submissions were awarded monetary prizes
-ranging between \$100 to \$5000 for a total prize pool of more than
-\$40,000.
+Our empirical approach involves the design and execution of a field
+experiment. The context of our field experiment is an online programming
+competition run on the online platform Topcoder at the end of 2016. In a
+typical programming competition, participants compete writing source
+code solving a given problem for winning cash prizes. We worked together
+with researchers from the United States National Health Institute (NIH)
+and the Scripps Research Institute (SCRIPPS) to select a challenging
+problem for the contest. The selected problem was based on an NIH's
+algorithm called BANNER (Leaman, Gonzalez, and others 2008) that uses
+expert labeling to annotate abstracts of a repository of life sciences
+articles (e.g., PubMed), so disease characteristics can be more easily
+identified. The goal of the programming competition was to improve upon
+the current NIH's system by using a combination of expert and non-expert
+labeling, as described by Good et al. (2014). To encourage
+participation, we offered \$40,000 in cash prizes to participants.
 
 Our intervention consisted in sorting at random participants into
 independent virtual rooms of 10 or 15 people. These virtual rooms were
-then randomly assigned to one of three different competitive settings: a
-race, a tournament, and a tournament with a reserve score, which is the
-lowest acceptable score by the platform for a submission to be awarded a
-prize.
+then randomly assigned to one of three different competitive settings:
+(a) tournaments, (b) races, and (c) tournaments with reserve.
+Contestants were thus facing the same task to perform, same cash
+incentives, etc. The only difference was how they were competing against
+one another.
 
-We find that xxxxx {[}participation in the tournament is xxx compared to
-the race the reserve.{]}
+We find that tournaments yield about \(1.3\) times higher participation
+rates than races and tournaments with reserve, as predicted by theory.
+We find stark differences in terms of ability between entrants and
+non-entrants. But only insignificant differences in entrants between
+tournaments and races. That is, the conditional probability of entering
+the competition for a competitor with a given ability was the same in
+races and tournaments. This lack of skill-based sorting does not explain
+the excess of entry in tournaments, suggesting other sorting mechanisms
+than problem-solving ability are at play.
 
-We also find that xxxx {[}submission are quicker in a race, whereas are
-equally distributed at the end of the competition in the the tournament
-and in the tournament with quality requirement.{]}
+We also examine treatment differences in performance. While we find only
+insignificant differences in the quality of outcomes across competition
+styles, the variance was higher in tournaments compared to races.
+Suggesting that, although tournaments may cost more than races on
+average, they are more relatively more likely to generate outcomes of
+very high value. At the same time, races offer other advantages, as
+solutions are submitted quicker in a race relative to tournaments.
 
-Another interesting finding is that xxxxx {[}No evidence trade-off
-between a race and a tournament in terms of higher scores vs faster
-submissions. We do find that scores are higher in the tournament but we
-do not find a strong trade-off in the sense that race had comparable
-good quality solutions than the tournament.{]}
+In comparing races and tournaments w/reserve, we detect a
+``substitution'' effect as high ability competitors were more likely to
+enter races compared to tournaments w/reserve --- while keeping entry
+rates constant across the treatments. This substitution effect may
+explain the relatively higher volatility of outcomes in the tournaments
+w/reserve compared to races.
+
+Finally, we use a structural approach to estimate our contest model.
+This has two main purposes (a) provide a basis for the external validity
+of our results to other settings and (b) enable the analysis of
+efficiency problems using counterfactual simulations based on the
+estimated model.
+
+Implications of these findings for contest designers are discussed at
+the end of this paper.
 
 \section{Literature}\label{literature}
 
-This paper is related to the contest theory literature Dixit (1987) Baye
-and Hoppe (2003), Parreiras and Rubinchik (2010), Moldovanu and Sela
-(2001), Moldovanu and Sela (2006), Siegel (2009), Siegel (2014). It also
-relates to the literature on innovation contests Taylor (1995), Che and
-Gale (2003). And the personnel economics approach to contests Lazear and
-Rosen (1981), Green and Stokey (1983), Mary, Viscusi, and Zeckhauser
-(1984).
+This paper is related to the contest theory literature in economics
+(Dixit 1987 Baye and Hoppe (2003), Parreiras and Rubinchik (2010),
+Moldovanu and Sela (2001), Moldovanu and Sela (2006), Siegel (2009),
+Siegel (2014)). It also relates to the literature on innovation contests
+(Taylor 1995, Che and Gale (2003)). And the personnel economics approach
+to contests (Lazear and Rosen 1981, Green and Stokey (1983), Mary,
+Viscusi, and Zeckhauser (1984)).
 
 Empirically, Dechenaux, Kovenock, and Sheremeta (2014) provide a
 comprehensive summary of the experimental literature on contests and
 tourments. Large body of empirical works have focused on sports contests
-Szymanski (2003). More recently, inside firms (xxx) and online contest
+Szymanski (2003). More recently, field experiments conducted inside
+firms have studied workers response to internal contests in terms of
+productivity --- individual (xxxx) and in teams (xxxxx) --- and ideation
+(xxxx). A growing number of studies have also focused on similar
+incentives but applied to ``virtual'' environments like online contests
 (xxxx).
 
-This paper is also related to the econometrics of auctions Paarsch
-(1992), Laffont, Ossard, and Vuong (1995), Donald and Paarsch (1996) and
-more recently Athey, Levin, and Seira (2011), Athey and Haile (2002),
-and Athey and Haile (2007).
-
-An extensive literature has discussed the reasons why contests are
-sometimes preferred to other forms of incentives (e.g., individual
-contracts). Typically, contests reduce monitoring costs {[}xxx{]},
-incentivize production with common risks {[}xxx{]}, and deal with
-indivisible rewards {[}xxxx{]}, among others. While there is not much
-debate on why contests should be used, the issue of how to effectively
-design and deploy a contest still attracts much research.
+In our structural approach to estimate contest model, this paper follows
+results from classical econometrics of auctions (Paarsch 1992, Laffont,
+Ossard, and Vuong (1995), Donald and Paarsch (1996)) and more recent
+ones (Athey, Levin, and Seira 2011, Athey and Haile (2002), and Athey
+and Haile (2007)).
 
 Several aspects of contest design have been investigated, including the
 optimal prize structure {[}XXX, xxxx, xxxx{]}, number of competitors
@@ -341,335 +374,336 @@ effect). In the laboratory, Zizzo (2002) finds poor support to
 predictions of dynamic xxxx. In general we do not know much about the
 dynamic aspect of contests.
 
-The duality. As pointed out by Baye and Hoppe (2003), many of these
-models of tournament and race competitions are specific cases of a more
-general ``contest games.'' And sometimes it is possible to design one or
-the other in a way to exploit a ``duality.'' In other words, in theory,
-a competition can be designed as a tournament to do xxx or as a race to
-do xxx. While theoretically very useful, how to exploit this duality in
-practice remains largely unknown. Lack of data. As before, xxxx. The
-main challenge is self-selection. The answer to this optimal design
-question relates to the cost function of agents with respect to ``time''
-and to ``effort.'' It is hard to say which solution is better. However,
-it is easier to tell whether you should have one prize or multiple
-prizes.
+As pointed out by Baye and Hoppe (2003), many of these models of
+tournament and race competitions are specific cases of a more general
+``contest games.'' And sometimes it is possible to design one or the
+other in a way to exploit a ``duality.'' This type of duality suggests
+that races and tournaments are ``strategically equivalent'' from the
+point of view of contestants. That is, ex-ante they might expect similar
+payoffs. While this is a very important theoretical result, it does not
+say how contest designers should or can exploit this duality, an issue
+that remains largely unknown. Relative to Baye and Hoppe (2003), we
+provide results on the problem of maximization of the contest designer,
+showing that even when tournaments and races yield same ex-ante payoff
+to contestants, they might not yield same payoffs (revenues) for contest
+designers.
 
+\newcommand\reserve{\text{res}}
 \newcommand\competition{c}
 \newcommand\ability{a}
 \newcommand\performance{y}
 \newcommand\timing{t}
 \newcommand\Timing{T}
 \newcommand\Performance{Y}
+\newcommand\marginal{\underline{a}}
+
 
 \section{The model}\label{the-model}
 
-We now generalize the contest game introduced by Moldovanu and Sela
-(2001) to a situation where players simultaneously decide \(i)\) how
-fast to perform a given task and \(ii)\) the quality of their
-performance (e.g., the time to solve a problem and effectiveness of the
-solution). Then we explore the problem of revenue maximization faced by
-a contest designer with preferences for both time and quality.
+Consider a generalization of the contest game introduced by Moldovanu
+and Sela (2001). In this game, \(n\) contestants (\(i=1,..., n\)) are
+competing for \(p\) money prizes (\(k=1,...,p\)) of value
+\(v_1\geq v_2\geq ...\geq v_p\geq0\) with total value normalized to one
+\(\sum_{k=1}^p v_k =1\). They simultaneously decide \((a)\) how fast to
+perform a given task and \((b)\) the quality of their performance (e.g.,
+the time to solve a problem and effectiveness of the solution). The
+timing and performance for each contestant \(i\) are denoted by
+\(\timing_i\in(0,\deadline]\) and \(\performance_i\in[0,\bar y]\),
+respectively. The upper limit of the time interval \(\deadline>0\) is
+the deadline of the contest and the upper limit of the performance
+interval \(\bar y>0\) is the highest technically feasible performance
+level (e.g., in a prediction task, making 100 percent accurate
+predictions).
 
-\subsection{Basic setup}\label{basic-setup}
+Each contestant \(i\) incurs a cost of performing the task
+\(c_i = C(\performance_i, \timing_i) / \ability_i\) given by the cost
+function \(C(\performance_i, \timing_i)\) scaled by an individual
+ability parameter \(a_i\) reflecting skills, time constraints, and other
+elements affecting contestant \(i\)'s performance.
 
-Consider a contest game where \(i=1,..., n\) contestants are competing
-for \(p\) prizes of value \(v_1\geq v_2\geq ...\geq v_p\geq0\); and
-imagine the total value distributed to winners is normalized to one,
-\(\sum_{k=1}^p v_k =1\). To win a prize, each contestant will act
-independently over the course of a given period of time \(\deadline>0\)
-working to develop solutions to a given problem. The time it takes to
-develop their solutions and the effectiveness or quality of the
-delivered solutions are denoted by two nonnegative variables
-\(\timing_i\) and \(\performance_i\) respectively. Solving the problem
-can be thus defined as developing a solution with an effectiveness of at
-least \(\target\geq0\).
+The cost function \(C(\cdot)\) is a decreasing function of time, an
+increasing function of quality, is multiplicative (i.e., the higher the
+quality the more time it takes to perform the task), and is zero when
+performance is zero \(C(y_i=0, \cdot)=0\) (i.e., the contestants can
+drop out of the competition at no cost).
 
-Each contestant \(i\) has a cost of problem solving \(c_i\) given by \[
-    c_i = \ability_i^\alpha C(\performance_i, \timing_i)
-\] where \(C(\cdot)\) denotes a cost function of the inputs and \(a_i\)
-is a (strictly positive) ability parameter changing across contestants
-and \(\alpha<0\).
-
-The cost function \(C(\cdot)\) is decreasing in the time to develop
-solutions. It is increasing in the quality of the developed sultions. It
-is \emph{multiplicative} (the higher the quality the more time it takes
-to develop the solution at the same cost). And it is assumed to have the
-following functional form:
-\(C(\performance, \timing) = \performance^\alpha \timing^\beta,\) where
-the parameters \(\alpha>1\) and \(\beta<0\) denote the \emph{elasticity}
-of the cost function with respect to its inputs.
-
-The ability parameter reflects heterogeneity in skills, time
-constraints, and other elements affecting their ability to solve the
-problem. Each ability parameter \(a_i\) is drawn at random from a common
-distribution function \(F_A(\cdot)\) with (absolutely continuous)
-density \(f_A(\cdot)\) on a bounded interval. Players observe privately
-the realization of their own ability (their \emph{type}) before making
-their choices.
-
-The contest designer determines how contestants compete for prizes. We
-consider three types of competition: the race, tournament, and
-tournament with reserve.
-
-\begin{itemize}
-\item
-  In a race, the first contestant that solves the problem (i.e.,
-  achieves a performance equal or higher than \(\target\)) wins the
-  first prize. The second contestant to solve the problem wins the
-  second prize, and so on until either all the prizes are awarded or
-  there are no more eligible contestants (i.e., those who have solved
-  the problem in the given time).
-\item
-  In a tournament, the contestant achieving the highest performance
-  within the given deadline \(\deadline\) wins the first prize. The
-  contestant with the second highest performance wins the second prize,
-  and so on until all prizes are awarded.
-\item
-  Finally, the tournament with reserve is a slightly more general form
-  of tournament competition where, to win a prize, competitors must
-  achieve a performance equal or higher than the target \(\target\).
-  Prizes are thus awarded based on performance until either all prizes
-  are allocated or there no more eligible contestants (i.e., those with
-  a performance equal or higher than \(\target\)).
-\end{itemize}
-
-In all three types of competition, the payoff of a contestant \(i\) with
-ability \(a_i\) who has developed a solution of quality \(y_i\) that was
-delivered in time \(t_i\), is either
-\(v_k - \ability_i^\alpha C(y_i, t_i)\) if \(i\) wins the k-th prize, or
-\(-\ability_i^\alpha C(y_i, t_i)\) if \(i\) does not win a prize.
-
-The contest designer is risk neutral and aims to maximize its revenues
-by increasing the winner's performance, while keeping low the time of
-delivery (i.e., max the speed of production). The actions of the contest
-winner are random variables denoted by \((Y^w, T^w)\). The contest
-designer's expected payoff (net of total prizes distributed to winners)
-is:
-
+To make things more concrete, we consider the following functional form:
 \[
-    \pi_{cd} = E[Y^w - \tau T^w]
-\]
+    C(\performance, \timing) = \performance^\alpha \timing^\beta,
+\] where the elasticity of the cost function with respect to its inputs
+is denoted by the parameters \(\alpha\geq1\) and \(\beta\leq0\).
 
-where \(E\) denotes the expectation with respect to the distribution of
-players' actions in equilibrium; and \(\tau\) denotes the intensity of
-the contest designer's (negative) preferences towards solutions
-delivered later in time.
+The individual ability \(a_i\) of each contestant is drawn at random
+from a common distribution function \(F_A(\cdot)\) with (absolutely
+continuous) density \(f_A(\cdot)\) on the unit interval. Players observe
+privately the realization of their own ability (their \emph{type})
+before making their choices of how much cost to incur.
+
+Each contestant \(i\) gets a payoff that is either \(v_k - c_i\), if
+\(i\) wins the kth prize, or is \(-c_i\), if \(i\) does not win a prize.
+Winners are determined according to a set of competition rules, which
+are common knowledge. We consider three kinds of competition rules ---
+called ``race,'' ``tournament,'' and ``tournament with reserve''
+competitions --- defined below.
+
+\begin{definition}[Races]
+In a race competition, contestants are required to achieve a minimum target performance $\target\in(0, \bar y)$. The first to achieve a performance equal or higher than $\target$ wins the first prize; the second to achieve a performance equal or higher than $\target$ wins the second prize; and so on until either all the prizes are awarded or there are no more contestants who have achieved a performance equal or higher than $\target$.
+\end{definition}
+
+\begin{definition}[Tournaments]
+In a tournament competition, contestants face no minimum performance requirements. So, everyone is eligible for prizes. The contestant that achieves the highest performance relative to others wins the first prize; the contestant that achieves the second highest performance wins the second prize, and so on until all prizes are awarded.
+\end{definition}
+
+\begin{definition}[Tournaments with reserve]
+In a tournament with reserve competition, contestants are required to achieve a minimum target performance $\target_{\reserve}\in(0,\bar y)$ and, unlike races, prizes are awarded based on performance. The contestant that achieves the highest performance relative to others wins the first prize; the contestant that achieves the second highest performance wins the second prize, and so on until all prizes are awarded  or there are no more contestants who have achieved a performance equal or higher than $\target_{\reserve}$.
+\end{definition}
 
 \subsection{Equilibrium}\label{equilibrium}
 
 We now solve the model for the unique symmetric Bayesian Nash
-equilibrium of players.
+equilibrium (hereafter equilibrium) separately for each kind of
+competition rules --- races, tournaments, and tournaments with reserve.
 
 \subsubsection{Races}\label{races}
 
-The first key observation is that, in a race, any solution of quality
-below the target \(\target\) gives a zero probability of winning prizes;
-and any solution of quality above the target gives a constant
-probability of winning. It is thus a dominant strategy for every
-contestant to choose a quality either of zero (i.e., the lowest
-possible) or equal to the target \(\target\).
+Consider first a race competition. A key observation in this case is
+that any performance below the target \(\target\) gives a payoff of zero
+and any performance equal or above \(\target\) gives a constant
+probability of winning a prize. Since the cost function is increasing in
+performance, it is a dominant strategy for the contestants to either
+drop out the competition --- choosing a cost of zero (i.e., setting
+\(y_i^*=0\)) --- or enter the competition --- choosing a strictly
+positive cost (i.e., setting \(y_i^*=\target\)).
 
-As choosing a quality of zero gives a null payoff for any \(t\), we
-avoid multiplicity of equilibrium by using the convention that when
-\(y_i=0\) then \(t_i = \deadline\).
+At equilibrium, for any contestant \(i=1, .., n\) in a race competition,
+there is an ability threshold \(\marginal>0\) such that any contestant
+with an ability below the threshold will drop out the competition; and
+any contestant with an ability above the threshold will enter the
+competition incurring a cost given by
 
-To ensure monotonicity, we use the convention that any player who sets
-performance equal to zero also sets the time higher than or equal to the
-deadline (e.g., to infinity). By doing so, the probability of winning
-the \(k\)-th prize in a race reduces to the probability the timing is
-lower than the xxx but higher than the xxx order statistic.
+\begin{equation}
+    \label{cost races}
+    c_i^* = \target^\alpha t^*(a_i)^\beta / a_i
+\end{equation}
 
-Assuming there exists a monotonic function \(t^*(\cdot)\) such that the
-optimal timing \(t_i^*\) for a player with ability \(a_i\) is
-\(t^*_i = t^*(a_i)\). The optimal timing \(t_i^*\) is given by first
-order conditions \[
-    \frac{d g(\phi)}{d \phi} \dot\phi = a^\alpha y^\beta \delta t^{\delta-1}
-\]
+where \(t^*(\cdot)\) is a monotonic decreasing function of ability given
+by
 
-Using the definition: \[
-    \frac{d \phi}{d y} =  g(\phi) h(t)
-\] where \[
-    g(\phi) = \phi^\alpha \left[\sum \dot p^k (\phi) v_k \right]^{-1}
-\] and \[
-    h(y) =  \target^\beta  \delta t^{\delta -1}
-\] with initial conditions \(\phi(\deadline)=0\).
+\begin{equation}
+        t^*(a_i) = \left[
+            \deadline^\beta - \frac{1}{\target^\alpha}\sum_{k=1}^{p} v_k \int_{\marginal}^{a_i} x \dot p_k(x) d x
+        \right]^{1/\beta}
+\end{equation}
 
-Here, the key observation is that, for a given level of quality, any
-time that is strictly below the deadline does not affect the probability
-of winning but is costly in terms of effort (working faster is costlier)
-and any time that is strictly above the deadline gives a negative
-payoff. Thus, choosing \(t_i=\deadline\) is a (weakly) dominant strategy
-for each player. Then the first order condition with respect to quality
-is:
+and \(\dot p_k(\cdot)\) is the first derivative of \(p_k(\cdot)\) the
+probability of winning the kth prize. This probability involves the
+distribution of the \(k\) first order statistics of individual abilities
+and is given by
 
 \[
-    \sum_{k=1}^{q} \hat p^{\prime}_{k}(y_i) v_k = \cability(a_i) \cscore^\prime(y_i) \ctime(\deadline).
+    p_k(x) = \frac{(n-1)!}{(k-1)!(n-k)!} F_A(x)^{k-1} (1-F_A(x))^{n-k}. 
 \]
 
-where \(\hat p = p(\cdot, \deadline).\) Then it can be show that xxxx.
-
-\begin{align}
-0 = & \alpha f_{(1:N-1)}(\phi) \phi^{\prime} 
-    + (1-\alpha)\phi^{\prime}\{[1 - F_{(1:N-1)}(\phi)]f_{(1:N-2)}(\phi) + \nonumber\\
-    & + f_{(1:N-1)}(\phi) F_{(1:N-2)}(\phi)\} 
-    - c_{a}(a) c_{y}(\target) \ctime^{\prime}(t_i)
-\end{align}
-
-subject to the boundary condition \(\phi(0) = \lotype\) (i.e., the
-lowest-ability competitor's optimal output quality is zero).
-
-As shown by Moldovanu and Sela (2001), the solution is
-
-\begin{equation} \label{ystar}
-y^*(a_i) = 
-    \cscore^{-1}
-    \left[\cscore(\target) 
-    + \frac{1}{\ctime(\deadline)}
-    \left(\alpha \int_{a_i}^{\hitype} A(z) dz
-      + (1-\alpha) \int_{a_i}^{\hitype} B(z)  dz
-    \right)
-    \right]
-\end{equation}
-
-where
+Note that \(t^*(\marginal)=\deadline\), as the marginal type
+\(\marginal\) picks the deadline at equilibrium; and the marginal type
+is defined implicitly by the zero profits condition
 
 \begin{equation}
-  A(x) = \frac{1}{c_{a}(x)} f_{(n-1:n-1)}(x)
+    \label{zero profits}
+    \sum_{k=1}^p p_{k}(\marginal) v_k - \target^\alpha \deadline^\beta / \marginal = 0, 
 \end{equation}
 
-and
+where, for the above expression to hold, \(\marginal\) must be positive,
+not zero.
+
+\subsubsection{Tournaments}\label{tournaments}
+
+Unlike races, tournaments do not award prizes based on the contestants'
+timing. In particular, any \(t_i\) equal or below the deadline
+\(\deadline\) gives a constant probability of winning a prize. It is
+thus a dominant strategy for the contestants to select a timing exactly
+equal to \(\deadline\). This choice does not affect entry, as
+contestants can still choose to incur arbitrarily small costs by
+lowering their performance. So, everyone enter at equilibrium.\footnote{More
+  specifically, even when the deadline is exceedingly short, then the
+  expected reward of winning becomes zero for everyone, which makes the
+  contestants indifferent between entering the contest with a
+  performance of zero, or dropping out.}
+
+At equilibrium, any contestant \(i=1, .., n\) with an ability \(a_i\)
+will enter the competition incurring a cost given by
 
 \begin{equation}
-  B(x) = \frac{1}{c_{a}(x)} \left\{
-      \left[1- F_{(n-1:n-1)}(x)\right]f_{(n-1:n-2)}(x)
-      + f_{(n-1:n-1)}(x) F_{(n-1:n-2)}(x)
-    \right\}.
+    \label{cost tournaments}
+    c_i^* = y^*(a_i)^\alpha \deadline^\beta / a_i
 \end{equation}
 
-Monotonicity of the equilibrium output quality implies that, for every
-\(i=1, ..., n\), the equilibrium expected payoff from the contest
-\(\pi_i^*\) depends on the rank of the player's ability relative to the
-others. As a result, the equilibrium expected payoff net of costs is
-
-\begin{equation} 
-    R(a_i) = \alpha F_{n:n}(a_i) + (1-\alpha)[1-F_{n:n}(a_i)] F_{n-1:n-1}(a_i).
-\end{equation}
-
-\% payoffs
-
-\subsubsection{Equilibrium in a race}\label{equilibrium-in-a-race}
-
-In a similar way, one can derive the equilibrium strategy in a race.
-Again the key observation is that any quality below the target gives a
-zero probability of winning and any quality above the target gives a
-constant probability of winning. Thus, player \(i\)'s choice of optimal
-quality \(y^*\) is either zero (with \(t_i=\deadline\) by convention) or
-\(y^*=\target\).
-
-Then, the equilibrium xxx for player \(i\) is
-
-\begin{equation} \label{tstar}
-t^*(a_i) = 
-    \ctime^{-1}
-    \left[\ctime(\deadline) 
-    + \frac{1}{\cscore(\target)}
-    \left(\alpha \int_{a_i}^{\hitype} A^\prime(z) dz
-      + (1-\alpha) \int_{a_i}^{\hitype} B^\prime(z)  dz
-    \right)
-    \right]
-\end{equation}
-
-where
+where \(y^*(\cdot)\) is a monotonic increasing function of ability given
+by
 
 \begin{equation}
-  A(x) = \frac{1}{c_{a}(x)} f_{(n-1:n-1)}(x)
+        y^*(a_i) = 
+        \left[\frac{1}{\deadline^\beta}\sum_{k=1}^{p} v_k \int_{0}^{a_i} x \dot p_k(x) d x \right]^{1/\alpha}. 
 \end{equation}
 
-and
+Note that \(y^*(0)=0\) (so, the equilibrium cost
+\(\lim_{a_i\to 0} c_i^* = 0\)).
+
+\subsubsection{Tournaments with reserve}\label{tournaments-with-reserve}
+
+Tournaments with reserve generalize tournaments by adding a minimum
+performance requirement \(\target_{\reserve}\). As for races, any
+performance below the target \(\target_{\reserve}\) gives a zero
+probability of winning a prize. It is thus a dominant strategy for
+players to either drop out the competition --- by choosing a cost of
+zero --- or enter the competition with a strictly positive cost. In
+addition, since awards are not based on the timing of performance, it is
+a dominant strategy for the contestants to choose a timing equal to the
+deadline \(\deadline\).
+
+At equilibrium, for any contestant \(i=1, .., n\) in a tournament with
+reserve competition, there is an ability threshold
+\(\marginal_\reserve>0\) such that any contestant with an ability below
+the threshold will drop out the competition; and any contestant with an
+ability above the threshold will enter the competition incurring a cost
+given by \[
+    c_i^* = y_\reserve^*(a_i)^\alpha \deadline^\beta / a_i
+\] where \(y_\reserve^*(\cdot)\) is a monotonic increasing function of
+ability given by
 
 \begin{equation}
-    B(x) = \frac{1}{c_{a}(x)} \left\{
-            \left[1- F_{(n-1:n-1)}(x)\right]f_{(n-1:n-2)}(x)
-            + f_{(n-1:n-1)}(x) F_{(n-1:n-2)}(x)
-    \right\}.
+        y_\reserve^*(a_i) = \left[
+            \target_{\reserve}^\alpha + \frac{1}{\deadline^\beta}\sum_{k=1}^{p} v_k \int_{\marginal_\reserve}^{a_i} x \dot p_k(x) d x
+        \right]^{1/\alpha}.
 \end{equation}
 
-An important property of XX is that \(y^*(a_i)\) has its upper bound in
-XX and lower bound in XX. Again payoffs are xxxx. Hence, by setting to
-zero and solving for the ability, gives the marginal ability
-\({\underline a}\) as
+Since the equilibrium performance for the contestants entering the
+competition is a monotonic transformation of the individual ability, the
+marginal ability threshold \(\marginal_\reserve\) is defined implicitly
+by a similar zero profits condition as equation \eqref{zero profits} in
+the races. Therefore, the marginal type \(\marginal_{\reserve}\) is
+strictly positive. Moreover, the marginal type in tournaments with
+reserve and races is the same when both competitions have an equal
+minimum required performance target, all else being equal.
 
-\begin{equation}
-  {\underline a}= h(n, V, F_A, C, d).
-\end{equation}
+\subsection{Races vs Tournaments}\label{races-vs-tournaments}
 
-\subsubsection{Tournament vs races}\label{tournament-vs-races}
-
-By comparing equilibrium xxx and xxx, we find that the race and the
-tournament do not (ex-post) dominate one another with respect to output
-quality. Whereas the race always dominates the tournament with respect
-to completion time. {[}This is only when the deadline is the same.
-Otherwise, there's always xxxx.{]} This result is stated below.
+From the contestants' point of view, the main difference between races
+and tournaments lies in the incurred costs at equilibrium. In
+particular, as summarized by the next proposition, there are two main
+differences in terms of equilibrium costs between races and tournaments.
 
 \begin{proposition}
-There always exist an interval of abilities where the output quality is higher in the race than in the tournament. By contrast, every player takes less completion time in the race than in the tournament.
+(a) the low-ability contestants --- those with an ability below the marginal type ($a_i<\marginal$) --- will drop out the race competition thereby incurring no cost, whereas they will enter a tournament competition incurring positive costs; and (b) the high-ability contestants --- those with an ability above the marginal type ($a_i\geq\marginal$)--- will enter both types of competition incurring positive costs that are higher in races relative to tournaments with a difference that is independent on individual ability. 
 \end{proposition}
 
 \begin{proof}
-Marginal type has utility zero in a race but the same type has a strictly positive utility in the tournament. Since probability of winning is not different in the race or the tournament (the bid is a monotonic transformation of the individual ability or, in other words, rankings are virtually the same), expected payoffs in equilibrium differ only in the cost functions. Hence, to be an equilibrium, the player in the tournament should bid less than the player in the race to earn a strictly positive expected payoff. 
+Omitted.
 \end{proof}
 
-Let's make an example.
+In particular, for any high-ability contestant (\(a_i\geq\marginal\))
+the difference in cost at equilibrium \(\Delta_i\) between race and
+tournament competitions is given by the difference between equation
+\eqref{cost races} and \eqref{cost tournaments}, which can be written as
 
-\begin{verbatim}
-p <- plnorm   # pdf individual abilities 
-r <- rlnorm   # Simulate individual abilities
-cy <- function(x) x^2 # Cost function performance
-ct <- function(x) 2*exp(1-x)  # Cost function timing 
-\end{verbatim}
+\begin{equation}
+    \Delta_i = c_{i,\tournament}^* - c_{i,\race}^* 
+    = \sum_{k=1}^{p} v_k \int_0^{\marginal} x \dot p_k(x) d x - \target^\alpha \deadline^\beta \leq 0.
+\end{equation}
 
-FIGURE 1. Equilibrium bids in a race and a tournament.
+It can be hence shown (using the zero profit condition
+\eqref{zero profits}) that the equilibrium cost difference \(\Delta_i\)
+is less or equal than zero for any \(a_i\geq \marginal\). It is also
+interesting to note that the individual ability \(a_i\) does not appear
+in the equation. The cost difference between races and tournaments is
+thus the same for everyone, independently of their ability (provided it
+is higher than the marginal type).
 
-Implications. The above proposition applies only if the target is higher
-in a race than in a tournament. But what if the two competitions had the
-same target ? In that case, tournaments and races have the same marginal
-type. Therefore, the performance of players in the tournament with
-reserve are always non-lower than those in the race. This does not imply
-that it is optimal to set the target. On the contrary, we will show that
-it is optimal to set an optimal target in a tournament that is below the
-optimal target in a race. Next section.
+The comparison between races and tournaments with reserve leads to
+similar results. As soon as, the tournament has a lower performance
+target than the race (\(\target_{\reserve} \leq \target\)) there are
+higher entry rates in the tournament with reserve and there is a
+negative cost difference for the entrants. These differential effects,
+however, are decreasing in the difference between the targets and will
+eventually vanish entry in competitions with equal targets
+(\(\Delta_{i}=0\) for any \(a_i\geq\marginaltype\) when
+\(\target_{\reserve}=\target\)).
 
-\subsection{The contest designer's
-problem}\label{the-contest-designers-problem}
-
-Let us now focus on the contest designer's problem. Imagine the contest
-designer can choose the competition format to be either the race or the
-tournament. Imagine all other aspects of design are given. The prize
-structure \(\alpha\) has been already chosen. There is a deadline
-\(\deadline\), which is the same in both competition formats. {[}The
-quality requirement \(\target_c\) in the tournament is smalle than that
-in the race \(\target_\race > \target_\tournament\)){]} We will relax
-this assumption later to consider a more general setting where these
-variables are also part of the contest designer's problem.
-
-The contest designer has an objective function that is increasing in the
-expected quality of the winning solution and decreasing in the
-corresponding time to completion. Here, to do not complicate exposition,
-we assume that the contest designer cares about the winning submission
-only: second placed efforts are not considered. {[}If the principal
-values the diversity of the solutions \ldots{} but we assume it does
-not.{]}
-
-XXX EQUATION XXXX
-
-The optimal choice involves a comparison of the expected profits between
-the race and the tournament. Given xxxx, we can show that there will be
-a threshold on the cost of completion time \(\hat\tau\) above which the
-race is a better choice than the tournament, and vice versa.
+In what concerns differences in performance, the model shows that the
+performance of contestants in tournaments do not always dominate that of
+those in races, and vice versa.
 
 \begin{proposition}
-There's a tau above which ... 
+There always exist an interval of ability realizations $\hat A$ such that the equilibrium performance of a contestant with an ability $a_i\in \hat A$ in a race is greater than the performance of the same in  individual in the tournament.
 \end{proposition}
+
+\begin{proof}
+Consider the individual ability to be the marginal type $\marginal$. The individual with an ability equal to the marginal type gets at equilibrium an expected payoff of zero in a race, whereas it gets a strictly positive expected payoff in tournament. Since the probability of winning the kth prize is the same between races and tournaments --- it is the probability of the ability being higher than $k-1$ order statistics and lower than $n-k$ order statistics of the realized abilities (the bid is a monotonic transformation of the individual ability or, in other words, rankings are virtually the same). The expected payoffs in equilibrium can only differ in the incurred cost. Hence, to be an equilibrium, the player in the tournament should bid less than the player in the race to earn a strictly positive expected payoff. 
+\end{proof}
+
+To illustrate this point, we use a numeric example. Consider \(n=3\)
+contestants competing for \(p=2\) prizes of value \(v_1=2/3\) and
+\(v_2=1/3\); the cost elasticities are \(\alpha=1\) and \(\beta=-1\);
+and abilities are distributed from a Beta distribution (with shape
+parameters \(s_1=4\) and \(s_2=2\)). As shown in Figure
+\ref{example contest}, there is an interval of abilities between about
+0.82 and 0.9 where the equilibrium performance of a contestant \(i\)
+with an ability \(a_i\in (0.82,0.9)\) in a race competition is greater
+than that of the same contestant in a tournament.
+
+\begin{figure}
+\centering
+\caption{Example of equilibrium behavior in a race (dotted) and tournament competition (solid)}
+\label{example contest}
+\includegraphics{Figures/contestExample-1.pdf}
+\begin{minipage}{\textwidth}
+\footnotesize\emph{Notes:} xxxx
+\end{minipage}
+\end{figure}
+
+\subsection{The designer's problem}\label{the-designers-problem}
+
+We consider now the contest designer's problem of selecting the
+competition style that maximizes its expected revenues. The problem
+consists of choosing a set of rules --- race, tournament, and tournament
+with reserve --- and, for the race and tournament with reserve, an
+optimal target of performance.
+
+We assume that the contest designer's revenues are an increasing
+function of the performance achieved by the winner, a decreasing
+function of the time to perform the task of the winner; and are not
+affected by the outcomes of the non-winning contestants. Let the
+winner's equilibrium actions be denoted by the pair \((y^w, t^w)\) and
+let \(p^*\) denote the lower value between \(p\) --- the number of
+available prizes --- and the number of contestants eligible for prizes.
+For a given competition style with target \(\target\) and deadline
+\(\deadline\), the contest designer's revenues are given by \[
+    y_w + \tau (\deadline - t_w) - \sum_{k=1}^{p^*} v_k 
+\] when \(p^*>0\); and are zero when there is no winner \(p^*=0\). The
+parameter \(\tau\) allows differences in the impact on revenues between
+the time and performance of the winner (e.g., when \(\tau=0\) revenues
+are independent of the time it took the winner to perform the task).
+
+At the beginning of the game, the contest designer makes its choice
+without knowning the realized abilities of the contestants, and assuming
+players behave according to the equilibrium described above.
+
+Let us first consider the comparison between races and tournaments,
+while holding the target in the race exogenously fixed. As summarized in
+the next proposition, the choice of the competition depends on the
+(relative) {[}XXX{]}
+
+\begin{proposition}
+For a contest with xxxx, there is a threshold $\hat\tau$ given by 
+$$
+ \hat\tau = 
+$$
+above which the contest designer will prefer the race to the tournament.
+\end{proposition}
+
+\begin{proof}
+See the Appendix. 
+\end{proof}
 
 Proof. In a tournament, the objective function is
 
@@ -830,216 +864,164 @@ focs.).
 
 Conjecture. If \(\tau>0\), the \(\target\) in the race is higher.
 
-\subsection{Structural econometric
-model}\label{structural-econometric-model}
+\section{The experiment}\label{the-experiment}
 
-Readings:
+\subsection{The context}\label{the-context}
 
-\begin{itemize}
-\item
-  \href{http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.199.680\&rep=rep1\&type=pdf}{The
-  winner's curse, reserve prices, and endogenous entry: Empirical
-  insights from eBay auctions}
-\item
-  \href{https://www.econstor.eu/bitstream/10419/79263/1/516364804.pdf}{Entry
-  and competition effects in first-price auctions: theory and evidence
-  from procurement auctions}
-\item
-  \href{http://www.vita.mcafee.cc/PDF/AuctionswithEntry.pdf}{Auctions
-  with entry}
-\end{itemize}
-
-General two-step strategy:
-
-\begin{itemize}
-\item
-  First step. Identify the marginal type from the data and the
-  distribution of types.
-\item
-  Second step. Using the estimated distribution of types.
-\end{itemize}
-
-Basic idea. Equilibrium condition gives:
-
-\begin{equation}
-  y_i^* = y^*(a_i; F_{\mathcal{A}}). 
-\end{equation}
-
-with \(y^*(\cdot)\) being an invertible function with \(\phi\) denoting
-the inverse.
-
-Hence the distribution of bids is
-
-\begin{equation}
-F_{Y}(y) = \Pr(y_i^* \leq y) 
-        = \Pr(y^*(a_i) \leq y) 
-        = \Pr(a_i \leq \phi(y)) 
-        = F_\mathcal{A}( \phi(y)).
-\end{equation}
-
-Identification of the model. suggest
-
-\section{Experimental design}\label{experimental-design}
-
-Over the past few years, an extensive literature has focused on
-naturally occurring data to study competition in contests. The use of
-naturally occurring data for comparing races and tournaments, however,
-is problematic. As our simple theoretical model indicates, there are
-sensible differences in competitors' payoffs between a race and a
-tournament competition. Likewise contest designers may design contests
-with competition styles that best suit their preferences for time and
-quality. These elements will create selection problems that are hard to
-control for and may bias the analysis.
+While many observational studies have focused on various aspects of
+races and tournaments, the design of observational studies for comparing
+races with tournaments can be problematic. First, contests are run under
+widely differing circumstances like the objective, duration, and prize
+structure of the competition. But even lacking any of these differing
+aspects, a proper comparison might be impossible. As our model
+illustrates, contestants are generally confronted with sensible payoff
+differences between a race and a tournament competition, all else being
+equal. These differences and other elements will create selection
+problems that are hard to control in purely observational studies.
 
 Instead of using naturally occurring data, we test our theory by
 designing and executing a field experiment. In doing so, one need an
 environment where the same type of contest can be replicated under
-different competition styles, while keeping fixed all other relevant
-features. It is also crucial to avoid the selection problem by
-registering competitors for the contest before they learn about the
-competition style. Finally, one should be able to record accurately
-competitors' actions and to obtain performance measures like the timing
-and quality of the submissions made during the contest.
+different competition styles, and while keeping fixed all other relevant
+characteristics. In particular, it is important to fix the same
+objective and prize structure while changing only the competition style;
+and it is crucial to avoid selection problems by assigning at random
+contestants to each competition style.
 
-Such an environment was provided by the online platform for programming
-competitions \emph{Topcoder} who agreed to provide i) access to its
-large member base of competitors (over 1 million registered users in
-2016) and ii) access to its platform's tools (leaderboards, payment
-system, scoring methods) for managing online contests that we used for
-the execution of our experimental design.
+Such an environment was provided by \emph{Topcoder}, a company based in
+the United States that administers a popular online platform for
+computer programming competitions and that agreed to provide (a) access
+to its large member base of competitors (over 1 million registered users
+in 2016) and (b) access to its platform's tools for managing online
+contests like web-based leaderboards, scoring methods to determine the
+winners, and a payment system to reward competitors residing all over
+the world. These two aspects --- large sample and tools for managing
+online contests --- considerably simplified the execution of our
+experiment.
 
-Three key factors made this platform ideal for our experiment.
+Beyond simplifying the execution of our experimental design, three key
+factors made this platform ideal for our experiment. First, the platform
+offers periodic programming competitions in which members usually
+participate. It hosts biweekly race-style programming competitions based
+on programming speed (known as ``Single Round Matches'' or SRMs) and
+once a month tournament-like programming competitions based on
+performance in data science problems (known as ``Marathon Matches'' or
+MMs).\footnote{The SRMs involve a race-like competition whereby
+  contestants are presented with several algorithmic problems and get
+  points based on the time elapsed between when a problem was open until
+  a working solution was submitted. The other type (MMs) is a
+  two-week-long tournament where contestants are presented with one
+  difficult algorithmic problem and the top five solutions are awarded a
+  cash prize.} Therefore, one can expect platform members to be familiar
+with the kind of strategic interactions of a race or a tournament
+competition, as implicitly assumed by our game-theoretic contest model.
 
-First, platform members have generally a great deal of experience and
-knowledge of programming competitions. The platform offers periodic
-programming competitions in which members usually participate. These
-competitions can be of two types: Single Round Matches (SRMs) --- a two
-hour competition where contestants are presented with three problems and
-get points based on the time elapsed between when a problem was open
-until a working solution was submitted; and Marathon Matches (MMs) --- a
-two-to-four week competition where contestasts are presented with a
-difficult algorithmic problem and top solutions that satisfy given
-requirements are awarded cash prizes. We thus expected platform members
-to understand and be familiar with the kind of strategic interactions
-that naturally arise in a race or a tournament, and be comfortable with
-a situation in which they are competing for cash prizes.
+Second, the platform computes and keeps track of different measures of
+competitors' individual ability based on their past performance. These
+include multiple ``skill ratings'' that are computed and provide a
+metric of their ability as contestants in the race-like competitions
+(SRMs) and tournament-like competitions (MMs). As a result, one could
+expect to (a) estimate treatment effects controlling for very accurate
+measures of individual ability,\footnote{Topcoder's skill ratings are
+  often used by software companies for hiring.} and (b) examine the
+association between individual ability and the observed sorting patterns
+in races and tournaments. In a contest, showing the distribution of
+skill ratings to the contestants was also an easy way to help them
+forming common beliefs about the distribution of abilities, as assumed
+by the model.
 
-Second, the platform provides us with different measures of competitors'
-individual ability based on their past performance. These include two
-independent ``skill ratings'' (one for each competition type) that are
-computed and provide a metric of their ability as contestants in each
-competition type (SRMs and MMs). These metrics are publicly available
-for each member on the platform. The fact that these measures are
-publicly available is particularly important because our theoretical
-approach presumes competitors will form common beliefs about the overall
-distribution of skills in the contest, which is particularly reasonable
-when members have constant access to information about the overall
-distribution of ratings on the platform.
+A third key factors making this platform ideal for our experiment was
+that it collects rich data analytics on contest participation like the
+timing, extent, and score of solutions submitted during the contest.
+This is because all solutions must be submitted online to be considered
+for the contest. A typical submission consists of a single source code
+file.\footnote{The source code being one single file does not end up
+  limiting the complexity of the solutions, as coders are allowed to
+  call other functions from a large database of libraries.} The
+submitted file is then executed on the server and returns a score.
+Scores are an objective metric of quality that usually combine different
+criteria like how fast solutions run or the prediction error in a
+classification task into one single numeric value. As the platform
+provided us with all these measures, we were able to measure the timing,
+extent, and quality of participation for each competitor with high
+accuracy.
 
-Third, the platform collects rich data analytics on contest
-participation (timing and number of submissions) and computes an
-objective metric of the quality of a solution in the form of a
-submission score. This is habitually done for each programming
-competition. Contestants are free to choose when and how many
-submissions to make. Solutions are recorded on the platform and
-automatically scored. In general, the correctness of a solution is not a
-simple pass/fail, but solutions may be scored on many different criteria
-including how close the return values match a theoretical ``correct''
-answer like a prediction error or how fast solutions run. These scoring
-metrics serve to form a provisional leaderboard that updates in real
-time during the submission phase. After the submission phase is over, a
-final leaderboard is then shown that serves to name the winners of the
-contest. Provisional and final leaderboards will generally differ as
-final scores are computed with additional tests like estimating
-prediction errors on unseen datasets. As the platform provides us with
-all this information, it gives us the capability of measuring the extent
-and quality of participation for each competitor with high accuracy.
+\subsection{Experimental design}\label{experimental-design}
 
-The timing of the experiment was as follows.
+The goal of the experiment was to compare and contrast treatment effects
+of three different competition styles: (a) races, (b) tournaments, and
+(c) tournaments with reserve, as defined in our theoretical model
+section. To further test treatment differences under a varying degree of
+competition intensity, each of the treatments had two levels of
+intensity determined by the number of competitors. One intensity level
+had 10 contestants (small size) and the other 15 contestants (large
+size).
 
-As a first step, a four day registration period for a new competition
-was announced to the entire community. The announcement was inviting
-platform members to register and participate in a new (Marathon Match)
-programming competition for solving a hard algorithmic problem (which we
-will describe later). As an incentive for participation, a total prize
-pool of more than \$40,000 was offered to top submissions in the form of
-cash prizes. The announcement was sent via email to all newsletter
-subscribers and was publicized in a post on the platform's blog.
-
-The online registration process was not overly burdensome. It simply
-involved giving an informed consent to participation in the research and
-responding to a short initial survey to collect participant
-demographics. As experienced members are more likely to behave according
-to model predictions, we limited participation to those members.
-Platform members who had never registered for a MMs competition before
-the experiment were unable to register. Newly signed-up members were
-thus excluded from our sample.
-
-A total of 299 participants registered for this experiment. We then
-sorted at random all participants into 24 groups or ``competition
-rooms'' --- the largest number of concomitant virtual rooms allowed by
-the platform at that time. Each competition room can be viewed as an
-independent contest where we offered cash prizes of \$1,000 and \$100 to
-the first and second placed competitor. In addition, each room provided
-competitors with access to a private leaderboard (updated about every 48
-hours), a web forum to ask questions about the computational problem,
-and a submission system through which they could submit their codes. The
-whole submission period lasted 8 days.
-
-Rooms differed in size, as half of the rooms had 10 competitors and the
-rest had 15 competitors. From each block of rooms with equal room size,
-we split rooms at random into 3 competition styles: i) tournament, ii)
-race, and iii) tournament with a reservation quality (hereinafter simply
-``reserve''), that we describe below. Hence, our experimental design is
-summarized by a 3x2 matrix, as shown in Table \ref{experimental design}.
+Forming the 3x2 factorial design shown in Table
+\ref{experimental design}, the treatments were applied to 24 virtual
+competition rooms, which are our main experimental units. Each room
+consisted of a list of randomly assigned competitors and a customized
+webpage with a problem description, a provisional leaderboard (updated
+about every 48 hours), and a submission system through which contestants
+could submit their codes.
 
 \begin{table}
 \centering
 \caption{Experimental Design}
 \label{experimental design}
-\begin{tabular}{rrrr}
+\begin{tabular}{@{}lrrr}
   \\[-1.8ex]\hline\hline\\[-1.8ex]
  & Large & Small & Sum \\ 
   \hline\\[-1.86ex]
-Race & 60 & 39 & 99 \\ 
+Race & 60 & 40 & 100 \\ 
   Tournament & 60 & 40 & 100 \\ 
-  Reserve & 60 & 40 & 100 \\ 
-  Sum & 180 & 119 & 299 \\ 
+  Tournament w/reserve & 60 & 40 & 100 \\ 
+  Sum & 180 & 120 & 300 \\ 
    \hline\\[-1.8ex]
 \end{tabular}
 \end{table}
 
-In a Tournament, the solution with the highest score in the room was
-awarded a first-place room prize of \$1000 and the solution with the
-second highest score in the room was awarded a second-place room prize
-of \$100. In addition, a ``grand'' prize of \$6,000 was awarded to the
-solution with the highest score from all rooms that were assigned to the
-Tournament condition. If a competitor had made more than one submission,
-only the the last solution in terms of time was scored.
+A total prize pool of more than \$40,000 was offered as an incentive for
+participation. The prize structure across the rooms was the same. In
+each room, we offered cash prizes of \$1,000 and \$100 to the first and
+second placed competitor. An additional ``grand'' prize of \$6,000 was
+offered to the top competitor (i.e., the first among all top room
+competitors) in each competition treatment (a total of 3 grand prizes).
 
-In a Race, the first solution to achieve a score equal or higher than a
-given target (we will discuss later criteria used to pick the target)
-was awarded a first-place room prize of \$1000 and the solution with the
-second highest score in the room was awarded a second-place room prize
-of \$100. In addition, a ``grand'' prize of \$6,000 was awarded to the
-first solution to meet the target across all rooms that were assigned to
-the Race condition. {[}Scores were computed at discrete intervals
-\ldots{}about every 48 hours.{]}
+Registration to the contest was conducted online. The announcement of a
+a four-day registration period was sent via email to all newsletter
+subscribers and was publicized in a post on the platform's blog.
+Registration was free and open to every ``experienced'' platform member.
+In particular, we excluded newly signed-up members and all those who had
+never registered for a MMs competition before the experiment.
+Registration involved an informed consent and a short registration
+survey asking for demographics data.
 
-Finally, in a Reserve, {[}xxxxx{]}.
+All registered members were then sorted at random into lists of 10 and
+15 competitors. Instead of complete at random, randomization of
+competitors to lists was done trying to balance the skill rating
+distribution across rooms. In particular, registered participants were
+sorted by their skill rating and then sequentially assigned to different
+lists {[}AB: \textcolor{red}{double-check exact procedure}{]}. These
+lists were then randomly assigned to one of our treatments.\footnote{Each
+  room's webpage required a login and was inaccessible to anyone else.}
 
-The competition style was announced at the start of the submission phase
-via email and in one section of the description of the computational
-problem as well. Payments were administered by the platform. To collect
-self-reported measures of effort, limited-edition T-shirts were offered
-as incentive for responding to a final survey. This final survey took
-place a few days after the end of the submission period (but before the
-final ranking was shown and winners fully identified).
+Participants knew in advance the nature of the problem, the timing of
+the competition, and the room size. They were, however, not aware of the
+competition style and the other contestants in the room. This
+information was communicated to them via an email with a link to their
+competition room and announcing the start of an eight day submission
+period.
 
-{[}Importantlty the contest was a non-rated event.{]}
+At the end of the submission phase, the platform administered the
+scoring of submissions and payments to the winners. All contestants were
+invited to take a final survey to collect self-reported measures of
+effort --- limited-edition T-shirts were offered as incentive. This
+final survey took place a few days after the end of the submission
+period (but before the final ranking was shown and winners fully
+identified).
 
-\subsection{The algorithmic problem and fixing a
-target.}\label{the-algorithmic-problem-and-fixing-a-target.}
+\subsubsection{The algorithmic problem}\label{the-algorithmic-problem}
 
 To select a challenging algorithmic problem for the experiment, we
 worked together with researchers from the United States National Health
@@ -1050,42 +1032,57 @@ algorithm uses domain-expert manual labeling to train a Natural Language
 Entity Recognition (NLER)'s model that performs automatic annotation of
 abstracts from a large corpus of biomedical research papers (e.g.,
 PubMed). As automatic annotations help disease characteristics to be
-more easily identified, improving the {[}xxx{]} was very important for
-x, y, and z. Though adding annotations can be very costly, because
-{[}xxxx{]}.
+more easily identified, improving the existing methods to annotate
+abstracts was very important for the searchability and identifiability
+of most relevant papers among millions of records.
 
 The specific goal of the programming competition was to improve upon the
 current NIH's BANNER by using a combination of domain-expert and
 non-expert (e.g., Amazon Mechanical Turk's workers) manual labeling
-(e.g., Good et al. 2014). {[}xxxx{]}
+(e.g., Good et al. 2014). As a measure of the ability to make correct
+predictions of domain expert annotations we used the F-score defined as
+the harmonic mean of precision and recall:
+\(F = 2 * (precision * recall) / (precision + recall)\)). This score was
+computed on 300 abstracts (100 of which were not disculosed to avoid
+overfitting) with about a thousand entities to correctly identify from a
+dictionary with 15 hundred labels.
 
-\begin{itemize}
-\item
-  The threshold in the ``race'' and in the ``reserve'' was chosen
-  following two main criteria. First, we run a pre-trail experiment that
-  involved 4 coders solving the same problem in isolation for 5 days.
-  This helped us forming basic predictions about xxxx. Second, we
-  surveyed the NIH researchers who developed Banner asking for three
-  percentage improvements they considered ``useful,'' ``desirable,'' and
-  ``unlikely.''
-\item
-  As a measure of the ability to make correct predictions of domain
-  expert annotations we used the ``F-score'' defined as the harmonic
-  mean of precision and recall:
-  \(F = 2 * (precision * recall) / (precision + recall)\)). This score
-  was computed on 300 abstracts (100 of which were not disculosed to
-  avoid overfitting) with about xxxx entities to correctly identify from
-  a dictionary with xxxx labels.
-\item
-  The baseline F-score achieved by NIH researchers was 0.793. We set up
-  a hard-to-reach F-score target for the race competition which was
-  0.818 (about a 3 percent increase of the baseline). The winner
-  achieved a score of 0.844. This represents a 5.11 percentage points
-  increase compared to the baseline which can be regarded as a very
-  remarkable improvement (more than 6 percent).
-\end{itemize}
+One crucial issue in the execution of our experiment was the choice of a
+quality target for the race and tournament with reserve competitions. To
+this end, we followed the following two main criteria. First, we wanted
+a target representing an improvement of current methods but that was
+achievable in a 8 days. To do that, we run a pre-trail experiment that
+involved 4 highly-skilled coders. They were asked to solve the same
+problem in isolation for 5 days. Results of this pre-trail experiment
+helped us forming basic predictions about technical feasibility of
+different targets. To pick the final value, however, we relied on the
+expectations of NIH researchers who developed the current systems. That
+is, we surveyed the NIH researchers who developed Banner asking for
+three percentage improvements they considered ``useful,'' ``desirable,''
+and ``very unlikely.'' The final target used in the experiment was close
+to the ``very unlikely'' threshold. The baseline F-score achieved by NIH
+researchers was 0.793. We set up a hard-to-reach F-score target for the
+race competition which was 0.818 (about a 3 percent increase of the
+baseline).
 
 \subsection{Data}\label{data}
+
+We collected extensive platform data for each registered participant.
+These include the full history of their registrations in past contests,
+as well as the outcomes of these contests like the number of solutions
+submitted, placements in the final rankings, and total cash prizes
+earned. As reported in Table \ref{summary}, our data show that those who
+registered in the experiment were very experienced competitors. They had
+been platform members for an average of 5 years, had registered in an
+average of 18 multi-week long contests (MMs), in which they had been
+earning a median of 6 hundred dollars per year in cash prizes. As our
+data shows, on average, they had submitted solutions in only 7 of these
+contests (29 percent of their registrations), suggesting that even
+highly experienced platform members frequently drop out of competitions.
+Our sample had also registered in an average of 46 speed-based contests
+(SRMs) with a relatively higher submission rate (84 percent), presumably
+because these contests take only a few hours to complete and have
+relatively simpler problems that require less effort to solve.
 
 \begin{table}
 \centering
@@ -1125,30 +1122,6 @@ non-expert (e.g., Amazon Mechanical Turk's workers) manual labeling
 }\end{minipage}
 \end{table}
 
-We collected extensive platform data for each registered participant.
-These include the full history of their registrations in past contests,
-as well as the outcomes of these contests like the number of solutions
-submitted, placements in the final rankings, and total cash prizes
-earned. As reported in Table \ref{summary}, our data show that those who
-registered in the experiment were very experienced competitors. They had
-been platform members for an average of 5 years, had registered in an
-average of 18 multi-week long contests (MMs), in which they had been
-earning a median of 6 hundred dollars per year in cash prizes. As our
-data shows, on average, they had submitted solutions in only 7 of these
-contests (29 percent of their registrations), suggesting that even
-highly experienced platform members frequently drop out of competitions.
-Our sample had also registered in an average of 46 speed-based contests
-(SRMs) with a relatively higher submission rate (84 percent), presumably
-because these contests take only a few hours to complete and have
-relatively simpler problems that require less effort to solve.
-
-\begin{figure}
-\centering
-\caption{Distribution of skill ratings}
-\label{skill ratings}
-\includegraphics{Figures/ratingplot-1.pdf}
-\end{figure}
-
 A key variable to measure was competitors' ability in solving
 algorithmic problems (like the named entity recognition task used for
 the experiment) and their speed in programming working solutions. A
@@ -1165,6 +1138,13 @@ speed based competitions (SRMs).\footnote{The skill rating is an
   higher than the expected rank, the skill rating increases whereas it
   decreases otherwise. Skill ratings are computed independently for each
   type of competition run on the platform (MMs and SRMS).}
+
+\begin{figure}
+\centering
+\caption{Distribution of Topcoder's skill ratings}
+\label{skill ratings}
+\includegraphics{Figures/ratingPlot-1.pdf}
+\end{figure}
 
 As shown in Figure \ref{skill ratings}, both skill ratings (those
 measuring problem solving ability and speed) have slightly asymmetric
@@ -1250,7 +1230,7 @@ rooms, suggesting sobering effects associated with size.
 \begin{figure}
 \caption{Percentage of room entrants by competition and room size}
 \label{room entrants}
-\includegraphics{Figures/entrybox-1.pdf}
+\includegraphics{Figures/entryPlot-1.pdf}
 \end{figure}
 
 On average, 4.1 competitors (33.8 percent) assigned to tournaments were
@@ -1344,10 +1324,54 @@ availability as required to solve the given problem. Our analysis thus
 focused on two types of data: platform data on skills and experience;
 and the hours of work as anticipated by competitors at registration.
 
+To examine the sorting patterns in our data, we first estimated the
+conditional probability of entry as a function of our favourite ability
+measures --- the skill ratings and anticipated hours of work. As shown
+in the upper panels of Figure \ref{sorting plot}, the linear-regression
+estimates of the conditional probability of entry computed for the
+median competitor (i.e., 24 anticipated hours) was increasing in both
+our ability measures --- the skill rating (left panel) and anticipated
+hours (right panel) --- with large differences in probability between
+individuals at the top and the bottom of the covariate distribution. So,
+entrants were more skilled than non-entrants. To see if these sorting
+patterns were different across tournaments and races, we then estimated
+the same relationships conditional on competitors being randomly
+assigned to races or tournaments (i.e., interacting the covariates with
+treatment dummies). As shown in the lower panels of Figure
+\ref{sorting plot}, the linear-regression estimates with interactions
+overlap quite well one another. This means that the propensity to enter
+of an individual with a given programming skills --- measured by the
+skill rating --- holding constant time availability --- measured by the
+anticipated hours of work --- was the same across treatments, and vice
+versa. So, based on these measures, our data provide no evidence of a
+differential in ability-based sorting between tournaments and races.
+
+\begin{figure}
+\caption{Sorting by skills and time availability}
+\label{sorting plot}
+\includegraphics{Figures/sortingplots-1.pdf}
+\end{figure}
+
+Differences in means for the all other covariates (not shown) supported
+the same conclusion --- positive and significant differences in ability
+between entrants and non-entrants but no differing patterns between
+tournaments and races. Somewhat surprisingly, the analysis of
+differences in means showed an unexpected difference in ability
+characteristics between entrants in races and those in tournaments
+w/reserve. As shown in Table \ref{sorting table}, those in the races had
+significantly more time availability and had registered to less past
+competitions than those in the tournaments w/reserve. Since entry was
+the same in both treatments, this evidence suggests the presence of a
+``substitution'' effect. Such as substitution effect is not predicted by
+our theory, as it predicts differences to be driven by higher/lower
+entry rates, which are not expected to arise when races and tournament
+w/reserve have the same target quality. And we will return on this point
+in the discussion of the results.
+
 \begin{table}
 \centering
 \caption{Sorting patterns}
-\label{sorting}
+\label{sorting table}
 \begin{tabular}{@{}lcccc}
   \\[-1.8ex]\hline\hline\\[-1.8ex]
 Variable & \multicolumn{1}{L{2cm}}{Difference entrants vs non-entrants} & \multicolumn{1}{L{2cm}}{Difference entrants in races vs tournaments} & \multicolumn{1}{L{2cm}}{Difference entrants in races vs tournaments w/reserve} & Obs. \\ 
@@ -1358,32 +1382,8 @@ log(rating) &  0.14*** &  0.07 &  $-$0.13 & 210 \\
    & (0.07) & (0.16) & (0.16) &  \\ 
   log(nreg) &  0.77*** &  0.50 &   0.86** & 299 \\ 
    & (0.16) & (0.4) & (0.41) &  \\ 
-  log(nsub+1) &  0.81*** &  0.32 &   0.56 & 299 \\ 
-   & (0.15) & (0.36) & (0.37) &  \\ 
   log(nregsrm+1) &  0.36 &  0.40 &  $-$0.29 & 299 \\ 
    & (0.23) & (0.55) & (0.57) &  \\ 
-  log(nsubsrm+1) &  0.39* &  0.44 &  $-$0.26 & 299 \\ 
-   & (0.23) & (0.55) & (0.57) &  \\ 
-  log(year+1) &  0.19** &  0.28 &   0.11 & 299 \\ 
-   & (0.09) & (0.22) & (0.22) &  \\ 
-  log(paidyr) &  0.68 & $-$1.34 &  $-$1.02 & 139 \\ 
-   & (0.46) & (1.12) & (1.15) &  \\ 
-  log(nwins) &  0.21 & $-$0.70 &  $-$1.07 & 28 \\ 
-   & (0.35) & (0.9) & (0.89) &  \\ 
-  log(ntop5) &  0.23 &  0.05 &  $-$0.50 & 70 \\ 
-   & (0.23) & (0.58) & (0.55) &  \\ 
-  log(ntop10) &  0.33 & $-$0.20 &  $-$0.66 & 94 \\ 
-   & (0.22) & (0.57) & (0.55) &  \\ 
-  male &  0.03 & $-$0.11 &  $-$0.06 & 276 \\ 
-   & (0.03) & (0.07) & (0.07) &  \\ 
-  timezone &  0.26 &  1.34 &   0.29 & 277 \\ 
-   & (0.68) & (1.66) & (1.7) &  \\ 
-  postgrad &  0.00 &  0.11 &   0.07 & 278 \\ 
-   & (0.06) & (0.16) & (0.16) &  \\ 
-  below30 & $-$0.16*** &  0.02 &  $-$0.13 & 278 \\ 
-   & (0.06) & (0.15) & (0.16) &  \\ 
-  log(risk) & $-$0.13** &  0.31** &   0.11 & 279 \\ 
-   & (0.06) & (0.14) & (0.15) &  \\ 
   hours &  7.31** & $-$2.22 & $-$17.18** & 277 \\ 
    & (3.35) & (8.15) & (8.31) &  \\ 
   hours12 &  1.97** & $-$1.64 &  $-$4.91** & 277 \\ 
@@ -1401,86 +1401,56 @@ log(rating) &  0.14*** &  0.07 &  $-$0.13 & 210 \\
 }\end{minipage}
 \end{table}
 
-As shown in Table \ref{sorting}, entrants were more skilled than
-non-entrants. They had, on average, 15 percent higher (p=0.001) skill
-ratings (computed on MMs), registered to xxx more past competitions,
-earned 1.97 times more (p=0.141) money in cash prizes per year relative
-to non-entrants. Regarding time availability, the other dimension of
-interest, the analysis of our registration survey data showed that
-entrants --- before knowing the randomly assigned competition style ---
-anticipated working many more hours relative than non-entrants (an
-average of 7.3 more total hours of work on programming/solving the
-algorithmic problem). Since skill ratings and anticipated hours of work
-are uncorrelated in our dataset, an interpretation of these results is
-that our measures were indeed capturing two different dimensions of
-ability (problem solving skills and time availability) and that these
-factors were significant determinants of entry.
-
-While our results show stark differences between entrants and
-non-entrants, we failed to detect significant differences in entrants'
-characteristics between races and tournaments. As reported in Table
-\ref{sorting}, all our estimates of the mean differences between races
-and tournaments are insignificant (with the only exception of one
-variable). Thus, we find no evidence of skill-based sorting in terms of
-both our measures of ability (time and skill ratings). By contrast, we
-find significant differences in entrants' anticipated hours of work
-between races and tournaments with reserve. Since entry rates are not
-different between these two treatment groups, one may conclude that some
-sort of substitution effect must have occurred. As these effects are not
-explicitly tackled by our model, we will not be focusing on the
-determinants of this substitution effect.
+Let us now summarize the evidence obtained so far. Consistent with
+theoretical predictions, we found evidence that competitors in
+tournaments had higher propensity to enter the competition relative to
+those randomly assigned to the other treatments. While our data show
+stark differences between entrants and non-entrants, we did not detect
+significant differences in entrants' characteristics between races and
+tournaments. Both conditional and unconditional differences in means
+between races and tournaments are insignificant. In particular, we found
+no evidence of skill-based sorting in terms of two well-suited measures
+of ability --- skill ratings and anticipated hours of work. By contrast,
+we found significant differences in entrants' characteristics between
+races and tournaments with reserve. Since entry rates are not different
+between these two treatment groups, a substitution effect must have
+occurred, which was unexpected as not predicted by theory.
 
 \subsection{Scores}\label{scores}
 
-The results on entry suggest that tournaments had a positive impact on
-competitors' participation relative to races and tournaments with
-reserve. The analysis of sorting showed further that the increment of
-entrants was driven by xxxx rather than differences in experience and
-proficiency in solving problems, raising the question of whether xxxx
-will generate relatively higher performance levels. Our model predicts
-that, all else being equal, tournaments will yield higher performance
-levels relative to races. It also predicts that tournaments with reserve
-will dominate both regular tournaments and races in terms of
-performance. To investigate this issue, we now focus on differences in
-performance as measured by the highest score attained by a competitor's
-last submission in each room.
-
-Figure XXX shows xxxx. The platform keeps record of provisional and
-system scores for each submission. Provisional and system scores are
-computed in the same way but on different datasets: provisional scores
-are computed on a ``testing'' dataset and then published on the
-leaderboard; system scores, by contrast, are computed on a ``system
-testing'' dataset and kept secret until the end of the contest. As final
-scores matter for awarding cash prizes, keeping these scores secret
-prevents the so-called ``overfitting'' problem (i.e., a form of model
-misspecification).\footnote{When competitors have made more than one
-  submission, the final score is generally computed on the competitor's
-  last submission.}
+After the analysis on entry, we focused on comparing treatment effects
+on performance. Our model predicts that, all else being equal,
+tournaments with reserve will yield higher performance levels compared
+to races and ``regular'' tournaments. The model also predicts lower
+volatility in performance of races relative to tournaments. To
+investigate these issues, we collected data on scores for each solution
+submitted during the contest. We then focused the analysis on the
+highest score attained by a competitor's last submission in each room,
+and we divided all room values by the target quality to express the
+percentage relative to the target quality.\footnote{During each contest,
+  the platform keeps ``provisional'' and ``system'' scores for each
+  solution submitted. In data science problems, provisional and system
+  scores are computed in the same way but on different datasets to
+  prevent the so-called ``overfitting'' problem (i.e., a form of model
+  misspecification). Provisional scores are computed on a ``testing''
+  dataset and then published on the leaderboard. System scores are
+  computed on a smaller ``system testing'' dataset and kept secret until
+  the end of the contest. As these dataset are representative of the
+  same data generating process, both scores are basically measuring the
+  same kind of performance and indeed are highly correlated (the
+  correlation coefficient was 0.816 in our data). To simplify
+  exposition, we report the analysis based on the system scores but
+  results are the same with provisional scores as well.}
 
 \begin{figure}
-\centering
-\includegraphics{Figures/finalbox-1.pdf}
-\caption{Highest room scores by competition style and room
-size\label{scores}}
+\caption{Highest room scores by competition style and room size}
+\label{scores plot}
+\includegraphics{Figures/scoresplot-1.pdf}
 \end{figure}
-
-While final scores give a very powerful indication of performance, one
-problem with measuring individual performance using final scores is that
-any failure in the submitted code might return very low values, as shown
-in Figure \ref{scores over time}, that are not wholly indicative of
-performance. As outliers will in general bias the room means, we
-explored two corrective methods (1) we trimmed last scores before
-computing the room means; and (2) we replaced all final scores that were
-below the baseline score with the baseline. The first method gives a
-winsorized mean, which is an unbiased estimate of the average
-{[}XXXX{]}. The second approach equals censoring by assuming that all
-entrants had a performance at least equal to the final score that one
-would obtain by submitting the BANNER's algorithm without making any
-useful change.
 
 \begin{table}
 \centering
-\caption{Estimates of the Effect of Competition Style on Performance}\label{ols entry}
+\caption{Estimates of the Effect of Competition Style on Performance}\label{scores table}
 \begin{tabular}{@{}lcccccc}
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
@@ -1513,55 +1483,82 @@ R$^{2}$ & 0.05 & 0.25 & 0.91 & 0.05 & 0.25 & 0.91 \\
 \end{minipage}
 \end{table}
 
-Results. we do not find evidence supporting our hypothesis that mean
-room scores were higher in the Tournament with Reserve compared to the
-other treatments. The reader may find this finding not entirely
-surprising given the lack skill-based selection across groups that we
-documented earlier.
+As shown in Figure \ref{scores plot}, the distribution of the top final
+scores was centered around the target quality in each treatment, with
+higher variance in tournaments and tournaments w/reserve compared to
+races. The top final scores were thus below the target quality in about
+half of the rooms in each treatment; with larger differences between
+high and low scores in tournaments relative to races.
 
-\begin{itemize}
-\item
-  We find a significant difference in variance, suggesting that variance
-  was higher in the reserve.
-\item
-  We replace 3 values that were 1.5 times below the inter-quantile range
-  of the distribution with the baseline value.
-\end{itemize}
+Regression estimates of the treatment effects are shown in Table
+\ref{scores table}. In all our specifications --- with or without
+adjustment for random differences in the baseline characteristics of the
+rooms --- estimates of treatment effects were small (\(<1\) percentage
+point) and insignificant, suggesting performance differences were too
+small to be detected. By contrast, using an F-test to compare the
+variances of two samples, we found the difference in variance between
+races and the other two treatments combined was significant (p=0.058).
+
+Taken together, these results show that top final scores were below the
+target quality in about half of the rooms in each treatment. The total
+payout in tournaments was hence about twice as high as in the races and
+tournaments w/reserve, where prizes are distributed only when top
+solutions achieve a score equal or higher than the target. And, at the
+same time, the mean top scores in tournaments was significantly
+different from those in the other treatments. This seems to suggest that
+races and tournaments w/reserve were more ``efficient'' than
+tournaments.
+
+\footnote{FOOTNOTE --- While final scores give a very powerful
+  indication of performance, one problem with measuring individual
+  performance using final scores is that any failure in the submitted
+  code might return very low values, as shown in Figure
+  \ref{scores over time}, that are not wholly indicative of performance.
+  As outliers will in general bias the room means, we explored two
+  corrective methods (1) we trimmed last scores before computing the
+  room means; and (2) we replaced all final scores that were below the
+  baseline score with the baseline. The first method gives a winsorized
+  mean, which is an unbiased estimate of the average. The second
+  approach equals censoring by assuming that all entrants had a
+  performance at least equal to the final score that one would obtain by
+  submitting the BANNER's algorithm without making any useful change.}
 
 \subsection{Speed}\label{speed}
 
-Finally, we examined differences in submission speed measured by the
-mean time of the first submission in each room. As shown in the right
-panel of Figure \ref{room outcomes}, the median room time-to-submit in
-the Race was about 20 and 40 hours shorter than the Tournament and the
-Tournament with Reserve, respectively. The variance, however, was also
-larger with values ranging from below 60 to 190 hours, whereas by
-comparison the other groups' distributions were both above the 120
-hours. To test to see if the difference in means between speed in the
-Race and the other groups was greater than zero, we used a xxxx which
-gives a (one-sided) p-value of xxxxx. {[}Bootstrap{]} Thus, our data
-support the hypothesis that competitors' speed in a Race was higher than
-in the other groups. Taken together with the absence of skill-based
-selection and score differences, this result implies that competitors in
-the Race competition have exerted greater efforts (i.e., by lowering
-execution time while keeping performance at a comparable level) relative
-to the other groups.
+We now turn to examine differences in the timing of submissions. Our
+theory predicts that, all else being equal, solutions will be developed
+faster in races compared to tournaments. The prediction can be seen
+either with respect to the average ``time'' to develop a submission or
+the speed to develop a submission of a given quality. To test this
+prediction we examined he mean time of the first submission scaled by
+the score.
+
+As shown in Figure \ref{room time}, races yielded solutions, in median,
+about 2 days faster than tournaments; and this difference seems larger
+in small rooms where contestant in tournaments might have less
+incentives to act in advance to prevent others from entering the
+contest.
+
+To test to see if the difference between races and tournaments was
+greater than zero, we used a multiple regression approach. Estimates and
+standard errors are shown in Table \ref{ols speed}. Speed was
+significantly lower in races than in the other treatments. When we add
+controls for random differences in baseline characteristics like average
+experience of room competitors, the result becomes slightly
+insignificant, though it remains well below the significant threshold
+for a one-sided test. Statistical significance is higher in the
+specification with the log-transformed variable, which is to be
+preferred as it gives a better fit in terms of \(R^2\).
 
 \begin{figure}
-\caption{Average time of first submission by competition and room size}
-\label{room entrants}
+\caption{Time of first submission by competition and room size}
+\label{room time}
 \includegraphics{Figures/firstsubbox-1.pdf}
-\end{figure}
-
-\begin{figure}
-\caption{Average score of first submissions by competition and room size}
-\label{room entrants}
-\includegraphics{Figures/speedbox-1.pdf}
 \end{figure}
 
 \begin{table}
 \centering
-\caption{Estimates of the Effect of Competition Style on Production Speed}\label{ols entry}
+\caption{Estimates of the Effect of Competition Style on Production Speed}\label{ols speed}
 \begin{tabular}{@{}lcccccc}
 \\[-1.8ex]\hline 
 \hline \\[-1.8ex] 
@@ -1602,55 +1599,14 @@ submissions faster without sacrificing performance, which suggests that
 they have paid higher costs from effort associated with the accelerated
 speed compared to other competitors. Finally, we reject the hypothesis
 that the Tournament with Reserve yields higher performance levels.
-{[}One explanation is that competitors were fishing to hit the threshold
-and then stopped exerting effort{]}.
 
-\begin{verbatim}
-##  setting  value                       
-##  version  R version 3.3.2 (2016-10-31)
-##  system   x86_64, darwin13.4.0        
-##  ui       X11                         
-##  language (EN)                        
-##  collate  en_US.UTF-8                 
-##  tz       America/New_York            
-##  date     2017-08-10                  
-## 
-##  package   * version date       source        
-##  backports   1.0.5   2017-01-18 CRAN (R 3.3.2)
-##  base      * 3.3.2   2016-10-31 local         
-##  boot      * 1.3-18  2016-02-23 CRAN (R 3.3.0)
-##  contest   * 0.1     2017-07-09 local (@0.1)  
-##  datasets  * 3.3.2   2016-10-31 local         
-##  devtools    1.13.2  2017-06-02 CRAN (R 3.3.2)
-##  digest      0.6.12  2017-01-27 CRAN (R 3.3.2)
-##  evaluate    0.10    2016-10-11 CRAN (R 3.3.0)
-##  graphics  * 3.3.2   2016-10-31 local         
-##  grDevices * 3.3.2   2016-10-31 local         
-##  grid        3.3.2   2016-10-31 local         
-##  highr       0.6     2016-05-09 CRAN (R 3.3.0)
-##  htmltools   0.3.5   2016-03-21 CRAN (R 3.3.0)
-##  knitr     * 1.15.1  2016-11-22 CRAN (R 3.3.2)
-##  lattice     0.20-34 2016-09-06 CRAN (R 3.3.2)
-##  magrittr  * 1.5     2014-11-22 CRAN (R 3.3.0)
-##  Matrix      1.2-7.1 2016-09-01 CRAN (R 3.3.2)
-##  memoise     1.0.0   2016-01-29 CRAN (R 3.3.0)
-##  methods     3.3.2   2016-10-31 local         
-##  races     * 0.3     2017-07-27 local (@0.3)  
-##  Rcpp        0.12.9  2017-01-14 CRAN (R 3.3.2)
-##  rmarkdown   1.3     2016-12-21 CRAN (R 3.3.2)
-##  rprojroot   1.2     2017-01-16 CRAN (R 3.3.2)
-##  splines     3.3.2   2016-10-31 local         
-##  stargazer * 5.2     2015-07-14 CRAN (R 3.3.0)
-##  stats     * 3.3.2   2016-10-31 local         
-##  stringi     1.1.2   2016-10-01 CRAN (R 3.3.0)
-##  stringr     1.2.0   2017-02-18 CRAN (R 3.3.2)
-##  survival  * 2.40-1  2016-10-30 CRAN (R 3.3.0)
-##  tools       3.3.2   2016-10-31 local         
-##  utils     * 3.3.2   2016-10-31 local         
-##  withr       1.0.2   2016-06-20 CRAN (R 3.3.0)
-##  xtable    * 1.8-2   2016-02-05 CRAN (R 3.3.0)
-##  yaml        2.1.14  2016-11-12 CRAN (R 3.3.2)
-\end{verbatim}
+\subsection{Structural estimation}\label{structural-estimation}
+
+{[}TBA{]}
+
+\section{Discussion}\label{discussion}
+
+{[}TBA{]}
 
 \section*{References}\label{references}
 \addcontentsline{toc}{section}{References}
@@ -1706,6 +1662,11 @@ Donald, Stephen G, and Harry J Paarsch. 1996. ``Identification,
 Estimation, and Testing in Parametric Empirical Models of Auctions
 Within the Independent Private Values Paradigm.'' \emph{Econometric
 Theory} 12 (03). Cambridge Univ Press: 517--67.
+
+\hypertarget{ref-fullerton1999auctionin}{}
+Fullerton, Richard L, and R Preston McAfee. 1999. ``Auctionin Entry into
+Tournaments.'' \emph{Journal of Political Economy} 107 (3). JSTOR:
+573--605.
 
 \hypertarget{ref-good2014microtask}{}
 Good, Benjamin M, Max Nanis, CHUNLEI Wu, and ANDREW I Su. 2014.

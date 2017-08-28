@@ -130,7 +130,6 @@ plot(tournament, pch=16, cex=.5)
 plot(race, pch=16, cex=.5)
 ```
 
-
 # Monte Carlo Experiments
 ## Monte Carlo Method
 

@@ -28,13 +28,13 @@ keywords:
   - innovation
 
 fontsize: 10pt
-#setspace: \doublespacing
+# setspace: \doublespacing
 endfloat: true
 
 output:
   pdf_document:
-    toc: false
-    keep_tex: false
+    toc: true
+    keep_tex: true
     fig_crop: false
     fig_width: 5
     fig_height: 5
@@ -51,7 +51,7 @@ output:
 ...
 
 ```{r setup, echo=FALSE, message=FALSE}
-
+#devtools::session_info()
 library(races)
 library(magrittr)
 library(xtable)
@@ -76,6 +76,10 @@ options(digits=3, xtable.caption.placement='top', xtable.comment=FALSE)
 percent  <- function(x, digits=0, ...) round(100 * x, digits, ...)
 difftime2 <- function(...) as.numeric(difftime(...))
 
+
+read_chunk("../R/data.R")
+read_chunk("../R/scores.R")
+
 source("../R/prep-data.R")
 source('../R/boxplot.R')
 source('../R/descriptives.R')
@@ -88,9 +92,6 @@ child_docs <- c("1_intro.Rmd", "2_model.Rmd", "3_data.Rmd", "4_results.Rmd","5_d
 ```{r child = child_docs}
 ```
  
-```{r session_info}	
-devtools::session_info()
-```
 
 References
-=============
+==========

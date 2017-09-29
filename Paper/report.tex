@@ -1,4 +1,4 @@
-\documentclass[10pt, titlepage]{article}
+\documentclass[11pt, titlepage]{article}
 \usepackage{beamerarticle}
 \usepackage[utf8]{inputenc}
 \usepackage{amssymb,amsmath}
@@ -7,7 +7,7 @@
 \usepackage[letterpaper, margin=1in]{geometry}
 \usepackage{times} % palatino, lmodern
 \usepackage{setspace}
-\onehalfspacing
+\doublespacing
 %\doublespacing  % \singlespacing 
 
 % Appendix
@@ -109,7 +109,7 @@ University, 1737 Cambridge Street, Cambridge, MA 02138 (email:
 \providecommand{\subtitle}[1]{}
 \subtitle{{[}PRELIMINARY AND INCOMPLETE{]}}
 \author{Andrea Blasco \and Kevin J. Boudreau \and Karim R. Lakhani \and Michael Menietti}
-\date{Last updated: 28 August, 2017}
+\date{Last updated: 29 September, 2017}
 
 \begin{document}
 \maketitle
@@ -140,96 +140,70 @@ Keywords: races; tournaments; contest theory; crowdsourcing; innovation.
 
 \section{Introduction}\label{introduction}
 
-Many economic situations---in the public sector, business, sports, and
-academia---are decided by either a tournament---a competition to be
-best---or a race---a competition to be first. In the public sector,
-government-sponsored races and tournaments have lead to major
-improvements in numerous areas like agriculture (xxx), navigation (xxx),
-and aviation (xxx), exerting a tremendous impact on economic growth. In
-business, both types of competition are regularly used by managers to
-raise workers' motivation and performance (xxx). In academia, they are
-used by philanthropic organizations to increase the productivity of
-scientists via competitive research grant awards (xxx) and individual
-prizes for merit (xxx).
+Individuals, governments, and other organizations increasingly sponsor
+inducement prize competitions to accomplish various goals---incentivize
+workers, raise money, and promote innovation.\footnote{McKinsey (2009)
+  reports that, in 2015, the value of inducement prize competitions
+  increased by XX.} The design of competitions aiming to maximize the
+gains of sponsoring organizations is thus becoming a topic of growing
+public interest.\footnote{An extensive literature has focused on this
+  topic stressing the benefits and costs in terms of effectiveness of
+  inducement prize competitions; Konrad (2009) is a good reference for
+  an overview of the economics literature on the topic; see also XXXX
+  for a survey of contests inside organizations; and XXXX for inducement
+  contests promoting innovation.} This interest has spurred a large
+literature on various aspects of competition design such as optimal
+prize structures and how many competitors to admit.\footnote{See, for
+  example, Moldovanu and Sela (2001) and Fullerton and McAfee (1999),
+  respectively.}
 
-While sometimes the competition being a race or tournament is due to
-external factors like regulation or tradition, in many other situations
-contest designers can choose how they want the contestants to compete.
-This is the case, for example, of governmental agencies procuring public
-services; executives designing internal remuneration schemes for their
-employees; organizations sponsoring external online competitions to
-engage the members of large online communities like in crowdsourcing
-contests (xxx).\footnote{online} Understanding the consequences of
-adopting different competition types is thus crucial for contest
-designers to make appropriate decisions.
+The focus of this paper is on one relatively unexplored but important
+aspect of contest design: the choice between a tournament (a competition
+to be best) and a race (a competition to be first). Many economic
+situations---in the public sector, business, sports, and academia---are
+indeed decided by either a tournament or a race competition. Both types
+of competition are frequently used to procure services in the public
+sector, exerting a tremendous impact on economic growth;\footnote{For
+  example, using data on innovation tournaments sponsored by the Royal
+  Agricultural Society of England, Brunt, Lerner, and Nicholas (2012)
+  find a large effect of prizes on patents.} to incentivize workers in
+companies (e.g., in the form of bonuses and promotion
+schemes);\footnote{See, for example, Prendergast (1999) for a literature
+  review on the provision of incentives inside firms.} and to increase
+the productivity of academic scientists (e.g., via competitive research
+grant awards, individual prizes).\footnote{xxx} Yet, despite such a
+widespread use, very little is known about how to choose between races
+and tournaments (and the consequences for competitors and contest
+sponsors).
 
-In this paper, we investigate this question by focusing on the possible
-trade-off between choosing a race and a tournament. The races vs
-tournaments issue is examined from two different perspectives. First, we
-consider the role of contestants' strategic interactions under these two
-competitive regimes. Then, we characterize the optimal design and we
-examine how it depends upon the contest designer's preferences towards
-the time and quality of contestants' effort. In particular, contest
-designer's revenues depend on how contestants perform a task (e.g.,
-solving a problem) that requires time to perform and can be performed at
-varying levels of quality.
-
-To investigate these issues, we proceed in two ways. Firstly, we develop
-a contest model that encompasses both the race and the tournament in a
-single framework. In particular, our approach extends the contest model
-introduced by Moldovanu and Sela (2001) to a situation in which contest
-designers care about both the timing and quality of effort. Exploring
-the duality of the model, we compare equilibrium behaviors under both
-competitive formats and characterize the optimal choice for the contest
-designer. Secondly, we design and execute an experiment to test key
-implications of the theory in the field. More specifically, the
-experiment compares and contrast behaviors under three different
-competition regimes: races, tournaments, and tournaments with a minimum
-quality reserve (called tournaments with reserve).
-
-To fix ideas, consider the following real example. After the World
-Health Organization (WHO) issued a report in 2014 calling antimicrobial
+We argue that the choice between races and tournaments does not
+necessarily depend on the nature of the task under consideration. Rather
+it is a function of the contest designer's preferences towards time and
+quality of the solutions sought; and how the competitive structure of
+the contest affects the strategic interactions between competitors. To
+see this point, consider the following real example. In 2014, after the
+World Health Organization (WHO) issued a report calling antimicrobial
 resistance\footnote{Antimicrobial resistance is ``the ability of a
   microbe to resist the effects of medication previously used to treat
   them'' (Wikipedia). It is often called ``antibiotic'' resistance
   because it is a phenomenon likely caused by a misuse of antibiotics.
   These resistant microbes are increasingly difficult to treat.} ``a
-major threat to public health,'' the United Kingdom and the European
-Commission decided independently to sponsor two different innovation
-contests aimed at boosting the development of solutions to the problem.
-The contest sponsored by the UK government was called the ``Longitude
-Prize: Reduce the use of antibiotics.'' The one sponsored by the EU was
-called ``Horizon prize for better use of antibiotics.'' Though both the
-contest designers were facing a seemingly identical problem --- it is
-striking how similar the contest names ended up being, the two contests
-were very different from a contest design perspective. The Longitude
-prize was a race competition: it awarded a prize to the first team to
-submit a solution satisfying some pre-specified effectiveness criteria.
-The Horizon prize was a tournament: teams were facing a fixed 12 month
-deadline within which they could submit solutions and the best solution
-relative to the other submissions was awarded a prize.
-
-The reasons why contest designers --- facing identical problems ---
-might end up with very different designs is unclear, raising questions
-about the determinants of contest designers' choices. We argue that
-there are two key factors that shape the decisions of contest designers.
-First, contest designers act to maximize their expected revenues.
-Expected revenues depend upon the intensity of their preferences for
-time and quality of effort --- e.g., developing effective solutions to
-antimicrobial resistance in the shortest time possible. According to
-these preferences, contest designers have (a) to schedule deadlines to
-create conditions of time pressure for contestants; and (b) select
-minimum criteria to avoid rewarding solutions of unsatisfying quality
-and (c) set up either a competition to be first or a competition to be
-best. By setting deadlines and minimum-quality criteria, contest
-designers affect the incentives for contestants to enter the
-competition, as well as the competitive pressure on their rivals. By
-choosing how contestants will compete, contest designers direct
-competitive pressures towards improving only one dimension of the
-problem, while keeping the efforts in other dimensions fixed. These
-different aspects --- deadlines, quality requirements, and competition
-styles --- interact with one another, greatly influencing the manner in
-which contestants behave.
+major threat to public health,'' the United Kingdom (UK) and the
+European Commission (EC) decided independently to sponsor two different
+innovation contests for accelerating the development of adequate
+solutions. The contest sponsored by the UK government was called the
+``Longitude Prize: Reduce the use of antibiotics.'' The one sponsored by
+the EC was called ``Horizon prize for better use of antibiotics.'' The
+UK's Longitude prize was a race competition: it awarded a prize to the
+first team to submit a solution satisfying some pre-specified
+effectiveness criteria (within a given submission period of 5 years).
+The EC's Horizon prize was, instead, a tournament: registered teams had
+a fixed 12-month deadline within which they could submit solutions and
+the best solution relative to all submissions was awarded the first
+prize. While both contests were dealing with the same problem (and had
+very similar names), the competition structure was very different from a
+contest design perspective, perhaps reflecting differences in underlying
+preferences of the contest designers.
 
 While races and tournaments are similar in various respects, it is
 unclear which one will dominate the other. For example, tournaments can
@@ -240,6 +214,41 @@ pressure to increase quality. For similar reasons, a race with a ``too
 high'' quality requirement might incentivize performances of higher
 quality, but it might also limit participation, thus reducing the
 competitive pressure on the time to perform the task.
+
+To examine the races vs tournaments issue from the perspective of a
+contest designer with preferences for time and quality of outcomes and
+account for the effects of this choice on contestants' strategic
+interactions, we proceed in two ways. Firstly, we develop a contest
+model that encompasses both the race and the tournament in a single
+framework. In particular, our approach extends the contest model
+introduced by Moldovanu and Sela (2001) to a situation in which contest
+designers care about both the timing and quality of effort. Exploring
+the duality of the model, we compare equilibrium behaviors under both
+competitive formats and characterize the optimal choice for the contest
+designer. Secondly, we design and execute an experiment to test key
+implications of the theory in the field. More specifically, the
+experiment compares and contrast behaviors under three different
+competition regimes: races, tournaments, and tournaments with a minimum
+quality reserve (called tournaments with reserve).
+
+Our approach suggests that there are two key factors that shape the
+decisions of contest designers. First, contest designers act to maximize
+their expected revenues. Expected revenues depend upon the intensity of
+their preferences for time and quality of effort --- e.g., developing
+effective solutions to antimicrobial resistance in the shortest time
+possible. According to these preferences, contest designers have (a) to
+schedule deadlines to create conditions of time pressure for
+contestants; and (b) select minimum criteria to avoid rewarding
+solutions of unsatisfying quality and (c) set up either a competition to
+be first or a competition to be best. By setting deadlines and
+minimum-quality criteria, contest designers affect the incentives for
+contestants to enter the competition, as well as the competitive
+pressure on their rivals. By choosing how contestants will compete,
+contest designers direct competitive pressures towards improving only
+one dimension of the problem, while keeping the efforts in other
+dimensions fixed. These different aspects --- deadlines, quality
+requirements, and competition styles --- interact with one another,
+greatly influencing the manner in which contestants behave.
 
 Another important factor for contest designers is how the choice of
 tournaments vs races will affect the efficiency of the contest. In
@@ -869,66 +878,71 @@ Conjecture. If \(\tau>0\), the \(\target\) in the race is higher.
 \subsection{The context}\label{the-context}
 
 While many observational studies have focused on various aspects of
-races and tournaments, the design of observational studies for comparing
-races with tournaments can be problematic. First, contests are run under
-widely differing circumstances like the objective, duration, and prize
-structure of the competition. But even lacking any of these differing
-aspects, a proper comparison might be impossible. As our model
-illustrates, contestants are generally confronted with sensible payoff
-differences between a race and a tournament competition, all else being
-equal. These differences and other elements will create selection
-problems that are hard to control in purely observational studies.
+races and tournaments separately, the design of observational studies
+for comparing races with tournaments is generally problematic. First,
+the variation in contest designs in terms of duration, solutions sought,
+and prize structures can be large, forcing researchers to collect
+observations from multiple designs with overlapping combinations in
+order to fully account for these differences. Second, as our model
+suggests, contestants often face sensible payoff differences between a
+race and a tournament competition, an issue that favors the emergence of
+selection problems that are hard to control in observational studies.
 
 Instead of using naturally occurring data, we test our theory by
-designing and executing a field experiment. In doing so, one need an
+designing and executing a field experiment. In doing so, one needs an
 environment where the same type of contest can be replicated under
-different competition styles, and while keeping fixed all other relevant
-characteristics. In particular, it is important to fix the same
-objective and prize structure while changing only the competition style;
-and it is crucial to avoid selection problems by assigning at random
-contestants to each competition style.
+different competition styles while keeping fixed all other relevant
+characteristics. In particular, it is important to have competitors
+facing the same problem, contest duration, and prize structure while
+changing only the competition style.
 
 Such an environment was provided by \emph{Topcoder}, a company based in
 the United States that administers a popular online platform for
 computer programming competitions and that agreed to provide (a) access
 to its large member base of competitors (over 1 million registered users
 in 2016) and (b) access to its platform's tools for managing online
-contests like web-based leaderboards, scoring methods to determine the
-winners, and a payment system to reward competitors residing all over
-the world. These two aspects --- large sample and tools for managing
-online contests --- considerably simplified the execution of our
-experiment.
+contests (e.g., web-based leaderboards, scoring methods to determine the
+winners, a payment system to reward competitors residing all over the
+world). These two aspects --- large sample and tools for managing online
+contests --- made possible by considerably simplifying the execution of
+our experiment.
 
-Beyond simplifying the execution of our experimental design, three key
-factors made this platform ideal for our experiment. First, the platform
-offers periodic programming competitions in which members usually
-participate. It hosts biweekly race-style programming competitions based
-on programming speed (known as ``Single Round Matches'' or SRMs) and
-once a month tournament-like programming competitions based on
-performance in data science problems (known as ``Marathon Matches'' or
-MMs).\footnote{The SRMs involve a race-like competition whereby
-  contestants are presented with several algorithmic problems and get
-  points based on the time elapsed between when a problem was open until
-  a working solution was submitted. The other type (MMs) is a
-  two-week-long tournament where contestants are presented with one
-  difficult algorithmic problem and the top five solutions are awarded a
-  cash prize.} Therefore, one can expect platform members to be familiar
-with the kind of strategic interactions of a race or a tournament
+Beyond giving the means for the execution of our experimental design,
+three key factors made this platform ideal. First, the platform offers
+periodic programming competitions free for all its members to
+participate. One can hence expect platform members to be familiar with
+the kind of strategic interactions that arise in a race or a tournament
 competition, as implicitly assumed by our game-theoretic contest model.
+In particular, every two weeks, the platform hosts one-day-long
+race-style programming competitions, known as ``Single Round Matches''
+or SRMs. These SRM competitions are ``for fun'' (e.g., no monetary
+rewards) and winners are selected on the basis of their coding speed
+(e.g., the time it takes to write a software program to solve a given
+problem). In addition to SRMs, about once a month, the platform hosts
+two-week-long tournament-like programming competitions, known as
+``Marathon Matches'' or MMs. These contests ask contestants to deal with
+more difficult data science problem and, importantly, assign a score to
+each submitted solution (e.g., in a prediction task, the score can be a
+measure of prediction accuracy like the mean squared error) awarding the
+top five solutions with cash prizes.\footnote{Cash prizes usually range
+  between \$10-20,000 for the very top solution; \$10-5,000 for the
+  second highest; and less than \$3000 for the rest.} As platform
+members tend to participate in both types of competitions, it is likely
+that those recruited for our experiment would have some direct
+experience with both race and tournament competitions.
 
 Second, the platform computes and keeps track of different measures of
 competitors' individual ability based on their past performance. These
 include multiple ``skill ratings'' that are computed and provide a
-metric of their ability as contestants in the race-like competitions
-(SRMs) and tournament-like competitions (MMs). As a result, one could
-expect to (a) estimate treatment effects controlling for very accurate
-measures of individual ability,\footnote{Topcoder's skill ratings are
-  often used by software companies for hiring.} and (b) examine the
-association between individual ability and the observed sorting patterns
-in races and tournaments. In a contest, showing the distribution of
-skill ratings to the contestants was also an easy way to help them
-forming common beliefs about the distribution of abilities, as assumed
-by the model.
+metric of their ability as contestants in each type of competition
+(race-like SRMs and tournament-like MMs) As a result, one could expect
+to (a) estimate treatment effects controlling for very accurate measures
+of individual ability,\footnote{Topcoder's skill ratings are often used
+  by software companies for hiring.} and (b) examine the association
+between individual ability and the observed sorting patterns in races
+and tournaments. In a contest, showing the distribution of skill ratings
+to the contestants was also an easy way to help them forming common
+beliefs about the distribution of abilities, as assumed by the model.
 
 A third key factors making this platform ideal for our experiment was
 that it collects rich data analytics on contest participation like the
@@ -1067,22 +1081,22 @@ baseline).
 
 \subsection{Data}\label{data}
 
-We collected extensive platform data for each registered participant.
-These include the full history of their registrations in past contests,
-as well as the outcomes of these contests like the number of solutions
-submitted, placements in the final rankings, and total cash prizes
-earned. As reported in Table \ref{summary}, our data show that those who
-registered in the experiment were very experienced competitors. They had
-been platform members for an average of 5 years, had registered in an
-average of 18 multi-week long contests (MMs), in which they had been
-earning a median of 6 hundred dollars per year in cash prizes. As our
-data shows, on average, they had submitted solutions in only 7 of these
-contests (29 percent of their registrations), suggesting that even
-highly experienced platform members frequently drop out of competitions.
-Our sample had also registered in an average of 46 speed-based contests
-(SRMs) with a relatively higher submission rate (84 percent), presumably
-because these contests take only a few hours to complete and have
-relatively simpler problems that require less effort to solve.
+Using platform data (top panel of Table \ref{summary}), we find that the
+majority of competitors taking part in this study were mature users of
+the platform (5 years of membership on average), with much experience in
+race-like (46 SRM registrations on average) and tournament-like (18 MM
+registrations on average) competitions by participating in which they
+earned a median of \$577 per year in cash prizes.
+
+Data from a mandatory registration survey (bottom panel of Table
+\ref{summary}) further reveal that study participants were residing in
+69 countries (7 percent in the United States), were below 30 years old
+(66 percent), and were mostly male (95 percent), reflecting an overall
+unbalanced gender participation on Topcoder which is common to many
+other online platforms like Wikipedia or Stack Overflow.\footnote{See,
+  for example, xxxx.} Our sample is thus hardly representative of online
+communities in general or even online communities of programmers, but it
+comprises a set of experienced and relatively homogeneous competitors.
 
 \begin{table}
 \centering
@@ -1122,22 +1136,24 @@ relatively simpler problems that require less effort to solve.
 }\end{minipage}
 \end{table}
 
-A key variable to measure was competitors' ability in solving
-algorithmic problems (like the named entity recognition task used for
-the experiment) and their speed in programming working solutions. A
-sensible measure of problem-solving ability was the individual skill
-rating that is computed on multi-week long contests (MMs). Similarly, a
-sensible measure for programming speed was the skill rating computed on
-speed based competitions (SRMs).\footnote{The skill rating is an
-  elo-type measure of a competitor's relative ability compared to
-  others. This measure is represented by a number that increases or
-  decreases at the end of a competition depending on the difference
+A key variable to measure was competitors' ability in terms of (1)
+problem-solving skills targeted for data science problems (like the
+named entity recognition task used in the contest) and (2) programming
+speed. As a proxy for these two aspects of a competitor's ability, we
+collected individual skill ratings for each participant in the study.
+These ratings are publicly available on the platform and represent
+elo-type measures of a competitor's relative ability compared to
+others.\footnote{This measure is represented by a number that increases
+  or decreases at the end of a competition depending on the difference
   between a hypothetical expected rank (based on the pre-contest values
   of the skill rating of the opponents) and the actual rank achieved by
   a competitor at the end of a competition. When the actual rank is
   higher than the expected rank, the skill rating increases whereas it
-  decreases otherwise. Skill ratings are computed independently for each
-  type of competition run on the platform (MMs and SRMS).}
+  decreases otherwise. The skill ratings in our sample are computed
+  independently for each type of competition run on the platform (MMs
+  and SRMS) before this study.} In particular, we rely on the skill
+rating computed for MMs as a proxy of problem solving ability and on
+that computed for SRMs as a measure of programming speed.
 
 \begin{figure}
 \centering
@@ -1146,61 +1162,49 @@ speed based competitions (SRMs).\footnote{The skill rating is an
 \includegraphics{Figures/ratingPlot-1.pdf}
 \end{figure}
 
-As shown in Figure \ref{skill ratings}, both skill ratings (those
-measuring problem solving ability and speed) have slightly asymmetric
-probability distributions due to the presence of a few competitors with
-very high skill ratings relative to the rest. The right-hand panel of
-Figure \ref{skill ratings} shows that, while the skill ratings computed
-on MMs is positively correlated with the skill rating computed on
-speed-based competitions SRMs, there is considerable variation in
-skills.\footnote{The fraction of explained variance or R squared by
-  simple linear regression was 0.212.} So, a relatively good competitor
-in speed-based contests (SRMs), could turn out to be a relatively bad
-competitor when faced with hard-to-solve algorithmic problems in
-multi-week long contests (MMs) --- and vice versa. However, variation
-seems to reduce for the very top competitors, (those who have high
-scores in at least one of the two types of competitions), suggesting
-that being fast and being able to solve hard problems are highly
-correlated for top competitors.
+The empirical density functions for these two skill ratings are shown in
+Figure \ref{skill ratings}. Both skill ratings have slightly asymmetric
+empirical densities due to the presence of a few competitors with very
+high skill ratings relative to the rest. A simple linear regression
+model regressing problem-solving (MM skill ratings) on programming speed
+(SRM skill ratings) shows that, though highly positively correlated,
+there is considerable variation between these two variables (the \(R^2\)
+is equal to 0.21); suggesting the same competitor may perform very
+differently in races and tournaments.
 
-The online registration survey provided additional data on basic
-demographics like gender, age, geographic origins, education, and most
-preferred programming language. It also provided measures of attitudes
-towards risk as our initial survey asked registrants to indicate their
-``willingness to take risks in general'' on a 11-point scale (from 0
-``Unwilling'' to 10 ``Completely willing'').\footnote{The validity and
-  economic relevance of this way to measure risk preferences has been
-  shown by Dohmen et al. (2011).} Our survey also collected measures of
-time availability. Registrants were asked to make a forecast of how many
-hours they anticipated to be able to work on the problem during the
+Beyond ability, other factors may determine competitors' actions in a
+contest. One important factor could be the degree of risk aversion. The
+registration survey thus collected participants' attitudes towards risk,
+asking registrants to indicate their ``willingness to take risks in
+general'' on a 11-point scale (from 0 ``Unwilling'' to 10 ``Completely
+willing'').\footnote{The validity and economic relevance of this way to
+  measure risk preferences has been shown by Dohmen et al. (2011).} The
+median response was higher than in previous studies (Dohmen et al.
+2011), indicating competitors had perhaps higher propensity to take risk
+than the norm.
+
+Registrants were also asked to make a forecast of how many hours they
+anticipated to work to solve the algorithmic problem during the
 submission phase of the challenge.\footnote{The exact question was:
   ``Looking ahead a week, how many hours do you forecast to be able to
   work on the solution of the problem?''. Participants had to pick an
   integer between 0 and 48 hours for every 2 days of the submission
-  phase (a total of 4 choices).}
+  phase (a total of 4 choices).} Our data show that participants
+anticipated a median of 24 hours of total work during the contest
+(anticipating slightly more hours of work in the first and last days of
+the contest).
 
-Demographics reflected the overall distribution of characteristics of
-active platform members. As shown in Table \ref{summary}, the gender
-composition was highly unbalanced towards male (95 percent) and young
-(below 30 years old) (66 percent) competitors. In terms of risk
-aversion, the median response was higher than in previous studies
-(xxxx), indicating competitors had perhaps higher propensity to take
-risk than the norm. Our data also show that participants anticipated a
-median of 24 hours of work to solve the algorithmic problem during the
-contest (anticipating slightly more hours of work in the first and last
-2 days of the contest).
-
-To test whether randomization into treatment groups was successful, we
-conducted a series of F-tests to check the statistical significance of
-mean differences in competitors' characteristics between treatments. As
-shown in Table \ref{summary}, these tests returned very small F
-statistics for each variable indicating that our randomization was
-successful.
+Finally, to test whether randomization into treatment groups was
+successful, we conducted a series of F-tests to check the statistical
+significance of mean differences in competitors' characteristics between
+treatments. As shown in Table \ref{summary}, these tests returned very
+small F statistics for each variable indicating that our randomization
+was successful.
 
 \section{Results}\label{results}
 
 At the end of the eight day submission period of the contest, we
-collected individual data like the number, timing, and score of each
+collected individual data like the extent, timing, and score of each
 code submission made by competitors. As competitors behaviors are
 generally correlated within each room, we then aggregated these
 individual data into room responses to examine differences between
@@ -1636,6 +1640,12 @@ Economic Behavior} 44 (2). Elsevier: 217--26.
 Bimpikis, Kostas, Shayan Ehsani, and Mohamed Mostagir. 2014. ``Designing
 Dynamic Contests.'' Working paper, Stanford University.
 
+\hypertarget{ref-Brunt:2012ix}{}
+Brunt, Liam, Josh Lerner, and Tom Nicholas. 2012. ``Inducement Prizes
+and Innovation.'' \emph{The Journal of Industrial Economics} 60 (4):
+657--96.
+doi:\href{https://doi.org/10.1111/joie.12002}{10.1111/joie.12002}.
+
 \hypertarget{ref-che2003optimal}{}
 Che, Yeon-Koo, and Ian Gale. 2003. ``Optimal Design of Research
 Contests.'' \emph{The American Economic Review} 93 (3). American
@@ -1688,6 +1698,10 @@ Harris, Christopher, and John Vickers. 1987. ``Racing with
 Uncertainty.'' \emph{The Review of Economic Studies} 54 (1). Oxford
 University Press: 1--21.
 
+\hypertarget{ref-konrad2009strategy}{}
+Konrad, Kai A. 2009. ``Strategy and Dynamics in Contests.'' \emph{OUP
+Catalogue}. Oxford University Press.
+
 \hypertarget{ref-laffont1995econometrics}{}
 Laffont, Jean-Jacques, Herve Ossard, and Quang Vuong. 1995.
 ``Econometrics of First-Price Auctions.'' \emph{Econometrica} 63 (4).
@@ -1708,6 +1722,11 @@ Mary, O'Keeffe, W Kip Viscusi, and Richard J Zeckhauser. 1984.
 ``Economic Contests: Comparative Reward Schemes.'' \emph{Journal of
 Labor Economics} 2 (1). University of Chicago Press: 27--56.
 
+\hypertarget{ref-mckinsey2009}{}
+McKinsey. 2009. ``'And the Winner Is\ldots{}': Philanthropists and
+Governments Make Prizes Count.''
+http://mckinseyonsociety.com/capturing-the-promise-of-philanthropic-prizes/.
+
 \hypertarget{ref-moldovanu2001optimal}{}
 Moldovanu, Benny, and Aner Sela. 2001. ``The Optimal Allocation of
 Prizes in Contests.'' \emph{The American Economic Review}. JSTOR,
@@ -1726,6 +1745,10 @@ Econometrics} 51 (1-2). Elsevier: 191--215.
 Parreiras, Sérgio O, and Anna Rubinchik. 2010. ``Contests with Three or
 More Heterogeneous Agents.'' \emph{Games and Economic Behavior} 68 (2).
 Elsevier: 703--15.
+
+\hypertarget{ref-prendergast1999provision}{}
+Prendergast, Canice. 1999. ``The Provision of Incentives in Firms.''
+\emph{Journal of Economic Literature} 37 (1): 7--63.
 
 \hypertarget{ref-siegel2009all}{}
 Siegel, Ron. 2009. ``All-Pay Contests.'' \emph{Econometrica} 77 (1).

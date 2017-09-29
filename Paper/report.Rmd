@@ -27,8 +27,8 @@ keywords:
   - crowdsourcing
   - innovation
 
-fontsize: 10pt
-# setspace: \doublespacing
+fontsize: 11pt
+setspace: \doublespacing
 endfloat: true
 
 output:
@@ -85,8 +85,7 @@ source('../R/boxplot.R')
 source('../R/descriptives.R')
 source('../R/regtab.R')
 
-# Documents 
-child_docs <- c("1_intro.Rmd", "2_model.Rmd", "3_data.Rmd", "4_results.Rmd","5_discussion.Rmd")	
+child_docs <- setdiff(list.files(pattern='.Rmd'), "report.Rmd")
 ```
 
 ```{r child = child_docs}

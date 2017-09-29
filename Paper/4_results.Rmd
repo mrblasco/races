@@ -4,7 +4,8 @@ read_chunk("R/results_sorting.R")
 ```
 
 # Results
-At the end of the eight day submission period of the contest, we collected individual data like the number, timing, and score of each code submission made by competitors. As competitors behaviors are generally correlated within each room, we then aggregated these individual data into room responses to examine differences between competition styles at the room level.[^dependence]
+
+At the end of the eight day submission period of the contest, we collected individual data like the extent, timing, and score of each code submission made by competitors. As competitors behaviors are generally correlated within each room, we then aggregated these individual data into room responses to examine differences between competition styles at the room level.[^dependence]
 
 [^dependence]: While such a dependence does not generally affect estimatation of mean differences, it might bias inference accuracy. As actions across rooms can be treated as independent, the inferential problem is thus less severe when the analysis is at the room level.
 

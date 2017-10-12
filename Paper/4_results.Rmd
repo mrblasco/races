@@ -1,6 +1,8 @@
 ```{r}
 read_chunk("R/results.R")
 read_chunk("R/results_sorting.R")
+read_chunk("R/sorting.R")
+read_chunk("R/scores.R")
 ```
 
 # Results
@@ -10,64 +12,85 @@ At the end of the eight day submission period of the contest, we collected indiv
 [^dependence]: While such a dependence does not generally affect estimatation of mean differences, it might bias inference accuracy. As actions across rooms can be treated as independent, the inferential problem is thus less severe when the analysis is at the room level.
 
 ## Entry
-Our analysis of the effects of different competition styles begins by looking at competitors' entry. The entry variable is the fraction of competitors in a room who made at least one submission during the eight day submission period of the contest. Our theoretical model predicts that, all else being equal, competitors' entry will be higher in a tournament than in a race competition, because of the lack of minimum performance requirements. For the same reason, it also predicts higher entry rates in regular tournaments compared to tournaments with reserve. Consistent with these predictions, Figure \ref{room entrants} shows a higher median percentage of entrants in tournaments compared to both races and tournaments with reserve. It also shows that the difference in entry between tournaments and races, though it is consistently positive across room sizes, seemed more marked in small rooms compared to large rooms, suggesting sobering effects associated with size.
 
-```{r entryPlot, fig.width=9, fig.height=4, include=FALSE}
+```{r}
+entry_perc <- round(100 * with(entry, tapply(submit/n, treatment, median)))
+```
+
+Our analysis of the effects of different competition styles begins by looking at competitors' entry. The entry variable is the fraction of competitors in a room who made at least one submission during the eight-day submission period of the contest.  All else being equal, one should expect ---from our theoretical model--- a higher entry in tournaments relative to races due to the difference in minimum performance requirements. Consistent with this prediction, the median percentage of entrants was greater in rooms with tournaments (`r entry_perc['tournament']` percent) than in those with races (`r entry_perc['race']`  percent) or tournaments with reserve (`r entry_perc['reserve']` percent). This difference in room entry rates was consistently positive across room sizes (Figure \ref{room entrants}) although more marked when the room size was small, suggesting sobering effects associated with room size.
+
+```{r entry_rates_figure, fig.width=9, fig.height=4, include=FALSE}
 ```
 
 \begin{figure}
 \caption{Percentage of room entrants by competition and room size}
 \label{room entrants}
-\includegraphics{Figures/entryPlot-1.pdf}
+\includegraphics{Figures/entry_rates_figure-1.pdf}
 \end{figure}
 
-On average, `r entry.diff['tournament']` competitors (`r entry.pcnt['tournament']` percent) assigned to tournaments were submitting solutions compared to `r entry.diff['race']` competitors  (`r entry.pcnt['race']` percent) assigned to races and `r entry.diff['reserve']`  (`r entry.pcnt['reserve']` percent) assigned to tournaments with reserve. To test if the observed positive difference in entry between tournaments and races was statistically greater than zero, we used a multiple linear regression model. We regressed the fraction of entrants in each room against treatment dummies and room size dummies. To control for random differences in competitors' baseline characteristics across rooms, we added controls for differences in room abilities and demographics.[^controls]
+To test if the observed positive difference in entry rates between tournaments and races was statistically greater than zero, we used a multiple linear regression model regressing the fraction of entrants in each room against treatment dummies and room size dummies. To control for random differences in competitors' baseline characteristics across rooms, we added two sets of control variables: a "selected" and a "full" set. In particular, the selected set included controls with relatively higher chances of being unbalanced across rooms (i.e., those with an F statistic equal or larger than one, as reported on Table \ref{summary}).[^selection] The full set included instead all the available controls with few exceptions to avoid technical issues like multicollinearity.[^chickensink] 
 
-[^controls]: We consider two sets of room controls: a "partial set" and a "full set." The partial set includes  control variables with a relatively higher chance of being different across treatment groups. Those are variables with a relatively high (i.e., equal or larger than one) F statistic as reported on Table \ref{summary}. The full set includes all the available controls with the exception of a few variables. To avoid multicollinearity issues, the full set does not include: the anticipated hours of work in each day (`hours12-78`) that are replaced by the sum (`hours`); and the number of top five placements that was highly correlated with the number of wins. Other minor issues. Since our data has only a few winners with many wins, instead of using the mean number of wins of the room, we took an indicator for whether a winner was in the room or not.
+[^selection]: We could have used more sophisticated variable selection techniques like lasso or stepwise variable selection methods. These data-driven approaches, however, will generally bias the inference after selection (i.e., conventional inferential statistics are only valid if the model is chosen independent of the data being used to calculate them) demanding further adjustments for hypothesis testing that we wanted to avoid.
+[^chickensink]: The full set does include the measures of anticipated hours of work in each day (`hours12-78`) that were replaced by the total number of hours (`hours`); the number of top five placements that was highly correlated with the number of wins; and, since our data has only a few winners with many wins, the mean number of wins of the room was replaced by an indicator for whether a winner was in the room or not.
+
 
 ```{r entrylm, results='asis'}
 ```
 
-As shown in Table \ref{ols entry}, the estimated difference in entry between tournaments and races is of `r round(coef(m$entry.lm)['treatmenttournament'],2)`. This corresponds to a difference of 1 more entrant every `r round(1/coef(m$entry.lm)['treatmenttournament'])` = 1/`r coef(m$entry.lm)['treatmenttournament']` competitors or, using the specification with a log-transformed proportion (column 4), an increase by a factor of 
-`r round(exp(coef(m.log$entry.lm)['treatmenttournament']),2)` = exp(`r coef(m.log$entry.lm)['treatmenttournament']`) in entry relative to races. Without any adjustment for random differences in the baseline characteristics of the rooms, the effect on entry is significantly greater than zero with a one-sided test at 10 percent level (t=`r entry.lm.sum$coef["treatmenttournament", 3]`; one-sided p=`r entry.lm.sum$coef["treatmenttournament", 4]/2`). Statistical significance increases when the effect is computed using the "partial" and "full" set of controls, thus adjusting for random differences at the room level like skills, past experience, and other demographics. Taken together, these results show evidence supporting a positive effect of tournaments on entry relative to races. In addition, our estimates show no systematic difference in entry rates between races and tournaments with reserve (as predicted by theory); and fail to detect any statistically significant difference between large and small rooms. 
+```{r}
+# Extract estimates and test statistics for 3 models
+mat <- matrix(ncol=3, nrow=3)
+rownames(mat) <- c('est', 'tstat', 'pval')
+colnames(mat) <- c('no', 'selected', 'full')
+for (i in 1:3) {
+	model <- m.log[[i]]
+	mat[1, i] <- coef(model)['treatmenttournament']
+	mat[2, i] <- summary(model)$coef["treatmenttournament", 3]
+	mat[3, i] <- summary(model)$coef["treatmenttournament", 4] / 2
+}
+```
 
-Because tournaments yielded higher entry rates relative to races, it is now useful to discuss possible drivers of entry by looking at the sorting patterns across competition styles. Our theory suggests that, all else being equal, the positive gap in entry of tournaments compared to races should be driven by low-ability competitors sorting into tournaments at higher rates. Though theory prescinds from practical definitions of ability, two main types of abilities seemd the most relevent in our context. One involves proficiency in solving algorithmic problems like having adequate problem-solving skills and a good knowledge of programming. The second pertains to having as much time availability as required to solve the given problem. Our analysis thus focused on two types of data: platform data on skills and experience; and the hours of work as anticipated by competitors at registration.
+All our regression results (Table \ref{ols entry}) show consistently that tournaments increased average entry rates relative to races. In the regression with no controls, we estimated an average increase by a factor of  `r round(exp(mat['est', 'no']), 2)` = exp(`r round(mat['est', 'no'], 2)`), which was significantly greater than zero (one-sided test) at 10 percent level (t=`r mat['tstat', 'no']`; one-sided p=`r mat['pval', 'no']`). After adjusting for key random differences at the room level, the estimated effect was even bigger (`r round(exp(mat['est', 'selected']), 2)` and `r round(exp(mat['est', 'full']), 2)` for the regression with selected and full set of controls, respectively) and statistically significant at 5 percent level. Our regression results show hence evidence supporting a positive effect of tournaments on entry relative to races, as predicted by our theory. In addition, regression results indicate that participation rates between races and tournaments with reserve are the same, which is also consistent with theory, and suggest that the difference in size between rooms was inconsequential for participation rates.
 
-To examine the sorting patterns in our data, we first estimated the conditional probability of entry as a function of our favourite ability measures --- the skill ratings and anticipated hours of work. As shown in the upper panels of Figure \ref{sorting plot}, the linear-regression estimates of the conditional probability of entry computed for the median competitor (i.e., `r median(races$hours, na.rm=TRUE)` anticipated hours) was increasing in both our ability measures --- the skill rating (left panel) and anticipated hours (right panel) --- with large differences in probability between individuals at the top and the bottom of the covariate distribution. So, entrants were more skilled than non-entrants. To see if these sorting patterns were different across tournaments and races, we then estimated the same relationships conditional on competitors being randomly assigned to races or tournaments (i.e., interacting the covariates with treatment dummies). As shown in the lower panels of Figure \ref{sorting plot}, the linear-regression estimates with interactions overlap quite well one another. This means that the propensity to enter of an individual with a given programming skills --- measured by the skill rating --- holding constant time availability --- measured by the anticipated hours of work --- was the same across treatments, and vice versa.  So, based on these measures, our data provide no evidence of a differential in ability-based sorting between tournaments and races.
+A possible explanation for the gap in entry between tournaments and races is that "low-ability" competitors entered more in tournaments than in races as a consequence of the lack of minimum performance requirements --- as in the equilibrium of our model. This prediction is hard to test because theory prescinds from defining ability in practice. A few key variables, however, seemed intuitively associated with ability in our context.  In particular, we focused on problem solving skills, programming speed, and time availability that were measured by the skill ratings (MMs and SRMs) and the anticipated hours of work collected through the registration survey, as discussed in Section \ref{data}.
 
-```{r sortingplots, fig.width=8, fig.height=8, include=FALSE}
+To test the extent of ability-based sorting and differences across treatments, we first examined the conditional probability of entry as a function of our ability measures.^[Here, since not everyone has a skill rating, we imputed any missing values at random.] Results (not reported) show a significant and strong association between entry and our measures of problem solving skills and time availability, but an insignificant association between entry and programming speed.^[These results are broadly consistent between models with and without the imputed values.] So, as one would expect, a competitor's ability in terms of problem solving and time constraints is an important determinant of entry. To estimate differences across treatments, we used then non-parametric regression, which generally provides a better fit and, at least in our setting, was less sensitive to extreme values of covariates than conventional multiple regression.
+
+So, for each treatment $l$, we estimated the conditional probability of entry, which is given by
+$$
+	\Pr(\text{entry}|\text{treatment, skill rating, hours}) = \hat g_l(\text{skill rating}, \text{hours}).
+$$ 
+Results (Figure \ref{sorting plot}) show that the function $\hat g_{l}(\cdot, \cdot)$ is increasing in our set of ability measures, the skill rating and anticipated hours of work. Moreover, the conditional probabilities in tournaments and races overlap quite well (Figure \ref{sorting plot}, left panel) for low- and middle-ability competitors (the bulk of our sample),  indicating thus that the difference in entry between races and tournaments was not due to those with low problem solving abilities. If anything, high-ability competitors were a little more likely to enter tournaments than races (though this difference is based only on a handful of observations, as shown by the "rug-plot" at the bottom of the graphs). At the same time, we found that the probability of entry in tournaments and races diverge (Figure \ref{sorting plot}, right panel) by about one percentage point difference for low- and middle-values of reported time availability, thus suggesting that the gap in entry was driven by differences in time availability between competitors. That is, competitors who had less time available for the contest (holding constant their problem solving ability) ended up entering tournaments more often than races, arguably because of the differential relevance of time in the two competition formats. 
+
+To summarize, we found a gap in entry between tournaments and races, whereby competitors exhibit a significantly higher probability of entering tournaments compared to races. This gap seems to be driven by a negative effect of races on the participation of competitors with less time available to work on the contest. This finding also indicates that individual time constraints, in addition to problem solving skills, fit with our theoretical definition of "ability" and should be taken into account in the contest design.
+
+<!-- 
+Discussion: [Given our set of competitor characteristics is orthogonal to treatment assignment, the (non-parametric) estimated conditional probability of entry given ability and treatment assignment is correctly identified. Conventional statistical inference, however, might be biased because of correlations within rooms.]
+ -->
+
+```{r sorting, cache=TRUE, fig.width=9, fig.height=4, include=FALSE}
 ```
 
 \begin{figure}
-\caption{Sorting by skills and time availability}
+\caption{Sorting differences across treatments}
 \label{sorting plot}
-\includegraphics{Figures/sortingplots-1.pdf}
+\includegraphics{Figures/sorting-1.pdf}
 \end{figure}
 
 
-Differences in means for the all other covariates (not shown) supported the same conclusion --- positive and significant differences in ability between entrants and non-entrants but no differing patterns between tournaments and races. Somewhat surprisingly, the analysis of differences in means showed an unexpected difference in ability characteristics between entrants in races and those in tournaments w/reserve. As shown in Table \ref{sorting table}, those in the races had significantly more time availability and had registered to less past competitions than those in the tournaments w/reserve. Since entry was the same in both treatments, this evidence suggests the presence of a "substitution" effect. Such as substitution effect is not predicted by our theory, as it predicts differences to be driven by higher/lower entry rates, which are not expected to arise when races and tournament w/reserve have the same target quality. And we will return on this point in the discussion of the results. 
+## Productivity
 
-```{r sortingtable, cache=FALSE, results='asis'}
-```
-
-Let us now summarize the evidence obtained so far. Consistent with theoretical predictions, we found evidence that competitors in tournaments had higher propensity to enter the competition relative to those randomly assigned to the other treatments. While our data show stark differences between entrants and non-entrants, we did not detect significant differences in entrants' characteristics between races and tournaments. Both conditional and unconditional differences in means between races and tournaments are insignificant. In particular, we found no evidence of skill-based sorting in terms of two well-suited measures of ability ---  skill ratings and anticipated hours of work. By contrast, we found significant differences in entrants' characteristics between races and tournaments with reserve. Since entry rates are not different between these two treatment groups, a substitution effect must have occurred, which was unexpected as not predicted by theory.
-
-## Scores
-
-After the analysis on entry, we focused on comparing treatment effects on performance. Our model predicts that, all else being equal, tournaments with reserve will yield higher performance levels compared to races and "regular" tournaments. The model also predicts lower volatility in performance of races relative to tournaments. To investigate these issues, we collected data on scores for each solution submitted during the contest. We then focused the analysis on the highest score attained by a competitor's last submission in each room, and we divided all room values by the target quality to express the percentage relative to the target quality.[^scores]
-
-<!-- 
-The results on entry suggest that tournaments had a positive impact on competitors' participation relative to races and tournaments with reserve. The analysis of sorting showed further that the excess of entry was not driven by differences in ability --- at least according to our measures, --- raising the question of whether incentives alone --- without sorting in skills --- can generate relatively higher performance levels. 
- -->
+We now turn to evaluate differences in productivity between tournaments and races. Our empirical context provides an accurate way to measure productivity because all submissions got scored based on their performance relative to the given problem, as described in Section \ref{the-context}. Thus our measure of room productivity was the maximum final (i.e., on the last submission) score achieved by competitors in each room.[^scores]
 
 [^scores]: During each contest, the platform keeps "provisional" and "system" scores for each solution submitted. In data science problems, provisional and system scores are computed in the same way but on different datasets to prevent the so-called "overfitting" problem (i.e., a form of model misspecification). Provisional scores are computed on a "testing" dataset and then published on the leaderboard. System scores are computed on a smaller "system testing" dataset and kept secret until the end of the contest. As these dataset are representative of the same data generating process, both scores are basically measuring the same kind of performance and indeed are highly correlated (the correlation coefficient was `r with(scores, cor(provisional, final,use='complete.obs'))` in our data). To simplify exposition, we report the analysis based on the system scores but results are the same with provisional scores as well. 
 
+Our model predicts that the productivity in tournaments with reserve should be higher than that in races. Contrary to this prediction, the median room productivity in tournaments with reserve appears equal to that in the other rooms (Figure XXX), with rooms in tournaments with reserve achieving both the highest and lowest productivity overall. In addition, rooms highest scored submissions were below the target in about half of the rooms in each treatment (with xxxx), resulting in a total payout that was about twice as high as in  tournaments than in races or tournaments w/reserve (e.g., where solutions below the target are ineligible for prizes). 
 
 ```{r scoresplot, fig.width=8, fig.height=4, include=FALSE}
 ```
 
 \begin{figure}
-\caption{Highest room scores by competition style and room size}
+\caption{Room productivity by competition style and room size}
 \label{scores plot}
 \includegraphics{Figures/scoresplot-1.pdf}
 \end{figure}
@@ -75,17 +98,13 @@ The results on entry suggest that tournaments had a positive impact on competito
 ```{r scorestable, results='asis'}
 ```
 
-As shown in Figure \ref{scores plot}, the distribution of the top final scores was centered around the target quality in each treatment, with higher variance in tournaments and tournaments w/reserve compared to races. The top final scores were thus below the target quality in about half of the rooms in each treatment; with larger differences between high and low scores in tournaments relative to races. 
-
-
 ```{r}
 vt <- var.test(final.cens ~ treatment=='race', data=final)
 ```
 
-Regression estimates of the treatment effects are shown in Table \ref{scores table}. In all our specifications --- with or without adjustment for random differences in the baseline characteristics of the rooms --- estimates of treatment effects were small ($<1$ percentage point) and insignificant, suggesting performance differences were too small to be detected. By contrast, using an F-test to compare the variances of two samples, we found the difference in variance between races and the other two treatments combined was significant (p=`r vt$p.value`).
+Using the multiple linear regression approach described before, regression results (not shown) indicate small and insignificant treatment differences in all our specifications (i.e., with or without controls), suggesting performance differences were too small to be detected. By contrast, using an F-test to compare the variances of two samples, we found the difference in variance between races and the other two treatments combined was significant (p=`r vt$p.value`). Room size was not different xxxx. 
 
-
-Taken together, these results show that top final scores were below the target quality in about half of the rooms in each treatment. The total payout in tournaments was hence about twice as high as in the races and tournaments w/reserve, where prizes are distributed only when top solutions achieve a score equal or higher than the target. And, at the same time, the mean top scores in tournaments was significantly different from those in the other treatments. This seems to suggest that races and tournaments w/reserve were more "efficient" than tournaments. 
+Taken together, these results show that room productivity was comparable across rooms.  At the same time, the total payout was larger in tournaments, indicating that races and tournaments w/reserve were more "efficient" than tournaments. 
 
 
 <!-- 
@@ -93,13 +112,20 @@ percentage of entrants in tournaments compared to both races and tournaments wit
  -->
 
 
+<!-- 
 ^[FOOTNOTE --- While final scores give a very powerful indication of performance, one problem with measuring individual performance using final scores is that any failure in the submitted code might return very low values, as shown in Figure \ref{scores over time}, that are not wholly indicative of performance. As outliers will in general bias the room means, we explored two corrective methods (1) we trimmed last scores before computing the room means; and (2) we replaced all final scores that were below the baseline score with the baseline. The first method gives a winsorized mean, which is an unbiased estimate of the average. The second approach equals censoring by  assuming that all entrants had a performance at least equal to the final score that one would obtain by submitting the BANNER's algorithm without making any useful change.]
-
-
+ -->
 
 ## Speed
 
-We now turn to examine differences in the timing of submissions. Our theory predicts that, all else being equal, solutions will be developed faster in races compared to tournaments. The prediction can be seen either with respect to the average "time" to develop a submission or the speed to develop a submission of a given quality. To test this prediction we examined he mean time of the first submission scaled by the score. 
+We have already examined differences in entry and productivity, where productivity was measured in a given time unit (i.e., the duration of the contest). We now turn to examine differences in productivity intended as the timing it took competitors to achieve a solution of a given quality (i.e., their speed). 
+
+Our measure of speed was the time difference between the start of the competition and the first submission scaled by the score achieved by the first submission of the room. 
+
+
+<!-- 
+ Our theory predicts that, all else being equal, solutions will be developed faster in races compared to tournaments. The prediction can be seen either with respect to the average "time" to develop a submission or the speed to develop a submission of a given quality. To test this prediction we examined he mean time of the first submission scaled by the score. 
+ -->
 
 As shown in Figure \ref{room time}, races yielded solutions, in median, about 2 days faster than tournaments; and this difference seems larger in small rooms where contestant in tournaments might have less incentives to act in advance to prevent others from entering the contest. 
 

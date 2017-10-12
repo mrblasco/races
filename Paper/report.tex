@@ -109,7 +109,7 @@ University, 1737 Cambridge Street, Cambridge, MA 02138 (email:
 \providecommand{\subtitle}[1]{}
 \subtitle{{[}PRELIMINARY AND INCOMPLETE{]}}
 \author{Andrea Blasco \and Kevin J. Boudreau \and Karim R. Lakhani \and Michael Menietti}
-\date{Last updated: 29 September, 2017}
+\date{Last updated: 05 October, 2017}
 
 \begin{document}
 \maketitle
@@ -971,29 +971,17 @@ intensity determined by the number of competitors. One intensity level
 had 10 contestants (small size) and the other 15 contestants (large
 size).
 
-Forming the 3x2 factorial design shown in Table
-\ref{experimental design}, the treatments were applied to 24 virtual
-competition rooms, which are our main experimental units. Each room
-consisted of a list of randomly assigned competitors and a customized
-webpage with a problem description, a provisional leaderboard (updated
-about every 48 hours), and a submission system through which contestants
-could submit their codes.
+Forming the 3x2 factorial design shown in Table \ref{experiment table},
+the treatments were applied to 24 virtual competition rooms, which are
+our main experimental units. Each room consisted of a list of randomly
+assigned competitors and a customized webpage with a problem
+description, a provisional leaderboard (updated about every 48 hours),
+and a submission system through which contestants could submit their
+codes.
 
-\begin{table}
-\centering
-\caption{Experimental Design}
-\label{experimental design}
-\begin{tabular}{@{}lrrr}
-  \\[-1.8ex]\hline\hline\\[-1.8ex]
- & Large & Small & Sum \\ 
-  \hline\\[-1.86ex]
-Race & 60 & 40 & 100 \\ 
-  Tournament & 60 & 40 & 100 \\ 
-  Tournament w/reserve & 60 & 40 & 100 \\ 
-  Sum & 180 & 120 & 300 \\ 
-   \hline\\[-1.8ex]
-\end{tabular}
-\end{table}
+\begin{verbatim}
+## Error in eval(expr, envir, enclos): could not find function "make_experiment_table"
+\end{verbatim}
 
 A total prize pool of more than \$40,000 was offered as an incentive for
 participation. The prize structure across the rooms was the same. In
@@ -1098,43 +1086,9 @@ other online platforms like Wikipedia or Stack Overflow.\footnote{See,
 communities in general or even online communities of programmers, but it
 comprises a set of experienced and relatively homogeneous competitors.
 
-\begin{table}
-\centering
-\caption{Descriptive statistics}
-\label{summary}
-\begin{tabular}{@{}lrrrrrrr}
-  \\[-1.8ex]\hline\hline\\[-1.8ex]
- & Mean & Median & St.Dev. & Min & Max & Obs. & F-statistic \\ 
-  \hline\\[-1.86ex]
- \multicolumn{1}{@{}l}{\emph{Platform data:}}\\
- \\[-1.86ex]~rating & 13.2 & 13 & 4 & 6 & 30 & 210 & 0.003 \\ 
-   \\[-1.86ex]~ratingsrm & 1320.1 & 1238 & 560 & 312 & 2958 & 238 & 0.114 \\ 
-   \\[-1.86ex]~nreg & 17.6 & 9 & 23 & 1 & 161 & 299 & 0.631 \\ 
-   \\[-1.86ex]~nsub & 7.2 & 2 & 12 & 0 & 91 & 299 & 0.410 \\ 
-   \\[-1.86ex]~nregsrm & 45.7 & 20 & 64 & 0 & 365 & 299 & 0.149 \\ 
-   \\[-1.86ex]~nsubsrm & 40.6 & 19 & 58 & 0 & 338 & 299 & 0.187 \\ 
-   \\[-1.86ex]~year & 5.1 & 5 & 4 & 0 & 14 & 299 & 0.617 \\ 
-   \\[-1.86ex]~paidyr & 64.9 & 6 & 150 & 0 & 1069 & 139 & 0.104 \\ 
-   \\[-1.86ex]~nwins & 3.0 & 1 & 5 & 1 & 27 & 28 & 1.908 \\ 
-   \\[-1.86ex]\hline\multicolumn{1}{@{}l}{\emph{Survey data:}}\\
- \\[-1.86ex]~ntop5 & 4.0 & 2 & 8 & 1 & 56 & 70 & 0.565 \\ 
-   \\[-1.86ex]~ntop10 & 5.0 & 2 & 9 & 1 & 64 & 94 & 1.464 \\ 
-   \\[-1.86ex]~male & 1.0 & 1 & 0 & 0 & 1 & 276 & 0.981 \\ 
-   \\[-1.86ex]~timezone & 2.1 & 2 & 5 & -8 & 10 & 277 & 1.340 \\ 
-   \\[-1.86ex]~postgrad & 0.4 & 0 & 0 & 0 & 1 & 278 & 1.289 \\ 
-   \\[-1.86ex]~below30 & 0.7 & 1 & 0 & 0 & 1 & 278 & 0.680 \\ 
-   \\[-1.86ex]~risk & 6.4 & 7 & 2 & 1 & 10 & 279 & 0.141 \\ 
-   \\[-1.86ex]~hours & 31.3 & 24 & 25 & 0 & 192 & 277 & 0.388 \\ 
-   \\[-1.86ex]~hours12 & 7.7 & 6 & 7 & 0 & 48 & 277 & 0.664 \\ 
-   \\[-1.86ex]~hours34 & 7.0 & 5 & 6 & 0 & 48 & 277 & 0.592 \\ 
-   \\[-1.86ex]~hours56 & 7.5 & 5 & 7 & 0 & 48 & 278 & 0.329 \\ 
-   \\[-1.86ex]~hours78 & 9.1 & 8 & 8 & 0 & 48 & 277 & 0.538 \\ 
-   \hline\\[-1.8ex]
-\end{tabular}
-\begin{minipage}{\textwidth}
-\footnotesize\emph{Notes:}{ Platform data: `year` denotes the years as platform member; `nreg` and `nregsrm` are the counts of registrations to past MMs and SRMs competitions, respectively; `nsub` and `nsubsrm` are the counts of submissions to past MMs and SRMs competitions, respectively; `paidyr` is prize money per year (in thousand of dollars) won in past competitions; `nwins`, `ntop5`, `ntop10` denote placements in past MMs competitions; Registration survey: `risk` is a measure of risk aversion; `hours` anticipated hours of work on solving the problem of the contest; `male` indicates the gender; `timezone` refers to competitor's residence during the contest; `postgrad` is an indicator for post-graduate educational degree (MAs or PhDs); and `below30` indicates age below 30 years old.
-}\end{minipage}
-\end{table}
+\begin{verbatim}
+## Error in eval(expr, envir, enclos): could not find function "make_descriptive_table"
+\end{verbatim}
 
 A key variable to measure was competitors' ability in terms of (1)
 problem-solving skills targeted for data science problems (like the
@@ -1218,18 +1172,17 @@ competition styles at the room level.\footnote{While such a dependence
 
 Our analysis of the effects of different competition styles begins by
 looking at competitors' entry. The entry variable is the fraction of
-competitors in a room who made at least one submission during the eight
-day submission period of the contest. Our theoretical model predicts
-that, all else being equal, competitors' entry will be higher in a
-tournament than in a race competition, because of the lack of minimum
-performance requirements. For the same reason, it also predicts higher
-entry rates in regular tournaments compared to tournaments with reserve.
-Consistent with these predictions, Figure \ref{room entrants} shows a
-higher median percentage of entrants in tournaments compared to both
-races and tournaments with reserve. It also shows that the difference in
-entry between tournaments and races, though it is consistently positive
-across room sizes, seemed more marked in small rooms compared to large
-rooms, suggesting sobering effects associated with size.
+competitors in a room who made at least one submission during the
+eight-day submission period of the contest. All else being equal, one
+should expect from our theoretical model a higher entry in tournaments
+compared to races (essentially due to the difference in minimum
+performance requirements). Consistent with this prediction, the median
+percentage of entrants was greater in tournaments (32 percent) than in
+races (24 percent) or in tournaments with reserve (28 percent). This
+difference in the entry was consistently positive across room sizes and
+seemingly more marked when the room size was small (Figure
+\ref{room entrants}), suggesting sobering effects associated with room
+size.
 
 \begin{figure}
 \caption{Percentage of room entrants by competition and room size}
@@ -1237,29 +1190,31 @@ rooms, suggesting sobering effects associated with size.
 \includegraphics{Figures/entryPlot-1.pdf}
 \end{figure}
 
-On average, 4.1 competitors (33.8 percent) assigned to tournaments were
-submitting solutions compared to 3.2 competitors (26.1 percent) assigned
-to races and 3.4 (26.2 percent) assigned to tournaments with reserve. To
-test if the observed positive difference in entry between tournaments
+To test if the observed positive difference in entry between tournaments
 and races was statistically greater than zero, we used a multiple linear
 regression model. We regressed the fraction of entrants in each room
 against treatment dummies and room size dummies. To control for random
 differences in competitors' baseline characteristics across rooms, we
-added controls for differences in room abilities and
-demographics.\footnote{We consider two sets of room controls: a
-  ``partial set'' and a ``full set.'' The partial set includes control
-  variables with a relatively higher chance of being different across
-  treatment groups. Those are variables with a relatively high (i.e.,
-  equal or larger than one) F statistic as reported on Table
-  \ref{summary}. The full set includes all the available controls with
-  the exception of a few variables. To avoid multicollinearity issues,
-  the full set does not include: the anticipated hours of work in each
-  day (\texttt{hours12-78}) that are replaced by the sum
-  (\texttt{hours}); and the number of top five placements that was
-  highly correlated with the number of wins. Other minor issues. Since
-  our data has only a few winners with many wins, instead of using the
-  mean number of wins of the room, we took an indicator for whether a
-  winner was in the room or not.}
+added two sets of control variables capturing differences in room
+abilities and demographics: a ``selected'' and a ``full'' set. The
+selected set included controls with relatively higher chances of being
+unbalanced across rooms (i.e., an F statistic equal or larger than one,
+as reported on Table \ref{summary});\footnote{We could have used more
+  sophisticated variable selection techniques like lasso or stepwise
+  variable selection methods. These data-driven approaches, however,
+  will generally bias the inference after selection (i.e., conventional
+  inferential statistics are only valid if the model is chosen
+  independent of the data being used to calculate them) demanding
+  further adjustments for hypothesis testing that we wanted to avoid.}
+and the full set included all the available controls with few exceptions
+to avoid technical issues like multicollinearity.\footnote{To avoid
+  multicollinearity issues, the full set does not include: the
+  anticipated hours of work in each day (\texttt{hours12-78}) that are
+  replaced by the sum (\texttt{hours}); and the number of top five
+  placements that was highly correlated with the number of wins. Other
+  minor issues. Since our data has only a few winners with many wins,
+  instead of using the mean number of wins of the room, we took an
+  indicator for whether a winner was in the room or not.}
 
 \begin{table}
 \centering
@@ -1272,76 +1227,69 @@ demographics.\footnote{We consider two sets of room controls: a
 \\[-1.8ex] & \multicolumn{3}{c}{Entry/n} & \multicolumn{3}{c}{log(Entry/n)} \\ 
 \\[-1.8ex] & (1) & (2) & (3) & (4) & (5) & (6)\\ 
 \hline \\[-1.8ex] 
- Tournament & 0.076 & 0.108$^{*}$ & 0.181$^{***}$ & 0.303 & 0.396$^{*}$ & 0.678$^{***}$ \\ 
-  & (0.055) & (0.061) & (0.038) & (0.207) & (0.225) & (0.112) \\ 
+ Tournament & 0.08 & 0.11$^{*}$ & 0.18$^{***}$ & 0.30 & 0.40$^{*}$ & 0.68$^{***}$ \\ 
+  & (0.05) & (0.06) & (0.04) & (0.21) & (0.23) & (0.11) \\ 
   & & & & & & \\ 
- Tournament w/reserve & 0.001 & 0.080 & 0.058 & 0.024 & 0.352 & 0.422 \\ 
-  & (0.055) & (0.090) & (0.086) & (0.207) & (0.331) & (0.252) \\ 
+ Tournament w/reserve & 0.001 & 0.08 & 0.06 & 0.02 & 0.35 & 0.42 \\ 
+  & (0.05) & (0.09) & (0.09) & (0.21) & (0.33) & (0.25) \\ 
   & & & & & & \\ 
- Room size (small) & $-$0.004 & $-$0.013 & $-$0.012 & $-$0.124 & $-$0.167 & $-$0.156 \\ 
-  & (0.045) & (0.053) & (0.041) & (0.169) & (0.197) & (0.119) \\ 
+ Room size (small) & $-$0.004 & $-$0.01 & $-$0.01 & $-$0.12 & $-$0.17 & $-$0.16 \\ 
+  & (0.04) & (0.05) & (0.04) & (0.17) & (0.20) & (0.12) \\ 
   & & & & & & \\ 
- Constant & 0.263$^{***}$ & 0.413 & $-$0.187 & $-$1.370$^{***}$ & $-$0.066 & $-$3.410 \\ 
-  & (0.045) & (0.518) & (0.845) & (0.169) & (1.910) & (2.480) \\ 
+ Constant & 0.26$^{***}$ & 0.41 & $-$0.19 & $-$1.37$^{***}$ & $-$0.07 & $-$3.41 \\ 
+  & (0.04) & (0.52) & (0.85) & (0.17) & (1.90) & (2.48) \\ 
   & & & & & & \\ 
 \hline \\[-1.8ex] 
-Room controls & no controls & partial & full & no controls & partial & full \\ 
+Room controls & no controls & selected & full & no controls & selected & full \\ 
 Observations & 24 & 24 & 24 & 24 & 24 & 24 \\ 
-R$^{2}$ & 0.113 & 0.272 & 0.952 & 0.137 & 0.323 & 0.972 \\ 
+R$^{2}$ & 0.11 & 0.27 & 0.95 & 0.14 & 0.32 & 0.97 \\ 
 \hline 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \begin{minipage}{1.000000\textwidth}
-\footnotesize\emph{Note:} The table reports regression estimates of the effects of different competition styles on entry computed using three sets of room controls: ``no controls", ``partial", ``full." Standard errors are reported in parenthesis. ***,**, * indicate statistical significance at 1, 5, and 10 percent level.
+\footnotesize\emph{Note:} The table reports OLS regression estimates of the effects of different competition styles on entry computed using three sets of room control variables: ``no controls", ``selected", and ``full." Standard errors are reported in parenthesis. ***,**, * indicate statistical significance at 1, 5, and 10 percent level.
 \end{minipage}
 \end{table}
 
-As shown in Table \ref{ols entry}, the estimated difference in entry
-between tournaments and races is of 0.08. This corresponds to a
-difference of 1 more entrant every 13 = 1/0.076 competitors or, using
-the specification with a log-transformed proportion (column 4), an
-increase by a factor of 1.35 = exp(0.303) in entry relative to races.
-Without any adjustment for random differences in the baseline
-characteristics of the rooms, the effect on entry is significantly
-greater than zero with a one-sided test at 10 percent level (t=1.391;
-one-sided p=0.09). Statistical significance increases when the effect is
-computed using the ``partial'' and ``full'' set of controls, thus
-adjusting for random differences at the room level like skills, past
-experience, and other demographics. Taken together, these results show
-evidence supporting a positive effect of tournaments on entry relative
-to races. In addition, our estimates show no systematic difference in
-entry rates between races and tournaments with reserve (as predicted by
-theory); and fail to detect any statistically significant difference
-between large and small rooms.
+Regression results (Table \ref{ols entry}) show that tournaments
+increased average entry rates by a factor of 1.35 = exp(0.3) relative to
+races. This effect was significantly greater than zero with a one-sided
+test at 10 percent level (t=1.391; one-sided p=0.09). In addition, the
+effect size was larger (almost twice as much) and with 5 percent level
+statistical significance in regressions with room controls (Table
+\ref{ols entry}), thus adjusting for random differences at the room
+level like skill composition and other demographics. These results show
+hence evidence supporting a positive effect of tournaments on entry
+relative to races, as predicted by our theory.
 
-Because tournaments yielded higher entry rates relative to races, it is
-now useful to discuss possible drivers of entry by looking at the
-sorting patterns across competition styles. Our theory suggests that,
-all else being equal, the positive gap in entry of tournaments compared
-to races should be driven by low-ability competitors sorting into
-tournaments at higher rates. Though theory prescinds from practical
-definitions of ability, two main types of abilities seemd the most
-relevent in our context. One involves proficiency in solving algorithmic
-problems like having adequate problem-solving skills and a good
-knowledge of programming. The second pertains to having as much time
-availability as required to solve the given problem. Our analysis thus
-focused on two types of data: platform data on skills and experience;
-and the hours of work as anticipated by competitors at registration.
+To better understand the drivers of these entry differences, we then
+examined individual sorting patterns across competition styles. All else
+being equal, our theory suggests that tournaments should drive more
+entry because of a relatively higher rate of low-ability competitors
+sorting into the competition (i.e., as a consequence of the lack of
+minimum performance requirements). Though theory prescinds from a
+practical definition of ability, a few variables seemed the most
+relevant in our context and especially the problem solving skills and
+programming speed --- as measured by the individual skill ratings ---
+and the time availability during the submission period --- as reflected
+by the anticipated hours working on the contest's problem that were
+collected through the registration survey. Our analysis of sorting thus
+focused on testing differences of these variables across entrants in
+each treatment.
 
-To examine the sorting patterns in our data, we first estimated the
-conditional probability of entry as a function of our favourite ability
-measures --- the skill ratings and anticipated hours of work. As shown
-in the upper panels of Figure \ref{sorting plot}, the linear-regression
-estimates of the conditional probability of entry computed for the
-median competitor (i.e., 24 anticipated hours) was increasing in both
-our ability measures --- the skill rating (left panel) and anticipated
-hours (right panel) --- with large differences in probability between
-individuals at the top and the bottom of the covariate distribution. So,
-entrants were more skilled than non-entrants. To see if these sorting
-patterns were different across tournaments and races, we then estimated
-the same relationships conditional on competitors being randomly
-assigned to races or tournaments (i.e., interacting the covariates with
-treatment dummies). As shown in the lower panels of Figure
+To characterize the sorting patterns in our data, we first tested
+differences in means between entrants and non-entrants (e.g.,
+competitors with no recorded submissions). Entrants had on average
+significantly higher individual skill ratings (xxxx) and more
+anticipated hours of work (xxx) relative to non-entrants but not
+different in terms of our measure of individual programming speed. These
+results, as one would expect, are consistent with the hypothesis of
+entrants being on average ``higher'' ability competitors than
+non-entrants (these also suggest programming speed alone is not a good
+measure of ability, possibly because the competition was spread on
+multiple days). To see if there were differences across tournaments and
+races, we then compared means conditional on the entrant being randomly
+assigned to races or tournaments. As shown in the lower panels of Figure
 \ref{sorting plot}, the linear-regression estimates with interactions
 overlap quite well one another. This means that the propensity to enter
 of an individual with a given programming skills --- measured by the

@@ -7,10 +7,7 @@
 
 ## @knitr sortingplots
 
-# Regression
-fit <- lm(submit ~ log(rating) + hours, data=races)
-
-# Data for predictions 
+# Functions  
 create.grid <- function(x, l=100, ...) seq(from=min(x, ...), to=max(x, ...), length.out=l)
 
 plot.prediction <- function(x, data, ...) {
@@ -19,7 +16,10 @@ plot.prediction <- function(x, data, ...) {
 	lines(formula=update(x, '.-se.fit~.'), data=data, lty=2, ...)
 }
 
-## RATINGS
+## Main program
+
+fit <- lm(submit ~ log(rating) + hours, data=races)
+
 rating.100 <- create.grid(races$rating, na.rm=TRUE)
 dfp <- data.frame(hours=median(races$hours, na.rm=TRUE), rating=rating.100)
 yhat <- predict(fit, newdata=dfp, se=TRUE)
@@ -87,6 +87,9 @@ lines(fit - se.fit ~ hours, data=out.hours.tourn, col='navy', type='l', lty=2)
 
 ## @knitr sortingtable
 
+## Define functions ####
+
+# Adjust model's formula by log-transforming dep var when necessary
 adj.models <- function(x) {
 	vars <- c('timezone','male','below30','postgrad','hours','hours12','hours34','hours56','hours78')
 	for (i in vars) x <- gsub(paste('log\\(', i, "\\+1\\)", sep=''), i, x)
@@ -94,13 +97,15 @@ adj.models <- function(x) {
 	for (i in vars) x <- gsub(paste(i, "\\+1", sep=''), i, x)
 	return(x)
 }
-models <- adj.models(paste('log(',colnames(covars),"+1)", "~submit*treatment", sep=''))
 
-# Differences races vs treatments
+## Main program 
+
+# Compute diff-in-diff estimator for effect of the treatment on the dep.var
 contrast.default <- options('contrasts')
+models <- adj.models(paste('log(',colnames(covars),"+1)", "~submit*treatment", sep=''))
 models.fit <- sapply(models, function(x) lm(formula=x, data=cbind(covars, races)))
 
-# Differences races vs tournaments 
+# Change contrast to estimate differences races vs tournaments 
 races$treatment2 <- races$treatment
 contrasts(races$treatment2) <- contr.sum(3, contrasts=TRUE)
 models2 <- gsub("treatment","treatment2", models)

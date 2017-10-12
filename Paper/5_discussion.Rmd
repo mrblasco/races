@@ -2,3 +2,6 @@
 # Discussion
 
 [TBA]
+
+
+**Entry** Overall, and consistent with theoretical predictions, we found evidence that competitors in tournaments had higher propensity to enter the competition relative to those randomly assigned to the other treatments. While our data show stark differences between entrants and non-entrants, we did not detect significant differences in entrants' characteristics between races and tournaments. Both conditional and unconditional differences in means between races and tournaments are insignificant. In particular, we found no evidence of skill-based sorting between races and tournaments.  By contrast, we found significant differences in entrants' characteristics between races and tournaments with reserve. Since entry rates are not different between these two treatment groups, a substitution effect must have occurred, which was unexpected as not predicted by theory.

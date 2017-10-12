@@ -28,13 +28,13 @@ keywords:
   - innovation
 
 fontsize: 11pt
-setspace: \doublespacing
+# setspace: \doublespacing
 endfloat: true
 
 output:
   pdf_document:
     toc: true
-    keep_tex: true
+    keep_tex: false
     fig_crop: false
     fig_width: 5
     fig_height: 5
@@ -57,6 +57,11 @@ library(magrittr)
 library(xtable)
 library(stargazer)
 library(knitr)
+library(np)
+library(methods)
+
+# Font family for pdf
+pdf.options(family = "Palatino")
 
 opts_chunk$set(
 	cache=FALSE,
@@ -75,10 +80,6 @@ options(digits=3, xtable.caption.placement='top', xtable.comment=FALSE)
 # Helper functions
 percent  <- function(x, digits=0, ...) round(100 * x, digits, ...)
 difftime2 <- function(...) as.numeric(difftime(...))
-
-
-read_chunk("../R/data.R")
-read_chunk("../R/scores.R")
 
 source("../R/prep-data.R")
 source('../R/boxplot.R')

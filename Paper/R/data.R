@@ -5,23 +5,22 @@
 # 
 ################################################################################ 
 
-## @knitr experimentalDesign
+## @knitr experimental_design_table
 
-experimental.design.table <- function() {
-	x <- expand.grid(size=c("Large", "Small"), treatment=c("Race", "Tournament", "Tournament w/reserve"))
-	x$num <- ifelse(x$size=='Large', 15, 10) * 4
-	tab <- xtabs( num ~ treatment + size, data=x)
-	rownames(tab) <- capitalize(rownames(tab))
-	xtab <- xtable(addmargins(tab), digits=0)
-	caption(xtab) <-  "Experimental Design"
-	label(xtab) <- "experimental design"
-	align(xtab) <- c("@{}l", rep("r", ncol(xtab)))
-	render.xtable(xtab)
-}
-experimental.design.table()
+x <- expand.grid(size=c("Large", "Small")
+								, treatment=c("Race", "Tournament", "Tournament w/reserve"))
+x$num <- ifelse(x$size=='Large', 15, 10) * 4
+tab <- xtabs(num ~ treatment + size, data=x)
+rownames(tab) <- capitalize(rownames(tab))
+xtab <- xtable(addmargins(tab), digits=0)
+caption(xtab) <- "Experimental Design"
+label(xtab) <-  "experiment table"
+align(xtab) <- c("@{}l", rep("r", ncol(xtab)))
+render.xtable(xtab)
 
 
-## @knitr descriptives
+
+## @knitr descriptive_table
 
 tab <- descriptives(covars)
 xtab <- xtable(tab)
@@ -29,16 +28,16 @@ digits(xtab) <- c(1, 1, rep(0, ncol(xtab)-2), 3)
 align(xtab) <- c("@{}l", rep("r", ncol(xtab)))
 caption(xtab) <- "Descriptive statistics"
 label(xtab) <- "summary"
-attributes(xtab)$notes <- " Platform data: `year` denotes the years as platform member; `nreg` and `nregsrm` are the counts of registrations to past MMs and SRMs competitions, respectively; `nsub` and `nsubsrm` are the counts of submissions to past MMs and SRMs competitions, respectively; `paidyr` is prize money per year (in thousand of dollars) won in past competitions; `nwins`, `ntop5`, `ntop10` denote placements in past MMs competitions; Registration survey: `risk` is a measure of risk aversion; `hours` anticipated hours of work on solving the problem of the contest; `male` indicates the gender; `timezone` refers to competitor's residence during the contest; `postgrad` is an indicator for post-graduate educational degree (MAs or PhDs); and `below30` indicates age below 30 years old."
+attributes(xtab)$notes <- "Platform data: `year` denotes the years as platform member; `nreg` and `nregsrm` are the counts of registrations to past MMs and SRMs competitions, respectively; `nsub` and `nsubsrm` are the counts of submissions to past MMs and SRMs competitions, respectively; `paidyr` is prize money per year (in thousand of dollars) won in past competitions; `nwins`, `ntop5`, `ntop10` denote placements in past MMs competitions; Registration survey: `risk` is a measure of risk aversion; `hours` anticipated hours of work on solving the problem of the contest; `male` indicates the gender; `timezone` refers to competitor's residence during the contest; `postgrad` is an indicator for post-graduate educational degree (MAs or PhDs); and `below30` indicates age below 30 years old."
 add <- list()
 add$cmd <- c('\\multicolumn{1}{@{}l}{\\emph{Platform data:}}\\\\\n'
 						, '\\\\[-1.86ex]\\hline\\multicolumn{1}{@{}l}{\\emph{Survey data:}}\\\\\n'
 						, rep('\\\\[-1.86ex]~', nrow(tab)))
-add$pos <- c(0, 9,0:(nrow(tab)-1))
+add$pos <- c(0, 9, 0:(nrow(tab)-1))
 render.xtable(xtab, add)
 
 
-## @knitr ratingPlot
+## @knitr rating_density_comparison_figure
 
 rating_pdf <- with(subset(races, !is.na(rating)), tapply(rating, treatment, density))
 algo_rating_pdf <- with(subset(races, algo_rating>0), tapply(algo_rating/100, treatment, density))

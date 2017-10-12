@@ -1,3 +1,7 @@
+```{r}
+read_chunk("R/data.R")
+```
+
 # The experiment
 
 ## The context
@@ -25,9 +29,9 @@ A third key factors making this platform ideal for our experiment was that it co
 
 The goal of the experiment was to compare and contrast treatment effects of three different competition styles: (a) races, (b) tournaments, and (c) tournaments with reserve, as defined in our theoretical model section. To further test treatment differences under a varying degree of competition intensity, each of the treatments had two levels of intensity determined by the number of competitors. One intensity level had 10 contestants (small size) and the other 15 contestants (large size).
 
-Forming the 3x2 factorial design shown in Table \ref{experimental design}, the treatments were applied to 24 virtual competition rooms, which are our main experimental units. Each room consisted of a list of randomly assigned competitors and a customized webpage with a problem description, a provisional leaderboard (updated about every 48 hours), and a submission system through which contestants could submit their codes. 
+Forming the 3x2 factorial design shown in Table \ref{experiment table}, the treatments were applied to 24 virtual competition rooms, which are our main experimental units. Each room consisted of a list of randomly assigned competitors and a customized webpage with a problem description, a provisional leaderboard (updated about every 48 hours), and a submission system through which contestants could submit their codes. 
 
-```{r experimentalDesign, results='asis'}
+```{r experimental_design_table, results='asis'}
 ```
  
 A total prize pool of more than \$40,000 was offered as an incentive for participation. The prize structure across the rooms was the same. In each room, we offered cash prizes of $1,000 and $100 to the first and second placed competitor. An additional "grand" prize of \$6,000 was offered to the top competitor (i.e., the first among all top room competitors) in each competition treatment (a total of 3 grand prizes).
@@ -62,21 +66,21 @@ Using platform data (top panel of Table \ref{summary}), we find that the majorit
 
 Data from a mandatory registration survey (bottom panel of Table \ref{summary}) further reveal that study participants were residing in `r length(p <- prop.table(table(races$country)))` countries (`r round(100*p[names(p)=='United States'])` percent in the United States), were below 30 years old (`r percent(mean(covars$below30, na.rm=TRUE))` percent), and were mostly male (`r percent(mean(covars$male, na.rm=T))` percent), reflecting an overall unbalanced gender participation on Topcoder which is common to many other online platforms like Wikipedia or Stack Overflow.^[See, for example, xxxx.] Our sample is thus hardly representative of online communities in general or even online communities of programmers, but it comprises a set of experienced and relatively homogeneous competitors. 
 
-```{r descriptives, results='asis'}
+```{r descriptive_table, results='asis'}
 ```
 
 A key variable to measure was competitors' ability in terms of (1) problem-solving skills targeted for data science problems (like the named entity recognition task used in the contest) and (2) programming speed. As a proxy for these two aspects of a competitor's ability, we collected individual skill ratings for each participant in the study. These ratings are publicly available on the platform and represent elo-type measures of a competitor's relative ability compared to others.[^skillrating]  In particular, we rely on the skill rating computed for MMs as a proxy of problem solving ability and on that computed for SRMs as a measure of programming speed.
 
 [^skillrating]: This measure is represented by a number that increases or decreases at the end of a competition depending on the difference between a hypothetical expected rank (based on the pre-contest values of the skill rating of the opponents) and the actual rank achieved by a competitor at the end of a competition. When the actual rank is higher than the expected rank, the skill rating increases whereas it decreases otherwise. The skill ratings in our sample are computed independently for each type of competition run on the platform (MMs and SRMS) before this study.
 
-```{r ratingPlot, fig.width=9, fig.height=4, include=FALSE}
+```{r rating_density_comparison_figure, fig.width=9, fig.height=4, include=FALSE}
 ```
 
 \begin{figure}
 \centering
 \caption{Distribution of Topcoder's skill ratings}
 \label{skill ratings}
-\includegraphics{Figures/ratingPlot-1.pdf}
+\includegraphics{Figures/rating_density_comparison_figure-1.pdf}
 \end{figure}
 
 The empirical density functions for these two skill ratings are shown in Figure \ref{skill ratings}. Both skill ratings have slightly asymmetric empirical densities due to the presence of a few competitors with very high skill ratings relative to the rest. A simple linear regression model regressing problem-solving (MM skill ratings) on programming speed (SRM skill ratings) shows that, though highly positively correlated, there is considerable variation between these two variables (the $R^2$ is equal to `r round(summary(rating.lm)$r.squared,2)`); suggesting the same competitor may perform very differently in races and tournaments.

@@ -86,6 +86,11 @@ source('../R/boxplot.R')
 source('../R/descriptives.R')
 source('../R/regtab.R')
 
+# Set color variables
+color.treatments <- adjustcolor(c("navy", "brown", "orange"), alpha.f = 0.5)
+pch.treatments <- c(15, 17, 19)
+	
+
 child_docs <- setdiff(list.files(pattern='.Rmd'), "report.Rmd")
 ```
 

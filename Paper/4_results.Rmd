@@ -62,11 +62,6 @@ $$
 $$ 
 Results (Figure \ref{sorting plot}) show that the function $\hat g_{l}(\cdot, \cdot)$ is increasing in our set of ability measures, the skill rating and anticipated hours of work. Moreover, the conditional probabilities in tournaments and races overlap quite well (Figure \ref{sorting plot}, left panel) for low- and middle-ability competitors (the bulk of our sample),  indicating thus that the difference in entry between races and tournaments was not due to those with low problem solving abilities. If anything, high-ability competitors were a little more likely to enter tournaments than races (though this difference is based only on a handful of observations, as shown by the "rug-plot" at the bottom of the graphs). At the same time, we found that the probability of entry in tournaments and races diverge (Figure \ref{sorting plot}, right panel) by about one percentage point difference for low- and middle-values of reported time availability, thus suggesting that the gap in entry was driven by differences in time availability between competitors. That is, competitors who had less time available for the contest (holding constant their problem solving ability) ended up entering tournaments more often than races, arguably because of the differential relevance of time in the two competition formats. 
 
-To summarize, we found a gap in entry between tournaments and races, whereby competitors exhibit a significantly higher probability of entering tournaments compared to races. This gap seems to be driven by a negative effect of races on the participation of competitors with less time available to work on the contest. This finding also indicates that individual time constraints, in addition to problem solving skills, fit with our theoretical definition of "ability" and should be taken into account in the contest design.
-
-<!-- 
-Discussion: [Given our set of competitor characteristics is orthogonal to treatment assignment, the (non-parametric) estimated conditional probability of entry given ability and treatment assignment is correctly identified. Conventional statistical inference, however, might be biased because of correlations within rooms.]
- -->
 
 ```{r sorting, cache=TRUE, fig.width=9, fig.height=4, include=FALSE}
 ```
@@ -78,33 +73,43 @@ Discussion: [Given our set of competitor characteristics is orthogonal to treatm
 \end{figure}
 
 
+To summarize, we found a gap in entry between tournaments and races, whereby competitors exhibit a significantly higher probability of entering tournaments compared to races. This gap seems to be driven by a negative effect of races on the participation of competitors with less time available to work on the contest. This finding also indicates that individual time constraints, in addition to problem solving skills, fit with our theoretical definition of "ability" and should be taken into account in the contest design.
+
+<!-- 
+Discussion: [Given our set of competitor characteristics is orthogonal to treatment assignment, the (non-parametric) estimated conditional probability of entry given ability and treatment assignment is correctly identified. Conventional statistical inference, however, might be biased because of correlations within rooms.]
+ -->
+
 ## Productivity
 
-We now turn to evaluate differences in productivity between tournaments and races. Our empirical context provides an accurate way to measure productivity because all submissions got scored based on their performance relative to the given problem, as described in Section \ref{the-context}. Thus our measure of room productivity was the maximum final (i.e., on the last submission) score achieved by competitors in each room.[^scores]
+We now turn to evaluate differences in productivity between tournaments and races. Our empirical context provides an accurate way to measure productivity because all submissions got scored based on their performance relative to the given problem, as described in Section \ref{the-context}. Our aggregated measure of room productivity was then the maximum final (i.e., on the last submission) score achieved by competitors in each room, which was also the xxxx in this context.
 
-[^scores]: During each contest, the platform keeps "provisional" and "system" scores for each solution submitted. In data science problems, provisional and system scores are computed in the same way but on different datasets to prevent the so-called "overfitting" problem (i.e., a form of model misspecification). Provisional scores are computed on a "testing" dataset and then published on the leaderboard. System scores are computed on a smaller "system testing" dataset and kept secret until the end of the contest. As these dataset are representative of the same data generating process, both scores are basically measuring the same kind of performance and indeed are highly correlated (the correlation coefficient was `r with(scores, cor(provisional, final,use='complete.obs'))` in our data). To simplify exposition, we report the analysis based on the system scores but results are the same with provisional scores as well. 
+Move to another section: [During each contest, the platform keeps "provisional" and "system" scores for each solution submitted. In data science problems, provisional and system scores are computed in the same way but on different datasets to prevent the so-called "overfitting" problem (i.e., a form of model misspecification). Provisional scores are computed on a "testing" dataset and then published on the leaderboard. System scores are computed on a smaller "system testing" dataset and kept secret until the end of the contest. As these dataset are representative of the same data generating process, both scores are basically measuring the same kind of performance and indeed are highly correlated (the correlation coefficient was `r with(scores, cor(provisional, final,use='complete.obs'))` in our data). To simplify exposition, we report the analysis based on the system scores but results are the same with provisional scores as well.]
 
-Our model predicts that the productivity in tournaments with reserve should be higher than that in races. Contrary to this prediction, the median room productivity in tournaments with reserve appears equal to that in the other rooms (Figure XXX), with rooms in tournaments with reserve achieving both the highest and lowest productivity overall. In addition, rooms highest scored submissions were below the target in about half of the rooms in each treatment (with xxxx), resulting in a total payout that was about twice as high as in  tournaments than in races or tournaments w/reserve (e.g., where solutions below the target are ineligible for prizes). 
+```{r}
+final_score_difference <- tapply(final$final.cens, final$treatment, median)
+```
 
-```{r scoresplot, fig.width=8, fig.height=4, include=FALSE}
+Our model predicts that the productivity in tournaments with reserve should be higher than that in races. Contrary to this prediction, the median room productivity appears exactly the same (Figure \ref{scores boxplot}) in all treatments and consistently equal across rooms with different size.  This result of tournaments and races having the same productivity was also tested using the multiple linear regression approach described before (with and without room controls). Regression results (not shown) invariably indicate small and insignificant treatment effects, suggesting differences were too small to be detected.
+
+[Discuss differences in the variance?]
+
+```{r scores_boxplot, fig.width=8, fig.height=4, include=FALSE}
 ```
 
 \begin{figure}
 \caption{Room productivity by competition style and room size}
-\label{scores plot}
-\includegraphics{Figures/scoresplot-1.pdf}
+\label{scores boxplot}
+\includegraphics{Figures/scores_boxplot-1.pdf}
 \end{figure}
 
-```{r scorestable, results='asis'}
-```
+While average productivity was equal across treatments, we found large differences in  terms of productivity relative to prize payout. In races, competitors reached the target in only 50 percent of the rooms (4 out 8), resulting in a total payout equal to half the payout in tournaments (where all submissions are eligible for prizes lacking any minimum performance requirement). Likewise only half of the rooms in tournaments with reserve achieved the desired target (4 out of 8), resulting in lower payouts relative to tournaments. In terms of productivity per dollar spent, our results indicate thus that races and tournaments with reserve did better relative to tournaments.
+
 
 ```{r}
 vt <- var.test(final.cens ~ treatment=='race', data=final)
 ```
 
-Using the multiple linear regression approach described before, regression results (not shown) indicate small and insignificant treatment differences in all our specifications (i.e., with or without controls), suggesting performance differences were too small to be detected. By contrast, using an F-test to compare the variances of two samples, we found the difference in variance between races and the other two treatments combined was significant (p=`r vt$p.value`). Room size was not different xxxx. 
-
-Taken together, these results show that room productivity was comparable across rooms.  At the same time, the total payout was larger in tournaments, indicating that races and tournaments w/reserve were more "efficient" than tournaments. 
+Taken together, these results show that races and tournaments had equivalent productivity. At the same time, the productivity per dollar spent was higher in races. This is because the task was such that many competitors failed to reach a desired target performance resulting in larger payouts in tournaments where achieving the desired target was required. This finding suggests that, at least in our setting, races would be a more "efficient" choice of design than tournaments. Contrary to expectations, tournaments with reserve failed to deliver higher productivity levels, although they exhibited significantly higher variance relative to the other treatments. An issue that will discuss later. 
 
 
 <!-- 

@@ -4,24 +4,27 @@
 # 
 # 
 
-## @knitr scoresplot
+## @knitr scores_boxplot
+	
+# Set color variables
+color.treatments <- adjustcolor(c("navy", "brown", "orange"), alpha.f = 0.5)
+pch.treatments <- c(15, 17, 19)
+	
+# Subsetting datasets by room size
+final.large <- subset(final, room_size=='Large')
+final.small <- subset(final, room_size=='Small')
 
-boxplot.scores <- function(formula, data, ylim, ...) {
-	h <- pretty(seq(ylim[1], ylim[2], length=5))
-	colors <- c("brown", gray(0.75), gray(0.95))
- 	boxplot(formula, data, col=colors, boxwex=0.5, frame=F, yaxt='n', xaxt="n", ylim=ylim, ...)
-	abline(h=h, lty=3, col='lightgray')
- 	boxplot(formula, data, col=colors, boxwex=0.5, frame=F, yaxt='n', xaxt="n", add=TRUE, ...)
-	axis(2, at=h, h, col='lightgray', col.ticks='lightgray', las=2)
-	axis(1, at=1:3, levels(final$treatment))
-}
-
-
-par(mfrow=c(1, 3)); ylim <- c(0.97, 1.04)
-form <- formula(final.cens ~ treatment, ylim=ylim)
-boxplot.scores(form, data=final, main="All rooms", ylim=ylim)
-boxplot.scores(form, data=subset(final, room_size=='Small'), main="Small rooms\n(10 competitors)", ylim=ylim)
-boxplot.scores(form, data=subset(final, room_size=='Large'), main="Large rooms\n(15 competitors)", ylim=ylim)
+par(mfrow=c(1, 3))
+ylim <- c(0.97, 1.04)
+model <- final.cens ~ treatment
+boxplot(model, data=final, col=color.treatments, ann=FALSE, ylim=ylim)
+title(main="All rooms", ylab='Highest room score')
+boxplot(model, data=final.small, col=color.treatments, ann=FALSE, ylim=ylim)
+title(main=paste("Small rooms\n(10 competitors per room)", sep='')
+	, ylab='Highest room score')
+boxplot(model, data=final.large, col=color.treatments, ann=FALSE, ylim=ylim)
+title(main=paste("Large rooms\n(15 competitors per room)", sep='')
+	, ylab='Highest room score')
 
 
 ## @knitr scorestable

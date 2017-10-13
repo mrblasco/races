@@ -49,6 +49,7 @@ regtab(c(m, m.log), digits=2, notes.width=1, keep.stat=c('n','rsq')
 
 ########################################
 ## @knitr entrySorting
+# Old should be dropped
 ########################################
 
 # entrants <- subset(races, submit>0 & treatment!='reserve')
